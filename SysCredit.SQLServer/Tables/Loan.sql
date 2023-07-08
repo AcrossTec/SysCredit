@@ -20,6 +20,9 @@
     [ModifiedDate] DATETIME2 NULL, 
     [DeletedDate] DATETIME2 NULL, 
     [IsEdit] BIT NOT NULL DEFAULT 0 , 
-    [IsDelete] BIT NOT NULL DEFAULT 0
+    [IsDelete] BIT NOT NULL DEFAULT 0, 
+    CONSTRAINT [FK_Loan_CustomerId_Customer_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [Customer]([CustomerId]), 
+    CONSTRAINT [FK_Loan_LoanTypeId_LoanType_LoanTypeId] FOREIGN KEY ([LoanTypeId]) REFERENCES [LoanType]([LoanTypeId]), 
+    CONSTRAINT [FK_Loan_PaymentFrequencyId_PaymentFrequency_PaymentFrequencyId] FOREIGN KEY ([PaymentFrequencyId]) REFERENCES [PaymentFrequency]([PaymentFrequencyId])
 )
 GO
