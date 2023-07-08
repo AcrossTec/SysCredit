@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{29827353-b2ca-4dc9-9bae-a4d361dea904}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql140DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -22,6 +22,8 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <GenerateCreateScript>True</GenerateCreateScript>
+    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -56,17 +58,21 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="Functions" />
+    <Folder Include="Scripts" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Customer.sql" />
-    <Build Include="Guarantor.sql" />
-    <Build Include="Relationship.sql" />
-    <Build Include="CustomerGuarantor.sql" />
-    <Build Include="Loan.sql" />
-    <Build Include="LoanType.sql" />
-    <Build Include="PaymentFrequency.sql" />
-    <Build Include="PaymentPlan.sql" />
-    <Build Include="PaymentPlanDetails.sql" />
-    <Build Include="User.sql" />
+    <Build Include="Tables\Customer.sql" />
+    <Build Include="Tables\CustomerGuarantor.sql" />
+    <Build Include="Tables\Guarantor.sql" />
+    <Build Include="Tables\Loan.sql" />
+    <Build Include="Tables\LoanType.sql" />
+    <Build Include="Tables\PaymentFrequency.sql" />
+    <Build Include="Tables\PaymentPlan.sql" />
+    <Build Include="Tables\PaymentPlanDetails.sql" />
+    <Build Include="Tables\Relationship.sql" />
+    <Build Include="Tables\User.sql" />
+    <Build Include="Functions\dbo.IsValidPaymentPlanCustomerId.sql" />
   </ItemGroup>
 </Project>

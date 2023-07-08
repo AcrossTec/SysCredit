@@ -9,6 +9,7 @@
     [ModifiedDate] DATETIME2 NULL, 
     [DeletedDate] DATETIME2 NULL, 
     [IsEdit] BIT NOT NULL DEFAULT 0 , 
-    [IsDelete] BIT NOT NULL DEFAULT 0
+    [IsDelete] BIT NOT NULL DEFAULT 0, 
+    CONSTRAINT [FK_PaymentPlanDetails_PaymentPlanId_PaymentPlan_PaymentPlanId] FOREIGN KEY ([PaymentPlanId]) REFERENCES [PaymentPlan]([PaymentPlanId])
 )
 GO
