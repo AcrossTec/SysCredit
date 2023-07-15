@@ -3,12 +3,63 @@
     x:Class="SysCredit.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:SysCredit"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:Local="clr-namespace:SysCredit"
+    xmlns:Views="clr-namespace:SysCredit.Views"
+    xmlns:Controls="clr-namespace:SysCredit.Controls"
+    FlyoutHeaderBehavior="Scroll">
+
+    <Shell.Resources>
+        <Style x:Key="AboutShell" TargetType="Element">
+            <Setter Property="Shell.BackgroundColor" Value="{StaticResource Tertiary}" />
+        </Style>
+    </Shell.Resources>
+
+    <Shell.FlyoutHeader>
+        <Controls:FlyoutHeader />
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutFooter>
+        <Controls:FlyoutFooter />
+    </Shell.FlyoutFooter>
+
+    <FlyoutItem Route="MainMenu" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Inicio"
+            ContentTemplate="{DataTemplate Views:MainPage}"
+            Route="Home" />
+        <Tab Title="Tabbar">
+            <ShellContent
+            Title="Página Genérica 1"
+            ContentTemplate="{DataTemplate Views:GenericPage}"
+            Route="Generic1"
+            />
+
+            <ShellContent
+            Title="Página Genérica 2"
+            ContentTemplate="{DataTemplate Views:GenericPage}"
+            Route="Generic2"
+            />
+
+            <ShellContent
+            Title="Página Genérica 3"
+            ContentTemplate="{DataTemplate Views:GenericPage}"
+            Route="Generic3"
+            />
+        </Tab>
+    </FlyoutItem>
+
+    <!--<FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        
+    </FlyoutItem>-->
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="About"
+        Style="{StaticResource AboutShell}"
+        Title="Sobre SysCredit"
+        ContentTemplate="{DataTemplate Views:AboutPage}" />
 
+    <MenuItem
+        Text="Ayuda"
+        Command="{Binding HelpCommand}"
+        CommandParameter="https://docs.microsoft.com/dotnet/maui/fundamentals/shell" />
 </Shell>

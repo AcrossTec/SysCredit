@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Controls="clr-namespace:SysCredit.Controls"
+             x:Class="SysCredit.Views.AboutPage"
+             Title="Sobre SysCredit">
+    <Shell.TitleView>
+        <Controls:TitleView Text="Sobre SysCredit" TextColor="#293263" />
+    </Shell.TitleView>
+    <ScrollView>
+        <VerticalStackLayout Padding="30">
+            <Label Text="SysCredit" FontSize="45" FontAttributes="Bold" TextColor="{StaticResource Tertiary}" />
+            <Label Text="SysCredit (Android)" FontSize="{StaticResource DefaultButtonFontSize}" Margin="0,20,0,0" />
+            <Label Text="Versión 1.0.0.0" Margin="0,10,0,0" />
+            <Label Text="© 2023 W&amp;A Company" Margin="0,10,0,0" />
+            <Label Text="Todos los derechos reservados" Margin="0,10,0,0" />
+            <Label Text="Detalles del producto:" Margin="0,10,0,0" />
+            <Label Margin="10,10,0,0" Text="Aplicación de gestión de créditos." />
+            <Label Margin="0,10,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Controls:HyperlinkSpan
+                            Text="Visitar Página Oficial"
+                            Url="https://github.com/DenisRitchie/SysCredit"
+                            TextDecorations="Underline" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

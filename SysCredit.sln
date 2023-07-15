@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysCredit", "SysCredit\SysCredit.csproj", "{AD7BE4D7-9031-47AD-815D-AFB3A6638FBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysCredit", "SysCredit\SysCredit.csproj", "{AD7BE4D7-9031-47AD-815D-AFB3A6638FBB}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SysCredit.SQLServer", "SysCredit.SQLServer\SysCredit.SQLServer.sqlproj", "{29827353-B2CA-4DC9-9BAE-A4D361DEA904}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Folder", "Solution Folder", "{F90D6369-4540-4EC2-AB24-CD44344B3820}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

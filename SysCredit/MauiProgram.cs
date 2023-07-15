@@ -1,25 +1,31 @@
-﻿namespace SysCredit
-{
-    using Microsoft.Extensions.Logging;
+﻿namespace SysCredit;
 
-    public static class MauiProgram
+using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Markup;
+
+using Microsoft.Extensions.Logging;
+
+public static class MauiProgram
+{
+    public static MauiApp CreateMauiApp()
     {
-        public static MauiApp CreateMauiApp()
-        {
-            var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
-                {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+        var Builder = MauiApp.CreateBuilder();
+
+        Builder
+            .UseMauiApp<App>()
+            // Initialize the .NET MAUI Community Toolkit by adding the below line of code
+            .UseMauiCommunityToolkit()
+            .UseMauiCommunityToolkitMarkup()
+            .ConfigureFonts(Fonts =>
+            {
+                Fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                Fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+            });
 
 #if DEBUG
-		builder.Logging.AddDebug();
+        Builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
-        }
+        return Builder.Build();
     }
 }
