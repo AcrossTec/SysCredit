@@ -6,12 +6,11 @@
     <Frame BindingContext="{x:Reference this}"
            BorderColor="{Binding BorderColor}"
            HasShadow="{Binding HasShadow}"
-           Background="{Binding Background}"
-           BackgroundColor="{Binding BackgroundColor}"
+           BackgroundColor="{Binding ItemBackColor}"
            CornerRadius="{Binding CornerRadius}">
         <FlexLayout Direction="Column" AlignItems="Center" JustifyContent="SpaceEvenly">
-            <Image Source="{Binding ImageSource}" HeightRequest="54" WidthRequest="54" />
-            <Label Text="{Binding Text}" TextColor="{Binding TextColor}" />
+            <Image Source="{Binding ImageSource}" HeightRequest="55" WidthRequest="55" BackgroundColor="Yellow" />
+            <Label Text="{Binding Text}" TextColor="{Binding TextColor}" Margin="0,5,0,0" HorizontalTextAlignment="Center" />
         </FlexLayout>
     </Frame>
 </ContentView>

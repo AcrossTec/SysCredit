@@ -2,6 +2,7 @@
 namespace SysCredit;
 
 using SysCredit.Views;
+using SysCredit.Views.Clients;
 
 using System.Windows.Input;
 
@@ -22,10 +23,14 @@ public partial class AppShell : Shell
     void RegisterRoutes()
     {
         Routes.Add(("Home", typeof(MainPage)));
+        Routes.Add(("About", typeof(AboutPage)));
+
         Routes.Add(("Generic1", typeof(GenericPage)));
         Routes.Add(("Generic2", typeof(GenericPage)));
         Routes.Add(("Generic3", typeof(GenericPage)));
-        Routes.Add(("About", typeof(AboutPage)));
+
+        Routes.Add(("Client/Add", typeof(NewClientPage)));
+        Routes.Add(("Client/List", typeof(ListClientPage)));
 
         foreach (var (Route, Page) in Routes)
         {
