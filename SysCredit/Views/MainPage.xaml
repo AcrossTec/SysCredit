@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Local="clr-namespace:SysCredit"
+             xmlns:Controls="clr-namespace:SysCredit.Controls"
+             x:Class="SysCredit.Views.MainPage"
+             Title="SysCredit" Shell.BackgroundColor="White">
+    <Shell.TitleView>
+        <Controls:TitleView Text="SysCredit" TextColor="#293263" />
+    </Shell.TitleView>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Secondary" Text="Item 1" />
+        <ToolbarItem Order="Secondary" Text="Item 2" />
+        <ToolbarItem Order="Secondary" Text="Item 3" />
+        <ToolbarItem Order="Secondary" Text="Item 4" />
+    </ContentPage.ToolbarItems>
+    <ScrollView Margin="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Controls:MainPageItem Grid.Column="0" Grid.Row="0"
+                                    WidthRequest="161" HeightRequest="132"
+                                    ImageSource="MainView/new_client.svg"
+                                    Text="Nuevo Cliente"
+                                    VerticalOptions="Start"
+                                    BackgroundColor="{StaticResource MainPageItemColor}" />
+
+            <Controls:MainPageItem Grid.Column="1" Grid.Row="0"
+                                    WidthRequest="161" HeightRequest="132"
+                                    ImageSource="MainView/list_client.svg"
+                                    Text="Lista de Clientes"
+                                    VerticalOptions="Start"
+                                    BackgroundColor="{StaticResource MainPageItemColor}" />
+        </Grid>
+    </ScrollView>
+</ContentPage>
