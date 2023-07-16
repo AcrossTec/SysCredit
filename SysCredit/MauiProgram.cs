@@ -37,6 +37,12 @@ public static class MauiProgram
                 Fonts.AddFont("Inter-VariableFont.ttf", "InterVariableFont");
 
                 Fonts.AddFont("SysCredit-Icon-Fonts.ttf", "SysCredit");
+            })
+            .ConfigureMauiHandlers(Handlers =>
+            {
+#if ANDROID
+                Handlers.AddHandler(typeof(Shell), typeof(SysCredit.Platforms.Android.Renderers.CustomShellRenderer));
+#endif
             });
 
 #if DEBUG

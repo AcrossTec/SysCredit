@@ -5,75 +5,81 @@
              xmlns:Controls="clr-namespace:SysCredit.Controls"
              x:Class="SysCredit.Views.MainPage"
              Title="SysCredit"
-             Shell.ForegroundColor="{StaticResource SysCreditNavBarTextColor}"
-             Shell.BackgroundColor="White">
-    <ContentPage.Resources>
-        <Style x:Key="ButtonItemStyle" TargetType="Button">
-            <Setter Property="WidthRequest" Value="162" />
-            <Setter Property="HeightRequest" Value="135" />
-            <Setter Property="CornerRadius" Value="12" />
-            <Setter Property="FontFamily" Value="InterBold" />
-            <Setter Property="FontSize" Value="14" />
-            <Setter Property="LineBreakMode" Value="WordWrap" />
-            <Setter Property="BackgroundColor" Value="{StaticResource MainPageItemColor}" />
-        </Style>
-    </ContentPage.Resources>
+             BackgroundColor="White"
+             Shell.ForegroundColor="White"
+             Shell.BackgroundColor="#061F60">
     <Shell.TitleView>
-        <Controls:TitleView Text="SysCredit" TextColor="{StaticResource SysCreditNavBarTextColor}" HorizontalOptions="End" Margin="0,0,20,0" />
+        <Controls:TitleView Text="SysCredit" TextColor="White" HorizontalOptions="EndAndExpand" Margin="0,0,20,0" />
     </Shell.TitleView>
     <ScrollView>
         <Grid Margin="5,10,5,10" ColumnDefinitions="*,15,*" RowDefinitions="Auto,Auto,15,Auto">
 
             <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"
                                  WidthRequest="330" HeightRequest="66"
-                                 HorizontalOptions="Center" Margin="0,10,0,40">
+                                 HorizontalOptions="Center" Margin="0,10,0,30">
                 <Label Grid.Row="0" Text="Bienvenido" FontFamily="InterBold" FontSize="32" LineHeight="40" VerticalTextAlignment="Center" />
                 <Label Grid.Row="1" Text="Controla prestamos con facilidad"
                        FontFamily="InterLight" FontSize="16" LineHeight="20"
                        VerticalTextAlignment="Center" />
             </VerticalStackLayout>
 
-            <!--<Button Grid.Column="0" Grid.Row="1"
-                    Text="Nuevo Cliente" Padding="0,20,0,0" HorizontalOptions="End" VerticalOptions="Start"
-                    ContentLayout="Top,-15" ImageSource="new_customer_icon.svg"
-                    Style="{StaticResource ButtonItemStyle}"
-                    ToolTipProperties.Text="Módulo para crear nuevos clientes"
-                    Clicked="OnAddClientClicked" />
+            <Border Grid.Column="0" Grid.Row="1" WidthRequest="162" HeightRequest="135"
+                    BackgroundColor="{StaticResource MainPageItemColor}"
+                    HorizontalOptions="End" VerticalOptions="Start">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <Grid WidthRequest="162" HeightRequest="135">
+                    <Label Text="Nuevo Cliente" TextColor="White" Margin="0,0,0,20"
+                           FontSize="14" FontFamily="InterBold" LineHeight="14"
+                           VerticalOptions="End" VerticalTextAlignment="Center"
+                           HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                    <ImageButton Aspect="Center" Source="new_customer_white_icon.svg"
+                                 WidthRequest="162" HeightRequest="135" Padding="0,10,0,20"
+                                 VerticalOptions="Center" HorizontalOptions="Center"
+                                 ToolTipProperties.Text="Módulo para crear nuevos clientes"
+                                 Clicked="OnAddClientClicked" />
+                </Grid>
+            </Border>
 
-            <Button Grid.Column="2" Grid.Row="1"
-                    Text="Lista de Clientes" Padding="0,35,0,0" HorizontalOptions="Start" VerticalOptions="Start"
-                    ContentLayout="Top,-32" ImageSource="list_customer_icon.svg"
-                    Style="{StaticResource ButtonItemStyle}"
-                    ToolTipProperties.Text="Módulo para buscar clientes"
-                    Clicked="OnListClientClicked" />
+            <Border Grid.Column="2" Grid.Row="1" WidthRequest="162" HeightRequest="135"
+                    BackgroundColor="{StaticResource MainPageItemColor}"
+                    HorizontalOptions="Start" VerticalOptions="Start">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <Grid WidthRequest="162" HeightRequest="135">
+                    <Label Text="Lista de Clientes" TextColor="White" Margin="0,0,0,20"
+                           FontSize="14" FontFamily="InterBold" LineHeight="14"
+                           VerticalOptions="End" VerticalTextAlignment="Center"
+                           HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                    <ImageButton Aspect="Center" Source="list_customer_white_icon.svg"
+                                 WidthRequest="162" HeightRequest="135" Padding="0,10,0,20"
+                                 VerticalOptions="Center" HorizontalOptions="Center"
+                                 ToolTipProperties.Text="Módulo para buscar clientes"
+                                 Clicked="OnListClientClicked" />
+                </Grid>
+            </Border>
 
-            <Button Grid.Column="0" Grid.Row="3"
-                    Text="Solicitud de Préstamo" Padding="0,20,0,0" HorizontalOptions="End" VerticalOptions="Start"
-                    ContentLayout="Top,-15" ImageSource="hand_holding_dollar_icon.svg"
-                    Style="{StaticResource ButtonItemStyle}"
-                    ToolTipProperties.Text="Módulo para registrar préstamos"
-                    Clicked="OnLoanRequestClicked" />-->
+            <Border Grid.Column="0" Grid.Row="3" WidthRequest="162" HeightRequest="135"
+                    BackgroundColor="{StaticResource MainPageItemColor}"
+                    HorizontalOptions="End" VerticalOptions="Start">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12" />
+                </Border.StrokeShape>
+                <Grid WidthRequest="162" HeightRequest="135">
+                    <Label Text="Solicitar Préstamo" TextColor="White" Margin="0,0,0,20"
+                           FontSize="14" FontFamily="InterBold" LineHeight="14"
+                           VerticalOptions="End" VerticalTextAlignment="Center"
+                           HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                    <ImageButton Aspect="Center" Source="hand_holding_dollar_white_icon.svg"
+                                 WidthRequest="162" HeightRequest="135" Padding="0,10,0,20"
+                                 VerticalOptions="Center" HorizontalOptions="Center"
+                                 ToolTipProperties.Text="Módulo para registrar préstamos"
+                                 Clicked="OnLoanRequestClicked" />
+                </Grid>
+            </Border>
 
-            <Controls:MainPageItem Grid.Column="0" Grid.Row="1"
-                                   Text="Nuevo Cliente" ItemBackColor="{StaticResource MainPageItemColor}"
-                                   WidthRequest="162" HeightRequest="135"
-                                   HorizontalOptions="End" VerticalOptions="Start"
-                                   CornerRadius="12" ImageSource="new_customer_white_icon.svg"
-                                   />
-
-            <Controls:MainPageItem Grid.Column="2" Grid.Row="1"
-                                   Text="Lista de Clientes" ItemBackColor="{StaticResource MainPageItemColor}"
-                                   WidthRequest="162" HeightRequest="135"
-                                   HorizontalOptions="Start" VerticalOptions="Start"
-                                   CornerRadius="12" ImageSource="list_customer_white_icon.svg"
-                                   />
-
-            <Controls:MainPageItem Grid.Column="0" Grid.Row="3"
-                                   Text="Solicitud de Préstamo" ItemBackColor="{StaticResource MainPageItemColor}"
-                                   WidthRequest="162" HeightRequest="135"
-                                   HorizontalOptions="End" VerticalOptions="Start"
-                                   CornerRadius="12" ImageSource="hand_holding_dollar_white_icon.svg"
-                                   />
         </Grid>
     </ScrollView>
 </ContentPage>

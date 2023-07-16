@@ -2,10 +2,8 @@
 <!--
     References:
         https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/flyout
-
     Respond to system theme changes:
         https://learn.microsoft.com/en-us/dotnet/maui/user-interface/system-theme-changes
-
     GravatarImageSourcePage.xaml:
         https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/ImageSources/GravatarImageSourcePage.xaml
 -->
@@ -21,10 +19,9 @@
     xmlns:Controls="clr-namespace:SysCredit.Controls"
     xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Shell.FlyoutBehavior="Flyout"
-    FlyoutIcon="home_screen_dark_icon.svg"
     FlyoutHeaderBehavior="CollapseOnScroll"
     FlyoutBackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}">
-
+    <!--FlyoutIcon="home_screen_dark_icon.svg"-->
     <Shell.FlyoutHeader>
         <Grid BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}" RowDefinitions="Auto,Auto" MinimumHeightRequest="150">
             <Grid ColumnDefinitions="Auto,*" HeightRequest="125">
@@ -39,14 +36,14 @@
                     <Label Text="correoelectronico@gmail.com" TextColor="White" FontFamily="InterLight" FontSize="12" LineHeight="16" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
                 </VerticalStackLayout>
             </Grid>
-            <Rectangle Grid.Row="1" Fill="White" HeightRequest="2" WidthRequest="300"
+            <Rectangle Grid.Row="1" Fill="White" HeightRequest="2" WidthRequest="350"
                        HorizontalOptions="CenterAndExpand" VerticalOptions="End" Margin="0,0,0,20" />
         </Grid>
     </Shell.FlyoutHeader>
 
     <Shell.FlyoutFooter>
         <Grid BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}" RowDefinitions="Auto,Auto" MinimumHeightRequest="82">
-            <Rectangle Grid.Row="0" Fill="White" HeightRequest="2" WidthRequest="300"
+            <Rectangle Grid.Row="0" Fill="White" HeightRequest="2" WidthRequest="350"
                        HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Margin="0,20,0,0" />
             <Label Grid.Row="1" Text="© Todos los derechos reservados" TextColor="White"
                    HeightRequest="60" FontSize="14" FontFamily="InterLight" LineHeight="16"
@@ -58,12 +55,38 @@
     <Shell.ItemTemplate>
         <DataTemplate>
             <Grid ColumnDefinitions="70,*" RowDefinitions="40" Padding="0,5,0,5">
-                <Image Source="{Binding FlyoutIcon}" Margin="5,5,5,5" HeightRequest="25"
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="White" />
+                                    <Setter TargetName="FlyoutItemLabelPanel" Property="Border.Padding" Value="0" />
+                                    <Setter TargetName="FlyoutItemLabelPanel" Property="Border.BackgroundColor" Value="{StaticResource SysCreditFlyoutBackgroundColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource SysCreditFlyoutBackgroundColor}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.FontFamily" Value="InterExtraBold" />
+                                    <Setter TargetName="FlyoutItemLabelPanel" Property="Border.Padding" Value="15,0,0,0" />
+                                    <Setter TargetName="FlyoutItemLabelPanel" Property="Border.BackgroundColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+                <Image x:Name="FlyoutItemIcon" Source="{Binding FlyoutIcon}" Margin="5,5,5,5" HeightRequest="25"
                        HorizontalOptions="Center" VerticalOptions="Center" />
-                <Label Grid.Column="1" Text="{Binding Title}" TextColor="White"
-                       FontSize="14" FontFamily="InterLight" FontAttributes="Bold"
-                       HorizontalTextAlignment="Start" VerticalTextAlignment="Center"
-                       HorizontalOptions="Start" VerticalOptions="Center" />
+                <Border Grid.Column="1" x:Name="FlyoutItemLabelPanel" StrokeThickness="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20,0,20,0" />
+                    </Border.StrokeShape>
+                    <Label x:Name="FlyoutItemLabel" Text="{Binding Title}" TextColor="White"
+                           FontSize="14" FontFamily="InterLight" FontAttributes="Bold"
+                           HorizontalTextAlignment="Start" VerticalTextAlignment="Center"
+                           HorizontalOptions="Start" VerticalOptions="Center" />
+                </Border>
             </Grid>
         </DataTemplate>
     </Shell.ItemTemplate>
@@ -71,12 +94,38 @@
     <Shell.MenuItemTemplate>
         <DataTemplate>
             <Grid ColumnDefinitions="70,*" RowDefinitions="40" Padding="0,5,0,5">
-                <Image Source="{Binding Icon}" Margin="5,5,5,5" HeightRequest="25"
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="White" />
+                                    <Setter TargetName="FlyoutItemLabelPanel" Property="Border.Padding" Value="0" />
+                                    <Setter TargetName="FlyoutItemLabelPanel" Property="Border.BackgroundColor" Value="{StaticResource SysCreditFlyoutBackgroundColor}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource SysCreditFlyoutBackgroundColor}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.FontFamily" Value="InterExtraBold" />
+                                    <Setter TargetName="FlyoutItemLabelPanel" Property="Border.Padding" Value="15,0,0,0" />
+                                    <Setter TargetName="FlyoutItemLabelPanel" Property="Border.BackgroundColor" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+                <Image x:Name="FlyoutItemIcon" Source="{Binding Icon}" Margin="5,5,5,5" HeightRequest="25"
                        HorizontalOptions="Center" VerticalOptions="Center" />
-                <Label Grid.Column="1" Text="{Binding Title}" TextColor="White"
-                       FontSize="14" FontFamily="InterLight" FontAttributes="Bold"
-                       HorizontalTextAlignment="Start" VerticalTextAlignment="Center"
-                       HorizontalOptions="Start" VerticalOptions="Center" />
+                <Border Grid.Column="1" x:Name="FlyoutItemLabelPanel" StrokeThickness="0">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="20,0,20,0" />
+                    </Border.StrokeShape>
+                    <Label x:Name="FlyoutItemLabel" Text="{Binding Title}" TextColor="White"
+                           FontSize="14" FontFamily="InterLight" FontAttributes="Bold"
+                           HorizontalTextAlignment="Start" VerticalTextAlignment="Center"
+                           HorizontalOptions="Start" VerticalOptions="Center" />
+                </Border>
             </Grid>
         </DataTemplate>
     </Shell.MenuItemTemplate>
