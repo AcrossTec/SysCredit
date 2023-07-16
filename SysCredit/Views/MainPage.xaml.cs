@@ -1,5 +1,7 @@
 ﻿namespace SysCredit.Views;
 
+using SysCredit.Views.Clients;
+
 using System;
 
 public partial class MainPage : ContentPage
