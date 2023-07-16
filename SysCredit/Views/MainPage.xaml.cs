@@ -12,19 +12,20 @@ public partial class MainPage : ContentPage
 
     private void InitializeEvents()
     {
-        ClickGestureRecognizer AddClientGesture = new();
-        AddClientGesture.Clicked += AddClientGesture_Clicked;
-        AddClientGesture.NumberOfClicksRequired = 1;
-        NewClient.GestureRecognizers.Add(AddClientGesture);
     }
 
-    private async void AddClientGesture_Clicked(object? Sender, EventArgs Event)
+    private async void OnAddClientClicked(object Sender, EventArgs Event)
     {
         await Shell.Current.GoToAsync("Client/Add");
     }
 
-    private async void ToolbarItem_Clicked(object sender, EventArgs e)
+    private async void OnListClientClicked(object Sender, EventArgs Event)
     {
-        await Shell.Current.GoToAsync("Client/Add");
+        await Shell.Current.GoToAsync("Client/List");
+    }
+
+    private async void OnLoanRequestClicked(object Sender, EventArgs Event)
+    {
+        await Shell.Current.GoToAsync("Loan/Request");
     }
 }

@@ -1,70 +1,111 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    References:
+        https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/flyout
+
+    Respond to system theme changes:
+        https://learn.microsoft.com/en-us/dotnet/maui/user-interface/system-theme-changes
+
+    GravatarImageSourcePage.xaml:
+        https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/ImageSources/GravatarImageSourcePage.xaml
+-->
 <Shell
     x:Class="SysCredit.AppShell"
+    x:Name="SysCreditShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Local="clr-namespace:SysCredit"
-    xmlns:Views="clr-namespace:SysCredit.Views"
+    xmlns:GlobalViews="clr-namespace:SysCredit.Views"
+    xmlns:ClientViews="clr-namespace:SysCredit.Views.Clients"
+    xmlns:LoanViews="clr-namespace:SysCredit.Views.Loans"
     xmlns:Controls="clr-namespace:SysCredit.Controls"
-    FlyoutHeaderBehavior="CollapseOnScroll">
-
-    <Shell.Resources>
-        <Style x:Key="AboutShell" TargetType="Element">
-            <Setter Property="Shell.BackgroundColor" Value="{StaticResource Tertiary}" />
-        </Style>
-    </Shell.Resources>
-
-    <Shell.FlyoutIcon>
-        <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{StaticResource Bars}" Color="Black" Size="45" />
-    </Shell.FlyoutIcon>
+    xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Shell.FlyoutBehavior="Flyout"
+    FlyoutIcon="home_screen_dark_icon.svg"
+    FlyoutHeaderBehavior="CollapseOnScroll"
+    FlyoutBackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}">
 
     <Shell.FlyoutHeader>
-        <Controls:FlyoutHeader />
+        <Grid BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}" RowDefinitions="Auto,Auto" MinimumHeightRequest="150">
+            <Grid ColumnDefinitions="Auto,*" HeightRequest="125">
+                <Image Source="default_gravatar.svg" WidthRequest="68" HeightRequest="68" Margin="25,0,20,0"
+                       VerticalOptions="Center" HorizontalOptions="Center">
+                    <Image.Clip>
+                        <EllipseGeometry RadiusX="100" RadiusY="100" Center="0,0" />
+                    </Image.Clip>
+                </Image>
+                <VerticalStackLayout Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="Start">
+                    <Label Text="SysCredit" TextColor="White" FontFamily="InterBold" FontSize="18" LineHeight="22" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
+                    <Label Text="correoelectronico@gmail.com" TextColor="White" FontFamily="InterLight" FontSize="12" LineHeight="16" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
+                </VerticalStackLayout>
+            </Grid>
+            <Rectangle Grid.Row="1" Fill="White" HeightRequest="2" WidthRequest="300"
+                       HorizontalOptions="CenterAndExpand" VerticalOptions="End" Margin="0,0,0,20" />
+        </Grid>
     </Shell.FlyoutHeader>
 
     <Shell.FlyoutFooter>
-        <Controls:FlyoutFooter />
+        <Grid BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}" RowDefinitions="Auto,Auto" MinimumHeightRequest="82">
+            <Rectangle Grid.Row="0" Fill="White" HeightRequest="2" WidthRequest="300"
+                       HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Margin="0,20,0,0" />
+            <Label Grid.Row="1" Text="© Todos los derechos reservados" TextColor="White"
+                   HeightRequest="60" FontSize="14" FontFamily="InterLight" LineHeight="16"
+                   VerticalTextAlignment="Center" VerticalOptions="Center"
+                   HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+        </Grid>
     </Shell.FlyoutFooter>
 
-    <ShellContent
-        Route="Home" Title="Inicio"
-        ContentTemplate="{DataTemplate Views:MainPage}" />
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions="70,*" RowDefinitions="40" Padding="0,5,0,5">
+                <Image Source="{Binding FlyoutIcon}" Margin="5,5,5,5" HeightRequest="25"
+                       HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Grid.Column="1" Text="{Binding Title}" TextColor="White"
+                       FontSize="14" FontFamily="InterLight" FontAttributes="Bold"
+                       HorizontalTextAlignment="Start" VerticalTextAlignment="Center"
+                       HorizontalOptions="Start" VerticalOptions="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions="70,*" RowDefinitions="40" Padding="0,5,0,5">
+                <Image Source="{Binding Icon}" Margin="5,5,5,5" HeightRequest="25"
+                       HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Grid.Column="1" Text="{Binding Title}" TextColor="White"
+                       FontSize="14" FontFamily="InterLight" FontAttributes="Bold"
+                       HorizontalTextAlignment="Start" VerticalTextAlignment="Center"
+                       HorizontalOptions="Start" VerticalOptions="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
 
     <ShellContent
-        Route="Generic1" Title="Página Genérica 1"
-        ContentTemplate="{DataTemplate Views:GenericPage}" />
+        Route="Home" Title="Inicio" Icon="app_home_white_icon.svg"
+        ContentTemplate="{DataTemplate GlobalViews:MainPage}" />
 
     <ShellContent
-        Route="Generic2" Title="Página Genérica 2"
-        ContentTemplate="{DataTemplate Views:GenericPage}" />
+        Route="ClientAdd" Title="Agregar Nuevo Cliente" Icon="new_customer_white_icon.svg"
+        ContentTemplate="{DataTemplate ClientViews:NewClientPage}" />
 
     <ShellContent
-        Route="Generic3" Title="Página Genérica 3"
-        ContentTemplate="{DataTemplate Views:GenericPage}" />
-
-    <!--<FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        <Tab Title="Reportes">
-            <ShellContent
-                Route="Generic1" Title="Página Genérica 1"
-                ContentTemplate="{DataTemplate Views:GenericPage}" />
-
-            <ShellContent
-                Route="Generic2" Title="Página Genérica 2"
-                ContentTemplate="{DataTemplate Views:GenericPage}" />
-
-            <ShellContent
-                Route="Generic3" Title="Página Genérica 3"
-                ContentTemplate="{DataTemplate Views:GenericPage}" />
-        </Tab>
-    </FlyoutItem>-->
+        Route="LoanRequest" Title="Agregar Nuevo Préstamo" Icon="hand_holding_dollar_white_icon.svg"
+        ContentTemplate="{DataTemplate LoanViews:LoanRequestPage}" />
 
     <ShellContent
-        Route="About" Title="Sobre SysCredit"
-        Style="{StaticResource AboutShell}"
-        ContentTemplate="{DataTemplate Views:AboutPage}" />
+        Route="ClientList" Title="Lista de Clientes" Icon="list_customer_white_icon.svg"
+        ContentTemplate="{DataTemplate ClientViews:ListClientPage}" />
 
-    <MenuItem
-        Text="Ayuda"
-        Command="{Binding HelpCommand}"
-        CommandParameter="https://docs.microsoft.com/dotnet/maui/fundamentals/shell" />
+    <ShellContent
+        Route="About" Title="Acerca De" Icon="circle_info_solid_white_icon.svg"
+        ContentTemplate="{DataTemplate GlobalViews:AboutPage}" />
+
+    <MenuItem Text="Ayuda" Command="{Binding HelpCommand}" CommandParameter="https://docs.microsoft.com/dotnet/maui/fundamentals/shell">
+        <MenuItem.IconImageSource>
+            <FontImageSource FontFamily="FontAwesomeSolid" Glyph="&#x3f;" Color="White" />
+        </MenuItem.IconImageSource>
+    </MenuItem>
+
+    <MenuItem Text="Cerrar sesión" IconImageSource="close_session_white_icon.svg" />
 </Shell>

@@ -43,6 +43,9 @@
 
     <!-- Images -->
     <MauiImage Include="Resources\Images\*" />
+    <MauiImage Include="Resources\Images\MainView\*" />
+    <MauiImage Include="Resources\Images\MainView\Dark\*" />
+    <MauiImage Include="Resources\Images\MainView\White\*" />
     <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
     <!-- Custom Fonts -->
@@ -53,6 +56,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\MainView\Dark\hand_holding_dollar_dark_icon.svg" />
+    <None Remove="Resources\Images\MainView\Dark\home_screen_dark_icon.svg" />
+    <None Remove="Resources\Images\MainView\Dark\list_customer_dark_icon.svg" />
+    <None Remove="Resources\Images\MainView\Dark\new_customer_dark_icon.svg" />
+    <None Remove="Resources\Images\MainView\Dark\save_dark_icon.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
     <PackageReference Include="CommunityToolkit.Maui.Maps" Version="1.0.3" />
     <PackageReference Include="CommunityToolkit.Maui.Markup" Version="3.2.0" />
@@ -60,8 +71,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Images\MainView\" />
     <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MauiImage Include="Resources\Images\MainView\Dark\home_screen_dark_icon.svg" />
+    <MauiImage Include="Resources\Images\MainView\White\hand_holding_dollar_white_icon.svg" />
+    <MauiImage Include="Resources\Images\MainView\White\home_screen_white_icon.svg" />
+    <MauiImage Include="Resources\Images\MainView\White\list_customer_white_icon.svg" />
+    <MauiImage Include="Resources\Images\MainView\White\new_customer_white_icon.svg" />
+    <MauiImage Include="Resources\Images\MainView\White\save_white_icon.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -74,13 +93,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <MauiXaml Update="Controls\FlyoutHeader.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
     <MauiXaml Update="Controls\TitleView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Controls\FlyoutFooter.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Views\AboutPage.xaml">
@@ -93,6 +106,9 @@
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Views\GenericPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Loans\LoanRequestPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
   </ItemGroup>

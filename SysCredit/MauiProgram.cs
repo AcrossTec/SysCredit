@@ -23,7 +23,7 @@ public static class MauiProgram
 
                 Fonts.AddFont("Brands-Regular-400.otf", "FontAwesomeBrands");
                 Fonts.AddFont("Free-Regular-400.otf", "FontAwesomeRegular");
-                Fonts.AddFont("Free-Solid-900", "FontAwesomeSolid");
+                Fonts.AddFont("Free-Solid-900.otf", "FontAwesomeSolid");
 
                 Fonts.AddFont("Inter-Black.ttf", "InterBlack");
                 Fonts.AddFont("Inter-Bold.ttf", "InterBold");
