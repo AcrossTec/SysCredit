@@ -2,14 +2,14 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SysCredit.Controls.TitleView"
-             x:Name="this">
+             x:Name="this" HeightRequest="30">
     <Grid HeightRequest="48" ColumnDefinitions="*" BindingContext="{x:Reference this}">
         <Label Text="{Binding Text}"
                TextColor="{Binding TextColor}"
                FontFamily="{Binding FontFamily}"
                FontAttributes="Bold"
-               FontSize="32"
-               LineHeight="48"
+               FontSize="24"
+               LineHeight="30"
                HorizontalOptions="Start"
                VerticalOptions="Center" />
     </Grid>
