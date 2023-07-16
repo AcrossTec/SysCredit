@@ -6,4 +6,14 @@
     <Color x:Key="MainPageItemColor">#061F60</Color>
     <SolidColorBrush x:Key="MainPageItemBrush" Color="{StaticResource MainPageItemColor}" />
 
+    <x:String x:Key="BarsUnicode">&#xf0c9;</x:String>
+    <x:String x:Key="NewCustomerUnicode">&#xe901;</x:String>
+    <x:String x:Key="ListCustomerUnicode">&#xe900;</x:String>
+    <x:String x:Key="LoanRequestUnicode">&#xf66f;</x:String>
+
+    <FontImageSource x:Key="BarsFontImage" FontFamily="FontAwesomeSolid" Glyph="{StaticResource BarsUnicode}" Color="White" />
+    <FontImageSource x:Key="NewCustomerFontImage" FontFamily="SysCredit" Glyph="{StaticResource NewCustomerUnicode}" Color="White" />
+    <FontImageSource x:Key="ListCustomerFontImage" FontFamily="SysCredit" Glyph="{StaticResource ListCustomerUnicode}" Color="White" />
+    <FontImageSource x:Key="LoanRequestFontImage" FontFamily="FontAwesomeSolid" Glyph="{StaticResource LoanRequestUnicode}" Color="White" />
+
 </ResourceDictionary>

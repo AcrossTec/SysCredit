@@ -4,44 +4,45 @@
              xmlns:Local="clr-namespace:SysCredit"
              xmlns:Controls="clr-namespace:SysCredit.Controls"
              x:Class="SysCredit.Views.MainPage"
-             Title="SysCredit" Shell.BackgroundColor="White">
+             Title="SysCredit"
+             Shell.BackgroundColor="White">
     <ContentPage.Resources>
         <Style TargetType="Controls:MainPageItem">
             <Setter Property="WidthRequest" Value="162" />
             <Setter Property="HeightRequest" Value="135" />
-            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="CornerRadius" Value="20" />
             <Setter Property="HasShadow" Value="True" />
             <Setter Property="ItemBackColor" Value="{StaticResource MainPageItemColor}" />
         </Style>
     </ContentPage.Resources>
-    <!--<ContentPage.ToolbarItems>
+    <ContentPage.ToolbarItems>
         <ToolbarItem Order="Secondary" Text="Item 1" Clicked="ToolbarItem_Clicked" />
         <ToolbarItem Order="Secondary" Text="Item 2" />
         <ToolbarItem Order="Secondary" Text="Item 3" />
         <ToolbarItem Order="Secondary" Text="Item 4" />
-    </ContentPage.ToolbarItems>-->
+    </ContentPage.ToolbarItems>
     <Shell.TitleView>
-        <Controls:TitleView Text="SysCredit" TextColor="#293263" />
+        <Controls:TitleView Text="SysCredit" TextColor="#293263" FontFamily="InterBold" />
     </Shell.TitleView>
-    <ScrollView Margin="5">
-        <Grid ColumnDefinitions="*,15,*" RowDefinitions="Auto,15,Auto">
+    <ScrollView>
+        <Grid Margin="5,10,5,10" ColumnDefinitions="*,15,*" RowDefinitions="Auto,15,Auto">
 
             <Controls:MainPageItem Grid.Column="0" Grid.Row="0"
                                    x:Name="NewClient"
-                                   ImageSource="MainView/new_client.svg"
                                    Text="Nuevo Cliente"
+                                   ImageSource="{StaticResource NewCustomerFontImage}"
                                    HorizontalOptions="End" VerticalOptions="Start" />
 
             <Controls:MainPageItem Grid.Column="2" Grid.Row="0"
                                    x:Name="ListClient"
-                                   ImageSource="MainView/list_client.svg"
                                    Text="Lista de Clientes"
+                                   ImageSource="{StaticResource ListCustomerFontImage}"
                                    HorizontalOptions="Start" VerticalOptions="Start" />
 
             <Controls:MainPageItem Grid.Column="0" Grid.Row="2"
                                    x:Name="NewLoan"
-                                   ImageSource="MainView/list_client.svg"
                                    Text="Solicitud de Préstamo"
+                                   ImageSource="{StaticResource LoanRequestFontImage}"
                                    HorizontalOptions="End" VerticalOptions="Start" />
         </Grid>
     </ScrollView>
