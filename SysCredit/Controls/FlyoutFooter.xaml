@@ -4,7 +4,7 @@
              xmlns:System="clr-namespace:System;assembly=netstandard"
              x:Class="SysCredit.Controls.FlyoutFooter">
     <VerticalStackLayout BackgroundColor="{StaticResource Tertiary}" Padding="10">
-        <Label Text="Destino"
+        <Label Text="SysCredit"
                TextColor="GhostWhite"
                FontAttributes="Bold"
                HorizontalOptions="Center" />

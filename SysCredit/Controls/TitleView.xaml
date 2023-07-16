@@ -6,8 +6,11 @@
     <Grid HeightRequest="48" ColumnDefinitions="*" BindingContext="{x:Reference this}">
         <Label Text="{Binding Text}"
                TextColor="{Binding TextColor}"
+               FontFamily="{Binding FontFamily}"
                FontAttributes="Bold"
                FontSize="32"
-               LineHeight="48" />
+               LineHeight="48"
+               HorizontalOptions="Start"
+               VerticalOptions="Center" />
     </Grid>
 </ContentView>

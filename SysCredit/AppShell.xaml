@@ -6,13 +6,17 @@
     xmlns:Local="clr-namespace:SysCredit"
     xmlns:Views="clr-namespace:SysCredit.Views"
     xmlns:Controls="clr-namespace:SysCredit.Controls"
-    FlyoutHeaderBehavior="Scroll">
+    FlyoutHeaderBehavior="CollapseOnScroll">
 
     <Shell.Resources>
         <Style x:Key="AboutShell" TargetType="Element">
             <Setter Property="Shell.BackgroundColor" Value="{StaticResource Tertiary}" />
         </Style>
     </Shell.Resources>
+
+    <Shell.FlyoutIcon>
+        <FontImageSource FontFamily="FontAwesomeSolid" Glyph="{StaticResource Bars}" Color="Black" Size="45" />
+    </Shell.FlyoutIcon>
 
     <Shell.FlyoutHeader>
         <Controls:FlyoutHeader />
@@ -22,40 +26,41 @@
         <Controls:FlyoutFooter />
     </Shell.FlyoutFooter>
 
-    <FlyoutItem Route="MainMenu" FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent
-            Title="Inicio"
-            ContentTemplate="{DataTemplate Views:MainPage}"
-            Route="Home" />
-        <Tab Title="Tabbar">
-            <ShellContent
-            Title="Página Genérica 1"
-            ContentTemplate="{DataTemplate Views:GenericPage}"
-            Route="Generic1"
-            />
+    <ShellContent
+        Route="Home" Title="Inicio"
+        ContentTemplate="{DataTemplate Views:MainPage}" />
 
-            <ShellContent
-            Title="Página Genérica 2"
-            ContentTemplate="{DataTemplate Views:GenericPage}"
-            Route="Generic2"
-            />
+    <ShellContent
+        Route="Generic1" Title="Página Genérica 1"
+        ContentTemplate="{DataTemplate Views:GenericPage}" />
 
-            <ShellContent
-            Title="Página Genérica 3"
-            ContentTemplate="{DataTemplate Views:GenericPage}"
-            Route="Generic3"
-            />
-        </Tab>
-    </FlyoutItem>
+    <ShellContent
+        Route="Generic2" Title="Página Genérica 2"
+        ContentTemplate="{DataTemplate Views:GenericPage}" />
+
+    <ShellContent
+        Route="Generic3" Title="Página Genérica 3"
+        ContentTemplate="{DataTemplate Views:GenericPage}" />
 
     <!--<FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
-        
+        <Tab Title="Reportes">
+            <ShellContent
+                Route="Generic1" Title="Página Genérica 1"
+                ContentTemplate="{DataTemplate Views:GenericPage}" />
+
+            <ShellContent
+                Route="Generic2" Title="Página Genérica 2"
+                ContentTemplate="{DataTemplate Views:GenericPage}" />
+
+            <ShellContent
+                Route="Generic3" Title="Página Genérica 3"
+                ContentTemplate="{DataTemplate Views:GenericPage}" />
+        </Tab>
     </FlyoutItem>-->
 
     <ShellContent
-        Route="About"
+        Route="About" Title="Sobre SysCredit"
         Style="{StaticResource AboutShell}"
-        Title="Sobre SysCredit"
         ContentTemplate="{DataTemplate Views:AboutPage}" />
 
     <MenuItem

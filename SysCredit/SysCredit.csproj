@@ -60,6 +60,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Resources\Images\MainView\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
 
