@@ -11,4 +11,15 @@
     <SolidColorBrush x:Key="SysCreditNavBarTextBrush" Color="{StaticResource SysCreditNavBarTextColor}" />
     <SolidColorBrush x:Key="SysCreditFlyoutBackgroundBrush" Color="{StaticResource SysCreditFlyoutBackgroundColor}" />
 
+    <Style TargetType="Button">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
+        <Setter Property="FontFamily" Value="InterRegular"/>
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Black}}" />
+        <Setter Property="FontFamily" Value="InterRegular" />
+    </Style>
+
 </ResourceDictionary>

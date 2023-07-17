@@ -27,12 +27,12 @@ internal class CustomToolbarAppearanceTracker : IShellToolbarAppearanceTracker
 {
     public void SetAppearance(AndroidX.AppCompat.Widget.Toolbar Toolbar, IShellToolbarTracker ToolbarTracker, ShellAppearance Appearance)
     {
-        Toolbar.OverflowIcon?.SetTint(Appearance.ForegroundColor.ToAndroid());
-        Toolbar.NavigationIcon?.SetTint(Appearance.ForegroundColor.ToAndroid());
+        ToolbarTracker.TintColor = Appearance.ForegroundColor;
     }
 
     public void ResetAppearance(AndroidX.AppCompat.Widget.Toolbar Toolbar, IShellToolbarTracker ToolbarTracker)
     {
+        ToolbarTracker.TintColor = null;
     }
 
     public void Dispose()

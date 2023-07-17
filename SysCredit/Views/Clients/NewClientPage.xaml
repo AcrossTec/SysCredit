@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SysCredit.Views.Clients.NewClientPage"
-             Title="Nuevo Cliente">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:Local="clr-namespace:SysCredit"
+             xmlns:Controls="clr-namespace:SysCredit.Controls"
+             x:Name="Self" x:Class="SysCredit.Views.Clients.NewClientPage"
+             Title="Nuevo Cliente"
+             BackgroundColor="White"
+             Shell.ForegroundColor="White"
+             Shell.BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="{FontImage &#xf177;, FontFamily=FontAwesomeSolid, Color=White}" />
+    </Shell.BackButtonBehavior>
+    <Shell.TitleView>
+        <Controls:TitleView
+            Text="{Binding Source={x:Reference Self}, Path=Title}"
+            TextColor="White" HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
+    </Shell.TitleView>
+    <Grid>
+        <Label Text="Welcome to .NET MAUI!" VerticalOptions="Center" HorizontalOptions="Center" />
+    </Grid>
 </ContentPage>

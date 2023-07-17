@@ -2,19 +2,23 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Controls="clr-namespace:SysCredit.Controls"
+             xmlns:System="clr-namespace:System;assembly=netstandard"
              x:Class="SysCredit.Views.AboutPage"
-             Title="Sobre SysCredit"
+             Title="{Binding Source={StaticResource CompanyName}, StringFormat='Sobre {0}'}"
              BackgroundColor="White"
-             Shell.BackgroundColor="#061F60">
+             Shell.ForegroundColor="White"
+             Shell.BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}">
+
     <Shell.TitleView>
-        <Controls:TitleView Text="Sobre SysCredit" TextColor="White" HorizontalOptions="End" Margin="0,0,20,0" />
+        <Controls:TitleView Text="{Binding Source={StaticResource CompanyName}, StringFormat='Sobre {0}'}"
+                            TextColor="White" HorizontalOptions="End" Margin="0,0,20,0" />
     </Shell.TitleView>
 
     <ScrollView Grid.Row="1">
         <VerticalStackLayout Padding="30,0,30,0">
-            <Label Text="SysCredit (Android)" Margin="0,20,0,0" />
+            <Label Text="{Binding Source={StaticResource CompanyName}, StringFormat='{0} (Android)'}" Margin="0,20,0,0" />
             <Label Text="Versión 1.0.0.0" Margin="0,10,0,0" />
-            <Label Text="© 2023 W&amp;A Company" Margin="0,10,0,0" />
+            <Label Text="{Binding Source={StaticResource DevCompanyName}, StringFormat='© 2023 {0} Company'}" Margin="0,10,0,0" />
             <Label Text="Todos los derechos reservados" Margin="0,10,0,0" />
             <Label Text="Detalles del producto:" Margin="0,10,0,0" />
             <Label Margin="10,10,0,0" Text="Aplicación de gestión de créditos." />
