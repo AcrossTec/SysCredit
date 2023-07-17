@@ -7,8 +7,5 @@ public partial class NewClientPage : ContentPage
     public NewClientPage()
     {
         InitializeComponent();
-        BindingContext = this;
     }
-
-    public ICommand BackButtonCommand => new Command(() => Shell.Current.SendBackButtonPressed());
 }
