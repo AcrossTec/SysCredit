@@ -19,9 +19,10 @@
     xmlns:Controls="clr-namespace:SysCredit.Controls"
     xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Shell.FlyoutBehavior="Flyout"
+    FlyoutIcon="home_screen_dark_icon.svg"
     FlyoutHeaderBehavior="CollapseOnScroll"
     FlyoutBackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}">
-    <!--FlyoutIcon="home_screen_dark_icon.svg"-->
+
     <Shell.FlyoutHeader>
         <Grid BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}" RowDefinitions="Auto,Auto" MinimumHeightRequest="150">
             <Grid ColumnDefinitions="Auto,*" HeightRequest="125">
@@ -32,7 +33,7 @@
                     </Image.Clip>
                 </Image>
                 <VerticalStackLayout Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="Start">
-                    <Label Text="SysCredit" TextColor="White" FontFamily="InterBold" FontSize="18" LineHeight="22" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
+                    <Label Text="{StaticResource CompanyName}" TextColor="White" FontFamily="InterBold" FontSize="18" LineHeight="22" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
                     <Label Text="correoelectronico@gmail.com" TextColor="White" FontFamily="InterLight" FontSize="12" LineHeight="16" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
                 </VerticalStackLayout>
             </Grid>

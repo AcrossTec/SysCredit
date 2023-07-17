@@ -15,7 +15,7 @@
     <ApplicationTitle>SysCredit</ApplicationTitle>
 
     <!-- App Identifier -->
-    <ApplicationId>com.companyname.syscredit</ApplicationId>
+    <ApplicationId>com.wanda.syscredit</ApplicationId>
     <ApplicationIdGuid>ff38a849-a7b8-4078-ae59-0a308bb586fa</ApplicationIdGuid>
 
     <!-- Versions -->
@@ -94,6 +94,9 @@
 
   <ItemGroup>
     <MauiXaml Update="Controls\TitleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Resources\Styles\Strings.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Views\AboutPage.xaml">
