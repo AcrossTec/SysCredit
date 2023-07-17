@@ -18,16 +18,16 @@ public partial class MainPage : ContentPage
 
     private async void OnAddClientClicked(object Sender, EventArgs Event)
     {
-        await Shell.Current.GoToAsync("Client/Add");
+        await Shell.Current.GoToAsync("Client/Add?BackButtonBehavior=True");
     }
 
     private async void OnListClientClicked(object Sender, EventArgs Event)
     {
-        await Shell.Current.GoToAsync("Client/List");
+        await Shell.Current.GoToAsync("Client/List?BackButtonBehavior=True");
     }
 
     private async void OnLoanRequestClicked(object Sender, EventArgs Event)
     {
-        await Shell.Current.GoToAsync("Loan/Request");
+        await Shell.Current.GoToAsync("Loan/Request?BackButtonBehavior=True");
     }
 }
