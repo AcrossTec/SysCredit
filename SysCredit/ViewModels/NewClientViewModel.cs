@@ -16,8 +16,20 @@ using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
+using SysCredit.Models;
+
 public partial class NewClientViewModel : BaseViewModel, IQueryAttributable
 {
+    [RelayCommand(CanExecute = nameof(CanSaveClient))]
+    private Task SaveClient()
+    {
+        return Task.CompletedTask;
+    }
+
+    private bool CanSaveClient()
+    {
+        return true;
+    }
 }
 
 public partial class NewClientViewModel

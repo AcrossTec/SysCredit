@@ -7,9 +7,9 @@
         <Label Text="{Binding Text}"
                TextColor="{Binding TextColor}"
                FontFamily="{Binding FontFamily}"
-               FontAttributes="Bold"
-               FontSize="24"
-               LineHeight="30"
+               FontAttributes="{Binding FontAttributes}"
+               FontSize="{Binding FontSize}"
+               LineHeight="{Binding LineHeight}"
                HorizontalOptions="Start"
                VerticalOptions="Center" />
     </Grid>
