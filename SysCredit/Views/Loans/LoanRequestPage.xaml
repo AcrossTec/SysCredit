@@ -14,8 +14,9 @@
     </Shell.BackButtonBehavior>
     <Shell.TitleView>
         <Controls:TitleView
-            Text="{Binding Source={x:Reference Self}, Path=Title}"
-            TextColor="White" HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
+            Text="{Binding Source={x:Reference Self}, Path=Title}" TextColor="White"
+            FontAttributes="None" FontFamily="InterLight"
+            HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
     </Shell.TitleView>
     <ContentPage.BindingContext>
         <ViewModels:LoanRequestViewModel Page="{x:Reference Self}" />
