@@ -96,16 +96,6 @@
     <None Include="**\Windows\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Compile Update="Controls\MainPageItem.xaml.cs">
-      <DependentUpon>MainPageItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Controls\TitleView.xaml.cs">
-      <DependentUpon>TitleView.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.2.1" />
     <PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
