@@ -6,9 +6,9 @@
              xmlns:ViewModels="clr-namespace:SysCredit.ViewModels"
              xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:FreakyControls="clr-namespace:Maui.FreakyControls;assembly=Maui.FreakyControls"
-             x:Class="SysCredit.Views.Clients.NewClientPage"
+             x:Class="SysCredit.Views.Clients.NewGuarantorPage"
              x:Name="Self"
-             Title="Nuevo Cliente"
+             Title="Nuevo Fiador"
              BackgroundColor="White"
              Shell.ForegroundColor="White"
              Shell.BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}">
@@ -22,11 +22,10 @@
             HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
     </Shell.TitleView>
     <ContentPage.BindingContext>
-        <ViewModels:NewClientViewModel Page="{x:Reference Self}" />
+        <ViewModels:NewGuarantorViewModel />
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" Text="Buscar Fiador" IconImageSource="{FontImage &#xf00e;, FontFamily=FontAwesomeSolid, Size=30}" Command="{Binding GoToSearchGuarantorViewCommand}" />
-        <ToolbarItem Order="Primary" Text="Registrar Cliente" IconImageSource="{FontImage &#xf0c7;, FontFamily=FontAwesomeSolid, Size=30}" Command="{Binding SaveClientCommand}" />
+        <ToolbarItem Order="Primary" Text="Registrar Fiador" IconImageSource="{FontImage &#xf0c7;, FontFamily=FontAwesomeSolid, Size=30}" Command="{Binding SaveGuarantorCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <Style TargetType="FreakyControls:FreakyTextInputLayout">
@@ -55,6 +54,7 @@
                 <FreakyControls:FreakyTextInputLayout Title="Número de Teléfono" Keyboard="Telephone" />
                 <FreakyControls:FreakyTextInputLayout Title="Domicilio" />
                 <FreakyControls:FreakyTextInputLayout Title="Barrio" />
+                <FreakyControls:FreakyTextInputLayout Title="Parentesco" />
             </VerticalStackLayout>
             <VerticalStackLayout Margin="0,20,0,0" HorizontalOptions="Center">
                 <Label Text="Datos del Negocio" TextColor="#4D556A"
@@ -62,42 +62,6 @@
                        FontFamily="InterBold" FontAttributes="Bold" Margin="0,0,0,15" />
                 <FreakyControls:FreakyTextInputLayout Title="Tipo de Negocio" />
                 <FreakyControls:FreakyTextInputLayout Title="Dirección del Negocio" />
-            </VerticalStackLayout>
-            <VerticalStackLayout Margin="0,20,0,0" HorizontalOptions="Center">
-                <Label Text="Fiadores" TextColor="#4D556A"
-                       FontSize="16" LineHeight="20"
-                       FontFamily="InterBold" FontAttributes="Bold" Margin="0,0,0,15" />
-                <SwipeView>
-                    <SwipeView.LeftItems>
-                        <SwipeItems>
-                            <SwipeItem Text="Agregar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" />
-                            <SwipeItem Text="Borrar"  IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightPink" />
-                        </SwipeItems>
-                    </SwipeView.LeftItems>
-                    <SwipeView.RightItems>
-                        <SwipeItems>
-                            <SwipeItem Text="Agregar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" />
-                            <SwipeItem Text="Borrar"  IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightPink" />
-                        </SwipeItems>
-                    </SwipeView.RightItems>
-                    <!-- Content -->
-                    <Grid ColumnDefinitions="50,*,50" WidthRequest="335" HeightRequest="60" BackgroundColor="WhiteSmoke">
-                        <Image Grid.Column="0"
-                               WidthRequest="24" HeightRequest="24" Source="default_user.svg"
-                               VerticalOptions="Center" HorizontalOptions="Center" />
-                        <Label Grid.Column="1"
-                               Text="No se ha agregado fiador" TextColor="#8A8A8A"
-                               FontSize="16" LineHeight="20"
-                               FontFamily="InterBold" FontAttributes="Italic"
-                               VerticalOptions="Center" HorizontalOptions="StartAndExpand"
-                               VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
-                        <ImageButton Grid.Column="2" Padding="0"
-                                     WidthRequest="50" HeightRequest="50"
-                                     Source="{FontImage &#xf0a4;, FontFamily=FontAwesomeSolid, Color=Black, Size=24}" Aspect="Center"
-                                     VerticalOptions="Center" HorizontalOptions="Center"
-                                     ToolTipProperties.Text="Hacer un gesto de desplazamiento a la derecha" />
-                    </Grid>
-                </SwipeView>
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ScrollView>

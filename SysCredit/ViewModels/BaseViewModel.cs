@@ -2,6 +2,14 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
-public class BaseViewModel : ObservableObject
+using System.Collections.Generic;
+
+public class BaseViewModel : ObservableObject, IQueryAttributable
 {
+    public IDictionary<string, object>? QueryParams { get; private set; }
+
+    public virtual void ApplyQueryAttributes(IDictionary<string, object> Query)
+    {
+        QueryParams = Query;
+    }
 }

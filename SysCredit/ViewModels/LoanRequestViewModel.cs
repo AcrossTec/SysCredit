@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public partial class LoanRequestViewModel : BaseViewModel, IQueryAttributable
+public partial class LoanRequestViewModel : BaseViewModel
 {
 }
 
@@ -26,8 +26,10 @@ public partial class LoanRequestViewModel
         }
     }
 
-    public void ApplyQueryAttributes(IDictionary<string, object> Query)
+    public override void ApplyQueryAttributes(IDictionary<string, object> Query)
     {
+        base.ApplyQueryAttributes(Query);
+
         if (Query.TryGetValue(nameof(BackButtonBehavior), out var Value))
         {
             SetBackButtonBehavior(Convert.ToBoolean(Value));

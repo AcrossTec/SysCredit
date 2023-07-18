@@ -23,9 +23,11 @@ public partial class AppShell : Shell
 
     void RegisterRoutes()
     {
-        Routes.Add(("Client/Add", typeof(NewClientPage)));
-        Routes.Add(("Client/List", typeof(ListClientPage)));
-        Routes.Add(("Loan/Request", typeof(LoanRequestPage)));
+        Routes.Add(("ClientNew", typeof(NewClientPage)));
+        Routes.Add(("ClientShow", typeof(ListClientPage)));
+        Routes.Add(("GuarantorSearch", typeof(SearchGuarantorPage)));
+        Routes.Add(("GuarantorNew", typeof(NewGuarantorPage)));
+        Routes.Add(("LoanNewRequest", typeof(LoanRequestPage)));
 
         foreach (var (Route, Page) in Routes)
         {

@@ -18,7 +18,7 @@ using CommunityToolkit.Mvvm.Input;
 
 using SysCredit.Models;
 
-public partial class NewClientViewModel : BaseViewModel, IQueryAttributable
+public partial class NewClientViewModel : BaseViewModel
 {
     [RelayCommand(CanExecute = nameof(CanSaveClient))]
     private Task SaveClient()
@@ -29,6 +29,12 @@ public partial class NewClientViewModel : BaseViewModel, IQueryAttributable
     private bool CanSaveClient()
     {
         return true;
+    }
+
+    [RelayCommand]
+    private async Task GoToSearchGuarantorView()
+    {
+        await Shell.Current.GoToAsync("GuarantorSearch");
     }
 }
 
@@ -48,8 +54,10 @@ public partial class NewClientViewModel
         }
     }
 
-    public void ApplyQueryAttributes(IDictionary<string, object> Query)
+    public override void ApplyQueryAttributes(IDictionary<string, object> Query)
     {
+        base.ApplyQueryAttributes(Query);
+
         if (Query.TryGetValue(nameof(BackButtonBehavior), out var Value))
         {
             SetBackButtonBehavior(Convert.ToBoolean(Value));
