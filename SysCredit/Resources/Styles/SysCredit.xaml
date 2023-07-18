@@ -6,10 +6,14 @@
     <Color x:Key="MainPageItemColor">#061F60</Color>
     <Color x:Key="SysCreditNavBarTextColor">#293263</Color>
     <Color x:Key="SysCreditFlyoutBackgroundColor">#061F60</Color>
+    <Color x:Key="EntryBorderColor">#AFAFAF</Color>
+    <Color x:Key="EntryPlaceholderColor">#999999</Color>
 
     <SolidColorBrush x:Key="MainPageItemBrush" Color="{StaticResource MainPageItemColor}" />
     <SolidColorBrush x:Key="SysCreditNavBarTextBrush" Color="{StaticResource SysCreditNavBarTextColor}" />
     <SolidColorBrush x:Key="SysCreditFlyoutBackgroundBrush" Color="{StaticResource SysCreditFlyoutBackgroundColor}" />
+    <SolidColorBrush x:Key="EntryBorderBrush" Color="{StaticResource EntryBorderColor}" />
+    <SolidColorBrush x:Key="EntryPlaceholderBrush" Color="{StaticResource EntryPlaceholderColor}" />
 
     <Style TargetType="Button">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}" />
@@ -20,6 +24,11 @@
     <Style TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Black}}" />
         <Setter Property="FontFamily" Value="InterRegular" />
+    </Style>
+
+    <Style TargetType="Entry">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}" />
+        <Setter Property="FontFamily" Value="InterRegular"/>
     </Style>
 
 </ResourceDictionary>

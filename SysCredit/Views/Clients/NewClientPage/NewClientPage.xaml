@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Local="clr-namespace:SysCredit"
+             xmlns:Controls="clr-namespace:SysCredit.Controls"
+             xmlns:ViewModels="clr-namespace:SysCredit.ViewModels"
+             xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:FreakyControls="clr-namespace:Maui.FreakyControls;assembly=Maui.FreakyControls"
+             x:Name="Self" x:Class="SysCredit.Views.Clients.NewClientPage"
+             Title="Nuevo Cliente"
+             BackgroundColor="White"
+             Shell.ForegroundColor="White"
+             Shell.BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IconOverride="{FontImage &#xf177;, FontFamily=FontAwesomeSolid, Color=White}" />
+    </Shell.BackButtonBehavior>
+    <Shell.TitleView>
+        <Controls:TitleView
+            Text="{Binding Source={x:Reference Self}, Path=Title}" TextColor="White"
+            FontAttributes="None" FontFamily="InterLight"
+            HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
+    </Shell.TitleView>
+    <ContentPage.BindingContext>
+        <ViewModels:NewClientViewModel Page="{x:Reference Self}" />
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Primary" IconImageSource="save_white_icon.svg" Command="{Binding SaveClientCommand}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <Style TargetType="FreakyControls:FreakyTextInputLayout">
+            <Setter Property="Keyboard" Value="Text" />
+            <Setter Property="TitleColor" Value="{StaticResource EntryPlaceholderColor}" />
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="FontFamily" Value="InterRegular" />
+            <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
+            <Setter Property="BorderType" Value="Outlined" />
+            <Setter Property="BorderStroke" Value="{StaticResource EntryBorderColor}" />
+            <Setter Property="BorderStrokeThickness" Value="1" />
+            <Setter Property="BorderCornerRadius" Value="6" />
+            <Setter Property="Margin" Value="0,0,0,30" />
+            <Setter Property="WidthRequest" Value="335" />
+            <Setter Property="HeightRequest" Value="50" />
+        </Style>
+    </ContentPage.Resources>
+    <ScrollView Padding="0,20">
+        <VerticalStackLayout>
+            <VerticalStackLayout Margin="0,0,0,0" HorizontalOptions="Center">
+                <Label Text="Datos Generales" TextColor="#4D556A" FontSize="16" LineHeight="20"
+                       FontFamily="InterBold" FontAttributes="Bold" Margin="0,0,0,15" />
+                <FreakyControls:FreakyTextInputLayout Title="Nombres" />
+                <FreakyControls:FreakyTextInputLayout Title="Apellidos" />
+                <FreakyControls:FreakyTextInputLayout Title="Número de Cédula" />
+                <FreakyControls:FreakyTextInputLayout Title="Número de Teléfono" Keyboard="Telephone" />
+                <FreakyControls:FreakyTextInputLayout Title="Domicilio" />
+                <FreakyControls:FreakyTextInputLayout Title="Barrio" />
+            </VerticalStackLayout>
+            <VerticalStackLayout Margin="0,20,0,0" HorizontalOptions="Center">
+                <Label Text="Datos del Negocio" TextColor="#4D556A"
+                       FontSize="16" LineHeight="20"
+                       FontFamily="InterBold" FontAttributes="Bold" Margin="0,0,0,15" />
+                <FreakyControls:FreakyTextInputLayout Title="Tipo de Negocio" />
+                <FreakyControls:FreakyTextInputLayout Title="Dirección del Negocio" />
+            </VerticalStackLayout>
+            <VerticalStackLayout Margin="0,20,0,0" HorizontalOptions="Center">
+                <Label Text="Fiadores" TextColor="#4D556A"
+                       FontSize="16" LineHeight="20"
+                       FontFamily="InterBold" FontAttributes="Bold" Margin="0,0,0,15" />
+                <SwipeView>
+                    <SwipeView.LeftItems>
+                        <SwipeItems>
+                            <SwipeItem Text="Agregar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" />
+                            <SwipeItem Text="Borrar"  IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightPink" />
+                        </SwipeItems>
+                    </SwipeView.LeftItems>
+                    <!-- Content -->
+                    <Grid ColumnDefinitions="50,*,50" WidthRequest="335" HeightRequest="60" BackgroundColor="WhiteSmoke">
+                        <Image Grid.Column="0"
+                               WidthRequest="24" HeightRequest="24" Source="default_user.svg"
+                               VerticalOptions="Center" HorizontalOptions="Center" />
+                        <Label Grid.Column="1"
+                               Text="No se ha agregado fiador" TextColor="#8A8A8A"
+                               FontSize="16" LineHeight="20"
+                               FontFamily="InterBold" FontAttributes="Italic"
+                               VerticalOptions="Center" HorizontalOptions="StartAndExpand"
+                               VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
+                        <ImageButton Grid.Column="2" Padding="0"
+                                     WidthRequest="50" HeightRequest="50"
+                                     Source="{FontImage &#xf0a4;, FontFamily=FontAwesomeSolid, Color=Black, Size=24}" Aspect="Center"
+                                     VerticalOptions="Center" HorizontalOptions="Center"
+                                     ToolTipProperties.Text="Hacer un gesto de desplazamiento a la derecha" />
+                    </Grid>
+                </SwipeView>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
