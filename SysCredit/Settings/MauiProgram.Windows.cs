@@ -12,7 +12,11 @@ public static partial class MauiProgram
     {
     }
 
-    public static MauiAppBuilder InitSkiaSharpLibrary(this MauiAppBuilder Builder)
+    private static void ConfigureEffects(IEffectsBuilder Effects)
+    {
+    }
+
+    public static MauiAppBuilder UseFreakyControls(this MauiAppBuilder Builder)
     {
         return Builder;
     }

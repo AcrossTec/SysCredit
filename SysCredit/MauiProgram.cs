@@ -13,12 +13,12 @@ public static partial class MauiProgram
 
         Builder
             .UseMauiApp<App>()
-            // Initialize the .NET MAUI Community Toolkit by adding the below line of code
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitMarkup()
+            .UseFreakyControls()
             .ConfigureMauiHandlers(ConfigureMauiHandlers)
-            .ConfigureFonts(ConfigureFonts)
-            .InitSkiaSharpLibrary();
+            .ConfigureEffects(ConfigureEffects)
+            .ConfigureFonts(ConfigureFonts);
 
 #if DEBUG
         Builder.Logging.AddDebug();

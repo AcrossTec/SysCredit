@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Folder", "Solution
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Third", "Third", "{7FAC1C2E-89C1-4282-84EE-96D484363C3E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maui.FreakyControls", "Third\FreakyControls\MAUI.FreakyControls\MAUI.FreakyControls\Maui.FreakyControls.csproj", "{7947B3BB-C3AA-41ED-8712-FBBDBFA55162}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,9 +34,16 @@ Global
 		{29827353-B2CA-4DC9-9BAE-A4D361DEA904}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29827353-B2CA-4DC9-9BAE-A4D361DEA904}.Release|Any CPU.Build.0 = Release|Any CPU
 		{29827353-B2CA-4DC9-9BAE-A4D361DEA904}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7947B3BB-C3AA-41ED-8712-FBBDBFA55162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7947B3BB-C3AA-41ED-8712-FBBDBFA55162}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7947B3BB-C3AA-41ED-8712-FBBDBFA55162}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7947B3BB-C3AA-41ED-8712-FBBDBFA55162}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7947B3BB-C3AA-41ED-8712-FBBDBFA55162} = {7FAC1C2E-89C1-4282-84EE-96D484363C3E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90F103D8-1D89-44BD-BC09-99C91339D906}

@@ -1,6 +1,10 @@
 ﻿namespace SysCredit;
 
+using Maui.FreakyControls;
 using Maui.FreakyControls.Extensions;
+// using Maui.FreakyEffects;
+
+using Microsoft.Maui.Controls;
 
 using System;
 using System.Collections.Generic;
@@ -16,6 +20,7 @@ public static partial class MauiProgram
 
     private static void ConfigureEffects(IEffectsBuilder Effects)
     {
+        // Effects.InitFreakyEffects();
     }
 
     public static MauiAppBuilder UseFreakyControls(this MauiAppBuilder Builder)

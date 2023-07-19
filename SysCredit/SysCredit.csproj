@@ -37,17 +37,17 @@
 
   <ItemGroup>
     <!-- App Icon -->
-    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" />
 
     <!-- Splash Screen -->
-    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+    <MauiSplashScreen Include="Resources\Splash\splashicon.svg" BaseSize="256,256" />
 
     <!-- Images -->
     <MauiImage Include="Resources\Images\*" />
     <MauiImage Include="Resources\Images\MainView\*" />
     <MauiImage Include="Resources\Images\MainView\Dark\*" />
     <MauiImage Include="Resources\Images\MainView\White\*" />
-    <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+    <MauiImage Include="Resources\Splash\splash.svg" />
 
     <!-- Custom Fonts -->
     <MauiFont Include="Resources\Fonts\*" />
@@ -103,24 +103,13 @@
     <PackageReference Include="CommunityToolkit.Maui.Markup" Version="3.2.0" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+    <PackageReference Include="SkiaSharp" Version="2.88.4-preview.84" />
+    <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
+    <PackageReference Include="SkiaSharp.Skottie" Version="2.88.4-preview.84" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
-    <PackageReference Include="FreakyControls">
-      <Version>0.4.3</Version>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
-    <PackageReference Include="FreakyControls">
-      <Version>0.4.3</Version>
-    </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">
-    <PackageReference Include="FreakyControls">
-      <Version>0.4.3</Version>
-    </PackageReference>
+  <ItemGroup>
+    <ProjectReference Include="..\Third\FreakyControls\MAUI.FreakyControls\MAUI.FreakyControls\Maui.FreakyControls.csproj" />
   </ItemGroup>
 
 </Project>

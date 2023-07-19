@@ -2,13 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Controls="clr-namespace:SysCredit.Controls"
+             xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:System="clr-namespace:System;assembly=netstandard"
              x:Class="SysCredit.Views.AboutPage"
              Title="{Binding Source={StaticResource CompanyName}, StringFormat='Sobre {0}'}"
              BackgroundColor="White"
              Shell.ForegroundColor="White"
              Shell.BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}">
-
+    <ContentPage.Behaviors>
+        <Toolkit:StatusBarBehavior StatusBarColor="{StaticResource Primary}" StatusBarStyle="LightContent" />
+    </ContentPage.Behaviors>
     <Shell.TitleView>
         <Controls:TitleView Text="{Binding Source={StaticResource CompanyName}, StringFormat='Sobre {0}'}"
                             TextColor="White" HorizontalOptions="End" Margin="0,0,20,0"

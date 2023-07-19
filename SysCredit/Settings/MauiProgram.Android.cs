@@ -1,6 +1,7 @@
 ﻿namespace SysCredit;
 
 using Maui.FreakyControls.Extensions;
+// using Maui.FreakyEffects;
 
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,18 @@ public static partial class MauiProgram
     private static void ConfigureMauiHandlers(IMauiHandlersCollection Handlers)
     {
         Handlers.AddHandler(typeof(Shell), typeof(SysCredit.Platforms.Android.Renderers.CustomShellRenderer));
-        Handlers.AddFreakyHandlers(); // To Init your freaky handlers for Entry and Editor
     }
 
-    public static MauiAppBuilder InitSkiaSharpLibrary(this MauiAppBuilder Builder)
+    private static void ConfigureEffects(IEffectsBuilder Effects)
     {
-        // This line is needed for the following issue: https://github.com/mono/SkiaSharp/issues/1979
-        Builder.InitSkiaSharp(); // Use this if you want to use FreakySvgImageView
+        // Effects.InitFreakyEffects();
+    }
+
+    public static MauiAppBuilder UseFreakyControls(this MauiAppBuilder Builder)
+    {
+        // Initialization is now a one-liner and the old methods have been deprecated and will be removed in future updates.
+        // Takes one argument if you would like to init Skiasharp through FreakyControls or not (Used for RadioButton, Checkbox & SVGImageView)
+        Builder.InitializeFreakyControls();
         return Builder;
     }
 }

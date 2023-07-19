@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:Skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             x:Class="SysCredit.Views.SplashScreenPage"
+             BackgroundColor="{StaticResource Primary}"
+             Title="SplashScreenPage">
+    <ContentPage.Behaviors>
+        <Toolkit:StatusBarBehavior StatusBarColor="{StaticResource Primary}"/>
+    </ContentPage.Behaviors>
+
+    <AbsoluteLayout>
+        <Skia:SKLottieView
+            x:Name="Lottie"
+            Source="money_transfer.json"
+            AbsoluteLayout.LayoutBounds="0.5,0.45,300,300"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            PropertyChanged="Lottie_PropertyChanged">
+        </Skia:SKLottieView>
+
+        <Image Source="syscredit_logo.svg"
+               AbsoluteLayout.LayoutBounds="0.5,0.60,300,300"
+               AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Image.Behaviors>
+                <Toolkit:IconTintColorBehavior TintColor="White" />
+            </Image.Behaviors>
+        </Image>
+    </AbsoluteLayout>
+
+</ContentPage>

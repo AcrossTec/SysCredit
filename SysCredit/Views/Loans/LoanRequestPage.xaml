@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Local="clr-namespace:SysCredit"
+             xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:Controls="clr-namespace:SysCredit.Controls"
              xmlns:ViewModels="clr-namespace:SysCredit.ViewModels"
              x:Name="Self" x:Class="SysCredit.Views.Loans.LoanRequestPage"
@@ -9,6 +10,9 @@
              BackgroundColor="White"
              Shell.ForegroundColor="White"
              Shell.BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}">
+    <ContentPage.Behaviors>
+        <ToolKit:StatusBarBehavior StatusBarColor="{StaticResource Primary}" StatusBarStyle="LightContent" />
+    </ContentPage.Behaviors>
     <Shell.BackButtonBehavior>
         <BackButtonBehavior IconOverride="{FontImage &#xf177;, FontFamily=FontAwesomeSolid, Color=White}" />
     </Shell.BackButtonBehavior>
