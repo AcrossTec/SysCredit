@@ -12,6 +12,9 @@
              BackgroundColor="White"
              Shell.ForegroundColor="White"
              Shell.BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}">
+    <ContentPage.Behaviors>
+        <ToolKit:StatusBarBehavior StatusBarColor="{StaticResource Primary}" StatusBarStyle="LightContent" />
+    </ContentPage.Behaviors>
     <Shell.BackButtonBehavior>
         <BackButtonBehavior IconOverride="{FontImage &#xf177;, FontFamily=FontAwesomeSolid, Color=White}" />
     </Shell.BackButtonBehavior>

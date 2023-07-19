@@ -132,6 +132,13 @@
     </Shell.MenuItemTemplate>
 
     <ShellContent
+        Route="SplashScreenPage"
+        Shell.FlyoutBehavior="Disabled"
+        Shell.FlyoutItemIsVisible="False"
+        Shell.NavBarIsVisible="False"
+        ContentTemplate="{DataTemplate GlobalViews:SplashScreenPage}" />
+
+    <ShellContent
         Route="Home" Title="Inicio" Icon="app_home_white_icon.svg"
         ContentTemplate="{DataTemplate GlobalViews:MainPage}" />
 
