@@ -2,36 +2,26 @@
 namespace SysCredit;
 
 using SysCredit.Views;
-using SysCredit.Views.Clients;
+using SysCredit.Views.Customers;
 using SysCredit.Views.Loans;
 
 using System.Windows.Input;
+
+//
+//  References:
+//      https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/flyout
+//
+//  Respond to system theme changes:
+//      https://learn.microsoft.com/en-us/dotnet/maui/user-interface/system-theme-changes
+//
+//  GravatarImageSourcePage.xaml:
+//      https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/ImageSources/GravatarImageSourcePage.xaml
+//
 
 public partial class AppShell : Shell
 {
     public AppShell()
     {
         InitializeComponent();
-        RegisterRoutes();
-
-        BindingContext = this;
-    }
-
-    public List<(string Route, Type Page)> Routes { get; } = new();
-
-    public ICommand HelpCommand => new Command(async (Url) => await Launcher.OpenAsync((string)Url));
-
-    void RegisterRoutes()
-    {
-        Routes.Add((nameof(NewClientPage), typeof(NewClientPage)));
-        Routes.Add((nameof(ListClientPage), typeof(ListClientPage)));
-        Routes.Add((nameof(LoanRequestPage), typeof(LoanRequestPage)));
-        Routes.Add((nameof(SearchGuarantorPage), typeof(SearchGuarantorPage)));
-        Routes.Add((nameof(NewGuarantorPage), typeof(NewGuarantorPage)));
-
-        foreach (var (Route, Page) in Routes)
-        {
-            Routing.RegisterRoute(Route, Page);
-        }
     }
 }

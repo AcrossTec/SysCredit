@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Local="clr-namespace:SysCredit"
              xmlns:Controls="clr-namespace:SysCredit.Controls"
-             xmlns:ViewModels="clr-namespace:SysCredit.ViewModels"
+             xmlns:ViewModels="clr-namespace:SysCredit.ViewModels.Guarantors"
              xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:FreakyControls="clr-namespace:Maui.FreakyControls;assembly=Maui.FreakyControls"
-             x:Class="SysCredit.Views.Clients.NewGuarantorPage"
+             x:Class="SysCredit.Views.Guarantors.GuarantorRegistrationPage"
              x:Name="Self"
              Title="Nuevo Fiador"
              BackgroundColor="White"
@@ -25,10 +25,10 @@
             HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
     </Shell.TitleView>
     <ContentPage.BindingContext>
-        <ViewModels:NewGuarantorViewModel />
+        <ViewModels:GuarantorRegistrationViewModel />
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" Text="Registrar Fiador" IconImageSource="{FontImage &#xf0c7;, FontFamily=FontAwesomeSolid, Size=30}" Command="{Binding SaveGuarantorCommand}" />
+        <ToolbarItem Order="Primary" Text="Registrar Fiador" IconImageSource="{FontImage &#xf0c7;, FontFamily=FontAwesomeSolid, Size=30}" Command="{Binding RegisterGuarantorCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <Style TargetType="FreakyControls:FreakyTextInputLayout">

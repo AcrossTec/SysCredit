@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!--
-    References:
-        https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/flyout
-    Respond to system theme changes:
-        https://learn.microsoft.com/en-us/dotnet/maui/user-interface/system-theme-changes
-    GravatarImageSourcePage.xaml:
-        https://github.com/CommunityToolkit/Maui/blob/main/samples/CommunityToolkit.Maui.Sample/Pages/ImageSources/GravatarImageSourcePage.xaml
--->
 <Shell
     x:Class="SysCredit.AppShell"
     x:Name="SysCreditShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Local="clr-namespace:SysCredit"
-    xmlns:GlobalViews="clr-namespace:SysCredit.Views"
-    xmlns:ClientViews="clr-namespace:SysCredit.Views.Clients"
+    xmlns:ViewModels="clr-namespace:SysCredit.ViewModels"
+    xmlns:Views="clr-namespace:SysCredit.Views"
+    xmlns:CustomerViews="clr-namespace:SysCredit.Views.Customers"
+    xmlns:GuarantorViews="clr-namespace:SysCredit.Views.Guarantors"
     xmlns:LoanViews="clr-namespace:SysCredit.Views.Loans"
+    xmlns:UserViews="clr-namespace:SysCredit.Views.Users"
     xmlns:Controls="clr-namespace:SysCredit.Controls"
     xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Shell.FlyoutBehavior="Flyout"
     FlyoutIcon="home_screen_dark_icon.svg"
     FlyoutHeaderBehavior="CollapseOnScroll"
     FlyoutBackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}">
+    <Shell.BindingContext>
+        <ViewModels:AppShellViewModel />
+    </Shell.BindingContext>
 
     <Shell.FlyoutHeader>
         <Grid BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}" RowDefinitions="Auto,Auto" MinimumHeightRequest="150">
@@ -136,29 +134,29 @@
         Shell.FlyoutBehavior="Disabled"
         Shell.FlyoutItemIsVisible="False"
         Shell.NavBarIsVisible="False"
-        ContentTemplate="{DataTemplate GlobalViews:SplashScreenPage}" />
+        ContentTemplate="{DataTemplate Views:SplashScreenPage}" />
 
     <ShellContent
         Route="Home" Title="Inicio" Icon="app_home_white_icon.svg"
-        ContentTemplate="{DataTemplate GlobalViews:MainPage}" />
+        ContentTemplate="{DataTemplate Views:MainPage}" />
 
     <ShellContent
         Route="ClientAdd" Title="Agregar Nuevo Cliente" Icon="new_customer_white_icon.svg"
-        ContentTemplate="{DataTemplate ClientViews:NewClientPage}" />
+        ContentTemplate="{DataTemplate CustomerViews:CustomerRegistrationPage}" />
+
+    <ShellContent
+        Route="ClientList" Title="Lista de Clientes" Icon="list_customer_white_icon.svg"
+        ContentTemplate="{DataTemplate CustomerViews:CustomerListPage}" />
 
     <ShellContent
         Route="LoanRequest" Title="Agregar Nuevo Préstamo" Icon="hand_holding_dollar_white_icon.svg"
         ContentTemplate="{DataTemplate LoanViews:LoanRequestPage}" />
 
     <ShellContent
-        Route="ClientList" Title="Lista de Clientes" Icon="list_customer_white_icon.svg"
-        ContentTemplate="{DataTemplate ClientViews:ListClientPage}" />
-
-    <ShellContent
         Route="About" Title="Acerca De" Icon="circle_info_solid_white_icon.svg"
-        ContentTemplate="{DataTemplate GlobalViews:AboutPage}" />
+        ContentTemplate="{DataTemplate Views:AboutPage}" />
 
-    <MenuItem Text="Ayuda" Command="{Binding HelpCommand}" CommandParameter="https://docs.microsoft.com/dotnet/maui/fundamentals/shell">
+    <MenuItem Text="Ayuda" Command="{Binding OpenHelpCommand}" CommandParameter="https://docs.microsoft.com/dotnet/maui/fundamentals/shell">
         <MenuItem.IconImageSource>
             <FontImageSource FontFamily="FontAwesomeSolid" Glyph="&#x3f;" Color="White" />
         </MenuItem.IconImageSource>
