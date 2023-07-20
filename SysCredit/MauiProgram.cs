@@ -7,6 +7,9 @@ using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.Logging;
 
 using SysCredit.Messages;
+using SysCredit.Views.Customers;
+using SysCredit.Views.Guarantors;
+using SysCredit.Views.Loans;
 
 public static partial class MauiProgram
 {
@@ -23,7 +26,8 @@ public static partial class MauiProgram
             .UseFreakyControls()
             .ConfigureMauiHandlers(ConfigureMauiHandlers)
             .ConfigureEffects(ConfigureEffects)
-            .ConfigureFonts(ConfigureFonts);
+            .ConfigureFonts(ConfigureFonts)
+            .ConfigureRoutes();
 
 #if DEBUG
         Builder.Logging.AddDebug();
@@ -50,11 +54,11 @@ public static partial class MauiProgram
     {
         Fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
         Fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-        
+
         Fonts.AddFont("Brands-Regular-400.otf", "FontAwesomeBrands");
         Fonts.AddFont("Free-Regular-400.otf", "FontAwesomeRegular");
         Fonts.AddFont("Free-Solid-900.otf", "FontAwesomeSolid");
-        
+
         Fonts.AddFont("Inter-Black.ttf", "InterBlack");
         Fonts.AddFont("Inter-Bold.ttf", "InterBold");
         Fonts.AddFont("Inter-ExtraBold.ttf", "InterExtraBold");
@@ -65,5 +69,24 @@ public static partial class MauiProgram
         Fonts.AddFont("Inter-SemiBold.ttf", "InterSemiBold");
         Fonts.AddFont("Inter-Thin.ttf", "InterThin");
         Fonts.AddFont("Inter-VariableFont.ttf", "InterVariableFont");
+    }
+
+    private static MauiAppBuilder ConfigureRoutes(this MauiAppBuilder Builder)
+    {
+        Routing.RegisterRoute(nameof(CustomerRegistrationPage), typeof(CustomerRegistrationPage));
+        Routing.RegisterRoute(nameof(CustomerInformationPage), typeof(CustomerInformationPage));
+        Routing.RegisterRoute(nameof(CustomerEditPage), typeof(CustomerEditPage));
+        Routing.RegisterRoute(nameof(CustomerListPage), typeof(CustomerListPage));
+        Routing.RegisterRoute(nameof(CustomerSearchPage), typeof(CustomerSearchPage));
+
+        Routing.RegisterRoute(nameof(GuarantorRegistrationPage), typeof(GuarantorRegistrationPage));
+        Routing.RegisterRoute(nameof(GuarantorInformationPage), typeof(GuarantorInformationPage));
+        Routing.RegisterRoute(nameof(GuarantorListPage), typeof(GuarantorListPage));
+        Routing.RegisterRoute(nameof(GuarantorEditPage), typeof(GuarantorEditPage));
+        Routing.RegisterRoute(nameof(GuarantorSearchPage), typeof(GuarantorSearchPage));
+
+        Routing.RegisterRoute(nameof(LoanRequestPage), typeof(LoanRequestPage));
+        Routing.RegisterRoute(nameof(LoanListPage), typeof(LoanListPage));
+        return Builder;
     }
 }

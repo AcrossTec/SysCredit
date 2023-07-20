@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Local="clr-namespace:SysCredit"
              xmlns:Controls="clr-namespace:SysCredit.Controls"
-             xmlns:ViewModels="clr-namespace:SysCredit.ViewModels"
+             xmlns:ViewModels="clr-namespace:SysCredit.ViewModels.Customers"
              xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:FreakyControls="clr-namespace:Maui.FreakyControls;assembly=Maui.FreakyControls"
-             x:Class="SysCredit.Views.Clients.NewClientPage"
+             x:Class="SysCredit.Views.Customers.CustomerRegistrationPage"
              x:Name="Self"
              Title="Nuevo Cliente"
              BackgroundColor="White"
@@ -25,11 +25,11 @@
             HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
     </Shell.TitleView>
     <ContentPage.BindingContext>
-        <ViewModels:NewClientViewModel Page="{x:Reference Self}" />
+        <ViewModels:CustomerRegistrationViewModel />
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" Text="Buscar Fiador" IconImageSource="{FontImage &#xf00e;, FontFamily=FontAwesomeSolid, Size=30}" Command="{Binding GoToSearchGuarantorViewCommand}" />
-        <ToolbarItem Order="Primary" Text="Registrar Cliente" IconImageSource="{FontImage &#xf0c7;, FontFamily=FontAwesomeSolid, Size=30}" Command="{Binding SaveClientCommand}" />
+        <ToolbarItem Order="Primary" Text="Buscar Fiador" IconImageSource="{FontImage &#xf00e;, FontFamily=FontAwesomeSolid, Size=30}" Command="{Binding GoToGuarantorSearchPageCommand}" />
+        <ToolbarItem Order="Primary" Text="Registrar Cliente" IconImageSource="{FontImage &#xf0c7;, FontFamily=FontAwesomeSolid, Size=30}" Command="{Binding RegisterCustomerCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <Style TargetType="FreakyControls:FreakyTextInputLayout">

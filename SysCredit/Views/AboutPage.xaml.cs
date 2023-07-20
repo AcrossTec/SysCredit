@@ -6,9 +6,4 @@ public partial class AboutPage : ContentPage
     {
         InitializeComponent();
     }
-
-    private void OnMenuImageButton_Clicked(object Sender, EventArgs Event)
-    {
-        Shell.Current.FlyoutIsPresented = true;
-    }
 }

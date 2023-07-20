@@ -9,7 +9,7 @@ using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 
 using SysCredit.Messages;
-using SysCredit.Views.Clients;
+using SysCredit.Views.Customers;
 using SysCredit.Views.Loans;
 
 using System;
@@ -56,20 +56,5 @@ public partial class MainPage : ContentPage
 
     private void OnDisplayOrientationChanged(object Recipient, DisplayOrientationChanged Message)
     {
-    }
-
-    private async void OnAddClientClicked(object Sender, EventArgs Event)
-    {
-        await Shell.Current.GoToAsync($"{nameof(NewClientPage)}?BackButtonBehavior=True");
-    }
-
-    private async void OnListClientClicked(object Sender, EventArgs Event)
-    {
-        await Shell.Current.GoToAsync($"{nameof(ListClientPage)}?BackButtonBehavior=True");
-    }
-
-    private async void OnLoanRequestClicked(object Sender, EventArgs Event)
-    {
-        await Shell.Current.GoToAsync($"{nameof(LoanRequestPage)}?BackButtonBehavior=True");
     }
 }

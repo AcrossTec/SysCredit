@@ -4,8 +4,8 @@
              xmlns:Local="clr-namespace:SysCredit"
              xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:Controls="clr-namespace:SysCredit.Controls"
-             xmlns:ViewModels="clr-namespace:SysCredit.ViewModels"
-             x:Class="SysCredit.Views.Clients.SearchGuarantorPage"
+             xmlns:ViewModels="clr-namespace:SysCredit.ViewModels.Guarantors"
+             x:Class="SysCredit.Views.Guarantors.GuarantorSearchPage"
              x:Name="Self"
              BackgroundColor="White"
              Shell.ForegroundColor="White"
@@ -24,11 +24,11 @@
         <BackButtonBehavior IconOverride="{FontImage &#xf177;, FontFamily=FontAwesomeSolid, Color=White}" />
     </Shell.BackButtonBehavior>
     <ContentPage.BindingContext>
-        <ViewModels:SearchGuarantorViewModel />
+        <ViewModels:GuarantorSearchViewModel />
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
         <ToolbarItem Order="Primary" Text="Nuevo Fiador" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid, Size=30}"
-                     Command="{Binding GoToNewGuarantorViewCommand}"/>
+                     Command="{Binding GoToGuarantorRegistrationPageCommand}"/>
     </ContentPage.ToolbarItems>
     <VerticalStackLayout HorizontalOptions="Center" WidthRequest="335" Padding="0,20,0,20">
         <SearchBar x:Name="GuarantorSearch" Placeholder="Buscar Fiador..." />

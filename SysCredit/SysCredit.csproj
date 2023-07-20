@@ -113,4 +113,72 @@
     <ProjectReference Include="..\Third\FreakyControls\MAUI.FreakyControls\MAUI.FreakyControls\Maui.FreakyControls.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Views\Customers\CustomerRegistrationPage.xaml.cs">
+      <DependentUpon>CustomerRegistrationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Customers\CustomerListPage.xaml.cs">
+      <DependentUpon>CustomerListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Guarantors\GuarantorRegistrationPage.xaml.cs">
+      <DependentUpon>GuarantorRegistrationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Guarantors\GuarantorSearchPage.xaml.cs">
+      <DependentUpon>GuarantorSearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Payments\PaymentPlanPage.xaml.cs">
+      <DependentUpon>PaymentPlanPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <MauiXaml Update="Views\Customers\CustomerEditPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Customers\CustomerInformationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Customers\CustomerSearchPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Guarantors\GuarantorEditPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Guarantors\GuarantorInformationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Guarantors\GuarantorListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Loans\LoanListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Payments\PaymentPlanPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Users\LogInOptionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Users\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Users\RecoverAccountPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Users\UserEditPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Users\UserListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Users\UserRegistrationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\Users\" />
+    <Folder Include="ViewModels\Payments\" />
+  </ItemGroup>
+
 </Project>

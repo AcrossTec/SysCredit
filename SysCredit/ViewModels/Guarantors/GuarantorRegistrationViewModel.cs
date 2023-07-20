@@ -1,4 +1,4 @@
-﻿namespace SysCredit.ViewModels;
+﻿namespace SysCredit.ViewModels.Guarantors;
 
 using System;
 using System.Collections.Generic;
@@ -18,15 +18,18 @@ using CommunityToolkit.Mvvm.Input;
 
 using SysCredit.Models;
 
-public partial class NewGuarantorViewModel : BaseViewModel
+public partial class GuarantorRegistrationViewModel : BaseViewModel
 {
-    [RelayCommand(CanExecute = nameof(CanSaveGuarantor))]
-    private async Task SaveGuarantor()
+    [RelayCommand(CanExecute = nameof(CanRegisterGuarantor))]
+    private async Task RegisterGuarantor()
     {
-        await Shell.Current.GoToAsync("..");
+        if (!await Shell.Current.DisplayAlert(CompanyName, "¿Registrar otro fiador?", "Si", "No"))
+        {
+            await Shell.Current.GoToAsync("..");
+        }
     }
 
-    private bool CanSaveGuarantor()
+    private bool CanRegisterGuarantor()
     {
         return true;
     }

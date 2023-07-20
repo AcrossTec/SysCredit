@@ -5,6 +5,7 @@
              xmlns:Controls="clr-namespace:SysCredit.Controls"
              xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:FreakyControls="clr-namespace:Maui.FreakyControls;assembly=Maui.FreakyControls"
+             xmlns:ViewModels="clr-namespace:SysCredit.ViewModels"
              x:Name="Self" x:Class="SysCredit.Views.MainPage"
              Title="{StaticResource CompanyName}"
              BackgroundColor="White"
@@ -18,6 +19,9 @@
                             TextColor="{StaticResource SysCreditFlyoutBackgroundColor}"
                             HorizontalOptions="EndAndExpand" Margin="0,0,20,0" />
     </Shell.TitleView>
+    <ContentPage.BindingContext>
+        <ViewModels:MainViewModel />
+    </ContentPage.BindingContext>
     <ScrollView>
 
         <VerticalStackLayout Margin="5,10,5,10">
@@ -57,11 +61,11 @@
 
                 <FreakyControls:FreakyButton
                         Text="Nuevo Cliente"
-                        ToolTipProperties.Text="Módulo para crear nuevos clientes"
+                        SemanticProperties.Hint="Módulo para crear nuevos clientes"
                         HorizontalOptions="End" Margin="0,0,10,0"
                         HeightRequest="{StaticResource ButtonHeight}"
                         WidthRequest="{StaticResource ButtonWidth}"
-                        Clicked="OnAddClientClicked">
+                        Command="{Binding GoToCustomerRegistrationPageCommand}">
                     <FreakyControls:FreakyButton.LeadingIcon>
                         <Image Source="new_customer_white_icon.svg">
                             <Image.Shadow>
@@ -73,11 +77,11 @@
 
                 <FreakyControls:FreakyButton
                         Text="Lista de Clientes"
-                        ToolTipProperties.Text="Módulo para buscar clientes"
+                        SemanticProperties.Hint="Módulo para buscar clientes"
                         HorizontalOptions="Start" Margin="10,0,0,0"
                         HeightRequest="{StaticResource ButtonHeight}"
                         WidthRequest="{StaticResource ButtonWidth}"
-                        Clicked="OnListClientClicked">
+                        Command="{Binding GoToCustomerListPageCommand}">
                     <FreakyControls:FreakyButton.LeadingIcon>
                         <Image Source="list_customer_white_icon.svg">
                             <Image.Shadow>
@@ -88,11 +92,12 @@
                 </FreakyControls:FreakyButton>
 
                 <FreakyControls:FreakyButton
-                        Text="Solicitar Préstamo" ToolTipProperties.Text="Módulo para registrar préstamos"
+                        Text="Solicitar Préstamo"
+                        SemanticProperties.Hint="Módulo para registrar préstamos"
                         HorizontalOptions="End" Margin="0,40,10,0"
                         HeightRequest="{StaticResource ButtonHeight}"
                         WidthRequest="{StaticResource ButtonWidth}"
-                        Clicked="OnLoanRequestClicked">
+                        Command="{Binding GoToLoanRequestPageCommand}">
                     <FreakyControls:FreakyButton.LeadingIcon>
                         <Image Source="hand_holding_dollar_white_icon.svg">
                             <Image.Shadow>

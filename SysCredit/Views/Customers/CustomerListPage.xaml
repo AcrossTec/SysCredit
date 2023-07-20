@@ -4,8 +4,8 @@
              xmlns:Local="clr-namespace:SysCredit"
              xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:Controls="clr-namespace:SysCredit.Controls"
-             xmlns:ViewModels="clr-namespace:SysCredit.ViewModels"
-             x:Class="SysCredit.Views.Clients.ListClientPage"
+             xmlns:ViewModels="clr-namespace:SysCredit.ViewModels.Customers"
+             x:Class="SysCredit.Views.Customers.CustomerListPage"
              x:Name="Self"
              BackgroundColor="White"
              Shell.ForegroundColor="White"
@@ -24,7 +24,7 @@
         <BackButtonBehavior IconOverride="{FontImage &#xf177;, FontFamily=FontAwesomeSolid, Color=White}" />
     </Shell.BackButtonBehavior>
     <ContentPage.BindingContext>
-        <ViewModels:ListClientViewModel Page="{x:Reference Self}" />
+        <ViewModels:CustomerListViewModel />
     </ContentPage.BindingContext>
     <Grid>
         <Label Text="Welcome to .NET MAUI!" VerticalOptions="Center" HorizontalOptions="Center" />
