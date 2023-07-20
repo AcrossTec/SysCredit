@@ -97,6 +97,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AlohaKit.Animations" Version="1.0.0" />
     <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.2.1" />
     <PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
     <PackageReference Include="CommunityToolkit.Maui.Maps" Version="1.0.3" />

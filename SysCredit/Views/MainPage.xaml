@@ -63,7 +63,11 @@
                         WidthRequest="{StaticResource ButtonWidth}"
                         Clicked="OnAddClientClicked">
                     <FreakyControls:FreakyButton.LeadingIcon>
-                        <Image Source="new_customer_white_icon.svg" />
+                        <Image Source="new_customer_white_icon.svg">
+                            <Image.Shadow>
+                                <Shadow Opacity="0.8" Offset="5,5" Brush="{StaticResource Accent}" />
+                            </Image.Shadow>
+                        </Image>
                     </FreakyControls:FreakyButton.LeadingIcon>
                 </FreakyControls:FreakyButton>
 
@@ -75,7 +79,11 @@
                         WidthRequest="{StaticResource ButtonWidth}"
                         Clicked="OnListClientClicked">
                     <FreakyControls:FreakyButton.LeadingIcon>
-                        <Image Source="list_customer_white_icon.svg" />
+                        <Image Source="list_customer_white_icon.svg">
+                            <Image.Shadow>
+                                <Shadow Opacity="0.8" Offset="5,5" Brush="{StaticResource Accent}" />
+                            </Image.Shadow>
+                        </Image>
                     </FreakyControls:FreakyButton.LeadingIcon>
                 </FreakyControls:FreakyButton>
 
@@ -86,7 +94,11 @@
                         WidthRequest="{StaticResource ButtonWidth}"
                         Clicked="OnLoanRequestClicked">
                     <FreakyControls:FreakyButton.LeadingIcon>
-                        <Image Source="hand_holding_dollar_white_icon.svg" />
+                        <Image Source="hand_holding_dollar_white_icon.svg">
+                            <Image.Shadow>
+                                <Shadow Opacity="0.8" Offset="5,5" Brush="{StaticResource Accent}" />
+                            </Image.Shadow>
+                        </Image>
                     </FreakyControls:FreakyButton.LeadingIcon>
                 </FreakyControls:FreakyButton>
             </Toolkit:UniformItemsLayout>

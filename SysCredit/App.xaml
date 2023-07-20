@@ -2,7 +2,8 @@
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Local="clr-namespace:SysCredit"
-             x:Class="SysCredit.App">
+             x:Class="SysCredit.App"
+             RequestedThemeChanged="OnRequestedThemeChanged">
     <Application.Resources>
         <ResourceDictionary>
             <x:String x:Key="DevCompanyName">W&amp;A</x:String>
