@@ -1,6 +1,12 @@
 namespace SysCredit.Views;
 
+using CommunityToolkit.Mvvm.Messaging;
+
 using SkiaSharp.Extended.UI.Controls;
+
+using SysCredit.Messages;
+
+using System;
 
 public partial class SplashScreenPage : ContentPage
 {
@@ -10,8 +16,7 @@ public partial class SplashScreenPage : ContentPage
         BindingContext = this;
     }
 
-
-    private async void Lottie_PropertyChanged(object Sender, System.ComponentModel.PropertyChangedEventArgs Event)
+    private async void OnLottiePropertyChanged(object Sender, System.ComponentModel.PropertyChangedEventArgs Event)
     {
         if (Event.PropertyName == nameof(SKLottieView.IsComplete))
         {

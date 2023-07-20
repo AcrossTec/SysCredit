@@ -1,12 +1,14 @@
 ﻿namespace SysCredit.Views;
 
 using CommunityToolkit.Maui.Markup;
+using CommunityToolkit.Mvvm.Messaging;
 
 using Maui.FreakyControls;
 
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 
+using SysCredit.Messages;
 using SysCredit.Views.Clients;
 using SysCredit.Views.Loans;
 
@@ -26,6 +28,9 @@ public partial class MainPage : ContentPage
         {
             ButtonSetting(Child);
         }
+
+        WeakReferenceMessenger.Default.Register<AppThemeChanged>(this, OnAppThemeChanged);
+        WeakReferenceMessenger.Default.Register<DisplayOrientationChanged>(this, OnDisplayOrientationChanged);
     }
 
     private void ButtonSetting(FreakyButton Button)
@@ -43,6 +48,14 @@ public partial class MainPage : ContentPage
 
         MainGrid.FindByName<ContentView>("leadingContentView").Top();
         MainGrid.FindByName<Label>("txtLabel").Bottom();
+    }
+
+    private void OnAppThemeChanged(object Recipient, AppThemeChanged Message)
+    {
+    }
+
+    private void OnDisplayOrientationChanged(object Recipient, DisplayOrientationChanged Message)
+    {
     }
 
     private async void OnAddClientClicked(object Sender, EventArgs Event)

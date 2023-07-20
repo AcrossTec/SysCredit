@@ -4,10 +4,10 @@
              xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:Skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              x:Class="SysCredit.Views.SplashScreenPage"
-             BackgroundColor="{StaticResource Primary}"
+             BackgroundColor="{AppThemeBinding Light=White, Dark={StaticResource Primary}}"
              Title="SplashScreenPage">
     <ContentPage.Behaviors>
-        <Toolkit:StatusBarBehavior StatusBarColor="{StaticResource Primary}"/>
+        <Toolkit:StatusBarBehavior StatusBarColor="{AppThemeBinding Light=White, Dark={StaticResource Primary}}"/>
     </ContentPage.Behaviors>
 
     <AbsoluteLayout>
@@ -16,15 +16,18 @@
             Source="money_transfer.json"
             AbsoluteLayout.LayoutBounds="0.5,0.45,300,300"
             AbsoluteLayout.LayoutFlags="PositionProportional"
-            PropertyChanged="Lottie_PropertyChanged">
+            PropertyChanged="OnLottiePropertyChanged">
         </Skia:SKLottieView>
 
         <Image Source="syscredit_logo.svg"
                AbsoluteLayout.LayoutBounds="0.5,0.60,300,300"
                AbsoluteLayout.LayoutFlags="PositionProportional">
             <Image.Behaviors>
-                <Toolkit:IconTintColorBehavior TintColor="White" />
+                <Toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource Primary}, Dark=White}" />
             </Image.Behaviors>
+            <Image.Shadow>
+                <Shadow Opacity="0.8" Offset="5,5" Brush="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Accent}}" />
+            </Image.Shadow>
         </Image>
     </AbsoluteLayout>
 
