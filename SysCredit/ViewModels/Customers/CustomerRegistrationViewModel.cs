@@ -24,7 +24,8 @@ public partial class CustomerRegistrationViewModel : BaseViewModel
     [RelayCommand(CanExecute = nameof(CanRegisterCustomer))]
     private async Task RegisterCustomer()
     {
-        await Shell.Current.CurrentPage.DisplayAlert(CompanyName, "Cliente registrado correctamente", "Cerrar");
+        await Popups.ShowSysCreditPopup("Cliente registrado correctamente");
+        await Shell.Current.GoToAsync("///Home");
     }
 
     private bool CanRegisterCustomer()

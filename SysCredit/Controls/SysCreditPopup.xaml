@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Toolkit:Popup 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:FreakyControls="clr-namespace:Maui.FreakyControls;assembly=Maui.FreakyControls"
+    x:Class="SysCredit.Controls.SysCreditPopup">
+    <Border StrokeThickness="0" Padding="20,10,20,10" BackgroundColor="White" WidthRequest="300">
+        <Grid RowDefinitions="60,110,60">
+            <Image Source="syscredit_logo.svg" HeightRequest="30"
+               VerticalOptions="Center" HorizontalOptions="Start" />
+            <Grid Grid.Row="1">
+                <Label FontSize="18" TextColor="Black" Text="{Binding Text}" FontFamily="InterRegular"
+                       WidthRequest="260" VerticalOptions="Center" HorizontalOptions="CenterAndExpand"
+                       LineBreakMode="WordWrap" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+            </Grid>
+            <Grid Grid.Row="2" ColumnDefinitions="Auto,Auto" HorizontalOptions="End">
+                <Button Grid.Column="0" StyleId="OKButton"
+                    Text="{Binding OkText}" FontFamily="InterRegular" FontSize="14"
+                    WidthRequest="{Binding ButtonWidth}" HeightRequest="35"
+                    TextColor="White" BackgroundColor="{StaticResource Primary}"
+                    VerticalOptions="Center" Clicked="OnFreakyButtonClicked"
+                    Command="{Binding OkCommand}" CommandParameter="{Binding OkCommandParameter}">
+                    <Button.Shadow>
+                        <Shadow Brush="{StaticResource Primary}" Offset="5,5" Opacity="0.8" />
+                    </Button.Shadow>
+                </Button>
+
+                <Button Grid.Column="2" StyleId="CancelButton"
+                    IsVisible="{Binding IsCancelEnabled}" Margin="15,0,0,0"
+                    Text="{Binding CancelText}" FontFamily="InterRegular" FontSize="14"
+                    WidthRequest="{Binding ButtonWidth}" HeightRequest="35"
+                    TextColor="White" BackgroundColor="{StaticResource Primary}"
+                    VerticalOptions="Center" Clicked="OnFreakyButtonClicked"
+                    Command="{Binding CancelCommand}" CommandParameter="{Binding CancelCommandParameter}">
+                    <Button.Shadow>
+                        <Shadow Brush="{StaticResource Primary}" Offset="5,5" Opacity="0.8" />
+                    </Button.Shadow>
+                </Button>
+            </Grid>
+        </Grid>
+    </Border>
+</Toolkit:Popup>
