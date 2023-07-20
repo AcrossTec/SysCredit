@@ -16,6 +16,7 @@ using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
+using SysCredit.Controls;
 using SysCredit.Models;
 
 public partial class GuarantorRegistrationViewModel : BaseViewModel
@@ -23,7 +24,7 @@ public partial class GuarantorRegistrationViewModel : BaseViewModel
     [RelayCommand(CanExecute = nameof(CanRegisterGuarantor))]
     private async Task RegisterGuarantor()
     {
-        if (!await Shell.Current.DisplayAlert(CompanyName, "¿Registrar otro fiador?", "Si", "No"))
+        if (!await Popups.ShowSysCreditPopup("¿Registrar otro fiador?", "Si", "No"))
         {
             await Shell.Current.GoToAsync("..");
         }
