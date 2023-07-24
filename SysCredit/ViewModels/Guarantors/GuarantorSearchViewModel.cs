@@ -15,6 +15,11 @@ using System.Threading.Tasks;
 public partial class GuarantorSearchViewModel : BaseViewModel
 {
     [RelayCommand]
+    private void PerformSearch(string Query)
+    {
+    }
+
+    [RelayCommand]
     private async Task GoToGuarantorRegistrationPage()
     {
         await Shell.Current.GoToAsync(nameof(GuarantorRegistrationPage));
