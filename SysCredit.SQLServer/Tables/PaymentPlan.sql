@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[PaymentPlan]
 (
-    [PaymentPlanId] BIGINT NOT NULL PRIMARY KEY, 
+    [PaymentPlanId] BIGINT NOT NULL PRIMARY KEY IDENTITY, 
     [CustomerId] BIGINT NOT NULL, 
     [LoanId] BIGINT NOT NULL, 
     [InitialBalance] DECIMAL(22, 4) NOT NULL, 
