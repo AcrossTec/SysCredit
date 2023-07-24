@@ -74,5 +74,7 @@
     <Build Include="Tables\Relationship.sql" />
     <Build Include="Tables\User.sql" />
     <Build Include="Functions\dbo.IsValidPaymentPlanCustomerId.sql" />
+    <Build Include="Tables\Reference.sql" />
+    <Build Include="Tables\CustomerReference.sql" />
   </ItemGroup>
 </Project>
