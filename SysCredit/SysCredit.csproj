@@ -97,16 +97,29 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AlohaKit" Version="1.0.74" />
     <PackageReference Include="AlohaKit.Animations" Version="1.0.0" />
+    <PackageReference Include="AlohaKit.Layouts" Version="1.0.0" />
+    <PackageReference Include="AlohaKit.UI" Version="1.0.2" />
     <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.2.1" />
     <PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
     <PackageReference Include="CommunityToolkit.Maui.Maps" Version="1.0.3" />
     <PackageReference Include="CommunityToolkit.Maui.Markup" Version="3.2.0" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+    <PackageReference Include="OverFlower" Version="0.0.3" />
+    <PackageReference Include="Sharpnado.CollectionView.Maui" Version="3.0.0" />
+    <PackageReference Include="Sharpnado.Tabs.Maui" Version="3.0.1" />
     <PackageReference Include="SkiaSharp" Version="2.88.4-preview.84" />
     <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
     <PackageReference Include="SkiaSharp.Skottie" Version="2.88.4-preview.84" />
+    <PackageReference Include="UraniumUI" Version="2.5.4" />
+    <PackageReference Include="UraniumUI.Blurs" Version="2.5.4" />
+    <PackageReference Include="UraniumUI.Dialogs.CommunityToolkit" Version="2.5.4" />
+    <PackageReference Include="UraniumUI.Dialogs.Mopups" Version="2.5.4" />
+    <PackageReference Include="UraniumUI.Icons.MaterialIcons" Version="2.5.4" />
+    <PackageReference Include="UraniumUI.Material" Version="2.5.4" />
+    <PackageReference Include="UraniumUI.Validations.DataAnnotations" Version="2.5.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -114,73 +127,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\Customers\CustomerRegistrationPage.xaml.cs">
-      <DependentUpon>CustomerRegistrationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Customers\CustomerListPage.xaml.cs">
-      <DependentUpon>CustomerListPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Guarantors\GuarantorRegistrationPage.xaml.cs">
-      <DependentUpon>GuarantorRegistrationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Guarantors\GuarantorSearchPage.xaml.cs">
-      <DependentUpon>GuarantorSearchPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Payments\PaymentPlanPage.xaml.cs">
-      <DependentUpon>PaymentPlanPage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <MauiXaml Update="Controls\SysCreditPopup.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Customers\CustomerEditPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Customers\CustomerInformationPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Customers\CustomerSearchPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Guarantors\GuarantorEditPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Guarantors\GuarantorInformationPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Guarantors\GuarantorListPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Loans\LoanListPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Payments\PaymentPlanPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Users\LogInOptionPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Users\LoginPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Users\RecoverAccountPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Users\UserEditPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Users\UserListPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Users\UserRegistrationPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Extensions\" />
+    <Folder Include="Handlers\" />
     <Folder Include="ViewModels\Controls\" />
     <Folder Include="ViewModels\Users\" />
     <Folder Include="ViewModels\Payments\" />
