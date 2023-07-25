@@ -7,7 +7,7 @@ public record class Response<T>
     public ErrorStatus Status { get; set; } = new();
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public T? Data { get; set; }
+    public T? Value { get; set; }
 }
 
 public record class Response : Response<object?>

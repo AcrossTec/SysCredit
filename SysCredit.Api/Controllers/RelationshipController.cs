@@ -1,10 +1,15 @@
-﻿namespace SysCredit.Api.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
+﻿namespace SysCredit.Api.Controllers;
 
-    [ApiController]
-    [Route("Api/[Controller]")]
-    public class RelationshipController : ControllerBase
-    {
-    }
+using Microsoft.AspNetCore.Mvc;
+
+[ApiController]
+[Route("Api/[Controller]")]
+public class RelationshipController : ControllerBase
+{
+    //private readonly IReferenceStore Service;
+
+    //public RelationshipController(IReferenceStore Service)
+    //{
+    //    this.Service = Service;
+    //}
 }

@@ -1,4 +1,7 @@
-﻿namespace SysCredit.Api.ViewModels;
+﻿using SysCredit.Api.ViewModels.Guarantor;
+using SysCredit.Api.ViewModels.Reference;
+
+namespace SysCredit.Api.ViewModels.Customer;
 
 public record class CreateCustomer
 {
@@ -17,4 +20,8 @@ public record class CreateCustomer
     public string BussinessAddress { get; set; } = string.Empty;
 
     public string Phone { get; set; } = string.Empty;
+    
+    public IEnumerable<CustomerGuarantor> Guarantors { get; set; } = Enumerable.Empty<CustomerGuarantor>();
+
+    public IEnumerable<CustomerReference> References { get; set; } = Enumerable.Empty<CustomerReference>();
 }

@@ -1,8 +1,7 @@
-﻿namespace SysCredit.Api.Validations;
+﻿namespace SysCredit.Api.Validations.Customer;
 
 using FluentValidation;
-
-using SysCredit.Api.ViewModels;
+using SysCredit.Api.ViewModels.Customer;
 
 public class CreateCustomerValidator : AbstractValidator<CreateCustomer>
 {
