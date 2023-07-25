@@ -10,17 +10,20 @@ using static System.Data.CommandType;
 
 public static class CustomerStore
 {
-    public static async IAsyncEnumerable<CustomerDataTransferObject> GetCustomersAsync(this IStore<Customer> Store)
+    public static IAsyncEnumerable<CustomerDataTransferObject> GetCustomersAsync(this IStore<Customer> Store)
     {
-        foreach (var Customer in await Store.Connection.QueryAsync<CustomerDataTransferObject>("FetchCustomer", commandType: StoredProcedure))
-        {
-            yield return Customer;
-        }
+        return Store.ExecQueryAsync<CustomerDataTransferObject>("FetchCustomer");
     }
 
     public static async ValueTask<CustomerDataTransferObject> AddCustomerAsync(this IStore<Customer> Store, CreateCustomer Customer)
     {
-        var CustomerId = await Store.Connection.ExecuteScalarAsync<long>("InsertCustomer", Customer, commandType: StoredProcedure);
-        return await Store.Connection.QueryFirstAsync<CustomerDataTransferObject>("FetchCustomer", commandType: StoredProcedure);
+        var DynamicParameters = new DynamicParameters();
+
+        Customer Model = Store.ToModel(Customer)!;
+        DynamicParameters.AddDynamicParams(Model);
+        DynamicParameters.Output(Model, M => M.CustomerId);
+
+        var CustomerId = await Store.ExecScalarAsync<long>("InsertCustomer", DynamicParameters);
+        return await Store.ExecFirstAsync<CustomerDataTransferObject>("FetchCustomer");
     }
 }

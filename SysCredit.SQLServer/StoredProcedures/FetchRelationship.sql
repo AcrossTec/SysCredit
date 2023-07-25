@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[FetchRelationship] 
 AS
 BEGIN
-    SELECT * FROM Relationship WHERE (DeletedDate IS NULL AND IsDelete = 0)
+    SELECT [RelationshipId], [Name] FROM Relationship WHERE (IsDelete = 0)
 END
