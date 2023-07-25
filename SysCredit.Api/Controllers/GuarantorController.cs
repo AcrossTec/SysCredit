@@ -1,10 +1,27 @@
-﻿namespace SysCredit.Api.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using SysCredit.Api.Services;
 
-    [ApiController]
-    [Route("Api/[Controller]")]
-    public class GuarantorController : ControllerBase
+namespace SysCredit.Api.Controllers;
+
+[ApiController]
+[Route("Api/[Controller]")]
+public class GuarantorController : ControllerBase
+{
+    private readonly IGuarantorServices Service;
+
+    public GuarantorController(IGuarantorServices Service)
     {
+        this.Service = Service;
+    }
+
+    [HttpGet]
+    public void GetGuarantor()
+    {
+    }
+
+    [HttpPost]
+    public void PostGuarantor()
+    {
+        
     }
 }

@@ -31,6 +31,23 @@ CREATE PROCEDURE [dbo].[InsertCustomer]
     @BussinessType    NVARCHAR(32),
     @BussinessAddress NVARCHAR(256),
     @Phone            NVARCHAR(16)
+AS
+BEGIN
+   INSERT INTO Customer(Identification, Name, LastName, Address, 
+                  Neighborhood, BussinessType, BussinessAddress, 
+                  Phone, CreatedDate, ModifiedDate, 
+                  DeletedDate, IsEdit, IsDelete)
+
+   VALUES (@Identification, @Name, @LastName, @Address, 
+           @Neighborhood, @BussinessType, 
+           @BussinessAddress, @Phone, GETUTCDATE(), 
+           NULL, NULL, 0, 0)
+   
+   SELECT SCOPE_IDENTITY();
+END
+GO
+
+/*
 AS BEGIN
     SET NOCOUNT ON;
     BEGIN TRANSACTION;
@@ -49,4 +66,4 @@ AS BEGIN
     RETURN @TableCustomerId;
 END;
 GO
- 
+*/

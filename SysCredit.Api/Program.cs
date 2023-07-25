@@ -5,6 +5,10 @@ using SysCredit.Api.Middlewares;
 using SysCredit.Api.Models;
 using SysCredit.Api.Services;
 using SysCredit.Api.Stores;
+using static Slapper.AutoMapper;
+using SysCredit.Api.ViewModels;
+using Microsoft.Extensions.Options;
+using SysCredit.Api.DataTransferObject;
 
 var Builder = WebApplication.CreateBuilder(args);
 
@@ -24,13 +28,18 @@ Builder.Services.AddScoped<IStore, Store<Entity>>();
 Builder.Services.AddScoped(typeof(IStore<>), typeof(Store<>));
 
 Builder.Services.AddScoped<ICustomerService, CustomerService>();
+Builder.Services.AddScoped<IGuarantorServices, GurantorServices>();
 
 Builder.Services.AddOptions<SysCreditOptions>()
-    .Configure<IConfiguration>(static (Option, Config) => Option.ConnectionString = Config.GetConnectionString("SysCreditConnectionString")!);
+    .Configure<IConfiguration>(static (Option, Config) =>
+    {
+        Option.ConnectionString = Config.GetConnectionString("SysCreditConnectionString")!;        
+        Option.PagingOptions = Config.GetSection(nameof(PagingOptions)).Get<PagingOptions>()!;
+    });
 
-Builder.Services.Configure<ApiBehaviorOptions>(Option =>
+Builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
-    Option.SuppressModelStateInvalidFilter = true;
+
 });
 
 var App = Builder.Build();

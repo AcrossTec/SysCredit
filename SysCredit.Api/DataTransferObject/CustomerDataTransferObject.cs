@@ -4,21 +4,23 @@ public record class CustomerDataTransferObject
 {
     public long CustomerId { get; set; }
 
-    public string Identification { get; set; } = string.Empty;
+    public string? Identification { get; set; }
 
-    public string Name { get; set; } = string.Empty;
+    public string? Name { get; set; }
 
-    public string LastName { get; set; } = string.Empty;
+    public string? LastName { get; set; }
 
-    public string Address { get; set; } = string.Empty;
+    public string? Address { get; set; }
 
-    public string Neighborhood { get; set; } = string.Empty;
+    public string? Neighborhood { get; set; }
 
-    public string BussinessType { get; set; } = string.Empty;
+    public string? BussinessType { get; set; }
 
-    public string BussinessAddress { get; set; } = string.Empty;
+    public string? BussinessAddress { get; set; }
 
-    public string Phone { get; set; } = string.Empty;
+    public string? Phone { get; set; }
 
-    public IEnumerable<GuarantorDataTransferObject> Guarantors { get; set; } = Enumerable.Empty<GuarantorDataTransferObject>();
+    public IEnumerable<CustomerReferenceDataTransferObject> Relationships { get; set; } = Enumerable.Empty<CustomerReferenceDataTransferObject>();
+
+    public IEnumerable<CustomerGuarantorDataTransferObject> Guarantors { get; set; } = Enumerable.Empty<CustomerGuarantorDataTransferObject>();
 }

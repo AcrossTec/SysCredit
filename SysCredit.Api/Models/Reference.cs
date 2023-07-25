@@ -1,6 +1,6 @@
 ﻿namespace SysCredit.Api.Models;
 
-public record class Relationship : Entity
+public record class Reference : Entity
 {
     public long RelationshipId { get; set; }
 
