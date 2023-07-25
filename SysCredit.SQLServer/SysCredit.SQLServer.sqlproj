@@ -60,8 +60,9 @@
     <Folder Include="Properties" />
     <Folder Include="Tables" />
     <Folder Include="Functions" />
-    <Folder Include="Scripts" />
     <Folder Include="StoredProcedures" />
+    <Folder Include="PostDeployments" />
+    <Folder Include="Views" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Customer.sql" />
@@ -74,15 +75,12 @@
     <Build Include="Tables\PaymentPlanDetails.sql" />
     <Build Include="Tables\Relationship.sql" />
     <Build Include="Tables\User.sql" />
-    <Build Include="Functions\IsValidPaymentPlanCustomerId.sql" />
     <Build Include="Tables\Reference.sql" />
     <Build Include="Tables\CustomerReference.sql" />
     <Build Include="StoredProcedures\FetchCustomer.sql" />
     <Build Include="StoredProcedures\FetchGuarantor.sql" />
     <Build Include="StoredProcedures\FetchRelationship.sql" />
     <Build Include="StoredProcedures\InsertCustomer.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <PostDeploy Include="Scripts\Relationship.PostDeployment.sql" />
+    <PostDeploy Include="PostDeployments\Relationship.Seed.sql" />
   </ItemGroup>
 </Project>

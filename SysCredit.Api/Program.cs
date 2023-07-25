@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using SysCredit.Api;
 using SysCredit.Api.Middlewares;
+using SysCredit.Api.Models;
 using SysCredit.Api.Services;
 using SysCredit.Api.Stores;
 
@@ -19,7 +20,9 @@ Builder.Services.AddControllers()
 Builder.Services.AddEndpointsApiExplorer();
 Builder.Services.AddSwaggerGen();
 
+Builder.Services.AddScoped<IStore, Store<Entity>>();
 Builder.Services.AddScoped(typeof(IStore<>), typeof(Store<>));
+
 Builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 Builder.Services.AddOptions<SysCreditOptions>()
