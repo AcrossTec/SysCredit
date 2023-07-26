@@ -15,7 +15,7 @@
     <Shell.TitleView>
         <Controls:TitleView Text="{Binding Source={StaticResource CompanyName}, StringFormat='Sobre {0}'}"
                             TextColor="White" HorizontalOptions="End" Margin="0,0,20,0"
-                            FontFamily="InterLight" />
+                            FontSize="20" FontFamily="InterLight" />
     </Shell.TitleView>
 
     <ScrollView Grid.Row="1">

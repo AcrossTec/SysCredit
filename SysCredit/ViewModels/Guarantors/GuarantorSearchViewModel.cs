@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public partial class GuarantorSearchViewModel : BaseViewModel
+public partial class GuarantorSearchViewModel : ViewModelBase
 {
     [RelayCommand]
     private void PerformSearch(string Query)

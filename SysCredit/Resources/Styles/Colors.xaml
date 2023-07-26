@@ -4,11 +4,6 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Color x:Key="Primary">#061F60</Color>
-    <Color x:Key="Secondary">#2A334F</Color>
-    <Color x:Key="Tertiary">#AFAFAF</Color>
-    <Color x:Key="Accent">#69F0AE</Color>
-
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
 
@@ -20,11 +15,6 @@
     <Color x:Key="Gray600">#404040</Color>
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
-
-    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
-    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
-    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}" />
-    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource Accent}" />
 
     <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}" />
     <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}" />

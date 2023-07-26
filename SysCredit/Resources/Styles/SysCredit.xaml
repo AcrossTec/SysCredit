@@ -3,11 +3,21 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <Color x:Key="Primary">#061F60</Color>
+    <Color x:Key="Secondary">#2A334F</Color>
+    <Color x:Key="Tertiary">#AFAFAF</Color>
+    <Color x:Key="Accent">#69F0AE</Color>
+
     <Color x:Key="MainPageItemColor">#061F60</Color>
     <Color x:Key="SysCreditNavBarTextColor">#293263</Color>
     <Color x:Key="SysCreditFlyoutBackgroundColor">#061F60</Color>
     <Color x:Key="EntryBorderColor">#AFAFAF</Color>
     <Color x:Key="EntryPlaceholderColor">#999999</Color>
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
+    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}" />
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource Accent}" />
 
     <SolidColorBrush x:Key="MainPageItemBrush" Color="{StaticResource MainPageItemColor}" />
     <SolidColorBrush x:Key="SysCreditNavBarTextBrush" Color="{StaticResource SysCreditNavBarTextColor}" />

@@ -1,12 +1,8 @@
 ﻿namespace SysCredit.Models;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
 
-public record BaseModel
+public partial class ModelBase : ObservableObject
 {
     public DateTime CreatedDate { get; set; } = DateTime.Now;
 

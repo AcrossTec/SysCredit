@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public partial class MainViewModel : BaseViewModel
+public partial class MainViewModel : ViewModelBase
 {
     [RelayCommand]
     private async Task GoToCustomerRegistrationPage()

@@ -1,18 +1,16 @@
 namespace SysCredit.Controls;
 
-using CommunityToolkit.Maui.Views;
-
-using Maui.FreakyControls;
+using Mopups.Pages;
 
 using System.Windows.Input;
 
-public partial class SysCreditPopup : Popup
+public partial class SysCreditPopup : PopupPage
 {
     public static readonly BindableProperty TextProperty =
         BindableProperty.Create(nameof(Text), typeof(string), typeof(SysCreditPopup));
 
     public static readonly BindableProperty IsCancelEnabledProperty =
-        BindableProperty.Create(nameof(IsCancelEnabled), typeof(bool), typeof(SysCreditPopup), false, propertyChanged: OnIsCancelEnabledPropertyChanged);
+        BindableProperty.Create(nameof(IsCancelEnabled), typeof(bool), typeof(SysCreditPopup), false);
 
     public static readonly BindableProperty OkTextProperty =
         BindableProperty.Create(nameof(OkText), typeof(string), typeof(SysCreditPopup), "Aceptar");
@@ -35,11 +33,13 @@ public partial class SysCreditPopup : Popup
     public static readonly BindableProperty CancelCommandProperty =
         BindableProperty.Create(nameof(CancelCommand), typeof(ICommand), typeof(SysCreditPopup));
 
+    private static readonly Color BackdropColor = Colors.Black.WithAlpha(.6f);
+
     public SysCreditPopup()
     {
         InitializeComponent();
-        ResultWhenUserTapsOutsideOfPopup = true;
         BindingContext = this;
+        BackgroundColor = BackdropColor;
     }
 
     public string Text
@@ -94,31 +94,5 @@ public partial class SysCreditPopup : Popup
     {
         get => GetValue(CancelCommandParameterProperty);
         set => SetValue(CancelCommandParameterProperty, value);
-    }
-
-    private void OnFreakyButtonClicked(object Sender, EventArgs Event)
-    {
-        View Button = (View)Sender;
-
-        switch (Button.StyleId)
-        {
-            case "OKButton":
-            {
-                Close(true);
-                break;
-            }
-
-            case "CancelButton":
-            {
-                Close(false);
-                break;
-            }
-        }
-    }
-
-    private static void OnIsCancelEnabledPropertyChanged(BindableObject Bindable, object OldValue, object NewValue)
-    {
-        var Popup = (SysCreditPopup)Bindable;
-        Popup.ResultWhenUserTapsOutsideOfPopup = !(bool)NewValue;
     }
 }

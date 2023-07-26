@@ -1,4 +1,4 @@
-﻿namespace SysCredit.ViewModels;
+﻿namespace SysCredit.Models;
 
 using System;
 using System.Collections.Generic;
@@ -6,6 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public partial class AboutViewModel : ViewModelBase
+public partial class Guarantor
 {
 }
