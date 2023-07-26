@@ -1,44 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material">
+
+    <Color x:Key="Accent">#AA00FF</Color>
 
     <Color x:Key="Primary">#061F60</Color>
-    <Color x:Key="Secondary">#2A334F</Color>
+    <Color x:Key="PrimaryVariant">#061F60</Color>
+    <Color x:Key="OnPrimary">#FFFFFF</Color>
+    <Color x:Key="PrimaryContainer">#baefcd</Color>
+    <Color x:Key="OnPrimaryContainer">#176031</Color>
+
+    <Color x:Key="Secondary">#1E42A0</Color>
+    <Color x:Key="SecondaryVariant">#1E42A0</Color>
+    <Color x:Key="OnSecondary">#2C3639</Color>
+    <Color x:Key="SecondaryContainer">#e1ffcb</Color>
+    <Color x:Key="OnSecondaryContainer">#3F4E4F</Color>
+
     <Color x:Key="Tertiary">#AFAFAF</Color>
-    <Color x:Key="Accent">#69F0AE</Color>
+    <Color x:Key="OnTertiary">#2C3639</Color>
+    <Color x:Key="TertiaryContainer">#786301</Color>
+    <Color x:Key="OnTertiaryContainer">#fef1b0</Color>
 
-    <Color x:Key="MainPageItemColor">#061F60</Color>
-    <Color x:Key="SysCreditNavBarTextColor">#293263</Color>
-    <Color x:Key="SysCreditFlyoutBackgroundColor">#061F60</Color>
-    <Color x:Key="EntryBorderColor">#AFAFAF</Color>
-    <Color x:Key="EntryPlaceholderColor">#999999</Color>
+    <Color x:Key="Surface">#F6F4E6</Color>
+    <Color x:Key="OnSurface">#3F4E4F</Color>
+    <Color x:Key="SurfaceVariant">#E7E0EC</Color>
+    <Color x:Key="OnSurfaceVariant">#49454E</Color>
 
-    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
-    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
-    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}" />
-    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource Accent}" />
+    <Color x:Key="Background">#FFFBFE</Color>
+    <Color x:Key="OnBackground">#1C1B1F</Color>
 
-    <SolidColorBrush x:Key="MainPageItemBrush" Color="{StaticResource MainPageItemColor}" />
-    <SolidColorBrush x:Key="SysCreditNavBarTextBrush" Color="{StaticResource SysCreditNavBarTextColor}" />
-    <SolidColorBrush x:Key="SysCreditFlyoutBackgroundBrush" Color="{StaticResource SysCreditFlyoutBackgroundColor}" />
-    <SolidColorBrush x:Key="EntryBorderBrush" Color="{StaticResource EntryBorderColor}" />
-    <SolidColorBrush x:Key="EntryPlaceholderBrush" Color="{StaticResource EntryPlaceholderColor}" />
+    <Color x:Key="Error">#B3261E</Color>
+    <Color x:Key="ErrorContainer">#F9DEDC</Color>
+    <Color x:Key="OnError">#FFFFFF</Color>
+    <Color x:Key="OnErrorContainer">#370B1E</Color>
 
-    <Style TargetType="Button">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}" />
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Primary}}" />
-        <Setter Property="FontFamily" Value="InterRegular"/>
-    </Style>
+    <Color x:Key="Outline">#79747E</Color>
+    <Color x:Key="OutlineVariant">#C4C7C5</Color>
+    <Color x:Key="Shadow">#000000</Color>
 
-    <Style TargetType="Label">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Black}}" />
-        <Setter Property="FontFamily" Value="InterRegular" />
-    </Style>
+    <Color x:Key="InverseSurface">#313033</Color>
+    <Color x:Key="InverseOnSurface">#F4EFF4</Color>
 
-    <Style TargetType="Entry">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}" />
-        <Setter Property="FontFamily" Value="InterRegular"/>
-    </Style>
+    <Color x:Key="InversePrimary">#52D681</Color>
+    <Color x:Key="Scrim">#000000</Color>
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource Primary}" />
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{DynamicResource Secondary}" />
+    <SolidColorBrush x:Key="TertiaryBrush" Color="{DynamicResource Tertiary}" />
+    <SolidColorBrush x:Key="AccentBrush" Color="{DynamicResource Accent}" />
 
 </ResourceDictionary>

@@ -14,11 +14,10 @@
              x:DataType="ViewModels:CustomerRegistrationViewModel"
              x:Name="Self"
              Title="Nuevo Cliente"
-             BackgroundColor="White"
-             Shell.ForegroundColor="White"
-             Shell.BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}">
+             Shell.ForegroundColor="{StaticResource White}"
+             Shell.BackgroundColor="{StaticResource Primary}">
     <ContentPage.Behaviors>
-        <ToolKit:StatusBarBehavior StatusBarColor="{StaticResource Primary}" StatusBarStyle="LightContent" />
+        <ToolKit:StatusBarBehavior StatusBarColor="{StaticResource Secondary}" StatusBarStyle="LightContent" />
     </ContentPage.Behaviors>
     <Shell.BackButtonBehavior>
         <BackButtonBehavior IconOverride="{FontImage &#xf177;, FontFamily=FontAwesomeSolid, Color=White}" />
@@ -33,37 +32,42 @@
         <ViewModels:CustomerRegistrationViewModel />
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" Text="Buscar Fiador" IconImageSource="{FontImage &#xf00e;, FontFamily=FontAwesomeSolid, Size=25}" Command="{Binding GoToGuarantorSearchPageCommand}" />
-        <ToolbarItem Order="Primary" Text="Registrar Cliente" IconImageSource="{FontImage &#xf0c7;, FontFamily=FontAwesomeSolid, Size=25}" Command="{Binding RegisterCustomerCommand}" />
+        <ToolbarItem Order="Primary" Text="Buscar Fiador"
+                     IconImageSource="{FontImage &#xf00e;, FontFamily=FontAwesomeSolid, Size=25}"
+                     Command="{Binding GoToGuarantorSearchPageCommand}" />
+
+        <ToolbarItem Order="Primary" Text="Registrar Cliente"
+                     IconImageSource="{FontImage &#xf0c7;, FontFamily=FontAwesomeSolid, Size=25}"
+                     Input:FormView.IsSubmitButton="True" />
     </ContentPage.ToolbarItems>
     <ContentPage.Resources>
 
+        <Style TargetType="Material:TextField" ApplyToDerivedTypes="True" CanCascade="True">
+            <Setter Property="AccentColor" Value="{StaticResource Accent}" />
+        </Style>
+
     </ContentPage.Resources>
     <ScrollView>
-        <VerticalStackLayout Padding="20">
-            <Input:FormView Spacing="10">
+        <VerticalStackLayout Margin="0,20,0,20" WidthRequest="340">
+            <Input:FormView Spacing="10" SubmitCommand="{Binding RegisterCustomerCommand}">
 
-                <Label Text="Datos Generales" TextColor="#4D556A" FontSize="16" LineHeight="20"
-                       FontFamily="InterBold" FontAttributes="Bold" Margin="0,0,0,15" />
+                <!-- Sección -->
 
-                <!-- Correo -->
-
-                <Material:TextField Title="Correo" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Email}}">
-                    <Validation:RequiredValidation />
-                    <Validation:RegexValidation Pattern="{x:Static Input:AdvancedEntry.REGEX_EMAIL}" />
-                </Material:TextField>
+                <Label Text="Datos Generales" TextColor="{DynamicResource Primary}" FontSize="16" LineHeight="20"
+                       FontFamily="InterBold" FontAttributes="Bold" Margin="0" />
 
                 <!-- Nombres -->
 
-                <Material:TextField Title="Nombres" AllowClear="True" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Person}}">
-                    <Validation:RequiredValidation />
-                    <Validation:MinLengthValidation MinLength="5" />
-                    <Validation:LettersOnlyValidation AllowSpaces="True" />
-                </Material:TextField>
+                <Material:TextField
+                    Title="Nombres" AllowClear="True"
+                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf4ff;}"
+                    Text="{Binding Model.Name}" />
 
                 <!-- Apellidos -->
 
-                <Material:TextField Title="Apellidos" AllowClear="True" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Person_2}}">
+                <Material:TextField
+                    Title="Apellidos" AllowClear="True"
+                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf5b7;}">
                     <Validation:RequiredValidation />
                     <Validation:MinLengthValidation MinLength="5" />
                     <Validation:LettersOnlyValidation AllowSpaces="True" />
@@ -71,15 +75,28 @@
 
                 <!-- Número de Cédula -->
 
-                <Material:TextField Title="Número de Cédula" AllowClear="True" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Android}}">
+                <Material:TextField
+                    Title="Número de Cédula" AllowClear="True"
+                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf2c2;}">
                     <Validation:RequiredValidation />
                     <Validation:MinLengthValidation MinLength="5" />
                     <Validation:LettersOnlyValidation AllowSpaces="True" />
                 </Material:TextField>
 
+                <!-- Correo -->
+
+                <Material:TextField
+                    Title="Correo" AllowClear="True"
+                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf0e0;}">
+                    <Validation:RequiredValidation />
+                    <Validation:RegexValidation Pattern="{x:Static Input:AdvancedEntry.REGEX_EMAIL}" />
+                </Material:TextField>
+
                 <!-- Número de Teléfono -->
 
-                <Material:TextField Title="Age" Keyboard="Telephone" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Numbers}}">
+                <Material:TextField
+                    Title="Número de Teléfono" AllowClear="True" Keyboard="Telephone"
+                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf095;}">
                     <Material:TextField.Validations>
                         <Validation:RequiredValidation />
                         <Validation:RegexValidation Pattern="{x:Static Input:AdvancedEntry.REGEX_PHONE}" />
@@ -88,29 +105,35 @@
 
                 <!-- Domicilio -->
 
-                <Material:EditorField Title="Domicilio" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Sports_kabaddi}}">
-                    <Material:EditorField.Validations>
-                        <Validation:RequiredValidation />
-                        <Validation:MinLengthValidation MinLength="5" />
-                        <Validation:LettersOnlyValidation AllowSpaces="True" />
-                    </Material:EditorField.Validations>
-                </Material:EditorField>
-
-                <!-- Barrio -->
-
-                <Material:TextField Title="Barrio" AllowClear="True" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Engineering}}">
+                <Material:TextField
+                    Title="Domicilio" AllowClear="True"
+                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf2b9;}">
                     <Validation:RequiredValidation />
                     <Validation:MinLengthValidation MinLength="5" />
                     <Validation:LettersOnlyValidation AllowSpaces="True" />
                 </Material:TextField>
 
-                <Label Text="Datos del Negocio" TextColor="#4D556A"
+                <!-- Barrio -->
+
+                <Material:TextField
+                    Title="Barrio" AllowClear="True"
+                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xe54f;}">
+                    <Validation:RequiredValidation />
+                    <Validation:MinLengthValidation MinLength="5" />
+                    <Validation:LettersOnlyValidation AllowSpaces="True" />
+                </Material:TextField>
+
+                <!-- Sección -->
+
+                <Label Text="Datos del Negocio" TextColor="{DynamicResource Primary}"
                        FontSize="16" LineHeight="20"
-                       FontFamily="InterBold" FontAttributes="Bold" Margin="0,0,0,15" />
+                       FontFamily="InterBold" FontAttributes="Bold" Margin="0,15,0,0" />
 
                 <!-- Tipo de Negocio -->
 
-                <Material:TextField Title="Tipo del Negocio" AllowClear="True" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Bike_scooter}}">
+                <Material:TextField
+                    Title="Tipo del Negocio" AllowClear="True"
+                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf508;}">
                     <Validation:RequiredValidation />
                     <Validation:MinLengthValidation MinLength="5" />
                     <Validation:LettersOnlyValidation AllowSpaces="True" />
@@ -118,48 +141,83 @@
 
                 <!-- Dirección del Negocio -->
 
-                <Material:TextField Title="Dirección del Negocio" AllowClear="True" Icon="{FontImageSource FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Bug_report}}">
+                <Material:TextField
+                    Title="Dirección del Negocio" AllowClear="True"
+                    Icon="{FontImageSource FontFamily=FontAwesomeRegular, Glyph=&#xf2b9;}">
                     <Validation:RequiredValidation />
                     <Validation:MinLengthValidation MinLength="5" />
                     <Validation:LettersOnlyValidation AllowSpaces="True" />
                 </Material:TextField>
 
-                <!-- Fiadores -->
+                <!-- Sección -->
 
-                <Label Text="Fiadores" TextColor="#4D556A"
-                       FontSize="16" LineHeight="20"
-                       FontFamily="InterBold" FontAttributes="Bold" Margin="0,0,0,15" />
+                <Label Text="Referencias" TextColor="{DynamicResource Primary}" FontSize="16" LineHeight="20"
+                       FontFamily="InterBold" FontAttributes="Bold" Margin="0,15,0,0" />
+
+                <!-- Referencias -->
 
                 <SwipeView>
                     <SwipeView.LeftItems>
                         <SwipeItems>
-                            <SwipeItem Text="Agregar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" Command="{Binding GoToGuarantorSearchPageCommand}" />
-                            <SwipeItem Text="Borrar"  IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightPink" />
+                            <SwipeItem Text="  Agregar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" Command="{Binding OpenSearchReferenceBottomSheetCommand}" />
+                            <SwipeItem Text="    Borrar"  IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeRegular}" BackgroundColor="LightPink" />
                         </SwipeItems>
                     </SwipeView.LeftItems>
-                    <SwipeView.RightItems>
-                        <SwipeItems>
-                            <SwipeItem Text="Agregar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" Command="{Binding GoToGuarantorSearchPageCommand}" />
-                            <SwipeItem Text="Borrar"  IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightPink" />
-                        </SwipeItems>
-                    </SwipeView.RightItems>
 
                     <!-- Content -->
                     <Grid ColumnDefinitions="50,*,50" WidthRequest="335" HeightRequest="60" BackgroundColor="WhiteSmoke">
-                        <Image Grid.Column="0"
-                               WidthRequest="24" HeightRequest="24" Source="default_user.svg"
-                               VerticalOptions="Center" HorizontalOptions="Center" />
-                        <Label Grid.Column="1"
-                               Text="No se ha agregado fiador" TextColor="#8A8A8A"
-                               FontSize="16" LineHeight="20"
-                               FontFamily="InterBold" FontAttributes="Italic"
-                               VerticalOptions="Center" HorizontalOptions="StartAndExpand"
-                               VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
-                        <ImageButton Grid.Column="2" Padding="0"
-                                     WidthRequest="50" HeightRequest="50"
-                                     Source="{FontImage &#xf0a4;, FontFamily=FontAwesomeSolid, Color=Black, Size=24}" Aspect="Center"
-                                     VerticalOptions="Center" HorizontalOptions="Center"
-                                     ToolTipProperties.Text="Hacer un gesto de desplazamiento a la derecha" />
+                        <Image
+                            Grid.Column="0"
+                            Source="{FontImage &#xf2a3;, FontFamily=FontAwesomeSolid, Color=Black, Size=24}"
+                            VerticalOptions="Center" HorizontalOptions="Center" />
+                        <Label
+                            Grid.Column="1"
+                            Text="Sin Referencias" TextColor="#8A8A8A"
+                            FontSize="15" FontFamily="InterBold" FontAttributes="Italic"
+                            VerticalOptions="Center" HorizontalOptions="StartAndExpand"
+                            VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
+                        <ImageButton 
+                            Grid.Column="2"
+                            Source="{FontImage &#xf0a4;, FontFamily=FontAwesomeSolid, Color=Black, Size=24}" Aspect="Center"
+                            Command="{Binding OpenSwipeViewCommand}" CommandParameter="{Binding Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type SwipeView}}}"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            ToolTipProperties.Text="Deslizar hacia la derecha" />
+                    </Grid>
+                </SwipeView>
+
+                <!-- Sección -->
+
+                <Label Text="Fiadores" TextColor="{DynamicResource Primary}" FontSize="16" LineHeight="20"
+                       FontFamily="InterBold" FontAttributes="Bold" Margin="0,15,0,0" />
+
+                <!-- Fiadores -->
+
+                <SwipeView>
+                    <SwipeView.LeftItems>
+                        <SwipeItems>
+                            <SwipeItem Text="  Agregar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" />
+                            <SwipeItem Text="    Borrar" IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeRegular}" BackgroundColor="LightPink" />
+                        </SwipeItems>
+                    </SwipeView.LeftItems>
+
+                    <!-- Content -->
+                    <Grid ColumnDefinitions="50,*,50" WidthRequest="335" HeightRequest="60" BackgroundColor="WhiteSmoke">
+                        <Image
+                            Grid.Column="0"
+                            Source="{FontImage &#xf3d1;, FontFamily=FontAwesomeRegular, Color=Black, Size=24}"
+                            VerticalOptions="Center" HorizontalOptions="Center" />
+                        <Label
+                            Grid.Column="1"
+                            Text="Sin Fiadores" TextColor="#8A8A8A"
+                            FontSize="15" FontFamily="InterBold" FontAttributes="Italic"
+                            VerticalOptions="Center" HorizontalOptions="StartAndExpand"
+                            VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
+                        <ImageButton
+                            Grid.Column="2"
+                            Source="{FontImage &#xf0a4;, FontFamily=FontAwesomeSolid, Color=Black, Size=24}" Aspect="Center"
+                            Command="{Binding OpenSwipeViewCommand}" CommandParameter="{Binding Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type SwipeView}}}"
+                            VerticalOptions="Center" HorizontalOptions="Center"
+                            ToolTipProperties.Text="Deslizar hacia la derecha" />
                     </Grid>
                 </SwipeView>
 
