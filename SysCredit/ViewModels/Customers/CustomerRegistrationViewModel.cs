@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,8 +20,22 @@ using CommunityToolkit.Mvvm.Input;
 using SysCredit.Models;
 using SysCredit.Views.Guarantors;
 
-public partial class CustomerRegistrationViewModel : BaseViewModel
+public partial class CustomerRegistrationViewModel : ViewModelBase
 {
+    public CustomerRegistrationViewModel()
+    {
+        Model = new();
+        Model.PropertyChanged += OnModelPropertyChanged;
+    }
+
+    private void OnModelPropertyChanged(object? Sender, PropertyChangedEventArgs Event)
+    {
+        OnPropertyChanged(nameof(Model));
+        RegisterCustomerCommand.NotifyCanExecuteChanged();
+    }
+
+    public CreateCustomer Model { get; }
+
     [RelayCommand(CanExecute = nameof(CanRegisterCustomer))]
     private async Task RegisterCustomer()
     {
@@ -28,10 +43,7 @@ public partial class CustomerRegistrationViewModel : BaseViewModel
         await Shell.Current.GoToAsync("///Home");
     }
 
-    private bool CanRegisterCustomer()
-    {
-        return true;
-    }
+    private bool CanRegisterCustomer() => Model.IsValid;
 
     [RelayCommand]
     private async Task GoToGuarantorSearchPage()

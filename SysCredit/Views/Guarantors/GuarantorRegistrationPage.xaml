@@ -5,7 +5,6 @@
              xmlns:Controls="clr-namespace:SysCredit.Controls"
              xmlns:ViewModels="clr-namespace:SysCredit.ViewModels.Guarantors"
              xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:FreakyControls="clr-namespace:Maui.FreakyControls;assembly=Maui.FreakyControls"
              x:Class="SysCredit.Views.Guarantors.GuarantorRegistrationPage"
              x:Name="Self"
              Title="Nuevo Fiador"
@@ -21,51 +20,19 @@
     <Shell.TitleView>
         <Controls:TitleView
             Text="{Binding Source={x:Reference Self}, Path=Title}" TextColor="White"
-            FontAttributes="None" FontFamily="InterLight"
+            FontSize="20" FontAttributes="None" FontFamily="InterLight"
             HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
     </Shell.TitleView>
     <ContentPage.BindingContext>
         <ViewModels:GuarantorRegistrationViewModel />
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" Text="Registrar Fiador" IconImageSource="{FontImage &#xf0c7;, FontFamily=FontAwesomeSolid, Size=30}" Command="{Binding RegisterGuarantorCommand}" />
+        <ToolbarItem Order="Primary" Text="Registrar Fiador" IconImageSource="{FontImage &#xf0c7;, FontFamily=FontAwesomeSolid, Size=25}" Command="{Binding RegisterGuarantorCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Resources>
-        <Style TargetType="FreakyControls:FreakyTextInputLayout">
-            <Setter Property="Keyboard" Value="Text" />
-            <Setter Property="TitleColor" Value="{StaticResource EntryPlaceholderColor}" />
-            <Setter Property="TextColor" Value="Black" />
-            <Setter Property="FontFamily" Value="InterRegular" />
-            <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
-            <Setter Property="BorderType" Value="Outlined" />
-            <Setter Property="BorderStroke" Value="{StaticResource EntryBorderColor}" />
-            <Setter Property="BorderStrokeThickness" Value="1" />
-            <Setter Property="BorderCornerRadius" Value="6" />
-            <Setter Property="Margin" Value="0,0,0,30" />
-            <Setter Property="WidthRequest" Value="335" />
-            <Setter Property="HeightRequest" Value="50" />
-        </Style>
+
     </ContentPage.Resources>
-    <ScrollView Padding="0,20">
-        <VerticalStackLayout>
-            <VerticalStackLayout Margin="0,0,0,0" HorizontalOptions="Center">
-                <Label Text="Datos Generales" TextColor="#4D556A" FontSize="16" LineHeight="20"
-                       FontFamily="InterBold" FontAttributes="Bold" Margin="0,0,0,15" />
-                <FreakyControls:FreakyTextInputLayout Title="Nombres" />
-                <FreakyControls:FreakyTextInputLayout Title="Apellidos" />
-                <FreakyControls:FreakyTextInputLayout Title="Número de Cédula" />
-                <FreakyControls:FreakyTextInputLayout Title="Número de Teléfono" Keyboard="Telephone" />
-                <FreakyControls:FreakyTextInputLayout Title="Domicilio" />
-                <FreakyControls:FreakyTextInputLayout Title="Barrio" />
-                <FreakyControls:FreakyTextInputLayout Title="Parentesco" />
-            </VerticalStackLayout>
-            <VerticalStackLayout Margin="0,20,0,0" HorizontalOptions="Center">
-                <Label Text="Datos del Negocio" TextColor="#4D556A"
-                       FontSize="16" LineHeight="20"
-                       FontFamily="InterBold" FontAttributes="Bold" Margin="0,0,0,15" />
-                <FreakyControls:FreakyTextInputLayout Title="Tipo de Negocio" />
-                <FreakyControls:FreakyTextInputLayout Title="Dirección del Negocio" />
-            </VerticalStackLayout>
-        </VerticalStackLayout>
+    <ScrollView>
+
     </ScrollView>
 </ContentPage>

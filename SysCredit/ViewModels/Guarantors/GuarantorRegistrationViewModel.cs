@@ -19,7 +19,7 @@ using CommunityToolkit.Mvvm.Input;
 using SysCredit.Controls;
 using SysCredit.Models;
 
-public partial class GuarantorRegistrationViewModel : BaseViewModel
+public partial class GuarantorRegistrationViewModel : ViewModelBase
 {
     [RelayCommand(CanExecute = nameof(CanRegisterGuarantor))]
     private async Task RegisterGuarantor()

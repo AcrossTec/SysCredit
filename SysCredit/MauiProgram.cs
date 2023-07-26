@@ -5,11 +5,22 @@ using CommunityToolkit.Maui.Markup;
 using CommunityToolkit.Mvvm.Messaging;
 
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Hosting;
+
+using Mopups.Hosting;
+
+using DotNurse.Injector;
 
 using SysCredit.Messages;
+using SysCredit.Services;
+using SysCredit.Services.Settings;
 using SysCredit.Views.Customers;
 using SysCredit.Views.Guarantors;
 using SysCredit.Views.Loans;
+
+using UraniumUI;
+using SkiaSharp.Views.Maui.Controls.Hosting;
+using SkiaSharp.Views.Maui.Controls;
 
 public static partial class MauiProgram
 {
@@ -23,11 +34,19 @@ public static partial class MauiProgram
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitMarkup()
-            .UseFreakyControls()
+            .UseUraniumUI()
+            .UseUraniumUIMaterial()
+            .UseUraniumUIBlurs(false)
+            .UseUraniumUIWebComponents()
+            .UseSkiaSharp()
+            .ConfigureMopups()
             .ConfigureMauiHandlers(ConfigureMauiHandlers)
             .ConfigureEffects(ConfigureEffects)
             .ConfigureFonts(ConfigureFonts)
-            .ConfigureRoutes();
+            .RegisterRoutes()
+            .RegisterAppServices()
+            .RegisterViewModels()
+            .RegisterViews();
 
 #if DEBUG
         Builder.Logging.AddDebug();
@@ -38,20 +57,25 @@ public static partial class MauiProgram
 
     public static void OnDeviceDisplayInfoChanged(object? Sender, DisplayInfoChangedEventArgs Event)
     {
-        // Device information
-        //  https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/device/information?tabs=android
-        //
-        // Device display information
-        //  https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/device/display?tabs=android
-        //
-        // WeakReferenceManager
-        //  https://www.c-sharpcorner.com/article/net-maui-good-bye-messagingcenter-welcome-weakreferencemanager/
-
+        ///
+        /// Device information
+        ///  https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/device/information?tabs=android
+        ///
+        /// Device display information
+        ///  https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/device/display?tabs=android
+        ///
+        /// WeakReferenceManager
+        ///  https://www.c-sharpcorner.com/article/net-maui-good-bye-messagingcenter-welcome-weakreferencemanager/
+        ///
         WeakReferenceMessenger.Default.Send(new DisplayOrientationChanged(Event.DisplayInfo.Orientation));
     }
 
     private static void ConfigureFonts(IFontCollection Fonts)
     {
+        Fonts.AddFontAwesomeIconFonts();
+        Fonts.AddMaterialIconFonts();
+        Fonts.AddFluentIconFonts();
+
         Fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
         Fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 
@@ -71,7 +95,34 @@ public static partial class MauiProgram
         Fonts.AddFont("Inter-VariableFont.ttf", "InterVariableFont");
     }
 
-    private static MauiAppBuilder ConfigureRoutes(this MauiAppBuilder Builder)
+    private static MauiAppBuilder RegisterAppServices(this MauiAppBuilder Builder)
+    {
+        Builder.Services.AddSingleton<ISettingsService, SettingsService>();
+        Builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
+        Builder.Services.AddMopupsDialogs();
+        return Builder;
+    }
+
+    private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder Builder)
+    {
+        return Builder;
+    }
+
+    private static MauiAppBuilder RegisterViews(this MauiAppBuilder Builder)
+    {
+        var ThisAssembly = typeof(MauiProgram).Assembly;
+
+        Builder.Services
+            .AddServicesFrom(
+                Type => typeof(Page).IsAssignableFrom(Type),
+                ServiceLifetime.Transient,
+                Options => Options.Assembly = ThisAssembly)
+            .AddServicesByAttributes(assembly: ThisAssembly);
+
+        return Builder;
+    }
+
+    private static MauiAppBuilder RegisterRoutes(this MauiAppBuilder Builder)
     {
         Routing.RegisterRoute(nameof(CustomerRegistrationPage), typeof(CustomerRegistrationPage));
         Routing.RegisterRoute(nameof(CustomerInformationPage), typeof(CustomerInformationPage));

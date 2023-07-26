@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Toolkit:Popup 
+<Mopups:PopupPage 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    xmlns:FreakyControls="clr-namespace:Maui.FreakyControls;assembly=Maui.FreakyControls"
-    x:Class="SysCredit.Controls.SysCreditPopup">
-    <Border StrokeThickness="0" Padding="20,10,20,10" BackgroundColor="White" WidthRequest="300">
+    xmlns:Mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+    xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    x:Class="SysCredit.Controls.SysCreditPopup"
+    CloseWhenBackgroundIsClicked="True">
+    <Frame CornerRadius="20" Padding="20,10,20,10" BackgroundColor="White"
+           HorizontalOptions="Center" VerticalOptions="Center"
+           x:Name="ContentFrame" x:FieldModifier="public">
         <Grid RowDefinitions="60,110,60">
             <Image Source="syscredit_logo.svg" HeightRequest="30"
                VerticalOptions="Center" HorizontalOptions="Start" />
@@ -15,29 +18,19 @@
                        LineBreakMode="WordWrap" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
             </Grid>
             <Grid Grid.Row="2" ColumnDefinitions="Auto,Auto" HorizontalOptions="End">
-                <Button Grid.Column="0" StyleId="OKButton"
+                <Button Grid.Column="0" StyleId="OKButton" StyleClass="ElevatedButton"
                     Text="{Binding OkText}" FontFamily="InterRegular" FontSize="14"
                     WidthRequest="{Binding ButtonWidth}" HeightRequest="35"
-                    TextColor="White" BackgroundColor="{StaticResource Primary}"
-                    VerticalOptions="Center" Clicked="OnFreakyButtonClicked"
-                    Command="{Binding OkCommand}" CommandParameter="{Binding OkCommandParameter}">
-                    <Button.Shadow>
-                        <Shadow Brush="{StaticResource Primary}" Offset="5,5" Opacity="0.8" />
-                    </Button.Shadow>
-                </Button>
+                    TextColor="White" BackgroundColor="{StaticResource Primary}" VerticalOptions="Center"
+                    Command="{Binding OkCommand}" CommandParameter="{Binding OkCommandParameter}" />
 
-                <Button Grid.Column="2" StyleId="CancelButton"
+                <Button Grid.Column="2" StyleId="CancelButton" StyleClass="ElevatedButton"
                     IsVisible="{Binding IsCancelEnabled}" Margin="15,0,0,0"
                     Text="{Binding CancelText}" FontFamily="InterRegular" FontSize="14"
                     WidthRequest="{Binding ButtonWidth}" HeightRequest="35"
-                    TextColor="White" BackgroundColor="{StaticResource Primary}"
-                    VerticalOptions="Center" Clicked="OnFreakyButtonClicked"
-                    Command="{Binding CancelCommand}" CommandParameter="{Binding CancelCommandParameter}">
-                    <Button.Shadow>
-                        <Shadow Brush="{StaticResource Primary}" Offset="5,5" Opacity="0.8" />
-                    </Button.Shadow>
-                </Button>
+                    TextColor="White" BackgroundColor="{StaticResource Primary}" VerticalOptions="Center"
+                    Command="{Binding CancelCommand}" CommandParameter="{Binding CancelCommandParameter}" />
             </Grid>
         </Grid>
-    </Border>
-</Toolkit:Popup>
+    </Frame>
+</Mopups:PopupPage>

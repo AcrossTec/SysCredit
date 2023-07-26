@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public partial class LoanRequestViewModel : BaseViewModel
+public partial class LoanRequestViewModel : ViewModelBase
 {
 }
 

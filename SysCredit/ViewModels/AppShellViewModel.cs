@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-public partial class AppShellViewModel : BaseViewModel
+public partial class AppShellViewModel : ViewModelBase
 {
     [RelayCommand]
     private async Task OpenHelp(string Url)

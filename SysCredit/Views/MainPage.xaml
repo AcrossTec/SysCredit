@@ -4,9 +4,10 @@
              xmlns:Local="clr-namespace:SysCredit"
              xmlns:Controls="clr-namespace:SysCredit.Controls"
              xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:FreakyControls="clr-namespace:Maui.FreakyControls;assembly=Maui.FreakyControls"
+             xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:ViewModels="clr-namespace:SysCredit.ViewModels"
-             x:Name="Self" x:Class="SysCredit.Views.MainPage"
+             x:Class="SysCredit.Views.MainPage"
+             x:Name="Self"
              Title="{StaticResource CompanyName}"
              BackgroundColor="White"
              Shell.ForegroundColor="{StaticResource SysCreditFlyoutBackgroundColor}"
@@ -39,73 +40,67 @@
                 <Toolkit:UniformItemsLayout.Resources>
                     <x:Double x:Key="ButtonWidth">162</x:Double>
                     <x:Double x:Key="ButtonHeight">135</x:Double>
+                    <x:Double x:Key="ButtonIconSize">70</x:Double>
 
-                    <Style TargetType="FreakyControls:FreakyButton">
-                        <Setter Property="Animation" Value="FadeAndScale" />
-                        <Setter Property="AreIconsDistant" Value="True" />
+                    <Style TargetType="Material:ButtonView">
+                        <Setter Property="WidthRequest" Value="{StaticResource ButtonWidth}" />
+                        <Setter Property="HeightRequest" Value="{StaticResource ButtonHeight}" />
                         <Setter Property="BackgroundColor" Value="{StaticResource MainPageItemColor}" />
-                        <Setter Property="CornerRadius" Value="12" />
-                        <Setter Property="BorderColor" Value="Transparent" />
-                        <Setter Property="BorderWidth" Value="0" />
+                    </Style>
+
+                    <Style x:Key="LabelStyle" TargetType="Label">
                         <Setter Property="TextColor" Value="White" />
                         <Setter Property="FontFamily" Value="InterBold" />
-                        <Setter Property="IconSize" Value="90" />
                         <Setter Property="FontSize" Value="14" />
-                        <Setter Property="Shadow">
-                            <Setter.Value>
-                                <Shadow Brush="{StaticResource PrimaryBrush}" Offset="5,5" Radius="30" Opacity="0.8" />
-                            </Setter.Value>
-                        </Setter>
                     </Style>
+
                 </Toolkit:UniformItemsLayout.Resources>
 
-                <FreakyControls:FreakyButton
-                        Text="Nuevo Cliente"
-                        SemanticProperties.Hint="Módulo para crear nuevos clientes"
-                        HorizontalOptions="End" Margin="0,0,10,0"
-                        HeightRequest="{StaticResource ButtonHeight}"
-                        WidthRequest="{StaticResource ButtonWidth}"
-                        Command="{Binding GoToCustomerRegistrationPageCommand}">
-                    <FreakyControls:FreakyButton.LeadingIcon>
-                        <Image Source="new_customer_white_icon.svg">
+                <Material:ButtonView
+                    HorizontalOptions="End" Margin="0,0,10,0"
+                    TappedCommand="{Binding GoToCustomerRegistrationPageCommand}">
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="new_customer_white_icon.svg"
+                               WidthRequest="{StaticResource ButtonIconSize}"
+                               Margin="0,0,0,5">
                             <Image.Shadow>
-                                <Shadow Opacity="0.8" Offset="5,5" Brush="{StaticResource Accent}" />
+                                <Shadow Opacity="0.8" Offset="2.5,2.5" Brush="{StaticResource Accent}" />
                             </Image.Shadow>
                         </Image>
-                    </FreakyControls:FreakyButton.LeadingIcon>
-                </FreakyControls:FreakyButton>
+                        <Label Text="Nuevo Cliente" Style="{StaticResource LabelStyle}" />
+                    </VerticalStackLayout>
+                </Material:ButtonView>
 
-                <FreakyControls:FreakyButton
-                        Text="Lista de Clientes"
-                        SemanticProperties.Hint="Módulo para buscar clientes"
-                        HorizontalOptions="Start" Margin="10,0,0,0"
-                        HeightRequest="{StaticResource ButtonHeight}"
-                        WidthRequest="{StaticResource ButtonWidth}"
-                        Command="{Binding GoToCustomerListPageCommand}">
-                    <FreakyControls:FreakyButton.LeadingIcon>
-                        <Image Source="list_customer_white_icon.svg">
+                <Material:ButtonView
+                    HorizontalOptions="Start" Margin="10,0,0,0"
+                    TappedCommand="{Binding GoToCustomerListPageCommand}">
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="list_customer_white_icon.svg"
+                               WidthRequest="{StaticResource ButtonIconSize}"
+                               Margin="0,0,0,5">
                             <Image.Shadow>
-                                <Shadow Opacity="0.8" Offset="5,5" Brush="{StaticResource Accent}" />
+                                <Shadow Opacity="0.8" Offset="2.5,2.5" Brush="{StaticResource Accent}" />
                             </Image.Shadow>
                         </Image>
-                    </FreakyControls:FreakyButton.LeadingIcon>
-                </FreakyControls:FreakyButton>
+                        <Label Text="Lista de Clientes" Style="{StaticResource LabelStyle}" />
+                    </VerticalStackLayout>
+                </Material:ButtonView>
 
-                <FreakyControls:FreakyButton
-                        Text="Solicitar Préstamo"
-                        SemanticProperties.Hint="Módulo para registrar préstamos"
-                        HorizontalOptions="End" Margin="0,40,10,0"
-                        HeightRequest="{StaticResource ButtonHeight}"
-                        WidthRequest="{StaticResource ButtonWidth}"
-                        Command="{Binding GoToLoanRequestPageCommand}">
-                    <FreakyControls:FreakyButton.LeadingIcon>
-                        <Image Source="hand_holding_dollar_white_icon.svg">
+                <Material:ButtonView
+                    HorizontalOptions="End" Margin="0,40,10,0"
+                    TappedCommand="{Binding GoToLoanRequestPageCommand}">
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="hand_holding_dollar_white_icon.svg"
+                               WidthRequest="{StaticResource ButtonIconSize}"
+                               Margin="0,0,0,5">
                             <Image.Shadow>
-                                <Shadow Opacity="0.8" Offset="5,5" Brush="{StaticResource Accent}" />
+                                <Shadow Opacity="0.8" Offset="2.5,2.5" Brush="{StaticResource Accent}" />
                             </Image.Shadow>
                         </Image>
-                    </FreakyControls:FreakyButton.LeadingIcon>
-                </FreakyControls:FreakyButton>
+                        <Label Text="Solicitar Préstamo" Style="{StaticResource LabelStyle}" />
+                    </VerticalStackLayout>
+                </Material:ButtonView>
+
             </Toolkit:UniformItemsLayout>
         </VerticalStackLayout>
     </ScrollView>

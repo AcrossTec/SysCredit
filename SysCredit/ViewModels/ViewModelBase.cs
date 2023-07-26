@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 using System.Collections.Generic;
 
-public class BaseViewModel : ObservableObject, IQueryAttributable
+public class ViewModelBase : ObservableObject, IQueryAttributable
 {
     public string CompanyName => (string)Application.Current!.Resources[nameof(CompanyName)];
 

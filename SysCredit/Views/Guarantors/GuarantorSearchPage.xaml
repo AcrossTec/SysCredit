@@ -17,7 +17,7 @@
     <Shell.TitleView>
         <Controls:TitleView
             Text="{Binding Source={x:Reference Self}, Path=Title}" TextColor="White"
-            FontAttributes="None" FontFamily="InterLight"
+            FontSize="20" FontAttributes="None" FontFamily="InterLight"
             HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
     </Shell.TitleView>
     <Shell.BackButtonBehavior>
@@ -27,7 +27,7 @@
         <ViewModels:GuarantorSearchViewModel />
     </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" Text="Nuevo Fiador" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid, Size=30}"
+        <ToolbarItem Order="Primary" Text="Nuevo Fiador" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid, Size=25}"
                      Command="{Binding GoToGuarantorRegistrationPageCommand}"/>
     </ContentPage.ToolbarItems>
     <VerticalStackLayout HorizontalOptions="Center" WidthRequest="335" Padding="0,20,0,20">
