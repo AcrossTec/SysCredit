@@ -7,11 +7,10 @@
              xmlns:ViewModels="clr-namespace:SysCredit.ViewModels.Loans"
              x:Name="Self" x:Class="SysCredit.Views.Loans.LoanRequestPage"
              Title="Solicitud de Préstamo"
-             BackgroundColor="White"
-             Shell.ForegroundColor="White"
-             Shell.BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}">
+             Shell.ForegroundColor="{StaticResource White}"
+             Shell.BackgroundColor="{StaticResource Primary}">
     <ContentPage.Behaviors>
-        <ToolKit:StatusBarBehavior StatusBarColor="{StaticResource Primary}" StatusBarStyle="LightContent" />
+        <ToolKit:StatusBarBehavior StatusBarColor="{StaticResource Secondary}" StatusBarStyle="LightContent" />
     </ContentPage.Behaviors>
     <Shell.BackButtonBehavior>
         <BackButtonBehavior IconOverride="{FontImage &#xf177;, FontFamily=FontAwesomeSolid, Color=White}" />

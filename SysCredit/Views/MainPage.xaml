@@ -9,15 +9,14 @@
              x:Class="SysCredit.Views.MainPage"
              x:Name="Self"
              Title="{StaticResource CompanyName}"
-             BackgroundColor="White"
-             Shell.ForegroundColor="{StaticResource SysCreditFlyoutBackgroundColor}"
-             Shell.BackgroundColor="White">
+             Shell.ForegroundColor="{StaticResource Primary}"
+             Shell.BackgroundColor="{StaticResource White}">
     <ContentPage.Behaviors>
-        <Toolkit:StatusBarBehavior StatusBarColor="{StaticResource Primary}" StatusBarStyle="LightContent" />
+        <Toolkit:StatusBarBehavior StatusBarColor="{StaticResource Secondary}" StatusBarStyle="LightContent" />
     </ContentPage.Behaviors>
     <Shell.TitleView>
         <Controls:TitleView Text="{Binding Source={x:Reference Self}, Path=Title}"
-                            TextColor="{StaticResource SysCreditFlyoutBackgroundColor}"
+                            TextColor="{StaticResource Primary}"
                             HorizontalOptions="EndAndExpand" Margin="0,0,20,0" />
     </Shell.TitleView>
     <ContentPage.BindingContext>
@@ -29,11 +28,15 @@
             <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"
                                  WidthRequest="330" HeightRequest="66"
                                  HorizontalOptions="Center" Margin="0,10,0,30">
-                <Label Grid.Row="0" Text="Bienvenido" FontFamily="InterBold"
-                       FontSize="32" LineHeight="40" VerticalTextAlignment="Center" />
-                <Label Grid.Row="1" Text="Controla prestamos con facilidad"
+                <Label Grid.Row="0" Text="{StaticResource CompanyName}"
+                       FontFamily="InterBold" FontAttributes="Italic"
+                       FontSize="32" LineHeight="40" VerticalTextAlignment="Center"
+                       TextColor="{StaticResource Black}" />
+
+                <Label Grid.Row="1" Text="{StaticResource Watchword}"
                        FontFamily="InterLight" FontSize="16" LineHeight="20"
-                       VerticalTextAlignment="Center" />
+                       VerticalTextAlignment="Center" FontAttributes="Italic"
+                       TextColor="{StaticResource Black}" />
             </VerticalStackLayout>
 
             <Toolkit:UniformItemsLayout x:Name="MainLayout" MaxColumns="2">
@@ -45,7 +48,7 @@
                     <Style TargetType="Material:ButtonView">
                         <Setter Property="WidthRequest" Value="{StaticResource ButtonWidth}" />
                         <Setter Property="HeightRequest" Value="{StaticResource ButtonHeight}" />
-                        <Setter Property="BackgroundColor" Value="{StaticResource MainPageItemColor}" />
+                        <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
                     </Style>
 
                     <Style x:Key="LabelStyle" TargetType="Label">

@@ -95,6 +95,10 @@
     <Compile Remove="**\Windows\**\*.cs" />
     <None Include="**\Windows\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Platforms\Android\Resources\values-night\themes.xml" />
+    <None Remove="Platforms\Android\Resources\values\themes.xml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AlohaKit" Version="1.0.74" />
@@ -116,6 +120,9 @@
     <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
     <PackageReference Include="SkiaSharp.Skottie" Version="2.88.4-preview.84" />
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+    <PackageReference Include="The49.Maui.BottomSheet" Version="1.0.1" />
+    <PackageReference Include="The49.Maui.ContextMenu" Version="1.0.0-alpha1" />
+    <PackageReference Include="The49.Maui.Insets" Version="1.0.0-alpha6" />
     <PackageReference Include="UraniumUI" Version="2.5.4" />
     <PackageReference Include="UraniumUI.Blurs" Version="2.5.4" />
     <PackageReference Include="UraniumUI.Dialogs.CommunityToolkit" Version="2.5.4" />
@@ -134,6 +141,12 @@
     <Folder Include="ViewModels\Controls\" />
     <Folder Include="ViewModels\Users\" />
     <Folder Include="ViewModels\Payments\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MauiXaml Update="Views\Customers\GuarantorSearchBottomSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
   </ItemGroup>
 
 </Project>

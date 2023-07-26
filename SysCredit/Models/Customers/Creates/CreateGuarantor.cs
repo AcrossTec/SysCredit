@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Models;
+﻿namespace SysCredit.Models.Customers.Creates;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -6,7 +6,7 @@ using SysCredit.Validations;
 
 using System.ComponentModel.DataAnnotations;
 
-public partial class CreateCustomer : ModelValidator
+public partial class CreateGuarantor : ModelValidator
 {
     [NotEmpty]
     [MinLength(14)]
@@ -137,4 +137,18 @@ public partial class CreateCustomer : ModelValidator
     public IEnumerable<string> PhoneErrors => GetPropertyErrors(nameof(Phone));
 
     public bool PhoneIsValid => !PhoneErrors.Any();
+
+    [NotEmpty]
+    [Display(Name = "Parentesco")]
+    [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [NotifyPropertyChangedFor(nameof(RelationshipErrors))]
+    [NotifyPropertyChangedFor(nameof(RelationshipIsValid))]
+    [NotifyPropertyChangedFor(nameof(Errors))]
+    [NotifyPropertyChangedFor(nameof(IsValid))]
+    private Relationship? m_Relationship;
+
+    public IEnumerable<string> RelationshipErrors => GetPropertyErrors(nameof(Relationship));
+
+    public bool RelationshipIsValid => !RelationshipErrors.Any();
 }

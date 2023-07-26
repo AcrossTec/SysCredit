@@ -1,24 +1,17 @@
 ﻿namespace SysCredit.ViewModels.Customers;
 
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
-using CommunityToolkit.Maui.Alerts;
-using CommunityToolkit.Maui.Core;
-using CommunityToolkit.Maui.Core.Views;
-using CommunityToolkit.Maui.Storage;
-using CommunityToolkit.Maui.Views;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 using SysCredit.Models;
+using SysCredit.Models.Customers.Creates;
+using SysCredit.Views.Customers;
 using SysCredit.Views.Guarantors;
+
+using The49.Maui.BottomSheet;
 
 public partial class CustomerRegistrationViewModel : ViewModelBase
 {
@@ -49,6 +42,19 @@ public partial class CustomerRegistrationViewModel : ViewModelBase
     private async Task GoToGuarantorSearchPage()
     {
         await Shell.Current.GoToAsync(nameof(GuarantorSearchPage));
+    }
+
+    [RelayCommand]
+    private void OpenSwipeView(SwipeView Swipe)
+    {
+        Swipe.Open(OpenSwipeItem.LeftItems);
+    }
+
+    [RelayCommand]
+    private async Task OpenSearchReferenceBottomSheet()
+    {
+        var Sheet = new GuarantorSearchBottomSheet();
+        await Sheet.ShowAsync(Shell.Current.Window);
     }
 }
 

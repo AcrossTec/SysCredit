@@ -22,6 +22,10 @@ using UraniumUI;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 using SkiaSharp.Views.Maui.Controls;
 
+using The49.Maui.ContextMenu;
+using The49.Maui.Insets;
+using The49.Maui.BottomSheet;
+
 public static partial class MauiProgram
 {
     public static MauiApp CreateMauiApp()
@@ -39,6 +43,9 @@ public static partial class MauiProgram
             .UseUraniumUIBlurs(false)
             .UseUraniumUIWebComponents()
             .UseSkiaSharp()
+            .UseInsets()
+            .UseContextMenu()
+            .UseBottomSheet()
             .ConfigureMopups()
             .ConfigureMauiHandlers(ConfigureMauiHandlers)
             .ConfigureEffects(ConfigureEffects)

@@ -7,12 +7,11 @@
              xmlns:ViewModels="clr-namespace:SysCredit.ViewModels.Customers"
              x:Class="SysCredit.Views.Customers.CustomerListPage"
              x:Name="Self"
-             BackgroundColor="White"
-             Shell.ForegroundColor="White"
-             Shell.BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}"
+             Shell.ForegroundColor="{StaticResource White}"
+             Shell.BackgroundColor="{StaticResource Primary}"
              Title="Lista de Clientes">
     <ContentPage.Behaviors>
-        <ToolKit:StatusBarBehavior StatusBarColor="{StaticResource Primary}" StatusBarStyle="LightContent" />
+        <ToolKit:StatusBarBehavior StatusBarColor="{StaticResource Secondary}" StatusBarStyle="LightContent" />
     </ContentPage.Behaviors>
     <Shell.TitleView>
         <Controls:TitleView

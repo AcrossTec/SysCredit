@@ -5,12 +5,14 @@
              xmlns:UraniumUI="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
              xmlns:UIMaterial="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              x:Class="SysCredit.App"
-             RequestedThemeChanged="OnRequestedThemeChanged">
+             RequestedThemeChanged="OnRequestedThemeChanged"
+             UserAppTheme="Light">
     <Application.Resources>
         <ResourceDictionary>
+            <x:String x:Key="AppName">SysCredit</x:String>
             <x:String x:Key="DevCompanyName">W&amp;A</x:String>
             <x:String x:Key="CompanyName">SysCredit</x:String>
-            <x:String x:Key="AppName">SysCredit</x:String>
+            <x:String x:Key="Watchword">Efectivo Al Instante</x:String>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <UIMaterial:ColorResource />

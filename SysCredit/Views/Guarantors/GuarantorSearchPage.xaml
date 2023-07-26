@@ -7,12 +7,11 @@
              xmlns:ViewModels="clr-namespace:SysCredit.ViewModels.Guarantors"
              x:Class="SysCredit.Views.Guarantors.GuarantorSearchPage"
              x:Name="Self"
-             BackgroundColor="White"
-             Shell.ForegroundColor="White"
-             Shell.BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}"
+             Shell.ForegroundColor="{StaticResource White}"
+             Shell.BackgroundColor="{StaticResource Primary}"
              Title="Buscador de Fiadores">
     <ContentPage.Behaviors>
-        <Toolkit:StatusBarBehavior StatusBarColor="{StaticResource Primary}" StatusBarStyle="LightContent" />
+        <Toolkit:StatusBarBehavior StatusBarColor="{StaticResource Secondary}" StatusBarStyle="LightContent" />
     </ContentPage.Behaviors>
     <Shell.TitleView>
         <Controls:TitleView
