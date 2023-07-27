@@ -1,16 +1,19 @@
 ﻿namespace SysCredit.Models;
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-public abstract class ModelValidator : ObservableValidator
+[ObservableRecipient]
+public abstract partial class ModelValidator : ObservableValidator
 {
     protected readonly ValidationContext ValidationContext;
 
     public ModelValidator()
     {
+        Messenger = WeakReferenceMessenger.Default;
         ValidationContext = new ValidationContext(this);
     }
 
@@ -28,4 +31,7 @@ public abstract class ModelValidator : ObservableValidator
 
     public IEnumerable<string> GetPropertyErrors(string? PropertyName = null)
         => GetErrors(PropertyName).Select(Error => Error.ErrorMessage!);
+
+    public void ClearPropertyErrors(string? PropertyName = null)
+        => ClearErrors(PropertyName);
 }

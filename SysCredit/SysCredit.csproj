@@ -101,6 +101,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="akgul.Maui.DataGrid" Version="2.0.0" />
     <PackageReference Include="AlohaKit" Version="1.0.74" />
     <PackageReference Include="AlohaKit.Animations" Version="1.0.0" />
     <PackageReference Include="AlohaKit.Layouts" Version="1.0.0" />
@@ -144,7 +145,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <MauiXaml Update="Views\Customers\GuarantorListBottomSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Views\Customers\GuarantorSearchBottomSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Customers\ReferenceListBottomSheet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Customers\ReferenceRegistrationBottomSheet.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
   </ItemGroup>
