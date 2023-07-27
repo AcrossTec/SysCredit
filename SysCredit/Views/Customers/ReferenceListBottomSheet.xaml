@@ -3,7 +3,9 @@
         xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
         xmlns:The49="https://schemas.the49.com/dotnet/2023/maui"
-        x:Class="SysCredit.Views.Customers.GuarantorSearchBottomSheet"
+        xmlns:Maui="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
+        xmlns:ViewModels="clr-namespace:SysCredit.ViewModels.Customers"
+        x:Class="SysCredit.Views.Customers.ReferenceListBottomSheet"
         HasHandle="True" HasBackdrop="True"
         HandleColor="{StaticResource Primary}"
         Background="{StaticResource WhiteBrush}"
@@ -15,7 +17,5 @@
     </The49:BottomSheet.Detents>
     <The49:BottomSheet.Resources>
     </The49:BottomSheet.Resources>
-    <ScrollView>
 
-    </ScrollView>
 </The49:BottomSheet>

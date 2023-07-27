@@ -4,8 +4,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using CommunityToolkit.Mvvm.Messaging.Messages;
 
+using Microsoft.Maui.Controls;
+
+using SysCredit.Extensions;
+using SysCredit.Messages;
 using SysCredit.Models;
 using SysCredit.Models.Customers.Creates;
 using SysCredit.Views.Customers;
@@ -17,26 +24,22 @@ public partial class CustomerRegistrationViewModel : ViewModelBase
 {
     public CustomerRegistrationViewModel()
     {
-        Model = new();
-        Model.PropertyChanged += OnModelPropertyChanged;
+        WeakReferenceMessenger.Default.Register<ValueMessage<CreateReference>>(this, OnPropertyChangedMessage);
     }
 
-    private void OnModelPropertyChanged(object? Sender, PropertyChangedEventArgs Event)
+    public CreateCustomer Model { get; } = new();
+
+    private void OnPropertyChangedMessage(object Recipient, ValueMessage<CreateReference> Message)
     {
-        OnPropertyChanged(nameof(Model));
-        RegisterCustomerCommand.NotifyCanExecuteChanged();
+        Model.References.Add(Message.Value);
     }
 
-    public CreateCustomer Model { get; }
-
-    [RelayCommand(CanExecute = nameof(CanRegisterCustomer))]
+    [RelayCommand]
     private async Task RegisterCustomer()
     {
         await Popups.ShowSysCreditPopup("Cliente registrado correctamente");
         await Shell.Current.GoToAsync("///Home");
     }
-
-    private bool CanRegisterCustomer() => Model.IsValid;
 
     [RelayCommand]
     private async Task GoToGuarantorSearchPage()
@@ -51,9 +54,31 @@ public partial class CustomerRegistrationViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private async Task OpenSearchReferenceBottomSheet()
+    private async Task OpenGuarantorSearchBottomSheet()
     {
         var Sheet = new GuarantorSearchBottomSheet();
+        await Sheet.ShowAsync(Shell.Current.Window);
+    }
+
+    [RelayCommand]
+    private async Task OpenGuarantorListBottomSheet()
+    {
+        var Sheet = new GuarantorListBottomSheet { BindingContext = Model.Guarantors };
+        await Sheet.ShowAsync(Shell.Current.Window);
+    }
+
+    [RelayCommand]
+    private async Task OpenReferenceRegistrationBottomSheet()
+    {
+        var Sheet = new ReferenceRegistrationBottomSheet();
+        Sheet.BindingContext.Property("Form", Sheet.FindByName("Form"));
+        await Sheet.ShowAsync(Shell.Current.Window);
+    }
+
+    [RelayCommand]
+    private async Task OpenReferenceListBottomSheet()
+    {
+        var Sheet = new ReferenceListBottomSheet { BindingContext = Model.References };
         await Sheet.ShowAsync(Shell.Current.Window);
     }
 }

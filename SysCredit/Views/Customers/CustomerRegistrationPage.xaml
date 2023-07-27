@@ -9,7 +9,8 @@
              xmlns:Validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
              xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:Icon="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
-             xmlns:V="clr-namespace:UraniumUI.Validations;assembly=UraniumUI.Validations.DataAnnotations"
+             xmlns:Theming="clr-namespace:UraniumUI.Theming;assembly=UraniumUI"
+             xmlns:Annotation="clr-namespace:UraniumUI.Validations;assembly=UraniumUI.Validations.DataAnnotations"
              x:Class="SysCredit.Views.Customers.CustomerRegistrationPage"
              x:DataType="ViewModels:CustomerRegistrationViewModel"
              x:Name="Self"
@@ -31,19 +32,39 @@
     <ContentPage.BindingContext>
         <ViewModels:CustomerRegistrationViewModel />
     </ContentPage.BindingContext>
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" Text="Buscar Fiador"
-                     IconImageSource="{FontImage &#xf00e;, FontFamily=FontAwesomeSolid, Size=25}"
-                     Command="{Binding GoToGuarantorSearchPageCommand}" />
-
-        <ToolbarItem Order="Primary" Text="Registrar Cliente"
-                     IconImageSource="{FontImage &#xf0c7;, FontFamily=FontAwesomeSolid, Size=25}"
-                     Input:FormView.IsSubmitButton="True" />
-    </ContentPage.ToolbarItems>
     <ContentPage.Resources>
 
         <Style TargetType="Material:TextField" ApplyToDerivedTypes="True" CanCascade="True">
             <Setter Property="AccentColor" Value="{StaticResource Accent}" />
+        </Style>
+
+        <Style TargetType="Button" Class="PrimaryFilledButton" CanCascade="True">
+            <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+            <Setter Property="HeightRequest" Value="60" />
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal"/>
+                        <VisualState x:Name="Hover">
+                            <VisualState.Setters>
+                                <Setter Property="Shadow" Value="{StaticResource ShadowElevation1}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Theming:DynamicTint.BackgroundColorOpacity" Value="0.8" />
+                                <Setter Property="Shadow" Value="{StaticResource ShadowElevation0}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" Class="AccentOutlinedButton" BaseResourceKey="OutlinedButton">
+            <Setter Property="TextColor" Value="{StaticResource Accent}" />
+            <Setter Property="BorderColor" Value="{StaticResource Accent}" />
+            <Setter Property="HeightRequest" Value="60" />
         </Style>
 
     </ContentPage.Resources>
@@ -61,67 +82,49 @@
                 <Material:TextField
                     Title="Nombres" AllowClear="True"
                     Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf4ff;}"
-                    Text="{Binding Model.Name}" />
+                    Text="{Annotation:ValidationBinding Model.Name}" />
 
                 <!-- Apellidos -->
 
                 <Material:TextField
                     Title="Apellidos" AllowClear="True"
-                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf5b7;}">
-                    <Validation:RequiredValidation />
-                    <Validation:MinLengthValidation MinLength="5" />
-                    <Validation:LettersOnlyValidation AllowSpaces="True" />
-                </Material:TextField>
+                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf5b7;}"
+                    Text="{Annotation:ValidationBinding Model.LastName}" />
 
                 <!-- Número de Cédula -->
 
                 <Material:TextField
                     Title="Número de Cédula" AllowClear="True"
-                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf2c2;}">
-                    <Validation:RequiredValidation />
-                    <Validation:MinLengthValidation MinLength="5" />
-                    <Validation:LettersOnlyValidation AllowSpaces="True" />
-                </Material:TextField>
+                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf2c2;}"
+                    Text="{Annotation:ValidationBinding Model.Identification}" />
 
                 <!-- Correo -->
 
                 <Material:TextField
                     Title="Correo" AllowClear="True"
-                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf0e0;}">
-                    <Validation:RequiredValidation />
-                    <Validation:RegexValidation Pattern="{x:Static Input:AdvancedEntry.REGEX_EMAIL}" />
-                </Material:TextField>
+                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf0e0;}"
+                    Text="{Annotation:ValidationBinding Model.Email}" />
 
                 <!-- Número de Teléfono -->
 
                 <Material:TextField
                     Title="Número de Teléfono" AllowClear="True" Keyboard="Telephone"
-                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf095;}">
-                    <Material:TextField.Validations>
-                        <Validation:RequiredValidation />
-                        <Validation:RegexValidation Pattern="{x:Static Input:AdvancedEntry.REGEX_PHONE}" />
-                    </Material:TextField.Validations>
-                </Material:TextField>
+                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf095;}"
+                    Text="{Annotation:ValidationBinding Model.Phone}" />
 
                 <!-- Domicilio -->
 
                 <Material:TextField
                     Title="Domicilio" AllowClear="True"
-                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf2b9;}">
-                    <Validation:RequiredValidation />
-                    <Validation:MinLengthValidation MinLength="5" />
-                    <Validation:LettersOnlyValidation AllowSpaces="True" />
-                </Material:TextField>
+                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf2b9;}"
+                    Text="{Annotation:ValidationBinding Model.Address}" />
 
                 <!-- Barrio -->
 
                 <Material:TextField
                     Title="Barrio" AllowClear="True"
-                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xe54f;}">
-                    <Validation:RequiredValidation />
-                    <Validation:MinLengthValidation MinLength="5" />
-                    <Validation:LettersOnlyValidation AllowSpaces="True" />
-                </Material:TextField>
+                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xe54f;}"
+                    Text="{Annotation:ValidationBinding Model.Neighborhood}" />
 
                 <!-- Sección -->
 
@@ -133,21 +136,15 @@
 
                 <Material:TextField
                     Title="Tipo del Negocio" AllowClear="True"
-                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf508;}">
-                    <Validation:RequiredValidation />
-                    <Validation:MinLengthValidation MinLength="5" />
-                    <Validation:LettersOnlyValidation AllowSpaces="True" />
-                </Material:TextField>
+                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf508;}"
+                    Text="{Annotation:ValidationBinding Model.BussinessType}" />
 
                 <!-- Dirección del Negocio -->
 
                 <Material:TextField
                     Title="Dirección del Negocio" AllowClear="True"
-                    Icon="{FontImageSource FontFamily=FontAwesomeRegular, Glyph=&#xf2b9;}">
-                    <Validation:RequiredValidation />
-                    <Validation:MinLengthValidation MinLength="5" />
-                    <Validation:LettersOnlyValidation AllowSpaces="True" />
-                </Material:TextField>
+                    Icon="{FontImageSource FontFamily=FontAwesomeRegular, Glyph=&#xf2b9;}"
+                    Text="{Annotation:ValidationBinding Model.BussinessAddress}" />
 
                 <!-- Sección -->
 
@@ -159,8 +156,8 @@
                 <SwipeView>
                     <SwipeView.LeftItems>
                         <SwipeItems>
-                            <SwipeItem Text="  Agregar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" Command="{Binding OpenSearchReferenceBottomSheetCommand}" />
-                            <SwipeItem Text="    Borrar"  IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeRegular}" BackgroundColor="LightPink" />
+                            <SwipeItem Text="  Agregar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" Command="{Binding OpenReferenceRegistrationBottomSheetCommand}" />
+                            <SwipeItem Text="    Borrar"  IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeRegular}" BackgroundColor="LightPink" Command="{Binding OpenReferenceListBottomSheetCommand}" />
                         </SwipeItems>
                     </SwipeView.LeftItems>
 
@@ -195,8 +192,8 @@
                 <SwipeView>
                     <SwipeView.LeftItems>
                         <SwipeItems>
-                            <SwipeItem Text="  Agregar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" />
-                            <SwipeItem Text="    Borrar" IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeRegular}" BackgroundColor="LightPink" />
+                            <SwipeItem Text="  Agregar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" Command="{Binding OpenGuarantorSearchBottomSheetCommand}" />
+                            <SwipeItem Text="    Borrar" IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeRegular}" BackgroundColor="LightPink" Command="{Binding OpenGuarantorListBottomSheetCommand}" />
                         </SwipeItems>
                     </SwipeView.LeftItems>
 
@@ -221,6 +218,8 @@
                     </Grid>
                 </SwipeView>
 
+                <Button Text="Submit" Input:FormView.IsSubmitButton="True" StyleClass="FilledButton,PrimaryFilledButton" Margin="0,20,0,0" />
+                <Button Text="Reset" Input:FormView.IsResetButton="True"  StyleClass="OutlinedButton,AccentOutlinedButton" Margin="0,0,0,20" BackgroundColor="{StaticResource Accent}" />
             </Input:FormView>
         </VerticalStackLayout>
     </ScrollView>

@@ -58,6 +58,22 @@ public partial class CreateCustomer : ModelValidator
 
     public bool LastNameIsValid => !LastNameErrors.Any();
 
+    [EmailAddress]
+    [MaxLength(64)]
+    [Display(Name = "Correo")]
+    [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [NotifyPropertyChangedFor(nameof(EmailErrors))]
+    [NotifyPropertyChangedFor(nameof(EmailIsValid))]
+    [NotifyPropertyChangedFor(nameof(Errors))]
+    [NotifyPropertyChangedFor(nameof(IsValid))]
+    private string m_Email = string.Empty;
+
+    public IEnumerable<string> EmailErrors => GetPropertyErrors(nameof(Email));
+
+    public bool EmailIsValid => !EmailErrors.Any();
+
+
     [NotEmpty]
     [MinLength(2)]
     [MaxLength(256)]
