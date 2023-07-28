@@ -11,7 +11,6 @@ using CommunityToolkit.Mvvm.Messaging.Messages;
 
 using Microsoft.Maui.Controls;
 
-using SysCredit.Extensions;
 using SysCredit.Messages;
 using SysCredit.Models;
 using SysCredit.Models.Customers.Creates;
@@ -68,10 +67,15 @@ public partial class CustomerRegistrationViewModel : ViewModelBase
     }
 
     [RelayCommand]
+    private async Task OpenGuarantorRegistrationBottomSheet()
+    {
+        await Shell.Current.GoToAsync(nameof(GuarantorRegistrationPage));
+    }
+
+    [RelayCommand]
     private async Task OpenReferenceRegistrationBottomSheet()
     {
         var Sheet = new ReferenceRegistrationBottomSheet();
-        Sheet.BindingContext.Property("Form", Sheet.FindByName("Form"));
         await Sheet.ShowAsync(Shell.Current.Window);
     }
 

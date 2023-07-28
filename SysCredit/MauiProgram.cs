@@ -64,16 +64,16 @@ public static partial class MauiProgram
 
     public static void OnDeviceDisplayInfoChanged(object? Sender, DisplayInfoChangedEventArgs Event)
     {
-        ///
-        /// Device information
-        ///  https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/device/information?tabs=android
-        ///
-        /// Device display information
-        ///  https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/device/display?tabs=android
-        ///
-        /// WeakReferenceManager
-        ///  https://www.c-sharpcorner.com/article/net-maui-good-bye-messagingcenter-welcome-weakreferencemanager/
-        ///
+        //
+        // Device information
+        //  https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/device/information?tabs=android
+        //
+        // Device display information
+        //  https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/device/display?tabs=android
+        //
+        // WeakReferenceManager
+        //  https://www.c-sharpcorner.com/article/net-maui-good-bye-messagingcenter-welcome-weakreferencemanager/
+        //
         WeakReferenceMessenger.Default.Send(new DisplayOrientationChanged(Event.DisplayInfo.Orientation));
     }
 

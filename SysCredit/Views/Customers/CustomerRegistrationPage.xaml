@@ -3,14 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Local="clr-namespace:SysCredit"
              xmlns:Controls="clr-namespace:SysCredit.Controls"
+             xmlns:Models="clr-namespace:SysCredit.Models.Customers.Creates"
              xmlns:ViewModels="clr-namespace:SysCredit.ViewModels.Customers"
              xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:Input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
              xmlns:Validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
              xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:Icon="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
+             xmlns:UraniumUI="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
              xmlns:Theming="clr-namespace:UraniumUI.Theming;assembly=UraniumUI"
-             xmlns:Annotation="clr-namespace:UraniumUI.Validations;assembly=UraniumUI.Validations.DataAnnotations"
+             xmlns:Behavior="clr-namespace:SysCredit.Behaviors"
+             xmlns:The49="https://schemas.the49.com/dotnet/2023/maui"
              x:Class="SysCredit.Views.Customers.CustomerRegistrationPage"
              x:DataType="ViewModels:CustomerRegistrationViewModel"
              x:Name="Self"
@@ -34,11 +37,11 @@
     </ContentPage.BindingContext>
     <ContentPage.Resources>
 
-        <Style TargetType="Material:TextField" ApplyToDerivedTypes="True" CanCascade="True">
+        <Style TargetType="Material:TextField" ApplyToDerivedTypes="True">
             <Setter Property="AccentColor" Value="{StaticResource Accent}" />
         </Style>
 
-        <Style TargetType="Button" Class="PrimaryFilledButton" CanCascade="True">
+        <Style TargetType="Button" Class="PrimaryFilledButton">
             <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
             <Setter Property="HeightRequest" Value="60" />
             <Setter Property="VisualStateManager.VisualStateGroups">
@@ -61,7 +64,7 @@
             </Setter>
         </Style>
 
-        <Style TargetType="Button" Class="AccentOutlinedButton" BaseResourceKey="OutlinedButton">
+        <Style TargetType="Button" Class="AccentOutlinedButton">
             <Setter Property="TextColor" Value="{StaticResource Accent}" />
             <Setter Property="BorderColor" Value="{StaticResource Accent}" />
             <Setter Property="HeightRequest" Value="60" />
@@ -80,51 +83,91 @@
                 <!-- Nombres -->
 
                 <Material:TextField
-                    Title="Nombres" AllowClear="True"
-                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf4ff;}"
-                    Text="{Annotation:ValidationBinding Model.Name}" />
+                        Title="Nombres" AllowClear="True"
+                        Icon="{FontImage &#xf4ff;, FontFamily=FontAwesomeSolid}"
+                        Text="{Binding Model.Name, Mode=TwoWay}">
+                    <Material:TextField.Behaviors>
+                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="Name" />
+                    </Material:TextField.Behaviors>
+                </Material:TextField>
 
                 <!-- Apellidos -->
 
                 <Material:TextField
                     Title="Apellidos" AllowClear="True"
-                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf5b7;}"
-                    Text="{Annotation:ValidationBinding Model.LastName}" />
+                    Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf5b7;}"
+                    Text="{Binding Model.LastName}">
+                    <Material:TextField.Behaviors>
+                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="LastName" />
+                    </Material:TextField.Behaviors>
+                </Material:TextField>
 
                 <!-- Número de Cédula -->
 
                 <Material:TextField
                     Title="Número de Cédula" AllowClear="True"
-                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf2c2;}"
-                    Text="{Annotation:ValidationBinding Model.Identification}" />
+                    Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2c2;}"
+                    Text="{Binding Model.Identification}">
+                    <Material:TextField.Behaviors>
+                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="Identification" />
+                    </Material:TextField.Behaviors>
+                </Material:TextField>
+
+                <!-- Género -->
+
+                <Material:PickerField Title="Género" Icon="{FontImage FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Wc}}" AllowClear="True">
+                    <Material:PickerField.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Hombre</x:String>
+                            <x:String>Mujer</x:String>
+                        </x:Array>
+                    </Material:PickerField.ItemsSource>
+                    <Validation:RequiredValidation />
+                </Material:PickerField>
 
                 <!-- Correo -->
 
                 <Material:TextField
                     Title="Correo" AllowClear="True"
-                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf0e0;}"
-                    Text="{Annotation:ValidationBinding Model.Email}" />
+                    Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf0e0;}"
+                    Text="{Binding Model.Email}">
+                    <Material:TextField.Behaviors>
+                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="Email" />
+                    </Material:TextField.Behaviors>
+                </Material:TextField>
 
                 <!-- Número de Teléfono -->
 
                 <Material:TextField
                     Title="Número de Teléfono" AllowClear="True" Keyboard="Telephone"
-                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf095;}"
-                    Text="{Annotation:ValidationBinding Model.Phone}" />
+                    Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf095;}"
+                    Text="{Binding Model.Phone}">
+                    <Material:TextField.Behaviors>
+                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="Phone" />
+                    </Material:TextField.Behaviors>
+                </Material:TextField>
 
                 <!-- Domicilio -->
 
                 <Material:TextField
                     Title="Domicilio" AllowClear="True"
-                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf2b9;}"
-                    Text="{Annotation:ValidationBinding Model.Address}" />
+                    Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2b9;}"
+                    Text="{Binding Model.Address}">
+                    <Material:TextField.Behaviors>
+                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="Address" />
+                    </Material:TextField.Behaviors>
+                </Material:TextField>
 
                 <!-- Barrio -->
 
                 <Material:TextField
                     Title="Barrio" AllowClear="True"
-                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xe54f;}"
-                    Text="{Annotation:ValidationBinding Model.Neighborhood}" />
+                    Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xe54f;}"
+                    Text="{Binding Model.Neighborhood}">
+                    <Material:TextField.Behaviors>
+                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="Neighborhood" />
+                    </Material:TextField.Behaviors>
+                </Material:TextField>
 
                 <!-- Sección -->
 
@@ -136,15 +179,23 @@
 
                 <Material:TextField
                     Title="Tipo del Negocio" AllowClear="True"
-                    Icon="{FontImageSource FontFamily=FontAwesomeSolid, Glyph=&#xf508;}"
-                    Text="{Annotation:ValidationBinding Model.BussinessType}" />
+                    Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf508;}"
+                    Text="{Binding Model.BussinessType}">
+                    <Material:TextField.Behaviors>
+                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="BussinessType" />
+                    </Material:TextField.Behaviors>
+                </Material:TextField>
 
                 <!-- Dirección del Negocio -->
 
                 <Material:TextField
                     Title="Dirección del Negocio" AllowClear="True"
-                    Icon="{FontImageSource FontFamily=FontAwesomeRegular, Glyph=&#xf2b9;}"
-                    Text="{Annotation:ValidationBinding Model.BussinessAddress}" />
+                    Icon="{FontImage FontFamily=FontAwesomeRegular, Glyph=&#xf2b9;}"
+                    Text="{Binding Model.BussinessAddress}">
+                    <Material:TextField.Behaviors>
+                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="BussinessAddress" />
+                    </Material:TextField.Behaviors>
+                </Material:TextField>
 
                 <!-- Sección -->
 
@@ -156,16 +207,16 @@
                 <SwipeView>
                     <SwipeView.LeftItems>
                         <SwipeItems>
-                            <SwipeItem Text="  Agregar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" Command="{Binding OpenReferenceRegistrationBottomSheetCommand}" />
-                            <SwipeItem Text="    Borrar"  IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeRegular}" BackgroundColor="LightPink" Command="{Binding OpenReferenceListBottomSheetCommand}" />
+                            <SwipeItem Text="Agregar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" Command="{Binding OpenReferenceRegistrationBottomSheetCommand}" />
+                            <SwipeItem Text="Borrar" IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeRegular}" BackgroundColor="LightPink" Command="{Binding OpenReferenceListBottomSheetCommand}" />
                         </SwipeItems>
                     </SwipeView.LeftItems>
 
                     <!-- Content -->
-                    <Grid ColumnDefinitions="50,*,50" WidthRequest="335" HeightRequest="60" BackgroundColor="WhiteSmoke">
+                    <Grid ColumnDefinitions="50,*,50" WidthRequest="335" HeightRequest="60" BackgroundColor="LightGray">
                         <Image
                             Grid.Column="0"
-                            Source="{FontImage &#xf2a3;, FontFamily=FontAwesomeSolid, Color=Black, Size=24}"
+                            Source="{FontImage &#xf47f;, FontFamily=FontAwesomeSolid, Color=Black, Size=24}"
                             VerticalOptions="Center" HorizontalOptions="Center" />
                         <Label
                             Grid.Column="1"
@@ -175,10 +226,14 @@
                             VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
                         <ImageButton 
                             Grid.Column="2"
-                            Source="{FontImage &#xf0a4;, FontFamily=FontAwesomeSolid, Color=Black, Size=24}" Aspect="Center"
+                            Source="{FontImage &#xf150;, FontFamily=FontAwesomeRegular, Color=Black, Size=24}" Aspect="Center"
                             Command="{Binding OpenSwipeViewCommand}" CommandParameter="{Binding Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type SwipeView}}}"
                             VerticalOptions="Center" HorizontalOptions="Center"
-                            ToolTipProperties.Text="Deslizar hacia la derecha" />
+                            ToolTipProperties.Text="Deslizar hacia la derecha">
+                            <ImageButton.Behaviors>
+                                <ToolKit:IconTintColorBehavior TintColor="{StaticResource Primary}" />
+                            </ImageButton.Behaviors>
+                        </ImageButton>
                     </Grid>
                 </SwipeView>
 
@@ -192,13 +247,18 @@
                 <SwipeView>
                     <SwipeView.LeftItems>
                         <SwipeItems>
-                            <SwipeItem Text="  Agregar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" Command="{Binding OpenGuarantorSearchBottomSheetCommand}" />
-                            <SwipeItem Text="    Borrar" IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeRegular}" BackgroundColor="LightPink" Command="{Binding OpenGuarantorListBottomSheetCommand}" />
+                            <SwipeItem Text="Registrar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightGreen" Command="{Binding OpenGuarantorRegistrationBottomSheetCommand}" />
+                            <SwipeItem Text="Buscar" IconImageSource="{FontImage &#xf00e;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" Command="{Binding OpenGuarantorSearchBottomSheetCommand}" />
+                            <SwipeItem Text="Borrar" IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeRegular}" BackgroundColor="LightPink" Command="{Binding OpenGuarantorListBottomSheetCommand}" />
                         </SwipeItems>
                     </SwipeView.LeftItems>
 
+                    <SwipeView.RightItems>
+                        <SwipeItem Text="Registrar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightGreen" Command="{Binding OpenGuarantorRegistrationBottomSheetCommand}" />
+                    </SwipeView.RightItems>
+
                     <!-- Content -->
-                    <Grid ColumnDefinitions="50,*,50" WidthRequest="335" HeightRequest="60" BackgroundColor="WhiteSmoke">
+                    <Grid ColumnDefinitions="50,*,50" WidthRequest="335" HeightRequest="60" BackgroundColor="LightGray">
                         <Image
                             Grid.Column="0"
                             Source="{FontImage &#xf3d1;, FontFamily=FontAwesomeRegular, Color=Black, Size=24}"
@@ -211,15 +271,19 @@
                             VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
                         <ImageButton
                             Grid.Column="2"
-                            Source="{FontImage &#xf0a4;, FontFamily=FontAwesomeSolid, Color=Black, Size=24}" Aspect="Center"
+                            Source="{FontImage &#xf150;, FontFamily=FontAwesomeRegular, Color=Black, Size=24}" Aspect="Center"
                             Command="{Binding OpenSwipeViewCommand}" CommandParameter="{Binding Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type SwipeView}}}"
                             VerticalOptions="Center" HorizontalOptions="Center"
-                            ToolTipProperties.Text="Deslizar hacia la derecha" />
+                            ToolTipProperties.Text="Deslizar hacia la derecha">
+                            <ImageButton.Behaviors>
+                                <ToolKit:IconTintColorBehavior TintColor="{StaticResource Primary}" />
+                            </ImageButton.Behaviors>
+                        </ImageButton>
                     </Grid>
                 </SwipeView>
 
                 <Button Text="Submit" Input:FormView.IsSubmitButton="True" StyleClass="FilledButton,PrimaryFilledButton" Margin="0,20,0,0" />
-                <Button Text="Reset" Input:FormView.IsResetButton="True"  StyleClass="OutlinedButton,AccentOutlinedButton" Margin="0,0,0,20" BackgroundColor="{StaticResource Accent}" />
+                <Button Text="Reset" Input:FormView.IsResetButton="True" StyleClass="OutlinedButton,AccentOutlinedButton" Margin="0,0,0,20"  BackgroundColor="{StaticResource Accent}" />
             </Input:FormView>
         </VerticalStackLayout>
     </ScrollView>

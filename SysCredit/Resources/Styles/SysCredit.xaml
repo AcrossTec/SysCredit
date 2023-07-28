@@ -6,6 +6,8 @@
 
     <Color x:Key="Accent">#AA00FF</Color>
 
+    <!-- Light Theme -->
+
     <Color x:Key="Primary">#061F60</Color>
     <Color x:Key="PrimaryVariant">#061F60</Color>
     <Color x:Key="OnPrimary">#FFFFFF</Color>
@@ -49,6 +51,59 @@
     <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource Primary}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{DynamicResource Secondary}" />
     <SolidColorBrush x:Key="TertiaryBrush" Color="{DynamicResource Tertiary}" />
+
+    <!-- Dark Theme -->
+
+    <Color x:Key="PrimaryDark">#a8eac0</Color>
+    <Color x:Key="OnPrimaryDark">#1c783d</Color>
+    <Color x:Key="PrimaryContainerDark">#1a6c37</Color>
+    <Color x:Key="OnPrimaryContainerDark">#baefcd</Color>
+
+    <Color x:Key="SecondaryDark">#daffbe</Color>
+    <Color x:Key="OnSecondaryDark">#52be00</Color>
+    <Color x:Key="SecondaryContainerDark">#193900</Color>
+    <Color x:Key="OnSecondaryContainerDark">#e1ffcb</Color>
+
+    <Color x:Key="TertiaryDark">#feed9d</Color>
+    <Color x:Key="OnTertiaryDark">#9a7f02</Color>
+    <Color x:Key="TertiaryContainerDark">#8b7301</Color>
+    <Color x:Key="OnTertiaryContainerDark">#fef1b0</Color>
+
+    <Color x:Key="SurfaceDark">#2C3639</Color>
+    <Color x:Key="OnSurfaceDark">#F6F4E6</Color>
+    <Color x:Key="SurfaceVariantDark">#49454F</Color>
+    <Color x:Key="OnSurfaceVariantDark">#DCD7C9</Color>
+
+    <Color x:Key="BackgroundDark">#1C1B1F</Color>
+    <Color x:Key="OnBackgroundDark">#E6E1E5</Color>
+
+    <Color x:Key="ErrorDark">#F2B8B5</Color>
+    <Color x:Key="ErrorContainerDark">#8C1D18</Color>
+    <Color x:Key="OnErrorDark">#601410</Color>
+    <Color x:Key="OnErrorContainerDark">#F9DEDC</Color>
+
+    <Color x:Key="OutlineDark">#938F99</Color>
+    <Color x:Key="OutlineVariantDark">#444746</Color>
+    <Color x:Key="ShadowDark">#000000</Color>
+
+    <Color x:Key="InverseSurfaceDark">#E6E1E5</Color>
+    <Color x:Key="InverseOnSurfaceDark">#313033</Color>
+    <Color x:Key="InversePrimaryDark">#6750A4</Color>
+    <Color x:Key="ScrimDark">#000000</Color>
+
+    <Color x:Key="DisabledText">#ba919191</Color>
+    <Color x:Key="DisabledBackground">#80919191</Color>
+
+    <!-- Default Theme -->
+
     <SolidColorBrush x:Key="AccentBrush" Color="{DynamicResource Accent}" />
+    <SolidColorBrush x:Key="ShadowBrush" Color="{StaticResource Shadow}" />
+
+    <Shadow x:Key="ShadowElevation0" Opacity="0" Offset="0,0" Radius="0" Brush="{StaticResource ShadowBrush}" />
+    <Shadow x:Key="ShadowElevation1" Opacity="0.2" Offset="2,2" Radius="4" Brush="{StaticResource ShadowBrush}" />
+    <Shadow x:Key="ShadowElevation2" Opacity="0.4" Offset="4,4" Radius="8" Brush="{StaticResource ShadowBrush}" />
+    <Shadow x:Key="ShadowElevation3" Opacity="0.6" Offset="6,6" Radius="12" Brush="{StaticResource ShadowBrush}" />
+    <Shadow x:Key="ShadowElevation4" Opacity="0.6" Offset="8,8" Radius="16" Brush="{StaticResource ShadowBrush}" />
+    <Shadow x:Key="ShadowElevation5" Opacity="0.8" Offset="10,10" Radius="20" Brush="{StaticResource ShadowBrush}" />
 
 </ResourceDictionary>

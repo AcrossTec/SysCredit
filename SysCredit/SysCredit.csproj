@@ -5,12 +5,14 @@
     <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
     <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
     <!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
+
+    <UseMaui>true</UseMaui>
     <OutputType>Exe</OutputType>
     <RootNamespace>SysCredit</RootNamespace>
-    <UseMaui>true</UseMaui>
     <SingleProject>true</SingleProject>
     <ImplicitUsings>enable</ImplicitUsings>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
 
     <!-- Display name -->
     <ApplicationTitle>SysCredit</ApplicationTitle>
@@ -33,6 +35,8 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
     <AndroidPackageFormat>apk</AndroidPackageFormat>
+    <RunAOTCompilation>False</RunAOTCompilation>
+    <!--<AndroidLinkMode>None</AndroidLinkMode>-->
   </PropertyGroup>
 
   <ItemGroup>
@@ -95,10 +99,6 @@
     <Compile Remove="**\Windows\**\*.cs" />
     <None Include="**\Windows\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="Platforms\Android\Resources\values-night\themes.xml" />
-    <None Remove="Platforms\Android\Resources\values\themes.xml" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="akgul.Maui.DataGrid" Version="2.0.0" />
@@ -142,21 +142,6 @@
     <Folder Include="ViewModels\Controls\" />
     <Folder Include="ViewModels\Users\" />
     <Folder Include="ViewModels\Payments\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <MauiXaml Update="Views\Customers\GuarantorListBottomSheet.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Customers\GuarantorSearchBottomSheet.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Customers\ReferenceListBottomSheet.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Customers\ReferenceRegistrationBottomSheet.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="SysCredit.AppShell"
-    x:Name="SysCreditShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Local="clr-namespace:SysCredit"
@@ -13,6 +11,8 @@
     xmlns:UserViews="clr-namespace:SysCredit.Views.Users"
     xmlns:Controls="clr-namespace:SysCredit.Controls"
     xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:Class="SysCredit.AppShell"
+    x:Name="SysCreditShell"
     Shell.FlyoutBehavior="Flyout"
     FlyoutIcon="home_screen_dark_icon.svg"
     FlyoutHeaderBehavior="CollapseOnScroll"
@@ -45,7 +45,7 @@
     </Shell.FlyoutHeader>
 
     <Shell.FlyoutFooter>
-        <Grid BackgroundColor="{StaticResource SysCreditFlyoutBackgroundColor}" RowDefinitions="Auto,Auto" MinimumHeightRequest="82">
+        <Grid Background="{DynamicResource PrimaryBrush}" RowDefinitions="Auto,Auto" MinimumHeightRequest="82">
             <BoxView Grid.Row="0" Color="{StaticResource White}" HeightRequest="1" HorizontalOptions="CenterAndExpand" VerticalOptions="End" />
 
             <Label Grid.Row="1" Text="© Todos los derechos reservados"
