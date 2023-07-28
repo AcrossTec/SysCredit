@@ -1,5 +1,4 @@
-﻿
-namespace SysCredit;
+﻿namespace SysCredit;
 
 using SysCredit.Views;
 using SysCredit.Views.Customers;

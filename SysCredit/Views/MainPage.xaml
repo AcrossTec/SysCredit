@@ -31,12 +31,12 @@
                 <Label Grid.Row="0" Text="{StaticResource CompanyName}"
                        FontFamily="InterBold" FontAttributes="Italic"
                        FontSize="32" LineHeight="40" VerticalTextAlignment="Center"
-                       TextColor="{StaticResource Black}" />
+                       TextColor="{StaticResource Primary}" />
 
                 <Label Grid.Row="1" Text="{StaticResource Watchword}"
                        FontFamily="InterLight" FontSize="16" LineHeight="20"
                        VerticalTextAlignment="Center" FontAttributes="Italic"
-                       TextColor="{StaticResource Black}" />
+                       TextColor="{StaticResource Primary}" />
             </VerticalStackLayout>
 
             <Toolkit:UniformItemsLayout x:Name="MainLayout" MaxColumns="2">

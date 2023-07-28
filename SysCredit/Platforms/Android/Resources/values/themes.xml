@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
   <style name="Maui.MainTheme" parent="Theme.Material3.DynamicColors.Light">
-    <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
-    <item name="colorPrimary">@color/md_theme_light_primary</item>
+    <item name="colorPrimary">@color/md_theme_light_primary</item> 
     <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
     <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
     <item name="colorOnPrimaryContainer">@color/md_theme_light_onPrimaryContainer</item>
@@ -18,7 +17,6 @@
     <item name="colorErrorContainer">@color/md_theme_light_errorContainer</item>
     <item name="colorOnError">@color/md_theme_light_onError</item>
     <item name="colorOnErrorContainer">@color/md_theme_light_onErrorContainer</item>
-    <item name="android:colorBackground">@color/md_theme_light_background</item>
     <item name="colorOnBackground">@color/md_theme_light_onBackground</item>
     <item name="colorSurface">@color/md_theme_light_surface</item>
     <item name="colorOnSurface">@color/md_theme_light_onSurface</item>
@@ -28,6 +26,14 @@
     <item name="colorOnSurfaceInverse">@color/md_theme_light_inverseOnSurface</item>
     <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
     <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
+    <item name="android:colorBackground">@color/md_theme_light_background</item>
+    <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>    
+    <item name="android:actionMenuTextColor">@color/colorActionMenuTextColor</item>
+    <item name="appBarLayoutStyle">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    <item name="bottomNavigationViewStyle">@style/Widget.Design.BottomNavigationView</item>
+    <item name="materialButtonStyle">@style/MauiMaterialButton</item>
+    <item name="checkboxStyle">@style/MauiCheckBox</item>
+    <item name="android:textAllCaps">false</item>
   </style>
 
   <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">

@@ -16,7 +16,11 @@
                             TextColor="White" HorizontalOptions="End" Margin="0,0,20,0"
                             FontSize="20" FontFamily="InterLight" />
     </Shell.TitleView>
-
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="Black" />
+        </Style>
+    </ContentPage.Resources>
     <ScrollView Grid.Row="1">
         <VerticalStackLayout Padding="30,0,30,0">
             <Label Text="{Binding Source={StaticResource CompanyName}, StringFormat='{0} (Android)'}" Margin="0,20,0,0" />

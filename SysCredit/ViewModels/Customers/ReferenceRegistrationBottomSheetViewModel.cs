@@ -8,7 +8,6 @@ using CommunityToolkit.Mvvm.Messaging;
 
 using InputKit.Shared.Controls;
 
-using SysCredit.Extensions;
 using SysCredit.Messages;
 using SysCredit.Models.Customers.Creates;
 
@@ -21,9 +20,7 @@ using System.Windows.Input;
 
 public partial class ReferenceRegistrationBottomSheetViewModel : ViewModelBase
 {
-    public ReferenceRegistrationBottomSheetViewModel()
-    {
-    }
+    public FormView? Form { get; set; }
 
     [ObservableProperty]
     private CreateReference m_Model = new();
@@ -32,6 +29,6 @@ public partial class ReferenceRegistrationBottomSheetViewModel : ViewModelBase
     private void RegisterReference()
     {
         WeakReferenceMessenger.Default.Send(new ValueMessage<CreateReference>(Model));
-        this.Property<FormView>("Form")?.Reset();
+        Form?.Reset();
     }
 }

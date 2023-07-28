@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Extensions;
+﻿namespace SysCredit;
 
 using System.Collections;
 using System.Runtime.CompilerServices;

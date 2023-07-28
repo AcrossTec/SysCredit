@@ -1,9 +1,7 @@
-/**
- * The49.Maui.BottomSheet
- * https://github.com/the49ltd/The49.Maui.BottomSheet/tree/main
- * 
- * 
- */
+// 
+// The49.Maui.BottomSheet
+// https://github.com/the49ltd/The49.Maui.BottomSheet/tree/main
+// 
 
 namespace SysCredit.Views.Customers;
 

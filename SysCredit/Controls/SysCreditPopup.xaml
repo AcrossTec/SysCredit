@@ -20,14 +20,14 @@
             <Grid Grid.Row="2" ColumnDefinitions="Auto,Auto" HorizontalOptions="End">
                 <Button Grid.Column="0" StyleId="OKButton" StyleClass="ElevatedButton"
                     Text="{Binding OkText}" FontFamily="InterRegular" FontSize="14"
-                    WidthRequest="{Binding ButtonWidth}" HeightRequest="35"
+                    WidthRequest="{Binding ButtonWidth}" HeightRequest="40"
                     TextColor="White" BackgroundColor="{StaticResource Primary}" VerticalOptions="Center"
                     Command="{Binding OkCommand}" CommandParameter="{Binding OkCommandParameter}" />
 
                 <Button Grid.Column="2" StyleId="CancelButton" StyleClass="ElevatedButton"
                     IsVisible="{Binding IsCancelEnabled}" Margin="15,0,0,0"
                     Text="{Binding CancelText}" FontFamily="InterRegular" FontSize="14"
-                    WidthRequest="{Binding ButtonWidth}" HeightRequest="35"
+                    WidthRequest="{Binding ButtonWidth}" HeightRequest="40"
                     TextColor="White" BackgroundColor="{StaticResource Primary}" VerticalOptions="Center"
                     Command="{Binding CancelCommand}" CommandParameter="{Binding CancelCommandParameter}" />
             </Grid>
