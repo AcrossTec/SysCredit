@@ -2,7 +2,7 @@ name: Build and deploy .NET Core application to Web App SysCreditApiService with
 on:
   push:
     branches:
-    - develop
+    - master
 env:
   AZURE_WEBAPP_NAME: SysCreditApiService
   AZURE_WEBAPP_PACKAGE_PATH: SysCredit.Api/publish
