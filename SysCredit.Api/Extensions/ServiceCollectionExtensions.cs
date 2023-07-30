@@ -20,6 +20,12 @@ public static class ServiceCollectionExtensions
         return Services;
     }
 
+    public static IServiceCollection AddSysCreditSwaggerGen(this IServiceCollection Services)
+    {
+        Services.AddSwaggerGen();
+        return Services;
+    }
+
     public static IServiceCollection AddSysCreditStores(this IServiceCollection Services)
     {
         Services.AddScoped<IStore, Store<Entity>>();

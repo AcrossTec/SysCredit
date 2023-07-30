@@ -7,7 +7,12 @@ public static class ApplicationBuilderExtensions
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     public static WebApplication ConfigureHttpRequestPipeline(this WebApplication App)
     {
-        if (App.Environment.IsDevelopment())
+        return (WebApplication)App.ConfigureHttpRequestPipeline(App.Environment);
+    }
+
+    public static IApplicationBuilder ConfigureHttpRequestPipeline(this IApplicationBuilder App, IWebHostEnvironment Environment)
+    {
+        if (Environment.IsDevelopment())
         {
             App.UseSwagger();
             App.UseSwaggerUI();
