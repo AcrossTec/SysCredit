@@ -63,6 +63,7 @@
     <Folder Include="StoredProcedures" />
     <Folder Include="PostDeployments" />
     <Folder Include="Views" />
+    <Folder Include="Types" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Customer.sql" />
@@ -77,10 +78,21 @@
     <Build Include="Tables\User.sql" />
     <Build Include="Tables\Reference.sql" />
     <Build Include="Tables\CustomerReference.sql" />
-    <Build Include="StoredProcedures\FetchCustomer.sql" />
-    <Build Include="StoredProcedures\FetchGuarantor.sql" />
+    <Build Include="StoredProcedures\FetchCustomersTop.sql" />
     <Build Include="StoredProcedures\FetchRelationship.sql" />
     <Build Include="StoredProcedures\InsertCustomer.sql" />
     <PostDeploy Include="PostDeployments\Relationship.Seed.sql" />
+    <Build Include="StoredProcedures\FetchCustomerById.sql" />
+    <Build Include="StoredProcedures\FetchCustomers.sql" />
+    <Build Include="StoredProcedures\FetchGuarantorById.sql" />
+    <Build Include="StoredProcedures\FetchGuarantors.sql" />
+    <Build Include="StoredProcedures\FetchGuarantorsTop.sql" />
+    <Build Include="StoredProcedures\FetchReferencesByCustomerId.sql" />
+    <Build Include="StoredProcedures\InsertGuarantor.sql" />
+    <Build Include="Types\ReferenceType.sql" />
+    <Build Include="Types\GuarantorType.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SysCredit.SQLServer.publish.xml" />
   </ItemGroup>
 </Project>
