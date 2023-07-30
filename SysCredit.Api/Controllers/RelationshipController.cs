@@ -2,14 +2,24 @@
 
 using Microsoft.AspNetCore.Mvc;
 
+using SysCredit.Api.Extensions;
+using SysCredit.Api.Helpers;
+using SysCredit.Api.Interfaces;
+
 [ApiController]
 [Route("Api/[Controller]")]
 public class RelationshipController : ControllerBase
 {
-    //private readonly IReferenceStore Service;
+    private readonly IRelationshipService RelationshipService;
 
-    //public RelationshipController(IReferenceStore Service)
-    //{
-    //    this.Service = Service;
-    //}
+    public RelationshipController(IRelationshipService RelationshipService)
+    {
+        this.RelationshipService = RelationshipService;
+    }
+
+    [HttpGet("/Api/Relationships")]
+    public async Task<IResponse> FetchRelationshipAsync()
+    {
+        return await RelationshipService.FetchRelationshipAsync().ToResponseAsync();
+    }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SysCredit.Api.Middlewares;
 
-using SysCredit.Api.DataTransferObject;
+using SysCredit.Api.Helpers;
 
 using System.Text.Json;
 
@@ -29,7 +29,7 @@ public class SysCreditMiddleware
             Context.Response.ContentType = "application/json";
             Context.Response.StatusCode = StatusCodes.Status500InternalServerError;
 
-            var Response = new Response
+            IResponse Response = new Response
             {
                 Status = new ErrorStatus
                 {
@@ -37,9 +37,9 @@ public class SysCreditMiddleware
                     Message = Ex.Message,
                     ErrorCode = StatusCodes.Status500InternalServerError,
                     ErrorCategory = "InternalServerError",
-                    Errors =
+                    Errors = new()
                     {
-                        [nameof(Ex.Source)] = new [] { Ex.Source! },
+                        [nameof(Ex.Source)] = new[] { Ex.Source! },
                         [nameof(Ex.StackTrace)] = new[] { Ex.StackTrace! }
                     }
                 }

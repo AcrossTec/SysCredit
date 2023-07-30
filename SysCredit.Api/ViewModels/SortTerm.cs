@@ -1,6 +1,9 @@
 ﻿namespace SysCredit.Api.ViewModels;
 
-public record class SortTerm
+using SysCredit.Api.Constants;
+
+[Obsolete(SysCreditConstants.Empty, true)]
+public class SortTerm
 {
     public string Name { get; set; } = string.Empty;
 

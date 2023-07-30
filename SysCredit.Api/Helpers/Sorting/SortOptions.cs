@@ -1,5 +1,8 @@
 ﻿namespace SysCredit.Api.Helpers.Sorting;
 
+using SysCredit.Api.Constants;
+
+[Obsolete(SysCreditConstants.Empty, true)]
 public record class SortOptions<TViewModel>
 {
     public string[] OrderBy { get; set; } = { };

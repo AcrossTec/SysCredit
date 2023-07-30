@@ -1,5 +1,8 @@
 ﻿namespace SysCredit.Api.Helpers.Atributtes;
 
+using SysCredit.Api.Constants;
+
+[Obsolete(SysCreditConstants.Empty, true)]
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
 public class SortableAttribute : Attribute
 {

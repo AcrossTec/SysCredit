@@ -1,8 +1,13 @@
-﻿using SysCredit.Api.Helpers;
+﻿namespace SysCredit.Api.Helpers.Sorting;
+
+using SysCredit.Api.Constants;
+using SysCredit.Api.Helpers;
 using SysCredit.Api.Helpers.Atributtes;
 using SysCredit.Api.ViewModels;
+
 using System.Reflection;
 
+[Obsolete(SysCreditConstants.Empty, true)]
 public class SortOptionsProcessor<TViewModel>
 {
     private readonly string[] OrderBy;
@@ -30,9 +35,9 @@ public class SortOptionsProcessor<TViewModel>
         if (DefaultTerm is null) return (false, "Specify the default sort");
 
         if (OrderBy.Length == 0) return (true, $"{DefaultTerm.Name} ASC");
-        
+
         var Params = OrderBy[0].BuildArrayForSort();
-        
+
         if (!Params.Success) return (false, Params.Message);
 
         var Result = GetTermsFromModel().IsValid(Params.Props);

@@ -1,5 +1,8 @@
 ﻿namespace SysCredit.Api.ViewModels;
 
+using SysCredit.Api.Constants;
+
+[Obsolete(SysCreditConstants.Empty, true)]
 public class SearchTerm
 {
     public string Name { get; set; } = string.Empty;
