@@ -1,7 +1,9 @@
-﻿using SysCredit.Api.ViewModels;
+﻿namespace SysCredit.Api.Helpers;
 
-namespace SysCredit.Api.Helpers;
+using SysCredit.Api.Constants;
+using SysCredit.Api.ViewModels;
 
+[Obsolete(SysCreditConstants.Empty, true)]
 public static class ValidParams
 {
     private static readonly List<string> Operators = new List<string> { "EQ", "GT", "GE", "LT", "LE" };
@@ -54,7 +56,7 @@ public static class ValidParams
         string[] SearchTermsArray = Query.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
         if (SearchTermsArray.Length == 0) return (false, "Error you need to specify the Property", new string[] { });
-        
+
         return (SearchTermsArray.Length == 2 && string.IsNullOrEmpty(SearchTermsArray[1])) ?
             (false, "Just you need specify Property or desc", new string[] { }) : (true, "Succes", SearchTermsArray);
     }
@@ -67,9 +69,9 @@ public static class ValidParams
 
         if (SortTerm is null) return (false, string.Empty, $"Invalid Property Name: {Params[0]}");
 
-        if (Params.Length == 2 && !Params[1].Equals(DESCENDING, StringComparison.OrdinalIgnoreCase)) 
+        if (Params.Length == 2 && !Params[1].Equals(DESCENDING, StringComparison.OrdinalIgnoreCase))
             return (false, String.Empty, $"Invalid sort option {Params[1]}");
-       
+
         return (Params.Length == 1) ? (true, $"{Params[0]} ASC", "Success") : (true, $"{Params[0]}", DESCENDING);
     }
     private static bool IsDecimal(string number)

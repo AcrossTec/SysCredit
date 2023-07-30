@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[FetchGuarantors] @Offset INT, @Limit INT
+﻿CREATE PROCEDURE [dbo].[FetchGuarantorsTop] @Offset INT, @Limit INT
 AS BEGIN
     SELECT
         G.*,

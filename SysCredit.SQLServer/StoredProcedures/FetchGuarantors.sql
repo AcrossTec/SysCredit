@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[FetchGuarantorsTop]
+﻿CREATE PROCEDURE [dbo].[FetchGuarantors]
 AS BEGIN
     SELECT
         G.*,

@@ -1,6 +1,6 @@
 ﻿namespace SysCredit.Api.DataTransferObject;
 
-public class ReferenceDataTransferObject
+public record class RelationshipDataTransferObject
 {
     public long RelationshipId { get; set; }
 

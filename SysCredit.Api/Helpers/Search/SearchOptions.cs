@@ -1,5 +1,8 @@
 ﻿namespace SysCredit.Api.Helpers.Search;
 
+using SysCredit.Api.Constants;
+
+[Obsolete(SysCreditConstants.Empty, true)]
 public record class SearchOptions<TViewModel>
 {
     public string[] Search { get; set; } = { };

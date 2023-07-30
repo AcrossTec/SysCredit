@@ -5,14 +5,15 @@ using Microsoft.Extensions.Options;
 using SysCredit.Api.Models;
 
 using System.Data.SqlClient;
+using System.Text.Json;
 
 public interface IStore : IDisposable
 {
     SqlConnection Connection { get; }
 
-    IStore<T> Store<T>() where T : Entity
+    IStore<TModel> GetStore<TModel>() where TModel : Entity
     {
-        return new Store<T>(Options.Create<SysCreditOptions>(new()
+        return new Store<TModel>(Options.Create(new SysCreditOptions
         {
             ConnectionString = Connection.ConnectionString
         }));
@@ -28,8 +29,10 @@ public interface IStore<TModel> : IStore where TModel : Entity
 {
     TModel? ToModel<TViewModel>(TViewModel ViewModel)
     {
-        var Json = System.Text.Json.JsonSerializer.Serialize(ViewModel);
-        return System.Text.Json.JsonSerializer.Deserialize<TModel>(Json);
+        var Json = JsonSerializer.Serialize(ViewModel,
+            new JsonSerializerOptions { PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy });
+
+        return JsonSerializer.Deserialize<TModel>(Json);
     }
 }
 
