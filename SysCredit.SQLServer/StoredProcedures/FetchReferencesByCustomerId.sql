@@ -1,6 +1,8 @@
-﻿CREATE PROCEDURE [dbo].[FetchReferencesByCustomerId]
-	@param1 int = 0,
-	@param2 int
-AS
-	SELECT @param1, @param2
-RETURN 0
+﻿CREATE PROCEDURE [dbo].[FetchReferencesByCustomerId] @CustomerId BIGINT
+AS BEGIN
+    SELECT R.*
+    FROM [dbo].[Reference] AS R
+    INNER JOIN [dbo].[CustomerReference] AS CR ON R.[ReferenceId] = CR.[ReferenceId]
+    WHERE CR.[CustomerId] = @CustomerId
+END
+GO

@@ -23,47 +23,64 @@ https://learn.microsoft.com/en-us/sql/t-sql/language-elements/return-transact-sq
 
 CREATE PROCEDURE [dbo].[InsertCustomer]
     @CustomerId       BIGINT OUTPUT,
-    @Identification   NVARCHAR(16),
-    @Name             NVARCHAR(64),
-    @LastName         NVARCHAR(64),
+    @Identification   NVARCHAR(16) ,
+    @Name             NVARCHAR(64) ,
+    @LastName         NVARCHAR(64) ,
+    @Gender           BIT          ,
+    @Email            NVARCHAR(64) ,
     @Address          NVARCHAR(256),
-    @Neighborhood     NVARCHAR(32),
-    @BussinessType    NVARCHAR(32),
+    @Neighborhood     NVARCHAR(32) ,
+    @BussinessType    NVARCHAR(32) ,
     @BussinessAddress NVARCHAR(256),
-    @Phone            NVARCHAR(16)
-AS
-BEGIN
-   INSERT INTO Customer(Identification, Name, LastName, Address, 
-                  Neighborhood, BussinessType, BussinessAddress, 
-                  Phone, CreatedDate, ModifiedDate, 
-                  DeletedDate, IsEdit, IsDelete)
-
-   VALUES (@Identification, @Name, @LastName, @Address, 
-           @Neighborhood, @BussinessType, 
-           @BussinessAddress, @Phone, GETUTCDATE(), 
-           NULL, NULL, 0, 0)
-   
-   SELECT SCOPE_IDENTITY();
-END
-GO
-
-/*
+    @Phone            NVARCHAR(16) ,
+    @References       [dbo].[ReferenceType] READONLY,
+    @Guarantors       [dbo].[GuarantorType] READONLY
 AS BEGIN
     SET NOCOUNT ON;
     BEGIN TRANSACTION;
 
-    DECLARE @CustomerTable TABLE (CustomerId BIGINT);
+    DECLARE @CustomerTable   TABLE (CustomerId BIGINT);
+    DECLARE @ReferenceTable  TABLE (ReferenceId BIGINT);
     DECLARE @TableCustomerId BIGINT;
 
-    INSERT INTO [dbo].[Customer] ([Identification], [Name], [LastName], [Address], [Neighborhood], [BussinessType], [BussinessAddress], [Phone], [CreatedDate])
+    -- Insert Custumer
+
+    INSERT INTO [dbo].[Customer]
+    (
+        [Identification], [Name]        , [LastName]    ,  [Gender]          , [Email],
+        [Address]       , [Neighborhood], [BussinessType], [BussinessAddress], [Phone]
+    )
     OUTPUT INSERTED.[CustomerId] INTO @CustomerTable
-    VALUES (@Identification, @Name, @LastName, @Address, @Neighborhood, @BussinessType, @BussinessAddress, @Phone, GETUTCDATE())
+    VALUES
+    (
+        @Identification, @Name        , @LastName    ,  @Gender          , @Email,
+        @Address       , @Neighborhood, @BussinessType, @BussinessAddress, @Phone
+    )
+
+    -- Get CustomerId
 
     SELECT @TableCustomerId = CustomerId FROM @CustomerTable
 
-    COMMIT;
-    SELECT @CustomerId = SCOPE_IDENTITY()
-    RETURN @TableCustomerId;
-END;
+    -- Insert References
+
+    INSERT INTO [dbo].[Reference]
+    (
+        [Identification], [Name], [LastName], [Gender], [Phone], [Email], [Address]
+    )
+    OUTPUT INSERTED.[ReferenceId] INTO @ReferenceTable
+    SELECT * FROM @References
+
+    -- Insert CustomerReference
+
+    INSERT INTO [dbo].[CustomerReference]([CustomerId], [ReferenceId])
+    SELECT @TableCustomerId, [ReferenceId] FROM @ReferenceTable
+
+    -- Insert CustomerGuarantor
+
+    INSERT INTO [dbo].[CustomerGuarantor]([CustomerId], [GuarantorId])
+    SELECT @TableCustomerId, [GuarantorId] FROM @Guarantors
+
+    COMMIT TRANSACTION;
+    SELECT @CustomerId = @TableCustomerId
+END
 GO
-*/
