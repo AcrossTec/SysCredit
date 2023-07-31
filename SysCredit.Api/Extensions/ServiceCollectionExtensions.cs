@@ -51,8 +51,15 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddSysCreditOptions(this IServiceCollection Services)
     {
         Services.AddOptions<SysCreditOptions>()
-            .Configure<IConfiguration>(static (Options, Configuration)
-                => Options.ConnectionString = Configuration.GetConnectionString(SysCreditConstants.ConnectionStringKey)!);
+            .Configure<IConfiguration>(static (Options, Configuration) =>
+            {
+                Options.ConnectionString = Configuration.GetConnectionString(SysCreditConstants.ConnectionStringKey)!;
+
+                if (string.IsNullOrEmpty(Options.ConnectionString))
+                {
+                    Options.ConnectionString = Environment.GetEnvironmentVariable(SysCreditConstants.ConnectionStringEnv)!;
+                }
+            });
 
         Services.Configure<ApiBehaviorOptions>(static Options => { });
         return Services;
