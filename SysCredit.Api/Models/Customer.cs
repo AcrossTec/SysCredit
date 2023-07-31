@@ -1,5 +1,7 @@
 ﻿namespace SysCredit.Api.Models;
 
+using SysCredit.Api.Enums;
+
 public record class Customer : Entity
 {
     public long CustomerId { get; set; }
@@ -9,6 +11,10 @@ public record class Customer : Entity
     public string Name { get; set; } = string.Empty;
 
     public string LastName { get; set; } = string.Empty;
+
+    public Gender Gender { get; set; }
+
+    public string? Email { get; set; }
 
     public string Address { get; set; } = string.Empty;
 

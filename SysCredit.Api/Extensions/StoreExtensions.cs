@@ -6,6 +6,7 @@ using SysCredit.Api.Models;
 using SysCredit.Api.Stores;
 
 using System.Data;
+using System.Data.SqlClient;
 
 public static class StoreExtensions
 {
@@ -17,6 +18,11 @@ public static class StoreExtensions
     public static IStore<T> AsStore<T>(this object @object) where T : Entity
     {
         return (IStore<T>)@object;
+    }
+
+    public static SqlTransaction BeginTransaction(this IStore Store)
+    {
+        return Store.Connection.BeginTransaction();
     }
 
     public static Task<int> ExecAsync(this IStore Store, string Sql, object? Parameters = null, IDbTransaction? Transaction = null, int? CommandTimeout = null)
