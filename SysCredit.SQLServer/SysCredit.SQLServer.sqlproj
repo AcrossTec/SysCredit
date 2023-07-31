@@ -91,7 +91,10 @@
     <Build Include="StoredProcedures\InsertGuarantor.sql" />
     <Build Include="Types\ReferenceType.sql" />
     <Build Include="Types\GuarantorType.sql" />
-    <Build Include="StoredProcedures\ExistsRelationship.sql" />
+    <Build Include="StoredProcedures\FetchRelationshipById.sql" />
+    <Build Include="StoredProcedures\FetchGuarantorByPhone.sql" />
+    <Build Include="StoredProcedures\FetchGuarantorByEmail.sql" />
+    <Build Include="StoredProcedures\FetchGuarantorByIdentification.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SysCredit.SQLServer.publish.xml" />

@@ -3,6 +3,7 @@
 using FluentValidation;
 
 using SysCredit.Api.Validations;
+using SysCredit.Api.Validations.Guarantors;
 using SysCredit.Api.Validations.Relationships;
 
 public static class ValidatorExtensions
@@ -18,4 +19,13 @@ public static class ValidatorExtensions
 
     public static IRuleBuilderOptions<T, long> ExistsRelationshipAsync<T>(this IRuleBuilder<T, long> RuleBuilder)
         => RuleBuilder.SetAsyncValidator(new AsyncExistsRelationshipValidator<T>());
+
+    public static IRuleBuilderOptions<T, string?> GuarantorUniqueEmailAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncGuarantorUniqueEmailValidator<T>());
+
+    public static IRuleBuilderOptions<T, string?> GuarantorUniqueIdentificationAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncGuarantorUniqueIdentificationValidator<T>());
+
+    public static IRuleBuilderOptions<T, string?> GuarantorUniquePhoneAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncGuarantorUniquePhoneValidator<T>());
 }

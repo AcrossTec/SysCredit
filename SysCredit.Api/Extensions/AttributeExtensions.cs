@@ -23,13 +23,13 @@ public static class AttributeExtensions
         return @object.SearchGenericAttribute(GenericTypeDefinition)?.GetType().GenericTypeArguments;
     }
 
-    public static string GetErrorCode(this MethodBase Method, int CodeIndex)
+    public static string GetErrorCode(this Type Type, int CodeIndex)
     {
-        return Method.GetCustomAttribute<ErrorCodeAttribute>()!.GetErrorCode(CodeIndex);
+        return Type.GetCustomAttribute<ErrorCodeAttribute>()!.GetErrorCode(CodeIndex);
     }
 
-    public static string GetErrorCategory(this MethodBase Method)
+    public static string GetErrorCategory(this Type Type)
     {
-        return Method.DeclaringType!.GetCustomAttribute<ErrorCategoryAttribute>()!.Category;
+        return Type.GetCustomAttribute<ErrorCategoryAttribute>()!.Category;
     }
 }

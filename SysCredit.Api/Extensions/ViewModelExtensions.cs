@@ -15,7 +15,7 @@ public static class ViewModelExtensions
     {
         Type ValidatorType = ViewModel.SearchGenericTypeArgumentsFromGenericAttribute(typeof(ValidatorAttribute<>))![0];
         IValidator Validator = (IValidator)Activator.CreateInstance(ValidatorType)!;
-        IValidationContext Context = (IValidationContext)Activator.CreateInstance(typeof(ValidationContext<>).MakeGenericType(ViewModel.GetType()))!;
+        IValidationContext Context = (IValidationContext)Activator.CreateInstance(typeof(ValidationContext<>).MakeGenericType(ViewModel.GetType()), new object[] { ViewModel })!;
 
         if (ContextData is not null)
         {
@@ -36,7 +36,7 @@ public static class ViewModelExtensions
             {
                 ErrorCategory = ErrorCategory,
                 ErrorCode = ErrorCode,
-                HasError = Result.IsValid,
+                HasError = !Result.IsValid,
                 ErrorMessage = ErrorMessage,
                 Errors = Result.ToDictionary()
             },
@@ -49,9 +49,9 @@ public static class ViewModelExtensions
         return ValueTask.FromResult(Result.CreateResult(ErrorCategory, ErrorCode, ErrorMessage, Data));
     }
 
-    public static ValueTask<IServiceResult<TData?>> CreateResultAsync<TData>(this ValidationResult Result, MethodBase Method, int CodeIndex, string ErrorMessage, TData? Data = default)
+    public static ValueTask<IServiceResult<TData?>> CreateResultAsync<TData>(this ValidationResult Result, Type Type, int CodeIndex, string ErrorMessage, TData? Data = default)
     {
-        return ValueTask.FromResult(Result.CreateResult(Method.GetErrorCategory(), Method.GetErrorCode(CodeIndex), ErrorMessage, Data));
+        return ValueTask.FromResult(Result.CreateResult(Type.GetErrorCategory(), Type.GetErrorCode(CodeIndex), ErrorMessage, Data));
     }
 
     public static IServiceResult<TData?> CreateResult<TData>(this TData? Data)
