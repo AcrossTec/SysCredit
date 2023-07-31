@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Api.Validations.Guarantor;
+﻿namespace SysCredit.Api.Validations.Guarantors;
 
 using FluentValidation;
 
@@ -14,6 +14,7 @@ public class CreateGuarantorValidator : AbstractValidator<CreateGuarantorViewMod
             .NotNull()
             .MaximumLength(16)
             .Identification()
+            .GuarantorUniqueIdentificationAsync()
             .WithName("Cédula");
 
         RuleFor(G => G.Name)
@@ -30,11 +31,13 @@ public class CreateGuarantorValidator : AbstractValidator<CreateGuarantorViewMod
 
         RuleFor(G => G.Gender)
             .Enum()
+            .WithMessage("'{PropertyName}' debe tener un género válido: Hombre o Mujer")
             .WithName("Género");
 
         RuleFor(G => G.Email)
             .MaximumLength(64)
             .EmailAddress()
+            .GuarantorUniqueEmailAsync()
             .WithName("Correo")
             .When(G => G.Email is not null);
 
@@ -67,6 +70,7 @@ public class CreateGuarantorValidator : AbstractValidator<CreateGuarantorViewMod
             .NotNull()
             .MaximumLength(16)
             .Phone()
+            .GuarantorUniquePhoneAsync()
             .WithName("Teléfono");
 
         RuleFor(G => G.RelationshipId)

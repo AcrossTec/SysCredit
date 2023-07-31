@@ -2,9 +2,9 @@
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Enums;
-using SysCredit.Api.Validations.Customers;
+using SysCredit.Api.Validations.Guarantors;
 
-[Validator<CreateCustomerValidator>]
+[Validator<CreateGuarantorValidator>]
 public class CreateGuarantorViewModel : IViewModel
 {
     public string Identification { get; set; } = string.Empty;

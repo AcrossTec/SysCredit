@@ -20,13 +20,36 @@ public class GuarantorController : ControllerBase
         this.GuarantorService = GuarantorService;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="ViewModel"></param>
+    /// <returns></returns>
     [HttpPost]
-    public async Task<IResponse> InsertGuarantorAsync([FromBody] CreateGuarantorViewModel ViewModel)
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
+    [ProducesErrorResponseType(typeof(IResponse<CreateGuarantorViewModel>))]
+    public async Task<IActionResult> InsertGuarantorAsync([FromBody] CreateGuarantorViewModel ViewModel)
     {
-        return await GuarantorService.InsertGuarantorAsync(ViewModel);
+        var ServiceResult = await GuarantorService.InsertGuarantorAsync(ViewModel);
+
+        if (ServiceResult.Status.HasError)
+        {
+            return StatusCode(StatusCodes.Status400BadRequest, await ServiceResult.ToResponseWithReplaceDataAsync(ViewModel));
+        }
+        else
+        {
+            return StatusCode(StatusCodes.Status201Created, ServiceResult);
+        }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("/Api/Guarantors")]
+    [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<GuarantorDataTransferObject>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     public async Task<IResponse> FetchGuarantorsAsync()
     {
         return await GuarantorService.FetchGuarantorsAsync().ToResponseAsync();

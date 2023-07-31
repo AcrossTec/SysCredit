@@ -1,6 +1,6 @@
 ﻿namespace SysCredit.Api.Attributes;
 
-[AttributeUsage(AttributeTargets.Method | AttributeTargets.Constructor | AttributeTargets.Property, AllowMultiple = true)]
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
 public class ErrorCodeAttribute : Attribute
 {
     public string Prefix { get; set; } = string.Empty;

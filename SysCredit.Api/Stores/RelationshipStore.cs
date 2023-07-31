@@ -15,6 +15,7 @@ public static class RelationshipStore
 
     public static async ValueTask<bool> ExistsRelationshipAsync(this IStore<Relationship> Store, long RelationshipId)
     {
-        return Convert.ToBoolean(await Store.ExecAsync("[dbo].[ExistsRelationship]", new { RelationshipId }));
+        var Relationship = await Store.ExecFirstOrDefaultAsync<RelationshipDataTransferObject>("[dbo].[FetchRelationshipById]", new { RelationshipId });
+        return Relationship is not null;
     }
 }
