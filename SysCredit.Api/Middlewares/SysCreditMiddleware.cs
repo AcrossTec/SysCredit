@@ -35,8 +35,8 @@ public class SysCreditMiddleware
                 {
                     HasError = true,
                     Message = Ex.Message,
-                    ErrorCode = StatusCodes.Status500InternalServerError,
-                    ErrorCategory = "InternalServerError",
+                    ErrorCode = Ex.HResult,
+                    ErrorCategory = Ex.GetType().Name,
                     Errors = new()
                     {
                         [nameof(Ex.Source)] = new[] { Ex.Source! },
