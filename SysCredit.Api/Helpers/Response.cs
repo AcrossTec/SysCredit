@@ -32,3 +32,12 @@ public record class Response<T> : IResponse<T>
 public record class Response : Response<object?>
 {
 }
+
+public interface IServiceResult<out T> : IResponse<T>
+{
+}
+
+public record class ServiceResult<T> : Response<T>, IServiceResult<T>
+{
+}
+

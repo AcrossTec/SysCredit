@@ -1,8 +1,8 @@
-﻿namespace SysCredit.Api.Models;
+﻿namespace SysCredit.Api.DataTransferObject;
 
 using SysCredit.Api.Enums;
 
-public record class Guarantor : Entity
+public class GuarantorDataTransferObject : IDataTransferObject
 {
     public long GuarantorId { get; set; }
 
@@ -27,4 +27,6 @@ public record class Guarantor : Entity
     public string Phone { get; set; } = string.Empty;
 
     public long RelationshipId { get; set; }
+
+    public string RelationshipName { get; set; } = string.Empty;
 }
