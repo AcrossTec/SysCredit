@@ -25,6 +25,4 @@ public record class GuarantorInfo : IDataTransferObject
     public string BussinessAddress { get; set; } = string.Empty;
 
     public string Phone { get; set; } = string.Empty;
-
-    public RelationshipInfo Relationship { get; set; } = new();
 }

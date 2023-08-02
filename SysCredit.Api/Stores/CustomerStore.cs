@@ -4,6 +4,7 @@ using Dapper;
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
+using SysCredit.Api.DataTransferObject.Commons;
 using SysCredit.Api.DataTransferObject.StoredProcedures;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
@@ -46,9 +47,71 @@ public static class CustomerStore
     }
 
     [MethodId("44AFFF21-7AB3-44D7-9E15-4A07D4352B63")]
-    public static IAsyncEnumerable<FetchCustomer> FetchCustomersAsync(this IStore<Customer> Store)
+    public static IAsyncEnumerable<CustomerInfo> FetchCustomersAsync(this IStore<Customer> Store)
     {
-        return Store.ExecQueryAsync<FetchCustomer>("[dbo].[FetchCustomers]");
+        var CustomerQuery =
+            from  Customer in Store.ExecQueryAsync<FetchCustomer>("[dbo].[FetchCustomers]")
+            group Customer by Customer into Customers
+            let   Customer = Customers.Key
+            select new CustomerInfo
+            {
+                CustomerId       = Customer.CustomerId,
+                Identification   = Customer.Identification,
+                Name             = Customer.Name,
+                LastName         = Customer.LastName,
+                Gender           = Customer.Gender,
+                Email            = Customer.Email,
+                Address          = Customer.Address,
+                Neighborhood     = Customer.Neighborhood,
+                BussinessType    = Customer.BussinessType,
+                BussinessAddress = Customer.BussinessAddress,
+                Phone            = Customer.Phone,
+
+                References = from Customer in Customers
+                             group new ReferenceInfo
+                             {
+                                 ReferenceId    = Customer.ReferenceId,
+                                 Identification = Customer.ReferenceIdentification,
+                                 Name           = Customer.ReferenceName,
+                                 LastName       = Customer.ReferenceLastName,
+                                 Gender         = Customer.ReferenceGender,
+                                 Phone          = Customer.ReferencePhone,
+                                 Email          = Customer.ReferenceEmail,
+                                 Address        = Customer.ReferenceAddress
+                             }
+                             by Customer.ReferenceId into References
+                             from Reference in References
+                             select Reference,
+
+                Guarantors = from Customer in Customers
+                             group new CustomerGuarantorInfo
+                             {
+                                 Guarantor = new GuarantorInfo
+                                 {
+                                     GuarantorId      = Customer.GuarantorId,
+                                     Identification   = Customer.GuarantorIdentification,
+                                     Name             = Customer.GuarantorName,
+                                     LastName         = Customer.GuarantorLastName,
+                                     Gender           = Customer.GuarantorGender,
+                                     Email            = Customer.GuarantorEmail,
+                                     Address          = Customer.GuarantorAddress,
+                                     Neighborhood     = Customer.GuarantorNeighborhood,
+                                     BussinessType    = Customer.GuarantorBussinessType,
+                                     BussinessAddress = Customer.GuarantorBussinessAddress,
+                                     Phone            = Customer.GuarantorPhone,
+                                 },
+                                 Relationship = new RelationshipInfo
+                                 {
+                                     RelationshipId = Customer.GuarantorRelationshipId,
+                                     Name           = Customer.GuarantorRelationshipName
+                                 }
+                             }
+                             by Customer.GuarantorId into Guarantors
+                             from Guarantor in Guarantors
+                             select Guarantor
+            };
+
+        return CustomerQuery;
     }
 
     /// <summary>

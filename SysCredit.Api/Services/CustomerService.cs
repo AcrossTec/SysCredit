@@ -2,7 +2,7 @@
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
-using SysCredit.Api.DataTransferObject.StoredProcedures;
+using SysCredit.Api.DataTransferObject.Commons;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Helpers;
 using SysCredit.Api.Interfaces;
@@ -35,7 +35,7 @@ public class CustomerService : ICustomerService
         ReferenceStore = Store.GetStore<Reference>();
     }
 
-    public IAsyncEnumerable<FetchCustomer> FetchCustomersAsync()
+    public IAsyncEnumerable<CustomerInfo> FetchCustomersAsync()
     {
         return CustomerStore.FetchCustomersAsync();
     }
