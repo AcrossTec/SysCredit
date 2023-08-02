@@ -20,7 +20,6 @@ using static SysCredit.Helpers.ContextData;
 
 [Service<ICustomerService>]
 [ErrorCategory(ErrorCategories.CustomerService)]
-[ErrorCode(Prefix = CustomerServicePrefix, Codes = new[] { _0001, _0002, _0003 })]
 public class CustomerService : ICustomerService
 {
     private readonly IStore<Customer> CustomerStore;
@@ -41,6 +40,8 @@ public class CustomerService : ICustomerService
         return CustomerStore.FetchCustomersAsync();
     }
 
+    [MethodId("C59A79E3-CDAD-44AF-B512-B4D58E8B1430")]
+    [ErrorCode(Prefix: CustomerServicePrefix, Codes: new[] { _0001, _0002, _0003 })]
     public async ValueTask<IServiceResult<EntityId?>> InsertCustomerAsync(CreateCustomerRequest ViewModel)
     {
         var Result = await ViewModel.ValidateAsync
@@ -51,7 +52,8 @@ public class CustomerService : ICustomerService
 
         if (!Result.IsValid)
         {
-            return await Result.CreateResultAsync<EntityId?>(typeof(CustomerService), CodeIndex0, "La solicitud de creación del cliente no es válido.");
+            return await Result.CreateResultAsync<EntityId?>(typeof(CustomerService),
+                "C59A79E3-CDAD-44AF-B512-B4D58E8B1430", CodeIndex0, "La solicitud de creación del cliente no es válido.");
         }
 
         return await CustomerStore.InsertCustomerAsync(ViewModel)!.CreateResultAsync();

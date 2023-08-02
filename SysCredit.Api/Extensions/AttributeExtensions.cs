@@ -23,13 +23,19 @@ public static class AttributeExtensions
         return @object.SearchGenericAttribute(GenericTypeDefinition)?.GetType().GenericTypeArguments;
     }
 
-    public static string GetErrorCode(this Type Type, int CodeIndex)
+    public static string? GetErrorCode(this Type Type, string MethodId, int CodeIndex)
     {
-        return Type.GetCustomAttribute<ErrorCodeAttribute>()!.GetErrorCode(CodeIndex);
+        var ErrorCodeAttributes =
+            from Method in Type.GetMethods()
+            let MethodAttribute = Method.GetCustomAttribute<MethodIdAttribute>()
+            where MethodAttribute is not null && MethodAttribute.MethodId == MethodId
+            select Method.GetCustomAttribute<ErrorCodeAttribute>();
+
+        return ErrorCodeAttributes.SingleOrDefault()?.GetErrorCode(CodeIndex);
     }
 
-    public static string GetErrorCategory(this Type Type)
+    public static string? GetErrorCategory(this Type Type)
     {
-        return Type.GetCustomAttribute<ErrorCategoryAttribute>()!.Category;
+        return Type.GetCustomAttribute<ErrorCategoryAttribute>()?.Category;
     }
 }

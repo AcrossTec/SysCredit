@@ -95,6 +95,9 @@
     <Build Include="StoredProcedures\FetchGuarantorByPhone.sql" />
     <Build Include="StoredProcedures\FetchGuarantorByEmail.sql" />
     <Build Include="StoredProcedures\FetchGuarantorByIdentification.sql" />
+    <Build Include="StoredProcedures\FetchCustomerByIdentification.sql" />
+    <Build Include="StoredProcedures\FetchCustomerByPhone.sql" />
+    <Build Include="StoredProcedures\FetchCustomerByEmail.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SysCredit.SQLServer.publish.xml" />

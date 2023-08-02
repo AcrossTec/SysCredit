@@ -17,4 +17,14 @@ public static class ExceptionExtensions
     {
         return Ex.GetExceptions().Select(Ex => Ex.Message);
     }
+
+    public static SysCreditException ToSysCreditException(this Exception Ex, Type CategoryType, string MethodId, int ErrorCodeIndex, string ErrorMessage, Exception InnerException = null!)
+    {
+        SysCreditException SysCreditEx = new SysCreditException(Ex.Message, InnerException);
+        SysCreditEx.Status.ErrorMessage = ErrorMessage;
+        SysCreditEx.Status.ErrorCategory = CategoryType.GetErrorCategory();
+        SysCreditEx.Status.ErrorCode = CategoryType.GetErrorCode(MethodId, ErrorCodeIndex);
+        SysCreditEx.Status.Errors.Add(nameof(Ex.Message), Ex.GetMessages().ToArray());
+        return SysCreditEx;
+    }
 }

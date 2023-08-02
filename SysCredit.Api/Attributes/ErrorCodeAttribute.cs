@@ -1,11 +1,17 @@
 ﻿namespace SysCredit.Api.Attributes;
 
-[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+[AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
 public class ErrorCodeAttribute : Attribute
 {
-    public string Prefix { get; set; } = string.Empty;
+    public ErrorCodeAttribute(string Prefix, string[] Codes)
+    {
+        this.Prefix = Prefix;
+        this.Codes = Codes;
+    }
 
-    public string[] Codes { get; set; } = Array.Empty<string>();
+    public string Prefix { get; }
+
+    public string[] Codes { get; }
 
     public string GetErrorCode(int CodeIndex)
     {
