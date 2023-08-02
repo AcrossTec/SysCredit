@@ -20,7 +20,6 @@ using static SysCredit.Helpers.ContextData;
 
 [Service<IGuarantorService>]
 [ErrorCategory(ErrorCategories.GuarantorService)]
-[ErrorCode(Prefix = GuarantorServicePrefix, Codes = new[] { _0001 })]
 public class GuarantorService : IGuarantorService
 {
     private readonly IStore<Guarantor> GuarantorStore;
@@ -32,6 +31,8 @@ public class GuarantorService : IGuarantorService
         RelationshipStore = Store.GetStore<Relationship>();
     }
 
+    [MethodId("9FE9602F-7011-435F-83BE-F573704A932D")]
+    [ErrorCode(GuarantorServicePrefix, Codes: new[] { _0001 })]
     public async ValueTask<IServiceResult<EntityId?>> InsertGuarantorAsync(CreateGuarantorRequest ViewModel)
     {
         var Result = await ViewModel.ValidateAsync
@@ -42,7 +43,8 @@ public class GuarantorService : IGuarantorService
 
         if (!Result.IsValid)
         {
-            return await Result.CreateResultAsync<EntityId?>(typeof(GuarantorService), CodeIndex0, "La solicitud de creación del fiador no es válido.");
+            return await Result.CreateResultAsync<EntityId?>(typeof(GuarantorService),
+                "9FE9602F-7011-435F-83BE-F573704A932D", CodeIndex0, "La solicitud de creación del fiador no es válido.");
         }
 
         return await GuarantorStore.InsertGuarantorAsync(ViewModel)!.CreateResultAsync();

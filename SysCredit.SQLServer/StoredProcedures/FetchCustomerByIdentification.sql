@@ -1,23 +1,6 @@
-﻿/*
-SQL Server OFFSET FETCH
-https://www.sqlservertutorial.net/sql-server-basics/sql-server-alias/
-
-SQL Server SELECT TOP
-https://www.sqlservertutorial.net/sql-server-basics/sql-server-select-top/
-
-SQL Server SELECT DISTINCT
-https://www.sqlservertutorial.net/sql-server-basics/sql-server-select-distinct/
-
-SQL Server LIKE
-https://www.sqlservertutorial.net/sql-server-basics/sql-server-like/
-
-SQL Server OFFSET FETCH
-https://www.sqlservertutorial.net/sql-server-basics/sql-server-offset-fetch/
-*/
-
-CREATE PROCEDURE [dbo].[FetchCustomersTop] @Offset INT, @Limit INT
+﻿CREATE PROCEDURE [dbo].[FetchCustomerByIdentification] @Identification BIGINT
 AS BEGIN
-    SELECT
+    SELECT 
         C.*,
         R.[ReferenceId]      AS [ReferenceId],
         R.[Identification]   AS [ReferenceIdentification],
@@ -46,8 +29,6 @@ AS BEGIN
     INNER JOIN [dbo].[CustomerGuarantor] AS CG ON CG.[CustomerId]     =  C.[CustomerId]
     INNER JOIN [dbo].[Guarantor]         AS G  ON  G.[GuarantorId]    = CG.[GuarantorId]
     INNER JOIN [dbo].[Relationship]      AS RS ON  G.[RelationshipId] = RS.[RelationshipId]
-    WHERE C.[IsDelete] = 0
-    ORDER BY C.[Name] ASC, C.[LastName] ASC
-    OFFSET @Offset ROWS FETCH NEXT @Limit ROWS ONLY;
+    WHERE C.[IsDelete] = 0 AND C.[Identification] = @Identification
 END
 GO

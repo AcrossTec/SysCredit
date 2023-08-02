@@ -15,7 +15,6 @@ using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
 
 [ErrorCategory(ErrorCategories.InternalServerError)]
-[ErrorCode(Prefix = InternalServerErrorPrefix, Codes = new[] { _0001, _0002 })]
 public class SysCreditMiddleware
 {
     private readonly RequestDelegate Next;
@@ -29,6 +28,8 @@ public class SysCreditMiddleware
         this.Logger = Logger;
     }
 
+    [MethodId("73E66405-D1D0-44D0-8EAB-9AC7D08742A9")]
+    [ErrorCode(Prefix: InternalServerErrorPrefix, Codes: new[] { _0001, _0002 })]
     public async Task InvokeAsync(HttpContext Context)
     {
         try
@@ -52,7 +53,7 @@ public class SysCreditMiddleware
             IResponse Response = await CreateHttpContextResponseData(Context)
                 .ToResponseAsync(CreateErrorStatusFromException(Ex));
 
-            Response.Status.ErrorCode = typeof(SysCreditMiddleware).GetErrorCode(ErrorCodeIndex.CodeIndex1);
+            Response.Status.ErrorCode = typeof(SysCreditMiddleware).GetErrorCode("73E66405-D1D0-44D0-8EAB-9AC7D08742A9", ErrorCodeIndex.CodeIndex1);
             Response.Status.Errors[nameof(Ex.Procedure)] = new[] { Ex.Procedure };
             Response.Status.Errors["DatabaseErrors"] = Ex.Errors.Cast<SqlError>().Select(SqlError => SqlError.Message).ToArray();
 
@@ -93,7 +94,7 @@ public class SysCreditMiddleware
         {
             HasError = true,
             ErrorMessage = Ex.Message,
-            ErrorCode = typeof(SysCreditMiddleware).GetErrorCode(ErrorCodeIndex.CodeIndex0),
+            ErrorCode = typeof(SysCreditMiddleware).GetErrorCode("73E66405-D1D0-44D0-8EAB-9AC7D08742A9", ErrorCodeIndex.CodeIndex0),
             ErrorCategory = typeof(SysCreditMiddleware).GetErrorCategory(),
             Errors =
             {
