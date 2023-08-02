@@ -52,7 +52,7 @@ public static class CustomerStore
         var CustomerQuery =
             from  Customer in Store.ExecQuery<FetchCustomer>("[dbo].[FetchCustomers]")
             group Customer by Customer.CustomerId into Customers
-            let   Customer   = Customers.First()
+            let   Customer = Customers.First()
             select new CustomerInfo
             {
                 CustomerId       = Customer.CustomerId,
@@ -67,8 +67,10 @@ public static class CustomerStore
                 BussinessAddress = Customer.BussinessAddress,
                 Phone            = Customer.Phone,
 
-                References = from Reference in Customers
-                             group new ReferenceInfo
+                References = from  Reference in Customers
+                             group Reference by Reference.ReferenceId into References
+                             let   Reference = References.First()
+                             select new ReferenceInfo
                              {
                                  ReferenceId    = Reference.ReferenceId,
                                  Identification = Reference.ReferenceIdentification,
@@ -78,12 +80,12 @@ public static class CustomerStore
                                  Phone          = Reference.ReferencePhone,
                                  Email          = Reference.ReferenceEmail,
                                  Address        = Reference.ReferenceAddress
-                             }
-                             by Reference.ReferenceId into References
-                             select References.First(),
+                             },
 
-                Guarantors = from Guarantor in Customers
-                             group new CustomerGuarantorInfo
+                Guarantors = from  Guarantor in Customers
+                             group Guarantor by Guarantor.GuarantorId into Guarantors
+                             let   Guarantor = Guarantors.First()
+                             select new CustomerGuarantorInfo
                              {
                                  Guarantor = new GuarantorInfo
                                  {
@@ -105,8 +107,6 @@ public static class CustomerStore
                                      Name           = Guarantor.GuarantorRelationshipName
                                  }
                              }
-                             by Guarantor.GuarantorId into Guarantors
-                             select Guarantors.First()
             };
 
         return CustomerQuery.ToAsyncEnumerable();
