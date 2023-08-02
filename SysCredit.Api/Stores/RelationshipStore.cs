@@ -1,7 +1,7 @@
 ﻿namespace SysCredit.Api.Stores;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.DataTransferObject;
+using SysCredit.Api.DataTransferObject.Commons;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Models;
 

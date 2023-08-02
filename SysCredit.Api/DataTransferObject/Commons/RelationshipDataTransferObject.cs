@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Api.DataTransferObject;
+﻿namespace SysCredit.Api.DataTransferObject.Commons;
 
 public record class RelationshipDataTransferObject : IDataTransferObject
 {

@@ -4,7 +4,11 @@ public static class ErrorCodePrefix
 {
     public const string InternalServerErrorPrefix = "MID";
 
-    public const string GuarantorStorePrefix = "DATA";
+    public const string GuarantorStorePrefix = "DATAGS";
 
-    public const string GuarantorServicePrefix = "SERV";
+    public const string GuarantorServicePrefix = "SERVGS";
+
+    public const string CustomerStorePrefix = "DATACS";
+
+    public const string CustomerServicePrefix = "SERVCS";
 }

@@ -1,7 +1,7 @@
 ﻿namespace SysCredit.Api.Services;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.DataTransferObject;
+using SysCredit.Api.DataTransferObject.Commons;
 using SysCredit.Api.Interfaces;
 using SysCredit.Api.Models;
 using SysCredit.Api.Stores;
