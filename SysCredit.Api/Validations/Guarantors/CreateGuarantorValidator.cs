@@ -5,7 +5,7 @@ using FluentValidation;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.ViewModels.Guarantors;
 
-public class CreateGuarantorValidator : AbstractValidator<CreateGuarantorViewModel>
+public class CreateGuarantorValidator : AbstractValidator<CreateGuarantorRequest>
 {
     public CreateGuarantorValidator()
     {

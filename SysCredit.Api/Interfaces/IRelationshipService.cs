@@ -4,7 +4,7 @@ using SysCredit.Api.DataTransferObject.Commons;
 
 public interface IRelationshipService
 {
-    IAsyncEnumerable<RelationshipDataTransferObject> FetchRelationshipAsync();
+    IAsyncEnumerable<RelationshipInfo> FetchRelationshipAsync();
 
     ValueTask<bool> ExistsRelationshipAsync(long RelationshipId);
 }

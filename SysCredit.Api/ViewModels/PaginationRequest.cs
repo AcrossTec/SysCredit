@@ -1,6 +1,6 @@
 ﻿namespace SysCredit.Api.ViewModels;
 
-public class PagingViewModel : IViewModel
+public class PaginationRequest : IViewModel
 {
     public int Offset { get; set; }
 

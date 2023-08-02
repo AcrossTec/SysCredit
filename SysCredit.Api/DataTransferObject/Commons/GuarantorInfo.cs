@@ -2,7 +2,7 @@
 
 using SysCredit.Api.Enums;
 
-public record class GuarantorDataTransferObject : IDataTransferObject
+public record class GuarantorInfo : IDataTransferObject
 {
     public long GuarantorId { get; set; }
 
@@ -26,5 +26,5 @@ public record class GuarantorDataTransferObject : IDataTransferObject
 
     public string Phone { get; set; } = string.Empty;
 
-    public RelationshipDataTransferObject Relationship { get; set; } = new();
+    public RelationshipInfo Relationship { get; set; } = new();
 }

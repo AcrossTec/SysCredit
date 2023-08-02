@@ -2,7 +2,7 @@
 
 using SysCredit.Api.Enums;
 
-public record class CreateReferenceViewModel : IViewModel
+public record class CreateReferenceRequest : IViewModel
 {
     public string? Identification { get; set; }
 

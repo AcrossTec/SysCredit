@@ -1,11 +1,12 @@
-﻿namespace SysCredit.Api.DataTransferObject.Commons;
+﻿namespace SysCredit.Api.ViewModels.Guarantors;
 
+using SysCredit.Api.Attributes;
 using SysCredit.Api.Enums;
+using SysCredit.Api.Validations.Guarantors;
 
-public record class CustomerDataTransferObject : IDataTransferObject
+[Validator<CreateGuarantorValidator>]
+public class CreateGuarantorRequest : IViewModel
 {
-    public long CustomerId { get; set; }
-
     public string Identification { get; set; } = string.Empty;
 
     public string Name { get; set; } = string.Empty;
@@ -26,7 +27,5 @@ public record class CustomerDataTransferObject : IDataTransferObject
 
     public string Phone { get; set; } = string.Empty;
 
-    public IEnumerable<ReferenceDataTransferObject> References { get; set; } = Array.Empty<ReferenceDataTransferObject>();
-
-    public IEnumerable<GuarantorDataTransferObject> Guarantors { get; set; } = Array.Empty<GuarantorDataTransferObject>();
+    public long RelationshipId { get; set; }
 }

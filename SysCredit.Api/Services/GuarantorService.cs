@@ -32,7 +32,7 @@ public class GuarantorService : IGuarantorService
         RelationshipStore = Store.GetStore<Relationship>();
     }
 
-    public async ValueTask<IServiceResult<EntityId?>> InsertGuarantorAsync(CreateGuarantorViewModel ViewModel)
+    public async ValueTask<IServiceResult<EntityId?>> InsertGuarantorAsync(CreateGuarantorRequest ViewModel)
     {
         var Result = await ViewModel.ValidateAsync
         (

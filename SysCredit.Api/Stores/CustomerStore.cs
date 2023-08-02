@@ -27,7 +27,7 @@ public static class CustomerStore
         return Store.ExecQueryAsync<FetchCustomer>("[dbo].[FetchCustomers]");
     }
 
-    public static async ValueTask<EntityId> InsertCustomerAsync(this IStore<Customer> Store, CreateCustomerViewModel ViewModel)
+    public static async ValueTask<EntityId> InsertCustomerAsync(this IStore<Customer> Store, CreateCustomerRequest ViewModel)
     {
         DynamicParameters Parameters = new DynamicParameters(ViewModel);
         Parameters.Add(nameof(Customer.CustomerId), dbType: DbType.Int64, direction: ParameterDirection.Output);
