@@ -2,7 +2,9 @@
 
 using SysCredit.Api.Enums;
 
-public record class FetchCustomer
+using System.Diagnostics.CodeAnalysis;
+
+public record class FetchCustomer : IEqualityComparer<FetchCustomer>, IEquatable<FetchCustomer>, IComparable<FetchCustomer>, IComparable
 {
     public long CustomerId { get; set; }
 
@@ -67,4 +69,29 @@ public record class FetchCustomer
     public long GuarantorRelationshipId { get; set; }
 
     public string GuarantorRelationshipName { get; set; } = string.Empty;
+
+    public override int GetHashCode()
+    {
+        return GetHashCode(this);
+    }
+
+    public bool Equals(FetchCustomer? Left, FetchCustomer? Right)
+    {
+        return Left?.CustomerId == Right?.CustomerId;
+    }
+
+    public int GetHashCode([DisallowNull] FetchCustomer Customer)
+    {
+        return Customer.CustomerId.GetHashCode();
+    }
+
+    public int CompareTo(FetchCustomer? Customer)
+    {
+        return CustomerId.CompareTo(Customer?.GuarantorId ?? 0);
+    }
+
+    public int CompareTo(object? Customer)
+    {
+        return CompareTo(Customer as FetchCustomer);
+    }
 }
