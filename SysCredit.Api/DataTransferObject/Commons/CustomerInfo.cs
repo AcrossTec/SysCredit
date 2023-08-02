@@ -28,5 +28,5 @@ public record class CustomerInfo : IDataTransferObject
 
     public IEnumerable<ReferenceInfo> References { get; set; } = Array.Empty<ReferenceInfo>();
 
-    public IEnumerable<GuarantorInfo> Guarantors { get; set; } = Array.Empty<GuarantorInfo>();
+    public IEnumerable<CustomerGuarantorInfo> Guarantors { get; set; } = Array.Empty<CustomerGuarantorInfo>();
 }

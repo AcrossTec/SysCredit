@@ -25,6 +25,4 @@ public record class Guarantor : Entity
     public string BussinessAddress { get; set; } = string.Empty;
 
     public string Phone { get; set; } = string.Empty;
-
-    public long RelationshipId { get; set; }
 }

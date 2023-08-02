@@ -1,9 +1,9 @@
 ﻿namespace SysCredit.Api.ViewModels.Customers;
 
 using SysCredit.Api.Attributes;
+using SysCredit.Api.Enums;
 using SysCredit.Api.Models;
 using SysCredit.Api.Validations.Customers;
-using SysCredit.Api.ViewModels.Guarantors;
 using SysCredit.Api.ViewModels.References;
 
 [Validator<CreateCustomerValidator>]
@@ -15,6 +15,10 @@ public class CreateCustomerRequest : IViewModel
 
     public string LastName { get; set; } = string.Empty;
 
+    public Gender Gender { get; set; }
+
+    public string? Email { get; set; }
+
     public string Address { get; set; } = string.Empty;
 
     public string Neighborhood { get; set; } = string.Empty;
@@ -25,7 +29,7 @@ public class CreateCustomerRequest : IViewModel
 
     public string Phone { get; set; } = string.Empty;
 
-    public GuarantorIdRequest[] Guarantors { get; set; } = Array.Empty<GuarantorIdRequest>();
+    public CustomerGuarantorRequest[] Guarantors { get; set; } = Array.Empty<CustomerGuarantorRequest>();
 
     public CreateReferenceRequest[] References { get; set; } = Array.Empty<CreateReferenceRequest>();
 }

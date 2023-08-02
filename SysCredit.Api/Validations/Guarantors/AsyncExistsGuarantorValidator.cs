@@ -10,12 +10,9 @@ using System.Threading;
 
 public class AsyncExistsGuarantorValidator<T> : AsyncPropertyValidator<T, long>
 {
-    public override async Task<bool> IsValidAsync(ValidationContext<T> Context, long RelationshipId, CancellationToken Cancellation)
+    public override async Task<bool> IsValidAsync(ValidationContext<T> Context, long GuarantorId, CancellationToken Cancellation)
     {
-        return await Context
-            .RootContextData[nameof(RelationshipStore)]
-            .AsStore<Relationship>()
-            .ExistsRelationshipAsync(RelationshipId);
+        return await Context.RootContextData[nameof(GuarantorStore)].AsStore<Guarantor>().ExistsGuarantorAsync(GuarantorId);
     }
 
     protected override string GetDefaultMessageTemplate(string ErrorCode)
@@ -23,5 +20,5 @@ public class AsyncExistsGuarantorValidator<T> : AsyncPropertyValidator<T, long>
         return "'{PropertyName}' no está registrado.";
     }
 
-    public override string Name => "AsyncExistsRelationshipValidator";
+    public override string Name => "AsyncExistsGuarantorValidator";
 }

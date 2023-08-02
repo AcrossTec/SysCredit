@@ -45,7 +45,7 @@ AS BEGIN
     INNER JOIN [dbo].[Reference]         AS R  ON  R.[ReferenceId]    = CR.[ReferenceId]
     INNER JOIN [dbo].[CustomerGuarantor] AS CG ON CG.[CustomerId]     =  C.[CustomerId]
     INNER JOIN [dbo].[Guarantor]         AS G  ON  G.[GuarantorId]    = CG.[GuarantorId]
-    INNER JOIN [dbo].[Relationship]      AS RS ON  G.[RelationshipId] = RS.[RelationshipId]
+    INNER JOIN [dbo].[Relationship]      AS RS ON CG.[RelationshipId] = RS.[RelationshipId]
     WHERE C.[IsDelete] = 0
     ORDER BY C.[Name] ASC, C.[LastName] ASC
     OFFSET @Offset ROWS FETCH NEXT @Limit ROWS ONLY;

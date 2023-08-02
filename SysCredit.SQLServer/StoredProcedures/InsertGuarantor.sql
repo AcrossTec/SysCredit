@@ -16,20 +16,17 @@ CREATE PROCEDURE [dbo].[InsertGuarantor]
     @Neighborhood     NVARCHAR(32),
     @BussinessType    NVARCHAR(32),
     @BussinessAddress NVARCHAR(256),
-    @Phone            NVARCHAR(16),
-    @RelationshipId   BIGINT
+    @Phone            NVARCHAR(16)
 AS BEGIN
   INSERT INTO [dbo].[Guarantor]
   (
-    [Identification]  , [Name]   , [LastName]      , [Gender]       ,
-    [Email]           , [Address], [Neighborhood]  , [BussinessType],
-    [BussinessAddress], [Phone]  , [RelationshipId]
+    [Identification], [Name]        , [LastName]     , [Gender]          , [Email],
+    [Address]       , [Neighborhood], [BussinessType], [BussinessAddress], [Phone]
   )
   VALUES
   (
-    @Identification  , @Name   , @LastName      , @Gender       ,
-    @Email           , @Address, @Neighborhood  , @BussinessType,
-    @BussinessAddress, @Phone  , @RelationshipId
+    @Identification, @Name        , @LastName     , @Gender          , @Email,
+    @Address       , @Neighborhood, @BussinessType, @BussinessAddress, @Phone
   )
 
   SELECT @GuarantorId = SCOPE_IDENTITY();

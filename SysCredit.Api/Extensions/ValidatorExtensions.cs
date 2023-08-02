@@ -3,8 +3,12 @@
 using FluentValidation;
 
 using SysCredit.Api.Validations;
+using SysCredit.Api.Validations.Customers;
 using SysCredit.Api.Validations.Guarantors;
+using SysCredit.Api.Validations.References;
 using SysCredit.Api.Validations.Relationships;
+using SysCredit.Api.ViewModels.Customers;
+using SysCredit.Api.ViewModels.References;
 
 public static class ValidatorExtensions
 {
@@ -28,4 +32,22 @@ public static class ValidatorExtensions
 
     public static IRuleBuilderOptions<T, string?> GuarantorUniquePhoneAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
         => RuleBuilder.SetAsyncValidator(new AsyncGuarantorUniquePhoneValidator<T>());
+
+    public static IRuleBuilderOptions<T, long> ExistsGuarantorAsync<T>(this IRuleBuilder<T, long> RuleBuilder)
+    => RuleBuilder.SetAsyncValidator(new AsyncExistsGuarantorValidator<T>());
+
+    public static IRuleBuilderOptions<T, string?> CustomerUniqueEmailAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncCustomerUniqueEmailValidator<T>());
+
+    public static IRuleBuilderOptions<T, string?> CustomerUniqueIdentificationAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncCustomerUniqueIdentificationValidator<T>());
+
+    public static IRuleBuilderOptions<T, string?> CustomerUniquePhoneAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncCustomerUniquePhoneValidator<T>());
+
+    public static IRuleBuilderOptions<T, CustomerGuarantorRequest> ExistsGuarantorAndRelationship<T>(this IRuleBuilder<T, CustomerGuarantorRequest> RuleBuilder)
+        => RuleBuilder.SetValidator(new CustomerGuarantorValidator());
+
+    public static IRuleBuilderOptions<T, CreateReferenceRequest> CreateReferenceIsValid<T>(this IRuleBuilder<T, CreateReferenceRequest> RuleBuilder)
+        => RuleBuilder.SetValidator(new CreateReferenceValidator());
 }

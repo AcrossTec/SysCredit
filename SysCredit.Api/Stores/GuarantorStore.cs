@@ -4,6 +4,7 @@ using Dapper;
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
+using SysCredit.Api.DataTransferObject.Commons;
 using SysCredit.Api.DataTransferObject.StoredProcedures;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
@@ -21,6 +22,13 @@ using static Constants.ErrorCodePrefix;
 [ErrorCategory(ErrorCategories.GuarantorStore)]
 public static class GuarantorStore
 {
+    [MethodId("D094D436-1107-4455-9D8D-EA82683A319F")]
+    public static async ValueTask<bool> ExistsGuarantorAsync(this IStore<Guarantor> Store, long GuarantorId)
+    {
+        var Guarantor = await Store.FetchGuarantorById(GuarantorId);
+        return Guarantor is not null;
+    }
+
     [MethodId("078DDE01-E89D-44CB-8026-7C05D300EEAC")]
     public static async ValueTask<FetchGuarantor?> FetchGuarantorById(this IStore<Guarantor> Store, long? GuarantorId)
     {
@@ -53,9 +61,9 @@ public static class GuarantorStore
 
     [MethodId("BAEC4217-08E5-4714-BD80-D2C37696BB45")]
     [ErrorCode(Prefix: GuarantorStorePrefix, Codes: new[] { _0001, _0002 })]
-    public static async ValueTask<EntityId> InsertGuarantorAsync(this IStore<Guarantor> Store, CreateGuarantorRequest ViewModel)
+    public static async ValueTask<EntityId> InsertGuarantorAsync(this IStore<Guarantor> Store, CreateGuarantorRequest Request)
     {
-        DynamicParameters Parameters = new DynamicParameters(ViewModel);
+        DynamicParameters Parameters = new DynamicParameters(Request);
         Parameters.Add(nameof(Guarantor.GuarantorId), dbType: DbType.Int64, direction: ParameterDirection.Output);
 
         using var SqlTransaction = await Store.BeginTransactionAsync();

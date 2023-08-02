@@ -1,6 +1,7 @@
 ﻿namespace SysCredit.Api.Validations.Customers;
 
 using FluentValidation;
+
 using SysCredit.Api.Extensions;
 using SysCredit.Api.ViewModels.Customers;
 
@@ -13,6 +14,7 @@ public class CreateCustomerValidator : AbstractValidator<CreateCustomerRequest>
             .NotNull()
             .MaximumLength(16)
             .Identification()
+            .CustomerUniqueIdentificationAsync()
             .WithName("Cédula");
 
         RuleFor(C => C.Name)
@@ -26,6 +28,18 @@ public class CreateCustomerValidator : AbstractValidator<CreateCustomerRequest>
             .NotNull()
             .MaximumLength(64)
             .WithName("Apellido");
+
+        RuleFor(C => C.Gender)
+            .Enum()
+            .WithMessage("'{PropertyName}' debe tener un género válido: Hombre o Mujer")
+            .WithName("Género");
+
+        RuleFor(C => C.Email)
+            .MaximumLength(64)
+            .EmailAddress()
+            .CustomerUniqueEmailAsync()
+            .WithName("Correo")
+            .When(G => G.Email is not null);
 
         RuleFor(C => C.Address)
             .NotEmpty()
@@ -56,6 +70,13 @@ public class CreateCustomerValidator : AbstractValidator<CreateCustomerRequest>
             .NotNull()
             .MaximumLength(16)
             .Phone()
+            .CustomerUniquePhoneAsync()
             .WithName("Teléfono");
+
+        RuleForEach(C => C.Guarantors)
+            .ExistsGuarantorAndRelationship();
+
+        RuleForEach(C => C.References)
+            .CreateReferenceIsValid();
     }
 }
