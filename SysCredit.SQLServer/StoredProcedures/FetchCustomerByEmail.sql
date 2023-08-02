@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[FetchCustomerByEmail] @Email BIGINT
+﻿CREATE PROCEDURE [dbo].[FetchCustomerByEmail] @Email NVARCHAR(64)
 AS BEGIN
     SELECT 
         C.*,

@@ -34,7 +34,7 @@ CREATE PROCEDURE [dbo].[InsertCustomer]
     @BussinessAddress NVARCHAR(256),
     @Phone            NVARCHAR(16) ,
     @References       [dbo].[ReferenceType] READONLY,
-    @Guarantors       [dbo].[GuarantorType] READONLY
+    @Guarantors       [dbo].[CustomerGuarantorType] READONLY
 AS BEGIN
     SET NOCOUNT ON;
     BEGIN TRANSACTION;
@@ -77,8 +77,8 @@ AS BEGIN
 
     -- Insert CustomerGuarantor
 
-    INSERT INTO [dbo].[CustomerGuarantor]([CustomerId], [GuarantorId])
-    SELECT @TableCustomerId, [GuarantorId] FROM @Guarantors
+    INSERT INTO [dbo].[CustomerGuarantor]([CustomerId], [GuarantorId], [RelationshipId])
+    SELECT @TableCustomerId, [GuarantorId], [RelationshipId] FROM @Guarantors
 
     COMMIT TRANSACTION;
     SELECT @CustomerId = @TableCustomerId

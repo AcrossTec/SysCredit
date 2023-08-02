@@ -73,6 +73,10 @@ public class CreateCustomerValidator : AbstractValidator<CreateCustomerRequest>
             .CustomerUniquePhoneAsync()
             .WithName("Teléfono");
 
+        RuleFor(C => C.Guarantors)
+            .CustomerGuarantorsUniqueInRequest()
+            .WithName("Fiadores");
+
         RuleForEach(C => C.Guarantors)
             .ExistsGuarantorAndRelationship();
 

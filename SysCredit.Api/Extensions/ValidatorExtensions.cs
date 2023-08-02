@@ -50,4 +50,7 @@ public static class ValidatorExtensions
 
     public static IRuleBuilderOptions<T, CreateReferenceRequest> CreateReferenceIsValid<T>(this IRuleBuilder<T, CreateReferenceRequest> RuleBuilder)
         => RuleBuilder.SetValidator(new CreateReferenceValidator());
+
+    public static IRuleBuilderOptions<T, IEnumerable<CustomerGuarantorRequest>> CustomerGuarantorsUniqueInRequest<T>(this IRuleBuilder<T, IEnumerable<CustomerGuarantorRequest>> RuleBuilder)
+        => RuleBuilder.SetValidator(new CustomerGuarantorsUniqueInRequestValidator<T>());
 }

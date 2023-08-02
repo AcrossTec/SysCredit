@@ -51,12 +51,19 @@ public static class CustomerStore
         return Store.ExecQueryAsync<FetchCustomer>("[dbo].[FetchCustomers]");
     }
 
+    /// <summary>
+    ///     How To Pass Array Or List To Stored Procedure
+    ///     https://www.mytecbits.com/microsoft/sql-server/pass-array-or-list-to-stored-procedure
+    /// </summary>
+    /// <param name="Store"></param>
+    /// <param name="Request"></param>
+    /// <returns></returns>
     [MethodId("5B53C4A1-4033-4778-A1A7-CB8144B52065")]
     [ErrorCode(Prefix: CustomerStorePrefix, Codes: new[] { _0001, _0002 })]
     public static async ValueTask<EntityId> InsertCustomerAsync(this IStore<Customer> Store, CreateCustomerRequest Request)
     {
-        DynamicParameters Parameters = new DynamicParameters(Request);
-        Parameters.Add(nameof(Customer.CustomerId), dbType: DbType.Int64, direction: ParameterDirection.Output);
+        DynamicParameters Parameters = Request.ToDynamicParameters();
+        Parameters.Add(nameof(Customer.CustomerId), default, DbType.Int64, ParameterDirection.Output);
 
         using var SqlTransaction = await Store.BeginTransactionAsync();
 
@@ -65,7 +72,7 @@ public static class CustomerStore
             await Store.ExecAsync("[dbo].[InsertCustomer]", Parameters, SqlTransaction);
             SqlTransaction.Commit();
 
-            return Parameters.Get<long?>(nameof(Guarantor.GuarantorId));
+            return Parameters.Get<long?>(nameof(Customer.CustomerId));
         }
         catch (Exception Ex)
         {

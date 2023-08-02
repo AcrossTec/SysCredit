@@ -21,6 +21,7 @@ public static class ExceptionExtensions
     public static SysCreditException ToSysCreditException(this Exception Ex, Type CategoryType, string MethodId, int ErrorCodeIndex, string ErrorMessage, Exception InnerException = null!)
     {
         SysCreditException SysCreditEx = new SysCreditException(Ex.Message, InnerException);
+        SysCreditEx.Status.MethodId = MethodId;
         SysCreditEx.Status.ErrorMessage = ErrorMessage;
         SysCreditEx.Status.ErrorCategory = CategoryType.GetErrorCategory();
         SysCreditEx.Status.ErrorCode = CategoryType.GetErrorCode(MethodId, ErrorCodeIndex);

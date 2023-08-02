@@ -11,10 +11,10 @@ public class CreateReferenceValidator : AbstractValidator<CreateReferenceRequest
     {
         RuleFor(R => R.Identification)
             .NotEmpty()
-            .NotNull()
             .MaximumLength(16)
             .Identification()
-            .WithName("Cédula");
+            .WithName("Cédula")
+            .When(R => R.Identification is not null);
 
         RuleFor(R => R.Name)
             .NotEmpty()

@@ -64,7 +64,7 @@ public static class GuarantorStore
     public static async ValueTask<EntityId> InsertGuarantorAsync(this IStore<Guarantor> Store, CreateGuarantorRequest Request)
     {
         DynamicParameters Parameters = new DynamicParameters(Request);
-        Parameters.Add(nameof(Guarantor.GuarantorId), dbType: DbType.Int64, direction: ParameterDirection.Output);
+        Parameters.Add(nameof(Guarantor.GuarantorId), default, DbType.Int64, ParameterDirection.Output);
 
         using var SqlTransaction = await Store.BeginTransactionAsync();
 

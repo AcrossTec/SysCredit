@@ -1,11 +1,16 @@
 ﻿namespace SysCredit.Api.Extensions;
 
+using Dapper;
+
 using FluentValidation;
 using FluentValidation.Results;
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Helpers;
 using SysCredit.Api.ViewModels;
+
+using System.Data;
+using System.Reflection;
 
 public static class ViewModelExtensions
 {
@@ -69,5 +74,31 @@ public static class ViewModelExtensions
     public static async ValueTask<IServiceResult<TData?>> CreateResultAsync<TData>(this ValueTask<TData?> ValueTask)
     {
         return await (await ValueTask).CreateResultAsync();
+    }
+
+    public static DynamicParameters ToDynamicParameters(this IViewModel ViewModel)
+    {
+        var Parameters = new DynamicParameters();
+
+        PropertyInfo[] Properties = ViewModel.GetType().GetProperties();
+
+        foreach (var Property in Properties)
+        {
+            switch (Property.GetValue(ViewModel))
+            {
+                case IEnumerable<IViewModel> Values:
+                {
+                    Parameters.Add(Property.Name, Values.ToDataTable(), DbType.Object, ParameterDirection.Input);
+                    break;
+                }
+                case object Value:
+                {
+                    Parameters.Add(Property.Name, Value);
+                    break;
+                }
+            }
+        }
+
+        return Parameters;
     }
 }

@@ -41,7 +41,7 @@ public class SysCreditMiddleware
             Logger.LogError(Ex, Ex.Message);
             ConfigureHttpContextResponse(Context);
 
-            IResponse Response = await CreateHttpContextResponseData(Context).ToResponseAsync(Ex.Status);
+            IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(Ex.Status);
 
             await Context.Response.WriteAsync(SerializeResponse(Response));
         }
@@ -50,8 +50,7 @@ public class SysCreditMiddleware
             Logger.LogError(Ex, Ex.Message);
             ConfigureHttpContextResponse(Context);
 
-            IResponse Response = await CreateHttpContextResponseData(Context)
-                .ToResponseAsync(CreateErrorStatusFromException(Ex));
+            IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(CreateErrorStatusFromException(Ex));
 
             Response.Status.ErrorCode = typeof(SysCreditMiddleware).GetErrorCode("73E66405-D1D0-44D0-8EAB-9AC7D08742A9", ErrorCodeIndex.CodeIndex1);
             Response.Status.Errors[nameof(Ex.Procedure)] = new[] { Ex.Procedure };
@@ -64,9 +63,7 @@ public class SysCreditMiddleware
             Logger.LogError(Ex, Ex.Message);
             ConfigureHttpContextResponse(Context);
 
-            IResponse Response = await CreateHttpContextResponseData(Context)
-                .ToResponseAsync(CreateErrorStatusFromException(Ex));
-
+            IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(CreateErrorStatusFromException(Ex));
             await Context.Response.WriteAsync(SerializeResponse(Response));
         }
     }
@@ -77,14 +74,17 @@ public class SysCreditMiddleware
         Context.Response.StatusCode = StatusCodes.Status500InternalServerError;
     }
 
-    private static object CreateHttpContextResponseData(HttpContext Context)
+    private static async ValueTask<object> CreateHttpContextResponseDataAsync(HttpContext Context)
     {
+        using var BodyReader = new StreamReader(Context.Request.BodyReader.AsStream());
+
         return new
         {
             HTTPMethod = Context.Request.Method,
             Host = Context.Request.Host.ToString(),
             Path = Context.Request.Path.ToString(),
-            QueryString = Context.Request.QueryString.ToString()
+            QueryString = Context.Request.QueryString.ToString(),
+            Body = await BodyReader.ReadToEndAsync(),
         };
     }
 
@@ -96,6 +96,7 @@ public class SysCreditMiddleware
             ErrorMessage = Ex.Message,
             ErrorCode = typeof(SysCreditMiddleware).GetErrorCode("73E66405-D1D0-44D0-8EAB-9AC7D08742A9", ErrorCodeIndex.CodeIndex0),
             ErrorCategory = typeof(SysCreditMiddleware).GetErrorCategory(),
+            MethodId = "73E66405-D1D0-44D0-8EAB-9AC7D08742A9",
             Errors =
             {
                 ["ExceptionType"]       = new[] { Ex.GetType().Name },

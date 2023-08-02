@@ -90,7 +90,7 @@
     <Build Include="StoredProcedures\FetchReferencesByCustomerId.sql" />
     <Build Include="StoredProcedures\InsertGuarantor.sql" />
     <Build Include="Types\ReferenceType.sql" />
-    <Build Include="Types\GuarantorType.sql" />
+    <Build Include="Types\CustomerGuarantorType.sql" />
     <Build Include="StoredProcedures\FetchRelationshipById.sql" />
     <Build Include="StoredProcedures\FetchGuarantorByPhone.sql" />
     <Build Include="StoredProcedures\FetchGuarantorByEmail.sql" />
