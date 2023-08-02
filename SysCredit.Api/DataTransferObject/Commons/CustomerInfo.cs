@@ -26,7 +26,7 @@ public record class CustomerInfo : IDataTransferObject
 
     public string Phone { get; set; } = string.Empty;
 
-    public IAsyncEnumerable<ReferenceInfo> References { get; set; } = AsyncEnumerable.Empty<ReferenceInfo>();
+    public IEnumerable<ReferenceInfo> References { get; set; } = Array.Empty<ReferenceInfo>();
 
-    public IAsyncEnumerable<CustomerGuarantorInfo> Guarantors { get; set; } = AsyncEnumerable.Empty<CustomerGuarantorInfo>();
+    public IEnumerable<CustomerGuarantorInfo> Guarantors { get; set; } = Array.Empty<CustomerGuarantorInfo>();
 }
