@@ -1,9 +1,11 @@
-﻿namespace SysCredit.Api.ViewModels.References;
+﻿namespace SysCredit.Api.DataTransferObject.Commons;
 
 using SysCredit.Api.Enums;
 
-public record class CreateReferenceViewModel : IViewModel
+public record class ReferenceDataTransferObject : IDataTransferObject
 {
+    public long ReferenceId { get; set; }
+
     public string? Identification { get; set; }
 
     public string Name { get; set; } = string.Empty;

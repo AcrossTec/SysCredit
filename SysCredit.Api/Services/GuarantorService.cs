@@ -2,7 +2,7 @@
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
-using SysCredit.Api.DataTransferObject;
+using SysCredit.Api.DataTransferObject.StoredProcedures;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Helpers;
 using SysCredit.Api.Interfaces;
@@ -48,7 +48,7 @@ public class GuarantorService : IGuarantorService
         return await GuarantorStore.InsertGuarantorAsync(ViewModel)!.CreateResultAsync();
     }
 
-    public IAsyncEnumerable<GuarantorDataTransferObject> FetchGuarantorsAsync()
+    public IAsyncEnumerable<FetchGuarantor> FetchGuarantorsAsync()
     {
         return GuarantorStore.FetchGuarantorsAsync();
     }

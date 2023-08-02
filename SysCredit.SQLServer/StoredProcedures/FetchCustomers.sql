@@ -38,8 +38,8 @@ AS BEGIN
         G.[BussinessType]    AS [GuarantorBussinessType],
         G.[BussinessAddress] AS [GuarantorBussinessAddress],
         G.[Phone]            AS [GuarantorPhone],
-        RS.[RelationshipId]  AS [RelationshipId],
-        Rs.[Name]            AS [RelationshipName]
+        RS.[RelationshipId]  AS [GuarantorRelationshipId],
+        Rs.[Name]            AS [GuarantorRelationshipName]
     FROM [dbo].[Customer] AS C
     INNER JOIN [dbo].[CustomerReference] AS CR ON CR.[CustomerId]     =  C.[CustomerId]
     INNER JOIN [dbo].[Reference]         AS R  ON  R.[ReferenceId]    = CR.[ReferenceId]

@@ -1,10 +1,10 @@
-﻿namespace SysCredit.Api.DataTransferObject;
+﻿namespace SysCredit.Api.DataTransferObject.Commons;
 
 using SysCredit.Api.Enums;
 
-public class GuarantorDataTransferObject : IDataTransferObject
+public record class CustomerDataTransferObject : IDataTransferObject
 {
-    public long GuarantorId { get; set; }
+    public long CustomerId { get; set; }
 
     public string Identification { get; set; } = string.Empty;
 
@@ -26,7 +26,7 @@ public class GuarantorDataTransferObject : IDataTransferObject
 
     public string Phone { get; set; } = string.Empty;
 
-    public long RelationshipId { get; set; }
+    public IEnumerable<ReferenceDataTransferObject> References { get; set; } = Array.Empty<ReferenceDataTransferObject>();
 
-    public string RelationshipName { get; set; } = string.Empty;
+    public IEnumerable<GuarantorDataTransferObject> Guarantors { get; set; } = Array.Empty<GuarantorDataTransferObject>();
 }
