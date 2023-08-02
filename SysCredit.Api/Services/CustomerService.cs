@@ -44,7 +44,10 @@ public class CustomerService : ICustomerService
     [ErrorCode(Prefix: CustomerServicePrefix, Codes: new[] { _0001, _0002, _0003 })]
     public async ValueTask<IServiceResult<EntityId?>> InsertCustomerAsync(CreateCustomerRequest ViewModel)
     {
-        var Result = await ViewModel.ValidateAsync(Key(nameof(CustomerStore)).Value(CustomerStore).Key(nameof(GuarantorStore)).Value(GuarantorStore));
+        var Result = await ViewModel.ValidateAsync(
+            Key(nameof(CustomerStore)).Value(CustomerStore)
+           .Key(nameof(GuarantorStore)).Value(GuarantorStore)
+           .Key(nameof(RelationshipStore)).Value(RelationshipStore));
 
         if (!Result.IsValid)
             return await Result.CreateResultAsync<EntityId?>(typeof(CustomerService), "C59A79E3-CDAD-44AF-B512-B4D58E8B1430", CodeIndex0, "La solicitud de creación del cliente no es válido.");

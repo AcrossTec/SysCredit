@@ -30,7 +30,16 @@ public class GuarantorController : ControllerBase
     [ProducesErrorResponseType(typeof(IResponse<CreateGuarantorRequest>))]
     public async Task<IActionResult> InsertGuarantorAsync([FromBody] CreateGuarantorRequest ViewModel)
     {
-        return await GuarantorService.InsertGuarantorAsync(ViewModel).ToActionResultAsync(StatusCodes.Status201Created, ViewModel);
+        var Result = await GuarantorService.InsertGuarantorAsync(ViewModel);
+
+        if (Result.Status.HasError)
+        {
+            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(ViewModel));
+        }
+        else
+        {
+            return StatusCode(StatusCodes.Status201Created, Result);
+        }
     }
 
     /// <summary>

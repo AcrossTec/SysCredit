@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[FetchCustomerByPhone] @Phone BIGINT
+﻿CREATE PROCEDURE [dbo].[FetchCustomerByPhone] @Phone NVARCHAR(16)
 AS BEGIN
     SELECT 
         C.*,

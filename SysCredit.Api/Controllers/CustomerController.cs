@@ -42,6 +42,15 @@ public class CustomerController : ControllerBase
     [ProducesErrorResponseType(typeof(IResponse<CreateCustomerRequest>))]
     public async Task<IActionResult> InsertCustomerAsync([FromBody] CreateCustomerRequest ViewModel)
     {
-        return await CustomerService.InsertCustomerAsync(ViewModel).ToActionResultAsync(StatusCodes.Status201Created, ViewModel);
+        var Result = await CustomerService.InsertCustomerAsync(ViewModel);
+
+        if (Result.Status.HasError)
+        {
+            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(ViewModel));
+        }
+        else
+        {
+            return StatusCode(StatusCodes.Status201Created, Result);
+        }
     }
 }

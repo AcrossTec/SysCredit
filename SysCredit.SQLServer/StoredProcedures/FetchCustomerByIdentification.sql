@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[FetchCustomerByIdentification] @Identification BIGINT
+﻿CREATE PROCEDURE [dbo].[FetchCustomerByIdentification] @Identification NVARCHAR(16)
 AS BEGIN
     SELECT 
         C.*,
