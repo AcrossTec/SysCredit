@@ -23,5 +23,5 @@ public class AsyncGuarantorUniqueIdentificationValidator<T> : AsyncPropertyValid
         return "'{PropertyName}' Ya existe un registro con este valor.";
     }
 
-    public override string Name => "AsyncUniquePhoneValidator";
+    public override string Name => "AsyncGuarantorUniqueIdentificationValidator";
 }

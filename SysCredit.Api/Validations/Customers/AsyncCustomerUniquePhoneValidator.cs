@@ -14,8 +14,8 @@ public class AsyncCustomerUniquePhoneValidator<T> : AsyncPropertyValidator<T, st
 {
     public override async Task<bool> IsValidAsync(ValidationContext<T> Context, string? Phone, CancellationToken Cancellation)
     {
-        var Guarantor = await Context.RootContextData[nameof(GuarantorStore)].AsStore<Guarantor>().FetchGuarantorByPhone(Phone);
-        return Guarantor is null;
+        var Customer = await Context.RootContextData[nameof(CustomerStore)].AsStore<Customer>().FetchCustomerByPhone(Phone);
+        return Customer is null;
     }
 
     protected override string GetDefaultMessageTemplate(string ErrorCode)
@@ -23,5 +23,5 @@ public class AsyncCustomerUniquePhoneValidator<T> : AsyncPropertyValidator<T, st
         return "'{PropertyName}' Ya existe un registro con este valor.";
     }
 
-    public override string Name => "AsyncUniquePhoneValidator";
+    public override string Name => "AsyncCustomerUniquePhoneValidator";
 }

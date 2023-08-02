@@ -33,10 +33,10 @@ public static class ViewModelExtensions
             Status = new ErrorStatus
             {
                 MethodId = MethodId,
-                ErrorCategory = ErrorCategory,
-                ErrorCode = ErrorCode,
                 HasError = !Result.IsValid,
+                ErrorCategory = ErrorCategory,
                 ErrorMessage = ErrorMessage,
+                ErrorCode = ErrorCode,
                 Errors = Result.ToDictionary()
             },
             Data = Data
@@ -48,9 +48,12 @@ public static class ViewModelExtensions
         return ValueTask.FromResult(Result.CreateResult(MethodId, ErrorCategory, ErrorCode, ErrorMessage, Data));
     }
 
-    public static ValueTask<IServiceResult<TData?>> CreateResultAsync<TData>(this ValidationResult Result, Type Type, string MethodId, int CodeIndex, string ErrorMessage, TData? Data = default)
+    public static ValueTask<IServiceResult<TData?>> CreateResultAsync<TData>(this ValidationResult Result, Type CategoryType, string MethodId, int CodeIndex, string ErrorMessage, TData? Data = default)
     {
-        return ValueTask.FromResult(Result.CreateResult(MethodId, Type.GetErrorCategory()!, Type.GetErrorCode(MethodId, CodeIndex)!, ErrorMessage, Data));
+        return ValueTask.FromResult(Result.CreateResult(MethodId,
+            CategoryType.GetErrorCategory() ?? throw new InvalidOperationException($"El tipo {CategoryType.Name} no es un tipo de categoría."),
+            CategoryType.GetErrorCode(MethodId, CodeIndex) ?? throw new InvalidOperationException($"El tipo {CategoryType.Name} no posee un método de código de errores."),
+            ErrorMessage, Data));
     }
 
     public static IServiceResult<TData?> CreateResult<TData>(this TData? Data)

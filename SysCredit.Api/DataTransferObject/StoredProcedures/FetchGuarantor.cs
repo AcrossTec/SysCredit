@@ -25,8 +25,4 @@ public record class FetchGuarantor : IDataTransferObject
     public string BussinessAddress { get; set; } = string.Empty;
 
     public string Phone { get; set; } = string.Empty;
-
-    public long RelationshipId { get; set; }
-
-    public string RelationshipName { get; set; } = string.Empty;
 }

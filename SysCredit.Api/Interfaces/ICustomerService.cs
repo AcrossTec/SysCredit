@@ -8,5 +8,5 @@ public interface ICustomerService
 {
     IAsyncEnumerable<FetchCustomer> FetchCustomersAsync();
 
-    ValueTask<IServiceResult<EntityId?>> InsertCustomerAsync(CreateCustomerRequest ViewModel);
+    ValueTask<IServiceResult<EntityId?>> InsertCustomerAsync(CreateCustomerRequest Request);
 }

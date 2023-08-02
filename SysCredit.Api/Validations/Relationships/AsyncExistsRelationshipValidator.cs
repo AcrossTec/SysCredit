@@ -12,10 +12,7 @@ public class AsyncExistsRelationshipValidator<T> : AsyncPropertyValidator<T, lon
 {
     public override async Task<bool> IsValidAsync(ValidationContext<T> Context, long RelationshipId, CancellationToken Cancellation)
     {
-        return await Context
-            .RootContextData[nameof(RelationshipStore)]
-            .AsStore<Relationship>()
-            .ExistsRelationshipAsync(RelationshipId);
+        return await Context.RootContextData[nameof(RelationshipStore)].AsStore<Relationship>().ExistsRelationshipAsync(RelationshipId);
     }
 
     protected override string GetDefaultMessageTemplate(string ErrorCode)

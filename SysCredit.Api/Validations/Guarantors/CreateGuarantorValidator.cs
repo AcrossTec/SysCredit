@@ -72,9 +72,5 @@ public class CreateGuarantorValidator : AbstractValidator<CreateGuarantorRequest
             .Phone()
             .GuarantorUniquePhoneAsync()
             .WithName("Teléfono");
-
-        RuleFor(G => G.RelationshipId)
-            .ExistsRelationshipAsync()
-            .WithName("Parentesco");
     }
 }

@@ -53,9 +53,9 @@ public static class CustomerStore
 
     [MethodId("5B53C4A1-4033-4778-A1A7-CB8144B52065")]
     [ErrorCode(Prefix: CustomerStorePrefix, Codes: new[] { _0001, _0002 })]
-    public static async ValueTask<EntityId> InsertCustomerAsync(this IStore<Customer> Store, CreateCustomerRequest ViewModel)
+    public static async ValueTask<EntityId> InsertCustomerAsync(this IStore<Customer> Store, CreateCustomerRequest Request)
     {
-        DynamicParameters Parameters = new DynamicParameters(ViewModel);
+        DynamicParameters Parameters = new DynamicParameters(Request);
         Parameters.Add(nameof(Customer.CustomerId), dbType: DbType.Int64, direction: ParameterDirection.Output);
 
         using var SqlTransaction = await Store.BeginTransactionAsync();
