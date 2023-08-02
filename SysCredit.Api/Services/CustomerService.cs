@@ -41,7 +41,7 @@ public class CustomerService : ICustomerService
         return CustomerStore.FetchCustomersAsync();
     }
 
-    public async ValueTask<IServiceResult<EntityId?>> InsertCustomerAsync(CreateCustomerViewModel ViewModel)
+    public async ValueTask<IServiceResult<EntityId?>> InsertCustomerAsync(CreateCustomerRequest ViewModel)
     {
         var Result = await ViewModel.ValidateAsync
         (

@@ -8,5 +8,5 @@ public interface IGuarantorService
 {
     IAsyncEnumerable<FetchGuarantor> FetchGuarantorsAsync();
 
-    ValueTask<IServiceResult<EntityId?>> InsertGuarantorAsync(CreateGuarantorViewModel ViewModel);
+    ValueTask<IServiceResult<EntityId?>> InsertGuarantorAsync(CreateGuarantorRequest ViewModel);
 }

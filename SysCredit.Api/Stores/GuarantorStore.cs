@@ -47,7 +47,7 @@ public static class GuarantorStore
         return Store.ExecQueryAsync<FetchGuarantor>("[dbo].[FetchGuarantors]");
     }
 
-    public static async ValueTask<EntityId> InsertGuarantorAsync(this IStore<Guarantor> Store, CreateGuarantorViewModel ViewModel)
+    public static async ValueTask<EntityId> InsertGuarantorAsync(this IStore<Guarantor> Store, CreateGuarantorRequest ViewModel)
     {
         DynamicParameters Parameters = new DynamicParameters(ViewModel);
         Parameters.Add(nameof(Guarantor.GuarantorId), dbType: DbType.Int64, direction: ParameterDirection.Output);

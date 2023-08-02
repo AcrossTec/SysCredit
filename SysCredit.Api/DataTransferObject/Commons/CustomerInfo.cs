@@ -1,15 +1,20 @@
-﻿namespace SysCredit.Api.ViewModels.Customers;
+﻿namespace SysCredit.Api.DataTransferObject.Commons;
 
-using SysCredit.Api.ViewModels.Guarantors;
-using SysCredit.Api.ViewModels.References;
+using SysCredit.Api.Enums;
 
-public class CreateCustomerViewModel : IViewModel
+public record class CustomerInfo : IDataTransferObject
 {
+    public long CustomerId { get; set; }
+
     public string Identification { get; set; } = string.Empty;
 
     public string Name { get; set; } = string.Empty;
 
     public string LastName { get; set; } = string.Empty;
+
+    public Gender Gender { get; set; }
+
+    public string? Email { get; set; }
 
     public string Address { get; set; } = string.Empty;
 
@@ -21,7 +26,7 @@ public class CreateCustomerViewModel : IViewModel
 
     public string Phone { get; set; } = string.Empty;
 
-    public CreateGuarantorViewModel[] Guarantors { get; set; } = Array.Empty<CreateGuarantorViewModel>();
+    public IEnumerable<ReferenceInfo> References { get; set; } = Array.Empty<ReferenceInfo>();
 
-    public CreateReferenceViewModel[] References { get; set; } = Array.Empty<CreateReferenceViewModel>();
+    public IEnumerable<GuarantorInfo> Guarantors { get; set; } = Array.Empty<GuarantorInfo>();
 }

@@ -39,8 +39,8 @@ public class CustomerController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
-    [ProducesErrorResponseType(typeof(IResponse<CreateCustomerViewModel>))]
-    public async Task<IActionResult> InsertCustomerAsync([FromBody] CreateCustomerViewModel ViewModel)
+    [ProducesErrorResponseType(typeof(IResponse<CreateCustomerRequest>))]
+    public async Task<IActionResult> InsertCustomerAsync([FromBody] CreateCustomerRequest ViewModel)
     {
         return await CustomerService.InsertCustomerAsync(ViewModel).ToActionResultAsync(StatusCodes.Status201Created, ViewModel);
     }

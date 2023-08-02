@@ -1,5 +1,9 @@
 ﻿namespace SysCredit.Api.ViewModels;
 
-public interface IViewModel
+public interface IRequest
+{
+}
+
+public interface IViewModel : IRequest
 {
 }

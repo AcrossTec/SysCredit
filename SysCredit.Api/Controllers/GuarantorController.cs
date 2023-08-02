@@ -27,8 +27,8 @@ public class GuarantorController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
-    [ProducesErrorResponseType(typeof(IResponse<CreateGuarantorViewModel>))]
-    public async Task<IActionResult> InsertGuarantorAsync([FromBody] CreateGuarantorViewModel ViewModel)
+    [ProducesErrorResponseType(typeof(IResponse<CreateGuarantorRequest>))]
+    public async Task<IActionResult> InsertGuarantorAsync([FromBody] CreateGuarantorRequest ViewModel)
     {
         return await GuarantorService.InsertGuarantorAsync(ViewModel).ToActionResultAsync(StatusCodes.Status201Created, ViewModel);
     }

@@ -19,7 +19,7 @@ public class RelationshipService : IRelationshipService
         this.RelationshipStore = RelationshipStore;
     }
 
-    public IAsyncEnumerable<RelationshipDataTransferObject> FetchRelationshipAsync()
+    public IAsyncEnumerable<RelationshipInfo> FetchRelationshipAsync()
     {
         return RelationshipStore.FetchRelationshipAsync();
     }

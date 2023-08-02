@@ -2,7 +2,7 @@
 
 using SysCredit.Api.Enums;
 
-public record class ReferenceDataTransferObject : IDataTransferObject
+public record class ReferenceInfo : IDataTransferObject
 {
     public long ReferenceId { get; set; }
 
