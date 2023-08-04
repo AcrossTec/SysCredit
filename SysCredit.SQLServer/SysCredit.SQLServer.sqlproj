@@ -98,6 +98,10 @@
     <Build Include="StoredProcedures\FetchCustomerByIdentification.sql" />
     <Build Include="StoredProcedures\FetchCustomerByPhone.sql" />
     <Build Include="StoredProcedures\FetchCustomerByEmail.sql" />
+    <Build Include="StoredProcedures\SearchGuarantor.sql" />
+    <Build Include="StoredProcedures\SearchCustomer.sql" />
+    <Build Include="Functions\GetJsonReferencesByCustomerId.sql" />
+    <Build Include="Functions\GetJsonGuarantorsByCustomerId.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SysCredit.SQLServer.publish.xml" />

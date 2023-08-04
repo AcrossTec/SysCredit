@@ -11,6 +11,14 @@ using System.Data.SqlClient;
 
 public static class StoreExtensions
 {
+    public static string? EscapedLike(this string? Value)
+    {
+        Value = Value?.Replace("[", "[[]");
+        Value = Value?.Replace("%", "[%]");
+        Value = Value?.Replace("_", "[_]");
+        return Value;
+    }
+
     public static IStore AsStore(this object @object)
     {
         return (IStore)@object;

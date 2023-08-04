@@ -14,7 +14,7 @@ public class AsyncCustomerUniqueIdentificationValidator<T> : AsyncPropertyValida
 {
     public override async Task<bool> IsValidAsync(ValidationContext<T> Context, string? Identification, CancellationToken Cancellation)
     {
-        var Customer = await Context.RootContextData[nameof(CustomerStore)].AsStore<Customer>().FetchCustomerByIdentification(Identification);
+        var Customer = await Context.RootContextData[nameof(CustomerStore)].AsStore<Customer>().FetchCustomerByIdentificationAsync(Identification);
         return Customer is null;
     }
 
