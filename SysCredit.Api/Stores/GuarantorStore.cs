@@ -10,6 +10,7 @@ using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Helpers;
 using SysCredit.Api.Models;
+using SysCredit.Api.ViewModels;
 using SysCredit.Api.ViewModels.Guarantors;
 
 using System.Data;
@@ -22,6 +23,12 @@ using static Constants.ErrorCodePrefix;
 [ErrorCategory(ErrorCategories.GuarantorStore)]
 public static class GuarantorStore
 {
+    [MethodId("419DA003-2593-488F-ADE9-08C2E21122F9")]
+    public static IAsyncEnumerable<GuarantorInfo> SearchGuarantorAsync(this IStore<Guarantor> Store, SearchRequest Request)
+    {
+        return Store.ExecQueryAsync<GuarantorInfo>("[dbo].[SearchGuarantor]", Request with { Value = Request.Value.EscapedLike() });
+    }
+
     [MethodId("D094D436-1107-4455-9D8D-EA82683A319F")]
     public static async ValueTask<bool> ExistsGuarantorAsync(this IStore<Guarantor> Store, long GuarantorId)
     {

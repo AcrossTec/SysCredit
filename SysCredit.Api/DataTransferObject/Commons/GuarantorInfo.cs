@@ -2,6 +2,8 @@
 
 using SysCredit.Api.Enums;
 
+using System.Text.Json.Serialization;
+
 public record class GuarantorInfo : IDataTransferObject
 {
     public long GuarantorId { get; set; }
@@ -25,4 +27,10 @@ public record class GuarantorInfo : IDataTransferObject
     public string BussinessAddress { get; set; } = string.Empty;
 
     public string Phone { get; set; } = string.Empty;
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public long? RelationshipId { get; set; }
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? RelationshipName { get; set; }
 }

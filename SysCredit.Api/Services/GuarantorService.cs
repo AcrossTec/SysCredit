@@ -2,12 +2,14 @@
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
+using SysCredit.Api.DataTransferObject.Commons;
 using SysCredit.Api.DataTransferObject.StoredProcedures;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Helpers;
 using SysCredit.Api.Interfaces;
 using SysCredit.Api.Models;
 using SysCredit.Api.Stores;
+using SysCredit.Api.ViewModels;
 using SysCredit.Api.ViewModels.Guarantors;
 
 using System.Collections.Generic;
@@ -43,8 +45,15 @@ public class GuarantorService : IGuarantorService
         return await GuarantorStore.InsertGuarantorAsync(ViewModel)!.CreateResultAsync();
     }
 
+    [MethodId("F156EE14-0CB8-477E-B9BF-0B864E26BF25")]
     public IAsyncEnumerable<FetchGuarantor> FetchGuarantorsAsync()
     {
         return GuarantorStore.FetchGuarantorsAsync();
+    }
+
+    [MethodId("543DDE99-6927-4D4D-928F-A47CD6695114")]
+    public IAsyncEnumerable<GuarantorInfo> SearchGuarantorAsync(SearchRequest Request)
+    {
+        return GuarantorStore.SearchGuarantorAsync(Request);
     }
 }

@@ -3,11 +3,13 @@
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
 using SysCredit.Api.DataTransferObject.Commons;
+using SysCredit.Api.DataTransferObject.StoredProcedures;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Helpers;
 using SysCredit.Api.Interfaces;
 using SysCredit.Api.Models;
 using SysCredit.Api.Stores;
+using SysCredit.Api.ViewModels;
 using SysCredit.Api.ViewModels.Customers;
 
 using System.Collections.Generic;
@@ -35,9 +37,40 @@ public class CustomerService : ICustomerService
         ReferenceStore = Store.GetStore<Reference>();
     }
 
+    [MethodId("62D2191D-EF87-4A97-BFF5-4F16A5B09411")]
+    public ValueTask<CustomerInfo?> FetchCustomerByIdAsync(long? CustomerId)
+    {
+        return CustomerStore.FetchCustomerByIdAsync(CustomerId);
+    }
+
+    [MethodId("7D0C770B-A53A-4E82-8752-4BECB5F844F0")]
+    public ValueTask<CustomerInfo?> FetchCustomerByIdentificationAsync(string? Identification)
+    {
+        return CustomerStore.FetchCustomerByIdentificationAsync(Identification);
+    }
+
+    [MethodId("DB423C0D-828E-4BCB-8A71-52B339C5E1C6")]
+    public ValueTask<CustomerInfo?> FetchCustomerByEmailAsync(string? Email)
+    {
+        return CustomerStore.FetchCustomerByEmailAsync(Email);
+    }
+
+    [MethodId("0167F562-8E3E-4B3B-9039-AA4EDEF95692")]
+    public ValueTask<CustomerInfo?> FetchCustomerByPhoneAsync(string? Phone)
+    {
+        return CustomerStore.FetchCustomerByPhoneAsync(Phone);
+    }
+
+    [MethodId("A0A481C3-6D69-4B53-943E-3F5D10EE3B94")]
     public IAsyncEnumerable<CustomerInfo> FetchCustomersAsync()
     {
         return CustomerStore.FetchCustomersAsync();
+    }
+
+    [MethodId("5DD66154-8EA8-4709-94BA-D892E56873EC")]
+    public IAsyncEnumerable<SearchCustomer> SearchCustomerAsync(SearchRequest Request)
+    {
+        return CustomerStore.SearchCustomerAsync(Request);
     }
 
     [MethodId("C59A79E3-CDAD-44AF-B512-B4D58E8B1430")]

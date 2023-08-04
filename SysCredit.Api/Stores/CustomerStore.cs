@@ -10,6 +10,7 @@ using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Helpers;
 using SysCredit.Api.Models;
+using SysCredit.Api.ViewModels;
 using SysCredit.Api.ViewModels.Customers;
 
 using System.Data;
@@ -22,94 +23,40 @@ using static Constants.ErrorCodePrefix;
 [ErrorCategory(ErrorCategories.CustomerStore)]
 public static class CustomerStore
 {
-    [MethodId("D767D480-09E4-4B08-BD31-11D24A599FAF")]
-    public static async ValueTask<FetchCustomer?> FetchCustomerById(this IStore<Customer> Store, long? CustomerId)
+    [MethodId("49740285-1AB2-47EC-98C0-B20E9D457DCE")]
+    public static IAsyncEnumerable<SearchCustomer> SearchCustomerAsync(this IStore<Customer> Store, SearchRequest Request)
     {
-        return await Store.ExecFirstOrDefaultAsync<FetchCustomer?>("[dbo].[FetchCustomerById]", new { CustomerId });
+        return Store.ExecQueryAsync<SearchCustomer>("[dbo].[SearchCustomer]", Request with { Value = Request.Value.EscapedLike() });
+    }
+
+    [MethodId("D767D480-09E4-4B08-BD31-11D24A599FAF")]
+    public static async ValueTask<CustomerInfo?> FetchCustomerByIdAsync(this IStore<Customer> Store, long? CustomerId)
+    {
+        return await Store.ExecQuery<FetchCustomer>("[dbo].[FetchCustomerById]", new { CustomerId }).ConvertFetchCustomerToCustomerInfoAsync().SingleOrDefaultAsync();
     }
 
     [MethodId("39B222E4-EA19-4C38-9AD3-1E55843ADEDC")]
-    public static async ValueTask<FetchCustomer?> FetchCustomerByIdentification(this IStore<Customer> Store, string? Identification)
+    public static async ValueTask<CustomerInfo?> FetchCustomerByIdentificationAsync(this IStore<Customer> Store, string? Identification)
     {
-        return await Store.ExecFirstOrDefaultAsync<FetchCustomer?>("[dbo].[FetchCustomerByIdentification]", new { Identification });
+        return await Store.ExecQuery<FetchCustomer>("[dbo].[FetchCustomerByIdentification]", new { Identification }).ConvertFetchCustomerToCustomerInfoAsync().SingleOrDefaultAsync();
     }
 
     [MethodId("C70ABA49-4546-481C-98F3-5C8C54D5225A")]
-    public static async ValueTask<FetchCustomer?> FetchCustomerByEmail(this IStore<Customer> Store, string? Email)
+    public static async ValueTask<CustomerInfo?> FetchCustomerByEmailAsync(this IStore<Customer> Store, string? Email)
     {
-        return await Store.ExecFirstOrDefaultAsync<FetchCustomer?>("[dbo].[FetchCustomerByEmail]", new { Email });
+        return await Store.ExecQuery<FetchCustomer>("[dbo].[FetchCustomerByEmail]", new { Email }).ConvertFetchCustomerToCustomerInfoAsync().SingleOrDefaultAsync();
     }
 
     [MethodId("7FC0C0C0-58AA-4724-97B9-FA96288688B6")]
-    public static async ValueTask<FetchCustomer?> FetchCustomerByPhone(this IStore<Customer> Store, string? Phone)
+    public static async ValueTask<CustomerInfo?> FetchCustomerByPhoneAsync(this IStore<Customer> Store, string? Phone)
     {
-        return await Store.ExecFirstOrDefaultAsync<FetchCustomer?>("[dbo].[FetchCustomerByPhone]", new { Phone });
+        return await Store.ExecQuery<FetchCustomer>("[dbo].[FetchCustomerByPhone]", new { Phone }).ConvertFetchCustomerToCustomerInfoAsync().SingleOrDefaultAsync();
     }
 
     [MethodId("44AFFF21-7AB3-44D7-9E15-4A07D4352B63")]
     public static IAsyncEnumerable<CustomerInfo> FetchCustomersAsync(this IStore<Customer> Store)
     {
-        var CustomerQuery =
-            from  Customer in Store.ExecQuery<FetchCustomer>("[dbo].[FetchCustomers]")
-            group Customer by Customer.CustomerId into Customers
-            let   Customer = Customers.First()
-            select new CustomerInfo
-            {
-                CustomerId       = Customer.CustomerId,
-                Identification   = Customer.Identification,
-                Name             = Customer.Name,
-                LastName         = Customer.LastName,
-                Gender           = Customer.Gender,
-                Email            = Customer.Email,
-                Address          = Customer.Address,
-                Neighborhood     = Customer.Neighborhood,
-                BussinessType    = Customer.BussinessType,
-                BussinessAddress = Customer.BussinessAddress,
-                Phone            = Customer.Phone,
-
-                References = from  Reference in Customers
-                             group Reference by Reference.ReferenceId into References
-                             let   Reference = References.First()
-                             select new ReferenceInfo
-                             {
-                                 ReferenceId    = Reference.ReferenceId,
-                                 Identification = Reference.ReferenceIdentification,
-                                 Name           = Reference.ReferenceName,
-                                 LastName       = Reference.ReferenceLastName,
-                                 Gender         = Reference.ReferenceGender,
-                                 Phone          = Reference.ReferencePhone,
-                                 Email          = Reference.ReferenceEmail,
-                                 Address        = Reference.ReferenceAddress
-                             },
-
-                Guarantors = from  Guarantor in Customers
-                             group Guarantor by Guarantor.GuarantorId into Guarantors
-                             let   Guarantor = Guarantors.First()
-                             select new CustomerGuarantorInfo
-                             {
-                                 Guarantor = new GuarantorInfo
-                                 {
-                                     GuarantorId      = Guarantor.GuarantorId,
-                                     Identification   = Guarantor.GuarantorIdentification,
-                                     Name             = Guarantor.GuarantorName,
-                                     LastName         = Guarantor.GuarantorLastName,
-                                     Gender           = Guarantor.GuarantorGender,
-                                     Email            = Guarantor.GuarantorEmail,
-                                     Address          = Guarantor.GuarantorAddress,
-                                     Neighborhood     = Guarantor.GuarantorNeighborhood,
-                                     BussinessType    = Guarantor.GuarantorBussinessType,
-                                     BussinessAddress = Guarantor.GuarantorBussinessAddress,
-                                     Phone            = Guarantor.GuarantorPhone,
-                                 },
-                                 Relationship = new RelationshipInfo
-                                 {
-                                     RelationshipId = Guarantor.GuarantorRelationshipId,
-                                     Name           = Guarantor.GuarantorRelationshipName
-                                 }
-                             }
-            };
-
-        return CustomerQuery.ToAsyncEnumerable();
+        return Store.ExecQuery<FetchCustomer>("[dbo].[FetchCustomers]").ConvertFetchCustomerToCustomerInfoAsync();
     }
 
     /// <summary>
@@ -155,5 +102,70 @@ public static class CustomerStore
 
             throw SysCreditEx;
         }
+    }
+
+    private static IAsyncEnumerable<CustomerInfo> ConvertFetchCustomerToCustomerInfoAsync(this IEnumerable<FetchCustomer> FetchCustomers)
+    {
+        var Query =
+            from Customer in FetchCustomers
+            group Customer by Customer.CustomerId into Customers
+            let Customer = Customers.First()
+            select new CustomerInfo
+            {
+                CustomerId = Customer.CustomerId,
+                Identification = Customer.Identification,
+                Name = Customer.Name,
+                LastName = Customer.LastName,
+                Gender = Customer.Gender,
+                Email = Customer.Email,
+                Address = Customer.Address,
+                Neighborhood = Customer.Neighborhood,
+                BussinessType = Customer.BussinessType,
+                BussinessAddress = Customer.BussinessAddress,
+                Phone = Customer.Phone,
+
+                References = from Reference in Customers
+                             group Reference by Reference.ReferenceId into References
+                             let Reference = References.First()
+                             select new ReferenceInfo
+                             {
+                                 ReferenceId = Reference.ReferenceId,
+                                 Identification = Reference.ReferenceIdentification,
+                                 Name = Reference.ReferenceName,
+                                 LastName = Reference.ReferenceLastName,
+                                 Gender = Reference.ReferenceGender,
+                                 Phone = Reference.ReferencePhone,
+                                 Email = Reference.ReferenceEmail,
+                                 Address = Reference.ReferenceAddress
+                             },
+
+                Guarantors = from Guarantor in Customers
+                             group Guarantor by Guarantor.GuarantorId into Guarantors
+                             let Guarantor = Guarantors.First()
+                             select new CustomerGuarantorInfo
+                             {
+                                 Guarantor = new GuarantorInfo
+                                 {
+                                     GuarantorId = Guarantor.GuarantorId,
+                                     Identification = Guarantor.GuarantorIdentification,
+                                     Name = Guarantor.GuarantorName,
+                                     LastName = Guarantor.GuarantorLastName,
+                                     Gender = Guarantor.GuarantorGender,
+                                     Email = Guarantor.GuarantorEmail,
+                                     Address = Guarantor.GuarantorAddress,
+                                     Neighborhood = Guarantor.GuarantorNeighborhood,
+                                     BussinessType = Guarantor.GuarantorBussinessType,
+                                     BussinessAddress = Guarantor.GuarantorBussinessAddress,
+                                     Phone = Guarantor.GuarantorPhone,
+                                 },
+                                 Relationship = new RelationshipInfo
+                                 {
+                                     RelationshipId = Guarantor.GuarantorRelationshipId,
+                                     Name = Guarantor.GuarantorRelationshipName
+                                 }
+                             }
+            };
+
+        return Query.ToAsyncEnumerable();
     }
 }

@@ -14,7 +14,7 @@ public class AsyncCustomerUniqueEmailValidator<T> : AsyncPropertyValidator<T, st
 {
     public override async Task<bool> IsValidAsync(ValidationContext<T> Context, string? Email, CancellationToken Cancellation)
     {
-        var Customer = await Context.RootContextData[nameof(CustomerStore)].AsStore<Customer>().FetchCustomerByEmail(Email);
+        var Customer = await Context.RootContextData[nameof(CustomerStore)].AsStore<Customer>().FetchCustomerByEmailAsync(Email);
         return Customer is null;
     }
 
