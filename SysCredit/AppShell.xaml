@@ -7,6 +7,7 @@
     xmlns:Views="clr-namespace:SysCredit.Views"
     xmlns:CustomerViews="clr-namespace:SysCredit.Views.Customers"
     xmlns:GuarantorViews="clr-namespace:SysCredit.Views.Guarantors"
+    xmlns:CustomerViewModels="clr-namespace:SysCredit.ViewModels.Customers"
     xmlns:LoanViews="clr-namespace:SysCredit.Views.Loans"
     xmlns:UserViews="clr-namespace:SysCredit.Views.Users"
     xmlns:Controls="clr-namespace:SysCredit.Controls"
@@ -21,11 +22,25 @@
         <Style TargetType="Label">
             <Setter Property="TextColor" Value="{DynamicResource White}" />
         </Style>
+
+        <Style x:Key="TabLayoutStyle" TargetType="Tab">
+            <Setter Property="Controls:TabLayout.BackgroundColor" Value="{StaticResource Secondary}" />
+            <Setter Property="Controls:TabLayout.SelectedTabIndicatorColor" Value="{StaticResource Accent100}" />
+            <Setter Property="Controls:TabLayout.TabIconTintColor" Value="{StaticResource White}" />
+        </Style>
     </Shell.Resources>
 
     <Shell.BindingContext>
         <ViewModels:AppShellViewModel />
     </Shell.BindingContext>
+
+    <!--<Shell.FlyoutBackdrop>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="{DynamicResource Primary}" Offset="0.1" />
+            <GradientStop Color="{DynamicResource Secondary}" Offset="0.6" />
+            <GradientStop Color="{DynamicResource Tertiary}" Offset="1.0" />
+        </LinearGradientBrush>
+    </Shell.FlyoutBackdrop>-->
 
     <Shell.FlyoutHeader>
         <Grid Background="{DynamicResource PrimaryBrush}" RowDefinitions="Auto,Auto" MinimumHeightRequest="150">
@@ -144,12 +159,28 @@
         Route="Home" Title="Inicio" Icon="app_home_white_icon.svg"
         ContentTemplate="{DataTemplate Views:MainPage}" />
 
-    <ShellContent
-        Route="ClientAdd" Title="Agregar Nuevo Cliente" Icon="new_customer_white_icon.svg"
-        ContentTemplate="{DataTemplate CustomerViews:CustomerRegistrationPage}" />
+    <FlyoutItem Route="Customer" Title="Registro de Clientes" Icon="new_customer_white_icon.svg" Shell.TabBarBackgroundColor="{StaticResource SysCredit400}" Shell.TabBarUnselectedColor="{StaticResource White}" Shell.TabBarTitleColor="{StaticResource Accent100}">
+        <FlyoutItem.BindingContext>
+            <CustomerViewModels:CustomerRegistrationViewModel />
+        </FlyoutItem.BindingContext>
+        <Tab Route="Registration" Title="Cliente" Icon="new_customer_white_icon.svg">
+            <ShellContent Title="Cliente" Icon="new_customer_white_icon.svg" ContentTemplate="{DataTemplate CustomerViews:CustomerRegistrationPage}" />
+        </Tab>
+        <Tab Route="Reference" Title="Referencias" Icon="new_customer_white_icon.svg"
+             Style="{StaticResource TabLayoutStyle}">
+            <ShellContent Route="Registration" Title="Agregar" Icon="new_customer_white_icon.svg" ContentTemplate="{DataTemplate CustomerViews:ReferenceRegistrationPage}" />
+            <ShellContent Route="List" Title="Listar" Icon="new_customer_white_icon.svg" ContentTemplate="{DataTemplate CustomerViews:ReferenceListPage}" />
+        </Tab>
+        <Tab Route="Guarantor" Title="Fiadores" Icon="new_customer_white_icon.svg"
+             Style="{StaticResource TabLayoutStyle}">
+            <ShellContent Route="Registration" Title="Registrar" Icon="new_customer_white_icon.svg" ContentTemplate="{DataTemplate GuarantorViews:GuarantorRegistrationPage}" />
+            <ShellContent Route="Search" Title="Buscar" Icon="new_customer_white_icon.svg" ContentTemplate="{DataTemplate GuarantorViews:GuarantorSearchPage}" />
+            <ShellContent Route="List" Title="Listar" Icon="new_customer_white_icon.svg" ContentTemplate="{DataTemplate GuarantorViews:GuarantorListPage}" />
+        </Tab>
+    </FlyoutItem>
 
     <ShellContent
-        Route="ClientList" Title="Lista de Clientes" Icon="list_customer_white_icon.svg"
+        Route="CustomerList" Title="Lista de Clientes" Icon="list_customer_white_icon.svg"
         ContentTemplate="{DataTemplate CustomerViews:CustomerListPage}" />
 
     <ShellContent

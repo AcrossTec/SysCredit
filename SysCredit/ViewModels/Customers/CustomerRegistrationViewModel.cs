@@ -1,43 +1,62 @@
 ﻿namespace SysCredit.ViewModels.Customers;
 
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Threading.Tasks;
-
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using CommunityToolkit.Mvvm.Messaging.Messages;
 
+using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 
+using ReactiveUI;
+
+using SysCredit.Controls.Parameters;
 using SysCredit.Messages;
-using SysCredit.Models;
 using SysCredit.Models.Customers.Creates;
 using SysCredit.Views.Customers;
 using SysCredit.Views.Guarantors;
 
-using The49.Maui.BottomSheet;
+using System.Threading.Tasks;
 
-public partial class CustomerRegistrationViewModel : ViewModelBase
+public partial class CustomerRegistrationViewModel : ViewModelBase, IRecipient<ValueMessage<CreateReference>>
 {
     public CustomerRegistrationViewModel()
     {
-        WeakReferenceMessenger.Default.Register<ValueMessage<CreateReference>>(this, OnPropertyChangedMessage);
+        Messenger.Register(this);
+        Model.ObservableForProperty(M => M.References).Subscribe(_ =>
+        {
+            OnPropertyChanged(nameof(Model));
+        });
     }
 
-    public CreateCustomer Model { get; } = new();
+    [ObservableProperty]
+    private CreateCustomer m_Model = new();
 
-    private void OnPropertyChangedMessage(object Recipient, ValueMessage<CreateReference> Message)
+    public void Receive(ValueMessage<CreateReference> Message)
     {
         Model.References.Add(Message.Value);
     }
 
     [RelayCommand]
-    private async Task RegisterCustomer()
+    private async Task SubmitCustomer()
     {
-        await Popups.ShowSysCreditPopup("Cliente registrado correctamente");
-        await Shell.Current.GoToAsync("///Home");
+        if (Model.IsValid)
+        {
+            if (!await Popups.ShowSysCreditPopup("Cliente registrado correctamente.\n¿Registrar otro cliente?", "Si", "No"))
+            {
+                await Shell.Current.GoToAsync("///Home");
+            }
+        }
+    }
+
+    [RelayCommand]
+    private async Task ResetCustomer(FormResetCommandParameter Parameter)
+    {
+        if (await Popups.ShowSysCreditPopup("¿Desea borrar el contenido de todos los campos?", "Sí", "No"))
+        {
+            Parameter.FormReset();
+            Model.References.Clear();
+            Model.Guarantors.Clear();
+        }
     }
 
     [RelayCommand]
@@ -55,51 +74,34 @@ public partial class CustomerRegistrationViewModel : ViewModelBase
     [RelayCommand]
     private async Task OpenGuarantorSearchBottomSheet()
     {
-        var Sheet = new GuarantorSearchBottomSheet();
-        await Sheet.ShowAsync(Shell.Current.Window);
+        // var Sheet = new GuarantorSearchBottomSheet();
+        // await Sheet.ShowAsync(Shell.Current.Window);
     }
 
     [RelayCommand]
     private async Task OpenGuarantorListBottomSheet()
     {
-        var Sheet = new GuarantorListBottomSheet { BindingContext = Model.Guarantors };
-        await Sheet.ShowAsync(Shell.Current.Window);
+        // var Sheet = new GuarantorListBottomSheet { BindingContext = Model.Guarantors };
+        // await Sheet.ShowAsync(Shell.Current.Window);
     }
 
     [RelayCommand]
     private async Task OpenGuarantorRegistrationBottomSheet()
     {
-        await Shell.Current.GoToAsync(nameof(GuarantorRegistrationPage));
+        // await Shell.Current.GoToAsync(nameof(GuarantorRegistrationPage));
     }
 
     [RelayCommand]
     private async Task OpenReferenceRegistrationBottomSheet()
     {
-        var Sheet = new ReferenceRegistrationBottomSheet();
-        await Sheet.ShowAsync(Shell.Current.Window);
+        // var Sheet = new ReferenceRegistrationBottomSheet();
+        // await Sheet.ShowAsync(Shell.Current.Window);
     }
 
     [RelayCommand]
     private async Task OpenReferenceListBottomSheet()
     {
-        var Sheet = new ReferenceListBottomSheet { BindingContext = Model.References };
-        await Sheet.ShowAsync(Shell.Current.Window);
-    }
-}
-
-public partial class CustomerRegistrationViewModel
-{
-    public override void ApplyQueryAttributes(IDictionary<string, object> Query)
-    {
-        base.ApplyQueryAttributes(Query);
-        SetBackButtonBehavior(LookupParam<bool>(nameof(BackButtonBehavior)));
-    }
-
-    private void SetBackButtonBehavior(bool IsEnabled)
-    {
-        if (IsEnabled is false)
-        {
-            Shell.SetBackButtonBehavior(Shell.GetBackButtonBehavior(Shell.Current.CurrentPage), default);
-        }
+        // var Sheet = new ReferenceListBottomSheet { BindingContext = Model.References };
+        // await Sheet.ShowAsync(Shell.Current.Window);
     }
 }

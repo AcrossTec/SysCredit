@@ -6,6 +6,36 @@
 
     <Color x:Key="Accent">#AA00FF</Color>
 
+    <Color x:Key="Accent50">#f5e0ff</Color>
+    <Color x:Key="Accent100">#e6b3ff</Color>
+    <Color x:Key="Accent200">#d580ff</Color>
+    <Color x:Key="Accent300">#c44dff</Color>
+    <Color x:Key="Accent400">#b726ff</Color>
+    <Color x:Key="Accent500">#aa00ff</Color>
+    <Color x:Key="Accent600">#a300ff</Color>
+    <Color x:Key="Accent700">#9900ff</Color>
+    <Color x:Key="Accent800">#9000ff</Color>
+    <Color x:Key="Accent900">#7f00ff</Color>
+    <Color x:Key="AccentA100">#ffffff</Color>
+    <Color x:Key="AccentA200">#f8f2ff</Color>
+    <Color x:Key="AccentA400">#dcbfff</Color>
+    <Color x:Key="AccentA700">#cda6ff</Color>
+
+    <Color x:Key="SysCredit50">#e1e4ec</Color>
+    <Color x:Key="SysCredit100">#b4bccf</Color>
+    <Color x:Key="SysCredit200">#838fb0</Color>
+    <Color x:Key="SysCredit300">#516290</Color>
+    <Color x:Key="SysCredit400">#2b4178</Color>
+    <Color x:Key="SysCredit500">#061f60</Color>
+    <Color x:Key="SysCredit600">#051b58</Color>
+    <Color x:Key="SysCredit700">#04174e</Color>
+    <Color x:Key="SysCredit800">#031244</Color>
+    <Color x:Key="SysCredit900">#020a33</Color>
+    <Color x:Key="SysCreditA100">#6b77ff</Color>
+    <Color x:Key="SysCreditA200">#3849ff</Color>
+    <Color x:Key="SysCreditA400">#051aff</Color>
+    <Color x:Key="SysCreditA700">#0014eb</Color>
+
     <!-- Light Theme -->
 
     <Color x:Key="Primary">#061F60</Color>
@@ -20,7 +50,7 @@
     <Color x:Key="SecondaryContainer">#e1ffcb</Color>
     <Color x:Key="OnSecondaryContainer">#3F4E4F</Color>
 
-    <Color x:Key="Tertiary">#AFAFAF</Color>
+    <Color x:Key="Tertiary">#FDDB3A</Color>
     <Color x:Key="OnTertiary">#2C3639</Color>
     <Color x:Key="TertiaryContainer">#786301</Color>
     <Color x:Key="OnTertiaryContainer">#fef1b0</Color>

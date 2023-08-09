@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<The49:BottomSheet
+<ContentPage
         xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-        xmlns:The49="https://schemas.the49.com/dotnet/2023/maui"
         xmlns:Models="clr-namespace:SysCredit.Models.Customers.Creates"
+        xmlns:Controls="clr-namespace:SysCredit.Controls"
         xmlns:ViewModels="clr-namespace:SysCredit.ViewModels.Customers"
         xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
         xmlns:Input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
@@ -12,18 +12,20 @@
         xmlns:Icon="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
         xmlns:Theming="clr-namespace:UraniumUI.Theming;assembly=UraniumUI"
         xmlns:Behavior="clr-namespace:SysCredit.Behaviors"
-        x:Class="SysCredit.Views.Customers.GuarantorRegistrationBottomSheet"
-        HasHandle="True" HasBackdrop="True"
-        HandleColor="{StaticResource Primary}"
-        Background="{StaticResource WhiteBrush}"
-        Padding="16, 32">
-    <The49:BottomSheet.Detents>
-        <The49:FullscreenDetent IsDefault="True" />
-        <The49:RatioDetent Ratio="0.75" />
-        <The49:MediumDetent />
-    </The49:BottomSheet.Detents>
+        Shell.ForegroundColor="{StaticResource White}"
+        Shell.BackgroundColor="{StaticResource Primary}"
+        x:Class="SysCredit.Views.Customers.ReferenceRegistrationPage"
+        x:Name="Self"
+        Title="Registar Referencia">
 
-    <The49:BottomSheet.Resources>
+    <Shell.TitleView>
+        <Controls:TitleView
+            Text="{Binding Source={x:Reference Self}, Path=Title}" TextColor="White"
+            FontSize="20" FontAttributes="None" FontFamily="InterLight"
+            HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
+    </Shell.TitleView>
+
+    <ContentPage.Resources>
         <Style TargetType="Material:TextField" ApplyToDerivedTypes="True" CanCascade="True">
             <Setter Property="AccentColor" Value="{StaticResource Accent}" />
         </Style>
@@ -56,32 +58,29 @@
             <Setter Property="BorderColor" Value="{StaticResource Accent}" />
             <Setter Property="HeightRequest" Value="60" />
         </Style>
+    </ContentPage.Resources>
 
-    </The49:BottomSheet.Resources>
     <ScrollView>
         <VerticalStackLayout Margin="0,20,0,20" WidthRequest="340">
-            <Input:FormView x:Name="Form" Spacing="10" SubmitCommand="{Binding RegisterGuarantorCommand}">
+            <Controls:FormView x:Name="Form" Spacing="10" SubmitCommand="{Binding RegisterReferenceCommand}" ResetCommand="{Binding ResetReferenceCommand}">
 
-                <Input:FormView.BindingContext>
-                    <ViewModels:GuarantorRegistrationBottomSheetViewModel Form="{x:Reference Form}" />
-                </Input:FormView.BindingContext>
+                <Controls:FormView.BindingContext>
+                    <ViewModels:ReferenceRegistrationViewModel />
+                </Controls:FormView.BindingContext>
 
                 <!-- Sección -->
 
-                <Label Text="Datos Generales del Fiador" TextColor="{DynamicResource Primary}" FontSize="16" LineHeight="20"
+                <Label Text="Datos de Referencia" TextColor="{DynamicResource Primary}" FontSize="16" LineHeight="20"
                        FontFamily="InterBold" FontAttributes="Bold" Margin="0" />
 
                 <!-- Nombres -->
 
                 <Material:TextField
-                        Title="Nombres" AllowClear="True"
-                        Icon="{FontImage &#xf4ff;, FontFamily=FontAwesomeSolid}"
-                        Text="{Binding Model.Name, Mode=TwoWay}">
-                    <Material:TextField.Validations>
-                        <Validation:RequiredValidation />
-                    </Material:TextField.Validations>
+                    Title="Nombres" AllowClear="True"
+                    Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf4ff;}"
+                    Text="{Binding Model.Name}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="Name" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateReference}" Path="Name" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -92,7 +91,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf5b7;}"
                     Text="{Binding Model.LastName}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="LastName" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateReference}" Path="LastName" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -103,7 +102,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2c2;}"
                     Text="{Binding Model.Identification}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="Identification" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateReference}" Path="Identification" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -114,7 +113,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf0e0;}"
                     Text="{Binding Model.Email}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="Email" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateReference}" Path="Email" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -125,7 +124,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf095;}"
                     Text="{Binding Model.Phone}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="Phone" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateReference}" Path="Phone" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -136,63 +135,13 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2b9;}"
                     Text="{Binding Model.Address}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="Address" />
-                    </Material:TextField.Behaviors>
-                </Material:TextField>
-
-                <!-- Barrio -->
-
-                <Material:TextField
-                    Title="Barrio" AllowClear="True"
-                    Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xe54f;}"
-                    Text="{Binding Model.Neighborhood}">
-                    <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="Neighborhood" />
-                    </Material:TextField.Behaviors>
-                </Material:TextField>
-
-                <!-- Parentesco -->
-
-                <Material:TextField
-                    Title="Parentesco" AllowClear="True"
-                    Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xe4e1;}"
-                    Text="{Binding Model.Relationship}">
-                    <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="Relationship" />
-                    </Material:TextField.Behaviors>
-                </Material:TextField>
-
-                <!-- Sección -->
-
-                <Label Text="Datos del Negocio" TextColor="{DynamicResource Primary}"
-                       FontSize="16" LineHeight="20"
-                       FontFamily="InterBold" FontAttributes="Bold" Margin="0,15,0,0" />
-
-                <!-- Tipo de Negocio -->
-
-                <Material:TextField
-                    Title="Tipo del Negocio" AllowClear="True"
-                    Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf508;}"
-                    Text="{Binding Model.BussinessType}">
-                    <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="BussinessType" />
-                    </Material:TextField.Behaviors>
-                </Material:TextField>
-
-                <!-- Dirección del Negocio -->
-
-                <Material:TextField
-                    Title="Dirección del Negocio" AllowClear="True"
-                    Icon="{FontImage FontFamily=FontAwesomeRegular, Glyph=&#xf2b9;}"
-                    Text="{Binding Model.BussinessAddress}">
-                    <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="BussinessAddress" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="Address" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
                 <Button Text="Submit" Input:FormView.IsSubmitButton="True" StyleClass="FilledButton,PrimaryFilledButton" Margin="0,20,0,0" />
-                <Button Text="Reset" Input:FormView.IsResetButton="True" StyleClass="OutlinedButton,AccentOutlinedButton" Margin="0,0,0,20"  BackgroundColor="{StaticResource Accent}" />
-            </Input:FormView>
+                <Button Text="Reset" Input:FormView.IsResetButton="True"  StyleClass="OutlinedButton,AccentOutlinedButton" Margin="0,0,0,20" BackgroundColor="{StaticResource Accent}" />
+            </Controls:FormView>
         </VerticalStackLayout>
     </ScrollView>
-</The49:BottomSheet>
+</ContentPage>

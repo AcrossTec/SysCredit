@@ -19,9 +19,11 @@
             FontSize="20" FontAttributes="None" FontFamily="InterLight"
             HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
     </Shell.TitleView>
-    <Shell.BackButtonBehavior>
+
+    <!--<Shell.BackButtonBehavior>
         <BackButtonBehavior IconOverride="{FontImage &#xf177;, FontFamily=FontAwesomeSolid, Color=White}" />
-    </Shell.BackButtonBehavior>
+    </Shell.BackButtonBehavior>-->
+
     <ContentPage.BindingContext>
         <ViewModels:CustomerListViewModel />
     </ContentPage.BindingContext>

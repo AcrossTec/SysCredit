@@ -1,5 +1,7 @@
 namespace SysCredit.Controls;
 
+using CommunityToolkit.Mvvm.Input;
+
 public class HyperlinkSpan : Span
 {
     public static readonly BindableProperty UrlProperty = BindableProperty.Create(nameof(Url), typeof(string), typeof(HyperlinkSpan));
@@ -11,13 +13,13 @@ public class HyperlinkSpan : Span
         GestureRecognizers.Add(new TapGestureRecognizer
         {
             // Launcher.OpenAsync is provided by Essentials.
-            Command = new Command(async () => await Launcher.OpenAsync(Url!))
+            Command = new AsyncRelayCommand(() => Launcher.OpenAsync(Url))
         });
     }
 
-    public string? Url
+    public string Url
     {
-        get => (string?)GetValue(UrlProperty);
+        get => (string)GetValue(UrlProperty);
         set => SetValue(UrlProperty, value);
     }
 }

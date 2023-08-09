@@ -12,9 +12,11 @@
     <ContentPage.Behaviors>
         <ToolKit:StatusBarBehavior StatusBarColor="{StaticResource Secondary}" StatusBarStyle="LightContent" />
     </ContentPage.Behaviors>
-    <Shell.BackButtonBehavior>
+
+    <!--<Shell.BackButtonBehavior>
         <BackButtonBehavior IconOverride="{FontImage &#xf177;, FontFamily=FontAwesomeSolid, Color=White}" />
-    </Shell.BackButtonBehavior>
+    </Shell.BackButtonBehavior>-->
+
     <Shell.TitleView>
         <Controls:TitleView
             Text="{Binding Source={x:Reference Self}, Path=Title}" TextColor="White"

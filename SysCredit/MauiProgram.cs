@@ -131,20 +131,20 @@ public static partial class MauiProgram
 
     private static MauiAppBuilder RegisterRoutes(this MauiAppBuilder Builder)
     {
-        Routing.RegisterRoute(nameof(CustomerRegistrationPage), typeof(CustomerRegistrationPage));
-        Routing.RegisterRoute(nameof(CustomerInformationPage), typeof(CustomerInformationPage));
-        Routing.RegisterRoute(nameof(CustomerEditPage), typeof(CustomerEditPage));
-        Routing.RegisterRoute(nameof(CustomerListPage), typeof(CustomerListPage));
-        Routing.RegisterRoute(nameof(CustomerSearchPage), typeof(CustomerSearchPage));
+        // Routing.RegisterRoute(nameof(CustomerRegistrationPage), typeof(CustomerRegistrationPage));
+        // Routing.RegisterRoute(nameof(CustomerInformationPage), typeof(CustomerInformationPage));
+        // Routing.RegisterRoute(nameof(CustomerEditPage), typeof(CustomerEditPage));
+        // Routing.RegisterRoute(nameof(CustomerListPage), typeof(CustomerListPage));
+        // Routing.RegisterRoute(nameof(CustomerSearchPage), typeof(CustomerSearchPage));
 
-        Routing.RegisterRoute(nameof(GuarantorRegistrationPage), typeof(GuarantorRegistrationPage));
-        Routing.RegisterRoute(nameof(GuarantorInformationPage), typeof(GuarantorInformationPage));
-        Routing.RegisterRoute(nameof(GuarantorListPage), typeof(GuarantorListPage));
-        Routing.RegisterRoute(nameof(GuarantorEditPage), typeof(GuarantorEditPage));
-        Routing.RegisterRoute(nameof(GuarantorSearchPage), typeof(GuarantorSearchPage));
+        // Routing.RegisterRoute(nameof(GuarantorRegistrationPage), typeof(GuarantorRegistrationPage));
+        // Routing.RegisterRoute(nameof(GuarantorInformationPage), typeof(GuarantorInformationPage));
+        // Routing.RegisterRoute(nameof(GuarantorListPage), typeof(GuarantorListPage));
+        // Routing.RegisterRoute(nameof(GuarantorEditPage), typeof(GuarantorEditPage));
+        // Routing.RegisterRoute(nameof(GuarantorSearchPage), typeof(GuarantorSearchPage));
 
-        Routing.RegisterRoute(nameof(LoanRequestPage), typeof(LoanRequestPage));
-        Routing.RegisterRoute(nameof(LoanListPage), typeof(LoanListPage));
+        // Routing.RegisterRoute(nameof(LoanRequestPage), typeof(LoanRequestPage));
+        // Routing.RegisterRoute(nameof(LoanListPage), typeof(LoanListPage));
         return Builder;
     }
 }

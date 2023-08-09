@@ -4,7 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
     xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:Controls="clr-namespace:SysCredit.Controls"
     x:Class="SysCredit.Controls.SysCreditPopup"
+    x:DataType="Controls:SysCreditPopup"
     CloseWhenBackgroundIsClicked="True">
     <Frame CornerRadius="20" Padding="20,10,20,10" BackgroundColor="White"
            HorizontalOptions="Center" VerticalOptions="Center"
