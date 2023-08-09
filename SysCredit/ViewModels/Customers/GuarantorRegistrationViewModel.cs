@@ -8,10 +8,8 @@ using InputKit.Shared.Controls;
 
 using SysCredit.Models.Customers.Creates;
 
-public partial class GuarantorRegistrationBottomSheetViewModel : ViewModelBase
+public partial class GuarantorRegistrationViewModel : ViewModelBase
 {
-    public FormView? Form { get; set; }
-
     [ObservableProperty]
     private CreateGuarantor m_Model = new();
 

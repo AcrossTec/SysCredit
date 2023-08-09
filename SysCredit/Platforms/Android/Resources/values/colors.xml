@@ -1,9 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <color name="seed">#04D89D</color>
+
   <color name="colorPrimary">#061F60</color>
   <color name="colorPrimaryDark">#2A334F</color>
   <color name="colorAccent">#AA00FF</color>
+
+  <color name="syscredit_50">#e1e4ec</color>
+  <color name="syscredit_100">#b4bccf</color>
+  <color name="syscredit_200">#838fb0</color>
+  <color name="syscredit_300">#516290</color>
+  <color name="syscredit_400">#2b4178</color>
+  <color name="syscredit_500">#061f60</color>
+  <color name="syscredit_600">#051b58</color>
+  <color name="syscredit_700">#04174e</color>
+  <color name="syscredit_800">#031244</color>
+  <color name="syscredit_900">#020a33</color>
+  <color name="syscredit_A100">#6b77ff</color>
+  <color name="syscredit_A200">#3849ff</color>
+  <color name="syscredit_A400">#051aff</color>
+  <color name="syscredit_A700">#0014eb</color>
+
+  <color name="accent_50">#f5e0ff</color>
+  <color name="accent_100">#e6b3ff</color>
+  <color name="accent_200">#d580ff</color>
+  <color name="accent_300">#c44dff</color>
+  <color name="accent_400">#b726ff</color>
+  <color name="accent_500">#aa00ff</color>
+  <color name="accent_600">#a300ff</color>
+  <color name="accent_700">#9900ff</color>
+  <color name="accent_800">#9000ff</color>
+  <color name="accent_900">#7f00ff</color>
+  <color name="accent_A100">#ffffff</color>
+  <color name="accent_A200">#f8f2ff</color>
+  <color name="accent_A400">#dcbfff</color>
+  <color name="accent_A700">#cda6ff</color>
+
   <color name="md_theme_light_primary">#006C4D</color>
   <color name="md_theme_light_onPrimary">#FFFFFF</color>
   <color name="md_theme_light_primaryContainer">#52FEC0</color>

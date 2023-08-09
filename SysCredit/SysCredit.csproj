@@ -101,7 +101,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="akgul.Maui.DataGrid" Version="2.0.0" />
+    <PackageReference Include="akgul.Maui.DataGrid" Version="3.0.0" />
     <PackageReference Include="AlohaKit" Version="1.0.74" />
     <PackageReference Include="AlohaKit.Animations" Version="1.0.0" />
     <PackageReference Include="AlohaKit.Layouts" Version="1.0.0" />
@@ -117,9 +117,9 @@
     <PackageReference Include="ReactiveUI.Fody" Version="19.4.1" />
     <PackageReference Include="Sharpnado.CollectionView.Maui" Version="3.0.0" />
     <PackageReference Include="Sharpnado.Tabs.Maui" Version="3.0.1" />
-    <PackageReference Include="SkiaSharp" Version="2.88.4-preview.84" />
+    <PackageReference Include="SkiaSharp" Version="2.88.4-preview.89" />
     <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
-    <PackageReference Include="SkiaSharp.Skottie" Version="2.88.4-preview.84" />
+    <PackageReference Include="SkiaSharp.Skottie" Version="2.88.4-preview.89" />
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
     <PackageReference Include="The49.Maui.BottomSheet" Version="1.0.1" />
     <PackageReference Include="The49.Maui.ContextMenu" Version="1.0.0-alpha1" />
@@ -137,11 +137,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Converters\" />
+    <Folder Include="EventArgs\" />
     <Folder Include="Handlers\" />
     <Folder Include="ViewModels\Controls\" />
     <Folder Include="ViewModels\Users\" />
     <Folder Include="ViewModels\Payments\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Customers\ReferenceListPage.xaml.cs">
+      <DependentUpon>ReferenceListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Customers\ReferenceRegistrationPage.xaml.cs">
+      <DependentUpon>ReferenceRegistrationPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 
 </Project>

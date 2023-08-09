@@ -19,16 +19,16 @@ public partial class SysCreditPopup : PopupPage
         BindableProperty.Create(nameof(CancelText), typeof(string), typeof(SysCreditPopup), "Cancelar");
 
     public static readonly BindableProperty ButtonWidthProperty =
-       BindableProperty.Create(nameof(ButtonWidth), typeof(double), typeof(SysCreditPopup), 115.0);
+        BindableProperty.Create(nameof(ButtonWidth), typeof(double), typeof(SysCreditPopup), 115.0);
 
     public static readonly BindableProperty OkCommandParameterProperty =
-      BindableProperty.Create(nameof(OkCommandParameter), typeof(object), typeof(SysCreditPopup));
+        BindableProperty.Create(nameof(OkCommandParameter), typeof(object), typeof(SysCreditPopup));
 
     public static readonly BindableProperty OkCommandProperty =
         BindableProperty.Create(nameof(OkCommand), typeof(ICommand), typeof(SysCreditPopup));
 
     public static readonly BindableProperty CancelCommandParameterProperty =
-      BindableProperty.Create(nameof(CancelCommandParameter), typeof(object), typeof(SysCreditPopup));
+        BindableProperty.Create(nameof(CancelCommandParameter), typeof(object), typeof(SysCreditPopup));
 
     public static readonly BindableProperty CancelCommandProperty =
         BindableProperty.Create(nameof(CancelCommand), typeof(ICommand), typeof(SysCreditPopup));

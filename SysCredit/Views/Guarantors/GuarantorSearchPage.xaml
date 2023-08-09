@@ -9,7 +9,7 @@
              x:Name="Self"
              Shell.ForegroundColor="{StaticResource White}"
              Shell.BackgroundColor="{StaticResource Primary}"
-             Title="Buscador de Fiadores">
+             Title="Buscar de Fiador">
     <ContentPage.Behaviors>
         <Toolkit:StatusBarBehavior StatusBarColor="{StaticResource Secondary}" StatusBarStyle="LightContent" />
     </ContentPage.Behaviors>
@@ -19,16 +19,15 @@
             FontSize="20" FontAttributes="None" FontFamily="InterLight"
             HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
     </Shell.TitleView>
-    <Shell.BackButtonBehavior>
+
+    <!--<Shell.BackButtonBehavior>
         <BackButtonBehavior IconOverride="{FontImage &#xf177;, FontFamily=FontAwesomeSolid, Color=White}" />
-    </Shell.BackButtonBehavior>
+    </Shell.BackButtonBehavior>-->
+
     <ContentPage.BindingContext>
         <ViewModels:GuarantorSearchViewModel />
     </ContentPage.BindingContext>
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Primary" Text="Nuevo Fiador" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid, Size=25}"
-                     Command="{Binding GoToGuarantorRegistrationPageCommand}"/>
-    </ContentPage.ToolbarItems>
+
     <VerticalStackLayout HorizontalOptions="Center" WidthRequest="335" Padding="0,20,0,20">
         <SearchBar x:Name="GuarantorSearch" Placeholder="Buscar Fiador..." />
         <RefreshView>

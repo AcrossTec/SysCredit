@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Local="clr-namespace:SysCredit"
-             xmlns:Controls="clr-namespace:SysCredit.Controls"
-             xmlns:Models="clr-namespace:SysCredit.Models.Customers.Creates"
-             xmlns:ViewModels="clr-namespace:SysCredit.ViewModels.Customers"
-             xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:Input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
-             xmlns:Validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
-             xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
-             xmlns:Icon="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
-             xmlns:UraniumUI="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
-             xmlns:Theming="clr-namespace:UraniumUI.Theming;assembly=UraniumUI"
-             xmlns:Behavior="clr-namespace:SysCredit.Behaviors"
-             xmlns:The49="https://schemas.the49.com/dotnet/2023/maui"
-             x:Class="SysCredit.Views.Customers.CustomerRegistrationPage"
-             x:DataType="ViewModels:CustomerRegistrationViewModel"
-             x:Name="Self"
-             Title="Nuevo Cliente"
-             Shell.ForegroundColor="{StaticResource White}"
-             Shell.BackgroundColor="{StaticResource Primary}">
+<UraniumUI:UraniumContentPage
+        xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:Local="clr-namespace:SysCredit"
+        xmlns:Controls="clr-namespace:SysCredit.Controls"
+        xmlns:Converters="clr-namespace:SysCredit.Converters"
+        xmlns:Models="clr-namespace:SysCredit.Models.Customers.Creates"
+        xmlns:ViewModels="clr-namespace:SysCredit.ViewModels.Customers"
+        xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+        xmlns:Input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
+        xmlns:Validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
+        xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+        xmlns:Icon="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
+        xmlns:UraniumUI="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+        xmlns:Theming="clr-namespace:UraniumUI.Theming;assembly=UraniumUI"
+        xmlns:Behavior="clr-namespace:SysCredit.Behaviors"
+        xmlns:The49="https://schemas.the49.com/dotnet/2023/maui"
+        x:Class="SysCredit.Views.Customers.CustomerRegistrationPage"
+        x:DataType="ViewModels:CustomerRegistrationViewModel"
+        x:Name="Self"
+        Title="Nuevo Cliente"
+        Shell.ForegroundColor="{StaticResource White}"
+        Shell.BackgroundColor="{StaticResource Primary}">
     <ContentPage.Behaviors>
         <ToolKit:StatusBarBehavior StatusBarColor="{StaticResource Secondary}" StatusBarStyle="LightContent" />
     </ContentPage.Behaviors>
-    <Shell.BackButtonBehavior>
+
+    <!--<Shell.BackButtonBehavior>
         <BackButtonBehavior IconOverride="{FontImage &#xf177;, FontFamily=FontAwesomeSolid, Color=White}" />
-    </Shell.BackButtonBehavior>
+    </Shell.BackButtonBehavior>-->
+
     <Shell.TitleView>
         <Controls:TitleView
             Text="{Binding Source={x:Reference Self}, Path=Title}" TextColor="White"
             FontSize="20" FontAttributes="None" FontFamily="InterLight"
             HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
     </Shell.TitleView>
-    <ContentPage.BindingContext>
-        <ViewModels:CustomerRegistrationViewModel />
-    </ContentPage.BindingContext>
+
     <ContentPage.Resources>
 
         <Style TargetType="Material:TextField" ApplyToDerivedTypes="True">
@@ -73,7 +75,19 @@
     </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout Margin="0,20,0,20" WidthRequest="340">
-            <Input:FormView Spacing="10" SubmitCommand="{Binding RegisterCustomerCommand}">
+            <Controls:FormView Spacing="10" SubmitCommand="{Binding SubmitCustomerCommand}" ResetCommand="{Binding ResetCustomerCommand}">
+
+                <Controls:FormView.Resources>
+                    <Converters:MessageIfCollectionIsEmptyConverter
+                        x:Key="ReferencesMessageIfIsEmptyConverter"
+                        MessageIfCollectionIsEmpty="Sin Referencias"
+                        DefaultConvertReturnValue="\{Count} Referencias" />
+
+                    <Converters:MessageIfCollectionIsEmptyConverter
+                        x:Key="GuarantorsMessageIfIsEmptyConverter"
+                        MessageIfCollectionIsEmpty="Sin Fiadores"
+                        DefaultConvertReturnValue="\{Count} Fiadores" />
+                </Controls:FormView.Resources>
 
                 <!-- Sección -->
 
@@ -220,7 +234,8 @@
                             VerticalOptions="Center" HorizontalOptions="Center" />
                         <Label
                             Grid.Column="1"
-                            Text="Sin Referencias" TextColor="#8A8A8A"
+                            Text="{Binding Model.References, Converter={StaticResource ReferencesMessageIfIsEmptyConverter}}"
+                            TextColor="#8A8A8A"
                             FontSize="15" FontFamily="InterBold" FontAttributes="Italic"
                             VerticalOptions="Center" HorizontalOptions="StartAndExpand"
                             VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
@@ -265,7 +280,8 @@
                             VerticalOptions="Center" HorizontalOptions="Center" />
                         <Label
                             Grid.Column="1"
-                            Text="Sin Fiadores" TextColor="#8A8A8A"
+                            Text="{Binding Model.Guarantors, Converter={StaticResource GuarantorsMessageIfIsEmptyConverter}}"
+                            TextColor="#8A8A8A"
                             FontSize="15" FontFamily="InterBold" FontAttributes="Italic"
                             VerticalOptions="Center" HorizontalOptions="StartAndExpand"
                             VerticalTextAlignment="Center" HorizontalTextAlignment="Start" />
@@ -284,7 +300,7 @@
 
                 <Button Text="Submit" Input:FormView.IsSubmitButton="True" StyleClass="FilledButton,PrimaryFilledButton" Margin="0,20,0,0" />
                 <Button Text="Reset" Input:FormView.IsResetButton="True" StyleClass="OutlinedButton,AccentOutlinedButton" Margin="0,0,0,20"  BackgroundColor="{StaticResource Accent}" />
-            </Input:FormView>
+            </Controls:FormView>
         </VerticalStackLayout>
     </ScrollView>
-</ContentPage>
+</UraniumUI:UraniumContentPage>

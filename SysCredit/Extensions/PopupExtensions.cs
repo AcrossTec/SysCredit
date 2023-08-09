@@ -6,6 +6,7 @@ using Microsoft.Maui.Controls;
 using Mopups.Services;
 
 using SysCredit.Controls;
+using SysCredit.Extensions;
 
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -22,7 +23,7 @@ public static class Popups
         var Popup = new SysCreditPopup
         {
             Text = Text,
-            WidthRequest = GetCurrentPage().Width,
+            WidthRequest = Application.Current!.GetCurrentPage().Width,
             OkCommand = new Command(Parameter =>
             {
                 OkCommand?.Execute(Parameter);
@@ -36,7 +37,8 @@ public static class Popups
                 TaskSource.TrySetResult(false);
                 MopupService.Instance.PopAsync();
             }),
-            CancelCommandParameter = CancelCommandParameter
+            CancelCommandParameter = CancelCommandParameter,
+            Parent = Application.Current!.GetCurrentPage(),
         };
 
         Popup.BackgroundClickedCommand = new Command(Parameter =>
@@ -70,16 +72,5 @@ public static class Popups
 
         await MopupService.Instance.PushAsync(Popup);
         return await TaskSource.Task;
-    }
-
-    public static Page GetCurrentPage()
-    {
-        return Application.Current!.MainPage switch
-        {
-            Shell Shell => Shell.CurrentPage,
-            NavigationPage Nav => Nav.CurrentPage,
-            TabbedPage Tabbed => Tabbed.CurrentPage,
-            _ => Application.Current.MainPage!
-        };
     }
 }

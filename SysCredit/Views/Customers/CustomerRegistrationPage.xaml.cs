@@ -1,9 +1,8 @@
 namespace SysCredit.Views.Customers;
 
-using System;
-using System.Windows.Input;
+using UraniumUI.Pages;
 
-public partial class CustomerRegistrationPage : ContentPage
+public partial class CustomerRegistrationPage : UraniumContentPage
 {
     public CustomerRegistrationPage()
     {

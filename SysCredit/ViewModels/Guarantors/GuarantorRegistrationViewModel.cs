@@ -30,7 +30,7 @@ public partial class GuarantorRegistrationViewModel : ViewModelBase
     {
     }
 
-    public FormView? Form { get; set; }
+    public InputKit.Shared.Controls.FormView? Form { get; set; }
 
     public CreateGuarantor Model { get; } = new();
 
