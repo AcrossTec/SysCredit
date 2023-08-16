@@ -2,14 +2,15 @@
 
 using Microsoft.AspNetCore.Mvc;
 
-using SysCredit.Api.DataTransferObject.Commons;
-using SysCredit.Api.DataTransferObject.StoredProcedures;
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Helpers;
 using SysCredit.Api.Interfaces;
-using SysCredit.Api.Stores;
 using SysCredit.Api.ViewModels;
 using SysCredit.Api.ViewModels.Customers;
+
+using SysCredit.DataTransferObject.Commons;
+using SysCredit.DataTransferObject.StoredProcedures;
+
+using SysCredit.Helpers;
 
 [ApiController]
 [Route("Api/[Controller]")]

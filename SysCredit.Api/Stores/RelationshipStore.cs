@@ -2,9 +2,10 @@
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
-using SysCredit.Api.DataTransferObject.Commons;
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Models;
+
+using SysCredit.DataTransferObject.Commons;
+using SysCredit.Models;
 
 [Store]
 [ErrorCategory(ErrorCategories.RelationshipStore)]

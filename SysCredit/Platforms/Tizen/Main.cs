@@ -1,18 +1,17 @@
-namespace SysCredit
+namespace SysCredit.Mobile;
+
+using Microsoft.Maui;
+using Microsoft.Maui.Hosting;
+
+using System;
+
+internal class Program : MauiApplication
 {
-    using Microsoft.Maui;
-    using Microsoft.Maui.Hosting;
+    protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
 
-    using System;
-
-    internal class Program : MauiApplication
+    static void Main(string[] args)
     {
-        protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
-
-        static void Main(string[] args)
-        {
-            var app = new Program();
-            app.Run(args);
-        }
+        var app = new Program();
+        app.Run(args);
     }
 }

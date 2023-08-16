@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:Skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
-             x:Class="SysCredit.Views.SplashScreenPage"
+             x:Class="SysCredit.Mobile.Views.SplashScreenPage"
              BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}"
              Title="SplashScreenPage">
     <ContentPage.Behaviors>

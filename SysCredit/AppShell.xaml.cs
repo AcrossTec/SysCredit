@@ -1,8 +1,8 @@
-﻿namespace SysCredit;
+﻿namespace SysCredit.Mobile;
 
-using SysCredit.Views;
-using SysCredit.Views.Customers;
-using SysCredit.Views.Loans;
+using SysCredit.Mobile.Views;
+using SysCredit.Mobile.Views.Customers;
+using SysCredit.Mobile.Views.Loans;
 
 using System.Windows.Input;
 

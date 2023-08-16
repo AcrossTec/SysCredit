@@ -1,6 +1,6 @@
-﻿namespace SysCredit.Api.DataTransferObject.Commons;
+﻿namespace SysCredit.DataTransferObject.Commons;
 
-using SysCredit.Api.Enums;
+using SysCredit.Enums;
 
 public record class ReferenceInfo : IDataTransferObject
 {

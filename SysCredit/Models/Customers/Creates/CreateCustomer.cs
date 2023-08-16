@@ -1,8 +1,8 @@
-﻿namespace SysCredit.Models.Customers.Creates;
+﻿namespace SysCredit.Mobile.Models.Customers.Creates;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
-using SysCredit.Validations;
+using SysCredit.Mobile.Validations;
 
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;

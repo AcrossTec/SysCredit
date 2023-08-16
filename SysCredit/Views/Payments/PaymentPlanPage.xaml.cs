@@ -1,4 +1,4 @@
-namespace SysCredit.Views.Payments;
+namespace SysCredit.Mobile.Views.Payments;
 
 public partial class paymentPlanPage : ContentPage
 {

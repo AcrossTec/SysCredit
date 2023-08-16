@@ -1,6 +1,6 @@
-﻿namespace SysCredit.Services.Settings;
+﻿namespace SysCredit.Mobile.Services.Settings;
 
-using SysCredit.Settings;
+using SysCredit.Mobile.Settings;
 
 using System;
 using System.Collections.Generic;

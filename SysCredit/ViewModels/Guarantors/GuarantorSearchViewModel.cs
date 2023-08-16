@@ -1,9 +1,9 @@
-﻿namespace SysCredit.ViewModels.Guarantors;
+﻿namespace SysCredit.Mobile.ViewModels.Guarantors;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
-using SysCredit.Views.Guarantors;
+using SysCredit.Mobile.Views.Guarantors;
 
 using System;
 using System.Collections.Generic;
@@ -17,11 +17,5 @@ public partial class GuarantorSearchViewModel : ViewModelBase
     [RelayCommand]
     private void PerformSearch(string Query)
     {
-    }
-
-    [RelayCommand]
-    private async Task GoToGuarantorRegistrationPage()
-    {
-        await Shell.Current.GoToAsync(nameof(GuarantorRegistrationPage));
     }
 }

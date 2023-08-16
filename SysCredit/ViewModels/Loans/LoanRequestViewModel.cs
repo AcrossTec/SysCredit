@@ -1,4 +1,4 @@
-﻿namespace SysCredit.ViewModels.Loans;
+﻿namespace SysCredit.Mobile.ViewModels.Loans;
 
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿namespace SysCredit;
+﻿namespace SysCredit.Mobile;
 
 using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Markup;
@@ -11,12 +11,12 @@ using Mopups.Hosting;
 
 using DotNurse.Injector;
 
-using SysCredit.Messages;
-using SysCredit.Services;
-using SysCredit.Services.Settings;
-using SysCredit.Views.Customers;
-using SysCredit.Views.Guarantors;
-using SysCredit.Views.Loans;
+using SysCredit.Mobile.Messages;
+using SysCredit.Mobile.Services;
+using SysCredit.Mobile.Services.Settings;
+using SysCredit.Mobile.Views.Customers;
+using SysCredit.Mobile.Views.Guarantors;
+using SysCredit.Mobile.Views.Loans;
 
 using UraniumUI;
 using SkiaSharp.Views.Maui.Controls.Hosting;
@@ -25,6 +25,9 @@ using SkiaSharp.Views.Maui.Controls;
 using The49.Maui.ContextMenu;
 using The49.Maui.Insets;
 using The49.Maui.BottomSheet;
+
+using Sharpnado.CollectionView;
+using Sharpnado.Tabs;
 
 public static partial class MauiProgram
 {
@@ -42,6 +45,8 @@ public static partial class MauiProgram
             .UseUraniumUIMaterial()
             .UseUraniumUIBlurs(false)
             .UseUraniumUIWebComponents()
+            .UseSharpnadoTabs(loggerEnable: false)
+            .UseSharpnadoCollectionView(loggerEnable: false)
             .UseSkiaSharp()
             .UseInsets()
             .UseContextMenu()

@@ -1,10 +1,12 @@
 ﻿namespace SysCredit.Api.Interfaces;
 
-using SysCredit.Api.DataTransferObject.Commons;
-using SysCredit.Api.DataTransferObject.StoredProcedures;
-using SysCredit.Api.Helpers;
 using SysCredit.Api.ViewModels;
 using SysCredit.Api.ViewModels.Guarantors;
+
+using SysCredit.DataTransferObject.Commons;
+using SysCredit.DataTransferObject.StoredProcedures;
+
+using SysCredit.Helpers;
 
 public interface IGuarantorService
 {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Controls="clr-namespace:SysCredit.Controls"
+             xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
              xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:System="clr-namespace:System;assembly=netstandard"
-             x:Class="SysCredit.Views.AboutPage"
+             x:Class="SysCredit.Mobile.Views.AboutPage"
              Title="{Binding Source={StaticResource CompanyName}, StringFormat='Sobre {0}'}"
              Shell.ForegroundColor="{StaticResource White}"
              Shell.BackgroundColor="{StaticResource Primary}">

@@ -1,8 +1,9 @@
 ﻿namespace SysCredit.Api.ViewModels.Guarantors;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.Enums;
 using SysCredit.Api.Validations.Guarantors;
+
+using SysCredit.Enums;
 
 [Validator<CreateGuarantorValidator>]
 public class CreateGuarantorRequest : IViewModel

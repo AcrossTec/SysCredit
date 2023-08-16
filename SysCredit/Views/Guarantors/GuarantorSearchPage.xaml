@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Local="clr-namespace:SysCredit"
+             xmlns:Local="clr-namespace:SysCredit.Mobile"
              xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:Controls="clr-namespace:SysCredit.Controls"
-             xmlns:ViewModels="clr-namespace:SysCredit.ViewModels.Guarantors"
-             x:Class="SysCredit.Views.Guarantors.GuarantorSearchPage"
+             xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
+             xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Guarantors"
+             xmlns:Input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
+             xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:UraniumUI="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+             x:Class="SysCredit.Mobile.Views.Guarantors.GuarantorSearchPage"
              x:Name="Self"
              Shell.ForegroundColor="{StaticResource White}"
              Shell.BackgroundColor="{StaticResource Primary}"
@@ -13,6 +16,7 @@
     <ContentPage.Behaviors>
         <Toolkit:StatusBarBehavior StatusBarColor="{StaticResource Secondary}" StatusBarStyle="LightContent" />
     </ContentPage.Behaviors>
+
     <Shell.TitleView>
         <Controls:TitleView
             Text="{Binding Source={x:Reference Self}, Path=Title}" TextColor="White"
@@ -29,11 +33,10 @@
     </ContentPage.BindingContext>
 
     <VerticalStackLayout HorizontalOptions="Center" WidthRequest="335" Padding="0,20,0,20">
+        <!--<Material:TextField Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf002;}" Title="Buscar Fiador..." AllowClear="True" />-->
         <SearchBar x:Name="GuarantorSearch" Placeholder="Buscar Fiador..." />
-        <RefreshView>
-            <ScrollView>
-                <ListView />
-            </ScrollView>
-        </RefreshView>
+        <ScrollView>
+            <ListView />
+        </ScrollView>
     </VerticalStackLayout>
 </ContentPage>

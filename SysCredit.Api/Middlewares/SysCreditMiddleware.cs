@@ -6,7 +6,8 @@ using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Helpers;
+
+using SysCredit.Helpers;
 
 using System.Data.SqlClient;
 using System.Text.Json;

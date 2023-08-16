@@ -1,6 +1,6 @@
-namespace SysCredit.Controls;
+namespace SysCredit.Mobile.Controls;
 
-using SysCredit.Controls.Parameters;
+using SysCredit.Mobile.Controls.Parameters;
 
 using System.Windows.Input;
 

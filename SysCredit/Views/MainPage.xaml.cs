@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Views;
+﻿namespace SysCredit.Mobile.Views;
 
 using CommunityToolkit.Maui.Markup;
 using CommunityToolkit.Mvvm.Messaging;
@@ -6,9 +6,9 @@ using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 
-using SysCredit.Messages;
-using SysCredit.Views.Customers;
-using SysCredit.Views.Loans;
+using SysCredit.Mobile.Messages;
+using SysCredit.Mobile.Views.Customers;
+using SysCredit.Mobile.Views.Loans;
 
 using System;
 

@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Services;
+﻿namespace SysCredit.Mobile.Services;
 
 public interface INavigationService
 {

@@ -1,8 +1,9 @@
 ﻿namespace SysCredit.Api.ViewModels.References;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.Enums;
 using SysCredit.Api.Validations.References;
+
+using SysCredit.Enums;
 
 [Validator<CreateReferenceValidator>]
 public record class CreateReferenceRequest : IViewModel

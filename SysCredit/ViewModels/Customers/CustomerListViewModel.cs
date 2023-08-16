@@ -1,4 +1,4 @@
-﻿namespace SysCredit.ViewModels.Customers;
+﻿namespace SysCredit.Mobile.ViewModels.Customers;
 
 using System;
 using System.Collections.Generic;

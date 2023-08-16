@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Converters;
+﻿namespace SysCredit.Mobile.Converters;
 
 using CommunityToolkit.Maui.Converters;
 

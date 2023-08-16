@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Settings;
+﻿namespace SysCredit.Mobile.Settings;
 
 public class GlobalSetting
 {

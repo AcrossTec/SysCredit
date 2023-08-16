@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Models;
+﻿namespace SysCredit.Mobile.Models;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;

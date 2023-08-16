@@ -1,4 +1,4 @@
-﻿namespace SysCredit.ViewModels.Customers;
+﻿namespace SysCredit.Mobile.ViewModels.Customers;
 
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
@@ -8,10 +8,10 @@ using CommunityToolkit.Mvvm.Messaging;
 
 using Mopups.Services;
 
-using SysCredit.Controls.Parameters;
-using SysCredit.Extensions;
-using SysCredit.Messages;
-using SysCredit.Models.Customers.Creates;
+using SysCredit.Mobile.Controls.Parameters;
+using SysCredit.Mobile.Extensions;
+using SysCredit.Mobile.Messages;
+using SysCredit.Mobile.Models.Customers.Creates;
 
 using System.Threading.Tasks;
 
@@ -24,26 +24,13 @@ public partial class ReferenceRegistrationViewModel : ViewModelBase
     private async Task RegisterReference()
     {
         Messenger.Send(new ValueMessage<CreateReference>(Model));
-
-        // TODO: Crear animación dentro del mismo BottomSheet
-
-        if (await Popups.ShowSysCreditPopup("Referencia agregada correctamente.\n¿Agregar otra referencia?", "Si", "No"))
-        {
-            Model = new();
-        }
-        else
-        {
-            await MopupService.Instance.PopAsync();
-        }
+        await Popups.ShowSysCreditPopup("Referencia agregada correctamente", "Aceptar");
+        Model = new();
     }
 
     [RelayCommand]
     private async Task ResetReference(FormResetCommandParameter Parameter)
     {
-        // TODO: Crear modal dentro del mismo BottomSheet
-
-        await Application.Current!.GetCurrentPage().DisplaySnackbar(
-             "¿Desea borrar el contenido de todos los campos?",
-             Parameter.FormReset, "Si");
+        await Popups.ShowSysCreditPopup("¿Desea borrar el contenido de todos los campos?", "Aceptar", "Cancelar");
     }
 }

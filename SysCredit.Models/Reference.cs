@@ -1,6 +1,6 @@
-﻿namespace SysCredit.Api.Models;
+﻿namespace SysCredit.Models;
 
-using SysCredit.Api.Enums;
+using SysCredit.Enums;
 
 public record class Reference : Entity
 {

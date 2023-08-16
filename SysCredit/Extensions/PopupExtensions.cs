@@ -1,12 +1,12 @@
-﻿namespace SysCredit;
+﻿namespace SysCredit.Mobile;
 
 using Microsoft.Extensions.Options;
 using Microsoft.Maui.Controls;
 
 using Mopups.Services;
 
-using SysCredit.Controls;
-using SysCredit.Extensions;
+using SysCredit.Mobile.Controls;
+using SysCredit.Mobile.Extensions;
 
 using System.Threading.Tasks;
 using System.Windows.Input;

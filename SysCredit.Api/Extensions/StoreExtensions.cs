@@ -2,12 +2,11 @@
 
 using Dapper;
 
-using SysCredit.Api.Models;
 using SysCredit.Api.Stores;
 
+using SysCredit.Models;
+
 using System.Data;
-using System.Data.Common;
-using System.Data.SqlClient;
 
 public static class StoreExtensions
 {

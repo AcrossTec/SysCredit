@@ -2,7 +2,7 @@
 
 using Microsoft.Extensions.Options;
 
-using SysCredit.Api.Models;
+using SysCredit.Models;
 
 using System.Data.SqlClient;
 using System.Text.Json;

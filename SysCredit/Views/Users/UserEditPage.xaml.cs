@@ -1,9 +1,9 @@
-namespace SysCredit.Views.Users;
+namespace SysCredit.Mobile.Views.Users;
 
 public partial class UserEditPage : ContentPage
 {
-	public UserEditPage()
-	{
-		InitializeComponent();
-	}
+    public UserEditPage()
+    {
+        InitializeComponent();
+    }
 }

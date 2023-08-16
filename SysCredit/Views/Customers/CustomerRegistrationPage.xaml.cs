@@ -1,4 +1,4 @@
-namespace SysCredit.Views.Customers;
+namespace SysCredit.Mobile.Views.Customers;
 
 using UraniumUI.Pages;
 

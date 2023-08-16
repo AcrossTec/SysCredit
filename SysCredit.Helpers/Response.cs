@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Api.Helpers;
+﻿namespace SysCredit.Helpers;
 
 using System.Text.Json.Serialization;
 
@@ -40,4 +40,3 @@ public interface IServiceResult<out T> : IResponse<T>
 public record class ServiceResult<T> : Response<T>, IServiceResult<T>
 {
 }
-

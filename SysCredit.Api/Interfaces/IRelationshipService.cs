@@ -1,6 +1,6 @@
 ﻿namespace SysCredit.Api.Interfaces;
 
-using SysCredit.Api.DataTransferObject.Commons;
+using SysCredit.DataTransferObject.Commons;
 
 public interface IRelationshipService
 {

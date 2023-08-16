@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Api.Enums;
+﻿namespace SysCredit.Enums;
 
 public enum Gender
 {

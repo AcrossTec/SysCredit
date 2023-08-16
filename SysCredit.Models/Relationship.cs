@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Api.Models;
+﻿namespace SysCredit.Models;
 
 public record class Relationship : Entity
 {

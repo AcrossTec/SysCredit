@@ -1,9 +1,9 @@
-namespace SysCredit.Views.Users;
+namespace SysCredit.Mobile.Views.Users;
 
 public partial class UserListPage : ContentPage
 {
-	public UserListPage()
-	{
-		InitializeComponent();
-	}
+    public UserListPage()
+    {
+        InitializeComponent();
+    }
 }

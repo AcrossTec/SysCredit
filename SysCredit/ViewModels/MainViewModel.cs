@@ -1,10 +1,9 @@
-﻿namespace SysCredit.ViewModels;
+﻿namespace SysCredit.Mobile.ViewModels;
 
 using CommunityToolkit.Mvvm.Input;
 
-using SysCredit.Helpers;
-using SysCredit.Views.Customers;
-using SysCredit.Views.Loans;
+using SysCredit.Mobile.Views.Customers;
+using SysCredit.Mobile.Views.Loans;
 
 using System;
 using System.Collections.Generic;
