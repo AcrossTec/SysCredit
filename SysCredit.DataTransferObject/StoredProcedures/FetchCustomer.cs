@@ -1,6 +1,6 @@
-﻿namespace SysCredit.Api.DataTransferObject.StoredProcedures;
+﻿namespace SysCredit.DataTransferObject.StoredProcedures;
 
-using SysCredit.Api.Enums;
+using SysCredit.Enums;
 
 public record class FetchCustomer
 {

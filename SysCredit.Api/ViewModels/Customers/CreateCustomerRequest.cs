@@ -1,10 +1,10 @@
 ﻿namespace SysCredit.Api.ViewModels.Customers;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.Enums;
-using SysCredit.Api.Models;
 using SysCredit.Api.Validations.Customers;
 using SysCredit.Api.ViewModels.References;
+
+using SysCredit.Enums;
 
 [Validator<CreateCustomerValidator>]
 public class CreateCustomerRequest : IViewModel

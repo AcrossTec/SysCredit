@@ -8,7 +8,7 @@
 
     <UseMaui>true</UseMaui>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SysCredit</RootNamespace>
+    <RootNamespace>SysCredit.Mobile</RootNamespace>
     <SingleProject>true</SingleProject>
     <ImplicitUsings>enable</ImplicitUsings>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
@@ -139,19 +139,16 @@
   <ItemGroup>
     <Folder Include="EventArgs\" />
     <Folder Include="Handlers\" />
+    <Folder Include="Helpers\" />
     <Folder Include="ViewModels\Controls\" />
     <Folder Include="ViewModels\Users\" />
     <Folder Include="ViewModels\Payments\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\Customers\ReferenceListPage.xaml.cs">
-      <DependentUpon>ReferenceListPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Customers\ReferenceRegistrationPage.xaml.cs">
-      <DependentUpon>ReferenceRegistrationPage.xaml</DependentUpon>
-    </Compile>
+    <ProjectReference Include="..\SysCredit.DataTransferObject\SysCredit.DataTransferObject.csproj" />
+    <ProjectReference Include="..\SysCredit.Helpers\SysCredit.Helpers.csproj" />
+    <ProjectReference Include="..\SysCredit.Models\SysCredit.Models.csproj" />
   </ItemGroup>
-
 
 </Project>

@@ -1,8 +1,8 @@
-﻿namespace SysCredit.Api.DataTransferObject.StoredProcedures;
+﻿namespace SysCredit.Models;
 
-using SysCredit.Api.Enums;
+using SysCredit.Enums;
 
-public record class FetchGuarantor : IDataTransferObject
+public record class Guarantor : Entity
 {
     public long GuarantorId { get; set; }
 

@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Controls.Parameters;
+﻿namespace SysCredit.Mobile.Controls.Parameters;
 
 public class FormResetCommandParameter
 {

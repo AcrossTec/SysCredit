@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Validations;
+﻿namespace SysCredit.Mobile.Validations;
 
 using System;
 using System.Collections;

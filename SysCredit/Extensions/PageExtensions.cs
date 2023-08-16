@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Extensions;
+﻿namespace SysCredit.Mobile.Extensions;
 
 public static class PageExtensions
 {

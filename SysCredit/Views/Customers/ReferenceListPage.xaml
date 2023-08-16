@@ -2,10 +2,10 @@
 <ContentPage
         xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-        xmlns:Controls="clr-namespace:SysCredit.Controls"
+        xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
         xmlns:Maui="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
-        xmlns:ViewModels="clr-namespace:SysCredit.ViewModels.Customers"
-        x:Class="SysCredit.Views.Customers.ReferenceListPage"
+        xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Customers"
+        x:Class="SysCredit.Mobile.Views.Customers.ReferenceListPage"
         x:Name="Self"
         Shell.ForegroundColor="{StaticResource White}"
         Shell.BackgroundColor="{StaticResource Primary}"
@@ -18,7 +18,7 @@
             HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
     </Shell.TitleView>
 
-    <FlexLayout Direction="Column" Wrap="Wrap" JustifyContent="Center" AlignItems="Center">
+    <FlexLayout Direction="Column" Wrap="Wrap" JustifyContent="Center" AlignItems="Center" AlignContent="Center">
         <Label Text="Lista de Referencias" TextColor="Black"
                FlexLayout.AlignSelf="Center" />
     </FlexLayout>

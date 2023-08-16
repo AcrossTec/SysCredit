@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Api.Helpers;
+﻿namespace SysCredit.Helpers;
 
 using System.Text.Json.Serialization;
 

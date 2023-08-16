@@ -2,11 +2,11 @@
 <UraniumUI:UraniumContentPage
         xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-        xmlns:Local="clr-namespace:SysCredit"
-        xmlns:Controls="clr-namespace:SysCredit.Controls"
-        xmlns:Converters="clr-namespace:SysCredit.Converters"
-        xmlns:Models="clr-namespace:SysCredit.Models.Customers.Creates"
-        xmlns:ViewModels="clr-namespace:SysCredit.ViewModels.Customers"
+        xmlns:Local="clr-namespace:SysCredit.Mobile"
+        xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
+        xmlns:Converters="clr-namespace:SysCredit.Mobile.Converters"
+        xmlns:Models="clr-namespace:SysCredit.Mobile.Models.Customers.Creates"
+        xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Customers"
         xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
         xmlns:Input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
         xmlns:Validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
@@ -14,9 +14,9 @@
         xmlns:Icon="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
         xmlns:UraniumUI="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
         xmlns:Theming="clr-namespace:UraniumUI.Theming;assembly=UraniumUI"
-        xmlns:Behavior="clr-namespace:SysCredit.Behaviors"
+        xmlns:Behavior="clr-namespace:SysCredit.Mobile.Behaviors"
         xmlns:The49="https://schemas.the49.com/dotnet/2023/maui"
-        x:Class="SysCredit.Views.Customers.CustomerRegistrationPage"
+        x:Class="SysCredit.Mobile.Views.Customers.CustomerRegistrationPage"
         x:DataType="ViewModels:CustomerRegistrationViewModel"
         x:Name="Self"
         Title="Nuevo Cliente"
@@ -81,12 +81,12 @@
                     <Converters:MessageIfCollectionIsEmptyConverter
                         x:Key="ReferencesMessageIfIsEmptyConverter"
                         MessageIfCollectionIsEmpty="Sin Referencias"
-                        DefaultConvertReturnValue="\{Count} Referencias" />
+                        DefaultConvertReturnValue="Referencias: {Count}" />
 
                     <Converters:MessageIfCollectionIsEmptyConverter
                         x:Key="GuarantorsMessageIfIsEmptyConverter"
                         MessageIfCollectionIsEmpty="Sin Fiadores"
-                        DefaultConvertReturnValue="\{Count} Fiadores" />
+                        DefaultConvertReturnValue="Fiadores: {Count}" />
                 </Controls:FormView.Resources>
 
                 <!-- Sección -->

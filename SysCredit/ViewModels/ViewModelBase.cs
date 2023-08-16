@@ -1,4 +1,4 @@
-﻿namespace SysCredit.ViewModels;
+﻿namespace SysCredit.Mobile.ViewModels;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;

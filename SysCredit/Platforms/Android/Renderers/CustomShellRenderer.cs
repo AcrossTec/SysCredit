@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Platforms.Android.Renderers;
+﻿namespace SysCredit.Mobile.Platforms.Android.Renderers;
 
 using global::Android.Content;
 using global::Android.Graphics;
@@ -68,7 +68,7 @@ internal class CustomSectionRenderer : ShellSectionRenderer, Google.Android.Mate
                 using var Constant = BaseDrawable.GetConstantState();
                 using var NewDrawable = Constant!.NewDrawable();
                 using var IconDrawable = NewDrawable.Mutate();
-                IconDrawable.SetColorFilter(SysCredit.Controls.TabLayout.GetTabIconTintColor(ShellSection).ToPlatform(Colors.White), FilterMode.SrcAtop);
+                IconDrawable.SetColorFilter(SysCredit.Mobile.Controls.TabLayout.GetTabIconTintColor(ShellSection).ToPlatform(Colors.White), FilterMode.SrcAtop);
                 Tab.SetIcon(IconDrawable);
             }
         });
@@ -96,12 +96,12 @@ internal class CustomSectionRenderer : ShellSectionRenderer, Google.Android.Mate
 
     private void OnTabLayoutTabUnselected(object? Sender, Google.Android.Material.Tabs.TabLayout.TabUnselectedEventArgs EventInfo)
     {
-        EventInfo.Tab?.Icon?.SetColorFilter(SysCredit.Controls.TabLayout.GetTabIconTintColor(ShellSection).ToPlatform(Colors.White), FilterMode.SrcAtop);
+        EventInfo.Tab?.Icon?.SetColorFilter(SysCredit.Mobile.Controls.TabLayout.GetTabIconTintColor(ShellSection).ToPlatform(Colors.White), FilterMode.SrcAtop);
     }
 
     private void OnTabLayoutTabSelected(object? Sender, Google.Android.Material.Tabs.TabLayout.TabSelectedEventArgs EventInfo)
     {
-        EventInfo.Tab?.Icon?.SetColorFilter(SysCredit.Controls.TabLayout.GetSelectedTabIndicatorColor(ShellSection).ToPlatform(Colors.White), FilterMode.SrcAtop);
+        EventInfo.Tab?.Icon?.SetColorFilter(SysCredit.Mobile.Controls.TabLayout.GetSelectedTabIndicatorColor(ShellSection).ToPlatform(Colors.White), FilterMode.SrcAtop);
     }
 
     public override void OnDestroy()
@@ -145,9 +145,9 @@ internal class CustomTabLayoutAppearanceTracker : ShellTabLayoutAppearanceTracke
     public override void SetAppearance(Google.Android.Material.Tabs.TabLayout TabLayout, ShellAppearance Appearance)
     {
         base.SetAppearance(TabLayout, Appearance);
-        TabLayout.SetTabTextColors(Color.White, SysCredit.Controls.TabLayout.GetSelectedTabIndicatorColor(ShellSection).ToPlatform(Colors.White));
-        TabLayout.SetBackgroundColor(SysCredit.Controls.TabLayout.GetBackgroundColor(ShellSection).ToPlatform(Colors.Transparent));
-        TabLayout.SetSelectedTabIndicatorColor(SysCredit.Controls.TabLayout.GetSelectedTabIndicatorColor(ShellSection).ToPlatform(Colors.White));
+        TabLayout.SetTabTextColors(Color.White, SysCredit.Mobile.Controls.TabLayout.GetSelectedTabIndicatorColor(ShellSection).ToPlatform(Colors.White));
+        TabLayout.SetBackgroundColor(SysCredit.Mobile.Controls.TabLayout.GetBackgroundColor(ShellSection).ToPlatform(Colors.Transparent));
+        TabLayout.SetSelectedTabIndicatorColor(SysCredit.Mobile.Controls.TabLayout.GetSelectedTabIndicatorColor(ShellSection).ToPlatform(Colors.White));
     }
 
     public override void ResetAppearance(Google.Android.Material.Tabs.TabLayout TabLayout)

@@ -1,4 +1,4 @@
-﻿namespace SysCredit.ViewModels;
+﻿namespace SysCredit.Mobile.ViewModels;
 
 using System;
 using System.Collections.Generic;

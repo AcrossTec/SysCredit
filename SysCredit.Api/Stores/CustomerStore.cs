@@ -4,14 +4,16 @@ using Dapper;
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
-using SysCredit.Api.DataTransferObject.Commons;
-using SysCredit.Api.DataTransferObject.StoredProcedures;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Helpers;
-using SysCredit.Api.Models;
 using SysCredit.Api.ViewModels;
 using SysCredit.Api.ViewModels.Customers;
+
+using SysCredit.DataTransferObject.Commons;
+using SysCredit.DataTransferObject.StoredProcedures;
+
+using SysCredit.Helpers;
+using SysCredit.Models;
 
 using System.Data;
 

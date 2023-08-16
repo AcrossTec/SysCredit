@@ -1,4 +1,4 @@
-﻿namespace SysCredit;
+﻿namespace SysCredit.Mobile;
 
 using Android.App;
 using Android.Runtime;

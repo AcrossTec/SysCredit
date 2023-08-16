@@ -1,4 +1,4 @@
-﻿namespace SysCredit.ViewModels.Customers;
+﻿namespace SysCredit.Mobile.ViewModels.Customers;
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -9,23 +9,30 @@ using Microsoft.Maui.Controls;
 
 using ReactiveUI;
 
-using SysCredit.Controls.Parameters;
-using SysCredit.Messages;
-using SysCredit.Models.Customers.Creates;
-using SysCredit.Views.Customers;
-using SysCredit.Views.Guarantors;
+using SysCredit.Mobile.Controls.Parameters;
+using SysCredit.Mobile.Messages;
+using SysCredit.Mobile.Models.Customers.Creates;
+using SysCredit.Mobile.Views.Customers;
+using SysCredit.Mobile.Views.Guarantors;
 
 using System.Threading.Tasks;
 
-public partial class CustomerRegistrationViewModel : ViewModelBase, IRecipient<ValueMessage<CreateReference>>
+public partial class CustomerRegistrationViewModel : ViewModelBase, IRecipient<ValueMessage<CreateReference>>, IRecipient<ValueMessage<CreateGuarantor>>
 {
     public CustomerRegistrationViewModel()
     {
-        Messenger.Register(this);
-        Model.ObservableForProperty(M => M.References).Subscribe(_ =>
+        Messenger.Register<ValueMessage<CreateReference>>(this);
+        Messenger.Register<ValueMessage<CreateGuarantor>>(this);
+
+        Model.References.CollectionChanged += delegate
         {
             OnPropertyChanged(nameof(Model));
-        });
+        };
+
+        Model.Guarantors.CollectionChanged += delegate
+        {
+            OnPropertyChanged(nameof(Model));
+        };
     }
 
     [ObservableProperty]
@@ -34,6 +41,11 @@ public partial class CustomerRegistrationViewModel : ViewModelBase, IRecipient<V
     public void Receive(ValueMessage<CreateReference> Message)
     {
         Model.References.Add(Message.Value);
+    }
+
+    public void Receive(ValueMessage<CreateGuarantor> Message)
+    {
+        Model.Guarantors.Add(Message.Value);
     }
 
     [RelayCommand]
@@ -74,34 +86,30 @@ public partial class CustomerRegistrationViewModel : ViewModelBase, IRecipient<V
     [RelayCommand]
     private async Task OpenGuarantorSearchBottomSheet()
     {
-        // var Sheet = new GuarantorSearchBottomSheet();
-        // await Sheet.ShowAsync(Shell.Current.Window);
+        await Shell.Current.GoToAsync("///Customer/Guarantor/Search");
     }
 
     [RelayCommand]
     private async Task OpenGuarantorListBottomSheet()
     {
-        // var Sheet = new GuarantorListBottomSheet { BindingContext = Model.Guarantors };
-        // await Sheet.ShowAsync(Shell.Current.Window);
+        await Shell.Current.GoToAsync("///Customer/Guarantor/List");
     }
 
     [RelayCommand]
     private async Task OpenGuarantorRegistrationBottomSheet()
     {
-        // await Shell.Current.GoToAsync(nameof(GuarantorRegistrationPage));
+        await Shell.Current.GoToAsync("///Customer/Guarantor/Registration");
     }
 
     [RelayCommand]
     private async Task OpenReferenceRegistrationBottomSheet()
     {
-        // var Sheet = new ReferenceRegistrationBottomSheet();
-        // await Sheet.ShowAsync(Shell.Current.Window);
+        await Shell.Current.GoToAsync("///Customer/Reference/Registration");
     }
 
     [RelayCommand]
     private async Task OpenReferenceListBottomSheet()
     {
-        // var Sheet = new ReferenceListBottomSheet { BindingContext = Model.References };
-        // await Sheet.ShowAsync(Shell.Current.Window);
+        await Shell.Current.GoToAsync("///Customer/Reference/List");
     }
 }

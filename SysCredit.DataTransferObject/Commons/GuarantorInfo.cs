@@ -1,8 +1,10 @@
-﻿namespace SysCredit.Api.DataTransferObject.Commons;
+﻿namespace SysCredit.DataTransferObject.Commons;
 
-using SysCredit.Api.Enums;
+using SysCredit.Enums;
 
 using System.Text.Json.Serialization;
+
+using static System.Text.Json.Serialization.JsonIgnoreCondition;
 
 public record class GuarantorInfo : IDataTransferObject
 {
@@ -28,9 +30,9 @@ public record class GuarantorInfo : IDataTransferObject
 
     public string Phone { get; set; } = string.Empty;
 
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonIgnore(Condition = WhenWritingNull)]
     public long? RelationshipId { get; set; }
 
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonIgnore(Condition = WhenWritingNull)]
     public string? RelationshipName { get; set; }
 }

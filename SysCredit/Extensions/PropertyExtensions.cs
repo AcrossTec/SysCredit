@@ -1,4 +1,4 @@
-﻿namespace SysCredit;
+﻿namespace SysCredit.Mobile;
 
 using System.Collections;
 using System.Runtime.CompilerServices;

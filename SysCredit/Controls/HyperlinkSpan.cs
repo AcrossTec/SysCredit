@@ -1,4 +1,4 @@
-namespace SysCredit.Controls;
+namespace SysCredit.Mobile.Controls;
 
 using CommunityToolkit.Mvvm.Input;
 

@@ -1,8 +1,8 @@
-﻿namespace SysCredit.ViewModels;
+﻿namespace SysCredit.Mobile.ViewModels;
 
 using CommunityToolkit.Mvvm.Input;
 
-using SysCredit.Services;
+using SysCredit.Mobile.Services;
 
 public interface IViewModelBase : IQueryAttributable
 {

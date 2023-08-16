@@ -1,12 +1,15 @@
 ﻿namespace SysCredit.Api.Validations.Guarantors;
 
-using FluentValidation.Validators;
 using FluentValidation;
-using SysCredit.Api.Stores;
+using FluentValidation.Validators;
+
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Models;
-using System.Threading.Tasks;
+using SysCredit.Api.Stores;
+
+using SysCredit.Models;
+
 using System.Threading;
+using System.Threading.Tasks;
 
 public class AsyncExistsGuarantorValidator<T> : AsyncPropertyValidator<T, long>
 {

@@ -1,10 +1,10 @@
-﻿namespace SysCredit.Api.Models;
+﻿namespace SysCredit.Models;
 
-using SysCredit.Api.Enums;
+using SysCredit.Enums;
 
-public record class Guarantor : Entity
+public record class Customer : Entity
 {
-    public long GuarantorId { get; set; }
+    public long CustomerId { get; set; }
 
     public string Identification { get; set; } = string.Empty;
 

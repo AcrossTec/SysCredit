@@ -6,8 +6,9 @@ using FluentValidation;
 using FluentValidation.Results;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.Helpers;
 using SysCredit.Api.ViewModels;
+
+using SysCredit.Helpers;
 
 using System.Data;
 using System.Reflection;

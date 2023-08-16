@@ -1,4 +1,4 @@
-namespace SysCredit.Views;
+namespace SysCredit.Mobile.Views;
 
 public partial class AboutPage : ContentPage
 {

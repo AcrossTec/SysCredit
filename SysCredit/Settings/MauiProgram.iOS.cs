@@ -1,4 +1,4 @@
-﻿namespace SysCredit;
+﻿namespace SysCredit.Mobile;
 
 public static partial class MauiProgram
 {

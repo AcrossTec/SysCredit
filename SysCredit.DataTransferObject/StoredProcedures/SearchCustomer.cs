@@ -1,9 +1,11 @@
-﻿namespace SysCredit.Api.DataTransferObject.StoredProcedures;
+﻿namespace SysCredit.DataTransferObject.StoredProcedures;
 
-using Newtonsoft.Json;
+using SysCredit.DataTransferObject.Commons;
+using SysCredit.Enums;
 
-using SysCredit.Api.DataTransferObject.Commons;
-using SysCredit.Api.Enums;
+using System.Text.Json.Serialization;
+
+using static Newtonsoft.Json.JsonConvert;
 
 public record class SearchCustomer
 {
@@ -29,18 +31,18 @@ public record class SearchCustomer
 
     public string Phone { get; set; } = string.Empty;
 
-    [System.Text.Json.Serialization.JsonIgnore]
+    [JsonIgnore]
     public string JsonReferences
     {
-        get => JsonConvert.SerializeObject(References);
-        set => References = JsonConvert.DeserializeObject<ReferenceInfo[]>(value)!;
+        get => SerializeObject(References);
+        set => References = DeserializeObject<ReferenceInfo[]>(value)!;
     }
 
-    [System.Text.Json.Serialization.JsonIgnore]
+    [JsonIgnore]
     public string JsonGuarantors
     {
-        get => JsonConvert.SerializeObject(Guarantors);
-        set => Guarantors = JsonConvert.DeserializeObject<GuarantorInfo[]>(value)!;
+        get => SerializeObject(Guarantors);
+        set => Guarantors = DeserializeObject<GuarantorInfo[]>(value)!;
     }
 
     public ReferenceInfo[] References { get; set; } = Array.Empty<ReferenceInfo>();

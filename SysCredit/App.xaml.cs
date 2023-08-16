@@ -1,8 +1,8 @@
-﻿namespace SysCredit;
+﻿namespace SysCredit.Mobile;
 
 using CommunityToolkit.Mvvm.Messaging;
 
-using SysCredit.Messages;
+using SysCredit.Mobile.Messages;
 
 public partial class App : Application
 {

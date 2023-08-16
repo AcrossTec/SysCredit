@@ -1,10 +1,11 @@
 ﻿namespace SysCredit.Api.Services;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.DataTransferObject.Commons;
 using SysCredit.Api.Interfaces;
-using SysCredit.Api.Models;
 using SysCredit.Api.Stores;
+
+using SysCredit.DataTransferObject.Commons;
+using SysCredit.Models;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;

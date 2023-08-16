@@ -1,10 +1,6 @@
 ﻿namespace SysCredit.Api.Extensions;
 
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-
-using SysCredit.Api.Helpers;
-using SysCredit.Api.ViewModels;
+using SysCredit.Helpers;
 
 public static class ResponseExtensions
 {

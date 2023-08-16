@@ -1,10 +1,10 @@
-namespace SysCredit.Views;
+namespace SysCredit.Mobile.Views;
 
 using CommunityToolkit.Mvvm.Messaging;
 
 using SkiaSharp.Extended.UI.Controls;
 
-using SysCredit.Messages;
+using SysCredit.Mobile.Messages;
 
 using System;
 

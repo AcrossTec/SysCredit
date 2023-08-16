@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Messages;
+﻿namespace SysCredit.Mobile.Messages;
 
 using CommunityToolkit.Mvvm.Messaging.Messages;
 

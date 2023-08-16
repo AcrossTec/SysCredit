@@ -1,6 +1,6 @@
 ﻿namespace SysCredit.Api.Exceptions;
 
-using SysCredit.Api.Helpers;
+using SysCredit.Helpers;
 
 public class SysCreditException : Exception
 {

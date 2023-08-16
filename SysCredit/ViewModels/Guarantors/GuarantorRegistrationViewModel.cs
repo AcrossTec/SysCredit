@@ -1,4 +1,4 @@
-﻿namespace SysCredit.ViewModels.Guarantors;
+﻿namespace SysCredit.Mobile.ViewModels.Guarantors;
 
 using System;
 using System.Collections.Generic;
@@ -19,10 +19,10 @@ using CommunityToolkit.Mvvm.Messaging;
 
 using InputKit.Shared.Controls;
 
-using SysCredit.Controls;
-using SysCredit.Messages;
-using SysCredit.Models;
-using SysCredit.Models.Customers.Creates;
+using SysCredit.Mobile.Controls;
+using SysCredit.Mobile.Messages;
+using SysCredit.Mobile.Models;
+using SysCredit.Mobile.Models.Customers.Creates;
 
 public partial class GuarantorRegistrationViewModel : ViewModelBase
 {
@@ -34,20 +34,12 @@ public partial class GuarantorRegistrationViewModel : ViewModelBase
 
     public CreateGuarantor Model { get; } = new();
 
-    [RelayCommand(CanExecute = nameof(CanRegisterGuarantor))]
+    [RelayCommand]
     private async Task RegisterGuarantor()
     {
-        WeakReferenceMessenger.Default.Send(new ValueMessage<CreateGuarantor>(Model));
+        Messenger.Send(new ValueMessage<CreateGuarantor>(Model));
         Form?.Reset();
 
-        if (!await Popups.ShowSysCreditPopup("¿Registrar otro fiador?", "Si", "No"))
-        {
-            await Shell.Current.GoToAsync("..");
-        }
-    }
-
-    private bool CanRegisterGuarantor()
-    {
-        return true;
+        await Popups.ShowSysCreditPopup("Fiador registrado correctamente");
     }
 }

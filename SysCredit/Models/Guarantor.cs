@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Models;
+﻿namespace SysCredit.Mobile.Models;
 
 using System;
 using System.Collections.Generic;

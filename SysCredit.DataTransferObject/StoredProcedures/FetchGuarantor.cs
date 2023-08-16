@@ -1,10 +1,10 @@
-﻿namespace SysCredit.Api.Models;
+﻿namespace SysCredit.DataTransferObject.StoredProcedures;
 
-using SysCredit.Api.Enums;
+using SysCredit.Enums;
 
-public record class Customer : Entity
+public record class FetchGuarantor : IDataTransferObject
 {
-    public long CustomerId { get; set; }
+    public long GuarantorId { get; set; }
 
     public string Identification { get; set; } = string.Empty;
 

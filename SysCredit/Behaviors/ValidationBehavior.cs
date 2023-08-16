@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Behaviors;
+﻿namespace SysCredit.Mobile.Behaviors;
 
 using Microsoft.Maui.Controls;
 

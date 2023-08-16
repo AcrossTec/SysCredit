@@ -4,8 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
-using SysCredit.Api.Models;
 using SysCredit.Api.Stores;
+
+using SysCredit.Models;
 
 using System.Reflection;
 
