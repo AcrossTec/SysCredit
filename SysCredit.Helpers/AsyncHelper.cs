@@ -35,4 +35,32 @@ public static class AsyncHelper
             return Function();
         }).Unwrap().GetAwaiter().GetResult();
     }
+
+    // ValueTask and ValueTask<T> do not have to support blocking on a call to GetResult when backed by an IValueTaskSource or IValueTaskSource<T> implementation.
+    // Convert to a Task or Task<T> to do so in case the task hasn't completed yet.
+
+    public static void Wait(ValueTask Task)
+    {
+        var Awaiter = Task.GetAwaiter();
+
+        if (!Awaiter.IsCompleted)
+        {
+            Task.AsTask().GetAwaiter().GetResult();
+            return;
+        }
+
+        Awaiter.GetResult();
+    }
+
+    public static T Wait<T>(ValueTask<T> Task)
+    {
+        var Awaiter = Task.GetAwaiter();
+
+        if (!Awaiter.IsCompleted)
+        {
+            return Task.AsTask().GetAwaiter().GetResult();
+        }
+
+        return Awaiter.GetResult();
+    }
 }

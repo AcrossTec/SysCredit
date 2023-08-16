@@ -2,8 +2,11 @@
 <ContentPage
         xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-        xmlns:Models="clr-namespace:SysCredit.Mobile.Models.Customers.Creates"
+        xmlns:Enums="clr-namespace:SysCredit.Enums;assembly=SysCredit.Models"
+        xmlns:Models="clr-namespace:SysCredit.Mobile.Models"
+        xmlns:CreateModels="clr-namespace:SysCredit.Mobile.Models.Customers.Creates"
         xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
+        xmlns:Converters="clr-namespace:SysCredit.Mobile.Converters"
         xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Customers"
         xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
         xmlns:Input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
@@ -12,6 +15,7 @@
         xmlns:Icon="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
         xmlns:Theming="clr-namespace:UraniumUI.Theming;assembly=UraniumUI"
         xmlns:Behavior="clr-namespace:SysCredit.Mobile.Behaviors"
+        xmlns:Scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
         Shell.ForegroundColor="{StaticResource White}"
         Shell.BackgroundColor="{StaticResource Primary}"
         x:Class="SysCredit.Mobile.Views.Customers.ReferenceRegistrationPage"
@@ -62,11 +66,9 @@
 
     <ScrollView>
         <VerticalStackLayout Margin="0,20,0,20" WidthRequest="340">
-            <Controls:FormView x:Name="Form" Spacing="10" SubmitCommand="{Binding RegisterReferenceCommand}" ResetCommand="{Binding ResetReferenceCommand}">
-
-                <Controls:FormView.BindingContext>
-                    <ViewModels:ReferenceRegistrationViewModel />
-                </Controls:FormView.BindingContext>
+            <Controls:FormView
+                x:Name="Form" x:DataType="ViewModels:ReferenceRegistrationViewModel" Spacing="10"
+                SubmitCommand="{Binding RegisterReferenceCommand}" ResetCommand="{Binding ResetReferenceCommand}">
 
                 <!-- Sección -->
 
@@ -80,7 +82,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf4ff;}"
                     Text="{Binding Model.Name}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateReference}" Path="Name" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateReference}" Path="Name" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -91,7 +93,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf5b7;}"
                     Text="{Binding Model.LastName}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateReference}" Path="LastName" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateReference}" Path="LastName" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -102,9 +104,28 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2c2;}"
                     Text="{Binding Model.Identification}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateReference}" Path="Identification" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateReference}" Path="Identification" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
+
+                <!-- Género -->
+
+                <Material:PickerField
+                    Title="Género"
+                    AllowClear="True"
+                    Icon="{FontImage FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Wc}}"
+                    ItemDisplayBinding="{Binding Value}"
+                    SelectedValueChangedCommand="{Binding GenderSelectedValueChangedCommand}">
+                    <Material:PickerField.ItemsSource>
+                        <x:Array Type="{x:Type Models:PickerData}">
+                            <Models:PickerData Data="{x:Static Enums:Gender.Male}" Value="Hombre" />
+                            <Models:PickerData Data="{x:Static Enums:Gender.Female}" Value="Mujer" />
+                        </x:Array>
+                    </Material:PickerField.ItemsSource>
+                    <Material:PickerField.Behaviors>
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateReference}" Path="Gender" />
+                    </Material:PickerField.Behaviors>
+                </Material:PickerField>
 
                 <!-- Correo -->
 
@@ -113,7 +134,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf0e0;}"
                     Text="{Binding Model.Email}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateReference}" Path="Email" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateReference}" Path="Email" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -124,7 +145,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf095;}"
                     Text="{Binding Model.Phone}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateReference}" Path="Phone" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateReference}" Path="Phone" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -135,7 +156,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2b9;}"
                     Text="{Binding Model.Address}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="Address" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="Address" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 

@@ -9,4 +9,8 @@ public static partial class MauiProgram
     private static void ConfigureEffects(IEffectsBuilder Effects)
     {
     }
+
+    private static void UseUserDialogs()
+    {
+    }
 }

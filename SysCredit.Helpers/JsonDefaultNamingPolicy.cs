@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Api;
+﻿namespace SysCredit.Helpers;
 
 using System.Runtime.CompilerServices;
 using System.Text.Json;

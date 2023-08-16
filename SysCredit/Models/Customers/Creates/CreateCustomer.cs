@@ -2,14 +2,23 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
+using DynamicData.Binding;
+
+using SysCredit.Enums;
 using SysCredit.Mobile.Validations;
 
-using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 public partial class CreateCustomer : ModelValidator
 {
-    [NotEmpty]
+    protected override void SettingCollectionProperties()
+    {
+        AddNotifyPropertyChanged(() => References);
+        AddNotifyPropertyChanged(() => Guarantors);
+    }
+
+    [Mandatory]
     [MinLength(14)]
     [MaxLength(16)]
     [RegularExpression(@"\d{3}-?\d{6}-?\d{4}[A-Za-z]{1}")]
@@ -22,11 +31,14 @@ public partial class CreateCustomer : ModelValidator
     [NotifyPropertyChangedFor(nameof(IsValid))]
     private string m_Identification = string.Empty;
 
+    [JsonIgnore]
     public IEnumerable<string> IdentificationErrors => GetPropertyErrors(nameof(Identification));
 
+    [JsonIgnore]
     public bool IdentificationIsValid => !IdentificationErrors.Any();
 
-    [NotEmpty]
+
+    [Mandatory]
     [MinLength(2)]
     [MaxLength(64)]
     [Display(Name = "Nombres")]
@@ -38,11 +50,14 @@ public partial class CreateCustomer : ModelValidator
     [NotifyPropertyChangedFor(nameof(IsValid))]
     private string m_Name = string.Empty;
 
+    [JsonIgnore]
     public IEnumerable<string> NameErrors => GetPropertyErrors(nameof(Name));
 
+    [JsonIgnore]
     public bool NameIsValid => !NameErrors.Any();
 
-    [NotEmpty]
+
+    [Mandatory]
     [MinLength(2)]
     [MaxLength(64)]
     [Display(Name = "Apellidos")]
@@ -54,9 +69,30 @@ public partial class CreateCustomer : ModelValidator
     [NotifyPropertyChangedFor(nameof(IsValid))]
     private string m_LastName = string.Empty;
 
+    [JsonIgnore]
     public IEnumerable<string> LastNameErrors => GetPropertyErrors(nameof(LastName));
 
+    [JsonIgnore]
     public bool LastNameIsValid => !LastNameErrors.Any();
+
+
+    [Required]
+    [Enum<Gender>]
+    [Display(Name = "Género")]
+    [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [NotifyPropertyChangedFor(nameof(GenderErrors))]
+    [NotifyPropertyChangedFor(nameof(GenderIsValid))]
+    [NotifyPropertyChangedFor(nameof(Errors))]
+    [NotifyPropertyChangedFor(nameof(IsValid))]
+    private Gender? m_Gender;
+
+    [JsonIgnore]
+    public IEnumerable<string> GenderErrors => GetPropertyErrors(nameof(Gender));
+
+    [JsonIgnore]
+    public bool GenderIsValid => !GenderErrors.Any();
+
 
     [EmailAddress]
     [MaxLength(64)]
@@ -69,12 +105,14 @@ public partial class CreateCustomer : ModelValidator
     [NotifyPropertyChangedFor(nameof(IsValid))]
     private string m_Email = string.Empty;
 
+    [JsonIgnore]
     public IEnumerable<string> EmailErrors => GetPropertyErrors(nameof(Email));
 
+    [JsonIgnore]
     public bool EmailIsValid => !EmailErrors.Any();
 
 
-    [NotEmpty]
+    [Mandatory]
     [MinLength(2)]
     [MaxLength(256)]
     [Display(Name = "Dirección")]
@@ -86,11 +124,14 @@ public partial class CreateCustomer : ModelValidator
     [NotifyPropertyChangedFor(nameof(IsValid))]
     private string m_Address = string.Empty;
 
+    [JsonIgnore]
     public IEnumerable<string> AddressErrors => GetPropertyErrors(nameof(Address));
 
+    [JsonIgnore]
     public bool AddressIsValid => !AddressErrors.Any();
 
-    [NotEmpty]
+
+    [Mandatory]
     [MinLength(2)]
     [MaxLength(32)]
     [Display(Name = "Barrio")]
@@ -102,11 +143,14 @@ public partial class CreateCustomer : ModelValidator
     [NotifyPropertyChangedFor(nameof(IsValid))]
     private string m_Neighborhood = string.Empty;
 
+    [JsonIgnore]
     public IEnumerable<string> NeighborhoodErrors => GetPropertyErrors(nameof(Neighborhood));
 
+    [JsonIgnore]
     public bool NeighborhoodIsValid => !NeighborhoodErrors.Any();
 
-    [NotEmpty]
+
+    [Mandatory]
     [MinLength(2)]
     [MaxLength(32)]
     [Display(Name = "Tipo de Negocio")]
@@ -118,11 +162,14 @@ public partial class CreateCustomer : ModelValidator
     [NotifyPropertyChangedFor(nameof(IsValid))]
     private string m_BussinessType = string.Empty;
 
+    [JsonIgnore]
     public IEnumerable<string> BussinessTypeErrors => GetPropertyErrors(nameof(BussinessType));
 
+    [JsonIgnore]
     public bool BussinessTypeIsValid => !BussinessTypeErrors.Any();
 
-    [NotEmpty]
+
+    [Mandatory]
     [MinLength(2)]
     [MaxLength(256)]
     [Display(Name = "Dirección del Negocio")]
@@ -134,11 +181,14 @@ public partial class CreateCustomer : ModelValidator
     [NotifyPropertyChangedFor(nameof(IsValid))]
     private string m_BussinessAddress = string.Empty;
 
+    [JsonIgnore]
     public IEnumerable<string> BussinessAddressErrors => GetPropertyErrors(nameof(BussinessAddress));
 
+    [JsonIgnore]
     public bool BussinessAddressIsValid => !BussinessAddressErrors.Any();
 
-    [NotEmpty]
+
+    [Mandatory]
     [MinLength(8)]
     [MaxLength(16)]
     [RegularExpression(@"[578]{1}\d{7}")]
@@ -151,11 +201,14 @@ public partial class CreateCustomer : ModelValidator
     [NotifyPropertyChangedFor(nameof(IsValid))]
     private string m_Phone = string.Empty;
 
+    [JsonIgnore]
     public IEnumerable<string> PhoneErrors => GetPropertyErrors(nameof(Phone));
 
+    [JsonIgnore]
     public bool PhoneIsValid => !PhoneErrors.Any();
 
-    [NotEmpty]
+
+    [Mandatory]
     [Display(Name = "Referencias")]
     [ObservableProperty]
     [NotifyDataErrorInfo]
@@ -163,13 +216,16 @@ public partial class CreateCustomer : ModelValidator
     [NotifyPropertyChangedFor(nameof(ReferencesIsValid))]
     [NotifyPropertyChangedFor(nameof(Errors))]
     [NotifyPropertyChangedFor(nameof(IsValid))]
-    private ObservableCollection<CreateReference> m_References = new();
+    private IObservableCollection<CreateReference> m_References = new ObservableCollectionExtended<CreateReference>();
 
+    [JsonIgnore]
     public IEnumerable<string> ReferencesErrors => GetPropertyErrors(nameof(References));
 
+    [JsonIgnore]
     public bool ReferencesIsValid => !ReferencesErrors.Any();
 
-    [NotEmpty]
+
+    [Mandatory]
     [Display(Name = "Fiadores")]
     [ObservableProperty]
     [NotifyDataErrorInfo]
@@ -177,9 +233,11 @@ public partial class CreateCustomer : ModelValidator
     [NotifyPropertyChangedFor(nameof(GuarantorsIsValid))]
     [NotifyPropertyChangedFor(nameof(Errors))]
     [NotifyPropertyChangedFor(nameof(IsValid))]
-    private ObservableCollection<CreateGuarantor> m_Guarantors = new();
+    private IObservableCollection<Guarantor> m_Guarantors = new ObservableCollectionExtended<Guarantor>();
 
+    [JsonIgnore]
     public IEnumerable<string> GuarantorsErrors => GetPropertyErrors(nameof(Guarantors));
 
+    [JsonIgnore]
     public bool GuarantorsIsValid => !GuarantorsErrors.Any();
 }

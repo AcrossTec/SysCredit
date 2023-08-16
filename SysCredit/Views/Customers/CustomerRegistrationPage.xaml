@@ -129,7 +129,10 @@
 
                 <!-- Género -->
 
-                <Material:PickerField Title="Género" Icon="{FontImage FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Wc}}" AllowClear="True">
+                <Material:PickerField
+                    Title="Género"
+                    Icon="{FontImage FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Wc}}"
+                    AllowClear="True">
                     <Material:PickerField.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Hombre</x:String>

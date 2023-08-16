@@ -107,8 +107,8 @@
     <PackageReference Include="AlohaKit.Layouts" Version="1.0.0" />
     <PackageReference Include="AlohaKit.UI" Version="1.0.2" />
     <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.2.1" />
-    <PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
-    <PackageReference Include="CommunityToolkit.Maui.Maps" Version="1.0.3" />
+    <PackageReference Include="CommunityToolkit.Maui" Version="5.3.0" />
+    <PackageReference Include="CommunityToolkit.Maui.Maps" Version="1.0.4" />
     <PackageReference Include="CommunityToolkit.Maui.Markup" Version="3.2.0" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
     <PackageReference Include="DotNurse.Injector" Version="2.5.2" />
@@ -124,16 +124,40 @@
     <PackageReference Include="The49.Maui.BottomSheet" Version="1.0.1" />
     <PackageReference Include="The49.Maui.ContextMenu" Version="1.0.0-alpha1" />
     <PackageReference Include="The49.Maui.Insets" Version="1.0.0-alpha6" />
-    <PackageReference Include="UraniumUI" Version="2.5.4" />
-    <PackageReference Include="UraniumUI.Blurs" Version="2.5.4" />
-    <PackageReference Include="UraniumUI.Dialogs.CommunityToolkit" Version="2.5.4" />
-    <PackageReference Include="UraniumUI.Dialogs.Mopups" Version="2.5.4" />
-    <PackageReference Include="UraniumUI.Icons.FontAwesome" Version="2.5.4" />
-    <PackageReference Include="UraniumUI.Icons.MaterialIcons" Version="2.5.4" />
-    <PackageReference Include="UraniumUI.Icons.SegoeFluent" Version="2.5.4" />
-    <PackageReference Include="UraniumUI.Material" Version="2.5.4" />
-    <PackageReference Include="UraniumUI.Validations.DataAnnotations" Version="2.5.4" />
-    <PackageReference Include="UraniumUI.WebComponents" Version="2.5.4" />
+    <PackageReference Include="UraniumUI" Version="2.5.5" />
+    <PackageReference Include="UraniumUI.Blurs" Version="2.5.5" />
+    <PackageReference Include="UraniumUI.Dialogs.CommunityToolkit" Version="2.5.5" />
+    <PackageReference Include="UraniumUI.Dialogs.Mopups" Version="2.5.5" />
+    <PackageReference Include="UraniumUI.Icons.FontAwesome" Version="2.5.5" />
+    <PackageReference Include="UraniumUI.Icons.MaterialIcons" Version="2.5.5" />
+    <PackageReference Include="UraniumUI.Icons.SegoeFluent" Version="2.5.5" />
+    <PackageReference Include="UraniumUI.Material" Version="2.5.5" />
+    <PackageReference Include="UraniumUI.Validations.DataAnnotations" Version="2.5.5" />
+    <PackageReference Include="UraniumUI.WebComponents" Version="2.5.5" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-android'">
+    <PackageReference Include="Controls.UserDialogs.Maui">
+      <Version>1.1.2</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-ios'">
+    <PackageReference Include="Controls.UserDialogs.Maui">
+      <Version>1.1.2</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">
+    <PackageReference Include="Controls.UserDialogs.Maui">
+      <Version>1.1.2</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SysCredit.DataTransferObject\SysCredit.DataTransferObject.csproj" />
+    <ProjectReference Include="..\SysCredit.Helpers\SysCredit.Helpers.csproj" />
+    <ProjectReference Include="..\SysCredit.Models\SysCredit.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -143,12 +167,6 @@
     <Folder Include="ViewModels\Controls\" />
     <Folder Include="ViewModels\Users\" />
     <Folder Include="ViewModels\Payments\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SysCredit.DataTransferObject\SysCredit.DataTransferObject.csproj" />
-    <ProjectReference Include="..\SysCredit.Helpers\SysCredit.Helpers.csproj" />
-    <ProjectReference Include="..\SysCredit.Models\SysCredit.Models.csproj" />
   </ItemGroup>
 
 </Project>
