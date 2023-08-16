@@ -2,6 +2,9 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
+using SysCredit.Enums;
+using SysCredit.Mobile.Validations;
+
 using System.ComponentModel.DataAnnotations;
 
 public partial class CreateReference : ModelValidator
@@ -34,6 +37,15 @@ public partial class CreateReference : ModelValidator
     [NotifyPropertyChangedFor(nameof(Errors))]
     [NotifyPropertyChangedFor(nameof(IsValid))]
     private string m_LastName = string.Empty;
+
+    [Required]
+    [Enum<Gender>]
+    [Display(Name = "Género")]
+    [ObservableProperty]
+    [NotifyDataErrorInfo]
+    [NotifyPropertyChangedFor(nameof(Errors))]
+    [NotifyPropertyChangedFor(nameof(IsValid))]
+    private Gender? m_Gender;
 
     [Required]
     [MinLength(8)]

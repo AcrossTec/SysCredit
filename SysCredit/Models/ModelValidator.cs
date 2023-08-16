@@ -3,8 +3,12 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 
+using DynamicData.Binding;
+
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 
 [ObservableRecipient]
 public abstract partial class ModelValidator : ObservableValidator
@@ -15,6 +19,8 @@ public abstract partial class ModelValidator : ObservableValidator
     {
         Messenger = WeakReferenceMessenger.Default;
         ValidationContext = new ValidationContext(this);
+        SettingComplexProperties();
+        SettingCollectionProperties();
     }
 
     public virtual bool IsValid => Validator.TryValidateObject(this, ValidationContext, null, true);
@@ -34,4 +40,42 @@ public abstract partial class ModelValidator : ObservableValidator
 
     public void ClearPropertyErrors(string? PropertyName = null)
         => ClearErrors(PropertyName);
+
+    protected virtual void SettingComplexProperties()
+    {
+    }
+
+    protected virtual void SettingCollectionProperties()
+    {
+    }
+
+    protected void AddNotifyPropertyChanged<T>(Expression<Func<T?>> Expression) where T : INotifyPropertyChanged
+    {
+        MemberExpression ExpressionBody = (MemberExpression)Expression.Body;
+        string PropertyName = ExpressionBody.Member.Name;
+
+        switch (Expression.Compile()())
+        {
+            case INotifyCollectionChanged Collection:
+            {
+                Collection.CollectionChanged += delegate
+                {
+                    OnPropertyChanged(PropertyName);
+                    OnPropertyChanged(nameof(Errors));
+                    OnPropertyChanged(nameof(IsValid));
+                };
+                break;
+            }
+            case INotifyPropertyChanged Property:
+            {
+                Property.PropertyChanged += delegate
+                {
+                    OnPropertyChanged(PropertyName);
+                    OnPropertyChanged(nameof(Errors));
+                    OnPropertyChanged(nameof(IsValid));
+                };
+                break;
+            }
+        }
+    }
 }

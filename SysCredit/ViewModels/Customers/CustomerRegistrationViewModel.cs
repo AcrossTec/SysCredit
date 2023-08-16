@@ -7,22 +7,21 @@ using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 
-using ReactiveUI;
-
+using SysCredit.Enums;
 using SysCredit.Mobile.Controls.Parameters;
 using SysCredit.Mobile.Messages;
+using SysCredit.Mobile.Models;
 using SysCredit.Mobile.Models.Customers.Creates;
-using SysCredit.Mobile.Views.Customers;
 using SysCredit.Mobile.Views.Guarantors;
 
 using System.Threading.Tasks;
 
-public partial class CustomerRegistrationViewModel : ViewModelBase, IRecipient<ValueMessage<CreateReference>>, IRecipient<ValueMessage<CreateGuarantor>>
+public partial class CustomerRegistrationViewModel : ViewModelBase, IRecipient<ValueMessage<CreateReference>>, IRecipient<ValueMessage<Guarantor>>
 {
     public CustomerRegistrationViewModel()
     {
         Messenger.Register<ValueMessage<CreateReference>>(this);
-        Messenger.Register<ValueMessage<CreateGuarantor>>(this);
+        Messenger.Register<ValueMessage<Guarantor>>(this);
 
         Model.References.CollectionChanged += delegate
         {
@@ -43,9 +42,15 @@ public partial class CustomerRegistrationViewModel : ViewModelBase, IRecipient<V
         Model.References.Add(Message.Value);
     }
 
-    public void Receive(ValueMessage<CreateGuarantor> Message)
+    public void Receive(ValueMessage<Guarantor> Message)
     {
         Model.Guarantors.Add(Message.Value);
+    }
+
+    [RelayCommand]
+    private void GenderSelectedValueChanged(PickerData? PickerItem)
+    {
+        Model.Gender = (Gender?)PickerItem?.Data;
     }
 
     [RelayCommand]

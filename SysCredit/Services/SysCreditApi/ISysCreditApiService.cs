@@ -1,16 +1,19 @@
 ﻿namespace SysCredit.Mobile.Services.Https;
 
-using SysCredit.Mobile.Models;
+using DynamicData.Binding;
 
-using System;
+using SysCredit.Helpers;
+using SysCredit.Mobile.Models;
+using SysCredit.Mobile.Models.Customers.Creates;
+
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 public interface ISysCreditApiService
 {
-    ValueTask<Guarantor?> InsertGuarantorAsync(Guarantor Model);
+    ValueTask<IObservableCollection<Relationship>> FetchRelationshipsAsync();
+
+    ValueTask<EntityId?> InsertGuarantorAsync(CreateGuarantor Model);
 
     IAsyncEnumerable<Guarantor> SearchGuarantorsAsync(string? Query = null, int? Offset = null, int? Limit = null);
 }

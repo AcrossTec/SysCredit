@@ -69,10 +69,8 @@
     </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout Margin="0,20,0,20" WidthRequest="340">
-            <Input:FormView x:Name="Form" Spacing="10" SubmitCommand="{Binding RegisterGuarantorCommand}">
-                <Input:FormView.BindingContext>
-                    <ViewModels:GuarantorRegistrationViewModel Form="{x:Reference Form}" />
-                </Input:FormView.BindingContext>
+            <Controls:FormView x:Name="Form" x:FieldModifier="private" x:DataType="ViewModels:GuarantorRegistrationViewModel"
+                Spacing="10" SubmitCommand="{Binding RegisterGuarantorCommand}">
 
                 <!-- Sección -->
 
@@ -161,14 +159,16 @@
 
                 <!-- Parentesco -->
 
-                <Material:TextField
+                <Material:PickerField
                     Title="Parentesco" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xe4e1;}"
-                    Text="{Binding Model.Relationship}">
-                    <Material:TextField.Behaviors>
+                    ItemsSource="{Binding Relationships}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding Model.Relationship}">
+                    <Material:PickerField.Behaviors>
                         <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="Relationship" />
-                    </Material:TextField.Behaviors>
-                </Material:TextField>
+                    </Material:PickerField.Behaviors>
+                </Material:PickerField>
 
                 <!-- Sección -->
 
@@ -200,7 +200,7 @@
 
                 <Button Text="Submit" Input:FormView.IsSubmitButton="True" StyleClass="FilledButton,PrimaryFilledButton" Margin="0,20,0,0" />
                 <Button Text="Reset" Input:FormView.IsResetButton="True" StyleClass="OutlinedButton,AccentOutlinedButton" Margin="0,0,0,20"  BackgroundColor="{StaticResource Accent}" />
-            </Input:FormView>
+            </Controls:FormView>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

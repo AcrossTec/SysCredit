@@ -1,33 +1,36 @@
 ﻿namespace SysCredit.Mobile;
 
 using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Maps;
 using CommunityToolkit.Maui.Markup;
 using CommunityToolkit.Mvvm.Messaging;
+
+using DotNurse.Injector;
+
+using global::Controls.UserDialogs.Maui;
 
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Hosting;
 
 using Mopups.Hosting;
 
-using DotNurse.Injector;
+using Sharpnado.CollectionView;
+using Sharpnado.Tabs;
+
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 using SysCredit.Mobile.Messages;
 using SysCredit.Mobile.Services;
+using SysCredit.Mobile.Services.Https;
 using SysCredit.Mobile.Services.Settings;
-using SysCredit.Mobile.Views.Customers;
-using SysCredit.Mobile.Views.Guarantors;
-using SysCredit.Mobile.Views.Loans;
+using SysCredit.Mobile.ViewModels.Customers;
+using SysCredit.Mobile.ViewModels.Guarantors;
 
-using UraniumUI;
-using SkiaSharp.Views.Maui.Controls.Hosting;
-using SkiaSharp.Views.Maui.Controls;
-
+using The49.Maui.BottomSheet;
 using The49.Maui.ContextMenu;
 using The49.Maui.Insets;
-using The49.Maui.BottomSheet;
 
-using Sharpnado.CollectionView;
-using Sharpnado.Tabs;
+using UraniumUI;
 
 public static partial class MauiProgram
 {
@@ -41,6 +44,7 @@ public static partial class MauiProgram
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitMarkup()
+            .UseMauiCommunityToolkitMaps("<Key>")
             .UseUraniumUI()
             .UseUraniumUIMaterial()
             .UseUraniumUIBlurs(false)
@@ -51,6 +55,7 @@ public static partial class MauiProgram
             .UseInsets()
             .UseContextMenu()
             .UseBottomSheet()
+            .UseUserDialogs(UseUserDialogs)
             .ConfigureMopups()
             .ConfigureMauiHandlers(ConfigureMauiHandlers)
             .ConfigureEffects(ConfigureEffects)
@@ -111,12 +116,16 @@ public static partial class MauiProgram
     {
         Builder.Services.AddSingleton<ISettingsService, SettingsService>();
         Builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
+        Builder.Services.AddScoped<ISysCreditApiService, SysCreditApiService>();
         Builder.Services.AddMopupsDialogs();
         return Builder;
     }
 
     private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder Builder)
     {
+        Builder.Services.AddScoped<ReferenceRegistrationViewModel>();
+        Builder.Services.AddScoped<GuarantorSearchViewModel>();
+        Builder.Services.AddScoped<GuarantorRegistrationViewModel>();
         return Builder;
     }
 

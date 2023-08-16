@@ -4,8 +4,10 @@ public class GlobalSetting
 {
     public const string AzureTag = "Azure";
     public const string MockTag = "Mock";
-    public const string DefaultEndpoint = "http://YOUR_IP_OR_DNS_NAME"; // i.e.: "http://YOUR_IP" or "http://YOUR_DNS_NAME"
 
+    public const string DefaultEndpoint = "https://syscreditapiservice.azurewebsites.net";
+
+    private string m_BaseEndpoint = string.Empty;
     private string m_BaseIdentityEndpoint = string.Empty;
     private string m_BaseGatewaySysCreditEndpoint = string.Empty;
     private string m_BaseGatewayMarketingEndpoint = string.Empty;
@@ -13,6 +15,7 @@ public class GlobalSetting
     public GlobalSetting()
     {
         AuthToken = "INSERT AUTHENTICATION TOKEN";
+        BaseEndpoint = DefaultEndpoint;
         BaseIdentityEndpoint = DefaultEndpoint;
         BaseGatewaySysCreditEndpoint = DefaultEndpoint;
         BaseGatewayMarketingEndpoint = DefaultEndpoint;
@@ -20,13 +23,23 @@ public class GlobalSetting
 
     public static GlobalSetting Instance { get; } = new GlobalSetting();
 
+    public string BaseEndpoint
+    {
+        get => m_BaseEndpoint;
+        set
+        {
+            m_BaseEndpoint = value;
+            UpdateEndpoint(m_BaseEndpoint);
+        }
+    }
+
     public string BaseIdentityEndpoint
     {
         get => m_BaseIdentityEndpoint;
         set
         {
             m_BaseIdentityEndpoint = value;
-            UpdateEndpoint(m_BaseIdentityEndpoint);
+            UpdateIdentityEndpoint(m_BaseIdentityEndpoint);
         }
     }
 
@@ -54,27 +67,37 @@ public class GlobalSetting
 
     public string ClientSecret { get; } = "Secret";
 
-    public string AuthToken { get; set; } = string.Empty;
+    public string AuthToken { get; private set; } = string.Empty;
 
-    public string RegisterWebsite { get; set; } = string.Empty;
+    public string RegisterWebsite { get; private set; } = string.Empty;
 
-    public string AuthorizeEndpoint { get; set; } = string.Empty;
+    public string AuthorizeEndpoint { get; private set; } = string.Empty;
 
-    public string UserInfoEndpoint { get; set; } = string.Empty;
+    public string UserInfoEndpoint { get; private set; } = string.Empty;
 
-    public string TokenEndpoint { get; set; } = string.Empty;
+    public string TokenEndpoint { get; private set; } = string.Empty;
 
-    public string LogoutEndpoint { get; set; } = string.Empty;
+    public string LogoutEndpoint { get; private set; } = string.Empty;
 
-    public string Callback { get; set; } = string.Empty;
+    public string Callback { get; private set; } = string.Empty;
 
-    public string LogoutCallback { get; set; } = string.Empty;
+    public string LogoutCallback { get; private set; } = string.Empty;
 
-    public string GatewaySysCreditEndpoint { get; set; } = string.Empty;
+    public string GatewaySysCreditEndpoint { get; private set; } = string.Empty;
 
-    public string GatewayMarketingEndpoint { get; set; } = string.Empty;
+    public string GatewayMarketingEndpoint { get; private set; } = string.Empty;
+
+    public string RelationshipsEndpoint { get; private set; } = string.Empty;
+
+    public string GuarantorEndpoint { get; private set; } = string.Empty;
 
     private void UpdateEndpoint(string Endpoint)
+    {
+        RelationshipsEndpoint = $"{Endpoint}/Api/Relationships";
+        GuarantorEndpoint = $"{Endpoint}/Api/Guarantor";
+    }
+
+    private void UpdateIdentityEndpoint(string Endpoint)
     {
         RegisterWebsite = $"{Endpoint}/Account/Register";
         LogoutCallback = $"{Endpoint}/Account/Redirecting";
@@ -105,7 +128,6 @@ public class GlobalSetting
         {
             var Uri = new Uri(Endpoint);
             var BaseUri = Uri.GetLeftPart(UriPartial.Authority);
-
             return BaseUri;
         }
         catch (Exception)
