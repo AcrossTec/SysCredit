@@ -4,8 +4,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
         xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
         xmlns:Maui="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
+        xmlns:CreateModels="clr-namespace:SysCredit.Mobile.Models.Customers.Creates"
         xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Customers"
         x:Class="SysCredit.Mobile.Views.Customers.ReferenceListPage"
+        x:DataType="ViewModels:ReferenceListViewModel"
         x:Name="Self"
         Shell.ForegroundColor="{StaticResource White}"
         Shell.BackgroundColor="{StaticResource Primary}"
@@ -17,9 +19,15 @@
             FontSize="20" FontAttributes="None" FontFamily="InterLight"
             HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
     </Shell.TitleView>
-
-    <FlexLayout Direction="Column" Wrap="Wrap" JustifyContent="Center" AlignItems="Center" AlignContent="Center">
-        <Label Text="Lista de Referencias" TextColor="Black"
-               FlexLayout.AlignSelf="Center" />
-    </FlexLayout>
+    <ScrollView>
+        <!--<FlexLayout Direction="Column" Wrap="Wrap" JustifyContent="Center" AlignItems="Center" AlignContent="Center">
+        </FlexLayout>-->
+        <ListView ItemsSource="{Binding References}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="CreateModels:CreateReference">
+                    <ImageCell ImageSource="default_gravatar.svg" Text="{Binding FullName}" Detail="{Binding Phone, StringFormat='Teléfono: {0}'}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ScrollView>
 </ContentPage>

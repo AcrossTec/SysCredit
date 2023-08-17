@@ -16,22 +16,14 @@ using SysCredit.Mobile.Views.Guarantors;
 
 using System.Threading.Tasks;
 
+using static Helpers.Parameters;
+
 public partial class CustomerRegistrationViewModel : ViewModelBase, IRecipient<ValueMessage<CreateReference>>, IRecipient<ValueMessage<Guarantor>>
 {
     public CustomerRegistrationViewModel()
     {
         Messenger.Register<ValueMessage<CreateReference>>(this);
         Messenger.Register<ValueMessage<Guarantor>>(this);
-
-        Model.References.CollectionChanged += delegate
-        {
-            OnPropertyChanged(nameof(Model));
-        };
-
-        Model.Guarantors.CollectionChanged += delegate
-        {
-            OnPropertyChanged(nameof(Model));
-        };
     }
 
     [ObservableProperty]
@@ -77,44 +69,44 @@ public partial class CustomerRegistrationViewModel : ViewModelBase, IRecipient<V
     }
 
     [RelayCommand]
-    private async Task GoToGuarantorSearchPage()
-    {
-        await Shell.Current.GoToAsync(nameof(GuarantorSearchPage));
-    }
-
-    [RelayCommand]
     private void OpenSwipeView(SwipeView Swipe)
     {
         Swipe.Open(OpenSwipeItem.LeftItems);
     }
 
     [RelayCommand]
-    private async Task OpenGuarantorSearchBottomSheet()
+    private async Task GoToGuarantorSearchPage()
+    {
+        await Shell.Current.GoToAsync(nameof(GuarantorSearchPage));
+    }
+
+    [RelayCommand]
+    private async Task OpenGuarantorSearchPage()
     {
         await Shell.Current.GoToAsync("///Customer/Guarantor/Search");
     }
 
     [RelayCommand]
-    private async Task OpenGuarantorListBottomSheet()
+    private async Task OpenGuarantorListPage()
     {
         await Shell.Current.GoToAsync("///Customer/Guarantor/List");
     }
 
     [RelayCommand]
-    private async Task OpenGuarantorRegistrationBottomSheet()
+    private async Task OpenGuarantorRegistrationPage()
     {
         await Shell.Current.GoToAsync("///Customer/Guarantor/Registration");
     }
 
     [RelayCommand]
-    private async Task OpenReferenceRegistrationBottomSheet()
+    private async Task OpenReferenceRegistrationPage()
     {
         await Shell.Current.GoToAsync("///Customer/Reference/Registration");
     }
 
     [RelayCommand]
-    private async Task OpenReferenceListBottomSheet()
+    private async Task OpenReferenceListPage()
     {
-        await Shell.Current.GoToAsync("///Customer/Reference/List");
+        await Shell.Current.GoToAsync("///Customer/Reference/List", Key(nameof(Model.References)).Value(Model.References));
     }
 }

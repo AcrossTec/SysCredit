@@ -31,6 +31,7 @@ public partial class ReferenceRegistrationViewModel : ViewModelBase
     {
         Messenger.Send(new ValueMessage<CreateReference>(Model));
         await Popups.ShowSysCreditPopup("Referencia agregada correctamente", "Aceptar");
+        Model = new();
         Form?.Reset();
     }
 
@@ -39,6 +40,7 @@ public partial class ReferenceRegistrationViewModel : ViewModelBase
     {
         if (await Popups.ShowSysCreditPopup("¿Desea borrar el contenido de todos los campos?", "Sí", "No"))
         {
+            Model = new();
             Parameter.FormReset();
         }
     }

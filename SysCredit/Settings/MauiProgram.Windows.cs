@@ -10,7 +10,8 @@ public static partial class MauiProgram
     {
     }
 
-    private static void UseUserDialogs()
+    private static MauiAppBuilder UseUserDialogs(this MauiAppBuilder Builder)
     {
+        return Builder;
     }
 }

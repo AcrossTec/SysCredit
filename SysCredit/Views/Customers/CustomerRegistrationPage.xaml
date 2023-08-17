@@ -5,7 +5,9 @@
         xmlns:Local="clr-namespace:SysCredit.Mobile"
         xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
         xmlns:Converters="clr-namespace:SysCredit.Mobile.Converters"
-        xmlns:Models="clr-namespace:SysCredit.Mobile.Models.Customers.Creates"
+        xmlns:Enums="clr-namespace:SysCredit.Enums;assembly=SysCredit.Models"
+        xmlns:Models="clr-namespace:SysCredit.Mobile.Models"
+        xmlns:CreateModels="clr-namespace:SysCredit.Mobile.Models.Customers.Creates"
         xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Customers"
         xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
         xmlns:Input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
@@ -101,7 +103,7 @@
                         Icon="{FontImage &#xf4ff;, FontFamily=FontAwesomeSolid}"
                         Text="{Binding Model.Name, Mode=TwoWay}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="Name" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="Name" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -112,7 +114,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf5b7;}"
                     Text="{Binding Model.LastName}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="LastName" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="LastName" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -123,7 +125,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2c2;}"
                     Text="{Binding Model.Identification}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="Identification" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="Identification" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -131,15 +133,19 @@
 
                 <Material:PickerField
                     Title="Género"
+                    AllowClear="True"
                     Icon="{FontImage FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Wc}}"
-                    AllowClear="True">
+                    ItemDisplayBinding="{Binding Value}"
+                    SelectedValueChangedCommand="{Binding GenderSelectedValueChangedCommand}">
                     <Material:PickerField.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Hombre</x:String>
-                            <x:String>Mujer</x:String>
+                        <x:Array Type="{x:Type Models:PickerData}">
+                            <Models:PickerData Data="{x:Static Enums:Gender.Male}" Value="Hombre" />
+                            <Models:PickerData Data="{x:Static Enums:Gender.Female}" Value="Mujer" />
                         </x:Array>
                     </Material:PickerField.ItemsSource>
-                    <Validation:RequiredValidation />
+                    <Material:PickerField.Behaviors>
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="Gender" />
+                    </Material:PickerField.Behaviors>
                 </Material:PickerField>
 
                 <!-- Correo -->
@@ -149,7 +155,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf0e0;}"
                     Text="{Binding Model.Email}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="Email" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="Email" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -160,7 +166,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf095;}"
                     Text="{Binding Model.Phone}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="Phone" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="Phone" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -171,7 +177,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2b9;}"
                     Text="{Binding Model.Address}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="Address" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="Address" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -182,7 +188,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xe54f;}"
                     Text="{Binding Model.Neighborhood}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="Neighborhood" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="Neighborhood" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -199,7 +205,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf508;}"
                     Text="{Binding Model.BussinessType}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="BussinessType" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="BussinessType" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -210,7 +216,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeRegular, Glyph=&#xf2b9;}"
                     Text="{Binding Model.BussinessAddress}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateCustomer}" Path="BussinessAddress" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="BussinessAddress" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -224,8 +230,8 @@
                 <SwipeView>
                     <SwipeView.LeftItems>
                         <SwipeItems>
-                            <SwipeItem Text="Agregar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" Command="{Binding OpenReferenceRegistrationBottomSheetCommand}" />
-                            <SwipeItem Text="Borrar" IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeRegular}" BackgroundColor="LightPink" Command="{Binding OpenReferenceListBottomSheetCommand}" />
+                            <SwipeItem Text="Agregar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" Command="{Binding OpenReferenceRegistrationPageCommand}" />
+                            <SwipeItem Text="Borrar" IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeRegular}" BackgroundColor="LightPink" Command="{Binding OpenReferenceListPageCommand}" />
                         </SwipeItems>
                     </SwipeView.LeftItems>
 
@@ -265,14 +271,14 @@
                 <SwipeView>
                     <SwipeView.LeftItems>
                         <SwipeItems>
-                            <SwipeItem Text="Registrar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightGreen" Command="{Binding OpenGuarantorRegistrationBottomSheetCommand}" />
-                            <SwipeItem Text="Buscar" IconImageSource="{FontImage &#xf00e;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" Command="{Binding OpenGuarantorSearchBottomSheetCommand}" />
-                            <SwipeItem Text="Borrar" IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeRegular}" BackgroundColor="LightPink" Command="{Binding OpenGuarantorListBottomSheetCommand}" />
+                            <SwipeItem Text="Registrar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightGreen" Command="{Binding OpenGuarantorRegistrationPageCommand}" />
+                            <SwipeItem Text="Buscar" IconImageSource="{FontImage &#xf00e;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightBlue" Command="{Binding OpenGuarantorSearchPageCommand}" />
+                            <SwipeItem Text="Borrar" IconImageSource="{FontImage &#xf2ed;, FontFamily=FontAwesomeRegular}" BackgroundColor="LightPink" Command="{Binding OpenGuarantorListPageCommand}" />
                         </SwipeItems>
                     </SwipeView.LeftItems>
 
                     <SwipeView.RightItems>
-                        <SwipeItem Text="Registrar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightGreen" Command="{Binding OpenGuarantorRegistrationBottomSheetCommand}" />
+                        <SwipeItem Text="Registrar" IconImageSource="{FontImage &#xe541;, FontFamily=FontAwesomeSolid}" BackgroundColor="LightGreen" Command="{Binding OpenGuarantorRegistrationPageCommand}" />
                     </SwipeView.RightItems>
 
                     <!-- Content -->
