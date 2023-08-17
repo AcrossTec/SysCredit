@@ -12,21 +12,29 @@ public static partial class MauiProgram
     {
     }
 
-    private static void UseUserDialogs()
+    private static MauiAppBuilder UseUserDialogs(this MauiAppBuilder Builder)
     {
-        const string FontFamily = "Inter-Bold.ttf";
+        UserDialogs.UseUserDialogs(Builder, static () =>
+        {
+            const string FontFamily = "Inter-Bold.ttf";
 
-        AlertConfig.DefaultBackgroundColor = Colors.Purple;
-        AlertConfig.DefaultMessageFontFamily = FontFamily;
-        AlertConfig.DefaultUserInterfaceStyle = UserInterfaceStyle.Dark;
-        AlertConfig.DefaultPositiveButtonTextColor = Colors.Purple;
+            AlertConfig.DefaultBackgroundColor = Colors.Purple;
+            AlertConfig.DefaultMessageFontFamily = FontFamily;
+            AlertConfig.DefaultUserInterfaceStyle = UserInterfaceStyle.Dark;
+            AlertConfig.DefaultPositiveButtonTextColor = Colors.Purple;
 
-        ToastConfig.DefaultCornerRadius = 15.0f;
-        ToastConfig.DefaultMessageFontFamily = FontFamily;
+            HudDialogConfig.DefaultMessageFontFamily = FontFamily;
+            HudDialogConfig.DefaultBackgroundColor = Color.FromArgb("#04174e").WithAlpha(0.7f);
+            HudDialogConfig.DefaultLoaderColor = Color.FromArgb("#aa00ff");
 
-        ConfirmConfig.DefaultMessageFontFamily = FontFamily;
-        ActionSheetConfig.DefaultMessageFontFamily = FontFamily;
-        SnackbarConfig.DefaultMessageFontFamily = FontFamily;
-        HudDialogConfig.DefaultMessageFontFamily = FontFamily;
+            ToastConfig.DefaultCornerRadius = 15.0f;
+            ToastConfig.DefaultMessageFontFamily = FontFamily;
+
+            ConfirmConfig.DefaultMessageFontFamily = FontFamily;
+            ActionSheetConfig.DefaultMessageFontFamily = FontFamily;
+            SnackbarConfig.DefaultMessageFontFamily = FontFamily;
+        });
+
+        return Builder;
     }
 }

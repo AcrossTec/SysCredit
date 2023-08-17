@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Local="clr-namespace:SysCredit.Mobile"
              xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
+             xmlns:Enums="clr-namespace:SysCredit.Enums;assembly=SysCredit.Models"
              xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Guarantors"
              xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:Models="clr-namespace:SysCredit.Mobile.Models.Customers.Creates"
+             xmlns:Models="clr-namespace:SysCredit.Mobile.Models"
+             xmlns:CreateModels="clr-namespace:SysCredit.Mobile.Models.Customers.Creates"
              xmlns:Input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
              xmlns:Validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
              xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
@@ -87,7 +89,7 @@
                         <Validation:RequiredValidation />
                     </Material:TextField.Validations>
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="Name" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="Name" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -98,7 +100,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf5b7;}"
                     Text="{Binding Model.LastName}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="LastName" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="LastName" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -109,9 +111,28 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2c2;}"
                     Text="{Binding Model.Identification}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="Identification" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="Identification" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
+
+                <!-- Género -->
+
+                <Material:PickerField
+                    Title="Género"
+                    AllowClear="True"
+                    Icon="{FontImage FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Wc}}"
+                    ItemDisplayBinding="{Binding Value}"
+                    SelectedValueChangedCommand="{Binding GenderSelectedValueChangedCommand}">
+                    <Material:PickerField.ItemsSource>
+                        <x:Array Type="{x:Type Models:PickerData}">
+                            <Models:PickerData Data="{x:Static Enums:Gender.Male}" Value="Hombre" />
+                            <Models:PickerData Data="{x:Static Enums:Gender.Female}" Value="Mujer" />
+                        </x:Array>
+                    </Material:PickerField.ItemsSource>
+                    <Material:PickerField.Behaviors>
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="Gender" />
+                    </Material:PickerField.Behaviors>
+                </Material:PickerField>
 
                 <!-- Correo -->
 
@@ -120,7 +141,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf0e0;}"
                     Text="{Binding Model.Email}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="Email" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="Email" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -131,7 +152,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf095;}"
                     Text="{Binding Model.Phone}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="Phone" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="Phone" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -142,7 +163,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2b9;}"
                     Text="{Binding Model.Address}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="Address" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="Address" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -153,7 +174,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xe54f;}"
                     Text="{Binding Model.Neighborhood}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="Neighborhood" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="Neighborhood" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -166,7 +187,7 @@
                     ItemDisplayBinding="{Binding Name}"
                     SelectedItem="{Binding Model.Relationship}">
                     <Material:PickerField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="Relationship" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="Relationship" />
                     </Material:PickerField.Behaviors>
                 </Material:PickerField>
 
@@ -183,7 +204,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf508;}"
                     Text="{Binding Model.BussinessType}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="BussinessType" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="BussinessType" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -194,7 +215,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeRegular, Glyph=&#xf2b9;}"
                     Text="{Binding Model.BussinessAddress}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type Models:CreateGuarantor}" Path="BussinessAddress" />
+                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="BussinessAddress" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 

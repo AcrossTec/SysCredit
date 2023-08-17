@@ -25,8 +25,13 @@ public class ViewModelBase : ObservableRecipient, IQueryAttributable
         return Default;
     }
 
-    public virtual void ApplyQueryAttributes(IDictionary<string, object> Query)
+    public void ApplyQueryAttributes(IDictionary<string, object> Query)
     {
         QueryParams = Query;
+        ApplyQueryAttributes();
+    }
+
+    protected virtual void ApplyQueryAttributes()
+    {
     }
 }

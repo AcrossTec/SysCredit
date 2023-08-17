@@ -7,10 +7,9 @@ using CommunityToolkit.Mvvm.Messaging;
 using DynamicData.Binding;
 using DynamicData.Kernel;
 
-using global::Controls.UserDialogs.Maui;
-
 using SysCredit.Enums;
 using SysCredit.Mobile.Controls;
+using SysCredit.Mobile.Controls.Dialogs;
 using SysCredit.Mobile.Messages;
 using SysCredit.Mobile.Models;
 using SysCredit.Mobile.Models.Customers.Creates;
@@ -45,9 +44,9 @@ public partial class GuarantorRegistrationViewModel : ViewModelBase
     [RelayCommand]
     private async Task RegisterGuarantor()
     {
-        UserDialogs.Instance.ShowLoading("Registrando Fiador");
+        UserDialogs.ShowLoading("Registrando Fiador");
         var EntityId = await SysCreditApi.InsertGuarantorAsync(Model);
-        UserDialogs.Instance.HideHud();
+        UserDialogs.HideHud();
 
         if (EntityId is not null)
         {
@@ -78,8 +77,8 @@ public partial class GuarantorRegistrationViewModel : ViewModelBase
 
     private async void LoadDataAsync()
     {
-        UserDialogs.Instance.ShowLoading("Cargando");
+        UserDialogs.ShowLoading("Cargando");
         Relationships = await SysCreditApi.FetchRelationshipsAsync();
-        UserDialogs.Instance.HideHud();
+        UserDialogs.HideHud();
     }
 }

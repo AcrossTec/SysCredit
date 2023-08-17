@@ -7,8 +7,6 @@ using CommunityToolkit.Mvvm.Messaging;
 
 using DotNurse.Injector;
 
-using global::Controls.UserDialogs.Maui;
-
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Hosting;
 
@@ -44,7 +42,7 @@ public static partial class MauiProgram
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitMarkup()
-            .UseMauiCommunityToolkitMaps("<Key>")
+             // .UseMauiCommunityToolkitMaps("<Key>")
             .UseUraniumUI()
             .UseUraniumUIMaterial()
             .UseUraniumUIBlurs(false)
@@ -55,7 +53,7 @@ public static partial class MauiProgram
             .UseInsets()
             .UseContextMenu()
             .UseBottomSheet()
-            .UseUserDialogs(UseUserDialogs)
+            .UseUserDialogs()
             .ConfigureMopups()
             .ConfigureMauiHandlers(ConfigureMauiHandlers)
             .ConfigureEffects(ConfigureEffects)
@@ -124,8 +122,10 @@ public static partial class MauiProgram
     private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder Builder)
     {
         Builder.Services.AddScoped<ReferenceRegistrationViewModel>();
+        Builder.Services.AddScoped<ReferenceListViewModel>();
         Builder.Services.AddScoped<GuarantorSearchViewModel>();
         Builder.Services.AddScoped<GuarantorRegistrationViewModel>();
+        Builder.Services.AddScoped<GuarantorListViewModel>();
         return Builder;
     }
 
