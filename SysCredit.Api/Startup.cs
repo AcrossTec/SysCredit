@@ -1,5 +1,6 @@
 ﻿namespace SysCredit.Api;
 
+using SysCredit.Api.Constants;
 using SysCredit.Api.Extensions;
 
 public class Startup
@@ -25,6 +26,7 @@ public class Startup
         App.ConfigureHttpRequestPipeline(Environment);
         App.UseSysCreditMiddlewares();
         App.UseHttpsRedirection();
+        App.UseCors(SysCreditConstants.CorsAllowSpecificOrigins);
         App.UseAuthorization();
     }
 }

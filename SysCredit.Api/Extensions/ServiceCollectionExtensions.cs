@@ -19,6 +19,16 @@ public static class ServiceCollectionExtensions
             .AddJsonOptions(static Options => Options.JsonSerializerOptions.PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy);
 
         Services.AddEndpointsApiExplorer();
+
+        Services.AddCors(static Options =>
+         {
+             Options.AddPolicy(SysCreditConstants.CorsAllowSpecificOrigins, static Policy =>
+             {
+                 Policy.WithMethods("PUT", "DELETE", "GET", "PATCH");
+                 Policy.AllowAnyOrigin().AllowAnyHeader();
+             });
+         });
+
         return Services;
     }
 
