@@ -19,6 +19,9 @@
                 <ResourceDictionary x:Name="AppStyles" Source="Resources/Styles/Styles.xaml" />
                 <UIMaterial:StyleResource BasedOn="{x:Reference AppStyles}" />
                 <ResourceDictionary Source="Resources/Styles/SysCredit.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Shadows.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Border.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Text.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

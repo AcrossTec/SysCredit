@@ -24,7 +24,6 @@ public partial class CreateReference : ModelValidator
     [Display(Name = "Nombres")]
     [ObservableProperty]
     [NotifyDataErrorInfo]
-    [NotifyPropertyChangedFor(nameof(FullName))]
     [NotifyPropertyChangedFor(nameof(Errors))]
     [NotifyPropertyChangedFor(nameof(IsValid))]
     private string m_Name = string.Empty;
@@ -35,12 +34,9 @@ public partial class CreateReference : ModelValidator
     [Display(Name = "Apellidos")]
     [ObservableProperty]
     [NotifyDataErrorInfo]
-    [NotifyPropertyChangedFor(nameof(FullName))]
     [NotifyPropertyChangedFor(nameof(Errors))]
     [NotifyPropertyChangedFor(nameof(IsValid))]
     private string m_LastName = string.Empty;
-
-    public string FullName => $"{Name} {LastName}";
 
     [Required]
     [Enum<Gender>]

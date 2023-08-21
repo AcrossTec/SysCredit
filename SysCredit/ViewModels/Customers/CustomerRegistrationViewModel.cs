@@ -4,6 +4,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 
+using DynamicData.Binding;
+
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 
@@ -18,12 +20,29 @@ using System.Threading.Tasks;
 
 using static Helpers.Parameters;
 
-public partial class CustomerRegistrationViewModel : ViewModelBase, IRecipient<ValueMessage<CreateReference>>, IRecipient<ValueMessage<Guarantor>>
+public partial class CustomerRegistrationViewModel : ViewModelBase, IRecipient<ValueMessage<CreateReference>>, IRecipient<ValueMessage<Guarantor>>, IRecipient<ActionMessage<Action<IObservableCollection<CreateReference>>>>
 {
     public CustomerRegistrationViewModel()
     {
-        Messenger.Register<ValueMessage<CreateReference>>(this);
+        Ìnitialize();
         Messenger.Register<ValueMessage<Guarantor>>(this);
+        Messenger.Register<ValueMessage<CreateReference>>(this);
+        Messenger.Register<ActionMessage<Action<IObservableCollection<CreateReference>>>>(this);
+    }
+
+    protected virtual void Ìnitialize()
+    {
+        for (int Index = 0; Index < 1000; ++Index)
+        {
+            Model.References.Add(new CreateReference
+            {
+                Name = $"Denis-{Index}",
+                LastName = $"West-{Index}",
+                Phone = $"{55000000 + Index}",
+                Email = $"Correo{Index}@Correo.com",
+                Gender = Index % 2 == 0 ? Gender.Male : Gender.Female
+            });
+        }
     }
 
     [ObservableProperty]
@@ -37,6 +56,11 @@ public partial class CustomerRegistrationViewModel : ViewModelBase, IRecipient<V
     public void Receive(ValueMessage<Guarantor> Message)
     {
         Model.Guarantors.Add(Message.Value);
+    }
+
+    public void Receive(ActionMessage<Action<IObservableCollection<CreateReference>>> Message)
+    {
+        Message.Value.Invoke(Model.References);
     }
 
     [RelayCommand]
@@ -107,6 +131,6 @@ public partial class CustomerRegistrationViewModel : ViewModelBase, IRecipient<V
     [RelayCommand]
     private async Task OpenReferenceListPage()
     {
-        await Shell.Current.GoToAsync("///Customer/Reference/List", Key(nameof(Model.References)).Value(Model.References));
+        await Shell.Current.GoToAsync("///Customer/Reference/List");
     }
 }
