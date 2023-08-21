@@ -4,30 +4,128 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
         xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
         xmlns:Maui="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
+        xmlns:ViewCustomers="clr-namespace:SysCredit.Mobile.Views.Customers"
         xmlns:CreateModels="clr-namespace:SysCredit.Mobile.Models.Customers.Creates"
         xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Customers"
+        xmlns:UraniumUI="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+        xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+        xmlns:Icon="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
+        xmlns:TaskLoaderView="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
+        xmlns:Sho="http://sharpnado.com"
         x:Class="SysCredit.Mobile.Views.Customers.ReferenceListPage"
         x:DataType="ViewModels:ReferenceListViewModel"
-        x:Name="Self"
+        x:Name="Page"
         Shell.ForegroundColor="{StaticResource White}"
         Shell.BackgroundColor="{StaticResource Primary}"
         Title="Lista de Referencias">
 
     <Shell.TitleView>
         <Controls:TitleView
-            Text="{Binding Source={x:Reference Self}, Path=Title}" TextColor="White"
+            Text="{Binding Source={x:Reference Page}, Path=Title}" TextColor="White"
             FontSize="20" FontAttributes="None" FontFamily="InterLight"
             HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
     </Shell.TitleView>
-    <ScrollView>
-        <!--<FlexLayout Direction="Column" Wrap="Wrap" JustifyContent="Center" AlignItems="Center" AlignContent="Center">
-        </FlexLayout>-->
-        <ListView ItemsSource="{Binding References}">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="CreateModels:CreateReference">
-                    <ImageCell ImageSource="default_gravatar.svg" Text="{Binding FullName}" Detail="{Binding Phone, StringFormat='Teléfono: {0}'}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </ScrollView>
+
+    <ContentPage.Resources>
+        <Color x:Key="AccentColor">#FF0266</Color>
+        <Color x:Key="DarkSurface">#383838</Color>
+        <Color x:Key="DarkDraggedSurface">#4D4D4D</Color>
+        <Color x:Key="DarkCardBorder">#3A3A3A</Color>
+
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="Black" />
+        </Style>
+
+        <Style x:Key="ReferenceTaskLoaderStyle" TargetType="TaskLoaderView:TaskLoaderView">
+            <Setter Property="AccentColor" Value="{StaticResource AccentColor}" />
+            <Setter Property="TextColor" Value="{StaticResource SysCredit500}" />
+        </Style>
+
+        <DataTemplate x:Key="MaleTemplate">
+            <Sho:DraggableViewCell x:Name="DraggableViewCell">
+                <ContentView>
+                    <ViewCustomers:ReferenceListCell
+                        Margin="16,8"
+                        Background="{StaticResource DarkSurface}"
+                        Style="{StaticResource BorderDarkerNeumorphismBottom}">
+                        <ViewCustomers:ReferenceListCell.Triggers>
+                            <DataTrigger Binding="{Binding Source={x:Reference DraggableViewCell}, Path=IsDragAndDropping}"
+                                         TargetType="ViewCustomers:ReferenceListCell"
+                                         Value="True">
+                                <Setter Property="Background" Value="{StaticResource Dark}" />
+                            </DataTrigger>
+                        </ViewCustomers:ReferenceListCell.Triggers>
+                    </ViewCustomers:ReferenceListCell>
+                </ContentView>
+            </Sho:DraggableViewCell>
+        </DataTemplate>
+
+        <DataTemplate x:Key="FemaleTemplate">
+            <Sho:DraggableViewCell x:Name="DraggableViewCell">
+                <ContentView>
+                    <ViewCustomers:ReferenceListCell
+                        Margin="16,8"
+                        Background="{StaticResource DarkSurface}"
+                        Style="{StaticResource BorderDarkerNeumorphismBottom}">
+                        <ViewCustomers:ReferenceListCell.Triggers>
+                            <DataTrigger Binding="{Binding Source={x:Reference DraggableViewCell}, Path=IsDragAndDropping}"
+                                         TargetType="ViewCustomers:ReferenceListCell"
+                                         Value="True">
+                                <Setter Property="Background" Value="{StaticResource Dark}" />
+                            </DataTrigger>
+                        </ViewCustomers:ReferenceListCell.Triggers>
+                    </ViewCustomers:ReferenceListCell>
+                </ContentView>
+            </Sho:DraggableViewCell>
+        </DataTemplate>
+
+        <ViewCustomers:ReferenceListTemplateSelector
+            x:Key="ReferenceListTemplateSelector"
+            MaleTemplate="{StaticResource MaleTemplate}"
+            FemaleTemplate="{StaticResource FemaleTemplate}" />
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*">
+        <Grid.Margin>
+            <OnPlatform x:TypeArguments="Thickness">
+                <On Platform="iOS">0, -45, 0, -35</On>
+                <On Platform="Android">0, -15, 0, 0</On>
+            </OnPlatform>
+        </Grid.Margin>
+
+        <TaskLoaderView:TaskLoaderView
+            Grid.Row="1"
+            IsClippedToBounds="False"
+            Style="{StaticResource ReferenceTaskLoaderStyle}"
+            TaskLoaderNotifier="{Binding ReferencesLoaderNotifier}"
+            VerticalOptions="Fill">
+            
+            <RefreshView
+                RefreshColor="{StaticResource AccentColor}"
+                Command="{Binding ReferencesLoaderNotifier.RefreshCommand}"
+                IsRefreshing="{Binding ReferencesLoaderNotifier.ShowRefresher}"
+                IsClippedToBounds="False"
+                IsEnabled="True">
+                <Sho:CollectionView
+                    Margin="0"
+                    CollectionLayout="Vertical"
+                    CollectionPadding="10,30,10,75"
+                    ColumnCount="1"
+                    CurrentIndex="{Binding CurrentIndex, Mode=TwoWay}"
+                    DragAndDropEndedCommand="{Binding DragEndedCommand}"
+                    DragAndDropStartedCommand="{Binding DragStartedCommand}"
+                    DragAndDropDirection="VerticalOnly"
+                    DragAndDropTrigger="Pan"
+                    EnableDragAndDrop="False"
+                    InfiniteListLoader="{Binding ReferencesPaginator}"
+                    ItemWidth="0"
+                    ItemHeight="100"
+                    ItemsSource="{Binding References}"
+                    ItemTemplate="{StaticResource ReferenceListTemplateSelector}"
+                    ScrollBeganCommand="{Binding ScrollBeginCommand}"
+                    ScrollEndedCommand="{Binding ScrollEndCommand}"
+                    TapCommand="{Binding TapCommand}" />
+            </RefreshView>
+        </TaskLoaderView:TaskLoaderView>
+    </Grid>
 </ContentPage>

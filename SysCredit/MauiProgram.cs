@@ -42,7 +42,7 @@ public static partial class MauiProgram
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
             .UseMauiCommunityToolkitMarkup()
-             // .UseMauiCommunityToolkitMaps("<Key>")
+            // .UseMauiCommunityToolkitMaps("<Key>")
             .UseUraniumUI()
             .UseUraniumUIMaterial()
             .UseUraniumUIBlurs(false)
@@ -66,7 +66,7 @@ public static partial class MauiProgram
 #if DEBUG
         Builder.Logging.AddDebug();
 #endif
-
+        global::Sharpnado.TaskLoaderView.Initializer.Initialize(loggerEnable: false);
         return Builder.Build();
     }
 

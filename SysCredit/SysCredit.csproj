@@ -116,6 +116,7 @@
     <PackageReference Include="OverFlower" Version="0.0.3" />
     <PackageReference Include="ReactiveUI.Fody" Version="19.4.1" />
     <PackageReference Include="Sharpnado.CollectionView.Maui" Version="3.0.0" />
+    <PackageReference Include="Sharpnado.Maui.TaskLoaderView" Version="2.5.1" />
     <PackageReference Include="Sharpnado.Tabs.Maui" Version="3.0.1" />
     <PackageReference Include="SkiaSharp" Version="2.88.4-preview.89" />
     <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.61" />
@@ -167,6 +168,21 @@
     <Folder Include="ViewModels\Controls\" />
     <Folder Include="ViewModels\Users\" />
     <Folder Include="ViewModels\Payments\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MauiXaml Update="Resources\Styles\Border.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Resources\Styles\Shadows.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Resources\Styles\Text.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Customers\ReferenceListCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
   </ItemGroup>
 
 </Project>

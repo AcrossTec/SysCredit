@@ -5,7 +5,7 @@ public class GlobalSetting
     public const string AzureTag = "Azure";
     public const string MockTag = "Mock";
 
-    public const string DefaultEndpoint = "https://syscreditapiservice.azurewebsites.net";
+    public const string DefaultEndpoint = "http://192.168.1.4:5267"; // "https://syscreditapiservice.azurewebsites.net";
 
     private string m_BaseEndpoint = string.Empty;
     private string m_BaseIdentityEndpoint = string.Empty;

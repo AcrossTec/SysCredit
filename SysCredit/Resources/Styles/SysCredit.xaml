@@ -136,4 +136,57 @@
     <Shadow x:Key="ShadowElevation4" Opacity="0.6" Offset="8,8" Radius="16" Brush="{StaticResource ShadowBrush}" />
     <Shadow x:Key="ShadowElevation5" Opacity="0.8" Offset="10,10" Radius="20" Brush="{StaticResource ShadowBrush}" />
 
+    <!-- Other Styles -->
+
+    <x:Double x:Key="SmallPadding">5</x:Double>
+    <x:Double x:Key="MediumPadding">10</x:Double>
+    <x:Double x:Key="StandardPadding">15</x:Double>
+
+    <Thickness x:Key="SmallTopThickness" Top="{StaticResource SmallPadding}" />
+    <Thickness x:Key="MediumTopThickness" Top="{StaticResource MediumPadding}" />
+    <Thickness x:Key="StandardTopThickness" Top="{StaticResource StandardPadding}" />
+
+    <Thickness
+        x:Key="SmallThickness"
+        Bottom="{StaticResource SmallPadding}"
+        Left="{StaticResource SmallPadding}"
+        Right="{StaticResource SmallPadding}"
+        Top="{StaticResource SmallPadding}" />
+
+    <Thickness
+        x:Key="MediumThickness"
+        Bottom="{StaticResource MediumPadding}"
+        Left="{StaticResource MediumPadding}"
+        Right="{StaticResource MediumPadding}"
+        Top="{StaticResource MediumPadding}" />
+
+    <Thickness
+        x:Key="StandardThickness"
+        Bottom="{StaticResource StandardPadding}"
+        Left="{StaticResource StandardPadding}"
+        Right="{StaticResource StandardPadding}"
+        Top="{StaticResource StandardPadding}" />
+
+    <Style
+        x:Key="Avatar"
+        ApplyToDerivedTypes="True"
+        TargetType="Image">
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="VerticalOptions" Value="Fill" />
+    </Style>
+
+    <Color x:Key="DarklessSurface">#3D3D3D</Color>
+    <Color x:Key="DarkDraggedSurface">#4D4D4D</Color>
+    <Color x:Key="DarkCardBorder">#3A3A3A</Color>
+    <Color x:Key="DarkSurface">#383838</Color>
+    <Color x:Key="DarkOverlay">#CC000000</Color>
+    <Color x:Key="DarkerSurface">#323232</Color>
+    <Color x:Key="LightSurface">#FAF8F9</Color>
+    <Color x:Key="AcrylicSurface">#E4E4E4</Color>
+    <Color x:Key="NeumorphismSurface">#F0F0F3</Color>
+
+    <Color x:Key="PrimaryDarkColor">White</Color>
+    <Color x:Key="SecondaryDarkColor">#80FFFFFF</Color>
+    <Color x:Key="TernaryDarkColor">#50FFFFFF</Color>
+
 </ResourceDictionary>
