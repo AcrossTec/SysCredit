@@ -7,6 +7,8 @@ using CommunityToolkit.Mvvm.Messaging;
 using DynamicData.Binding;
 using DynamicData.Kernel;
 
+using Google.Android.Material.Dialog;
+
 using SysCredit.Enums;
 using SysCredit.Mobile.Controls;
 using SysCredit.Mobile.Controls.Dialogs;
@@ -67,7 +69,7 @@ public partial class GuarantorRegistrationViewModel : ViewModelBase
             }));
 
             await Popups.ShowSysCreditPopup("Fiador registrado correctamente");
-            Form?.Reset();
+            Form?.BaseReset();
         }
         else
         {
@@ -77,8 +79,17 @@ public partial class GuarantorRegistrationViewModel : ViewModelBase
 
     private async void LoadDataAsync()
     {
-        UserDialogs.ShowLoading("Cargando");
-        Relationships = await SysCreditApi.FetchRelationshipsAsync();
+        UserDialogs.ShowLoading("Cargando...");
+        var Result = await SysCreditApi.FetchRelationshipsAsync();
         UserDialogs.HideHud();
+
+        if (Result.Status.HasError)
+        {
+            await Popups.ShowSysCreditPopup("Ha ocurrido un error al cargar los datos desde el servidor");
+        }
+        else
+        {
+            Relationships = Result.Data;
+        }
     }
 }

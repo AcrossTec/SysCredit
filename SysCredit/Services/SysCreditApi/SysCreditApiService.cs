@@ -63,12 +63,13 @@ public class SysCreditApiService : ISysCreditApiService
         return null;
     }
 
-    public IAsyncEnumerable<Guarantor> SearchGuarantorsAsync(string? Query = null, int? Offset = null, int? Limit = null)
+    public async IAsyncEnumerable<Guarantor> SearchGuarantorsAsync(string? Query = null, int? Offset = null, int? Limit = null)
     {
-        throw new NotImplementedException();
+        await ValueTask.CompletedTask;
+        yield break;
     }
 
-    public async ValueTask<IObservableCollection<Relationship>> FetchRelationshipsAsync()
+    public async ValueTask<IResponse<IObservableCollection<Relationship>>> FetchRelationshipsAsync()
     {
         var Uri = new Uri(string.Format(GlobalSetting.Instance.RelationshipsEndpoint, string.Empty));
 
@@ -83,7 +84,7 @@ public class SysCreditApiService : ISysCreditApiService
 
                 if (Response.Status.IsSuccess)
                 {
-                    return Response.Data!;
+                    return Response;
                 }
             }
         }
@@ -92,6 +93,6 @@ public class SysCreditApiService : ISysCreditApiService
             Logger.LogError(new EventId(Ex.HResult, Ex.GetType().Name), Ex, Ex.Message);
         }
 
-        return new ObservableCollectionExtended<Relationship>();
+        return new Response<ObservableCollectionExtended<Relationship>>();
     }
 }

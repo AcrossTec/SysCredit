@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Border xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:Models="clr-namespace:SysCredit.Mobile.Models"
+        xmlns:Converters="clr-namespace:SysCredit.Mobile.Converters"
+        x:Class="SysCredit.Mobile.Views.Guarantors.GuarantorListCell"
+        Padding="{StaticResource StandardPadding}"
+        Stroke="{StaticResource DarkCardBorder}"
+        StrokeThickness="2">
+    <Border.Resources>
+        <Converters:GenderImageConverter x:Key="GenderImageConverter" />
+    </Border.Resources>
+    <StackLayout x:DataType="Models:Guarantor" Orientation="Horizontal" Spacing="16">
+        <Image
+            Aspect="AspectFill"
+            WidthRequest="50"
+            HeightRequest="50"
+            Source="{Binding Gender, Converter={StaticResource GenderImageConverter}}"
+            Style="{StaticResource Avatar}"
+            VerticalOptions="Start">
+            <Image.Clip>
+                <EllipseGeometry Center="25,25" RadiusX="25" RadiusY="25" />
+            </Image.Clip>
+        </Image>
+
+        <StackLayout Orientation="Vertical" Spacing="0" VerticalOptions="Center">
+            <Label
+                Style="{StaticResource TextSubhead}"
+                VerticalOptions="Start">
+                <Label.Text>
+                    <MultiBinding StringFormat="{}{0} {1}">
+                        <Binding Path="Name" />
+                        <Binding Path="LastName" />
+                    </MultiBinding>
+                </Label.Text>
+            </Label>
+            <HorizontalStackLayout>
+                <Image Source="{FontImage &#xf095;, FontFamily=FontAwesomeSolid, Color=White, Size={StaticResource TextSizeCaption}}" Margin="0,0,5,0" />
+                <Label Style="{StaticResource TextCaptionSecondary}" Text="{Binding Phone}" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Image Source="{FontImage &#xe535;, FontFamily=FontAwesomeSolid, Color=White, Size={StaticResource TextSizeCaption}}" Margin="0,0,5,0" />
+                <Label Style="{StaticResource TextCaptionSecondary}" Text="{Binding Relationship.Name}" />
+            </HorizontalStackLayout>
+        </StackLayout>
+    </StackLayout>
+</Border>

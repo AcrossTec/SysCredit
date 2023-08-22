@@ -16,12 +16,8 @@ using SysCredit.Mobile.Messages;
 using SysCredit.Mobile.Models.Customers.Creates;
 
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 
-public partial class ReferenceListViewModel
-    : ViewModelBase
-    , IRecipient<LoaderNotifierMessage<CreateReference>>
-    , IRecipient<InsertValueMessage<CreateReference>>
+public partial class ReferenceListViewModel : ViewModelBase
 {
     private const int PageSize = 20;
     private const int FirstPage = 1;
@@ -34,37 +30,17 @@ public partial class ReferenceListViewModel
 
     protected virtual void Initialize()
     {
-        Messenger.Register<InsertValueMessage<CreateReference>>(this);
-        Messenger.Register<LoaderNotifierMessage<CreateReference>>(this);
         References = new ObservableRangeCollection<CreateReference>();
         ReferencesPaginator = new Paginator<CreateReference>(LoadReferencesPageAsync, pageSize: PageSize, maxItemCount: MaxItemCount);
         ReferencesLoaderNotifier = new TaskLoaderNotifier<IReadOnlyCollection<CreateReference>>();
-        ReferencesLoaderNotifier.Load(LoadFirstPage);
     }
 
-    public void Receive(LoaderNotifierMessage<CreateReference> Message)
-    {
-        ReferencesLoaderNotifier.Load(true);
-    }
+    [ObservableProperty]
+    private Paginator<CreateReference> m_ReferencesPaginator = default!;
 
-    public void Receive(InsertValueMessage<CreateReference> Message)
-    {
-        References.Add(Message.Value);
-    }
+    [ObservableProperty]
+    private TaskLoaderNotifier<IReadOnlyCollection<CreateReference>> m_ReferencesLoaderNotifier = default!;
 
-    private async Task<IReadOnlyCollection<CreateReference>> LoadFirstPage(bool IsRefreshing)
-    {
-        PageResult<CreateReference> Result = await ReferencesPaginator.LoadPage(FirstPage);
-        return Result.Items;
-    }
-
-    [NotNull]
-    public Paginator<CreateReference> ReferencesPaginator { get; private set; } = default!;
-
-    [NotNull]
-    public TaskLoaderNotifier<IReadOnlyCollection<CreateReference>> ReferencesLoaderNotifier { get; private set; } = default!;
-
-    [NotNull]
     [ObservableProperty]
     private ObservableRangeCollection<CreateReference> m_References = default!;
 
@@ -78,11 +54,6 @@ public partial class ReferenceListViewModel
         {
             References.Remove(Reference);                                        // Remover en ReferenceListPage
             Messenger.Send<DeleteValueMessage<CreateReference>>(new(Reference)); // Remover en CustomerRegistrationPage
-
-            if (References.Count == 0)
-            {
-                ReferencesLoaderNotifier.Load(true);
-            }
         }
     }
 
@@ -110,11 +81,23 @@ public partial class ReferenceListViewModel
         Debug.WriteLine($"OnDragEnded( From: {DragInfo.From}, To: {DragInfo.To} )");
     }
 
+    [RelayCommand]
+    private void OnAppearing(EventArgs EventInfo)
+    {
+        ReferencesLoaderNotifier.Load(LoadFirstPage);
+    }
+
+    private async Task<IReadOnlyCollection<CreateReference>> LoadFirstPage(bool IsRefreshing)
+    {
+        PageResult<CreateReference> Result = await ReferencesPaginator.LoadPage(FirstPage);
+        return Result.Items;
+    }
+
     protected virtual async Task<PageResult<CreateReference>> LoadReferencesPageAsync(int PageNumber, int PageSize, bool IsRefresh)
     {
         await ValueTask.CompletedTask;
         IObservableCollection<CreateReference> ClientReferences = default!;
-        Messenger.Send<ActionMessage<Request<IObservableCollection<CreateReference>>>>(new(References => ClientReferences = References));
+        Messenger.Send<ActionMessage<Fetch<IObservableCollection<CreateReference>>>>(new(References => ClientReferences = References));
 
         if (IsRefresh || (ReferencesPaginator.TotalRemoteCount != ClientReferences.Count))
         {

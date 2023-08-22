@@ -309,8 +309,8 @@
                     </Grid>
                 </SwipeView>
 
-                <Button Text="Submit" Input:FormView.IsSubmitButton="True" StyleClass="FilledButton,PrimaryFilledButton" Margin="0,20,0,0" />
-                <Button Text="Reset" Input:FormView.IsResetButton="True" StyleClass="OutlinedButton,AccentOutlinedButton" Margin="0,0,0,20"  BackgroundColor="{StaticResource Accent}" />
+                <Button Text="Registrar Cliente" Input:FormView.IsSubmitButton="True" StyleClass="FilledButton,PrimaryFilledButton" Margin="0,20,0,0" />
+                <Button Text="Limpiar Campos" Input:FormView.IsResetButton="True" StyleClass="OutlinedButton,AccentOutlinedButton" Margin="0,0,0,20"  BackgroundColor="{StaticResource Accent}" />
             </Controls:FormView>
         </VerticalStackLayout>
     </ScrollView>

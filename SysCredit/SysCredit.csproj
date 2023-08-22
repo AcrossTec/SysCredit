@@ -48,9 +48,8 @@
 
     <!-- Images -->
     <MauiImage Include="Resources\Images\*" />
-    <MauiImage Include="Resources\Images\MainView\*" />
-    <MauiImage Include="Resources\Images\MainView\Dark\*" />
-    <MauiImage Include="Resources\Images\MainView\White\*" />
+    <MauiImage Include="Resources\Images\Dark\*" />
+    <MauiImage Include="Resources\Images\White\*" />
     <MauiImage Include="Resources\Splash\splash.svg" />
 
     <!-- Custom Fonts -->
@@ -174,6 +173,12 @@
     <ProjectReference Include="..\SysCredit.DataTransferObject\SysCredit.DataTransferObject.csproj" />
     <ProjectReference Include="..\SysCredit.Helpers\SysCredit.Helpers.csproj" />
     <ProjectReference Include="..\SysCredit.Models\SysCredit.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MauiXaml Update="Views\Guarantors\GuarantorListCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
   </ItemGroup>
 
 </Project>

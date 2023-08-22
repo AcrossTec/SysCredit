@@ -16,7 +16,7 @@
     x:Class="SysCredit.Mobile.AppShell"
     x:Name="SysCreditShell"
     Shell.FlyoutBehavior="Flyout"
-    FlyoutIcon="home_screen_dark_icon.svg"
+    FlyoutIcon="bars_staggered_solid_dark_icon.svg"
     FlyoutHeaderBehavior="CollapseOnScroll"
     FlyoutBackground="{DynamicResource PrimaryBrush}">
     <Shell.Resources>
@@ -190,7 +190,7 @@
         Route="About" Title="Acerca De" Icon="circle_info_solid_white_icon.svg"
         ContentTemplate="{DataTemplate Views:AboutPage}" />
 
-    <MenuItem Text="Ayuda" Command="{Binding OpenHelpCommand}" CommandParameter="https://docs.microsoft.com/dotnet/maui/fundamentals/shell">
+    <MenuItem Text="Ayuda" Command="{Binding OpenHelpCommand}" CommandParameter="https://github.com/DenisRitchie/SysCredit">
         <MenuItem.IconImageSource>
             <FontImageSource FontFamily="FontAwesomeSolid" Glyph="&#x3f;" Color="{DynamicResource White}" />
         </MenuItem.IconImageSource>

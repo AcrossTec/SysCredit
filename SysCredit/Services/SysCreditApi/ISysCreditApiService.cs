@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 public interface ISysCreditApiService
 {
-    ValueTask<IObservableCollection<Relationship>> FetchRelationshipsAsync();
+    ValueTask<IResponse<IObservableCollection<Relationship>>> FetchRelationshipsAsync();
 
     ValueTask<EntityId?> InsertGuarantorAsync(CreateGuarantor Model);
 
