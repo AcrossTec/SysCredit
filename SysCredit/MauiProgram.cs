@@ -87,9 +87,13 @@ public static partial class MauiProgram
 
     private static void ConfigureFonts(IFontCollection Fonts)
     {
-        Fonts.AddFontAwesomeIconFonts();
-        Fonts.AddMaterialIconFonts();
-        Fonts.AddFluentIconFonts();
+        // https://andreinitescu.github.io/IconFont2Code/
+
+        // Fonts.AddFontAwesomeIconFonts();
+        // Fonts.AddMaterialIconFonts();
+        // Fonts.AddFluentIconFonts();
+
+        Fonts.AddFont("Segoe-Fluent-Icons.ttf", "Fluent");
 
         Fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
         Fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
@@ -97,6 +101,12 @@ public static partial class MauiProgram
         Fonts.AddFont("Brands-Regular-400.otf", "FontAwesomeBrands");
         Fonts.AddFont("Free-Regular-400.otf", "FontAwesomeRegular");
         Fonts.AddFont("Free-Solid-900.otf", "FontAwesomeSolid");
+
+        Fonts.AddFont("MaterialIconsOutlined-Regular.otf", "MaterialOutlined");
+        Fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialRegular");
+        Fonts.AddFont("MaterialIconsRound-Regular.otf", "MaterialRound");
+        Fonts.AddFont("MaterialIconsSharp-Regular.otf", "MaterialSharp");
+        Fonts.AddFont("MaterialIconsTwoTone-Regular.otf", "MaterialTwoTone");
 
         Fonts.AddFont("Inter-Black.ttf", "InterBlack");
         Fonts.AddFont("Inter-Bold.ttf", "InterBold");

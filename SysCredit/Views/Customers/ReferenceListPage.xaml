@@ -9,7 +9,7 @@
         xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Customers"
         xmlns:UraniumUI="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
         xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
-        xmlns:Icon="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
+        xmlns:Icons="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
         xmlns:TaskLoaderView="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
         xmlns:Sho="http://sharpnado.com"
         x:Class="SysCredit.Mobile.Views.Customers.ReferenceListPage"
@@ -109,7 +109,7 @@
                         </Style>
                     </VerticalStackLayout.Resources>
                     <Image WidthRequest="40" HeightRequest="40" HorizontalOptions="Center" VerticalOptions="Center"
-                           Source="{FontImageSource FontFamily=MaterialOutlined, Glyph={x:Static Icon:MaterialOutlined.Backup_table}, Color={AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource OnSurfaceDark}}}"/>
+                           Source="{FontImageSource FontFamily=MaterialOutlined, Glyph={x:Static Icons:MaterialOutlined.Backup_table}, Color={AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource OnSurfaceDark}}}"/>
                     <Label Text="No se han agregado referencias" StyleClass="LabelStyleId" />
                     <Label Text="&#x00af;\_(ツ)_/&#x00af;" StyleClass="LabelStyleId" />
                 </VerticalStackLayout>

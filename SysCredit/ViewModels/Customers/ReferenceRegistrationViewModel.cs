@@ -35,8 +35,8 @@ public partial class ReferenceRegistrationViewModel : ViewModelBase
     [RelayCommand]
     private async Task OnRegisterReference()
     {
-        Messenger.Send(new InsertValueMessage<CreateReference>(Model));
         await Popups.ShowSysCreditPopup("Referencia Agregada Correctamente");
+        Messenger.Send(new InsertValueMessage<CreateReference>(Model));
         ModelReset();
     }
 

@@ -18,7 +18,10 @@ using SysCredit.Mobile.Models.Customers.Creates;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
-public partial class ReferenceListViewModel : ViewModelBase, IRecipient<InsertValueMessage<CreateReference>>
+public partial class ReferenceListViewModel
+    : ViewModelBase
+    , IRecipient<LoaderNotifierMessage<CreateReference>>
+    , IRecipient<InsertValueMessage<CreateReference>>
 {
     private const int PageSize = 20;
     private const int FirstPage = 1;
@@ -29,9 +32,30 @@ public partial class ReferenceListViewModel : ViewModelBase, IRecipient<InsertVa
         Initialize();
     }
 
+    protected virtual void Initialize()
+    {
+        Messenger.Register<InsertValueMessage<CreateReference>>(this);
+        Messenger.Register<LoaderNotifierMessage<CreateReference>>(this);
+        References = new ObservableRangeCollection<CreateReference>();
+        ReferencesPaginator = new Paginator<CreateReference>(LoadReferencesPageAsync, pageSize: PageSize, maxItemCount: MaxItemCount);
+        ReferencesLoaderNotifier = new TaskLoaderNotifier<IReadOnlyCollection<CreateReference>>();
+        ReferencesLoaderNotifier.Load(LoadFirstPage);
+    }
+
+    public void Receive(LoaderNotifierMessage<CreateReference> Message)
+    {
+        ReferencesLoaderNotifier.Load(true);
+    }
+
     public void Receive(InsertValueMessage<CreateReference> Message)
     {
         References.Add(Message.Value);
+    }
+
+    private async Task<IReadOnlyCollection<CreateReference>> LoadFirstPage(bool IsRefreshing)
+    {
+        PageResult<CreateReference> Result = await ReferencesPaginator.LoadPage(FirstPage);
+        return Result.Items;
     }
 
     [NotNull]
@@ -84,21 +108,6 @@ public partial class ReferenceListViewModel : ViewModelBase, IRecipient<InsertVa
     private void OnDragEnded(DragAndDropInfo DragInfo)
     {
         Debug.WriteLine($"OnDragEnded( From: {DragInfo.From}, To: {DragInfo.To} )");
-    }
-
-    protected virtual void Initialize()
-    {
-        Messenger.Register<InsertValueMessage<CreateReference>>(this);
-        References = new ObservableRangeCollection<CreateReference>();
-        ReferencesPaginator = new Paginator<CreateReference>(LoadReferencesPageAsync, pageSize: PageSize, maxItemCount: MaxItemCount);
-        ReferencesLoaderNotifier = new TaskLoaderNotifier<IReadOnlyCollection<CreateReference>>();
-        ReferencesLoaderNotifier.Load(LoadFirstPage);
-    }
-
-    private async Task<IReadOnlyCollection<CreateReference>> LoadFirstPage(bool IsRefreshing)
-    {
-        PageResult<CreateReference> Result = await ReferencesPaginator.LoadPage(FirstPage);
-        return Result.Items;
     }
 
     protected virtual async Task<PageResult<CreateReference>> LoadReferencesPageAsync(int PageNumber, int PageSize, bool IsRefresh)
