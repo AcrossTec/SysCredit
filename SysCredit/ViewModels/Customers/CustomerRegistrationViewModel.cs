@@ -18,11 +18,8 @@ using SysCredit.Mobile.Messages;
 using SysCredit.Mobile.Models;
 using SysCredit.Mobile.Models.Customers.Creates;
 using SysCredit.Mobile.Services.Https;
-using SysCredit.Mobile.Views.Guarantors;
 
 using System.Threading.Tasks;
-
-using static Java.Text.Normalizer;
 
 public partial class CustomerRegistrationViewModel
     : ViewModelBase

@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
-             xmlns:Converters="clr-namespace:SysCredit.Mobile.Converters"
-             xmlns:Maui="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
-             xmlns:ViewGuarantors="clr-namespace:SysCredit.Mobile.Views.Guarantors"
-             xmlns:CreateModels="clr-namespace:SysCredit.Mobile.Models.Customers.Creates"
-             xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Guarantors"
-             xmlns:UraniumUI="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
-             xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
-             xmlns:Icons="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
-             xmlns:TaskLoaderView="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
-             xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:Sho="http://sharpnado.com"
-             x:DataType="ViewModels:GuarantorListViewModel"
-             x:Class="SysCredit.Mobile.Views.Guarantors.GuarantorListPage"
-             x:Name="Page"
-             Shell.ForegroundColor="{StaticResource White}"
-             Shell.BackgroundColor="{StaticResource Primary}"
-             Title="Lista de Fiadores">
-    <ContentPage.Behaviors>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
+    xmlns:Converters="clr-namespace:SysCredit.Mobile.Converters"
+    xmlns:Maui="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
+    xmlns:ViewGuarantors="clr-namespace:SysCredit.Mobile.Views.Guarantors"
+    xmlns:CreateModels="clr-namespace:SysCredit.Mobile.Models.Customers.Creates"
+    xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Guarantors"
+    xmlns:UraniumUI="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+    xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:Icons="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
+    xmlns:TaskLoaderView="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
+    xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:Sho="http://sharpnado.com"
+    x:DataType="ViewModels:GuarantorListViewModel"
+    x:Class="SysCredit.Mobile.Views.Guarantors.GuarantorListPage"
+    x:Name="Page"
+    Shell.ForegroundColor="{StaticResource White}"
+    Shell.BackgroundColor="{StaticResource Primary}"
+    Title="Lista de Fiadores"
+    Appearing="OnPageAppearing">
+
+    <!--<ContentPage.Behaviors>
         <Toolkit:EventToCommandBehavior EventName="Appearing" EventArgsConverter="{StaticResource EventArgsConverter}" Command="{Binding AppearingCommand}" />
-    </ContentPage.Behaviors>
+    </ContentPage.Behaviors>-->
 
     <Shell.TitleView>
         <Controls:TitleView
