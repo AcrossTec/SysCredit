@@ -10,7 +10,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <x:String x:Key="AppName">SysCredit</x:String>
-            <x:String x:Key="DevCompanyName">W&amp;A</x:String>
+            <x:String x:Key="DevCompanyName">AcrossTec</x:String>
             <x:String x:Key="CompanyName">SysCredit</x:String>
             <x:String x:Key="Watchword">Efectivo Al Instante</x:String>
             <ResourceDictionary.MergedDictionaries>
