@@ -101,6 +101,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Properties\SysCreditResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SysCreditResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\SysCreditResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SysCreditResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="akgul.Maui.DataGrid" Version="3.0.0" />
     <PackageReference Include="AlohaKit" Version="1.0.74" />
     <PackageReference Include="AlohaKit.Animations" Version="1.0.0" />
@@ -159,30 +174,6 @@
     <ProjectReference Include="..\SysCredit.DataTransferObject\SysCredit.DataTransferObject.csproj" />
     <ProjectReference Include="..\SysCredit.Helpers\SysCredit.Helpers.csproj" />
     <ProjectReference Include="..\SysCredit.Models\SysCredit.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="EventArgs\" />
-    <Folder Include="Handlers\" />
-    <Folder Include="Helpers\" />
-    <Folder Include="ViewModels\Controls\" />
-    <Folder Include="ViewModels\Users\" />
-    <Folder Include="ViewModels\Payments\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <MauiXaml Update="Resources\Styles\Border.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Resources\Styles\Shadows.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Resources\Styles\Text.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
-    <MauiXaml Update="Views\Customers\ReferenceListCell.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
   </ItemGroup>
 
 </Project>

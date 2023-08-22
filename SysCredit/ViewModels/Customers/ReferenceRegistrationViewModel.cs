@@ -20,28 +20,32 @@ public partial class ReferenceRegistrationViewModel : ViewModelBase
     [ObservableProperty]
     private CreateReference m_Model = new();
 
+    private void ModelReset()
+    {
+        Model = new();
+        Form?.BaseReset();
+    }
+
     [RelayCommand]
-    private void GenderSelectedValueChanged(PickerData? PickerItem)
+    private void OnGenderSelectedValueChanged(PickerData? PickerItem)
     {
         Model.Gender = (Gender?)PickerItem?.Data;
     }
 
     [RelayCommand]
-    private async Task RegisterReference()
+    private async Task OnRegisterReference()
     {
-        Messenger.Send(new ValueMessage<CreateReference>(Model));
-        await Popups.ShowSysCreditPopup("Referencia agregada correctamente", "Aceptar");
-        Model = new();
-        Form?.Reset();
+        Messenger.Send(new InsertValueMessage<CreateReference>(Model));
+        await Popups.ShowSysCreditPopup("Referencia Agregada Correctamente");
+        ModelReset();
     }
 
     [RelayCommand]
-    private async Task ResetReference(FormResetCommandParameter Parameter)
+    private async Task OnResetReference(FormResetCommandParameter Parameter)
     {
-        if (await Popups.ShowSysCreditPopup("¿Desea borrar el contenido de todos los campos?", "Sí", "No"))
+        if (await Popups.ShowSysCreditPopup("¿Limpiar Formulario?", "Sí", "No"))
         {
-            Model = new();
-            Parameter.FormReset();
+            ModelReset();
         }
     }
 }

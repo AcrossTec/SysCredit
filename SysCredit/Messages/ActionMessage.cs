@@ -2,9 +2,4 @@
 
 using CommunityToolkit.Mvvm.Messaging.Messages;
 
-public class ActionMessage<T> : ValueChangedMessage<T>
-{
-    public ActionMessage(T Value) : base(Value)
-    {
-    }
-}
+public class ActionMessage<T>(T Value) : ValueChangedMessage<T>(Value) where T : Delegate;

@@ -27,6 +27,11 @@ public partial class FormView : InputKit.Shared.Controls.FormView
         }
     }
 
+    public void BaseReset()
+    {
+        base.Reset();
+    }
+
     public ICommand ResetCommand
     {
         get => (ICommand)GetValue(ResetCommandProperty);

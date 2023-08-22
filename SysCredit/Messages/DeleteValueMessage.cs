@@ -2,4 +2,4 @@
 
 using CommunityToolkit.Mvvm.Messaging.Messages;
 
-public class AppThemeChanged(AppTheme Value) : ValueChangedMessage<AppTheme>(Value);
+public class DeleteValueMessage<T>(T Value) : ValueChangedMessage<T>(Value);

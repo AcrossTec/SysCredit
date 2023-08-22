@@ -16,6 +16,7 @@
         xmlns:Theming="clr-namespace:UraniumUI.Theming;assembly=UraniumUI"
         xmlns:Behavior="clr-namespace:SysCredit.Mobile.Behaviors"
         xmlns:Scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
+        xmlns:Properties="clr-namespace:SysCredit.Mobile.Properties"
         Shell.ForegroundColor="{StaticResource White}"
         Shell.BackgroundColor="{StaticResource Primary}"
         x:Class="SysCredit.Mobile.Views.Customers.ReferenceRegistrationPage"
@@ -69,6 +70,9 @@
             <Controls:FormView
                 x:Name="Form" x:DataType="ViewModels:ReferenceRegistrationViewModel" Spacing="10"
                 SubmitCommand="{Binding RegisterReferenceCommand}" ResetCommand="{Binding ResetReferenceCommand}">
+                <Controls:FormView.Resources>
+                    <x:Type x:Key="ModelType" TypeName="CreateModels:CreateReference" />
+                </Controls:FormView.Resources>
 
                 <!-- Sección -->
 
@@ -78,41 +82,40 @@
                 <!-- Nombres -->
 
                 <Material:TextField
-                    Title="Nombres" AllowClear="True"
+                    Title="{Properties:Translate Name}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf4ff;}"
                     Text="{Binding Model.Name}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateReference}" Path="Name" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Name" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
                 <!-- Apellidos -->
 
                 <Material:TextField
-                    Title="Apellidos" AllowClear="True"
+                    Title="{Properties:Translate LastName}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf5b7;}"
                     Text="{Binding Model.LastName}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateReference}" Path="LastName" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="LastName" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
                 <!-- Número de Cédula -->
 
                 <Material:TextField
-                    Title="Número de Cédula" AllowClear="True"
+                    Title="{Properties:Translate Identification}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2c2;}"
                     Text="{Binding Model.Identification}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateReference}" Path="Identification" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Identification" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
                 <!-- Género -->
 
                 <Material:PickerField
-                    Title="Género"
-                    AllowClear="True"
+                    Title="{Properties:Translate Gender}" AllowClear="True"
                     Icon="{FontImage FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Wc}}"
                     ItemDisplayBinding="{Binding Value}"
                     SelectedValueChangedCommand="{Binding GenderSelectedValueChangedCommand}">
@@ -123,45 +126,45 @@
                         </x:Array>
                     </Material:PickerField.ItemsSource>
                     <Material:PickerField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateReference}" Path="Gender" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Gender" />
                     </Material:PickerField.Behaviors>
                 </Material:PickerField>
 
                 <!-- Correo -->
 
                 <Material:TextField
-                    Title="Correo" AllowClear="True"
+                    Title="{Properties:Translate Email}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf0e0;}"
                     Text="{Binding Model.Email}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateReference}" Path="Email" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Email" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
                 <!-- Número de Teléfono -->
 
                 <Material:TextField
-                    Title="Número de Teléfono" AllowClear="True" Keyboard="Telephone"
+                    Title="{Properties:Translate Phone}" AllowClear="True" Keyboard="Telephone"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf095;}"
                     Text="{Binding Model.Phone}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateReference}" Path="Phone" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Phone" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
                 <!-- Domicilio -->
 
                 <Material:TextField
-                    Title="Domicilio" AllowClear="True"
+                    Title="{Properties:Translate Address}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2b9;}"
                     Text="{Binding Model.Address}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="Address" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Address" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
-                <Button Text="Submit" Input:FormView.IsSubmitButton="True" StyleClass="FilledButton,PrimaryFilledButton" Margin="0,20,0,0" />
-                <Button Text="Reset" Input:FormView.IsResetButton="True"  StyleClass="OutlinedButton,AccentOutlinedButton" Margin="0,0,0,20" BackgroundColor="{StaticResource Accent}" />
+                <Button Text="Agregar Referencia" Input:FormView.IsSubmitButton="True" StyleClass="FilledButton,PrimaryFilledButton" Margin="0,20,0,0" />
+                <Button Text="Limpiar Campos" Input:FormView.IsResetButton="True"  StyleClass="OutlinedButton,AccentOutlinedButton" Margin="0,0,0,20" BackgroundColor="{StaticResource Accent}" />
             </Controls:FormView>
         </VerticalStackLayout>
     </ScrollView>

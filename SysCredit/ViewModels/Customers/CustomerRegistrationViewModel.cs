@@ -10,6 +10,7 @@ using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 
 using SysCredit.Enums;
+using SysCredit.Helpers.Delegates;
 using SysCredit.Mobile.Controls.Parameters;
 using SysCredit.Mobile.Messages;
 using SysCredit.Mobile.Models;
@@ -18,47 +19,45 @@ using SysCredit.Mobile.Views.Guarantors;
 
 using System.Threading.Tasks;
 
-using static Helpers.Parameters;
-
-public partial class CustomerRegistrationViewModel : ViewModelBase, IRecipient<ValueMessage<CreateReference>>, IRecipient<ValueMessage<Guarantor>>, IRecipient<ActionMessage<Action<IObservableCollection<CreateReference>>>>
+public partial class CustomerRegistrationViewModel
+    : ViewModelBase
+    , IRecipient<InsertValueMessage<CreateReference>>
+    , IRecipient<InsertValueMessage<Guarantor>>
+    , IRecipient<DeleteValueMessage<CreateReference>>
+    , IRecipient<ActionMessage<Request<IObservableCollection<CreateReference>>>>
 {
     public CustomerRegistrationViewModel()
     {
-        Ìnitialize();
-        Messenger.Register<ValueMessage<Guarantor>>(this);
-        Messenger.Register<ValueMessage<CreateReference>>(this);
-        Messenger.Register<ActionMessage<Action<IObservableCollection<CreateReference>>>>(this);
+        Initialize();
+        Messenger.Register<InsertValueMessage<Guarantor>>(this);
+        Messenger.Register<InsertValueMessage<CreateReference>>(this);
+        Messenger.Register<DeleteValueMessage<CreateReference>>(this);
+        Messenger.Register<ActionMessage<Request<IObservableCollection<CreateReference>>>>(this);
     }
 
-    protected virtual void Ìnitialize()
+    protected virtual void Initialize()
     {
-        for (int Index = 0; Index < 1000; ++Index)
-        {
-            Model.References.Add(new CreateReference
-            {
-                Name = $"Denis-{Index}",
-                LastName = $"West-{Index}",
-                Phone = $"{55000000 + Index}",
-                Email = $"Correo{Index}@Correo.com",
-                Gender = Index % 2 == 0 ? Gender.Male : Gender.Female
-            });
-        }
     }
 
     [ObservableProperty]
     private CreateCustomer m_Model = new();
 
-    public void Receive(ValueMessage<CreateReference> Message)
+    public void Receive(InsertValueMessage<CreateReference> Message)
     {
         Model.References.Add(Message.Value);
     }
 
-    public void Receive(ValueMessage<Guarantor> Message)
+    public void Receive(DeleteValueMessage<CreateReference> Message)
+    {
+        Model.References.Remove(Message.Value);
+    }
+
+    public void Receive(InsertValueMessage<Guarantor> Message)
     {
         Model.Guarantors.Add(Message.Value);
     }
 
-    public void Receive(ActionMessage<Action<IObservableCollection<CreateReference>>> Message)
+    public void Receive(ActionMessage<Request<IObservableCollection<CreateReference>>> Message)
     {
         Message.Value.Invoke(Model.References);
     }

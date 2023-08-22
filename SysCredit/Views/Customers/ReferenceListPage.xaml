@@ -95,11 +95,25 @@
 
         <TaskLoaderView:TaskLoaderView
             Grid.Row="1"
+            VerticalOptions="Fill"
             IsClippedToBounds="False"
             Style="{StaticResource ReferenceTaskLoaderStyle}"
-            TaskLoaderNotifier="{Binding ReferencesLoaderNotifier}"
-            VerticalOptions="Fill">
-            
+            TaskLoaderNotifier="{Binding ReferencesLoaderNotifier}">
+            <TaskLoaderView:TaskLoaderView.EmptyView>
+                <VerticalStackLayout Margin="80,20" VerticalOptions="Center" HorizontalOptions="Center">
+                    <VerticalStackLayout.Resources>
+                        <Style Class="LabelStyleId" TargetType="Label">
+                            <Setter Property="TextColor" Value="Black" />
+                            <Setter Property="FontFamily" Value="InterSemiBold" />
+                            <Setter Property="HorizontalOptions" Value="Center" />
+                        </Style>
+                    </VerticalStackLayout.Resources>
+                    <Image WidthRequest="40" HeightRequest="40" HorizontalOptions="Center" VerticalOptions="Center"
+                           Source="{FontImageSource FontFamily=MaterialOutlined, Glyph={x:Static Icon:MaterialOutlined.Backup_table}, Color={AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource OnSurfaceDark}}}"/>
+                    <Label Text="No se han agregado referencias" StyleClass="LabelStyleId" />
+                    <Label Text="&#x00af;\_(ツ)_/&#x00af;" StyleClass="LabelStyleId" />
+                </VerticalStackLayout>
+            </TaskLoaderView:TaskLoaderView.EmptyView>
             <RefreshView
                 RefreshColor="{StaticResource AccentColor}"
                 Command="{Binding ReferencesLoaderNotifier.RefreshCommand}"
