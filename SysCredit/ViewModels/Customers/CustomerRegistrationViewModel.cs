@@ -24,7 +24,9 @@ public partial class CustomerRegistrationViewModel
     , IRecipient<InsertValueMessage<CreateReference>>
     , IRecipient<InsertValueMessage<Guarantor>>
     , IRecipient<DeleteValueMessage<CreateReference>>
-    , IRecipient<ActionMessage<Request<IObservableCollection<CreateReference>>>>
+    , IRecipient<DeleteValueMessage<Guarantor>>
+    , IRecipient<ActionMessage<Fetch<IObservableCollection<CreateReference>>>>
+    , IRecipient<ActionMessage<Fetch<IObservableCollection<Guarantor>>>>
 {
     public CustomerRegistrationViewModel()
     {
@@ -32,7 +34,8 @@ public partial class CustomerRegistrationViewModel
         Messenger.Register<InsertValueMessage<Guarantor>>(this);
         Messenger.Register<InsertValueMessage<CreateReference>>(this);
         Messenger.Register<DeleteValueMessage<CreateReference>>(this);
-        Messenger.Register<ActionMessage<Request<IObservableCollection<CreateReference>>>>(this);
+        Messenger.Register<ActionMessage<Fetch<IObservableCollection<CreateReference>>>>(this);
+        Messenger.Register<ActionMessage<Fetch<IObservableCollection<Guarantor>>>>(this);
     }
 
     protected virtual void Initialize()
@@ -57,9 +60,19 @@ public partial class CustomerRegistrationViewModel
         Model.Guarantors.Add(Message.Value);
     }
 
-    public void Receive(ActionMessage<Request<IObservableCollection<CreateReference>>> Message)
+    public void Receive(DeleteValueMessage<Guarantor> Message)
+    {
+        Model.Guarantors.Remove(Message.Value);
+    }
+
+    public void Receive(ActionMessage<Fetch<IObservableCollection<CreateReference>>> Message)
     {
         Message.Value.Invoke(Model.References);
+    }
+
+    public void Receive(ActionMessage<Fetch<IObservableCollection<Guarantor>>> Message)
+    {
+        Message.Value.Invoke(Model.Guarantors);
     }
 
     [RelayCommand]
@@ -69,7 +82,7 @@ public partial class CustomerRegistrationViewModel
     }
 
     [RelayCommand]
-    private async Task SubmitCustomer()
+    private async Task OnSubmitCustomer()
     {
         if (Model.IsValid)
         {
@@ -81,7 +94,7 @@ public partial class CustomerRegistrationViewModel
     }
 
     [RelayCommand]
-    private async Task ResetCustomer(FormResetCommandParameter Parameter)
+    private async Task OnResetCustomer(FormResetCommandParameter Parameter)
     {
         if (await Popups.ShowSysCreditPopup("¿Desea borrar el contenido de todos los campos?", "Sí", "No"))
         {

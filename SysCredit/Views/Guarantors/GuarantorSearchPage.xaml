@@ -1,42 +1,127 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Local="clr-namespace:SysCredit.Mobile"
-             xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
+             xmlns:Converters="clr-namespace:SysCredit.Mobile.Converters"
+             xmlns:Maui="clr-namespace:Maui.DataGrid;assembly=Maui.DataGrid"
+             xmlns:ViewGuarantors="clr-namespace:SysCredit.Mobile.Views.Guarantors"
+             xmlns:CreateModels="clr-namespace:SysCredit.Mobile.Models.Customers.Creates"
              xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Guarantors"
-             xmlns:Input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
-             xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:UraniumUI="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+             xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:Icons="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
+             xmlns:TaskLoaderView="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
+             xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:Sho="http://sharpnado.com"
              x:Class="SysCredit.Mobile.Views.Guarantors.GuarantorSearchPage"
-             x:Name="Self"
+             x:DataType="ViewModels:GuarantorSearchViewModel"
+             x:Name="Page"
              Shell.ForegroundColor="{StaticResource White}"
              Shell.BackgroundColor="{StaticResource Primary}"
-             Title="Buscar de Fiador">
+             Title="Buscador de Fiadores">
     <ContentPage.Behaviors>
         <Toolkit:StatusBarBehavior StatusBarColor="{StaticResource Secondary}" StatusBarStyle="LightContent" />
     </ContentPage.Behaviors>
 
     <Shell.TitleView>
         <Controls:TitleView
-            Text="{Binding Source={x:Reference Self}, Path=Title}" TextColor="White"
+            Text="{Binding Source={x:Reference Page}, Path=Title}" TextColor="White"
             FontSize="20" FontAttributes="None" FontFamily="InterLight"
             HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
     </Shell.TitleView>
 
-    <!--<Shell.BackButtonBehavior>
-        <BackButtonBehavior IconOverride="{FontImage &#xf177;, FontFamily=FontAwesomeSolid, Color=White}" />
-    </Shell.BackButtonBehavior>-->
+    <ContentPage.Resources>
+        <Color x:Key="AccentColor">#FF0266</Color>
+        <Color x:Key="DarkSurface">#383838</Color>
+        <Color x:Key="DarkDraggedSurface">#4D4D4D</Color>
+        <Color x:Key="DarkCardBorder">#3A3A3A</Color>
 
-    <ContentPage.BindingContext>
-        <ViewModels:GuarantorSearchViewModel />
-    </ContentPage.BindingContext>
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="Black" />
+        </Style>
 
-    <VerticalStackLayout HorizontalOptions="Center" WidthRequest="335" Padding="0,20,0,20">
-        <!--<Material:TextField Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf002;}" Title="Buscar Fiador..." AllowClear="True" />-->
-        <SearchBar x:Name="GuarantorSearch" Placeholder="Buscar Fiador..." />
-        <ScrollView>
-            <ListView />
-        </ScrollView>
-    </VerticalStackLayout>
+        <Style x:Key="GuarantorTaskLoaderStyle" TargetType="TaskLoaderView:TaskLoaderView">
+            <Setter Property="AccentColor" Value="{StaticResource AccentColor}" />
+            <Setter Property="TextColor" Value="{StaticResource SysCredit500}" />
+        </Style>
+
+        <DataTemplate x:Key="GuarantorTemplate">
+            <Sho:DraggableViewCell x:Name="DraggableViewCell">
+                <ContentView>
+                    <ViewGuarantors:GuarantorListCell
+                            Margin="16,8"
+                            Background="{StaticResource DarkSurface}"
+                            Style="{StaticResource BorderDarkerNeumorphismBottom}">
+                        <ViewGuarantors:GuarantorListCell.Triggers>
+                            <DataTrigger Binding="{Binding Source={x:Reference DraggableViewCell}, Path=IsDragAndDropping}"
+                                         TargetType="ViewGuarantors:GuarantorListCell"
+                                         Value="True">
+                                <Setter Property="Background" Value="{StaticResource Dark}" />
+                            </DataTrigger>
+                        </ViewGuarantors:GuarantorListCell.Triggers>
+                    </ViewGuarantors:GuarantorListCell>
+                </ContentView>
+            </Sho:DraggableViewCell>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*">
+        <Grid.Margin>
+            <OnPlatform x:TypeArguments="Thickness">
+                <On Platform="iOS">0, -45, 0, -35</On>
+                <On Platform="Android">0, -15, 0, 0</On>
+            </OnPlatform>
+        </Grid.Margin>
+
+        <SearchBar FontFamily="InterLight" HorizontalOptions="Center" Margin="0,25,0,0"
+                   Text="{Binding Query}" TextColor="{StaticResource Black}"
+                   Placeholder="Buscar Fiador..." PlaceholderColor="{StaticResource Black}"
+                   CancelButtonColor="{StaticResource BackgroundDark}"
+                   SearchCommand="{Binding PerformSearchCommand}" />
+
+        <TaskLoaderView:TaskLoaderView
+            Grid.Row="1"
+            VerticalOptions="Fill"
+            IsClippedToBounds="False"
+            Style="{StaticResource GuarantorTaskLoaderStyle}"
+            TaskLoaderNotifier="{Binding GuarantorsLoaderNotifier}">
+            <TaskLoaderView:TaskLoaderView.EmptyView>
+                <VerticalStackLayout Margin="80,20" VerticalOptions="Center" HorizontalOptions="Center">
+                    <VerticalStackLayout.Resources>
+                        <Style Class="LabelStyleId" TargetType="Label">
+                            <Setter Property="TextColor" Value="Black" />
+                            <Setter Property="FontFamily" Value="InterSemiBold" />
+                            <Setter Property="HorizontalOptions" Value="Center" />
+                        </Style>
+                    </VerticalStackLayout.Resources>
+                    <Image WidthRequest="40" HeightRequest="40" HorizontalOptions="Center" VerticalOptions="Center"
+                           Source="{FontImageSource FontFamily=MaterialOutlined, Glyph={x:Static Icons:MaterialOutlined.Backup_table}, Color={AppThemeBinding Light={StaticResource OnSurface}, Dark={StaticResource OnSurfaceDark}}}"/>
+                    <Label Text="No hay fiadores registrados" StyleClass="LabelStyleId" />
+                    <Label Text="&#x00af;\_(ツ)_/&#x00af;" StyleClass="LabelStyleId" />
+                </VerticalStackLayout>
+            </TaskLoaderView:TaskLoaderView.EmptyView>
+            <RefreshView
+                RefreshColor="{StaticResource AccentColor}"
+                Command="{Binding GuarantorsLoaderNotifier.RefreshCommand}"
+                IsRefreshing="{Binding GuarantorsLoaderNotifier.ShowRefresher}"
+                IsClippedToBounds="False"
+                IsEnabled="True">
+                <Sho:CollectionView
+                    Margin="0"
+                    CollectionLayout="Vertical"
+                    CollectionPadding="10,30,10,75"
+                    ColumnCount="1"
+                    DragAndDropDirection="VerticalOnly"
+                    DragAndDropTrigger="Pan"
+                    EnableDragAndDrop="False"
+                    InfiniteListLoader="{Binding GuarantorsPaginator}"
+                    ItemWidth="0"
+                    ItemHeight="100"
+                    ItemsSource="{Binding Guarantors}"
+                    ItemTemplate="{StaticResource GuarantorTemplate}"
+                    TapCommand="{Binding TapCommand}" />
+            </RefreshView>
+        </TaskLoaderView:TaskLoaderView>
+    </Grid>
+
 </ContentPage>
