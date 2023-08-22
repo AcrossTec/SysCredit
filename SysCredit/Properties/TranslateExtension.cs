@@ -24,7 +24,7 @@ public class TranslateExtension : IMarkupExtension<string>
         if (Translation == null)
         {
 #if RELEASE
-            Translation = Text; // HACK: returns the key, which GETS DISPLAYED TO THE USER
+            Translation = Key; // HACK: returns the key, which GETS DISPLAYED TO THE USER
 #else
             throw new InvalidOperationException(string.Format(CultureInfo.CurrentUICulture, SysCreditResources.TranslateKeyNotFound, Key, nameof(SysCreditResources), CultureInfo.CurrentUICulture.Name));
 #endif
