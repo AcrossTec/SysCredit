@@ -12,6 +12,7 @@
     xmlns:UserViews="clr-namespace:SysCredit.Mobile.Views.Users"
     xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
     xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:UraniumUI="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
     x:Class="SysCredit.Mobile.AppShell"
     x:Name="SysCreditShell"
     Shell.FlyoutBehavior="Flyout"
@@ -163,19 +164,17 @@
         <FlyoutItem.BindingContext>
             <CustomerViewModels:CustomerRegistrationViewModel />
         </FlyoutItem.BindingContext>
-        <Tab Route="Registration" Title="Cliente" Icon="new_customer_white_icon.svg">
-            <ShellContent Title="Cliente" Icon="new_customer_white_icon.svg" ContentTemplate="{DataTemplate CustomerViews:CustomerRegistrationPage}" />
+        <Tab Route="Registration" Title="Cliente" Icon="{FontImage &#xe7f0;, FontFamily=MaterialTwoTone}">
+            <ShellContent Title="Cliente" Icon="{FontImage &#xe1e2;, FontFamily=Fluent}" ContentTemplate="{DataTemplate CustomerViews:CustomerRegistrationPage}" />
         </Tab>
-        <Tab Route="Reference" Title="Referencias" Icon="new_customer_white_icon.svg"
-             Style="{StaticResource TabLayoutStyle}">
-            <ShellContent Route="Registration" Title="Agregar" Icon="new_customer_white_icon.svg" ContentTemplate="{DataTemplate CustomerViews:ReferenceRegistrationPage}" />
-            <ShellContent Route="List" Title="Listar" Icon="new_customer_white_icon.svg" ContentTemplate="{DataTemplate CustomerViews:ReferenceListPage}" />
+        <Tab Route="Reference" Title="Referencias" Icon="{FontImage &#xea4a;, FontFamily=Fluent}" Style="{StaticResource TabLayoutStyle}">
+            <ShellContent Route="Registration" Title="Agregar" Icon="{FontImage &#xef4e;, FontFamily=MaterialSharp}" ContentTemplate="{DataTemplate CustomerViews:ReferenceRegistrationPage}" />
+            <ShellContent Route="List" Title="Listar" Icon="{FontImage &#xe133;, FontFamily=Fluent}" ContentTemplate="{DataTemplate CustomerViews:ReferenceListPage}" />
         </Tab>
-        <Tab Route="Guarantor" Title="Fiadores" Icon="new_customer_white_icon.svg"
-             Style="{StaticResource TabLayoutStyle}">
-            <ShellContent Route="Registration" Title="Registrar" Icon="new_customer_white_icon.svg" ContentTemplate="{DataTemplate GuarantorViews:GuarantorRegistrationPage}" />
-            <ShellContent Route="Search" Title="Buscar" Icon="new_customer_white_icon.svg" ContentTemplate="{DataTemplate GuarantorViews:GuarantorSearchPage}" />
-            <ShellContent Route="List" Title="Listar" Icon="new_customer_white_icon.svg" ContentTemplate="{DataTemplate GuarantorViews:GuarantorListPage}" />
+        <Tab Route="Guarantor" Title="Fiadores" Icon="{FontImage &#xe125;, FontFamily=Fluent}" Style="{StaticResource TabLayoutStyle}">
+            <ShellContent Route="Registration" Title="Registrar" Icon="{FontImage &#xea4d;, FontFamily=MaterialTwoTone}" ContentTemplate="{DataTemplate GuarantorViews:GuarantorRegistrationPage}" />
+            <ShellContent Route="Search" Title="Buscar" Icon="{FontImage &#xe8b6;, FontFamily=MaterialTwoTone}" ContentTemplate="{DataTemplate GuarantorViews:GuarantorSearchPage}" />
+            <ShellContent Route="List" Title="Listar" Icon="{FontImage &#xe1ed;, FontFamily=Fluent}" ContentTemplate="{DataTemplate GuarantorViews:GuarantorListPage}" />
         </Tab>
     </FlyoutItem>
 

@@ -13,7 +13,7 @@
         xmlns:Input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
         xmlns:Validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
         xmlns:Material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
-        xmlns:Icon="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
+        xmlns:Icons="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
         xmlns:UraniumUI="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
         xmlns:Theming="clr-namespace:UraniumUI.Theming;assembly=UraniumUI"
         xmlns:Behavior="clr-namespace:SysCredit.Mobile.Behaviors"
@@ -80,6 +80,8 @@
             <Controls:FormView Spacing="10" SubmitCommand="{Binding SubmitCustomerCommand}" ResetCommand="{Binding ResetCustomerCommand}">
 
                 <Controls:FormView.Resources>
+                    <x:Type x:Key="ModelType" TypeName="CreateModels:CreateCustomer" />
+
                     <Converters:MessageIfCollectionIsEmptyConverter
                         x:Key="ReferencesMessageIfIsEmptyConverter"
                         MessageIfCollectionIsEmpty="Sin Referencias"
@@ -103,7 +105,7 @@
                         Icon="{FontImage &#xf4ff;, FontFamily=FontAwesomeSolid}"
                         Text="{Binding Model.Name, Mode=TwoWay}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="Name" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Name" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -114,7 +116,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf5b7;}"
                     Text="{Binding Model.LastName}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="LastName" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="LastName" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -125,7 +127,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2c2;}"
                     Text="{Binding Model.Identification}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="Identification" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Identification" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -134,7 +136,7 @@
                 <Material:PickerField
                     Title="Género"
                     AllowClear="True"
-                    Icon="{FontImage FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Wc}}"
+                    Icon="{FontImage FontFamily=MaterialRegular, Glyph={x:Static Icons:MaterialRegular.Wc}}"
                     ItemDisplayBinding="{Binding Value}"
                     SelectedValueChangedCommand="{Binding GenderSelectedValueChangedCommand}">
                     <Material:PickerField.ItemsSource>
@@ -144,7 +146,7 @@
                         </x:Array>
                     </Material:PickerField.ItemsSource>
                     <Material:PickerField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="Gender" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Gender" />
                     </Material:PickerField.Behaviors>
                 </Material:PickerField>
 
@@ -155,7 +157,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf0e0;}"
                     Text="{Binding Model.Email}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="Email" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Email" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -166,7 +168,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf095;}"
                     Text="{Binding Model.Phone}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="Phone" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Phone" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -177,7 +179,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2b9;}"
                     Text="{Binding Model.Address}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="Address" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Address" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -188,7 +190,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xe54f;}"
                     Text="{Binding Model.Neighborhood}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="Neighborhood" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Neighborhood" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -205,7 +207,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf508;}"
                     Text="{Binding Model.BussinessType}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="BussinessType" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="BussinessType" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
@@ -216,7 +218,7 @@
                     Icon="{FontImage FontFamily=FontAwesomeRegular, Glyph=&#xf2b9;}"
                     Text="{Binding Model.BussinessAddress}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateCustomer}" Path="BussinessAddress" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="BussinessAddress" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
