@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg 
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="30"
+   height="30"
+   viewBox="0 0 30 30"
+   version="1.1"
+   id="svg822"
+   inkscape:version="0.92.4 (f8dce91, 2019-08-02)"
+   sodipodi:docname="person-add.svg">
+  <defs
+     id="defs816" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="35.666666"
+     inkscape:cx="16.168618"
+     inkscape:cy="8.486428"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="px"
+     inkscape:window-width="1366"
+     inkscape:window-height="713"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     showguides="false"
+     inkscape:snap-global="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid816" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata819">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-289.0625)">
+    <path
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 11.933594 6 A 4 4 0 0 0 7.9335938 10 A 4 4 0 0 0 11.933594 14 A 4 4 0 0 0 15.933594 10 A 4 4 0 0 0 11.933594 6 z M 15.511719 14.830078 L 12.019531 20.292969 L 8.4804688 14.833984 C 5.2428523 16.207884 3.1021768 19.341842 3 22.857422 C 5.189782 25.360772 8.4004782 26.949219 11.990234 26.949219 C 13.501264 26.949219 14.938576 26.653124 16.267578 26.140625 A 7.071496 7.071496 0 0 1 15 22.115234 A 7.071496 7.071496 0 0 1 17.941406 16.386719 C 17.22773 15.753598 16.419196 15.216989 15.511719 14.830078 z M 22.138672 17.144531 C 21.79592 17.144531 21.461659 17.178041 21.138672 17.244141 L 21.138672 21.095703 L 17.289062 21.095703 C 17.222973 21.418743 17.189453 21.752953 17.189453 22.095703 C 17.189453 22.438453 17.222973 22.772713 17.289062 23.095703 L 21.138672 23.095703 L 21.138672 26.945312 C 21.461659 27.011413 21.79592 27.044922 22.138672 27.044922 C 22.481423 27.044922 22.815631 27.011413 23.138672 26.945312 L 23.138672 23.095703 L 26.990234 23.095703 C 27.056374 22.772713 27.089844 22.438453 27.089844 22.095703 C 27.089844 21.752953 27.056374 21.418743 26.990234 21.095703 L 23.138672 21.095703 L 23.138672 17.244141 C 22.815631 17.178041 22.481423 17.144531 22.138672 17.144531 z "
+       transform="translate(0,289.0625)"
+       id="path852" />
+  </g>
+</svg>

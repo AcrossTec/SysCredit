@@ -63,12 +63,15 @@
                     HorizontalOptions="End" Margin="0,0,10,0"
                     TappedCommand="{Binding GoToCustomerRegistrationPageCommand}">
                     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image Source="new_customer_white_icon.svg"
+                        <Image Source="person_add.svg"
                                WidthRequest="{StaticResource ButtonIconSize}"
                                Margin="0,0,0,5">
                             <Image.Shadow>
                                 <Shadow Opacity="0.8" Offset="2.5,2.5" Brush="{StaticResource Accent}" />
                             </Image.Shadow>
+                            <Image.Behaviors>
+                                <Toolkit:IconTintColorBehavior TintColor="{StaticResource White}" />
+                            </Image.Behaviors>
                         </Image>
                         <Label Text="Nuevo Cliente" Style="{StaticResource LabelStyle}" />
                     </VerticalStackLayout>
@@ -78,12 +81,15 @@
                     HorizontalOptions="Start" Margin="10,0,0,0"
                     TappedCommand="{Binding GoToCustomerListPageCommand}">
                     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image Source="list_customer_white_icon.svg"
+                        <Image Source="businessmen.svg"
                                WidthRequest="{StaticResource ButtonIconSize}"
                                Margin="0,0,0,5">
                             <Image.Shadow>
                                 <Shadow Opacity="0.8" Offset="2.5,2.5" Brush="{StaticResource Accent}" />
                             </Image.Shadow>
+                            <Image.Behaviors>
+                                <Toolkit:IconTintColorBehavior TintColor="{StaticResource White}" />
+                            </Image.Behaviors>
                         </Image>
                         <Label Text="Lista de Clientes" Style="{StaticResource LabelStyle}" />
                     </VerticalStackLayout>
@@ -93,14 +99,53 @@
                     HorizontalOptions="End" Margin="0,40,10,0"
                     TappedCommand="{Binding GoToLoanRequestPageCommand}">
                     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image Source="hand_holding_dollar_white_icon.svg"
+                        <Image Source="money_stack.svg"
                                WidthRequest="{StaticResource ButtonIconSize}"
                                Margin="0,0,0,5">
                             <Image.Shadow>
                                 <Shadow Opacity="0.8" Offset="2.5,2.5" Brush="{StaticResource Accent}" />
                             </Image.Shadow>
+                            <Image.Behaviors>
+                                <Toolkit:IconTintColorBehavior TintColor="{StaticResource White}" />
+                            </Image.Behaviors>
                         </Image>
                         <Label Text="Solicitar Préstamo" Style="{StaticResource LabelStyle}" />
+                    </VerticalStackLayout>
+                </Material:ButtonView>
+
+                <Material:ButtonView
+                    HorizontalOptions="Start" Margin="10,40,0,0"
+                    TappedCommand="{Binding GoToRoutePageCommand}">
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="navigation_map.svg"
+                               WidthRequest="{StaticResource ButtonIconSize}"
+                               Margin="0,0,0,5">
+                            <Image.Shadow>
+                                <Shadow Opacity="0.8" Offset="2.5,2.5" Brush="{StaticResource Accent}" />
+                            </Image.Shadow>
+                            <Image.Behaviors>
+                                <Toolkit:IconTintColorBehavior TintColor="{StaticResource White}" />
+                            </Image.Behaviors>
+                        </Image>
+                        <Label Text="Rutas" Style="{StaticResource LabelStyle}" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Material:ButtonView>
+
+                <Material:ButtonView
+                    HorizontalOptions="End" Margin="0,80,10,0"
+                    TappedCommand="{Binding GoToReportPageCommand}">
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Image Source="presentation_financial.svg"
+                               WidthRequest="{StaticResource ButtonIconSize}"
+                               Margin="0,0,0,5">
+                            <Image.Shadow>
+                                <Shadow Opacity="0.8" Offset="2.5,2.5" Brush="{StaticResource Accent}" />
+                            </Image.Shadow>
+                            <Image.Behaviors>
+                                <Toolkit:IconTintColorBehavior TintColor="{StaticResource White}" />
+                            </Image.Behaviors>
+                        </Image>
+                        <Label Text="Reportes" Style="{StaticResource LabelStyle}" />
                     </VerticalStackLayout>
                 </Material:ButtonView>
 

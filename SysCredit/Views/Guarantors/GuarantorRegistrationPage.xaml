@@ -14,6 +14,8 @@
              xmlns:Icon="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
              xmlns:Theming="clr-namespace:UraniumUI.Theming;assembly=UraniumUI"
              xmlns:Behavior="clr-namespace:SysCredit.Mobile.Behaviors"
+             xmlns:Properties="clr-namespace:SysCredit.Mobile.Properties"
+             x:DataType="ViewModels:GuarantorRegistrationViewModel"
              x:Class="SysCredit.Mobile.Views.Guarantors.GuarantorRegistrationPage"
              x:Name="Self"
              Title="Nuevo Fiador"
@@ -71,8 +73,10 @@
     </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout Margin="0,20,0,20" WidthRequest="340">
-            <Controls:FormView x:Name="Form" x:FieldModifier="private" x:DataType="ViewModels:GuarantorRegistrationViewModel"
-                Spacing="10" SubmitCommand="{Binding RegisterGuarantorCommand}">
+            <Controls:FormView x:Name="Form" x:FieldModifier="private" Spacing="10" SubmitCommand="{Binding RegisterGuarantorCommand}">
+                <Controls:FormView.Resources>
+                    <x:Type x:Key="ModelType" TypeName="CreateModels:CreateGuarantor" />
+                </Controls:FormView.Resources>
 
                 <!-- Sección -->
 
@@ -82,44 +86,40 @@
                 <!-- Nombres -->
 
                 <Material:TextField
-                        Title="Nombres" AllowClear="True"
+                        Title="{Properties:Translate Name}" AllowClear="True"
                         Icon="{FontImage &#xf4ff;, FontFamily=FontAwesomeSolid}"
                         Text="{Binding Model.Name, Mode=TwoWay}">
-                    <Material:TextField.Validations>
-                        <Validation:RequiredValidation />
-                    </Material:TextField.Validations>
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="Name" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Name" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
                 <!-- Apellidos -->
 
                 <Material:TextField
-                    Title="Apellidos" AllowClear="True"
+                    Title="{Properties:Translate LastName}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf5b7;}"
                     Text="{Binding Model.LastName}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="LastName" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="LastName" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
                 <!-- Número de Cédula -->
 
                 <Material:TextField
-                    Title="Número de Cédula" AllowClear="True"
+                    Title="{Properties:Translate Identification}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2c2;}"
                     Text="{Binding Model.Identification}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="Identification" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Identification" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
                 <!-- Género -->
 
                 <Material:PickerField
-                    Title="Género"
-                    AllowClear="True"
+                    Title="{Properties:Translate Gender}" AllowClear="True"
                     Icon="{FontImage FontFamily=MaterialRegular, Glyph={x:Static Icon:MaterialRegular.Wc}}"
                     ItemDisplayBinding="{Binding Value}"
                     SelectedValueChangedCommand="{Binding GenderSelectedValueChangedCommand}">
@@ -130,64 +130,64 @@
                         </x:Array>
                     </Material:PickerField.ItemsSource>
                     <Material:PickerField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="Gender" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Gender" />
                     </Material:PickerField.Behaviors>
                 </Material:PickerField>
 
                 <!-- Correo -->
 
                 <Material:TextField
-                    Title="Correo" AllowClear="True"
+                    Title="{Properties:Translate Email}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf0e0;}"
                     Text="{Binding Model.Email}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="Email" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Email" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
                 <!-- Número de Teléfono -->
 
                 <Material:TextField
-                    Title="Número de Teléfono" AllowClear="True" Keyboard="Telephone"
+                    Title="{Properties:Translate Phone}" AllowClear="True" Keyboard="Telephone"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf095;}"
                     Text="{Binding Model.Phone}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="Phone" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Phone" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
                 <!-- Domicilio -->
 
                 <Material:TextField
-                    Title="Domicilio" AllowClear="True"
+                    Title="{Properties:Translate Address}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2b9;}"
                     Text="{Binding Model.Address}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="Address" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Address" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
                 <!-- Barrio -->
 
                 <Material:TextField
-                    Title="Barrio" AllowClear="True"
+                    Title="{Properties:Translate Neighborhood}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xe54f;}"
                     Text="{Binding Model.Neighborhood}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="Neighborhood" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Neighborhood" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
                 <!-- Parentesco -->
 
                 <Material:PickerField
-                    Title="Parentesco" AllowClear="True"
+                    Title="{Properties:Translate Relationship}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xe4e1;}"
                     ItemsSource="{Binding Relationships}"
                     ItemDisplayBinding="{Binding Name}"
                     SelectedItem="{Binding Model.Relationship}">
                     <Material:PickerField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="Relationship" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="Relationship" />
                     </Material:PickerField.Behaviors>
                 </Material:PickerField>
 
@@ -200,22 +200,22 @@
                 <!-- Tipo de Negocio -->
 
                 <Material:TextField
-                    Title="Tipo del Negocio" AllowClear="True"
+                    Title="{Properties:Translate BussinessType}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf508;}"
                     Text="{Binding Model.BussinessType}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="BussinessType" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="BussinessType" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 
                 <!-- Dirección del Negocio -->
 
                 <Material:TextField
-                    Title="Dirección del Negocio" AllowClear="True"
+                    Title="{Properties:Translate BussinessAddress}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeRegular, Glyph=&#xf2b9;}"
                     Text="{Binding Model.BussinessAddress}">
                     <Material:TextField.Behaviors>
-                        <Behavior:ValidationBehavior ModelType="{x:Type CreateModels:CreateGuarantor}" Path="BussinessAddress" />
+                        <Behavior:ValidationBehavior ModelType="{StaticResource ModelType}" Path="BussinessAddress" />
                     </Material:TextField.Behaviors>
                 </Material:TextField>
 

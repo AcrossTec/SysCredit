@@ -18,6 +18,7 @@
         xmlns:Theming="clr-namespace:UraniumUI.Theming;assembly=UraniumUI"
         xmlns:Behavior="clr-namespace:SysCredit.Mobile.Behaviors"
         xmlns:The49="https://schemas.the49.com/dotnet/2023/maui"
+        xmlns:Properties="clr-namespace:SysCredit.Mobile.Properties"
         x:Class="SysCredit.Mobile.Views.Customers.CustomerRegistrationPage"
         x:DataType="ViewModels:CustomerRegistrationViewModel"
         x:Name="Self"
@@ -77,7 +78,7 @@
     </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout Margin="0,20,0,20" WidthRequest="340">
-            <Controls:FormView Spacing="10" SubmitCommand="{Binding SubmitCustomerCommand}" ResetCommand="{Binding ResetCustomerCommand}">
+            <Controls:FormView x:Name="Form" Spacing="10" SubmitCommand="{Binding SubmitCustomerCommand}" ResetCommand="{Binding ResetCustomerCommand}">
 
                 <Controls:FormView.Resources>
                     <x:Type x:Key="ModelType" TypeName="CreateModels:CreateCustomer" />
@@ -101,7 +102,7 @@
                 <!-- Nombres -->
 
                 <Material:TextField
-                        Title="Nombres" AllowClear="True"
+                        Title="{Properties:Translate Name}" AllowClear="True"
                         Icon="{FontImage &#xf4ff;, FontFamily=FontAwesomeSolid}"
                         Text="{Binding Model.Name, Mode=TwoWay}">
                     <Material:TextField.Behaviors>
@@ -112,7 +113,7 @@
                 <!-- Apellidos -->
 
                 <Material:TextField
-                    Title="Apellidos" AllowClear="True"
+                    Title="{Properties:Translate LastName}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf5b7;}"
                     Text="{Binding Model.LastName}">
                     <Material:TextField.Behaviors>
@@ -123,7 +124,7 @@
                 <!-- Número de Cédula -->
 
                 <Material:TextField
-                    Title="Número de Cédula" AllowClear="True"
+                    Title="{Properties:Translate Identification}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2c2;}"
                     Text="{Binding Model.Identification}">
                     <Material:TextField.Behaviors>
@@ -134,8 +135,7 @@
                 <!-- Género -->
 
                 <Material:PickerField
-                    Title="Género"
-                    AllowClear="True"
+                    Title="{Properties:Translate Gender}" AllowClear="True"
                     Icon="{FontImage FontFamily=MaterialRegular, Glyph={x:Static Icons:MaterialRegular.Wc}}"
                     ItemDisplayBinding="{Binding Value}"
                     SelectedValueChangedCommand="{Binding GenderSelectedValueChangedCommand}">
@@ -153,7 +153,7 @@
                 <!-- Correo -->
 
                 <Material:TextField
-                    Title="Correo" AllowClear="True"
+                    Title="{Properties:Translate Email}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf0e0;}"
                     Text="{Binding Model.Email}">
                     <Material:TextField.Behaviors>
@@ -164,7 +164,7 @@
                 <!-- Número de Teléfono -->
 
                 <Material:TextField
-                    Title="Número de Teléfono" AllowClear="True" Keyboard="Telephone"
+                    Title="{Properties:Translate Phone}" AllowClear="True" Keyboard="Telephone"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf095;}"
                     Text="{Binding Model.Phone}">
                     <Material:TextField.Behaviors>
@@ -175,7 +175,7 @@
                 <!-- Domicilio -->
 
                 <Material:TextField
-                    Title="Domicilio" AllowClear="True"
+                    Title="{Properties:Translate Address}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2b9;}"
                     Text="{Binding Model.Address}">
                     <Material:TextField.Behaviors>
@@ -186,7 +186,7 @@
                 <!-- Barrio -->
 
                 <Material:TextField
-                    Title="Barrio" AllowClear="True"
+                    Title="{Properties:Translate Neighborhood}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xe54f;}"
                     Text="{Binding Model.Neighborhood}">
                     <Material:TextField.Behaviors>
@@ -203,7 +203,7 @@
                 <!-- Tipo de Negocio -->
 
                 <Material:TextField
-                    Title="Tipo del Negocio" AllowClear="True"
+                    Title="{Properties:Translate BussinessType}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf508;}"
                     Text="{Binding Model.BussinessType}">
                     <Material:TextField.Behaviors>
@@ -214,7 +214,7 @@
                 <!-- Dirección del Negocio -->
 
                 <Material:TextField
-                    Title="Dirección del Negocio" AllowClear="True"
+                    Title="{Properties:Translate BussinessAddress}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeRegular, Glyph=&#xf2b9;}"
                     Text="{Binding Model.BussinessAddress}">
                     <Material:TextField.Behaviors>
@@ -224,7 +224,7 @@
 
                 <!-- Sección -->
 
-                <Label Text="Referencias" TextColor="{DynamicResource Primary}" FontSize="16" LineHeight="20"
+                <Label Text="{Properties:Translate References}" TextColor="{DynamicResource Primary}" FontSize="16" LineHeight="20"
                        FontFamily="InterBold" FontAttributes="Bold" Margin="0,15,0,0" />
 
                 <!-- Referencias -->
@@ -265,7 +265,7 @@
 
                 <!-- Sección -->
 
-                <Label Text="Fiadores" TextColor="{DynamicResource Primary}" FontSize="16" LineHeight="20"
+                <Label Text="{Properties:Translate Guarantors}" TextColor="{DynamicResource Primary}" FontSize="16" LineHeight="20"
                        FontFamily="InterBold" FontAttributes="Bold" Margin="0,15,0,0" />
 
                 <!-- Fiadores -->

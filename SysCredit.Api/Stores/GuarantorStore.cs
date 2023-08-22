@@ -68,6 +68,12 @@ public static class GuarantorStore
         return Store.ExecQueryAsync<FetchGuarantor>("[dbo].[FetchGuarantors]");
     }
 
+    [MethodId("FEC37F36-AA92-4ECE-A302-466DF3122A4A")]
+    public static IAsyncEnumerable<FetchGuarantor> FetchGuarantorsAsync(this IStore<Guarantor> Store, PaginationRequest Request)
+    {
+        return Store.ExecQueryAsync<FetchGuarantor>("[dbo].[FetchGuarantorsTop]", Request);
+    }
+
     [MethodId("BAEC4217-08E5-4714-BD80-D2C37696BB45")]
     [ErrorCode(Prefix: GuarantorStorePrefix, Codes: new[] { _0001, _0002 })]
     public static async ValueTask<EntityId> InsertGuarantorAsync(this IStore<Guarantor> Store, CreateGuarantorRequest Request)

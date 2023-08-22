@@ -52,9 +52,16 @@ public class GuarantorController : ControllerBase
     [HttpGet("/Api/Guarantors")]
     [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<FetchGuarantor>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
-    public async Task<IResponse> FetchGuarantorsAsync()
+    public async Task<IResponse> FetchGuarantorsAsync([FromQuery] PaginationRequest Request)
     {
-        return await GuarantorService.FetchGuarantorsAsync().ToResponseAsync();
+        if (Request.Offset.HasValue && Request.Limit.HasValue)
+        {
+            return await GuarantorService.FetchGuarantorsAsync(Request).ToResponseAsync();
+        }
+        else
+        {
+            return await GuarantorService.FetchGuarantorsAsync().ToResponseAsync();
+        }
     }
 
     /// <summary>

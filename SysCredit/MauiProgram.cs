@@ -131,6 +131,7 @@ public static partial class MauiProgram
 
     private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder Builder)
     {
+        Builder.Services.AddScoped<CustomerRegistrationViewModel>();
         Builder.Services.AddScoped<ReferenceRegistrationViewModel>();
         Builder.Services.AddScoped<ReferenceListViewModel>();
         Builder.Services.AddScoped<GuarantorSearchViewModel>();

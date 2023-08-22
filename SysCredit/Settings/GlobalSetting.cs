@@ -89,12 +89,23 @@ public class GlobalSetting
 
     public string RelationshipsEndpoint { get; private set; } = string.Empty;
 
+    public string CustomerEndpoint { get; private set; } = string.Empty;
+
+    public string CustomerSearchEndpoint { get; private set; } = string.Empty;
+
     public string GuarantorEndpoint { get; private set; } = string.Empty;
+
+    public string GuarantorSearchEndpoint { get; private set; } = string.Empty;
 
     private void UpdateEndpoint(string Endpoint)
     {
         RelationshipsEndpoint = $"{Endpoint}/Api/Relationships";
+
         GuarantorEndpoint = $"{Endpoint}/Api/Guarantor";
+        GuarantorSearchEndpoint = $"{Endpoint}/Api/Guarantor/Search";
+
+        CustomerEndpoint = $"{Endpoint}/Api/Customer";
+        CustomerSearchEndpoint = $"{Endpoint}/Api/Customer/Search";
     }
 
     private void UpdateIdentityEndpoint(string Endpoint)

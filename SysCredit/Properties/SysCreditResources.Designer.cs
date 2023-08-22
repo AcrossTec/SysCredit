@@ -106,6 +106,24 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dirección del Negocio.
+        /// </summary>
+        public static string BussinessAddress {
+            get {
+                return ResourceManager.GetString("BussinessAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tipo de Negocio.
+        /// </summary>
+        public static string BussinessType {
+            get {
+                return ResourceManager.GetString("BussinessType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The property {0}.{1} could not be found..
         /// </summary>
         public static string Common_PropertyNotFound {
@@ -313,6 +331,15 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fiadores.
+        /// </summary>
+        public static string Guarantors {
+            get {
+                return ResourceManager.GetString("Guarantors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cédula.
         /// </summary>
         public static string Identification {
@@ -448,6 +475,15 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Barrio.
+        /// </summary>
+        public static string Neighborhood {
+            get {
+                return ResourceManager.GetString("Neighborhood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Teléfono.
         /// </summary>
         public static string Phone {
@@ -556,6 +592,15 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Referencias.
+        /// </summary>
+        public static string References {
+            get {
+                return ResourceManager.GetString("References", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The field {0} must match the regular expression &apos;{1}&apos;..
         /// </summary>
         public static string RegexAttribute_ValidationError {
@@ -565,11 +610,29 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El campo {0} debe coincidir con la expresión regular &apos;{1}&apos;..
+        /// </summary>
+        public static string RegexValidationError {
+            get {
+                return ResourceManager.GetString("RegexValidationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The pattern must be set to a valid regular expression..
         /// </summary>
         public static string RegularExpressionAttribute_Empty_Pattern {
             get {
                 return ResourceManager.GetString("RegularExpressionAttribute_Empty_Pattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parentesco.
+        /// </summary>
+        public static string Relationship {
+            get {
+                return ResourceManager.GetString("Relationship", resourceCulture);
             }
         }
         

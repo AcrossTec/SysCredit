@@ -10,6 +10,8 @@
     xmlns:CustomerViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Customers"
     xmlns:LoanViews="clr-namespace:SysCredit.Mobile.Views.Loans"
     xmlns:UserViews="clr-namespace:SysCredit.Mobile.Views.Users"
+    xmlns:ReportViews="clr-namespace:SysCredit.Mobile.Views.Reports"
+    xmlns:RouteViews="clr-namespace:SysCredit.Mobile.Views.Routes"
     xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
     xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:UraniumUI="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
@@ -160,10 +162,7 @@
         Route="Home" Title="Inicio" Icon="app_home_white_icon.svg"
         ContentTemplate="{DataTemplate Views:MainPage}" />
 
-    <FlyoutItem Route="Customer" Title="Registro de Clientes" Icon="new_customer_white_icon.svg" Shell.TabBarBackgroundColor="{StaticResource SysCredit400}" Shell.TabBarUnselectedColor="{StaticResource White}" Shell.TabBarTitleColor="{StaticResource Accent100}">
-        <FlyoutItem.BindingContext>
-            <CustomerViewModels:CustomerRegistrationViewModel />
-        </FlyoutItem.BindingContext>
+    <FlyoutItem Route="Customer" Title="Registro de Clientes" Icon="person_add.svg" Shell.TabBarBackgroundColor="{StaticResource SysCredit400}" Shell.TabBarUnselectedColor="{StaticResource White}" Shell.TabBarTitleColor="{StaticResource Accent100}">
         <Tab Route="Registration" Title="Cliente" Icon="{FontImage &#xe7f0;, FontFamily=MaterialTwoTone}">
             <ShellContent Title="Cliente" Icon="{FontImage &#xe1e2;, FontFamily=Fluent}" ContentTemplate="{DataTemplate CustomerViews:CustomerRegistrationPage}" />
         </Tab>
@@ -179,12 +178,20 @@
     </FlyoutItem>
 
     <ShellContent
-        Route="CustomerList" Title="Lista de Clientes" Icon="list_customer_white_icon.svg"
+        Route="CustomerList" Title="Lista de Clientes" Icon="businessmen.svg"
         ContentTemplate="{DataTemplate CustomerViews:CustomerListPage}" />
 
     <ShellContent
-        Route="LoanRequest" Title="Agregar Nuevo Préstamo" Icon="hand_holding_dollar_white_icon.svg"
+        Route="LoanRequest" Title="Solicitud de Préstamo" Icon="money_stack.svg"
         ContentTemplate="{DataTemplate LoanViews:LoanRequestPage}" />
+
+    <ShellContent
+        Route="Route" Title="Rutas" Icon="navigation_map.svg"
+        ContentTemplate="{DataTemplate RouteViews:RoutePage}" />
+
+    <ShellContent
+        Route="Report" Title="Reportes" Icon="presentation_financial.svg"
+        ContentTemplate="{DataTemplate ReportViews:ReportPage}" />
 
     <ShellContent
         Route="About" Title="Acerca De" Icon="circle_info_solid_white_icon.svg"

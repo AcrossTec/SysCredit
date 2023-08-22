@@ -53,6 +53,12 @@ public class GuarantorService : IGuarantorService
         return GuarantorStore.FetchGuarantorsAsync();
     }
 
+    [MethodId("4007331B-2C71-4DAF-8B00-15CBB3B3328C")]
+    public IAsyncEnumerable<FetchGuarantor> FetchGuarantorsAsync(PaginationRequest Request)
+    {
+        return GuarantorStore.FetchGuarantorsAsync(Request);
+    }
+
     [MethodId("543DDE99-6927-4D4D-928F-A47CD6695114")]
     public IAsyncEnumerable<GuarantorInfo> SearchGuarantorAsync(SearchRequest Request)
     {

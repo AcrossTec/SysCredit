@@ -1,28 +1,22 @@
 ﻿namespace SysCredit.Mobile.ViewModels.Guarantors;
 
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Messaging;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 
 using Sharpnado.CollectionView.Paging;
+using Sharpnado.CollectionView.Services;
 using Sharpnado.CollectionView.ViewModels;
 using Sharpnado.TaskLoaderView;
 
+using SysCredit.Mobile.Controls.Dialogs;
 using SysCredit.Mobile.Messages;
 using SysCredit.Mobile.Models;
-using SysCredit.Mobile.Views.Guarantors;
+using SysCredit.Mobile.Services.Https;
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Sharpnado.CollectionView.Services;
-using DynamicData.Binding;
-using SysCredit.Mobile.Services.Https;
-using DynamicData;
 
 public partial class GuarantorSearchViewModel : ViewModelBase
 {
@@ -81,16 +75,23 @@ public partial class GuarantorSearchViewModel : ViewModelBase
 
     protected virtual async Task<PageResult<Guarantor>> LoadGuarantorsPageAsync(int PageNumber, int PageSize, bool IsRefresh)
     {
-        List<Guarantor> GuarantorsResult = await SysCreditApi.SearchGuarantorsAsync(Query, PageNumber, PageSize).ToListAsync();
+        UserDialogs.ShowLoading("Cagando...");
+        var SearchResponse = await SysCreditApi.SearchGuarantorsAsync(Query, PageNumber, PageSize);
+        UserDialogs.HideHud();
+
+        if (SearchResponse.Status.HasError)
+        {
+            await Popups.ShowSysCreditPopup("Ha ocurrido un error al leer datos del servidor");
+            return new PageResult<Guarantor>();
+        }
 
         if (IsRefresh)
         {
             Guarantors = new();
         }
 
-        Guarantors.AddRange(GuarantorsResult);
-
-        PageResult<Guarantor> ResultPage = new(GuarantorsResult.Count /*Server Count*/, GuarantorsResult);
+        Guarantors.AddRange(SearchResponse.Data);
+        PageResult<Guarantor> ResultPage = new(Guarantors.Count /*TODO: ServerCount*/, Guarantors);
         return ResultPage;
     }
 }

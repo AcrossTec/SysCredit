@@ -11,13 +11,18 @@ using Microsoft.Maui.Controls;
 
 using SysCredit.Enums;
 using SysCredit.Helpers.Delegates;
+using SysCredit.Mobile.Controls;
+using SysCredit.Mobile.Controls.Dialogs;
 using SysCredit.Mobile.Controls.Parameters;
 using SysCredit.Mobile.Messages;
 using SysCredit.Mobile.Models;
 using SysCredit.Mobile.Models.Customers.Creates;
+using SysCredit.Mobile.Services.Https;
 using SysCredit.Mobile.Views.Guarantors;
 
 using System.Threading.Tasks;
+
+using static Java.Text.Normalizer;
 
 public partial class CustomerRegistrationViewModel
     : ViewModelBase
@@ -28,9 +33,11 @@ public partial class CustomerRegistrationViewModel
     , IRecipient<ActionMessage<Fetch<IObservableCollection<CreateReference>>>>
     , IRecipient<ActionMessage<Fetch<IObservableCollection<Guarantor>>>>
 {
-    public CustomerRegistrationViewModel()
+    private readonly ISysCreditApiService SysCreditApi;
+
+    public CustomerRegistrationViewModel(ISysCreditApiService SysCreditApi)
     {
-        Initialize();
+        this.SysCreditApi = SysCreditApi;
         Messenger.Register<InsertValueMessage<Guarantor>>(this);
         Messenger.Register<InsertValueMessage<CreateReference>>(this);
         Messenger.Register<DeleteValueMessage<CreateReference>>(this);
@@ -38,12 +45,16 @@ public partial class CustomerRegistrationViewModel
         Messenger.Register<ActionMessage<Fetch<IObservableCollection<Guarantor>>>>(this);
     }
 
-    protected virtual void Initialize()
-    {
-    }
+    public FormView? Form { get; set; }
 
     [ObservableProperty]
     private CreateCustomer m_Model = new();
+
+    private void ModelReset()
+    {
+        Model = new();
+        Form?.BaseReset();
+    }
 
     public void Receive(InsertValueMessage<CreateReference> Message)
     {
@@ -76,7 +87,7 @@ public partial class CustomerRegistrationViewModel
     }
 
     [RelayCommand]
-    private void GenderSelectedValueChanged(PickerData? PickerItem)
+    private void OnGenderSelectedValueChanged(PickerData? PickerItem)
     {
         Model.Gender = (Gender?)PickerItem?.Data;
     }
@@ -86,21 +97,38 @@ public partial class CustomerRegistrationViewModel
     {
         if (Model.IsValid)
         {
-            if (!await Popups.ShowSysCreditPopup("Cliente registrado correctamente.\n¿Registrar otro cliente?", "Si", "No"))
+            UserDialogs.ShowLoading("Registrando Cliente...");
+            var InsertResponse = await SysCreditApi.InsertCustomerAsync(Model);
+            UserDialogs.HideHud();
+
+            if (InsertResponse.Status.IsSuccess)
             {
-                await Shell.Current.GoToAsync("///Home");
+                if (await Popups.ShowSysCreditPopup("Cliente registrado correctamente.\n¿Registrar otro cliente?", "Si", "No"))
+                {
+                    ModelReset();
+                }
+                else
+                {
+                    await Shell.Current.GoToAsync("///Home");
+                }
             }
+            else
+            {
+                await Popups.ShowSysCreditPopup("Error al registrar el cliente");
+            }
+        }
+        else
+        {
+            await Popups.ShowSysCreditPopup("Faltan algunos campos obligatorios por completar");
         }
     }
 
     [RelayCommand]
     private async Task OnResetCustomer(FormResetCommandParameter Parameter)
     {
-        if (await Popups.ShowSysCreditPopup("¿Desea borrar el contenido de todos los campos?", "Sí", "No"))
+        if (await Popups.ShowSysCreditPopup("¿Limpiar Formulario?", "Sí", "No"))
         {
-            Parameter.FormReset();
-            Model.References.Clear();
-            Model.Guarantors.Clear();
+            ModelReset();
         }
     }
 
@@ -108,12 +136,6 @@ public partial class CustomerRegistrationViewModel
     private void OpenSwipeView(SwipeView Swipe)
     {
         Swipe.Open(OpenSwipeItem.LeftItems);
-    }
-
-    [RelayCommand]
-    private async Task GoToGuarantorSearchPage()
-    {
-        await Shell.Current.GoToAsync(nameof(GuarantorSearchPage));
     }
 
     [RelayCommand]

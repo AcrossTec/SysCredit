@@ -30,4 +30,16 @@ public partial class MainViewModel : ViewModelBase
     {
         await Shell.Current.GoToAsync("///LoanRequest");
     }
+
+    [RelayCommand]
+    private async Task GoToReportPage()
+    {
+        await Shell.Current.GoToAsync("///Report");
+    }
+
+    [RelayCommand]
+    private async Task GoToRoutePage()
+    {
+        await Shell.Current.GoToAsync("///Route");
+    }
 }
