@@ -162,7 +162,7 @@
         Route="Home" Title="Inicio" Icon="app_home_white_icon.svg"
         ContentTemplate="{DataTemplate Views:MainPage}" />
 
-    <FlyoutItem Route="Customer" Title="Registro de Clientes" Icon="person_add.svg" Shell.TabBarBackgroundColor="{StaticResource SysCredit400}" Shell.TabBarUnselectedColor="{StaticResource White}" Shell.TabBarTitleColor="{StaticResource Accent100}">
+    <FlyoutItem Route="Customer" Title="Registro de Clientes" Icon="person_add_white_icon.svg" Shell.TabBarBackgroundColor="{StaticResource SysCredit400}" Shell.TabBarUnselectedColor="{StaticResource White}" Shell.TabBarTitleColor="{StaticResource Accent100}">
         <Tab Route="Registration" Title="Cliente" Icon="{FontImage &#xe7f0;, FontFamily=MaterialTwoTone}">
             <ShellContent Title="Cliente" Icon="{FontImage &#xe1e2;, FontFamily=Fluent}" ContentTemplate="{DataTemplate CustomerViews:CustomerRegistrationPage}" />
         </Tab>
@@ -178,19 +178,19 @@
     </FlyoutItem>
 
     <ShellContent
-        Route="CustomerList" Title="Lista de Clientes" Icon="businessmen.svg"
+        Route="CustomerList" Title="Lista de Clientes" Icon="businessmen_white_icon.svg"
         ContentTemplate="{DataTemplate CustomerViews:CustomerListPage}" />
 
     <ShellContent
-        Route="LoanRequest" Title="Solicitud de Préstamo" Icon="money_stack.svg"
+        Route="LoanRequest" Title="Solicitud de Préstamo" Icon="money_stack_white_icon.svg"
         ContentTemplate="{DataTemplate LoanViews:LoanRequestPage}" />
 
     <ShellContent
-        Route="Route" Title="Rutas" Icon="navigation_map.svg"
+        Route="Route" Title="Rutas" Icon="navigation_map_white_icon.svg"
         ContentTemplate="{DataTemplate RouteViews:RoutePage}" />
 
     <ShellContent
-        Route="Report" Title="Reportes" Icon="presentation_financial.svg"
+        Route="Report" Title="Reportes" Icon="presentation_financial_white_icon.svg"
         ContentTemplate="{DataTemplate ReportViews:ReportPage}" />
 
     <ShellContent
