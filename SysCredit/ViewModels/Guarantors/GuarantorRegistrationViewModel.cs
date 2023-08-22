@@ -7,8 +7,6 @@ using CommunityToolkit.Mvvm.Messaging;
 using DynamicData.Binding;
 using DynamicData.Kernel;
 
-using Google.Android.Material.Dialog;
-
 using SysCredit.Enums;
 using SysCredit.Mobile.Controls;
 using SysCredit.Mobile.Controls.Dialogs;
@@ -38,23 +36,23 @@ public partial class GuarantorRegistrationViewModel : ViewModelBase
     private CreateGuarantor m_Model = new();
 
     [RelayCommand]
-    private void GenderSelectedValueChanged(PickerData? PickerItem)
+    private void OnGenderSelectedValueChanged(PickerData? PickerItem)
     {
         Model.Gender = (Gender?)PickerItem?.Data;
     }
 
     [RelayCommand]
-    private async Task RegisterGuarantor()
+    private async Task OnRegisterGuarantor()
     {
-        UserDialogs.ShowLoading("Registrando Fiador");
-        var EntityId = await SysCreditApi.InsertGuarantorAsync(Model);
+        UserDialogs.ShowLoading("Registrando Fiador...");
+        var InsertResponse = await SysCreditApi.InsertGuarantorAsync(Model);
         UserDialogs.HideHud();
 
-        if (EntityId is not null)
+        if (InsertResponse.Status.IsSuccess)
         {
             Messenger.Send(new InsertValueMessage<Guarantor>(new Guarantor
             {
-                GuarantorId = EntityId.Id.ValueOr(0),
+                GuarantorId = InsertResponse.Data!.Id!.Value,
                 Identification = Model.Identification,
                 LastName = Model.LastName,
                 Address = Model.Address,
@@ -69,6 +67,7 @@ public partial class GuarantorRegistrationViewModel : ViewModelBase
             }));
 
             await Popups.ShowSysCreditPopup("Fiador registrado correctamente");
+            Model = new();
             Form?.BaseReset();
         }
         else

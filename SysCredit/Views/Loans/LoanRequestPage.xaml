@@ -5,6 +5,7 @@
              xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
              xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Loans"
+             xmlns:Skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              x:Class="SysCredit.Mobile.Views.Loans.LoanRequestPage"
              x:Name="Self"
              Title="Solicitud de Préstamo"
@@ -14,20 +15,18 @@
         <ToolKit:StatusBarBehavior StatusBarColor="{StaticResource Secondary}" StatusBarStyle="LightContent" />
     </ContentPage.Behaviors>
 
-    <!--<Shell.BackButtonBehavior>
-        <BackButtonBehavior IconOverride="{FontImage &#xf177;, FontFamily=FontAwesomeSolid, Color=White}" />
-    </Shell.BackButtonBehavior>-->
-
     <Shell.TitleView>
         <Controls:TitleView
             Text="{Binding Source={x:Reference Self}, Path=Title}" TextColor="White"
             FontSize="20" FontAttributes="None" FontFamily="InterLight"
             HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
     </Shell.TitleView>
-    <ContentPage.BindingContext>
-        <ViewModels:LoanRequestViewModel />
-    </ContentPage.BindingContext>
+
     <Grid>
-        <Label Text="Welcome to .NET MAUI!" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Skia:SKLottieView
+            Source="construction_project.json"
+            WidthRequest="300" HeightRequest="300"
+            HorizontalOptions="Center" VerticalOptions="Center"
+            RepeatCount="-1" RepeatMode="Reverse" />
     </Grid>
 </ContentPage>

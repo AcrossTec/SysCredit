@@ -4,19 +4,20 @@
              xmlns:Local="clr-namespace:SysCredit.Mobile"
              xmlns:ToolKit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
-             xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Customers"
+             xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Loans"
              xmlns:Skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
-             x:Class="SysCredit.Mobile.Views.Customers.CustomerListPage"
-             x:Name="Self"
+             x:Class="SysCredit.Mobile.Views.Routes.RoutePage"
+             x:Name="Page"
+             Title="Rutas"
              Shell.ForegroundColor="{StaticResource White}"
-             Shell.BackgroundColor="{StaticResource Primary}"
-             Title="Lista de Clientes">
+             Shell.BackgroundColor="{StaticResource Primary}">
     <ContentPage.Behaviors>
         <ToolKit:StatusBarBehavior StatusBarColor="{StaticResource Secondary}" StatusBarStyle="LightContent" />
     </ContentPage.Behaviors>
+
     <Shell.TitleView>
         <Controls:TitleView
-            Text="{Binding Source={x:Reference Self}, Path=Title}" TextColor="White"
+            Text="{Binding Source={x:Reference Page}, Path=Title}" TextColor="White"
             FontSize="20" FontAttributes="None" FontFamily="InterLight"
             HorizontalOptions="StartAndExpand" Margin="0,0,0,0" />
     </Shell.TitleView>

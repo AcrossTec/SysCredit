@@ -2,6 +2,8 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
+using SysCredit.Enums;
+
 public partial class Customer : ModelBase
 {
     [ObservableProperty]
@@ -15,6 +17,12 @@ public partial class Customer : ModelBase
 
     [ObservableProperty]
     private string m_LastName = string.Empty;
+
+    [ObservableProperty]
+    private Gender m_Gender;
+
+    [ObservableProperty]
+    private string? m_Email;
 
     [ObservableProperty]
     private string m_Address = string.Empty;

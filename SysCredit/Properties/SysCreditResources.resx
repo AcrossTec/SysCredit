@@ -137,6 +137,14 @@
     <value>The {0} field is not a valid Base64 encoding.</value>
     <comment>The {0} field is not a valid Base64 encoding.</comment>
   </data>
+  <data name="BussinessAddress" xml:space="preserve">
+    <value>Dirección del Negocio</value>
+    <comment>Dirección del Negocio</comment>
+  </data>
+  <data name="BussinessType" xml:space="preserve">
+    <value>Tipo de Negocio</value>
+    <comment>Tipo de Negocio</comment>
+  </data>
   <data name="Common_PropertyNotFound" xml:space="preserve">
     <value>The property {0}.{1} could not be found.</value>
     <comment>The property {0}.{1} could not be found.</comment>
@@ -229,6 +237,10 @@
     <value>El campo '{0}' no tiene un valor válido.</value>
     <comment>El campo '{0}' no tiene un valor válido.</comment>
   </data>
+  <data name="Guarantors" xml:space="preserve">
+    <value>Fiadores</value>
+    <comment>Fiadores</comment>
+  </data>
   <data name="Identification" xml:space="preserve">
     <value>Cédula</value>
     <comment>Cédula</comment>
@@ -289,6 +301,10 @@
     <value>Nombres</value>
     <comment>Nombres</comment>
   </data>
+  <data name="Neighborhood" xml:space="preserve">
+    <value>Barrio</value>
+    <comment>Barrio</comment>
+  </data>
   <data name="Phone" xml:space="preserve">
     <value>Teléfono</value>
     <comment>Teléfono</comment>
@@ -337,13 +353,25 @@
     <value>The field {0} must be between {1} exclusive and {2} exclusive.</value>
     <comment>The field {0} must be between {1} exclusive and {2} exclusive.</comment>
   </data>
+  <data name="References" xml:space="preserve">
+    <value>Referencias</value>
+    <comment>Referencias</comment>
+  </data>
   <data name="RegexAttribute_ValidationError" xml:space="preserve">
     <value>The field {0} must match the regular expression '{1}'.</value>
     <comment>The field {0} must match the regular expression '{1}'.</comment>
   </data>
+  <data name="RegexValidationError" xml:space="preserve">
+    <value>El campo {0} debe coincidir con la expresión regular '{1}'.</value>
+    <comment>El campo {0} debe coincidir con la expresión regular '{1}'.</comment>
+  </data>
   <data name="RegularExpressionAttribute_Empty_Pattern" xml:space="preserve">
     <value>The pattern must be set to a valid regular expression.</value>
     <comment>The pattern must be set to a valid regular expression.</comment>
+  </data>
+  <data name="Relationship" xml:space="preserve">
+    <value>Parentesco</value>
+    <comment>Parentesco</comment>
   </data>
   <data name="RequiredAttribute_ValidationError" xml:space="preserve">
     <value>The {0} field is required.</value>

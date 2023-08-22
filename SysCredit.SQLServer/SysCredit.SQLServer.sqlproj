@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SysCredit.SQLServer.publish.xml" />
+    <None Include="SysCredit.SQLServer.local.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\AzureV12\SqlSchemas\master.dacpac">
