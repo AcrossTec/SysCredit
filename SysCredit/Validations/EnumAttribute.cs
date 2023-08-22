@@ -1,8 +1,10 @@
 ﻿namespace SysCredit.Mobile.Validations;
 
 using SysCredit.Mobile.Models;
+using SysCredit.Mobile.Properties;
 
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
 public class EnumAttribute<TEnum> : ValidationAttribute where TEnum : Enum
@@ -19,6 +21,6 @@ public class EnumAttribute<TEnum> : ValidationAttribute where TEnum : Enum
 
     public override string FormatErrorMessage(string Name)
     {
-        return $"El campo '{Name}' no tiene un valor válido.";
+        return string.Format(CultureInfo.CurrentUICulture, SysCreditResources.GenericValidationError, Name);
     }
 }

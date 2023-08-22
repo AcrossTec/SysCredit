@@ -34,8 +34,10 @@
                     </MultiBinding>
                 </Label.Text>
             </Label>
-
-            <Label Style="{StaticResource TextCaptionSecondary}" Text="{Binding Phone}" />
+            <HorizontalStackLayout>
+                <Image Source="{FontImage &#xf095;, FontFamily=FontAwesomeSolid, Color=White, Size={StaticResource TextSizeCaption}}" Margin="0,0,5,0" />
+                <Label Style="{StaticResource TextCaptionSecondary}" Text="{Binding Phone}" />
+            </HorizontalStackLayout>
         </StackLayout>
     </StackLayout>
 </Border>

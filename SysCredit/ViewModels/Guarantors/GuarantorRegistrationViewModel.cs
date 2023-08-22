@@ -50,7 +50,7 @@ public partial class GuarantorRegistrationViewModel : ViewModelBase
 
         if (EntityId is not null)
         {
-            Messenger.Send(new ValueMessage<Guarantor>(new Guarantor
+            Messenger.Send(new InsertValueMessage<Guarantor>(new Guarantor
             {
                 GuarantorId = EntityId.Id.ValueOr(0),
                 Identification = Model.Identification,
