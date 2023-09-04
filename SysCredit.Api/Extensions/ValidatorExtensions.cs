@@ -7,6 +7,7 @@ using SysCredit.Api.Validations.Customers;
 using SysCredit.Api.Validations.Guarantors;
 using SysCredit.Api.Validations.References;
 using SysCredit.Api.Validations.Relationships;
+using SysCredit.Api.Validations.LoanTypes;
 using SysCredit.Api.ViewModels.Customers;
 using SysCredit.Api.ViewModels.References;
 
@@ -53,4 +54,7 @@ public static class ValidatorExtensions
 
     public static IRuleBuilderOptions<T, IEnumerable<CustomerGuarantorRequest>> CustomerGuarantorsUniqueInRequest<T>(this IRuleBuilder<T, IEnumerable<CustomerGuarantorRequest>> RuleBuilder)
         => RuleBuilder.SetValidator(new CustomerGuarantorsUniqueInRequestValidator<T>());
+
+    public static IRuleBuilderOptions<T, string?> LoanTypeUniqueNameAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncLoanTypeUniqueNameValidator<T>());
 }
