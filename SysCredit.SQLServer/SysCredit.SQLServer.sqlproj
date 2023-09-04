@@ -81,7 +81,7 @@
     <Build Include="StoredProcedures\FetchCustomersTop.sql" />
     <Build Include="StoredProcedures\FetchRelationship.sql" />
     <Build Include="StoredProcedures\InsertCustomer.sql" />
-    <PostDeploy Include="PostDeployments\Relationship.Seed.sql" />
+    <None Include="PostDeployments\Relationship.Seed.sql" />
     <Build Include="StoredProcedures\FetchCustomerById.sql" />
     <Build Include="StoredProcedures\FetchCustomers.sql" />
     <Build Include="StoredProcedures\FetchGuarantorById.sql" />
@@ -102,6 +102,7 @@
     <Build Include="StoredProcedures\SearchCustomer.sql" />
     <Build Include="Functions\GetJsonReferencesByCustomerId.sql" />
     <Build Include="Functions\GetJsonGuarantorsByCustomerId.sql" />
+    <Build Include="StoredProcedures\FetchLoanTypes.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SysCredit.SQLServer.publish.xml" />
@@ -113,5 +114,8 @@
       <SuppressMissingDependenciesErrors>True</SuppressMissingDependenciesErrors>
       <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
     </ArtifactReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeployments\LoanType.Seed.sql" />
   </ItemGroup>
 </Project>
