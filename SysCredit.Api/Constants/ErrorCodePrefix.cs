@@ -11,4 +11,8 @@ public static class ErrorCodePrefix
     public const string CustomerStorePrefix = "DATACS";
 
     public const string CustomerServicePrefix = "SERVCS";
+
+    public const string LoanTypeServicePrefix = "SERVLS";
+
+    public const string LoanTypeStorePrefix = "DATALS";
 }
