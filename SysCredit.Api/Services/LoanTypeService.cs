@@ -23,4 +23,10 @@ public class LoanTypeService : ILoanTypeService
     {
         return LoanTypeStore.FetchLoanTypeAsync();
     }
+
+    [MethodId("702f277c-9b52-4cd2-84e2-85b9b8352e36")]
+    public IAsyncEnumerable<LoanType> FetchLoanTypeCompleteAsync()
+    {
+        return LoanTypeStore.FetchLoanTypeCompleteAsync();
+    }
 }

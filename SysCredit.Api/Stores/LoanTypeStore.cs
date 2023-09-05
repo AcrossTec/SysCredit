@@ -15,4 +15,10 @@ public static class LoanTypeStore
     {
         return Store.ExecQueryAsync<LoanTypeInfo>("[dbo].[FetchLoanTypes]");
     }
+
+    [MethodId("16f6b292-7deb-422d-90ac-7e46b49e296b")]
+    public static IAsyncEnumerable<LoanType> FetchLoanTypeCompleteAsync(this IStore<LoanType> Store)
+    {
+        return Store.ExecQueryAsync<LoanType>("[dbo].[FetchLoanTypes]");
+    }
 }
