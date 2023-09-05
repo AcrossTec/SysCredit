@@ -3,10 +3,13 @@
 using FluentValidation;
 
 using SysCredit.Api.Validations;
+using SysCredit.Api.Validations.Auth.Roles;
+using SysCredit.Api.Validations.Auth.Users;
 using SysCredit.Api.Validations.Customers;
 using SysCredit.Api.Validations.Guarantors;
 using SysCredit.Api.Validations.References;
 using SysCredit.Api.Validations.Relationships;
+using SysCredit.Api.ViewModels.Auth;
 using SysCredit.Api.ViewModels.Customers;
 using SysCredit.Api.ViewModels.References;
 
@@ -51,6 +54,21 @@ public static class ValidatorExtensions
     public static IRuleBuilderOptions<T, CreateReferenceRequest> CreateReferenceIsValid<T>(this IRuleBuilder<T, CreateReferenceRequest> RuleBuilder)
         => RuleBuilder.SetValidator(new CreateReferenceValidator());
 
+    public static IRuleBuilderOptions<T, string?> UserUniqueEmailInRequest<T>(this IRuleBuilder<T, string?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncUserUniqueEmailValidator<T>());
+
+    public static IRuleBuilderOptions<T, string?> UserUniquePhoneInRequest<T>(this IRuleBuilder<T, string?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncUserUniquePhoneValidator<T>());
+
+    public static IRuleBuilderOptions<T, string?> UserUniqueUserNameInRequest<T>(this IRuleBuilder<T, string?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncUserUniqueUserNameValidator<T>());
+
+    public static IRuleBuilderOptions<T, IEnumerable<CreateClaimRequest>> UserClaimUniqueInRequest<T>(this IRuleBuilder<T, IEnumerable<CreateClaimRequest>> RuleBuilder)
+        => RuleBuilder.SetValidator(new UserClaimUniqueRequestValidator<T>());
+
     public static IRuleBuilderOptions<T, IEnumerable<CustomerGuarantorRequest>> CustomerGuarantorsUniqueInRequest<T>(this IRuleBuilder<T, IEnumerable<CustomerGuarantorRequest>> RuleBuilder)
         => RuleBuilder.SetValidator(new CustomerGuarantorsUniqueInRequestValidator<T>());
+
+    public static IRuleBuilderOptions<T, IEnumerable<AssingRoleRequest>> ExistRoleInRequest<T>(this IRuleBuilder<T, IEnumerable<AssingRoleRequest>> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncExistRoleValidator<T>());
 }

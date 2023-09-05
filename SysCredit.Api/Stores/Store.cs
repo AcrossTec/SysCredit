@@ -7,6 +7,7 @@ using SysCredit.Models;
 
 using System.Data.SqlClient;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 public interface IStore : IDisposable
 {

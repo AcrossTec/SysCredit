@@ -14,6 +14,8 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection Services)
     {
+        Services.AddSwaggerDocumentation();
+        Services.AddAuth(Configuration);
         Services.AddSysCreditEndpoints();
         Services.AddSysCreditSwaggerGen();
         Services.AddSysCreditStores();

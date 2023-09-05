@@ -1,4 +1,7 @@
-﻿namespace SysCredit.Api.Constants;
+﻿using SysCredit.Api.Services.Auth;
+using SysCredit.Api.Stores.Auth;
+
+namespace SysCredit.Api.Constants;
 
 public static partial class ErrorCategories
 {
@@ -23,4 +26,11 @@ public static partial class ErrorCategories
     public const string RelationshipService = nameof(RelationshipService);
 
     public const string LoanTypeService = nameof(LoanTypeService);
+
+    //AUTH
+    public const string RoleStore = nameof(RoleStore);
+    
+    public const string UserStore = nameof(UserStore);
+
+    public const string AuthService = nameof(AuthService);
 }

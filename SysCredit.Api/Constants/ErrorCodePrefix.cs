@@ -11,4 +11,11 @@ public static class ErrorCodePrefix
     public const string CustomerStorePrefix = "DATACS";
 
     public const string CustomerServicePrefix = "SERVCS";
+
+    /* ------------  AUTH ------------  */
+    public const string RoleStorePrefix = "DATARS";
+
+    public const string UserStorePrefix = "DARAUS";
+
+    public const string AuthServicePrefix = "SERVAS";
 }

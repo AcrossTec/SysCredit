@@ -63,4 +63,9 @@ public static class StoreExtensions
     {
         return Store.Connection.QueryFirstOrDefaultAsync<T>(Sql, Parameters, Transaction, CommandTimeout, CommandType.StoredProcedure);
     }
+
+    public static Task<T> QueryFirstOrDefaultAsync<T>(this IStore Store, string Sql, object? Parameters = null, IDbTransaction? Transaction = null, int? CommandTimeout = null)
+    {
+        return Store.Connection.QueryFirstOrDefaultAsync<T>(Sql, Parameters, Transaction, CommandTimeout);
+    }
 }

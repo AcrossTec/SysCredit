@@ -1,7 +1,10 @@
 ﻿namespace SysCredit.Api.Extensions;
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
 using SysCredit.Api.Stores;
@@ -10,6 +13,7 @@ using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Reflection;
+using System.Text;
 
 public static class ServiceCollectionExtensions
 {
@@ -74,6 +78,62 @@ public static class ServiceCollectionExtensions
             });
 
         Services.Configure<ApiBehaviorOptions>(static Options => { });
+
+        return Services;
+    }
+
+    public static IServiceCollection AddAuth(this IServiceCollection Services, IConfiguration Configuration)
+    {
+        Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(Options =>
+            {
+                Options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Token:Key"]!)),
+                    ValidIssuer = Configuration["Token:Issuer"],
+                    ValidateIssuer = true,
+                    ValidateAudience = false
+                };
+            });
+
+        Services.AddAuthorization();
+
+        return Services;
+    }
+
+    public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection Services)
+    {
+        Services.AddEndpointsApiExplorer();
+
+        Services.AddSwaggerGen(Configurarion =>
+        {
+            var securitySchema = new OpenApiSecurityScheme
+            {
+                Description = "JWT Auth Bearer Scheme",
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.Http,
+                Scheme = "Bearer",
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            };
+
+            Configurarion.AddSecurityDefinition("Bearer", securitySchema);
+
+            var securityRequirement = new OpenApiSecurityRequirement
+            {
+                {
+                    securitySchema, new[] {"Bearer"}
+                }
+            };
+
+            Configurarion.AddSecurityRequirement(securityRequirement);
+        });
+
         return Services;
     }
 }

@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 using static System.Text.Json.Serialization.JsonIgnoreCondition;
 
-public record class ErrorStatus
+public record class ErrorStatus 
 {
     public bool HasError { get; set; }
 
