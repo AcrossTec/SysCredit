@@ -23,4 +23,10 @@ public class LoanTypeController : ControllerBase
     {
         return await LoanTypeService.FetchLoanTypeAsync().ToResponseAsync();
     }
+
+    [HttpGet("Complete")]
+    public async Task<IResponse> FetchLoanTypeComplete()
+    {
+        return await LoanTypeService.FetchLoanTypeCompleteAsync().ToResponseAsync();
+    }
 }
