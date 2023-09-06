@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
 using SysCredit.Api.ViewModels.LoanType;
-
+using SysCredit.Api.ViewModels.LoanTypes;
 using SysCredit.Helpers;
 
 [ApiController]
@@ -23,6 +23,27 @@ public class LoanTypeController : ControllerBase
     public async Task<IResponse> FetchLoanTypeAsync()
     {
         return await LoanTypeService.FetchLoanTypeAsync().ToResponseAsync();
+    }
+
+    [HttpDelete("{LoanTypeId}")]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> DeleteLoanTypeAsync(long? LoanTypeId)
+    {
+        var Result = await LoanTypeService.DeleteLoanTypeAsync(LoanTypeId);
+
+        if (Result.Status.HasError)
+        {
+            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(new DeleteLoanTypeRequest 
+            { 
+                LoanTypeId = LoanTypeId
+            }));
+        }
+        else
+        {
+            return StatusCode(StatusCodes.Status204NoContent);
+        }
     }
 
     /// <summary>

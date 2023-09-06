@@ -6,7 +6,7 @@ using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
 using SysCredit.Api.Stores;
 using SysCredit.Api.ViewModels.LoanType;
-
+using SysCredit.Api.ViewModels.LoanTypes;
 using SysCredit.Helpers;
 
 using SysCredit.Models;
@@ -16,7 +16,6 @@ using System.Collections.Generic;
 using static Constants.ErrorCodeIndex;
 using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
-
 using static SysCredit.Helpers.ContextData;
 
 [Service<ILoanTypeService>]
@@ -34,6 +33,24 @@ public class LoanTypeService : ILoanTypeService
     public IAsyncEnumerable<LoanTypeInfo> FetchLoanTypeAsync()
     {
         return LoanTypeStore.FetchLoanTypeAsync();
+    }
+
+    [MethodId("B18D33FF-CA39-40D9-A9FC-AC30CC8CF897")]
+    public ValueTask<IServiceResult<bool>> DeleteLoanTypeAsync(long? LoanTypeId)
+    {
+        return DeleteLoanTypeAsync(new DeleteLoanTypeRequest { LoanTypeId = LoanTypeId });
+    }
+
+    [MethodId("B4850869-6F13-4BAB-87C6-FF8F08B31A95")]
+    [ErrorCode(LoanTypeServicePrefix, Codes: new[] { _0001 })]
+    public async ValueTask<IServiceResult<bool>> DeleteLoanTypeAsync(DeleteLoanTypeRequest Request)
+    {
+        var Result = await Request.ValidateAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
+
+        if (!Result.IsValid)
+            return await Result.CreateResultAsync<bool>(typeof(LoanTypeService), "B4850869-6F13-4BAB-87C6-FF8F08B31A95", CodeIndex0, "La solicitud para eliminar el Tipo de Prestamo no es valida.");
+
+        return await LoanTypeStore.DeleteLoanTypeAsync(Request)!.CreateResultAsync();
     }
 
     [MethodId("09f1fc4b-5456-47cf-9f46-41f96683e7e1")]
