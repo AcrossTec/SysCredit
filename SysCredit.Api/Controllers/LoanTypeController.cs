@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
+using SysCredit.Api.Stores;
 using SysCredit.Api.ViewModels.LoanType;
 using SysCredit.Api.ViewModels.LoanTypes;
 
@@ -117,5 +118,13 @@ public class LoanTypeController(ILoanTypeService LoanTypeService, ILogger<LoanTy
         {
             return StatusCode(StatusCodes.Status400BadRequest);
         }
+    }
+
+    [HttpGet("{LoanTypeId}")]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(IResponse<LoanTypeInfo?>), StatusCodes.Status200OK)]
+    public async Task<IResponse> FetchLoanTypeByIdAsync(long? LoanTypeId)
+    {
+        return await LoanTypeService.FetchLoanTypeByIdAsync(LoanTypeId).ToResponseAsync();
     }
 }
