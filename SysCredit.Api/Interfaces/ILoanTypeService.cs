@@ -17,4 +17,6 @@ public interface ILoanTypeService
     IAsyncEnumerable<LoanType> FetchLoanTypeCompleteAsync();
 
     ValueTask<IServiceResult<EntityId?>> UpdateLoanTypeAsync(UpdateLoanTypeRequest Request);
+
+    ValueTask<LoanTypeInfo?> FetchLoanTypeByIdAsync(long? LoanTypeId);
 }

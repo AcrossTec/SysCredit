@@ -148,4 +148,10 @@ public static class LoanTypeStore
             throw SysCreditEx;
         }
     }
+
+    [MethodId("B7FFCBE6-9430-425D-846C-E0EA17AF48CD")]
+    public static async ValueTask<LoanTypeInfo?> FetchLoanTypeByIdAsync(this IStore<LoanType> Store, long? LoanTypeId)
+    {
+        return await Store.ExecFirstOrDefaultAsync<LoanTypeInfo?>("[dbo].[FetchLoanTypeById]", new { LoanTypeId });
+    }
 }
