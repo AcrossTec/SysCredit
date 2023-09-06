@@ -103,6 +103,8 @@
     <Build Include="Functions\GetJsonReferencesByCustomerId.sql" />
     <Build Include="Functions\GetJsonGuarantorsByCustomerId.sql" />
     <Build Include="StoredProcedures\FetchLoanTypes.sql" />
+    <Build Include="StoredProcedures\DeleteLoanType.sql" />
+    <Build Include="Functions\VerifyLoanTypeReferences.sql" />
     <Build Include="StoredProcedures\InsertLoanType.sql" />
     <Build Include="StoredProcedures\FetchLoanTypeByName.sql" />
   </ItemGroup>
