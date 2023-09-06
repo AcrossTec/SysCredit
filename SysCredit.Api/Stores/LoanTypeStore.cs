@@ -7,9 +7,8 @@ using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.ViewModels.LoanType;
-
+using SysCredit.Api.ViewModels.LoanTypes;
 using SysCredit.Helpers;
-
 using SysCredit.Models;
 
 using System.Data;
@@ -26,6 +25,43 @@ public static class LoanTypeStore
     public static IAsyncEnumerable<LoanTypeInfo> FetchLoanTypeAsync(this IStore<LoanType> Store)
     {
         return Store.ExecQueryAsync<LoanTypeInfo>("[dbo].[FetchLoanTypes]");
+    }
+
+    [MethodId("FC5C3FA3-E112-49D7-B5EE-37181239695C")]
+    public static async ValueTask<bool> DeleteLoanTypeAsync(this IStore<LoanType> Store, DeleteLoanTypeRequest Request)
+    {
+        using var SqlTransaction = await Store.BeginTransactionAsync();
+
+        try
+        {
+            int Result = await Store.ExecAsync("[dbo].[DeleteLoanType]", Request, SqlTransaction);
+            SqlTransaction.Commit();
+
+            return Result > 0;
+        }
+        catch (Exception Ex) 
+        {
+            SysCreditException SysCreditEx = Ex.ToSysCreditException(typeof(LoanTypeStore),
+                "FC5C3FA3-E112-49D7-B5EE-37181239695C", CodeIndex0, "Error al eliminar el Tipo de Prestamo", Ex); ;
+
+            try
+            {
+                SqlTransaction.Rollback();
+            }
+            catch (Exception ExRollback)
+            {
+                SysCreditEx = ExRollback.ToSysCreditException(typeof(LoanTypeStore),
+                    "FC5C3FA3-E112-49D7-B5EE-37181239695C", CodeIndex1, "Error interno del servidor al eliminar el Tipo de Prestamo", SysCreditEx);
+            }
+
+            throw SysCreditEx;
+        }
+    }
+
+    [MethodId("313F2142-7FF6-493D-89B8-EDB56579C70C")]
+    public static async ValueTask<bool> VerifyLoanTypeReference(this IStore<LoanType> Store, long? LoanTypeId)
+    {
+        return await Store.Connection.ExecuteScalarAsync<bool>("SELECT [dbo].[VerifyLoanTypeReference](@LoanTypeId)", new { LoanTypeId });
     }
 
     [MethodId("54b586c2-74ac-4971-aad1-854d6ca36ad4")]

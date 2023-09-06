@@ -12,7 +12,7 @@ public static class ErrorCodePrefix
 
     public const string CustomerServicePrefix = "SERVCS";
 
-    public const string LoanTypeServicePrefix = "SERVLS";
+    public const string LoanTypeStorePrefix = "DATALT";
 
-    public const string LoanTypeStorePrefix = "DATALS";
+    public const string LoanTypeServicePrefix = "SERVLTS";
 }
