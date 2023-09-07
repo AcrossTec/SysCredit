@@ -88,17 +88,11 @@ public class LoanTypeController(ILoanTypeService LoanTypeService, ILogger<LoanTy
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="Request"></param>
-    /// <param name="LoanTypeId"></param>
-    /// <returns></returns>
     [HttpPut("{LoanTypeId}")]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
-    [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status204NoContent)]
     [ProducesErrorResponseType(typeof(IResponse<UpdateLoanTypeRequest>))]
-    public async Task<IActionResult> UpdateLoanTypeAsync([FromBody] UpdateLoanTypeRequest Request, long? LoanTypeId)
+    public async Task<IActionResult> UpdateLaontypeAsync([FromBody] UpdateLoanTypeRequest Request, long LoanTypeId)
     {
         if (Request.LoanTypeId == LoanTypeId)
         {
@@ -108,9 +102,13 @@ public class LoanTypeController(ILoanTypeService LoanTypeService, ILogger<LoanTy
             {
                 return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
             }
+            else if (Result.Status.ErrorCode == "SERVLT0004")
+            {
+                return StatusCode(StatusCodes.Status404NotFound, await Result.ToResponseWithReplaceDataAsync(Request));
+            }
             else
             {
-                return StatusCode(StatusCodes.Status204NoContent, Result);
+                return StatusCode(StatusCodes.Status204NoContent);
             }
         }
         else

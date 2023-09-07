@@ -76,13 +76,34 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
         return LoanTypeStore.FetchLoanTypeCompleteAsync();
     }
 
+
+    /// <summary>
+    ///     Primero Verifica si es valida la petición
+    ///     Segundo Verifica si existe algun registro con el id en el request
+    ///     Y por ultimo hace el update
+    /// </summary>
+    /// <param name="Request"></param>
+    /// <returns></returns>
+    [MethodId("84D2F863-8AB9-4232-AD62-C0BA5DF28ECE")]
+    [ErrorCode(LoanTypeServicePrefix, Codes: new[] { _0003, _0004 })]
     public async ValueTask<IServiceResult<EntityId?>> UpdateLoanTypeAsync(UpdateLoanTypeRequest Request)
     {
         var Result = await Request.ValidateAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
 
         if (!Result.IsValid)
-            return await Result.CreateResultAsync<EntityId?>(typeof(LoanTypeService), "702F277C-9B52-4CD2-84E2-85B9B8352E36", CodeIndex0, "La modificación del Tipo de Prestamo no es correcta");
+            return await Result.CreateResultAsync<EntityId?>(typeof(LoanTypeService), "84D2F863-8AB9-4232-AD62-C0BA5DF28ECE", CodeIndex0, "La modificación del Tipo de Prestamo no es correcta");
+
+        var IsExist = await FetchLoanTypeByIdAsync(Request.LoanTypeId);
+
+        if (IsExist.Data!.Id == null)
+            return await Result.CreateResultAsync<EntityId?>(typeof(LoanTypeService), "84D2F863-8AB9-4232-AD62-C0BA5DF28ECE", CodeIndex1, "El tipo de prestamo con el id no existe");
 
         return await LoanTypeStore.UpdateLoanTypeAsync(Request)!.CreateResultAsync();
+    }
+
+    [MethodId("1C28B6F0-9A95-4B51-9662-5A23820A2233")]
+    public async ValueTask<IServiceResult<EntityId?>> FetchLoanTypeByIdAsync(long LoanTypeId)
+    {
+        return await LoanTypeStore.FetchLoanTypeByIdAsync(LoanTypeId).CreateResultAsync();
     }
 }

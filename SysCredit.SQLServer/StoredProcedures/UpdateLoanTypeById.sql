@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[UpdateLoanTypeById]
-	@LoanTypeId BIGINT,
+	@LoanTypeId BIGINT OUTPUT,
 	@Name       NVARCHAR(32)
 AS
 BEGIN

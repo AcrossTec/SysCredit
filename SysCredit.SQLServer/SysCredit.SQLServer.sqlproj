@@ -108,6 +108,12 @@
     <Build Include="StoredProcedures\InsertLoanType.sql" />
     <Build Include="StoredProcedures\FetchLoanTypeByName.sql" />
     <Build Include="StoredProcedures\UpdateLoanTypeById.sql" />
+    <Build Include="StoredProcedures\FetchLoanTypeById.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SysCredit.SQLServer.publish.xml" />
+    <None Include="SysCredit.SQLServer.local.publish.xml" />
+    <Build Include="StoredProcedures\UpdateLoanTypeById.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\AzureV12\SqlSchemas\master.dacpac">

@@ -116,10 +116,12 @@ public static class LoanTypeStore
     }
 
     [MethodId("C367398E-F4F3-4350-86A5-AE2B3DBEBED7")]
+    [ErrorCode(Prefix: LoanTypeStorePrefix, Codes: new[] { _0005, _0006 })]
+
     public static async ValueTask<EntityId?> UpdateLoanTypeAsync(this IStore<LoanType> Store, UpdateLoanTypeRequest Request)
     {
         DynamicParameters Parameters = Request.ToDynamicParameters();
-        Parameters.Add(nameof(LoanType.LoanTypeId), default, DbType.Int64, ParameterDirection.Output);
+        // Parameters.Add(nameof(LoanType.LoanTypeId), default, DbType.Int64, ParameterDirection.Output);
 
         using var SqlTransaction = await Store.BeginTransactionAsync();
 
@@ -147,5 +149,11 @@ public static class LoanTypeStore
 
             throw SysCreditEx;
         }
+    }
+
+    [MethodId("BF4BE4E2-19A1-4B4E-AE05-14624701F8A5")]
+    public static async ValueTask<EntityId?> FetchLoanTypeByIdAsync(this IStore<LoanType> Store, long LoanTypeId)
+    {
+        return await Store.ExecFirstOrDefaultAsync<long?>("[dbo].[FetchLoanTypeById]", new { LoanTypeId });
     }
 }

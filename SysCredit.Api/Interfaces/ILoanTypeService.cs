@@ -1,5 +1,6 @@
 ﻿namespace SysCredit.Api.Interfaces;
 
+using SysCredit.Api.Stores;
 using SysCredit.Api.ViewModels.LoanType;
 using SysCredit.Api.ViewModels.LoanTypes;
 using SysCredit.Helpers;
@@ -17,4 +18,6 @@ public interface ILoanTypeService
     IAsyncEnumerable<LoanType> FetchLoanTypeCompleteAsync();
 
     ValueTask<IServiceResult<EntityId?>> UpdateLoanTypeAsync(UpdateLoanTypeRequest Request);
+
+    ValueTask<IServiceResult<EntityId?>> FetchLoanTypeByIdAsync(long LoanTypeId);
 }
