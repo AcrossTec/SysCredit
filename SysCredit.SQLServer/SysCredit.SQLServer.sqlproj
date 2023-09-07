@@ -107,6 +107,7 @@
     <Build Include="Functions\VerifyLoanTypeReferences.sql" />
     <Build Include="StoredProcedures\InsertLoanType.sql" />
     <Build Include="StoredProcedures\FetchLoanTypeByName.sql" />
+    <Build Include="StoredProcedures\UpdateLoanTypeById.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SysCredit.SQLServer.publish.xml" />

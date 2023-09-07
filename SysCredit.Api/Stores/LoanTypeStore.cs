@@ -51,7 +51,7 @@ public static class LoanTypeStore
             catch (Exception ExRollback)
             {
                 // Throws an InvalidOperationException if the connection is closed or the transaction has already been rolled back on the server.
-                SysCreditEx = ExRollback.ToSysCreditException(typeof(CustomerStore),
+                SysCreditEx = ExRollback.ToSysCreditException(typeof(LoanTypeStore),
                     "84370664-26c5-45ed-9590-6df60a9efac4", CodeIndex1, "Error interno del servidor al registrar el LoanType.", SysCreditEx);
             }
 
@@ -113,5 +113,39 @@ public static class LoanTypeStore
     public static IAsyncEnumerable<LoanType> FetchLoanTypeCompleteAsync(this IStore<LoanType> Store)
     {
         return Store.ExecQueryAsync<LoanType>("[dbo].[FetchLoanTypes]");
+    }
+
+    [MethodId("C367398E-F4F3-4350-86A5-AE2B3DBEBED7")]
+    public static async ValueTask<EntityId?> UpdateLoanTypeAsync(this IStore<LoanType> Store, UpdateLoanTypeRequest Request)
+    {
+        DynamicParameters Parameters = Request.ToDynamicParameters();
+        Parameters.Add(nameof(LoanType.LoanTypeId), default, DbType.Int64, ParameterDirection.Output);
+
+        using var SqlTransaction = await Store.BeginTransactionAsync();
+
+        try
+        {
+            await Store.ExecAsync("[dbo].[UpdateLoanTypeById]", Parameters, SqlTransaction);
+            SqlTransaction.Commit();
+
+            return Parameters.Get<long?>(nameof(LoanType.LoanTypeId));
+        }
+        catch (Exception Ex) 
+        {
+            SysCreditException SysCreditEx = Ex.ToSysCreditException(typeof(LoanTypeStore),
+                "C367398E-F4F3-4350-86A5-AE2B3DBEBED7", CodeIndex0, "Error al modificar el Tipo de Prestamo", Ex);
+
+            try
+            {
+                SqlTransaction.Rollback();
+            }
+            catch (Exception ExRollback)
+            {
+                SysCreditEx = ExRollback.ToSysCreditException(typeof(LoanTypeStore),
+                    "C367398E-F4F3-4350-86A5-AE2B3DBEBED7", CodeIndex1, "Error interno del servidor al registrar el Tipo de Prestamo", SysCreditEx);
+            }
+
+            throw SysCreditEx;
+        }
     }
 }

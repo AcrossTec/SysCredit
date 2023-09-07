@@ -85,4 +85,29 @@ public class LoanTypeController(ILoanTypeService LoanTypeService) : ControllerBa
             return StatusCode(StatusCodes.Status201Created, Result);
         }
     }
+
+    [HttpPut("{LoanTypeId}")]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
+    [ProducesErrorResponseType(typeof(IResponse<UpdateLoanTypeRequest>))]
+    public async Task<IActionResult> UpdateLaontypeAsync([FromBody] UpdateLoanTypeRequest Request, long? LoanTypeId)
+    {
+        if (Request.LoanTypeId == LoanTypeId)
+        {
+            var Result = await LoanTypeService.UpdateLoanTypeAsync(Request);
+
+            if (Result.Status.HasError)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status204NoContent, Result);
+            }
+        }
+        else
+        {
+            return StatusCode(StatusCodes.Status400BadRequest);
+        }
+    }
 }
