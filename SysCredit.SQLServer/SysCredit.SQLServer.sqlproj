@@ -107,6 +107,12 @@
     <Build Include="Functions\VerifyLoanTypeReferences.sql" />
     <Build Include="StoredProcedures\InsertLoanType.sql" />
     <Build Include="StoredProcedures\FetchLoanTypeByName.sql" />
+    <Build Include="StoredProcedures\FetchPaymentFrequency.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SysCredit.SQLServer.publish.xml" />
+    <None Include="SysCredit.SQLServer.local.publish.xml" />
+    <PostDeploy Include="PostDeployments\PaymentFrequency.Seed.sql" />
     <Build Include="StoredProcedures\UpdateLoanTypeById.sql" />
     <Build Include="StoredProcedures\FetchLoanTypeById.sql" />
   </ItemGroup>
@@ -122,6 +128,7 @@
     </ArtifactReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="PostDeployments\LoanType.Seed.sql" />
     <None Include="PostDeployments\LoanType.Seed.sql" />
   </ItemGroup>
   <ItemGroup>

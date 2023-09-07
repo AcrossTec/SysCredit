@@ -17,6 +17,8 @@ public static partial class ErrorCategories
 
     public const string LoanTypeStore = nameof(LoanTypeStore);
 
+    public const string PaymentFrequencyStore = nameof(PaymentFrequencyStore);
+
     public const string CustomerService = nameof(CustomerService);
 
     public const string GuarantorService = nameof(GuarantorService);
@@ -26,4 +28,6 @@ public static partial class ErrorCategories
     public const string RelationshipService = nameof(RelationshipService);
 
     public const string LoanTypeService = nameof(LoanTypeService);
+
+    public const string PaymentFrequencyService = nameof(PaymentFrequencyService);
 }
