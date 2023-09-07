@@ -75,4 +75,14 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore) : ILoanTypeService
     {
         return LoanTypeStore.FetchLoanTypeCompleteAsync();
     }
+
+    public async ValueTask<IServiceResult<EntityId?>> UpdateLoanTypeAsync(UpdateLoanTypeRequest Request)
+    {
+        var Result = await Request.ValidateAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
+
+        if (!Result.IsValid)
+            return await Result.CreateResultAsync<EntityId?>(typeof(LoanTypeService), "702F277C-9B52-4CD2-84E2-85B9B8352E36", CodeIndex0, "La modificación del Tipo de Prestamo no es correcta");
+        
+        return await LoanTypeStore.UpdateLoanTypeAsync(Request)!.CreateResultAsync();
+    }
 }
