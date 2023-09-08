@@ -4,8 +4,17 @@ using SysCredit.Api.Attributes;
 
 using System.Reflection;
 
+/// <summary>
+/// 
+/// </summary>
 public static class AttributeExtensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="object"></param>
+    /// <param name="GenericTypeDefinition"></param>
+    /// <returns></returns>
     public static Attribute? SearchGenericAttribute(this object @object, Type GenericTypeDefinition)
     {
         GenericTypeDefinition = GenericTypeDefinition.GetGenericTypeDefinition();
@@ -18,11 +27,24 @@ public static class AttributeExtensions
         return Query.FirstOrDefault();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="object"></param>
+    /// <param name="GenericTypeDefinition"></param>
+    /// <returns></returns>
     public static Type[]? SearchGenericTypeArgumentsFromGenericAttribute(this object @object, Type GenericTypeDefinition)
     {
         return @object.SearchGenericAttribute(GenericTypeDefinition)?.GetType().GenericTypeArguments;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Type"></param>
+    /// <param name="MethodId"></param>
+    /// <param name="CodeIndex"></param>
+    /// <returns></returns>
     public static string? GetErrorCode(this Type Type, string MethodId, int CodeIndex)
     {
         var ErrorCodeAttributes =
@@ -34,6 +56,11 @@ public static class AttributeExtensions
         return ErrorCodeAttributes.SingleOrDefault()?.GetErrorCode(CodeIndex);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Type"></param>
+    /// <returns></returns>
     public static string? GetErrorCategory(this Type Type)
     {
         return Type.GetCustomAttribute<ErrorCategoryAttribute>()?.Category;

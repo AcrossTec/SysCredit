@@ -1,12 +1,18 @@
-using SysCredit.Api;
+using SysCredit.Api.Constants;
+using SysCredit.Api.Extensions;
 
 var Builder = WebApplication.CreateBuilder(args);
-
-var Startup = new Startup(Builder.Configuration);
-Startup.ConfigureServices(Builder.Services);
+Builder.Services.AddSysCreditEndpoints();
+Builder.Services.AddSysCreditSwaggerGen();
+Builder.Services.AddSysCreditStores();
+Builder.Services.AddSysCreditServices();
+Builder.Services.AddSysCreditOptions();
 
 var App = Builder.Build();
-
-Startup.Configure(App, App.Environment);
+App.ConfigureHttpRequestPipeline();
+App.UseSysCreditMiddlewares();
+App.UseHttpsRedirection();
+App.UseCors(SysCreditConstants.CorsAllowSpecificOrigins);
+App.UseAuthorization();
 App.MapControllers();
 App.Run();

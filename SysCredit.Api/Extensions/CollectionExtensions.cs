@@ -6,8 +6,16 @@ using System.Collections;
 using System.Data;
 using System.Reflection;
 
+/// <summary>
+/// 
+/// </summary>
 public static class CollectionExtensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="ViewModels"></param>
+    /// <returns></returns>
     public static DataTable ToDataTable(this IEnumerable<IViewModel> ViewModels)
     {
         DataTable Table = new DataTable();

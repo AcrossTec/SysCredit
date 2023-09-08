@@ -11,6 +11,9 @@ using SysCredit.Api.Validations.Relationships;
 using SysCredit.Api.ViewModels.Customers;
 using SysCredit.Api.ViewModels.References;
 
+/// <summary>
+/// 
+/// </summary>
 public static class ValidatorExtensions
 {
     public static IRuleBuilderOptions<TObject, TEnum> Enum<TObject, TEnum>(this IRuleBuilder<TObject, TEnum> RuleBuilder) where TEnum : Enum

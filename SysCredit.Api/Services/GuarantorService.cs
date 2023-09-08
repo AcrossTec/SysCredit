@@ -24,17 +24,16 @@ using static SysCredit.Helpers.ContextData;
 
 [Service<IGuarantorService>]
 [ErrorCategory(ErrorCategories.GuarantorService)]
-public class GuarantorService : IGuarantorService
+public class GuarantorService(IStore Store) : IGuarantorService
 {
-    private readonly IStore<Guarantor> GuarantorStore;
-    private readonly IStore<Relationship> RelationshipStore;
+    private readonly IStore<Guarantor> GuarantorStore = Store.GetStore<Guarantor>();
+    private readonly IStore<Relationship> RelationshipStore = Store.GetStore<Relationship>();
 
-    public GuarantorService(IStore Store)
-    {
-        GuarantorStore = Store.GetStore<Guarantor>();
-        RelationshipStore = Store.GetStore<Relationship>();
-    }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="ViewModel"></param>
+    /// <returns></returns>
     [MethodId("9FE9602F-7011-435F-83BE-F573704A932D")]
     [ErrorCode(GuarantorServicePrefix, Codes: new[] { _0001 })]
     public async ValueTask<IServiceResult<EntityId?>> InsertGuarantorAsync(CreateGuarantorRequest ViewModel)
@@ -47,18 +46,32 @@ public class GuarantorService : IGuarantorService
         return await GuarantorStore.InsertGuarantorAsync(ViewModel)!.CreateResultAsync();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     [MethodId("F156EE14-0CB8-477E-B9BF-0B864E26BF25")]
     public IAsyncEnumerable<FetchGuarantor> FetchGuarantorsAsync()
     {
         return GuarantorStore.FetchGuarantorsAsync();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Request"></param>
+    /// <returns></returns>
     [MethodId("4007331B-2C71-4DAF-8B00-15CBB3B3328C")]
     public IAsyncEnumerable<FetchGuarantor> FetchGuarantorsAsync(PaginationRequest Request)
     {
         return GuarantorStore.FetchGuarantorsAsync(Request);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Request"></param>
+    /// <returns></returns>
     [MethodId("543DDE99-6927-4D4D-928F-A47CD6695114")]
     public IAsyncEnumerable<GuarantorInfo> SearchGuarantorAsync(SearchRequest Request)
     {

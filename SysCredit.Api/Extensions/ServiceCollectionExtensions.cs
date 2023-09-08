@@ -11,8 +11,16 @@ using SysCredit.Models;
 
 using System.Reflection;
 
+/// <summary>
+/// 
+/// </summary>
 public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Services"></param>
+    /// <returns></returns>
     public static IServiceCollection AddSysCreditEndpoints(this IServiceCollection Services)
     {
         Services.AddControllers()
@@ -32,12 +40,22 @@ public static class ServiceCollectionExtensions
         return Services;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Services"></param>
+    /// <returns></returns>
     public static IServiceCollection AddSysCreditSwaggerGen(this IServiceCollection Services)
     {
         Services.AddSwaggerGen();
         return Services;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Services"></param>
+    /// <returns></returns>
     public static IServiceCollection AddSysCreditStores(this IServiceCollection Services)
     {
         Services.AddScoped<IStore, Store<Entity>>();
@@ -45,6 +63,11 @@ public static class ServiceCollectionExtensions
         return Services;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Services"></param>
+    /// <returns></returns>
     public static IServiceCollection AddSysCreditServices(this IServiceCollection Services)
     {
         var Types = from Type in typeof(Program).Assembly.GetTypes()
@@ -60,6 +83,11 @@ public static class ServiceCollectionExtensions
         return Services;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Services"></param>
+    /// <returns></returns>
     public static IServiceCollection AddSysCreditOptions(this IServiceCollection Services)
     {
         Services.AddOptions<SysCreditOptions>()
