@@ -85,7 +85,6 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
 
         return await LoanTypeStore.UpdateLoanTypeAsync(Request)!.CreateResultAsync();
     }
-}
 
     [MethodId("53143E7A-CB8B-45ED-AE3A-F7DD55AD907E")]
     public ValueTask<LoanTypeInfo?> FetchLoanTypeByIdAsync(long? LoanTypeId)
