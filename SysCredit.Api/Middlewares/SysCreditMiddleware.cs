@@ -15,20 +15,15 @@ using System.Text.Json;
 using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="Next"></param>
+/// <param name="Environment"></param>
+/// <param name="Logger"></param>
 [ErrorCategory(ErrorCategories.InternalServerError)]
-public class SysCreditMiddleware
+public class SysCreditMiddleware(RequestDelegate Next, IHostEnvironment Environment, ILogger<SysCreditMiddleware> Logger)
 {
-    private readonly RequestDelegate Next;
-    private readonly ILogger<SysCreditMiddleware> Logger;
-    private readonly IHostEnvironment Environment;
-
-    public SysCreditMiddleware(RequestDelegate Next, IHostEnvironment Environment, ILogger<SysCreditMiddleware> Logger)
-    {
-        this.Next = Next;
-        this.Environment = Environment;
-        this.Logger = Logger;
-    }
-
     [MethodId("73E66405-D1D0-44D0-8EAB-9AC7D08742A9")]
     [ErrorCode(Prefix: InternalServerErrorPrefix, Codes: new[] { _0001, _0002 })]
     public async Task InvokeAsync(HttpContext Context)

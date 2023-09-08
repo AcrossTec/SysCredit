@@ -12,17 +12,14 @@ using SysCredit.DataTransferObject.StoredProcedures;
 
 using SysCredit.Helpers;
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="CustomerService"></param>
 [ApiController]
 [Route("Api/[Controller]")]
-public class CustomerController : ControllerBase
+public class CustomerController(ICustomerService CustomerService) : ControllerBase
 {
-    private readonly ICustomerService CustomerService;
-
-    public CustomerController(ICustomerService CustomerService)
-    {
-        this.CustomerService = CustomerService;
-    }
-
     /// <summary>
     /// 
     /// </summary>
@@ -35,6 +32,11 @@ public class CustomerController : ControllerBase
         return await CustomerService.FetchCustomersAsync().ToResponseAsync();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Request"></param>
+    /// <returns></returns>
     [HttpGet("/Api/Customer/Search")]
     [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<SearchCustomer>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
@@ -43,6 +45,11 @@ public class CustomerController : ControllerBase
         return await CustomerService.SearchCustomerAsync(Request).ToResponseAsync();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="CustomerId"></param>
+    /// <returns></returns>
     [HttpGet("/Api/Customer/{CustomerId}")]
     [ProducesResponseType(typeof(IResponse<CustomerInfo>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
@@ -51,6 +58,11 @@ public class CustomerController : ControllerBase
         return await CustomerService.FetchCustomerByIdAsync(CustomerId).ToResponseAsync();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Identification"></param>
+    /// <returns></returns>
     [HttpGet("/Api/Customer/ByIdentification/{Identification}")]
     [ProducesResponseType(typeof(IResponse<CustomerInfo>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
@@ -59,6 +71,11 @@ public class CustomerController : ControllerBase
         return await CustomerService.FetchCustomerByIdentificationAsync(Identification).ToResponseAsync();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Email"></param>
+    /// <returns></returns>
     [HttpGet("/Api/Customer/ByEmail/{Email}")]
     [ProducesResponseType(typeof(IResponse<CustomerInfo>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
@@ -67,6 +84,11 @@ public class CustomerController : ControllerBase
         return await CustomerService.FetchCustomerByEmailAsync(Email).ToResponseAsync();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Phone"></param>
+    /// <returns></returns>
     [HttpGet("/Api/Customer/ByPhone/{Phone}")]
     [ProducesResponseType(typeof(IResponse<CustomerInfo>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]

@@ -1,32 +1,31 @@
 ﻿namespace SysCredit.Api;
 
-using SysCredit.Api.Constants;
-using SysCredit.Api.Extensions;
-
-public class Startup
+/// <summary>
+/// 
+/// </summary>
+/// <param name="Configuration"></param>
+[Obsolete]
+public class Startup(IConfiguration Configuration)
 {
-    public Startup(IConfiguration Configuration)
-    {
-        this.Configuration = Configuration;
-    }
+    /// <summary>
+    /// 
+    /// </summary>
+    public IConfiguration Configuration { get; } = Configuration;
 
-    public IConfiguration Configuration { get; }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Services"></param>
     public void ConfigureServices(IServiceCollection Services)
     {
-        Services.AddSysCreditEndpoints();
-        Services.AddSysCreditSwaggerGen();
-        Services.AddSysCreditStores();
-        Services.AddSysCreditServices();
-        Services.AddSysCreditOptions();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="App"></param>
+    /// <param name="Environment"></param>
     public void Configure(IApplicationBuilder App, IWebHostEnvironment Environment)
     {
-        App.ConfigureHttpRequestPipeline(Environment);
-        App.UseSysCreditMiddlewares();
-        App.UseHttpsRedirection();
-        App.UseCors(SysCreditConstants.CorsAllowSpecificOrigins);
-        App.UseAuthorization();
     }
 }

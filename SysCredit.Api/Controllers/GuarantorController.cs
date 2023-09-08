@@ -11,17 +11,14 @@ using SysCredit.DataTransferObject.StoredProcedures;
 
 using SysCredit.Helpers;
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="GuarantorService"></param>
 [ApiController]
 [Route("Api/[Controller]")]
-public class GuarantorController : ControllerBase
+public class GuarantorController(IGuarantorService GuarantorService) : ControllerBase
 {
-    private readonly IGuarantorService GuarantorService;
-
-    public GuarantorController(IGuarantorService GuarantorService)
-    {
-        this.GuarantorService = GuarantorService;
-    }
-
     /// <summary>
     /// 
     /// </summary>
@@ -48,6 +45,7 @@ public class GuarantorController : ControllerBase
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="Request"></param>
     /// <returns></returns>
     [HttpGet("/Api/Guarantors")]
     [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<FetchGuarantor>>), StatusCodes.Status200OK)]
@@ -67,6 +65,7 @@ public class GuarantorController : ControllerBase
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="Request"></param>
     /// <returns></returns>
     [HttpGet("/Api/Guarantor/Search")]
     [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<FetchGuarantor>>), StatusCodes.Status200OK)]

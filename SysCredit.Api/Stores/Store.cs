@@ -8,10 +8,21 @@ using SysCredit.Models;
 using System.Data.SqlClient;
 using System.Text.Json;
 
+/// <summary>
+/// 
+/// </summary>
 public interface IStore : IDisposable
 {
+    /// <summary>
+    /// 
+    /// </summary>
     SqlConnection Connection { get; }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TModel"></typeparam>
+    /// <returns></returns>
     IStore<TModel> GetStore<TModel>() where TModel : Entity
     {
         return new Store<TModel>(Options.Create(new SysCreditOptions
@@ -20,14 +31,27 @@ public interface IStore : IDisposable
         }));
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     void IDisposable.Dispose()
     {
         Connection?.Dispose();
     }
 }
 
+/// <summary>
+/// 
+/// </summary>
+/// <typeparam name="TModel"></typeparam>
 public interface IStore<TModel> : IStore where TModel : Entity
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TViewModel"></typeparam>
+    /// <param name="ViewModel"></param>
+    /// <returns></returns>
     TModel? ToModel<TViewModel>(TViewModel ViewModel)
     {
         var Json = JsonSerializer.Serialize(ViewModel,
@@ -37,10 +61,15 @@ public interface IStore<TModel> : IStore where TModel : Entity
     }
 }
 
-public class Store<TModel> : IStore<TModel> where TModel : Entity
+/// <summary>
+/// 
+/// </summary>
+/// <typeparam name="TModel"></typeparam>
+/// <param name="Options"></param>
+public class Store<TModel>(IOptions<SysCreditOptions> Options) : IStore<TModel> where TModel : Entity
 {
-    public Store(IOptions<SysCreditOptions> Options)
-        => Connection = new SqlConnection(Options.Value.ConnectionString);
-
-    public SqlConnection Connection { get; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public SqlConnection Connection { get; } = new SqlConnection(Options.Value.ConnectionString);
 }

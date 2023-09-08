@@ -4,21 +4,24 @@ using Microsoft.AspNetCore.Mvc;
 
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
-
+using SysCredit.DataTransferObject.Commons;
 using SysCredit.Helpers;
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="RelationshipService"></param>
 [ApiController]
 [Route("Api/[Controller]")]
-public class RelationshipController : ControllerBase
+public class RelationshipController(IRelationshipService RelationshipService) : ControllerBase
 {
-    private readonly IRelationshipService RelationshipService;
-
-    public RelationshipController(IRelationshipService RelationshipService)
-    {
-        this.RelationshipService = RelationshipService;
-    }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     [HttpGet("/Api/Relationships")]
+    [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<RelationshipInfo>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     public async Task<IResponse> FetchRelationshipAsync()
     {
         return await RelationshipService.FetchRelationshipAsync().ToResponseAsync();

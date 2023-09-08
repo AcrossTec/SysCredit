@@ -10,8 +10,6 @@ public interface ILoanTypeService
 {
     IAsyncEnumerable<LoanTypeInfo> FetchLoanTypeAsync();
 
-    ValueTask<IServiceResult<bool>> DeleteLoanTypeAsync(long? LoanTypeId);
-
     ValueTask<IServiceResult<bool>> DeleteLoanTypeAsync(DeleteLoanTypeRequest Request);
 
     ValueTask<IServiceResult<EntityId?>> InsertLoanTypeAsync(CreateLoanTypeRequest ViewModel);

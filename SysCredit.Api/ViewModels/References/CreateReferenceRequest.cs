@@ -6,7 +6,7 @@ using SysCredit.Api.Validations.References;
 using SysCredit.Enums;
 
 [Validator<CreateReferenceValidator>]
-public record class CreateReferenceRequest : IViewModel
+public class CreateReferenceRequest : IViewModel
 {
     public string? Identification { get; set; }
 

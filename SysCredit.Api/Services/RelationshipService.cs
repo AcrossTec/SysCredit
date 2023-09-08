@@ -1,6 +1,7 @@
 ﻿namespace SysCredit.Api.Services;
 
 using SysCredit.Api.Attributes;
+using SysCredit.Api.Constants;
 using SysCredit.Api.Interfaces;
 using SysCredit.Api.Stores;
 
@@ -11,20 +12,23 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 [Service<IRelationshipService>]
-public class RelationshipService : IRelationshipService
+[ErrorCategory(ErrorCategories.RelationshipService)]
+public class RelationshipService(IStore<Relationship> RelationshipStore) : IRelationshipService
 {
-    private readonly IStore<Relationship> RelationshipStore;
-
-    public RelationshipService(IStore<Relationship> RelationshipStore)
-    {
-        this.RelationshipStore = RelationshipStore;
-    }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public IAsyncEnumerable<RelationshipInfo> FetchRelationshipAsync()
     {
         return RelationshipStore.FetchRelationshipAsync();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="RelationshipId"></param>
+    /// <returns></returns>
     public ValueTask<bool> ExistsRelationshipAsync(long RelationshipId)
     {
         return RelationshipStore.ExistsRelationshipAsync(RelationshipId);
