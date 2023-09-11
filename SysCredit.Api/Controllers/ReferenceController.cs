@@ -7,6 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 /// </summary>
 [ApiController]
 [Route("Api/[Controller]")]
-public class ReferenceController : ControllerBase
+public class ReferenceController(ILogger<ReferenceController> Logger) : ControllerBase
 {
 }

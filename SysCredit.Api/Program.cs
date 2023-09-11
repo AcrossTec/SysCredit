@@ -2,14 +2,13 @@ using SysCredit.Api.Constants;
 using SysCredit.Api.Extensions;
 
 var Builder = WebApplication.CreateBuilder(args);
-Builder.Services.AddSysCreditEndpoints();
-Builder.Services.AddSysCreditSwaggerGen();
-Builder.Services.AddSysCreditStores();
-Builder.Services.AddSysCreditServices();
-Builder.Services.AddSysCreditOptions();
+Builder.AddSysCreditLogging();
+Builder.AddSysCreditServices();
 
 var App = Builder.Build();
-App.ConfigureHttpRequestPipeline();
+App.UseHttpLogging();
+App.UseSysCreditLog4Net();
+App.UseSysCreditSwaggerUI();
 App.UseSysCreditMiddlewares();
 App.UseHttpsRedirection();
 App.UseCors(SysCreditConstants.CorsAllowSpecificOrigins);

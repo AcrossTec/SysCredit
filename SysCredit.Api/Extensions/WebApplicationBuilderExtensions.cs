@@ -1,5 +1,9 @@
 ﻿namespace SysCredit.Api.Extensions;
 
+using log4net;
+using log4net.Config;
+
+using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
 
 using SysCredit.Api.Attributes;
@@ -14,8 +18,55 @@ using System.Reflection;
 /// <summary>
 /// 
 /// </summary>
-public static class ServiceCollectionExtensions
+public static class WebApplicationBuilderExtensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <remarks>
+    ///     Logging in .NET Core and ASP.NET Core
+    ///     https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-7.0
+    ///     
+    ///     Implement a custom logging provider in .NET
+    ///     https://learn.microsoft.com/en-us/dotnet/core/extensions/custom-logging-provider
+    ///     
+    ///     Structured Logging in ASP.NET Core With log4net
+    ///     https://code-maze.com/aspnetcore-structured-logging-log4net/
+    /// </remarks>
+    /// <param name="Builder"></param>
+    /// <returns></returns>
+    public static WebApplicationBuilder AddSysCreditLogging(this WebApplicationBuilder Builder)
+    {
+        Builder.Logging.ClearProviders();
+        Builder.Logging.AddConsole();
+
+        Builder.Services.AddHttpLogging(Logging =>
+        {
+            Logging.LoggingFields = HttpLoggingFields.All;
+            Logging.RequestBodyLogLimit = 4096;
+            Logging.ResponseBodyLogLimit = 4096;
+
+            Logging.MediaTypeOptions.AddText("application/javascript");
+        });
+
+        return Builder;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Builder"></param>
+    /// <returns></returns>
+    public static WebApplicationBuilder AddSysCreditServices(this WebApplicationBuilder Builder)
+    {
+        Builder.Services.AddSysCreditEndpoints();
+        Builder.Services.AddSysCreditSwaggerGen();
+        Builder.Services.AddSysCreditStores();
+        Builder.Services.AddSysCreditServices();
+        Builder.Services.AddSysCreditOptions();
+        return Builder;
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -32,7 +83,7 @@ public static class ServiceCollectionExtensions
          {
              Options.AddPolicy(SysCreditConstants.CorsAllowSpecificOrigins, static Policy =>
              {
-                 Policy.WithMethods("PUT", "DELETE", "GET", "PATCH");
+                 Policy.WithMethods("POST", "PUT", "DELETE", "GET", "PATCH");
                  Policy.AllowAnyOrigin().AllowAnyHeader();
              });
          });

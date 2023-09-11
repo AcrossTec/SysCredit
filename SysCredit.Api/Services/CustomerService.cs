@@ -28,7 +28,7 @@ using static SysCredit.Helpers.ContextData;
 /// <param name="Store"></param>
 [Service<ICustomerService>]
 [ErrorCategory(ErrorCategories.CustomerService)]
-public class CustomerService(IStore Store) : ICustomerService
+public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : ICustomerService
 {
     private readonly IStore<Customer> CustomerStore = Store.GetStore<Customer>();
     private readonly IStore<Guarantor> GuarantorStore = Store.GetStore<Guarantor>();

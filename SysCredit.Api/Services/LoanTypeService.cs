@@ -20,7 +20,7 @@ using static SysCredit.Helpers.ContextData;
 
 [Service<ILoanTypeService>]
 [ErrorCategory(ErrorCategories.LoanTypeService)]
-public class LoanTypeService(IStore<LoanType> LoanTypeStore) : ILoanTypeService
+public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeService> Logger) : ILoanTypeService
 {
     /// <summary>
     /// 
@@ -82,7 +82,7 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore) : ILoanTypeService
 
         if (!Result.IsValid)
             return await Result.CreateResultAsync<EntityId?>(typeof(LoanTypeService), "702F277C-9B52-4CD2-84E2-85B9B8352E36", CodeIndex0, "La modificación del Tipo de Prestamo no es correcta");
-        
+
         return await LoanTypeStore.UpdateLoanTypeAsync(Request)!.CreateResultAsync();
     }
 }

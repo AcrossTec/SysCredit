@@ -24,7 +24,7 @@ using static SysCredit.Helpers.ContextData;
 
 [Service<IGuarantorService>]
 [ErrorCategory(ErrorCategories.GuarantorService)]
-public class GuarantorService(IStore Store) : IGuarantorService
+public class GuarantorService(IStore Store, ILogger<GuarantorService> Logger) : IGuarantorService
 {
     private readonly IStore<Guarantor> GuarantorStore = Store.GetStore<Guarantor>();
     private readonly IStore<Relationship> RelationshipStore = Store.GetStore<Relationship>();

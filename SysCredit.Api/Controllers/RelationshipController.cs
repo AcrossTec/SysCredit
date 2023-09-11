@@ -13,7 +13,7 @@ using SysCredit.Helpers;
 /// <param name="RelationshipService"></param>
 [ApiController]
 [Route("Api/[Controller]")]
-public class RelationshipController(IRelationshipService RelationshipService) : ControllerBase
+public class RelationshipController(IRelationshipService RelationshipService, ILogger<RelationshipController> Logger) : ControllerBase
 {
     /// <summary>
     /// 
