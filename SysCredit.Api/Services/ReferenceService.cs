@@ -9,6 +9,6 @@ using SysCredit.Api.Interfaces;
 /// </summary>
 [Service<IReferenceService>]
 [ErrorCategory(ErrorCategories.ReferenceService)]
-public class ReferenceService : IReferenceService
+public class ReferenceService(ILogger<ReferenceService> Logger) : IReferenceService
 {
 }

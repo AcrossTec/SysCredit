@@ -1,11 +1,13 @@
 ﻿namespace SysCredit.Api.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
 using SysCredit.Api.ViewModels.LoanType;
 using SysCredit.Api.ViewModels.LoanTypes;
+
 using SysCredit.Helpers;
 
 /// <summary>
@@ -14,7 +16,7 @@ using SysCredit.Helpers;
 /// <param name="LoanTypeService"></param>
 [ApiController]
 [Route("Api/[controller]")]
-public class LoanTypeController(ILoanTypeService LoanTypeService) : ControllerBase
+public class LoanTypeController(ILoanTypeService LoanTypeService, ILogger<LoanTypeController> Logger) : ControllerBase
 {
     /// <summary>
     /// 
@@ -86,11 +88,17 @@ public class LoanTypeController(ILoanTypeService LoanTypeService) : ControllerBa
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Request"></param>
+    /// <param name="LoanTypeId"></param>
+    /// <returns></returns>
     [HttpPut("{LoanTypeId}")]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
     [ProducesErrorResponseType(typeof(IResponse<UpdateLoanTypeRequest>))]
-    public async Task<IActionResult> UpdateLaontypeAsync([FromBody] UpdateLoanTypeRequest Request, long? LoanTypeId)
+    public async Task<IActionResult> UpdateLoanTypeAsync([FromBody] UpdateLoanTypeRequest Request, long? LoanTypeId)
     {
         if (Request.LoanTypeId == LoanTypeId)
         {

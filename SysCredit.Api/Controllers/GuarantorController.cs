@@ -17,7 +17,7 @@ using SysCredit.Helpers;
 /// <param name="GuarantorService"></param>
 [ApiController]
 [Route("Api/[Controller]")]
-public class GuarantorController(IGuarantorService GuarantorService) : ControllerBase
+public class GuarantorController(IGuarantorService GuarantorService, ILogger<GuarantorController> Logger) : ControllerBase
 {
     /// <summary>
     /// 

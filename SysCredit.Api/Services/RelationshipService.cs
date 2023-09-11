@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 [Service<IRelationshipService>]
 [ErrorCategory(ErrorCategories.RelationshipService)]
-public class RelationshipService(IStore<Relationship> RelationshipStore) : IRelationshipService
+public class RelationshipService(IStore<Relationship> RelationshipStore, ILogger<RelationshipService> Logger) : IRelationshipService
 {
     /// <summary>
     /// 

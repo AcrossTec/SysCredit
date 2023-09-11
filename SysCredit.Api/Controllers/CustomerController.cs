@@ -18,7 +18,7 @@ using SysCredit.Helpers;
 /// <param name="CustomerService"></param>
 [ApiController]
 [Route("Api/[Controller]")]
-public class CustomerController(ICustomerService CustomerService) : ControllerBase
+public class CustomerController(ICustomerService CustomerService, ILogger<CustomerController> Logger) : ControllerBase
 {
     /// <summary>
     /// 
