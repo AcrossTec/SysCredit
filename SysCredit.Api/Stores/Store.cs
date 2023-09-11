@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 using SysCredit.Helpers;
 using SysCredit.Models;
 
-using System.Data.SqlClient;
+using System.Data.Common;
 using System.Text.Json;
 
 /// <summary>
@@ -16,7 +16,7 @@ public interface IStore : IDisposable
     /// <summary>
     /// 
     /// </summary>
-    SqlConnection Connection { get; }
+    DbConnection Connection { get; }
 
     /// <summary>
     /// 
@@ -71,5 +71,5 @@ public class Store<TModel>(IOptions<SysCreditOptions> Options) : IStore<TModel> 
     /// <summary>
     /// 
     /// </summary>
-    public SqlConnection Connection { get; } = new SqlConnection(Options.Value.ConnectionString);
+    public DbConnection Connection { get; } = Options.Value.CreateConnection();
 }

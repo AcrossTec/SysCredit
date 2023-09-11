@@ -1,5 +1,8 @@
 ﻿namespace SysCredit.Api.Constants;
 
+/// <summary>
+/// 
+/// </summary>
 public static class ErrorCodeIndex
 {
     public const int CodeIndex0 = 0;

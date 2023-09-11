@@ -1,5 +1,8 @@
 ﻿namespace SysCredit.Api.Constants;
 
+/// <summary>
+/// 
+/// </summary>
 public static partial class ErrorCategories
 {
     public const string InternalServerError = nameof(InternalServerError);

@@ -14,11 +14,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Folder", "Solution
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysCredit.Api", "SysCredit.Api\SysCredit.Api.csproj", "{DBED9805-9406-4241-83BD-ED6D44A2C449}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysCredit.Helpers", "SysCredit.Helpers\SysCredit.Helpers.csproj", "{05EF225E-946A-403F-8D49-837346F6ED92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysCredit.Helpers", "SysCredit.Helpers\SysCredit.Helpers.csproj", "{05EF225E-946A-403F-8D49-837346F6ED92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysCredit.DataTransferObject", "SysCredit.DataTransferObject\SysCredit.DataTransferObject.csproj", "{E98FDE4B-25F8-41DA-A193-CC5F45117AE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysCredit.DataTransferObject", "SysCredit.DataTransferObject\SysCredit.DataTransferObject.csproj", "{E98FDE4B-25F8-41DA-A193-CC5F45117AE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysCredit.Models", "SysCredit.Models\SysCredit.Models.csproj", "{FCE137EE-F586-4093-A646-A7537041BEF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysCredit.Models", "SysCredit.Models\SysCredit.Models.csproj", "{FCE137EE-F586-4093-A646-A7537041BEF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysCredit.Api.Tests", "SysCredit.Api.Tests\SysCredit.Api.Tests.csproj", "{2C4749DF-A79A-49F0-AABE-97C474116405}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +56,10 @@ Global
 		{FCE137EE-F586-4093-A646-A7537041BEF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCE137EE-F586-4093-A646-A7537041BEF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCE137EE-F586-4093-A646-A7537041BEF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C4749DF-A79A-49F0-AABE-97C474116405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C4749DF-A79A-49F0-AABE-97C474116405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C4749DF-A79A-49F0-AABE-97C474116405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C4749DF-A79A-49F0-AABE-97C474116405}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

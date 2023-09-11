@@ -1,5 +1,8 @@
 ﻿namespace SysCredit.Api.Constants;
 
+/// <summary>
+/// 
+/// </summary>
 public static class SysCreditConstants
 {
     public const string Empty = "";
