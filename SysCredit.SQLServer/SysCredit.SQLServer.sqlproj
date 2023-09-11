@@ -117,6 +117,9 @@
     </ArtifactReference>
   </ItemGroup>
   <ItemGroup>
-    <PostDeploy Include="PostDeployments\LoanType.Seed.sql" />
+    <None Include="PostDeployments\LoanType.Seed.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeployments\Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>
