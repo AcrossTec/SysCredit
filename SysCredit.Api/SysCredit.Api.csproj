@@ -6,7 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>399f066c-f5f3-4afb-9804-d06f2b816764</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="SysCredit.Api.Tests" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Remove="Log4Net.config" />
