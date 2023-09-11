@@ -15,3 +15,7 @@ App.UseCors(SysCreditConstants.CorsAllowSpecificOrigins);
 App.UseAuthorization();
 App.MapControllers();
 App.Run();
+
+public partial class Program
+{
+}

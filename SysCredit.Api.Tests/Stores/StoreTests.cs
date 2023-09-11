@@ -3,6 +3,8 @@ namespace SysCredit.Api.Tests.Stores;
 using Moq;
 
 using SysCredit.Api.Stores;
+using SysCredit.Api.Tests.Mocks;
+using SysCredit.Models;
 
 /// <summary>
 ///     Unit testing C# in .NET Core using dotnet test and xUnit
@@ -11,6 +13,12 @@ using SysCredit.Api.Stores;
 public class StoreTests
 {
     private readonly Mock<IStore> StoreMock = new Mock<IStore>();
+
+    public StoreTests()
+    {
+        StoreMock.Setup(Store => Store.Connection).Returns(new DbConnectionMock());
+        StoreMock.Setup(Store => Store.Dispose()).Callback(delegate { });
+    }
 
     [Fact]
     public void CreateStoreTest()
