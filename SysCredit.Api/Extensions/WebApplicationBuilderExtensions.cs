@@ -1,8 +1,5 @@
 ﻿namespace SysCredit.Api.Extensions;
 
-using log4net;
-using log4net.Config;
-
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
 
@@ -144,6 +141,8 @@ public static class WebApplicationBuilderExtensions
         Services.AddOptions<SysCreditOptions>()
             .Configure<IConfiguration>(static (Options, Configuration) =>
             {
+                Configuration.GetSection(SettingsOptions.SysCredit).Bind(Options);
+
                 Options.ConnectionString = Configuration.GetConnectionString(SysCreditConstants.ConnectionStringKey)!;
 
                 if (string.IsNullOrEmpty(Options.ConnectionString))
