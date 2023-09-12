@@ -113,6 +113,23 @@
     <None Include="PostDeployments\LoanType.Seed.sql" />
     <None Include="PostDeployments\PaymentFrequency.Seed.sql" />
     <None Include="PostDeployments\Relationship.Seed.sql" />
+    <Build Include="Tables\RoleUser.sql" />
+    <Build Include="Tables\Role.sql" />
+    <Build Include="Tables\RoleClaim.sql" />
+    <Build Include="Tables\UserClaim.sql" />
+    <Build Include="StoredProcedures\FetchUserByName.sql" />
+    <Build Include="StoredProcedures\FetchUserByPhone.sql" />
+    <Build Include="StoredProcedures\FetchUserById.sql" />
+    <Build Include="StoredProcedures\InsertUser.sql" />
+    <Build Include="Types\AssignRequestType.sql" />
+    <Build Include="Types\ClaimRequestType.sql" />
+    <Build Include="StoredProcedures\InsertRole.sql" />
+    <Build Include="StoredProcedures\FetchRoleClaimByUserId.sql" />
+    <Build Include="StoredProcedures\FetchClaimByUserId.sql" />
+    <Build Include="StoredProcedures\FetchUserByEmail.sql" />
+    <Build Include="StoredProcedures\FetchLogin.sql" />
+    <Build Include="StoredProcedures\FetchRoleByName.sql" />
+    <Build Include="StoredProcedures\CheckExistAndDuplicatedRoles.sql" />
     <Build Include="StoredProcedures\FetchPaymentFrequencyById.sql" />
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,11 @@ using Middlewares;
 
 using Services;
 
+using Services.Auth;
+
 using Stores;
+
+using Stores.Auth;
 
 /// <summary>
 ///     Prefijos usados para los códigos de error.
@@ -46,6 +50,12 @@ public static class ErrorCodePrefix
     ///     Prefijo para la clase: <see cref="RelationshipService" />
     /// </summary>
     public const string RelationshipServicePrefix = $"{SERV}RS";
+
+
+    /// <summary>
+    ///     Prefijo para la clase: <see cref="AuthService" />
+    /// </summary>
+    public const string AuthServicePrefix = $"{SERV}AS";
     #endregion
 
     #region Stores
@@ -83,6 +93,17 @@ public static class ErrorCodePrefix
     ///     Prefijo para la clase: <see cref="RelationshipStore" />
     /// </summary>
     public const string RelationshipStorePrefix = $"{DATA}RS";
+
+    /// <summary>
+    ///     Prefijo para la clase: <see cref="RoleStore" />
+    /// </summary>
+    public const string RoleStorePrefix = $"{DATA}ARS";
+
+    /// <summary>
+    ///     Prefijo para la clase: <see cref="UserStore" />
+    /// </summary>
+    public const string UserStorePrefix = $"{DATA}AUS";
+    
     #endregion
 
     /// <summary>
