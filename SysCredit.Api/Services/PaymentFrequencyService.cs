@@ -22,6 +22,11 @@ using static Constants.ErrorCodePrefix;
 public class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencyStore, ILogger<PaymentFrequencyService> Logger) : IPaymentFrequencyService
 {
     /// <summary>
+    /// Este método realiza una llamada asincrónica para obtener información
+    /// de frecuencia de pago (DTO)
+    /// </summary>
+    /// <returns></returns>
+    /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
@@ -30,5 +35,17 @@ public class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencySt
     {
         Logger.LogInformation("[SERVICE] {Service}.{Method}()", nameof(PaymentFrequencyService), nameof(FetchPaymentFrequencyAsync));
         return PaymentFrequencyStore.FetchPaymentFrequencyAsync();
+    }
+
+    /// <summary>
+    /// Este método realiza una llamada asincrónica para obtener información
+    /// de frecuencia de pago
+    /// </summary>
+    /// <returns></returns>
+    [MethodId("6006B8FC-E3F7-43E4-9E70-6E6CA69053B0")]
+    public IAsyncEnumerable<PaymentFrequency> FetchPaymentFrequencyCompleteAsync()
+    {
+        Logger.LogInformation($"CALL: {nameof(PaymentFrequencyService)}.{nameof(FetchPaymentFrequencyCompleteAsync)}");
+        return PaymentFrequencyStore.FetchPaymentFrequencyCompleteAsync();
     }
 }
