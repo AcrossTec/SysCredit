@@ -115,7 +115,15 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
            .Key(nameof(RelationshipStore)).Value(RelationshipStore));
 
         if (!Result.IsValid)
-            return await Result.CreateResultAsync<EntityId?>(typeof(CustomerService), "C59A79E3-CDAD-44AF-B512-B4D58E8B1430", CodeIndex0, "La solicitud de creación del cliente no es válido.");
+        {
+            return await Result.CreateResultAsync<EntityId?>
+            (
+                   CodeIndex: CodeIndex0,
+                CategoryType: typeof(CustomerService),
+                    MethodId: "C59A79E3-CDAD-44AF-B512-B4D58E8B1430",
+                ErrorMessage: "La solicitud de creación del cliente no es válido."
+            );
+        }
 
         return await CustomerStore.InsertCustomerAsync(ViewModel)!.CreateResultAsync();
     }

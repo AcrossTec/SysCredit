@@ -35,6 +35,27 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
     /// <summary>
     /// 
     /// </summary>
+    /// <returns></returns>
+    [MethodId("702F277C-9B52-4CD2-84E2-85B9B8352E36")]
+    public IAsyncEnumerable<LoanType> FetchLoanTypeCompleteAsync()
+    {
+        return LoanTypeStore.FetchLoanTypeCompleteAsync();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="LoanTypeId"></param>
+    /// <returns></returns>
+    [MethodId("53143E7A-CB8B-45ED-AE3A-F7DD55AD907E")]
+    public ValueTask<LoanTypeInfo?> FetchLoanTypeByIdAsync(long? LoanTypeId)
+    {
+        return LoanTypeStore.FetchLoanTypeByIdAsync(LoanTypeId);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
     /// <param name="Request"></param>
     /// <returns></returns>
     [MethodId("B4850869-6F13-4BAB-87C6-FF8F08B31A95")]
@@ -44,7 +65,13 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
         var Result = await Request.ValidateAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
 
         if (!Result.IsValid)
-            return await Result.CreateResultAsync<bool>(typeof(LoanTypeService), "B4850869-6F13-4BAB-87C6-FF8F08B31A95", CodeIndex0, "La solicitud para eliminar el Tipo de Prestamo no es valida.");
+        {
+            return await Result.CreateResultAsync<bool>(
+                CategoryType: typeof(LoanTypeService),
+                    MethodId: "B4850869-6F13-4BAB-87C6-FF8F08B31A95",
+                   CodeIndex: CodeIndex0,
+                ErrorMessage: "La solicitud para eliminar el Tipo de Prestamo no es valida.");
+        }
 
         return await LoanTypeStore.DeleteLoanTypeAsync(Request)!.CreateResultAsync();
     }
@@ -61,35 +88,36 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
         var Result = await ViewModel.ValidateAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
 
         if (!Result.IsValid)
-            return await Result.CreateResultAsync<EntityId?>(typeof(LoanTypeService), "09F1FC4B-5456-47CF-9F46-41F96683E7E1", CodeIndex0, "La creación del Tipo de Prestamo no es correcta");
+        {
+            return await Result.CreateResultAsync<EntityId?>
+            (
+                CategoryType: typeof(LoanTypeService),
+                    MethodId: "09F1FC4B-5456-47CF-9F46-41F96683E7E1",
+                   CodeIndex: CodeIndex0,
+                ErrorMessage: "La creación del Tipo de Prestamo no es correcta"
+            );
+        }
 
         return await LoanTypeStore.InsertLoanTypeAsync(ViewModel)!.CreateResultAsync();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
-    [MethodId("702F277C-9B52-4CD2-84E2-85B9B8352E36")]
-    public IAsyncEnumerable<LoanType> FetchLoanTypeCompleteAsync()
-    {
-        return LoanTypeStore.FetchLoanTypeCompleteAsync();
-    }
-
+    [MethodId("11531707-8C0B-45FC-B9F1-4418897AC8A7")]
+    [ErrorCode(Prefix: LoanTypeServicePrefix, Codes: new[] { _0002 })]
     public async ValueTask<IServiceResult<EntityId?>> UpdateLoanTypeAsync(UpdateLoanTypeRequest Request)
     {
         var Result = await Request.ValidateAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
 
         if (!Result.IsValid)
-            return await Result.CreateResultAsync<EntityId?>(typeof(LoanTypeService), "702F277C-9B52-4CD2-84E2-85B9B8352E36", CodeIndex0, "La modificación del Tipo de Prestamo no es correcta");
+        {
+            return await Result.CreateResultAsync<EntityId?>
+            (
+                CategoryType: typeof(LoanTypeService),
+                    MethodId: "11531707-8C0B-45FC-B9F1-4418897AC8A7",
+                   CodeIndex: CodeIndex0,
+                ErrorMessage: "La modificación del Tipo de Prestamo no es correcta"
+            );
+        }
 
         return await LoanTypeStore.UpdateLoanTypeAsync(Request)!.CreateResultAsync();
-    }
-}
-
-    [MethodId("53143E7A-CB8B-45ED-AE3A-F7DD55AD907E")]
-    public ValueTask<LoanTypeInfo?> FetchLoanTypeByIdAsync(long? LoanTypeId)
-    {
-        return LoanTypeStore.FetchLoanTypeByIdAsync(LoanTypeId);
     }
 }

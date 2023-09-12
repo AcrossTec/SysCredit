@@ -116,6 +116,7 @@ public static class LoanTypeStore
     }
 
     [MethodId("C367398E-F4F3-4350-86A5-AE2B3DBEBED7")]
+    [ErrorCode(Prefix: LoanTypeStorePrefix, Codes: new[] { _0005, _0006 })]
     public static async ValueTask<EntityId?> UpdateLoanTypeAsync(this IStore<LoanType> Store, UpdateLoanTypeRequest Request)
     {
         DynamicParameters Parameters = Request.ToDynamicParameters();
@@ -130,7 +131,7 @@ public static class LoanTypeStore
 
             return Parameters.Get<long?>(nameof(LoanType.LoanTypeId));
         }
-        catch (Exception Ex) 
+        catch (Exception Ex)
         {
             SysCreditException SysCreditEx = Ex.ToSysCreditException(typeof(LoanTypeStore),
                 "C367398E-F4F3-4350-86A5-AE2B3DBEBED7", CodeIndex0, "Error al modificar el Tipo de Prestamo", Ex);

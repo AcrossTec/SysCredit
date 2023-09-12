@@ -9,7 +9,11 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SysCredit.SQLServer", "SysC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Folder", "Solution Folder", "{F90D6369-4540-4EC2-AB24-CD44344B3820}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.gitmodules = .gitmodules
 		Directory.Build.props = Directory.Build.props
+		LICENSE = LICENSE
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysCredit.Api", "SysCredit.Api\SysCredit.Api.csproj", "{DBED9805-9406-4241-83BD-ED6D44A2C449}"
@@ -20,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysCredit.DataTransferObjec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysCredit.Models", "SysCredit.Models\SysCredit.Models.csproj", "{FCE137EE-F586-4093-A646-A7537041BEF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysCredit.Api.Tests", "SysCredit.Api.Tests\SysCredit.Api.Tests.csproj", "{2C4749DF-A79A-49F0-AABE-97C474116405}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysCredit.Api.Tests", "SysCredit.Api.Tests\SysCredit.Api.Tests.csproj", "{2C4749DF-A79A-49F0-AABE-97C474116405}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{34A61799-ADB1-4B37-B046-7CAE7EA7B9FA}"
 EndProject

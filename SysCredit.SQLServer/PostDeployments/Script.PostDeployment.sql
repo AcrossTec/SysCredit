@@ -10,5 +10,6 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-:r .\Relationship.Seed.sql
 :r .\LoanType.Seed.sql
+:r .\Relationship.Seed.sql
+:r .\PaymentFrequency.Seed.sql
