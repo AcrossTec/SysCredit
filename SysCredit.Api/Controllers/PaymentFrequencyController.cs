@@ -8,6 +8,8 @@ using SysCredit.Api.Interfaces;
 using SysCredit.Helpers;
 using SysCredit.Models;
 
+using SysCredit.DataTransferObject.Commons;
+
 /// <summary>
 /// 
 /// </summary>
@@ -41,5 +43,19 @@ public class PaymentFrequencyController(IPaymentFrequencyService PaymentFrequenc
     {
         Logger.LogInformation("EndPoint[GET]: /Api/PaymentFrequency/Complete");
         return await PaymentFrequencyService.FetchPaymentFrequencyCompleteAsync().ToResponseAsync();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="PaymentFrequencyId"></param>
+    /// <returns></returns>
+    [HttpGet("{PaymentFrequencyId}")]
+    [ProducesResponseType(typeof(IResponse<PaymentFrequencyInfo>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    public async Task<IResponse> FetchPaymentFrequencyByIdAsync(long PaymentFrequencyId)
+    {
+        Logger.LogInformation("EndPoint[GET]: /Api/FetchPaymentFrequencyById");
+        return await PaymentFrequencyService.FetchPaymentFrequencyByIdAsync(PaymentFrequencyId)!.ToResponseAsync();
     }
 }
