@@ -1,6 +1,7 @@
 ﻿namespace SysCredit.Api.Services;
 
 using SysCredit.Api.Attributes;
+using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
 using SysCredit.Api.Stores;
 using SysCredit.DataTransferObject.Commons;
@@ -35,6 +36,13 @@ public class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencySt
     {
         Logger.LogInformation("[SERVICE] {Service}.{Method}()", nameof(PaymentFrequencyService), nameof(FetchPaymentFrequencyAsync));
         return PaymentFrequencyStore.FetchPaymentFrequencyAsync();
+    }
+
+    [MethodId("F2625C55-FCD9-4FEF-AAA0-3782B91A819B")]
+    public async ValueTask<PaymentFrequencyInfo> FetchPaymentFrequencyByIdAsync(long PaymentFrequencyId)
+    {
+        Logger.LogInformation($"CALL: {nameof(PaymentFrequencyService)}.{nameof(FetchPaymentFrequencyByIdAsync)}");
+        return await PaymentFrequencyStore.FetchPaymentFrequencyByIdAsync(PaymentFrequencyId);
     }
 
     /// <summary>
