@@ -1,6 +1,7 @@
 <Project>
- <PropertyGroup>
-   <LangVersion>preview</LangVersion>
-   <Nullable>enable</Nullable>
- </PropertyGroup>
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+    <WarningsAsErrors>Nullable</WarningsAsErrors>
+  </PropertyGroup>
 </Project>
