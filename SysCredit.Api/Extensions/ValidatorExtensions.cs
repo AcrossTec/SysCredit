@@ -60,4 +60,7 @@ public static class ValidatorExtensions
 
     public static IRuleBuilderOptions<T, string?> LoanTypeUniqueNameAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
         => RuleBuilder.SetAsyncValidator(new AsyncLoanTypeUniqueNameValidator<T>());
+
+    public static IRuleBuilderOptions<T, long> LoanTypeIdEqualsToRequestLoanTypeIdValidatorAsync<T>(this IRuleBuilder<T, long> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncLoanTypeIdEqualsToRequestLoanTypeIdValidator<T>());
 }

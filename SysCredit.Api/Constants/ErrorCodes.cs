@@ -25,4 +25,5 @@ public static class ErrorCodes
     public const string DATALT0004 = $"{LoanTypeStorePrefix}{_0004}";
     public const string DATALT0005 = $"{LoanTypeStorePrefix}{_0005}";
     public const string DATALT0006 = $"{LoanTypeStorePrefix}{_0006}";
+    public const string DATALT0007 = $"{LoanTypeStorePrefix}{_0007}";
 }

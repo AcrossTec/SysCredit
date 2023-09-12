@@ -9,6 +9,7 @@ public class UpdateLoanTypeValidator : AbstractValidator<UpdateLoanTypeRequest>
 {
     public UpdateLoanTypeValidator()
     {
+
         RuleFor(L => L.Name)
             .NotEmpty()
             .NotNull()
@@ -18,6 +19,7 @@ public class UpdateLoanTypeValidator : AbstractValidator<UpdateLoanTypeRequest>
         RuleFor(L => L.LoanTypeId)
             .NotEmpty()
             .NotNull()
+            .LoanTypeIdEqualsToRequestLoanTypeIdValidatorAsync()
             .WithName("Id del Tipo de Prestamo");
     }
 }
