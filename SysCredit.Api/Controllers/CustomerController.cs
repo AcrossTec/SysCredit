@@ -1,5 +1,6 @@
 ﻿namespace SysCredit.Api.Controllers;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using SysCredit.Api.Extensions;
@@ -24,6 +25,8 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     /// 
     /// </summary>
     /// <returns></returns>
+   
+    [Authorize]
     [HttpGet("/Api/Customers")]
     [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<CustomerInfo>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
@@ -38,6 +41,8 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     /// </summary>
     /// <param name="Request"></param>
     /// <returns></returns>
+    ///
+    [Authorize]
     [HttpGet("/Api/Customer/Search")]
     [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<SearchCustomer>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
@@ -51,6 +56,7 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     /// </summary>
     /// <param name="CustomerId"></param>
     /// <returns></returns>
+    [Authorize]
     [HttpGet("/Api/Customer/{CustomerId}")]
     [ProducesResponseType(typeof(IResponse<CustomerInfo>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
@@ -64,6 +70,7 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     /// </summary>
     /// <param name="Identification"></param>
     /// <returns></returns>
+    [Authorize]
     [HttpGet("/Api/Customer/ByIdentification/{Identification}")]
     [ProducesResponseType(typeof(IResponse<CustomerInfo>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
@@ -77,6 +84,7 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     /// </summary>
     /// <param name="Email"></param>
     /// <returns></returns>
+    [Authorize]
     [HttpGet("/Api/Customer/ByEmail/{Email}")]
     [ProducesResponseType(typeof(IResponse<CustomerInfo>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
@@ -90,6 +98,7 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     /// </summary>
     /// <param name="Phone"></param>
     /// <returns></returns>
+    [Authorize]
     [HttpGet("/Api/Customer/ByPhone/{Phone}")]
     [ProducesResponseType(typeof(IResponse<CustomerInfo>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
@@ -103,6 +112,7 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     /// </summary>
     /// <param name="ViewModel"></param>
     /// <returns></returns>
+    [Authorize]
     [HttpPost("/Api/Customer")]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]

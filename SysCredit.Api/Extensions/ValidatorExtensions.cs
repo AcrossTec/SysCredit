@@ -3,11 +3,14 @@
 using FluentValidation;
 
 using SysCredit.Api.Validations;
+using SysCredit.Api.Validations.Auth.Roles;
+using SysCredit.Api.Validations.Auth.Users;
 using SysCredit.Api.Validations.Customers;
 using SysCredit.Api.Validations.Guarantors;
 using SysCredit.Api.Validations.LoanTypes;
 using SysCredit.Api.Validations.References;
 using SysCredit.Api.Validations.Relationships;
+using SysCredit.Api.ViewModels.Auth;
 using SysCredit.Api.ViewModels.Customers;
 using SysCredit.Api.ViewModels.References;
 
@@ -60,4 +63,19 @@ public static class ValidatorExtensions
 
     public static IRuleBuilderOptions<T, string?> LoanTypeUniqueNameAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
         => RuleBuilder.SetAsyncValidator(new AsyncLoanTypeUniqueNameValidator<T>());
+
+    public static IRuleBuilderOptions<T, IEnumerable<AssignRequestType>> ExistRoleInRequest<T>(this IRuleBuilder<T, IEnumerable<AssignRequestType>> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncExistRoleValidator<T>());
+
+    public static IRuleBuilderOptions<T, string?> UserUniqueEmailInRequest<T>(this IRuleBuilder<T, string?> RuleBuilder)
+    => RuleBuilder.SetAsyncValidator(new AsyncUserUniqueEmailValidator<T>());
+
+    public static IRuleBuilderOptions<T, string?> UserUniquePhoneInRequest<T>(this IRuleBuilder<T, string?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncUserUniquePhoneValidator<T>());
+
+    public static IRuleBuilderOptions<T, string?> UserUniqueUserNameInRequest<T>(this IRuleBuilder<T, string?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncUserUniqueUserNameValidator<T>());
+
+    public static IRuleBuilderOptions<T, string?> UniqueRoleNameAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncExistRoleNameValidator<T>());
 }
