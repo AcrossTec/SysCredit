@@ -9,14 +9,9 @@ using SysCredit.Models;
 using System.Collections.Generic;
 
 [Service<IPaymentFrequencyService>]
-public class PaymentFrequencyService : IPaymentFrequencyService
+[ErrorCategory(nameof(PaymentFrequencyService))]
+public class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencyStore, ILogger<PaymentFrequencyService> Logger) : IPaymentFrequencyService
 {
-    private readonly IStore<PaymentFrequency> PaymentFrequencyStore;
-    public PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencyStore)
-    {
-        this.PaymentFrequencyStore = PaymentFrequencyStore;
-    }
-
     [MethodId("F454CC3B-23ED-4A4E-B27E-5E6377CA3B5D")]
     public IAsyncEnumerable<PaymentFrequencyInfo> FetchPaymentFrequencyAsync()
     {

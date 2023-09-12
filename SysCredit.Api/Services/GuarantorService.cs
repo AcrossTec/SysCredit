@@ -38,10 +38,20 @@ public class GuarantorService(IStore Store, ILogger<GuarantorService> Logger) : 
     [ErrorCode(GuarantorServicePrefix, Codes: new[] { _0001 })]
     public async ValueTask<IServiceResult<EntityId?>> InsertGuarantorAsync(CreateGuarantorRequest ViewModel)
     {
-        var Result = await ViewModel.ValidateAsync(Key(nameof(RelationshipStore)).Value(RelationshipStore).Key(nameof(GuarantorStore)).Value(GuarantorStore));
+        var Result = await ViewModel.ValidateAsync(
+            Key(nameof(RelationshipStore)).Value(RelationshipStore)
+           .Key(nameof(GuarantorStore)).Value(GuarantorStore));
 
         if (!Result.IsValid)
-            return await Result.CreateResultAsync<EntityId?>(typeof(GuarantorService), "9FE9602F-7011-435F-83BE-F573704A932D", CodeIndex0, "La solicitud de creación del fiador no es válido.");
+        {
+            return await Result.CreateResultAsync<EntityId?>
+            (
+                CategoryType: typeof(GuarantorService),
+                    MethodId: "9FE9602F-7011-435F-83BE-F573704A932D",
+                   CodeIndex: CodeIndex0,
+                ErrorMessage: "La solicitud de creación del fiador no es válido."
+            );
+        }
 
         return await GuarantorStore.InsertGuarantorAsync(ViewModel)!.CreateResultAsync();
     }

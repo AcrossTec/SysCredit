@@ -99,7 +99,7 @@ public class LoanTypeController(ILoanTypeService LoanTypeService, ILogger<LoanTy
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
     [ProducesErrorResponseType(typeof(IResponse<UpdateLoanTypeRequest>))]
-    public async Task<IActionResult> UpdateLoanTypeAsync([FromBody] UpdateLoanTypeRequest Request, long? LoanTypeId)
+    public async Task<IActionResult> UpdateLoanTypeAsync([FromRoute] long LoanTypeId, [FromBody] UpdateLoanTypeRequest Request)
     {
         if (Request.LoanTypeId == LoanTypeId)
         {

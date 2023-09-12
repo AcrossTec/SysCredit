@@ -6,4 +6,3 @@ public record class LoanType : Entity
 
     public String Name { get; set; } = String.Empty;
 }
-

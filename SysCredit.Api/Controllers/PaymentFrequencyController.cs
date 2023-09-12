@@ -7,17 +7,17 @@ using SysCredit.Api.Interfaces;
 
 using SysCredit.Helpers;
 
+/// <summary>
+/// 
+/// </summary>
 [ApiController]
-[Route("Api/[controller]")]
-public class PaymentFrequencyController : ControllerBase
+[Route("Api/[Controller]")]
+public class PaymentFrequencyController(IPaymentFrequencyService PaymentFrequencyService) : ControllerBase
 {
-    private readonly IPaymentFrequencyService PaymentFrequencyService;
-
-    public PaymentFrequencyController(IPaymentFrequencyService PaymentFrequencyService)
-    {
-        this.PaymentFrequencyService = PaymentFrequencyService;
-    }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public async Task<IResponse> FetchPaymentFrequencyAsync()
     {
