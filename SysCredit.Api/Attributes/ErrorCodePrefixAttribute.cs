@@ -3,12 +3,12 @@
 /// <summary>
 /// 
 /// </summary>
-/// <param name="Category"></param>
+/// <param name="Prefix"></param>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-public class ErrorCategoryAttribute(string Category) : Attribute
+public class ErrorCodePrefixAttribute(string Prefix) : Attribute
 {
     /// <summary>
     /// 
     /// </summary>
-    public readonly string Category = Category;
+    public readonly string Prefix = Prefix;
 }

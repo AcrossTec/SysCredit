@@ -1,7 +1,6 @@
 ﻿namespace SysCredit.Api.Services;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.Constants;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
 using SysCredit.Api.Stores;
@@ -17,13 +16,13 @@ using SysCredit.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using static Constants.ErrorCodeIndex;
 using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
 using static SysCredit.Helpers.ContextData;
 
 [Service<IGuarantorService>]
-[ErrorCategory(ErrorCategories.GuarantorService)]
+[ErrorCategory(nameof(GuarantorService))]
+[ErrorCodePrefix(GuarantorServicePrefix)]
 public class GuarantorService(IStore Store, ILogger<GuarantorService> Logger) : IGuarantorService
 {
     private readonly IStore<Guarantor> GuarantorStore = Store.GetStore<Guarantor>();
@@ -35,25 +34,26 @@ public class GuarantorService(IStore Store, ILogger<GuarantorService> Logger) : 
     /// <param name="ViewModel"></param>
     /// <returns></returns>
     [MethodId("9FE9602F-7011-435F-83BE-F573704A932D")]
-    [ErrorCode(GuarantorServicePrefix, Codes: new[] { _0001 })]
     public async ValueTask<IServiceResult<EntityId?>> InsertGuarantorAsync(CreateGuarantorRequest ViewModel)
     {
+        Logger.LogInformation($"CALL: {nameof(GuarantorService)}.{nameof(InsertGuarantorAsync)}");
+
         var Result = await ViewModel.ValidateAsync(
             Key(nameof(RelationshipStore)).Value(RelationshipStore)
            .Key(nameof(GuarantorStore)).Value(GuarantorStore));
 
-        if (!Result.IsValid)
+        if (Result.HasError())
         {
-            return await Result.CreateResultAsync<EntityId?>
+            return await Result.CreateServiceResultAsync<EntityId?>
             (
                 CategoryType: typeof(GuarantorService),
                     MethodId: "9FE9602F-7011-435F-83BE-F573704A932D",
-                   CodeIndex: CodeIndex0,
+                   ErrorCode: $"{GuarantorServicePrefix}{_0001}",
                 ErrorMessage: "La solicitud de creación del fiador no es válido."
             );
         }
 
-        return await GuarantorStore.InsertGuarantorAsync(ViewModel)!.CreateResultAsync();
+        return await GuarantorStore.InsertGuarantorAsync(ViewModel)!.CreateServiceResultAsync();
     }
 
     /// <summary>

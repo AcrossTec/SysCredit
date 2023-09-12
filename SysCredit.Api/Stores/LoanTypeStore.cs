@@ -3,7 +3,6 @@
 using Dapper;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.ViewModels.LoanType;
@@ -13,16 +12,26 @@ using SysCredit.Models;
 
 using System.Data;
 
-using static Constants.ErrorCodeIndex;
+using static Constants.ErrorCodes;
 using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
+using System.Reflection;
 
+/// <summary>
+/// 
+/// </summary>
 [Store]
-[ErrorCategory(ErrorCategories.LoanTypeStore)]
+[ErrorCategory(nameof(LoanTypeStore))]
+[ErrorCodePrefix(LoanTypeStorePrefix)]
 public static class LoanTypeStore
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Store"></param>
+    /// <param name="Request"></param>
+    /// <returns></returns>
     [MethodId("84370664-26c5-45ed-9590-6df60a9efac4")]
-    [ErrorCode(Prefix: LoanTypeStorePrefix, Codes: new[] { _0001, _0002 })]
     public static async ValueTask<EntityId> InsertLoanTypeAsync(this IStore<LoanType> Store, CreateLoanTypeRequest Request)
     {
         DynamicParameters Parameters = Request.ToDynamicParameters();
@@ -38,29 +47,32 @@ public static class LoanTypeStore
 
             return Parameters.Get<long?>(nameof(LoanType.LoanTypeId));
         }
-        catch (Exception Ex)
+        catch (Exception SqlEx)
         {
-            SysCreditException SysCreditEx = Ex.ToSysCreditException(typeof(LoanTypeStore),
-                "84370664-26c5-45ed-9590-6df60a9efac4", CodeIndex0, "Error al registar el LoanType", Ex);
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0001);
 
             try
             {
                 // Attempt to roll back the transaction.
                 SqlTransaction.Rollback();
             }
-            catch (Exception ExRollback)
+            catch (Exception Ex)
             {
                 // Throws an InvalidOperationException if the connection is closed or the transaction has already been rolled back on the server.
-                SysCreditEx = ExRollback.ToSysCreditException(typeof(LoanTypeStore),
-                    "84370664-26c5-45ed-9590-6df60a9efac4", CodeIndex1, "Error interno del servidor al registrar el LoanType.", SysCreditEx);
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0002);
             }
 
             throw SysCreditEx;
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Store"></param>
+    /// <param name="Request"></param>
+    /// <returns></returns>
     [MethodId("FC5C3FA3-E112-49D7-B5EE-37181239695C")]
-    [ErrorCode(Prefix: LoanTypeStorePrefix, Codes: new[] { _0003, _0004 })]
     public static async ValueTask<bool> DeleteLoanTypeAsync(this IStore<LoanType> Store, DeleteLoanTypeRequest Request)
     {
         using var SqlTransaction = await Store.BeginTransactionAsync();
@@ -72,19 +84,52 @@ public static class LoanTypeStore
 
             return Result > 0;
         }
-        catch (Exception Ex)
+        catch (Exception SqlEx)
         {
-            SysCreditException SysCreditEx = Ex.ToSysCreditException(typeof(LoanTypeStore),
-                "FC5C3FA3-E112-49D7-B5EE-37181239695C", CodeIndex0, "Error al eliminar el Tipo de Prestamo", Ex); ;
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0003);
 
             try
             {
                 SqlTransaction.Rollback();
             }
-            catch (Exception ExRollback)
+            catch (Exception Ex)
             {
-                SysCreditEx = ExRollback.ToSysCreditException(typeof(LoanTypeStore),
-                    "FC5C3FA3-E112-49D7-B5EE-37181239695C", CodeIndex1, "Error interno del servidor al eliminar el Tipo de Prestamo", SysCreditEx);
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0004);
+            }
+
+            throw SysCreditEx;
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Store"></param>
+    /// <param name="Request"></param>
+    /// <returns></returns>
+    [MethodId("C367398E-F4F3-4350-86A5-AE2B3DBEBED7")]
+    public static async ValueTask<bool> UpdateLoanTypeAsync(this IStore<LoanType> Store, UpdateLoanTypeRequest Request)
+    {
+        using var SqlTransaction = await Store.BeginTransactionAsync();
+
+        try
+        {
+            int Result = await Store.ExecAsync("[dbo].[UpdateLoanTypeById]", Request, SqlTransaction);
+            SqlTransaction.Commit();
+
+            return Result > 0;
+        }
+        catch (Exception SqlEx)
+        {
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0005);
+
+            try
+            {
+                SqlTransaction.Rollback();
+            }
+            catch (Exception Ex)
+            {
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0006);
             }
 
             throw SysCreditEx;
@@ -113,41 +158,6 @@ public static class LoanTypeStore
     public static IAsyncEnumerable<LoanType> FetchLoanTypeCompleteAsync(this IStore<LoanType> Store)
     {
         return Store.ExecQueryAsync<LoanType>("[dbo].[FetchLoanTypes]");
-    }
-
-    [MethodId("C367398E-F4F3-4350-86A5-AE2B3DBEBED7")]
-    [ErrorCode(Prefix: LoanTypeStorePrefix, Codes: new[] { _0005, _0006 })]
-    public static async ValueTask<EntityId?> UpdateLoanTypeAsync(this IStore<LoanType> Store, UpdateLoanTypeRequest Request)
-    {
-        DynamicParameters Parameters = Request.ToDynamicParameters();
-        Parameters.Add(nameof(LoanType.LoanTypeId), default, DbType.Int64, ParameterDirection.Output);
-
-        using var SqlTransaction = await Store.BeginTransactionAsync();
-
-        try
-        {
-            await Store.ExecAsync("[dbo].[UpdateLoanTypeById]", Parameters, SqlTransaction);
-            SqlTransaction.Commit();
-
-            return Parameters.Get<long?>(nameof(LoanType.LoanTypeId));
-        }
-        catch (Exception Ex)
-        {
-            SysCreditException SysCreditEx = Ex.ToSysCreditException(typeof(LoanTypeStore),
-                "C367398E-F4F3-4350-86A5-AE2B3DBEBED7", CodeIndex0, "Error al modificar el Tipo de Prestamo", Ex);
-
-            try
-            {
-                SqlTransaction.Rollback();
-            }
-            catch (Exception ExRollback)
-            {
-                SysCreditEx = ExRollback.ToSysCreditException(typeof(LoanTypeStore),
-                    "C367398E-F4F3-4350-86A5-AE2B3DBEBED7", CodeIndex1, "Error interno del servidor al registrar el Tipo de Prestamo", SysCreditEx);
-            }
-
-            throw SysCreditEx;
-        }
     }
 
     [MethodId("B7FFCBE6-9430-425D-846C-E0EA17AF48CD")]

@@ -1,9 +1,14 @@
 ﻿namespace SysCredit.Api.Attributes;
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="MethodId"></param>
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-public class MethodIdAttribute : Attribute
+public class MethodIdAttribute(string MethodId) : Attribute
 {
-    public MethodIdAttribute(string MethodId) => this.MethodId = MethodId;
-
-    public string MethodId { get; }
+    /// <summary>
+    /// 
+    /// </summary>
+    public readonly string MethodId = MethodId;
 }

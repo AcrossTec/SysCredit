@@ -7,8 +7,11 @@ using SysCredit.Api.Extensions;
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.Models;
 
+using static Constants.ErrorCodePrefix;
+
 [Store]
-[ErrorCategory(ErrorCategories.PaymentFrequencyStore)]
+[ErrorCategory(nameof(PaymentFrequencyStore))]
+[ErrorCodePrefix(PaymentFrequencyStorePrefix)]
 public static class PaymentFrequencyStore
 {
     [MethodId("2EF5FEB6-201C-4FF5-A70C-8D338B7241BD")]

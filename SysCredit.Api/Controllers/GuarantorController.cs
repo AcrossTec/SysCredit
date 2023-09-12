@@ -30,6 +30,8 @@ public class GuarantorController(IGuarantorService GuarantorService, ILogger<Gua
     [ProducesErrorResponseType(typeof(IResponse<CreateGuarantorRequest>))]
     public async Task<IActionResult> InsertGuarantorAsync([FromBody] CreateGuarantorRequest Request)
     {
+        Logger.LogInformation("EndPoint[POST]: /Api/Guarantor");
+
         var Result = await GuarantorService.InsertGuarantorAsync(Request);
 
         if (Result.Status.HasError)

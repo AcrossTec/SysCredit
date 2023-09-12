@@ -3,26 +3,24 @@
 using Dapper;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.ViewModels;
 using SysCredit.Api.ViewModels.Guarantors;
-
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.DataTransferObject.StoredProcedures;
-
 using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Data;
+using System.Reflection;
 
-using static Constants.ErrorCodeIndex;
-using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
+using static Constants.ErrorCodes;
 
 [Store]
-[ErrorCategory(ErrorCategories.GuarantorStore)]
+[ErrorCategory(nameof(GuarantorStore))]
+[ErrorCodePrefix(GuarantorStorePrefix)]
 public static class GuarantorStore
 {
     [MethodId("419DA003-2593-488F-ADE9-08C2E21122F9")]
@@ -75,7 +73,6 @@ public static class GuarantorStore
     }
 
     [MethodId("BAEC4217-08E5-4714-BD80-D2C37696BB45")]
-    [ErrorCode(Prefix: GuarantorStorePrefix, Codes: new[] { _0001, _0002 })]
     public static async ValueTask<EntityId> InsertGuarantorAsync(this IStore<Guarantor> Store, CreateGuarantorRequest Request)
     {
         DynamicParameters Parameters = new DynamicParameters(Request);
@@ -90,22 +87,20 @@ public static class GuarantorStore
 
             return Parameters.Get<long?>(nameof(Guarantor.GuarantorId));
         }
-        catch (Exception Ex)
+        catch (Exception SqlEx)
         {
             // Handle the exception if the transaction fails to commit.
-            SysCreditException SysCreditEx = Ex.ToSysCreditException(typeof(GuarantorStore),
-                "BAEC4217-08E5-4714-BD80-D2C37696BB45", CodeIndex0, "Error al registrar el fiador.", Ex);
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATAG0001);
 
             try
             {
                 // Attempt to roll back the transaction.
                 SqlTransaction.Rollback();
             }
-            catch (Exception ExRollback)
+            catch (Exception Ex)
             {
                 // Throws an InvalidOperationException if the connection is closed or the transaction has already been rolled back on the server.
-                SysCreditEx = ExRollback.ToSysCreditException(typeof(GuarantorStore),
-                    "BAEC4217-08E5-4714-BD80-D2C37696BB45", CodeIndex1, "Error interno del servidor al registrar el fiador.", SysCreditEx);
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATAG0002);
             }
 
             throw SysCreditEx;

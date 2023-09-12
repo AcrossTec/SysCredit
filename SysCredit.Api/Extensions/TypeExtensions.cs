@@ -1,5 +1,9 @@
 ﻿namespace SysCredit.Api.Extensions;
 
+using SysCredit.Api.Attributes;
+
+using System.Reflection;
+
 /// <summary>
 /// 
 /// </summary>
@@ -20,5 +24,15 @@ public static class TypeExtensions
         }
 
         return NullableGetUnderlyingType(Type);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Type"></param>
+    /// <returns></returns>
+    public static string? GetErrorCategory(this Type? Type)
+    {
+        return Type?.GetCustomAttribute<ErrorCategoryAttribute>()?.Category;
     }
 }

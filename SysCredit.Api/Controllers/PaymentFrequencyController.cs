@@ -12,7 +12,7 @@ using SysCredit.Helpers;
 /// </summary>
 [ApiController]
 [Route("Api/[Controller]")]
-public class PaymentFrequencyController(IPaymentFrequencyService PaymentFrequencyService) : ControllerBase
+public class PaymentFrequencyController(IPaymentFrequencyService PaymentFrequencyService, ILogger<PaymentFrequencyController> Logger) : ControllerBase
 {
     /// <summary>
     /// 
@@ -21,6 +21,7 @@ public class PaymentFrequencyController(IPaymentFrequencyService PaymentFrequenc
     [HttpGet]
     public async Task<IResponse> FetchPaymentFrequencyAsync()
     {
+        Logger.LogInformation("EndPoint[GET]: /Api/PaymentFrequency");
         return await PaymentFrequencyService.FetchPaymentFrequencyAsync().ToResponseAsync();
     }
 }
