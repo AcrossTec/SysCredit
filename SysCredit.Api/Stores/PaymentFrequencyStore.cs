@@ -27,6 +27,12 @@ public static class PaymentFrequencyStore
         return Store.ExecQueryAsync<PaymentFrequencyInfo>("[dbo].[FetchPaymentFrequency]");
     }
 
+    [MethodId("1A320F97-0E0C-4833-87B8-C35D546A8C4B")]
+    public static async ValueTask<PaymentFrequencyInfo> FetchPaymentFrequencyByIdAsync(this IStore<PaymentFrequency> Store, long PaymentFrequencyId)
+    {
+        return await Store.ExecFirstOrDefaultAsync<PaymentFrequencyInfo>("[dbo].[FetchPaymentFrequencyById]", new { PaymentFrequencyId });
+    }
+
     /// <summary>
     /// Este método ejecuta una consulta en una base de datos y 
     /// devuelve los resultados como un flujo de elementos de 

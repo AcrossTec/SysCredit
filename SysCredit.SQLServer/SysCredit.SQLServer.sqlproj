@@ -113,6 +113,7 @@
     <None Include="PostDeployments\LoanType.Seed.sql" />
     <None Include="PostDeployments\PaymentFrequency.Seed.sql" />
     <None Include="PostDeployments\Relationship.Seed.sql" />
+    <Build Include="StoredProcedures\FetchPaymentFrequencyById.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\AzureV12\SqlSchemas\master.dacpac">
