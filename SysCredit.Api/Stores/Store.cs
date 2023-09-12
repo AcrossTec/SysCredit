@@ -1,6 +1,5 @@
 ﻿namespace SysCredit.Api.Stores;
 
-using Microsoft.Extensions.Logging.Extensions;
 using Microsoft.Extensions.Options;
 
 using SysCredit.Helpers;
@@ -95,10 +94,10 @@ public interface IStore<TModel> : IStore where TModel : Entity
 /// <param name="Logger">
 ///     Objeto de Logs para informar sobre los distintos pasos que realiza un Store.
 /// </param>
-/// <param name="LoggerProvider">
+/// <param name="LoggerFactory">
 ///     Proveedor de Logs que crea nuevos Logs específicos para el método: <see cref="Store{TModel}.GetStore{TEntity}" />.
 /// </param>
-public class Store<TModel>(IOptions<SysCreditOptions> Options, ILogger<IStore<TModel>> Logger, ILoggerProvider LoggerProvider) : IStore<TModel> where TModel : Entity
+public class Store<TModel>(IOptions<SysCreditOptions> Options, ILoggerFactory LoggerFactory) : IStore<TModel> where TModel : Entity
 {
     /// <summary>
     ///     Objeto de conexión a algún proveedor de base de datos.
@@ -109,7 +108,7 @@ public class Store<TModel>(IOptions<SysCreditOptions> Options, ILogger<IStore<TM
     /// <summary>
     ///     Objeto de Logs para informar sobre los distintos pasos que realiza un Store.
     /// </summary>
-    public ILogger<IStore<TModel>> Logger { get; } = Logger;
+    public ILogger<IStore<TModel>> Logger { get; } = new Logger<IStore<TModel>>(LoggerFactory);
 
     /// <summary>
     ///     Permite crear un Store desde otro Store.
@@ -122,6 +121,6 @@ public class Store<TModel>(IOptions<SysCreditOptions> Options, ILogger<IStore<TM
     /// </returns>
     public IStore<TEntity> GetStore<TEntity>() where TEntity : Entity
     {
-        return new Store<TEntity>(Options, (ILogger<IStore<TEntity>>)LoggerProvider.CreateLogger<IStore<TEntity>>(), LoggerProvider);
+        return new Store<TEntity>(Options, LoggerFactory);
     }
 }

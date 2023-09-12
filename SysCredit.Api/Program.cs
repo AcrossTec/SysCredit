@@ -7,7 +7,6 @@ Builder.AddSysCreditServices();
 
 var App = Builder.Build();
 App.UseHttpLogging();
-App.UseSysCreditLog4Net();
 App.UseSysCreditSwaggerUI();
 App.UseSysCreditMiddlewares();
 App.UseHttpsRedirection();

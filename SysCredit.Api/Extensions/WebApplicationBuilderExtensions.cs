@@ -1,5 +1,7 @@
 ﻿namespace SysCredit.Api.Extensions;
 
+using log4net.Config;
+
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,13 +31,26 @@ public static class WebApplicationBuilderExtensions
     ///     
     ///     Structured Logging in ASP.NET Core With log4net
     ///     https://code-maze.com/aspnetcore-structured-logging-log4net/
+    ///     
+    ///     Custom configuration using Log4NetProviderOptions
+    ///     https://github.com/huorswords/Microsoft.Extensions.Logging.Log4Net.AspNetCore/blob/develop/doc/CONFIG.md
+    ///
+    ///     Apache log4net™ Manual - Configuration
+    ///     https://logging.apache.org/log4net/release/manual/configuration.html
     /// </remarks>
     /// <param name="Builder"></param>
     /// <returns></returns>
     public static WebApplicationBuilder AddSysCreditLogging(this WebApplicationBuilder Builder)
     {
         Builder.Logging.ClearProviders();
-        Builder.Logging.AddConsole();
+
+        var Configurator = typeof(WebApplicationBuilderExtensions).Assembly.GetCustomAttribute<XmlConfiguratorAttribute>()!;
+
+        Builder.Logging.AddLog4Net(new Log4NetProviderOptions
+        {
+            Log4NetConfigFileName = Configurator.ConfigFile,
+            Watch = Configurator.Watch
+        });
 
         Builder.Services.AddHttpLogging(Logging =>
         {
