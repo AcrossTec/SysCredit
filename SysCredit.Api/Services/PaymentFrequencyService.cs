@@ -4,13 +4,16 @@ using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
 using SysCredit.Api.Stores;
+using SysCredit.Api.ViewModels.PaymentFrequencys;
 using SysCredit.DataTransferObject.Commons;
-using SysCredit.Helpers.Delegates;
+using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;
-
+using System.Reflection;
+using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
+using static SysCredit.Helpers.ContextData;
 
 /// <summary>
 /// 
@@ -55,5 +58,32 @@ public class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencySt
     {
         Logger.LogInformation($"CALL: {nameof(PaymentFrequencyService)}.{nameof(FetchPaymentFrequencyCompleteAsync)}");
         return PaymentFrequencyStore.FetchPaymentFrequencyCompleteAsync();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="ViewModel"></param>
+    /// <returns></returns>
+    [MethodId("BC663C2B-ACE2-499B-B806-2A0BD8D77815")]
+    public async ValueTask<IServiceResult<EntityId?>> InsertPaymentFrequencyAsync(CreatePaymentFrequencyRequest Request)
+    {
+        Logger.LogInformation("[SERVICE] {Service}.{Method}(Request: {Request})",
+           nameof(LoanTypeService), nameof(InsertPaymentFrequencyAsync),
+           Newtonsoft.Json.JsonConvert.SerializeObject(Request));
+
+        var Result = await Request.ValidateAsync(Key(nameof(PaymentFrequencyStore)).Value(PaymentFrequencyStore));
+
+        if (Result.HasError())
+        {
+            return await Result.CreateServiceResultAsync<EntityId?>
+            (
+                  MethodInfo: MethodInfo.GetCurrentMethod(),
+                   ErrorCode: $"{PaymentFrequencyServicePrefix}{_0002}"// TODO : "Creaciòn de la Frecuencia de pago no vàlido"
+
+            );
+        }
+
+        return await PaymentFrequencyStore.InsertPaymentFrequencyAsync(Request)!.CreateServiceResultAsync();
     }
 }

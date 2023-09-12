@@ -1,14 +1,16 @@
 ﻿namespace SysCredit.Api.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
-
+using SysCredit.Api.ViewModels.PaymentFrequencys;
 using SysCredit.Helpers;
 using SysCredit.Models;
 
 using SysCredit.DataTransferObject.Commons;
+
 
 /// <summary>
 /// 
@@ -57,5 +59,28 @@ public class PaymentFrequencyController(IPaymentFrequencyService PaymentFrequenc
     {
         Logger.LogInformation("EndPoint[GET]: /Api/FetchPaymentFrequencyById");
         return await PaymentFrequencyService.FetchPaymentFrequencyByIdAsync(PaymentFrequencyId)!.ToResponseAsync();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Request"></param>
+    /// <returns></returns>
+    [HttpPost]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
+    [ProducesErrorResponseType(typeof(IResponse<CreatePaymentFrequencyRequest>))]
+    public async Task<IActionResult> InsertPaymentFrequencyAsync([FromBody] CreatePaymentFrequencyRequest Request)
+    {
+        var Result = await PaymentFrequencyService.InsertPaymentFrequencyAsync(Request);
+
+        if (Result.Status.HasError)
+        {
+            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
+        }
+        else
+        {
+            return StatusCode(StatusCodes.Status201Created, Result);
+        }
     }
 }
