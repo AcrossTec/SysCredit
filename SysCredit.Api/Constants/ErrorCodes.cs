@@ -32,4 +32,7 @@ public static class ErrorCodes
     public const string DATAAU0001 = $"{UserStorePrefix}{_0001}";
     public const string DATAAU0002 = $"{UserStorePrefix}{_0002}";
 
+
+    public const string DATAPF0001 = $"{PaymentFrequencyStorePrefix}{_0001}";
+    public const string DATAPF0002 = $"{PaymentFrequencyStorePrefix}{_0002}";
 }

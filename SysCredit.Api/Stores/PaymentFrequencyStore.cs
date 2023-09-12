@@ -1,12 +1,18 @@
 ﻿namespace SysCredit.Api.Stores;
 
+using Dapper;
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
+using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
-
+using SysCredit.Api.ViewModels.PaymentFrequencys;
 using SysCredit.DataTransferObject.Commons;
+using SysCredit.Helpers;
 using SysCredit.Models;
-
+using System.Data;
+using System.Reflection;
+using static Constants.ErrorCodes;
+using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
 
 [Store]
@@ -45,4 +51,44 @@ public static class PaymentFrequencyStore
     {
         return Store.ExecQueryAsync<PaymentFrequency>("[dbo].[FetchPaymentFrequency]");
     }
+
+    public static async ValueTask<EntityId> InsertPaymentFrequencyAsync(this IStore<PaymentFrequency> Store, CreatePaymentFrequencyRequest Request)
+    {
+        DynamicParameters Parameters = Request.ToDynamicParameters();
+        Parameters.Add(nameof(PaymentFrequency.PaymentFrequencyId), default, DbType.Int64, ParameterDirection.Output);
+
+        using var SqlTransaction = await Store.BeginTransactionAsync();
+
+        try
+        {
+            // Handle the exception if the transaction fails to commit.
+            await Store.ExecAsync("[dbo].[InsertPaymentFrequency]", Parameters, SqlTransaction);
+            SqlTransaction.Commit();
+
+            return Parameters.Get<long?>(nameof(PaymentFrequency.PaymentFrequencyId));
+        }
+        catch (Exception SqlEx)
+        {
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0001);
+
+            try
+            {
+                // Attempt to roll back the transaction.
+                SqlTransaction.Rollback();
+            }
+            catch (Exception Ex)
+            {
+                // Throws an InvalidOperationException if the connection is closed or the transaction has already been rolled back on the server.
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0002);
+            }
+
+            throw SysCreditEx;
+        }
+    }
+
+    public static async ValueTask<PaymentFrequencyInfo?> FetchPaymentFrequencyByName(this IStore<PaymentFrequency> Store, string? Name)
+    {
+        return await Store.ExecFirstOrDefaultAsync<PaymentFrequencyInfo?>("[dbo].[FetchPaymenFrequencyByName]", new { Name });
+    }
+
 }

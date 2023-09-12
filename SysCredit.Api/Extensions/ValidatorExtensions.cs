@@ -8,6 +8,7 @@ using SysCredit.Api.Validations.Auth.Users;
 using SysCredit.Api.Validations.Customers;
 using SysCredit.Api.Validations.Guarantors;
 using SysCredit.Api.Validations.LoanTypes;
+using SysCredit.Api.Validations.PaymentFrequency;
 using SysCredit.Api.Validations.References;
 using SysCredit.Api.Validations.Relationships;
 using SysCredit.Api.ViewModels.Auth;
@@ -78,4 +79,7 @@ public static class ValidatorExtensions
 
     public static IRuleBuilderOptions<T, string?> UniqueRoleNameAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
         => RuleBuilder.SetAsyncValidator(new AsyncExistRoleNameValidator<T>());
+
+    public static IRuleBuilderOptions<T, string?> PaymentFrequencyUniqueNameAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncPaymentFrequencyUniqueNameValidator<T>());
 }

@@ -131,6 +131,8 @@
     <Build Include="StoredProcedures\FetchRoleByName.sql" />
     <Build Include="StoredProcedures\CheckExistAndDuplicatedRoles.sql" />
     <Build Include="StoredProcedures\FetchPaymentFrequencyById.sql" />
+    <Build Include="StoredProcedures\FetchPaymenFrequencyByName.sql" />
+    <Build Include="StoredProcedures\InsertPaymentFrequency.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\AzureV12\SqlSchemas\master.dacpac">
