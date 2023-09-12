@@ -84,7 +84,10 @@ public static class CustomerStore
         catch (Exception SqlEx)
         {
             // Handle the exception if the transaction fails to commit.
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATAC0001);
+            SysCreditException SysCreditEx = 
+                SqlEx.ToSysCreditException(
+                    MethodInfo.GetCurrentMethod(),
+                    DATAC0001);
 
             try
             {
