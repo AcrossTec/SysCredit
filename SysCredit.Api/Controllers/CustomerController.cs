@@ -29,6 +29,7 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     public async Task<IResponse> FetchCustomersAsync()
     {
+        Logger.LogInformation("EndPoint[GET]: /Api/Customers");
         return await CustomerService.FetchCustomersAsync().ToResponseAsync();
     }
 

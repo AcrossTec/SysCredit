@@ -3,26 +3,24 @@
 using Dapper;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.ViewModels;
 using SysCredit.Api.ViewModels.Customers;
-
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.DataTransferObject.StoredProcedures;
-
 using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Data;
+using System.Reflection;
 
-using static Constants.ErrorCodeIndex;
-using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
+using static Constants.ErrorCodes;
 
 [Store]
-[ErrorCategory(ErrorCategories.CustomerStore)]
+[ErrorCategory(nameof(CustomerStore))]
+[ErrorCodePrefix(CustomerStorePrefix)]
 public static class CustomerStore
 {
     [MethodId("49740285-1AB2-47EC-98C0-B20E9D457DCE")]
@@ -69,7 +67,6 @@ public static class CustomerStore
     /// <param name="Request"></param>
     /// <returns></returns>
     [MethodId("5B53C4A1-4033-4778-A1A7-CB8144B52065")]
-    [ErrorCode(Prefix: CustomerStorePrefix, Codes: new[] { _0001, _0002 })]
     public static async ValueTask<EntityId> InsertCustomerAsync(this IStore<Customer> Store, CreateCustomerRequest Request)
     {
         DynamicParameters Parameters = Request.ToDynamicParameters();
@@ -84,22 +81,20 @@ public static class CustomerStore
 
             return Parameters.Get<long?>(nameof(Customer.CustomerId));
         }
-        catch (Exception Ex)
+        catch (Exception SqlEx)
         {
             // Handle the exception if the transaction fails to commit.
-            SysCreditException SysCreditEx = Ex.ToSysCreditException(typeof(CustomerStore),
-                "5B53C4A1-4033-4778-A1A7-CB8144B52065", CodeIndex0, "Error al registrar el cliente.", Ex);
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATAC0001);
 
             try
             {
                 // Attempt to roll back the transaction.
                 SqlTransaction.Rollback();
             }
-            catch (Exception ExRollback)
+            catch (Exception Ex)
             {
                 // Throws an InvalidOperationException if the connection is closed or the transaction has already been rolled back on the server.
-                SysCreditEx = ExRollback.ToSysCreditException(typeof(CustomerStore),
-                    "5B53C4A1-4033-4778-A1A7-CB8144B52065", CodeIndex1, "Error interno del servidor al registrar el cliente.", SysCreditEx);
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATAC0002);
             }
 
             throw SysCreditEx;

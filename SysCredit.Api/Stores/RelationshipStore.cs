@@ -7,8 +7,11 @@ using SysCredit.Api.Extensions;
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.Models;
 
+using static Constants.ErrorCodePrefix;
+
 [Store]
-[ErrorCategory(ErrorCategories.RelationshipStore)]
+[ErrorCategory(nameof(RelationshipStore))]
+[ErrorCodePrefix(RelationshipStorePrefix)]
 public static class RelationshipStore
 {
     [MethodId("9D9648AF-EE89-4B08-9B6E-96016C086D3F")]

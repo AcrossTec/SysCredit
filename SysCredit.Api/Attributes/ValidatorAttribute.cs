@@ -2,8 +2,15 @@
 
 using FluentValidation;
 
+/// <summary>
+/// 
+/// </summary>
+/// <typeparam name="TValidator"></typeparam>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
 public class ValidatorAttribute<TValidator> : Attribute where TValidator : IValidator
 {
-    public Type ValidatorType { get; } = typeof(TValidator);
+    /// <summary>
+    /// 
+    /// </summary>
+    public readonly Type ValidatorType = typeof(TValidator);
 }

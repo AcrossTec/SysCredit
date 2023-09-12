@@ -19,11 +19,12 @@ public class RelationshipController(IRelationshipService RelationshipService, IL
     /// 
     /// </summary>
     /// <returns></returns>
-    [HttpGet("/Api/Relationships")]
+    [HttpGet]
     [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<RelationshipInfo>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     public async Task<IResponse> FetchRelationshipAsync()
     {
+        Logger.LogInformation("EndPoint[GET]: /Api/Relationship");
         return await RelationshipService.FetchRelationshipAsync().ToResponseAsync();
     }
 }

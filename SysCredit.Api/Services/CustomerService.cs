@@ -1,7 +1,6 @@
 ﻿namespace SysCredit.Api.Services;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.Constants;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
 using SysCredit.Api.Stores;
@@ -17,7 +16,6 @@ using SysCredit.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using static Constants.ErrorCodeIndex;
 using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
 using static SysCredit.Helpers.ContextData;
@@ -27,7 +25,8 @@ using static SysCredit.Helpers.ContextData;
 /// </summary>
 /// <param name="Store"></param>
 [Service<ICustomerService>]
-[ErrorCategory(ErrorCategories.CustomerService)]
+[ErrorCategory(nameof(CustomerService))]
+[ErrorCodePrefix(CustomerServicePrefix)]
 public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : ICustomerService
 {
     private readonly IStore<Customer> CustomerStore = Store.GetStore<Customer>();
@@ -106,25 +105,26 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
     /// <param name="ViewModel"></param>
     /// <returns></returns>
     [MethodId("C59A79E3-CDAD-44AF-B512-B4D58E8B1430")]
-    [ErrorCode(Prefix: CustomerServicePrefix, Codes: new[] { _0001 })]
     public async ValueTask<IServiceResult<EntityId?>> InsertCustomerAsync(CreateCustomerRequest ViewModel)
     {
+        Logger.LogInformation($"CALL: {nameof(CustomerService)}.{nameof(InsertCustomerAsync)}");
+
         var Result = await ViewModel.ValidateAsync(
             Key(nameof(CustomerStore)).Value(CustomerStore)
            .Key(nameof(GuarantorStore)).Value(GuarantorStore)
            .Key(nameof(RelationshipStore)).Value(RelationshipStore));
 
-        if (!Result.IsValid)
+        if (Result.HasError())
         {
-            return await Result.CreateResultAsync<EntityId?>
+            return await Result.CreateServiceResultAsync<EntityId?>
             (
-                   CodeIndex: CodeIndex0,
-                CategoryType: typeof(CustomerService),
                     MethodId: "C59A79E3-CDAD-44AF-B512-B4D58E8B1430",
+                CategoryType: typeof(CustomerService),
+                   ErrorCode: $"{CustomerServicePrefix}{_0001}",
                 ErrorMessage: "La solicitud de creación del cliente no es válido."
             );
         }
 
-        return await CustomerStore.InsertCustomerAsync(ViewModel)!.CreateResultAsync();
+        return await CustomerStore.InsertCustomerAsync(ViewModel)!.CreateServiceResultAsync();
     }
 }

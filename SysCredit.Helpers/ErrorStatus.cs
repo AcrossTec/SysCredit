@@ -9,7 +9,7 @@ public record class ErrorStatus
     public bool HasError { get; set; }
 
     [JsonIgnore(Condition = Always)]
-    public bool IsSuccess => !HasError;
+    public bool IsSuccess => HasError is false;
 
     [JsonIgnore(Condition = WhenWritingNull)]
     public string? MethodId { get; set; }
@@ -24,5 +24,8 @@ public record class ErrorStatus
     public string? ErrorMessage { get; set; }
 
     [JsonIgnore(Condition = WhenWritingNull)]
-    public IDictionary<string, string[]> Errors { get; set; } = new Dictionary<string, string[]>();
+    public IDictionary<string, object?>? Errors { get; set; }
+
+    [JsonExtensionData]
+    public IDictionary<string, object?> Extensions { get; } = new Dictionary<string, object?>(StringComparer.Ordinal);
 }

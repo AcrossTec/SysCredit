@@ -1,6 +1,9 @@
 ﻿namespace SysCredit.Api.Extensions;
 
 using SysCredit.Api.Exceptions;
+using SysCredit.Api.Properties;
+
+using System.Reflection;
 
 /// <summary>
 /// 
@@ -35,20 +38,30 @@ public static class ExceptionExtensions
     /// 
     /// </summary>
     /// <param name="Ex"></param>
-    /// <param name="CategoryType"></param>
-    /// <param name="MethodId"></param>
-    /// <param name="ErrorCodeIndex"></param>
-    /// <param name="ErrorMessage"></param>
-    /// <param name="InnerException"></param>
     /// <returns></returns>
-    public static SysCreditException ToSysCreditException(this Exception Ex, Type CategoryType, string MethodId, int ErrorCodeIndex, string ErrorMessage, Exception InnerException = null!)
+    public static IDictionary<string, object?> ExceptionsToDictionary(this Exception? Ex)
     {
-        SysCreditException SysCreditEx = new(Ex.Message, InnerException);
-        SysCreditEx.Status.MethodId = MethodId;
-        SysCreditEx.Status.ErrorMessage = ErrorMessage;
-        SysCreditEx.Status.ErrorCategory = CategoryType.GetErrorCategory();
-        SysCreditEx.Status.ErrorCode = CategoryType.GetErrorCode(MethodId, ErrorCodeIndex);
-        SysCreditEx.Status.Errors.Add(nameof(Ex.Message), Ex.GetMessages().ToArray());
+        return Ex.GetExceptions().ToDictionary<Exception, string, object?>(Ex => Ex.GetType().Name, Ex => Ex.Message);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Ex"></param>
+    /// <param name="MethodInfo"></param>
+    /// <param name="ErrorCode"></param>
+    /// <returns></returns>
+    public static SysCreditException ToSysCreditException(this Exception Ex, MethodBase? MethodInfo, string ErrorCode)
+    {
+        SysCreditException SysCreditEx = new(new()
+        {
+            MethodId = MethodInfo.GetMethodId(),
+            ErrorCode = ErrorCode,
+            ErrorMessage = ErrorCodeMessages.GetMessage(ErrorCode),
+            ErrorCategory = MethodInfo.GetErrorCategory(),
+            Errors = Ex.ExceptionsToDictionary()
+        }, Ex);
+
         return SysCreditEx;
     }
 }

@@ -11,8 +11,11 @@ using SysCredit.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using static Constants.ErrorCodePrefix;
+
 [Service<IRelationshipService>]
-[ErrorCategory(ErrorCategories.RelationshipService)]
+[ErrorCategory(nameof(RelationshipService))]
+[ErrorCodePrefix(RelationshipServicePrefix)]
 public class RelationshipService(IStore<Relationship> RelationshipStore, ILogger<RelationshipService> Logger) : IRelationshipService
 {
     /// <summary>
@@ -21,6 +24,7 @@ public class RelationshipService(IStore<Relationship> RelationshipStore, ILogger
     /// <returns></returns>
     public IAsyncEnumerable<RelationshipInfo> FetchRelationshipAsync()
     {
+        Logger.LogInformation($"CALL: {nameof(RelationshipService)}.{nameof(FetchRelationshipAsync)}");
         return RelationshipStore.FetchRelationshipAsync();
     }
 

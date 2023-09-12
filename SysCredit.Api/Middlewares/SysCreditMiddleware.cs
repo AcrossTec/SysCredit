@@ -3,7 +3,6 @@
 using Microsoft.AspNetCore.Http;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
 
@@ -21,11 +20,10 @@ using static Constants.ErrorCodePrefix;
 /// <param name="Next"></param>
 /// <param name="Environment"></param>
 /// <param name="Logger"></param>
-[ErrorCategory(ErrorCategories.InternalServerError)]
-public class SysCreditMiddleware(RequestDelegate Next, IHostEnvironment Environment, ILogger<SysCreditMiddleware> Logger)
+[ErrorCategory(nameof(SysCreditMiddleware))]
+public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddleware> Logger)
 {
     [MethodId("73E66405-D1D0-44D0-8EAB-9AC7D08742A9")]
-    [ErrorCode(Prefix: InternalServerErrorPrefix, Codes: new[] { _0001, _0002 })]
     public async Task InvokeAsync(HttpContext Context)
     {
         try
@@ -48,9 +46,9 @@ public class SysCreditMiddleware(RequestDelegate Next, IHostEnvironment Environm
 
             IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(CreateErrorStatusFromException(Ex));
 
-            Response.Status.ErrorCode = typeof(SysCreditMiddleware).GetErrorCode("73E66405-D1D0-44D0-8EAB-9AC7D08742A9", ErrorCodeIndex.CodeIndex1);
-            Response.Status.Errors[nameof(Ex.Procedure)] = new[] { Ex.Procedure };
-            Response.Status.Errors["DatabaseErrors"] = Ex.Errors.Cast<SqlError>().Select(SqlError => SqlError.Message).ToArray();
+            Response.Status.ErrorCode = $"{InternalServerErrorPrefix}{_0002}";
+            Response.Status.Errors!["Procedure"] = Ex.Procedure;
+            Response.Status.Errors!["SqlErrors"] = Ex.Errors.Cast<SqlError>().Select(SqlError => SqlError.Message).ToArray();
 
             await Context.Response.WriteAsync(SerializeResponse(Response));
         }
@@ -76,7 +74,7 @@ public class SysCreditMiddleware(RequestDelegate Next, IHostEnvironment Environm
 
         return new
         {
-            HTTPMethod = Context.Request.Method,
+            HttpMethod = Context.Request.Method,
             Host = Context.Request.Host.ToString(),
             Path = Context.Request.Path.ToString(),
             QueryString = Context.Request.QueryString.ToString(),
@@ -84,22 +82,22 @@ public class SysCreditMiddleware(RequestDelegate Next, IHostEnvironment Environm
         };
     }
 
-    private static ErrorStatus CreateErrorStatusFromException(Exception Ex)
+    private ErrorStatus CreateErrorStatusFromException(Exception Ex)
     {
         return new()
         {
             HasError = true,
             ErrorMessage = Ex.Message,
-            ErrorCode = typeof(SysCreditMiddleware).GetErrorCode("73E66405-D1D0-44D0-8EAB-9AC7D08742A9", ErrorCodeIndex.CodeIndex0),
-            ErrorCategory = typeof(SysCreditMiddleware).GetErrorCategory(),
+            ErrorCode = $"{InternalServerErrorPrefix}{_0001}",
+            ErrorCategory = GetType().GetErrorCategory(),
             MethodId = "73E66405-D1D0-44D0-8EAB-9AC7D08742A9",
-            Errors =
+            Errors = new Dictionary<string, object?>(StringComparer.Ordinal)
             {
-                ["ExceptionType"]       = new[] { Ex.GetType().Name },
-                ["ExceptionCode"]       = new[] { Ex.HResult.ToString() },
-                ["ExceptionMessages"]   = Ex.GetMessages().ToArray(),
-                [nameof(Ex.Source)]     = new[] { Ex.Source! },
-                [nameof(Ex.StackTrace)] = new[] { Ex.StackTrace! }
+                ["ExceptionType"] = Ex.GetType().Name,
+                ["ExceptionCode"] = Ex.HResult,
+                ["ExceptionMessages"] = Ex.GetMessages().ToArray(),
+                ["ExceptionSource"] = Ex.Source,
+                ["ExceptionStackTrace"] = Ex.StackTrace
             }
         };
     }

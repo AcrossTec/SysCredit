@@ -29,12 +29,12 @@ public static class ResponseExtensions
     /// </summary>
     /// <typeparam name="TServiceResult"></typeparam>
     /// <typeparam name="TData"></typeparam>
-    /// <param name="ServiceResultTask"></param>
+    /// <param name="ServiceResult"></param>
     /// <param name="Data"></param>
     /// <returns></returns>
-    public static async ValueTask<IResponse<TData?>> ToResponseWithReplaceDataAsync<TServiceResult, TData>(this ValueTask<IServiceResult<TServiceResult?>> ServiceResultTask, TData? Data)
+    public static async ValueTask<IResponse<TData?>> ToResponseWithReplaceDataAsync<TServiceResult, TData>(this ValueTask<IServiceResult<TServiceResult?>> ServiceResult, TData? Data)
     {
-        return await (await ServiceResultTask).ToResponseWithReplaceDataAsync(Data);
+        return await ToResponseWithReplaceDataAsync(await ServiceResult, Data);
     }
 
     /// <summary>
@@ -53,12 +53,12 @@ public static class ResponseExtensions
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    /// <param name="ValueTask"></param>
+    /// <param name="Data"></param>
     /// <param name="Status"></param>
     /// <returns></returns>
-    public static async ValueTask<IResponse<T?>> ToResponseAsync<T>(this ValueTask<T?> ValueTask, ErrorStatus? Status = null)
+    public static async ValueTask<IResponse<T?>> ToResponseAsync<T>(this ValueTask<T?> Data, ErrorStatus? Status = null)
     {
-        return (await ValueTask).ToResponse(Status);
+        return ToResponse(await Data, Status);
     }
 
     /// <summary>

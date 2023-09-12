@@ -1,11 +1,7 @@
 ﻿namespace SysCredit.Api.Constants;
 
-/// <summary>
-/// 
-/// </summary>
 public static class ErrorCodeNumber
 {
-    public const string _0000 = "0000";
     public const string _0001 = "0001";
     public const string _0002 = "0002";
     public const string _0003 = "0003";

@@ -1,10 +1,10 @@
 ﻿namespace SysCredit.Api.Stores;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.Constants;
+
+using static Constants.ErrorCodePrefix;
 
 [Store]
-[ErrorCategory(ErrorCategories.ReferenceStore)]
-public static class ReferenceStore
-{
-}
+[ErrorCategory(nameof(ReferenceStore))]
+[ErrorCodePrefix(ReferenceStorePrefix)]
+public static class ReferenceStore;

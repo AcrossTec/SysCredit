@@ -2,28 +2,15 @@
 
 using SysCredit.Helpers;
 
-public class SysCreditException : Exception
+/// <summary>
+/// 
+/// </summary>
+/// <param name="Status"></param>
+/// <param name="InnerException"></param>
+public class SysCreditException(ErrorStatus Status, Exception? InnerException = null) : Exception(Status.ErrorMessage, InnerException)
 {
-    public SysCreditException()
-    {
-    }
-
-    public SysCreditException(ErrorStatus Status) : base(Status.ErrorMessage)
-    {
-        this.Status = Status with { HasError = true };
-    }
-
-    public SysCreditException(string Message) : base(Message)
-    {
-    }
-
-    public SysCreditException(Exception InnerException) : base(null, InnerException)
-    {
-    }
-
-    public SysCreditException(string Message, Exception InnerException) : base(Message, InnerException)
-    {
-    }
-
-    public ErrorStatus Status { get; } = new() { HasError = true };
+    /// <summary>
+    /// 
+    /// </summary>
+    public ErrorStatus Status { get; } = Status with { HasError = true };
 }

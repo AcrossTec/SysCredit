@@ -31,6 +31,21 @@ public static class ErrorCodePrefix
     ///     Prefijo para la clase: <see cref="LoanTypeService" />
     /// </summary>
     public const string LoanTypeServicePrefix = $"{SERV}LT";
+
+    /// <summary>
+    ///     Prefijo para la clase: <see cref="PaymentFrequencyService" />
+    /// </summary>
+    public const string PaymentFrequencyServicePrefix = $"{SERV}PF";
+
+    /// <summary>
+    ///     Prefijo para la clase: <see cref="ReferenceService" />
+    /// </summary>
+    public const string ReferenceServicePrefix = $"{SERV}R";
+
+    /// <summary>
+    ///     Prefijo para la clase: <see cref="RelationshipService" />
+    /// </summary>
+    public const string RelationshipServicePrefix = $"{SERV}RS";
     #endregion
 
     #region Stores
@@ -53,6 +68,21 @@ public static class ErrorCodePrefix
     ///     Prefijo para la clase: <see cref="LoanTypeStore" />
     /// </summary>
     public const string LoanTypeStorePrefix = $"{DATA}LT";
+
+    /// <summary>
+    ///     Prefijo para la clase: <see cref="PaymentFrequencyStore" />
+    /// </summary>
+    public const string PaymentFrequencyStorePrefix = $"{DATA}PF";
+
+    /// <summary>
+    ///     Prefijo para la clase: <see cref="ReferenceStore" />
+    /// </summary>
+    public const string ReferenceStorePrefix = $"{DATA}R";
+
+    /// <summary>
+    ///     Prefijo para la clase: <see cref="RelationshipStore" />
+    /// </summary>
+    public const string RelationshipStorePrefix = $"{DATA}RS";
     #endregion
 
     /// <summary>

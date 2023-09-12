@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
-using SysCredit.Api.Stores;
 using SysCredit.Api.ViewModels.LoanType;
 using SysCredit.Api.ViewModels.LoanTypes;
 
@@ -16,7 +15,7 @@ using SysCredit.Helpers;
 /// </summary>
 /// <param name="LoanTypeService"></param>
 [ApiController]
-[Route("Api/[controller]")]
+[Route("Api/[Controller]")]
 public class LoanTypeController(ILoanTypeService LoanTypeService, ILogger<LoanTypeController> Logger) : ControllerBase
 {
     /// <summary>
@@ -28,6 +27,7 @@ public class LoanTypeController(ILoanTypeService LoanTypeService, ILogger<LoanTy
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     public async Task<IResponse> FetchLoanTypeAsync()
     {
+        Logger.LogInformation("EndPoint[GET]: /Api/LoanType");
         return await LoanTypeService.FetchLoanTypeAsync().ToResponseAsync();
     }
 
@@ -41,6 +41,19 @@ public class LoanTypeController(ILoanTypeService LoanTypeService, ILogger<LoanTy
     public async Task<IResponse> FetchLoanTypeComplete()
     {
         return await LoanTypeService.FetchLoanTypeCompleteAsync().ToResponseAsync();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="LoanTypeId"></param>
+    /// <returns></returns>
+    [HttpGet("{LoanTypeId}")]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(IResponse<LoanTypeInfo?>), StatusCodes.Status200OK)]
+    public async Task<IResponse> FetchLoanTypeByIdAsync(long? LoanTypeId)
+    {
+        return await LoanTypeService.FetchLoanTypeByIdAsync(LoanTypeId).ToResponseAsync();
     }
 
     /// <summary>
@@ -97,34 +110,19 @@ public class LoanTypeController(ILoanTypeService LoanTypeService, ILogger<LoanTy
     /// <returns></returns>
     [HttpPut("{LoanTypeId}")]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
-    [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status204NoContent)]
     [ProducesErrorResponseType(typeof(IResponse<UpdateLoanTypeRequest>))]
     public async Task<IActionResult> UpdateLoanTypeAsync([FromRoute] long LoanTypeId, [FromBody] UpdateLoanTypeRequest Request)
     {
-        if (Request.LoanTypeId == LoanTypeId)
-        {
-            var Result = await LoanTypeService.UpdateLoanTypeAsync(Request);
+        var Result = await LoanTypeService.UpdateLoanTypeAsync(LoanTypeId, Request);
 
-            if (Result.Status.HasError)
-            {
-                return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
-            }
-            else
-            {
-                return StatusCode(StatusCodes.Status204NoContent, Result);
-            }
+        if (Result.Status.HasError)
+        {
+            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
         }
         else
         {
-            return StatusCode(StatusCodes.Status400BadRequest);
+            return StatusCode(StatusCodes.Status204NoContent);
         }
-    }
-
-    [HttpGet("{LoanTypeId}")]
-    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
-    [ProducesResponseType(typeof(IResponse<LoanTypeInfo?>), StatusCodes.Status200OK)]
-    public async Task<IResponse> FetchLoanTypeByIdAsync(long? LoanTypeId)
-    {
-        return await LoanTypeService.FetchLoanTypeByIdAsync(LoanTypeId).ToResponseAsync();
     }
 }
