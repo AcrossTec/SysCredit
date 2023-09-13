@@ -105,7 +105,7 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
     [MethodId("11531707-8C0B-45FC-B9F1-4418897AC8A7")]
     public async ValueTask<IServiceResult<bool>> UpdateLoanTypeAsync(long LoanTypeId, UpdateLoanTypeRequest Request)
     {
-        var Result = await Request.ValidateAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeId));
+        var Result = await Request.ValidateAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
 
         if (Result.HasError())
         {

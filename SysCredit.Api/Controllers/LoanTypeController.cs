@@ -2,6 +2,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
 using SysCredit.Api.ViewModels.LoanType;
@@ -119,13 +120,9 @@ public class LoanTypeController(ILoanTypeService LoanTypeService, ILogger<LoanTy
         {
             return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
         }
-        /*else if (Result.Status.ErrorCode == $"{LoanTypeServicePrefix}{_0003}")
-        {
-            return StatusCode(StatusCodes.Status404NotFound, await Result.ToResponseWithReplaceDataAsync(Request));
-        }*/
         else
         {
-            return StatusCode(StatusCodes.Status204NoContent, Result);
+            return StatusCode(StatusCodes.Status204NoContent);
         }
     }
 }

@@ -110,28 +110,28 @@ public static class LoanTypeStore
     [MethodId("C367398E-F4F3-4350-86A5-AE2B3DBEBED7")]
     public static async ValueTask<bool> UpdateLoanTypeAsync(this IStore<LoanType> Store, UpdateLoanTypeRequest Request)
     {
-        DynamicParameters Parameters = Request.ToDynamicParameters();
-
         using var SqlTransaction = await Store.BeginTransactionAsync();
 
         try
         {
-            await Store.ExecAsync("[dbo].[UpdateLoanTypeById]", Parameters, SqlTransaction);
+            int Result = await Store.ExecAsync("[dbo].[UpdateLoanTypeById]", Request, SqlTransaction);
             SqlTransaction.Commit();
-            return true;
+
+            return Result > 0;
         }
-        catch (Exception Ex)
+        catch (Exception SqlEx)
         {
-            SysCreditException SysCreditEx = Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0006);
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0005);
 
             try
             {
                 SqlTransaction.Rollback();
             }
-            catch (Exception ExRollback)
+            catch (Exception Ex)
             {
-                throw ExRollback.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0007);
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0006);
             }
+
             throw SysCreditEx;
         }
     }
