@@ -1,25 +1,28 @@
 ﻿namespace SysCredit.Api.Attributes;
 
+/// <summary>
+/// 
+/// </summary>
+/// <typeparam name="TInterface"></typeparam>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-public class ServiceAttribute : Attribute
+public class ServiceAttribute<TInterface> : Attribute
 {
-    public ServiceAttribute(Type InterfaceType)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <exception cref="InvalidOperationException"></exception>
+    public ServiceAttribute()
     {
+        InterfaceType = typeof(TInterface);
+
         if (!InterfaceType.IsInterface)
         {
             throw new InvalidOperationException($"'{InterfaceType.FullName}' Is Not Interface");
         }
-
-        this.InterfaceType = InterfaceType;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public Type InterfaceType { get; }
-}
-
-[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-public class ServiceAttribute<TInterface> : ServiceAttribute
-{
-    public ServiceAttribute() : base(typeof(TInterface))
-    {
-    }
 }

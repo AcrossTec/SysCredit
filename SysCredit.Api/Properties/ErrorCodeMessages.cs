@@ -33,7 +33,7 @@ public class ErrorCodeMessages
     /// <returns>
     ///     Return looks up a localized string .
     /// </returns>
-    public static string? GetMessage(string ErrorCode) => ResourceManager.GetString(ErrorCode, Culture)!;
+    public static string? GetErrorCodeMessage(string ErrorCode) => ResourceManager.GetString(ErrorCode, Culture)!;
 
     /// <summary>
     ///   Looks up a localized string similar to: 

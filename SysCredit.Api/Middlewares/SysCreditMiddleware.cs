@@ -91,7 +91,7 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
             ErrorCode = $"{InternalServerErrorPrefix}{_0001}",
             ErrorCategory = GetType().GetErrorCategory(),
             MethodId = "73E66405-D1D0-44D0-8EAB-9AC7D08742A9",
-            Errors = new Dictionary<string, object?>(StringComparer.Ordinal)
+            Extensions =
             {
                 ["ExceptionType"] = Ex.GetType().Name,
                 ["ExceptionCode"] = Ex.HResult,

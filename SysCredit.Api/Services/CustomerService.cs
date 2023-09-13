@@ -14,6 +14,7 @@ using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
 
 using static Constants.ErrorCodeNumber;
@@ -42,6 +43,7 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
     [MethodId("62D2191D-EF87-4A97-BFF5-4F16A5B09411")]
     public ValueTask<CustomerInfo?> FetchCustomerByIdAsync(long? CustomerId)
     {
+        Logger.LogInformation("[SERVICE] {Service}.{Method}(CustomerId: {CustomerId})", nameof(CustomerService), nameof(FetchCustomerByIdAsync), CustomerId);
         return CustomerStore.FetchCustomerByIdAsync(CustomerId);
     }
 
@@ -96,20 +98,23 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
     [MethodId("5DD66154-8EA8-4709-94BA-D892E56873EC")]
     public IAsyncEnumerable<SearchCustomer> SearchCustomerAsync(SearchRequest Request)
     {
+        Logger.LogInformation("[SERVICE] {Service}.{Method}(Request: {Request})", nameof(CustomerService), nameof(SearchCustomerAsync), Request);
         return CustomerStore.SearchCustomerAsync(Request);
     }
 
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="ViewModel"></param>
+    /// <param name="Request"></param>
     /// <returns></returns>
     [MethodId("C59A79E3-CDAD-44AF-B512-B4D58E8B1430")]
-    public async ValueTask<IServiceResult<EntityId?>> InsertCustomerAsync(CreateCustomerRequest ViewModel)
+    public async ValueTask<IServiceResult<EntityId?>> InsertCustomerAsync(CreateCustomerRequest Request)
     {
-        Logger.LogInformation($"CALL: {nameof(CustomerService)}.{nameof(InsertCustomerAsync)}");
+        Logger.LogInformation("[SERVICE] {Service}.{Method}(Request: {Request})",
+            nameof(CustomerService), nameof(InsertCustomerAsync),
+            Newtonsoft.Json.JsonConvert.SerializeObject(Request));
 
-        var Result = await ViewModel.ValidateAsync(
+        var Result = await Request.ValidateAsync(
             Key(nameof(CustomerStore)).Value(CustomerStore)
            .Key(nameof(GuarantorStore)).Value(GuarantorStore)
            .Key(nameof(RelationshipStore)).Value(RelationshipStore));
@@ -118,13 +123,11 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
         {
             return await Result.CreateServiceResultAsync<EntityId?>
             (
-                    MethodId: "C59A79E3-CDAD-44AF-B512-B4D58E8B1430",
-                CategoryType: typeof(CustomerService),
-                   ErrorCode: $"{CustomerServicePrefix}{_0001}",
-                ErrorMessage: "La solicitud de creación del cliente no es válido."
+                MethodInfo: MethodInfo.GetCurrentMethod(),
+                 ErrorCode: $"{CustomerServicePrefix}{_0001}" // TODO: "Solicitud de creación del cliente no es válido."
             );
         }
 
-        return await CustomerStore.InsertCustomerAsync(ViewModel)!.CreateServiceResultAsync();
+        return await CustomerStore.InsertCustomerAsync(Request).CreateServiceResultAsync();
     }
 }

@@ -11,6 +11,7 @@ using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;
+using System.Reflection;
 
 using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
@@ -66,10 +67,8 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
         {
             return await Result.CreateServiceResultAsync<bool>
             (
-                CategoryType: typeof(LoanTypeService),
-                    MethodId: "B4850869-6F13-4BAB-87C6-FF8F08B31A95",
-                   ErrorCode: $"{LoanTypeServicePrefix}{_0001}",
-                ErrorMessage: "La solicitud para eliminar el Tipo de Prestamo no es valido"
+                MethodInfo: MethodInfo.GetCurrentMethod(),
+                 ErrorCode: $"{LoanTypeServicePrefix}{_0001}" // TODO: "Solicitud para eliminar el Tipo de Prestamo no válido"
             );
         }
 
@@ -79,29 +78,35 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="ViewModel"></param>
+    /// <param name="Request"></param>
     /// <returns></returns>
     [MethodId("09F1FC4B-5456-47CF-9F46-41F96683E7E1")]
-    public async ValueTask<IServiceResult<EntityId?>> InsertLoanTypeAsync(CreateLoanTypeRequest ViewModel)
+    public async ValueTask<IServiceResult<EntityId?>> InsertLoanTypeAsync(CreateLoanTypeRequest Request)
     {
-        Logger.LogInformation($"CALL: {nameof(LoanTypeService)}.{nameof(InsertLoanTypeAsync)}");
+        Logger.LogInformation("[SERVICE] {Service}.{Method}(Request: {Request})",
+            nameof(LoanTypeService), nameof(InsertLoanTypeAsync),
+            Newtonsoft.Json.JsonConvert.SerializeObject(Request));
 
-        var Result = await ViewModel.ValidateAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
+        var Result = await Request.ValidateAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
 
         if (Result.HasError())
         {
             return await Result.CreateServiceResultAsync<EntityId?>
             (
-                CategoryType: typeof(LoanTypeService),
-                    MethodId: "09F1FC4B-5456-47CF-9F46-41F96683E7E1",
-                   ErrorCode: $"{LoanTypeServicePrefix}{_0002}",
-                ErrorMessage: "La creación del Tipo de Prestamo no es correcto"
+                MethodInfo: MethodInfo.GetCurrentMethod(),
+                 ErrorCode: $"{LoanTypeServicePrefix}{_0002}" // TODO: "Creación del Tipo de Prestamo no válido"
             );
         }
 
-        return await LoanTypeStore.InsertLoanTypeAsync(ViewModel)!.CreateServiceResultAsync();
+        return await LoanTypeStore.InsertLoanTypeAsync(Request).CreateServiceResultAsync();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="LoanTypeId"></param>
+    /// <param name="Request"></param>
+    /// <returns></returns>
     [MethodId("11531707-8C0B-45FC-B9F1-4418897AC8A7")]
     public async ValueTask<IServiceResult<bool>> UpdateLoanTypeAsync(long LoanTypeId, UpdateLoanTypeRequest Request)
     {
@@ -111,10 +116,8 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
         {
             return await Result.CreateServiceResultAsync<bool>
             (
-                CategoryType: typeof(LoanTypeService),
-                    MethodId: "11531707-8C0B-45FC-B9F1-4418897AC8A7",
-                   ErrorCode: $"{LoanTypeServicePrefix}{_0003}",
-                ErrorMessage: "La modificación del Tipo de Prestamo no es correcto"
+                MethodInfo: MethodInfo.GetCurrentMethod(),
+                 ErrorCode: $"{LoanTypeServicePrefix}{_0003}" // TODO: "Modificación del Tipo de Prestamo no válido"
             );
         }
 

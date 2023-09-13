@@ -13,6 +13,11 @@ using System.Threading.Tasks;
 
 using static Constants.ErrorCodePrefix;
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="RelationshipStore"></param>
+/// <param name="Logger"></param>
 [Service<IRelationshipService>]
 [ErrorCategory(nameof(RelationshipService))]
 [ErrorCodePrefix(RelationshipServicePrefix)]
@@ -24,7 +29,7 @@ public class RelationshipService(IStore<Relationship> RelationshipStore, ILogger
     /// <returns></returns>
     public IAsyncEnumerable<RelationshipInfo> FetchRelationshipAsync()
     {
-        Logger.LogInformation($"CALL: {nameof(RelationshipService)}.{nameof(FetchRelationshipAsync)}");
+        Logger.LogInformation("[SERVICE] {Service}.{Method}()", nameof(RelationshipService), nameof(FetchRelationshipAsync));
         return RelationshipStore.FetchRelationshipAsync();
     }
 

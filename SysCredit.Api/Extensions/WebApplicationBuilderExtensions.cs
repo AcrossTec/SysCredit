@@ -134,9 +134,10 @@ public static class WebApplicationBuilderExtensions
     public static IServiceCollection AddSysCreditServices(this IServiceCollection Services)
     {
         var Types = from Type in typeof(Program).Assembly.GetTypes()
-                    let ServiceAttribute = Type.GetCustomAttributes().FirstOrDefault(static Attribute => Attribute.GetType().BaseType == typeof(ServiceAttribute)) as ServiceAttribute
+                    let ServiceAttribute = Type.LookupGenericAttribute(typeof(ServiceAttribute<>))
                     where ServiceAttribute is not null
-                    select (ServiceAttribute.InterfaceType, Type);
+                    let InterfaceType = ServiceAttribute.GetType().GetProperty(nameof(ServiceAttribute<IServiceCollection>.InterfaceType))!.GetValue(ServiceAttribute).As<Type>()
+                    select (InterfaceType, Type);
 
         foreach (var (Interface, Type) in Types)
         {

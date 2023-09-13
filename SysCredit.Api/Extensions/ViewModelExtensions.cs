@@ -6,6 +6,7 @@ using FluentValidation;
 using FluentValidation.Results;
 
 using SysCredit.Api.Attributes;
+using SysCredit.Api.Properties;
 using SysCredit.Api.ViewModels;
 
 using SysCredit.Helpers;
@@ -25,14 +26,11 @@ public static class ViewModelExtensions
     /// <param name="ContextData"></param>
     /// <param name="Cancellation"></param>
     /// <returns></returns>
-    public static async ValueTask<ValidationResult> ValidateAsync(
-        this IViewModel ViewModel,
-        IDictionary<string, object>? ContextData = null,
-        CancellationToken Cancellation = default)
+    public static async ValueTask<ValidationResult> ValidateAsync(this IViewModel ViewModel, IDictionary<string, object>? ContextData = null, CancellationToken Cancellation = default)
     {
         Type ValidatorType = ViewModel.LookupGenericTypeArgumentsFromGenericAttribute(typeof(ValidatorAttribute<>))![0];
-        IValidator Validator = (IValidator)Activator.CreateInstance(ValidatorType)!;
-        IValidationContext Context = (IValidationContext)Activator.CreateInstance(typeof(ValidationContext<>).MakeGenericType(ViewModel.GetType()), new object[] { ViewModel })!;
+        IValidator Validator = Activator.CreateInstance(ValidatorType).As<IValidator>()!;
+        IValidationContext Context = Activator.CreateInstance(typeof(ValidationContext<>).MakeGenericType(ViewModel.GetType()), new object[] { ViewModel }).As<IValidationContext>()!;
 
         if (ContextData is not null)
         {
@@ -50,27 +48,22 @@ public static class ViewModelExtensions
     /// </summary>
     /// <typeparam name="TData"></typeparam>
     /// <param name="Result"></param>
-    /// <param name="MethodId"></param>
-    /// <param name="ErrorCategory"></param>
+    /// <param name="MethodInfo"></param>
     /// <param name="ErrorCode"></param>
-    /// <param name="ErrorMessage"></param>
     /// <param name="Data"></param>
     /// <returns></returns>
-    public static IServiceResult<TData?> CreateServiceResult<TData>(
-        this ValidationResult Result,
-        string MethodId, string ErrorCategory, string ErrorCode, string ErrorMessage,
-        TData? Data = default)
+    public static IServiceResult<TData?> CreateServiceResult<TData>(this ValidationResult Result, MethodBase? MethodInfo, string ErrorCode, TData? Data = default)
     {
         return new ServiceResult<TData?>
         {
             Status = new ErrorStatus
             {
-                MethodId = MethodId,
-                ErrorCategory = ErrorCategory,
-                ErrorMessage = ErrorMessage,
-                ErrorCode = ErrorCode,
-                Errors = Result.ErrorsToDictionary(),
                 HasError = Result.HasError(),
+                MethodId = MethodInfo.GetMethodId(),
+                ErrorCode = ErrorCode,
+                ErrorCategory = MethodInfo.GetErrorCategory(),
+                ErrorMessage = ErrorCodeMessages.GetErrorCodeMessage(ErrorCode),
+                Errors = Result.ErrorsToDictionary(),
             },
             Data = Data
         };
@@ -81,38 +74,13 @@ public static class ViewModelExtensions
     /// </summary>
     /// <typeparam name="TData"></typeparam>
     /// <param name="Result"></param>
-    /// <param name="MethodId"></param>
-    /// <param name="ErrorCategory"></param>
+    /// <param name="MethodInfo"></param>
     /// <param name="ErrorCode"></param>
-    /// <param name="ErrorMessage"></param>
     /// <param name="Data"></param>
     /// <returns></returns>
-    public static ValueTask<IServiceResult<TData?>> CreateServiceResultAsync<TData>(
-        this ValidationResult Result,
-        string MethodId, string ErrorCategory, string ErrorCode, string ErrorMessage,
-        TData? Data = default)
+    public static ValueTask<IServiceResult<TData?>> CreateServiceResultAsync<TData>(this ValidationResult Result, MethodBase? MethodInfo, string ErrorCode, TData? Data = default)
     {
-        return ValueTask.FromResult(Result.CreateServiceResult(MethodId, ErrorCategory, ErrorCode, ErrorMessage, Data));
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="TData"></typeparam>
-    /// <param name="Result"></param>
-    /// <param name="CategoryType"></param>
-    /// <param name="MethodId"></param>
-    /// <param name="CodeIndex"></param>
-    /// <param name="ErrorMessage"></param>
-    /// <param name="Data"></param>
-    /// <returns></returns>
-    /// <exception cref="InvalidOperationException"></exception>
-    public static async ValueTask<IServiceResult<TData?>> CreateServiceResultAsync<TData>(
-        this ValidationResult Result,
-        string MethodId, Type CategoryType, string ErrorCode, string ErrorMessage,
-        TData? Data = default)
-    {
-        return await Result.CreateServiceResultAsync(MethodId, CategoryType.GetErrorCategory()!, ErrorCode, ErrorMessage, Data);
+        return ValueTask.FromResult(CreateServiceResult(Result, MethodInfo, ErrorCode, Data));
     }
 
     /// <summary>
@@ -134,7 +102,7 @@ public static class ViewModelExtensions
     /// <returns></returns>
     public static ValueTask<IServiceResult<TData?>> CreateServiceResultAsync<TData>(this TData? Data)
     {
-        return ValueTask.FromResult(Data.CreateServiceResult());
+        return ValueTask.FromResult(CreateServiceResult(Data));
     }
 
     /// <summary>
@@ -143,7 +111,7 @@ public static class ViewModelExtensions
     /// <typeparam name="TData"></typeparam>
     /// <param name="Data"></param>
     /// <returns></returns>
-    public static async ValueTask<IServiceResult<TData?>> CreateServiceResultAsync<TData>(this ValueTask<TData?> Data)
+    public static async ValueTask<IServiceResult<TData?>> CreateServiceResultAsync<TData>(this ValueTask<TData> Data)
     {
         return CreateServiceResult(await Data);
     }
