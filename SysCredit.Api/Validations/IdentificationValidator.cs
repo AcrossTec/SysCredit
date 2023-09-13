@@ -2,14 +2,14 @@
 
 using FluentValidation;
 using FluentValidation.Validators;
-
-using System.Text.RegularExpressions;
+using SysCredit.Api.Validations.DNI.Nicaragua;
 
 public class IdentificationValidator<T> : PropertyValidator<T, string?>
 {
     public override bool IsValid(ValidationContext<T> Context, string? Value)
     {
-        return Regex.IsMatch(Value ?? string.Empty, @"\d{3}-\d{6}-\d{4}[A-Za-z]{1}");
+        var DniValidator = new DniNicaraguaValidator();
+        return DniValidator.IsValid(Value);
     }
 
     protected override string GetDefaultMessageTemplate(string ErrorCode)
