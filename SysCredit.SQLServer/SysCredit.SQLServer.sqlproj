@@ -113,6 +113,8 @@
     <None Include="PostDeployments\LoanType.Seed.sql" />
     <None Include="PostDeployments\PaymentFrequency.Seed.sql" />
     <None Include="PostDeployments\Relationship.Seed.sql" />
+    <Build Include="StoredProcedures\UpdatePaymentFrequency.sql" />
+    <Build Include="StoredProcedures\FetchPaymentFrequencyByName.sql" />
     <Build Include="Tables\RoleUser.sql" />
     <Build Include="Tables\Role.sql" />
     <Build Include="Tables\RoleClaim.sql" />
