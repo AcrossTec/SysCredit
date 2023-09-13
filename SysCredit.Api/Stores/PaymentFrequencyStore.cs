@@ -5,13 +5,16 @@ using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
-using SysCredit.Api.ViewModels.PaymentFrequencys;
+using SysCredit.Api.ViewModels.PaymentFrequencies;
 using SysCredit.DataTransferObject.Commons;
+
 using SysCredit.Helpers;
 using SysCredit.Models;
+
 using System.Data;
-using System.Reflection;
+
 using static Constants.ErrorCodes;
+using System.Reflection;
 using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
 
@@ -37,6 +40,49 @@ public static class PaymentFrequencyStore
     public static async ValueTask<PaymentFrequencyInfo> FetchPaymentFrequencyByIdAsync(this IStore<PaymentFrequency> Store, long PaymentFrequencyId)
     {
         return await Store.ExecFirstOrDefaultAsync<PaymentFrequencyInfo>("[dbo].[FetchPaymentFrequencyById]", new { PaymentFrequencyId });
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Store"></param>
+    /// <param name="Request"></param>
+    /// <returns></returns>
+    [MethodId("4CEA02D0-B5BF-4922-AA24-342F32386095")]
+    public static async ValueTask<bool> UpdatePaymentFrequencyAsync(this IStore<PaymentFrequency> Store, UpdatePaymentFrequencyRequest Request)
+    {
+        using IDbTransaction SqlTransaction = await Store.BeginTransactionAsync();
+
+        try
+        {
+            int Result = await Store.ExecAsync("[dbo].[UpdatePaymentFrequency]", Request, SqlTransaction);
+            SqlTransaction.Commit();
+
+            return Result > 0;
+
+        }
+        catch (Exception SqlEx)
+        {
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATAPF0005);
+
+            try
+            {
+                SqlTransaction.Rollback();
+            }
+            catch (Exception Ex)
+            {
+
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATAPF0006);
+            }
+
+            throw SysCreditEx;
+        }
+    }
+
+    [MethodId("016C0C42-BEB3-4821-A1B1-11E91C03BB27")]
+    public static async ValueTask<PaymentFrequencyInfo?> FetchPaymentFrequencyByName(this IStore<PaymentFrequency> Store, string? Name)
+    {
+        return await Store.ExecFirstOrDefaultAsync<PaymentFrequencyInfo?>("[dbo].[FetchPaymentFrequencyByName]", new { Name });
     }
 
     /// <summary>
@@ -85,10 +131,4 @@ public static class PaymentFrequencyStore
             throw SysCreditEx;
         }
     }
-
-    public static async ValueTask<PaymentFrequencyInfo?> FetchPaymentFrequencyByName(this IStore<PaymentFrequency> Store, string? Name)
-    {
-        return await Store.ExecFirstOrDefaultAsync<PaymentFrequencyInfo?>("[dbo].[FetchPaymenFrequencyByName]", new { Name });
-    }
-
 }
