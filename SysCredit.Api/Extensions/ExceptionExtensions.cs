@@ -57,7 +57,7 @@ public static class ExceptionExtensions
         {
             MethodId = MethodInfo.GetMethodId(),
             ErrorCode = ErrorCode,
-            ErrorMessage = ErrorCodeMessages.GetMessage(ErrorCode),
+            ErrorMessage = ErrorCodeMessages.GetErrorCodeMessage(ErrorCode),
             ErrorCategory = MethodInfo.GetErrorCategory(),
             Errors = Ex.ExceptionsToDictionary()
         }, Ex);

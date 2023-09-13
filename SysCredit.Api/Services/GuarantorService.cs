@@ -11,9 +11,11 @@ using SysCredit.DataTransferObject.Commons;
 using SysCredit.DataTransferObject.StoredProcedures;
 
 using SysCredit.Helpers;
+using SysCredit.Helpers.Delegates;
 using SysCredit.Models;
 
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
 
 using static Constants.ErrorCodeNumber;
@@ -31,14 +33,16 @@ public class GuarantorService(IStore Store, ILogger<GuarantorService> Logger) : 
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="ViewModel"></param>
+    /// <param name="Request"></param>
     /// <returns></returns>
     [MethodId("9FE9602F-7011-435F-83BE-F573704A932D")]
-    public async ValueTask<IServiceResult<EntityId?>> InsertGuarantorAsync(CreateGuarantorRequest ViewModel)
+    public async ValueTask<IServiceResult<EntityId?>> InsertGuarantorAsync(CreateGuarantorRequest Request)
     {
-        Logger.LogInformation($"CALL: {nameof(GuarantorService)}.{nameof(InsertGuarantorAsync)}");
+        Logger.LogInformation("[SERVICE] {Service}.{Method}(Request: {Request})",
+            nameof(GuarantorService), nameof(InsertGuarantorAsync),
+            Newtonsoft.Json.JsonConvert.SerializeObject(Request));
 
-        var Result = await ViewModel.ValidateAsync(
+        var Result = await Request.ValidateAsync(
             Key(nameof(RelationshipStore)).Value(RelationshipStore)
            .Key(nameof(GuarantorStore)).Value(GuarantorStore));
 
@@ -46,14 +50,12 @@ public class GuarantorService(IStore Store, ILogger<GuarantorService> Logger) : 
         {
             return await Result.CreateServiceResultAsync<EntityId?>
             (
-                CategoryType: typeof(GuarantorService),
-                    MethodId: "9FE9602F-7011-435F-83BE-F573704A932D",
-                   ErrorCode: $"{GuarantorServicePrefix}{_0001}",
-                ErrorMessage: "La solicitud de creación del fiador no es válido."
+                MethodInfo: MethodInfo.GetCurrentMethod(),
+                 ErrorCode: $"{GuarantorServicePrefix}{_0001}" // TODO: "Solicitud de creación del fiador no es válido."
             );
         }
 
-        return await GuarantorStore.InsertGuarantorAsync(ViewModel)!.CreateServiceResultAsync();
+        return await GuarantorStore.InsertGuarantorAsync(Request).CreateServiceResultAsync();
     }
 
     /// <summary>

@@ -11,16 +11,22 @@ public static class AttributeExtensions
     /// 
     /// </summary>
     /// <param name="object"></param>
-    /// <param name="GenericTypeAttributeDefinition"></param>
+    /// <param name="GenericAttributeTypeDefinition"></param>
     /// <returns></returns>
-    public static Attribute? LookupGenericAttribute(this object @object, Type GenericTypeAttributeDefinition)
+    public static Attribute? LookupGenericAttribute(this object @object, Type GenericAttributeTypeDefinition)
     {
-        GenericTypeAttributeDefinition = GenericTypeAttributeDefinition.GetGenericTypeDefinition();
+        var Type = @object switch
+        {
+            Type T => T,
+            _ => @object.GetType()
+        };
 
-        var Query = from Attribute in @object.GetType().GetCustomAttributes()
+        var GenericTypeDefinition = GenericAttributeTypeDefinition.GetGenericTypeDefinition();
+
+        var Query = from Attribute in Type.GetCustomAttributes()
                     let AttributeType = Attribute.GetType()
                     where AttributeType.IsGenericType
-                       && AttributeType.GetGenericTypeDefinition() == GenericTypeAttributeDefinition
+                       && AttributeType.GetGenericTypeDefinition() == GenericTypeDefinition
                     select Attribute;
 
         return Query.FirstOrDefault();
