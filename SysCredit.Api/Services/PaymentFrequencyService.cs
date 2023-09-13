@@ -4,12 +4,15 @@ using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
 using SysCredit.Api.Stores;
-using SysCredit.Api.ViewModels.PaymentFrequencys;
+using SysCredit.Api.ViewModels.PaymentFrequencies;
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.Helpers;
+using SysCredit.Helpers.Delegates;
+
 using SysCredit.Models;
 
 using System.Collections.Generic;
+
 using System.Reflection;
 using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
@@ -46,6 +49,29 @@ public class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencySt
     {
         Logger.LogInformation($"CALL: {nameof(PaymentFrequencyService)}.{nameof(FetchPaymentFrequencyByIdAsync)}");
         return await PaymentFrequencyStore.FetchPaymentFrequencyByIdAsync(PaymentFrequencyId);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="PaymentFrequencyId"></param>
+    /// <param name="Request"></param>
+    /// <returns></returns>
+    [MethodId("54EA25C1-FD73-4FC3-8984-DEA6ACFD74C7")]
+    public async ValueTask<IServiceResult<bool>> UpdatePaymentFrequencyAsync(long PaymentFrequencyId, UpdatePaymentFrequencyRequest Request)
+    {
+        var Result = await Request.ValidateAsync(Key(nameof(PaymentFrequencyStore)).Value(PaymentFrequencyStore));
+
+        if(Result.HasError())
+        {
+            return await Result.CreateServiceResultAsync<bool>
+            (
+                MethodInfo: MethodInfo.GetCurrentMethod(),
+                ErrorCode: $"{PaymentFrequencyServicePrefix}{_0003}"
+            );
+        }
+
+        return await PaymentFrequencyStore.UpdatePaymentFrequencyAsync(Request).CreateServiceResultAsync();
     }
 
     /// <summary>

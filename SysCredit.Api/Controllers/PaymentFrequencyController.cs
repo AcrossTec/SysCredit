@@ -2,14 +2,11 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
-using SysCredit.Api.ViewModels.PaymentFrequencys;
-using SysCredit.Helpers;
-using SysCredit.Models;
-
+using SysCredit.Api.ViewModels.PaymentFrequencies;
 using SysCredit.DataTransferObject.Commons;
+using SysCredit.Helpers;
 
 
 /// <summary>
@@ -31,6 +28,30 @@ public class PaymentFrequencyController(IPaymentFrequencyService PaymentFrequenc
     {
         Logger.LogInformation("EndPoint[GET]: /Api/PaymentFrequency");
         return await PaymentFrequencyService.FetchPaymentFrequencyAsync().ToResponseAsync();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="PaymentFrequencyId"></param>
+    /// <param name="Request"></param>
+    /// <returns></returns>
+    [HttpPut("{PaymentFrequencyId}")]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status204NoContent)]
+    [ProducesErrorResponseType(typeof(IResponse<UpdatePaymentFrequencyRequest>))]
+    public async Task<IActionResult> UpdatePaymentFrequency([FromRoute] long PaymentFrequencyId, [FromBody] UpdatePaymentFrequencyRequest Request)
+    {
+        var Result = await PaymentFrequencyService.UpdatePaymentFrequencyAsync(PaymentFrequencyId, Request);
+
+        if(Result.Status.HasError)
+        {
+            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
+        }
+        else
+        {
+            return StatusCode(StatusCodes.Status204NoContent);
+        }
     }
 
     /// <summary>
