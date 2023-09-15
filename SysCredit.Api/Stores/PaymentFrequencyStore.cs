@@ -1,22 +1,21 @@
 ﻿namespace SysCredit.Api.Stores;
 
 using Dapper;
+
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
-using SysCredit.Api.ViewModels.PaymentFrequencies;
+using SysCredit.Api.Requests.PaymentFrequencies;
 using SysCredit.DataTransferObject.Commons;
-
 using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Data;
-
-using static Constants.ErrorCodes;
 using System.Reflection;
-using static Constants.ErrorCodeNumber;
+
 using static Constants.ErrorCodePrefix;
+using static Constants.ErrorCodes;
 
 [Store]
 [ErrorCategory(nameof(PaymentFrequencyStore))]
@@ -24,9 +23,8 @@ using static Constants.ErrorCodePrefix;
 public static class PaymentFrequencyStore
 {
     /// <summary>
-    /// Este método ejecuta una consulta en una base de datos y 
-    /// devuelve los resultados como un flujo de elementos de 
-    /// tipo PaymentFrequencyInfo (DTO) a través de IAsyncEnumerable
+    ///     Este método ejecuta una consulta en una base de datos y devuelve los resultados
+    ///     como un flujo de elementos de tipo PaymentFrequencyInfo (DTO) a través de IAsyncEnumerable
     /// </summary>
     /// <param name="Store"></param>
     /// <returns></returns>
@@ -86,18 +84,24 @@ public static class PaymentFrequencyStore
     }
 
     /// <summary>
-    /// Este método ejecuta una consulta en una base de datos y 
-    /// devuelve los resultados como un flujo de elementos de 
-    /// tipo PaymentFrequency a través de IAsyncEnumerable
+    ///     Este método ejecuta una consulta en una base de datos y devuelve los resultados
+    ///     como un flujo de elementos de tipo PaymentFrequency a través de IAsyncEnumerable
     /// </summary>
     /// <param name="Store"></param>
     /// <returns></returns>
     [MethodId("2944DF4F-F5C7-41AC-B041-6BDF4CB7C443")]
-    public static IAsyncEnumerable<PaymentFrequency> FetchPaymentFrequencyCompleteAsync(this IStore<PaymentFrequency> Store) 
+    public static IAsyncEnumerable<PaymentFrequency> FetchPaymentFrequencyCompleteAsync(this IStore<PaymentFrequency> Store)
     {
         return Store.ExecQueryAsync<PaymentFrequency>("[dbo].[FetchPaymentFrequency]");
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Store"></param>
+    /// <param name="Request"></param>
+    /// <returns></returns>
+    [MethodId("80E4ED8C-FBA5-4BC8-B62B-6A5EC3A1355F")]
     public static async ValueTask<EntityId> InsertPaymentFrequencyAsync(this IStore<PaymentFrequency> Store, CreatePaymentFrequencyRequest Request)
     {
         DynamicParameters Parameters = Request.ToDynamicParameters();

@@ -3,7 +3,7 @@
 using FluentValidation;
 
 using SysCredit.Api.Extensions;
-using SysCredit.Api.ViewModels.References;
+using SysCredit.Api.Requests.References;
 
 public class CreateReferenceValidator : AbstractValidator<CreateReferenceRequest>
 {

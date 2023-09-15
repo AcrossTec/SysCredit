@@ -11,6 +11,11 @@ using System.Data.SqlClient;
 public sealed class SysCreditOptions
 {
     /// <summary>
+    ///     Información básica para generar un JWT Token.
+    /// </summary>
+    public SysCreditToken TokenInfo { get; set; } = default!;
+
+    /// <summary>
     ///     Cadena de conexión al servidor.
     /// </summary>
     /// <seealso cref="ConnectionType" />
@@ -45,4 +50,20 @@ public sealed class SysCreditOptions
             _ => throw new NotSupportedException("Proveedor de base de datos no soportado.")
         };
     }
+}
+
+/// <summary>
+///     Información básica para generar un JWT Token.
+/// </summary>
+public sealed class SysCreditToken
+{
+    /// <summary>
+    ///     Clave privada para generar el Token.
+    /// </summary>
+    public string Key { get; set; } = string.Empty;
+
+    /// <summary>
+    ///     Agente que genera el Token.
+    /// </summary>
+    public string Issuer { get; set; } = string.Empty;
 }

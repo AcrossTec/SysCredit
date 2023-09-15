@@ -1,12 +1,14 @@
 ﻿namespace SysCredit.Api.Extensions;
 
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using log4net.Config;
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
 using SysCredit.Api.Stores;
@@ -74,8 +76,6 @@ public static class WebApplicationBuilderExtensions
     /// <returns></returns>
     public static WebApplicationBuilder AddSysCreditServices(this WebApplicationBuilder Builder)
     {
-        Builder.Services.AddSwaggerDocumentation();
-        Builder.Services.AddAuth(Builder.Configuration);
         Builder.Services.AddSysCreditEndpoints();
         Builder.Services.AddSysCreditSwaggerGen();
         Builder.Services.AddSysCreditStores();
@@ -83,80 +83,31 @@ public static class WebApplicationBuilderExtensions
         Builder.Services.AddSysCreditOptions();
         return Builder;
     }
+
     /// <summary>
-    /// Configura y agrega la autenticación JWT (JSON Web Token) a la colección de servicios.
+    /// 
     /// </summary>
-    /// <param name="Services">La colección de servicios de la aplicación.</param>
-    /// <param name="Configuration">La configuración de la aplicación, que incluye la información del token JWT.</param>
-    /// <returns>La colección de servicios con la autenticación JWT configurada.</returns>
-    public static IServiceCollection AddAuth(this IServiceCollection Services, IConfiguration Configuration)
+    /// <param name="Builder"></param>
+    /// <returns></returns>
+    public static WebApplicationBuilder AddSysCreditAuthorization(this WebApplicationBuilder Builder)
     {
-        Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(Options =>
+        using var ServiceProvider = Builder.Services.BuildServiceProvider();
+        var SysCreditOptions = ServiceProvider.GetRequiredService<IOptions<SysCreditOptions>>().Value;
+
+        Builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(Options => Options.TokenValidationParameters = new TokenValidationParameters
             {
-                Options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    // Valida el emisor (issuer) del token.
-                    ValidateIssuer = true,
-
-                    // Valida la audiencia del token.
-                    ValidateAudience = true,
-
-                    // Valida la vigencia (lifetime) del token.
-                    ValidateLifetime = true,
-
-                    // Valida la firma del token usando una clave secreta.
-                    ValidateIssuerSigningKey = true,
-
-                    // Establece el emisor válido para la validación del token desde la configuración.
-                    ValidIssuer = Configuration["Token:Issuer"],
-
-                    // Establece la audiencia válida para la validación del token desde la configuración.
-                    ValidAudience = Configuration["Token:Issuer"],
-
-                    // Establece la clave de firma del token desde la configuración.
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Token:Key"]!))
-                };
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = SysCreditOptions.TokenInfo.Issuer,
+                ValidAudience = SysCreditOptions.TokenInfo.Issuer,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SysCreditOptions.TokenInfo.Key))
             });
 
-        Services.AddAuthorization();
-
-        return Services;
-    }
-
-    public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection Services)
-    {
-        Services.AddEndpointsApiExplorer();
-
-        Services.AddSwaggerGen(Configurarion =>
-        {
-            var securitySchema = new OpenApiSecurityScheme
-            {
-                Description = "JWT Auth Bearer Scheme",
-                Name = "Authorization",
-                In = ParameterLocation.Header,
-                Type = SecuritySchemeType.Http,
-                Scheme = "Bearer",
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            };
-
-            Configurarion.AddSecurityDefinition("Bearer", securitySchema);
-
-            var securityRequirement = new OpenApiSecurityRequirement
-            {
-                {
-                    securitySchema, new[] {"Bearer"}
-                }
-            };
-
-            Configurarion.AddSecurityRequirement(securityRequirement);
-        });
-
-        return Services;
+        Builder.Services.AddAuthorization();
+        return Builder;
     }
 
     /// <summary>
@@ -166,19 +117,15 @@ public static class WebApplicationBuilderExtensions
     /// <returns></returns>
     public static IServiceCollection AddSysCreditEndpoints(this IServiceCollection Services)
     {
-        Services.AddControllers()
-            .AddJsonOptions(static Options => Options.JsonSerializerOptions.PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy);
+        Services.AddControllers().AddJsonOptions(static Options => Options.JsonSerializerOptions.PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy);
 
         Services.AddEndpointsApiExplorer();
 
-        Services.AddCors(static Options =>
-         {
-             Options.AddPolicy(SysCreditConstants.CorsAllowSpecificOrigins, static Policy =>
-             {
-                 Policy.WithMethods("POST", "PUT", "DELETE", "GET", "PATCH");
-                 Policy.AllowAnyOrigin().AllowAnyHeader();
-             });
-         });
+        Services.AddCors(static Options => Options.AddPolicy(SysCreditConstants.CorsAllowSpecificOrigins, static Policy =>
+        {
+            Policy.WithMethods("POST", "PUT", "DELETE", "GET", "PATCH");
+            Policy.AllowAnyOrigin().AllowAnyHeader();
+        }));
 
         return Services;
     }
@@ -190,7 +137,31 @@ public static class WebApplicationBuilderExtensions
     /// <returns></returns>
     public static IServiceCollection AddSysCreditSwaggerGen(this IServiceCollection Services)
     {
-        Services.AddSwaggerGen();
+        Services.AddSwaggerGen(static SwaggerGenOptions =>
+        {
+            var SecuritySchema = new OpenApiSecurityScheme
+            {
+                Description = "Autorización Mediante JWT Token",
+                Name = SysCreditConstants.AuthorizationHeaderName,
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.Http,
+                Scheme = SysCreditConstants.AuthorizationHeaderScheme,
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = SysCreditConstants.AuthorizationHeaderScheme
+                }
+            };
+
+            var SecurityRequirement = new OpenApiSecurityRequirement
+            {
+                [SecuritySchema] = new[] { SysCreditConstants.AuthorizationHeaderScheme }
+            };
+
+            SwaggerGenOptions.AddSecurityDefinition(SysCreditConstants.AuthorizationHeaderScheme, SecuritySchema);
+            SwaggerGenOptions.AddSecurityRequirement(SecurityRequirement);
+        });
+
         return Services;
     }
 

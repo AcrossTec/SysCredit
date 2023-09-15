@@ -64,6 +64,7 @@
     <Folder Include="PostDeployments" />
     <Folder Include="Views" />
     <Folder Include="Types" />
+    <Folder Include="StoredProcedures\Auths" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Customer.sql" />
@@ -115,26 +116,26 @@
     <None Include="PostDeployments\Relationship.Seed.sql" />
     <Build Include="StoredProcedures\UpdatePaymentFrequency.sql" />
     <Build Include="StoredProcedures\FetchPaymentFrequencyByName.sql" />
-    <Build Include="Tables\RoleUser.sql" />
+    <Build Include="Tables\UserRole.sql" />
     <Build Include="Tables\Role.sql" />
     <Build Include="Tables\RoleClaim.sql" />
     <Build Include="Tables\UserClaim.sql" />
-    <Build Include="StoredProcedures\FetchUserByName.sql" />
-    <Build Include="StoredProcedures\FetchUserByPhone.sql" />
-    <Build Include="StoredProcedures\FetchUserById.sql" />
-    <Build Include="StoredProcedures\InsertUser.sql" />
     <Build Include="Types\AssignRequestType.sql" />
     <Build Include="Types\ClaimRequestType.sql" />
-    <Build Include="StoredProcedures\InsertRole.sql" />
-    <Build Include="StoredProcedures\FetchRoleClaimByUserId.sql" />
     <Build Include="StoredProcedures\FetchClaimByUserId.sql" />
-    <Build Include="StoredProcedures\FetchUserByEmail.sql" />
     <Build Include="StoredProcedures\FetchLogin.sql" />
-    <Build Include="StoredProcedures\FetchRoleByName.sql" />
-    <Build Include="StoredProcedures\CheckExistAndDuplicatedRoles.sql" />
     <Build Include="StoredProcedures\FetchPaymentFrequencyById.sql" />
     <Build Include="StoredProcedures\FetchPaymenFrequencyByName.sql" />
     <Build Include="StoredProcedures\InsertPaymentFrequency.sql" />
+    <Build Include="Functions\CheckExistAndDuplicatedRoles.sql" />
+    <Build Include="StoredProcedures\Auths\FetchRoleByName.sql" />
+    <Build Include="StoredProcedures\Auths\FetchRoleClaimByUserId.sql" />
+    <Build Include="StoredProcedures\Auths\FetchUserByEmail.sql" />
+    <Build Include="StoredProcedures\Auths\FetchUserById.sql" />
+    <Build Include="StoredProcedures\Auths\FetchUserByName.sql" />
+    <Build Include="StoredProcedures\Auths\FetchUserByPhone.sql" />
+    <Build Include="StoredProcedures\Auths\InsertUser.sql" />
+    <Build Include="StoredProcedures\Auths\InsertRole.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\AzureV12\SqlSchemas\master.dacpac">

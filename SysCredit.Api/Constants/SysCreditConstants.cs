@@ -14,4 +14,8 @@ public static class SysCreditConstants
     public const string CorsOriginsKey = "CorsOrigins";
 
     public const string CorsAllowSpecificOrigins = "CorsAllowSpecificOrigins";
+
+    public const string AuthorizationHeaderName = "Authorization";
+
+    public const string AuthorizationHeaderScheme = "Bearer";
 }

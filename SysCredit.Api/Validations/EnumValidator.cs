@@ -1,7 +1,7 @@
 ﻿namespace SysCredit.Api.Validations;
 
-using FluentValidation.Validators;
 using FluentValidation;
+using FluentValidation.Validators;
 
 public class EnumValidator<TObject, TEnum> : PropertyValidator<TObject, TEnum> where TEnum : Enum
 {

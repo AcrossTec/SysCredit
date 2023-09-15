@@ -2,9 +2,10 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
-using SysCredit.Api.ViewModels.PaymentFrequencies;
+using SysCredit.Api.Requests.PaymentFrequencies;
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.Helpers;
 

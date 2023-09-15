@@ -5,8 +5,8 @@ using Dapper;
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
-using SysCredit.Api.ViewModels.LoanType;
-using SysCredit.Api.ViewModels.LoanTypes;
+using SysCredit.Api.Requests.LoanType;
+using SysCredit.Api.Requests.LoanTypes;
 using SysCredit.Helpers;
 using SysCredit.Models;
 

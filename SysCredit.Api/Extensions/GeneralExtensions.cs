@@ -4,6 +4,9 @@ using SysCredit.Api.Stores;
 
 using SysCredit.Models;
 
+using System.Security.Cryptography;
+using System.Text;
+
 /// <summary>
 /// 
 /// </summary>
@@ -43,5 +46,15 @@ public static class GeneralExtensions
         Value = Value?.Replace("%", "[%]");
         Value = Value?.Replace("_", "[_]");
         return Value;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Text"></param>
+    /// <returns></returns>
+    public static byte[] ComputeHashSha512(this string Text)
+    {
+        return SHA512.HashData(Encoding.UTF8.GetBytes(Text));
     }
 }

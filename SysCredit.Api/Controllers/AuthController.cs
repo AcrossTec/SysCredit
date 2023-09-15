@@ -1,18 +1,19 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿namespace SysCredit.Api.Controllers;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
-using SysCredit.Api.ViewModels.Auth.Roles;
-using SysCredit.Api.ViewModels.Auth.Users;
+using SysCredit.Api.Requests.Auths.Roles;
+using SysCredit.Api.Requests.Auths.Users;
 using SysCredit.Helpers;
 
-namespace SysCredit.Api.Controllers;
-
 [Controller]
-[Route("api/[Controller]")]
-public class AuthController(IAuthService AuthService): ControllerBase
+[Route("Api/[Controller]")]
+public class AuthController(IAuthenticationService AuthService) : ControllerBase
 {
-    private readonly IAuthService AuthService = AuthService;
+    private readonly IAuthenticationService AuthService = AuthService;
 
     [AllowAnonymous]
     [HttpPost("/Api/Account/Register")]

@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
-using SysCredit.Api.ViewModels;
-using SysCredit.Api.ViewModels.Customers;
+using SysCredit.Api.Requests;
+using SysCredit.Api.Requests.Customers;
 
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.DataTransferObject.StoredProcedures;

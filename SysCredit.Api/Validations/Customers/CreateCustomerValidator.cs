@@ -3,7 +3,7 @@
 using FluentValidation;
 
 using SysCredit.Api.Extensions;
-using SysCredit.Api.ViewModels.Customers;
+using SysCredit.Api.Requests.Customers;
 
 public class CreateCustomerValidator : AbstractValidator<CreateCustomerRequest>
 {

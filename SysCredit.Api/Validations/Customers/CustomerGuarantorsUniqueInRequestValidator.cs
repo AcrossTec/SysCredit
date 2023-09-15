@@ -3,7 +3,7 @@
 using FluentValidation;
 using FluentValidation.Validators;
 
-using SysCredit.Api.ViewModels.Customers;
+using SysCredit.Api.Requests.Customers;
 
 public class CustomerGuarantorsUniqueInRequestValidator<T> : PropertyValidator<T, IEnumerable<CustomerGuarantorRequest>>
 {

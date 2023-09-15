@@ -1,6 +1,6 @@
 ﻿namespace SysCredit.Api.Extensions;
 
-using SysCredit.Api.ViewModels;
+using SysCredit.Api.Requests;
 
 using System.Collections;
 using System.Data;
@@ -14,13 +14,13 @@ public static class CollectionExtensions
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="ViewModels"></param>
+    /// <param name="Sources"></param>
     /// <returns></returns>
-    public static DataTable ToDataTable(this IEnumerable<IViewModel> ViewModels)
+    public static DataTable ToDataTable(this IEnumerable<IRequest> Sources)
     {
         DataTable Table = new DataTable();
 
-        Type ViewModelType = ViewModels.GetType().GetInterface($"{nameof(IEnumerable)}`1")!.GenericTypeArguments.First();
+        Type ViewModelType = Sources.GetType().GetInterface($"{nameof(IEnumerable)}`1")!.GenericTypeArguments.First();
         PropertyInfo[] Properties = ViewModelType.GetProperties();
 
         foreach (PropertyInfo Property in Properties)
@@ -29,7 +29,7 @@ public static class CollectionExtensions
             Table.Columns.Add(Property.Name, ColumnType);
         }
 
-        foreach (var ViewModel in ViewModels)
+        foreach (var ViewModel in Sources)
         {
             Table.Rows.Add(Properties.Select(Property => Property.GetValue(ViewModel)).ToArray());
         }

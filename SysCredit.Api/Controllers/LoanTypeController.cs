@@ -5,8 +5,8 @@ using Microsoft.Extensions.Logging;
 
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
-using SysCredit.Api.ViewModels.LoanType;
-using SysCredit.Api.ViewModels.LoanTypes;
+using SysCredit.Api.Requests.LoanType;
+using SysCredit.Api.Requests.LoanTypes;
 
 using SysCredit.Helpers;
 

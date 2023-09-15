@@ -1,8 +1,9 @@
 ﻿namespace SysCredit.Api.Validations.PaymentFrequencies;
 
 using FluentValidation;
+
 using SysCredit.Api.Extensions;
-using SysCredit.Api.ViewModels.PaymentFrequencies;
+using SysCredit.Api.Requests.PaymentFrequencies;
 
 
 public class CreatePaymentFrequencyValidator : AbstractValidator<CreatePaymentFrequencyRequest>

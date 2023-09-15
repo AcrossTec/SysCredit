@@ -3,7 +3,7 @@
 using FluentValidation;
 
 using SysCredit.Api.Extensions;
-using SysCredit.Api.ViewModels.LoanTypes;
+using SysCredit.Api.Requests.LoanTypes;
 
 public class UpdateLoanTypeValidator : AbstractValidator<UpdateLoanTypeRequest>
 {

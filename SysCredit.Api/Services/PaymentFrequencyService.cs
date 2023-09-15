@@ -3,17 +3,17 @@
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
+using SysCredit.Api.Requests.PaymentFrequencies;
 using SysCredit.Api.Stores;
-using SysCredit.Api.ViewModels.PaymentFrequencies;
-using SysCredit.DataTransferObject.Commons;
-using SysCredit.Helpers;
-using SysCredit.Helpers.Delegates;
 
+using SysCredit.DataTransferObject.Commons;
+
+using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;
-
 using System.Reflection;
+
 using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
 using static SysCredit.Helpers.ContextData;

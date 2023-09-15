@@ -2,9 +2,11 @@
 
 using FluentValidation;
 using FluentValidation.Validators;
+
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Stores;
 using SysCredit.Models;
+
 using System.Threading;
 using System.Threading.Tasks;
 

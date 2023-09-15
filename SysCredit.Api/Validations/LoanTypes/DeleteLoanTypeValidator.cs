@@ -1,8 +1,9 @@
 ﻿namespace SysCredit.Api.Validations.LoanTypes;
 
-using SysCredit.Api.Extensions;
 using FluentValidation;
-using SysCredit.Api.ViewModels.LoanTypes;
+
+using SysCredit.Api.Extensions;
+using SysCredit.Api.Requests.LoanTypes;
 
 public class DeleteLoanTypeValidator : AbstractValidator<DeleteLoanTypeRequest>
 {

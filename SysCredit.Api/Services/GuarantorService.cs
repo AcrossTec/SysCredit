@@ -3,15 +3,14 @@
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
+using SysCredit.Api.Requests;
+using SysCredit.Api.Requests.Guarantors;
 using SysCredit.Api.Stores;
-using SysCredit.Api.ViewModels;
-using SysCredit.Api.ViewModels.Guarantors;
 
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.DataTransferObject.StoredProcedures;
 
 using SysCredit.Helpers;
-using SysCredit.Helpers.Delegates;
 using SysCredit.Models;
 
 using System.Collections.Generic;
