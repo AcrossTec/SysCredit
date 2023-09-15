@@ -3,7 +3,7 @@
 using FluentValidation;
 
 using SysCredit.Api.Extensions;
-using SysCredit.Api.ViewModels.PaymentFrequencies;
+using SysCredit.Api.Requests.PaymentFrequencies;
 
 public class UpdatePaymentFrequencyValidator : AbstractValidator<UpdatePaymentFrequencyRequest>
 {

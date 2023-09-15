@@ -3,7 +3,7 @@
 using FluentValidation;
 
 using SysCredit.Api.Extensions;
-using SysCredit.Api.ViewModels.Guarantors;
+using SysCredit.Api.Requests.Guarantors;
 
 public class CreateGuarantorValidator : AbstractValidator<CreateGuarantorRequest>
 {

@@ -1,7 +1,7 @@
 ﻿namespace SysCredit.Api.Interfaces;
 
-using SysCredit.Api.ViewModels;
-using SysCredit.Api.ViewModels.Guarantors;
+using SysCredit.Api.Requests;
+using SysCredit.Api.Requests.Guarantors;
 
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.DataTransferObject.StoredProcedures;

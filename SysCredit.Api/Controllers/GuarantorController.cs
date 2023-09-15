@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
-using SysCredit.Api.ViewModels;
-using SysCredit.Api.ViewModels.Guarantors;
+using SysCredit.Api.Requests;
+using SysCredit.Api.Requests.Guarantors;
 
 using SysCredit.DataTransferObject.StoredProcedures;
 

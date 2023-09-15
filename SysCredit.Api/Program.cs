@@ -4,6 +4,7 @@ using SysCredit.Api.Extensions;
 var Builder = WebApplication.CreateBuilder(args);
 Builder.AddSysCreditLogging();
 Builder.AddSysCreditServices();
+Builder.AddSysCreditAuthorization();
 
 var App = Builder.Build();
 App.UseHttpLogging();
@@ -15,6 +16,4 @@ App.UseAuthorization();
 App.MapControllers();
 App.Run();
 
-public partial class Program
-{
-}
+public partial class Program;

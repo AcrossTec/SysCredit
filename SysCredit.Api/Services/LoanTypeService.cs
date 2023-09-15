@@ -3,11 +3,11 @@
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces;
+using SysCredit.Api.Requests.LoanType;
+using SysCredit.Api.Requests.LoanTypes;
 using SysCredit.Api.Stores;
-using SysCredit.Api.ViewModels.LoanType;
-using SysCredit.Api.ViewModels.LoanTypes;
-using SysCredit.Helpers;
 
+using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;

@@ -1,7 +1,8 @@
 ﻿namespace SysCredit.Api.Validations;
 
-using FluentValidation.Validators;
 using FluentValidation;
+using FluentValidation.Validators;
+
 using System.Text.RegularExpressions;
 
 public class IdentificationValidator<T> : PropertyValidator<T, string?>
