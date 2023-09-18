@@ -136,6 +136,7 @@
     <Build Include="StoredProcedures\Auths\FetchUserByPhone.sql" />
     <Build Include="StoredProcedures\Auths\InsertUser.sql" />
     <Build Include="StoredProcedures\Auths\InsertRole.sql" />
+    <Build Include="StoredProcedures\dbo.FetchLoansByCustomerId.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\AzureV12\SqlSchemas\master.dacpac">
