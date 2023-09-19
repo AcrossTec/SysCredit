@@ -4,12 +4,39 @@ using SysCredit.Api.Exceptions;
 using SysCredit.Api.Properties;
 
 using System.Reflection;
+using System.Text;
 
 /// <summary>
 /// 
 /// </summary>
 public static class ExceptionExtensions
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Ex"></param>
+    /// <returns></returns>
+    public static string GetDescription(this Exception Ex)
+    {
+        var Builder = new StringBuilder();
+
+        AddException(Builder, Ex);
+
+        return Builder.ToString();
+
+        static void AddException(StringBuilder Builder, Exception Ex)
+        {
+            Builder.AppendLine($"Message: {Ex.Message}");
+            Builder.AppendLine($"Stack Trace: {Ex.StackTrace}");
+
+            if (Ex.InnerException is not null)
+            {
+                Builder.AppendLine("Inner Exception");
+                AddException(Builder, Ex.InnerException);
+            }
+        }
+    }
+
     /// <summary>
     /// 
     /// </summary>

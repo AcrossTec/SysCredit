@@ -13,7 +13,7 @@ public sealed class SysCreditOptions
     /// <summary>
     ///     Información básica para generar un JWT Token.
     /// </summary>
-    public SysCreditToken TokenInfo { get; set; } = default!;
+    public SysCreditTokenOptions TokenInfo { get; set; } = default!;
 
     /// <summary>
     ///     Cadena de conexión al servidor.
@@ -55,7 +55,7 @@ public sealed class SysCreditOptions
 /// <summary>
 ///     Información básica para generar un JWT Token.
 /// </summary>
-public sealed class SysCreditToken
+public sealed class SysCreditTokenOptions
 {
     /// <summary>
     ///     Clave privada para generar el Token.
