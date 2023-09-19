@@ -10,7 +10,7 @@ internal static class SysCreditApiPatcher
 {
     private static Harmony? Harmony;
 
-    public static void PatchAll(string HarmonyId = nameof(SysCreditApiPatcher))
+    public static void PatchAll(string HarmonyId = "Com.AcrossTec.SysCredit.Api")
     {
         Harmony = new Harmony(HarmonyId);
         Harmony.PatchAll(typeof(SysCreditApiPatcher).Assembly);
