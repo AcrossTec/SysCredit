@@ -2,7 +2,7 @@
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
-using SysCredit.Api.Interfaces;
+using SysCredit.Api.Interfaces.Services;
 using SysCredit.Api.Stores;
 
 using SysCredit.DataTransferObject.Commons;

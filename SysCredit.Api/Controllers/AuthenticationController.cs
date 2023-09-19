@@ -4,29 +4,28 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Interfaces;
+using SysCredit.Api.Interfaces.Services;
 using SysCredit.Api.Requests.Auths.Roles;
 using SysCredit.Api.Requests.Auths.Users;
+
 using SysCredit.Helpers;
 
 [Controller]
 [Route("Api/[Controller]")]
-public class AuthController(IAuthenticationService AuthService) : ControllerBase
+public class AuthenticationController(IAuthenticationService AuthenticationService) : ControllerBase
 {
-    private readonly IAuthenticationService AuthService = AuthService;
-
     [AllowAnonymous]
     [HttpPost("/Api/Account/Register")]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
     [ProducesErrorResponseType(typeof(IResponse<CreateUserRequest>))]
-    public async Task<IActionResult> CreateUserAsync([FromBody] CreateUserRequest ViewModel)
+    public async Task<IActionResult> CreateUserAsync([FromBody] CreateUserRequest Request)
     {
-        var Result = await AuthService.CreateUserAsync(ViewModel);
+        var Result = await AuthenticationService.CreateUserAsync(Request);
 
         if (Result.Status.HasError)
         {
-            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(ViewModel));
+            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
         }
         else
         {
@@ -39,13 +38,13 @@ public class AuthController(IAuthenticationService AuthService) : ControllerBase
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
     [ProducesErrorResponseType(typeof(IResponse<CreateRoleRequest>))]
-    public async Task<IActionResult> CreateRoleAsync([FromBody] CreateRoleRequest ViewModel)
+    public async Task<IActionResult> CreateRoleAsync([FromBody] CreateRoleRequest Request)
     {
-        var Result = await AuthService.CreateRoleAsync(ViewModel);
+        var Result = await AuthenticationService.CreateRoleAsync(Request);
 
         if (Result.Status.HasError)
         {
-            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(ViewModel));
+            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
         }
         else
         {
@@ -58,13 +57,13 @@ public class AuthController(IAuthenticationService AuthService) : ControllerBase
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
     [ProducesErrorResponseType(typeof(IResponse<TokenRequest>))]
-    public async Task<IActionResult> TokenAsync([FromBody] TokenRequest ViewModel)
+    public async Task<IActionResult> TokenAsync([FromBody] TokenRequest Request)
     {
-        var Result = await AuthService.TokenRequestAsync(ViewModel);
+        var Result = await AuthenticationService.TokenRequestAsync(Request);
 
         if (Result.Status.HasError)
         {
-            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(ViewModel));
+            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
         }
         else
         {

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Interfaces;
+using SysCredit.Api.Interfaces.Services;
 using SysCredit.Api.Requests.LoanType;
 using SysCredit.Api.Requests.LoanTypes;
 

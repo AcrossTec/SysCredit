@@ -73,7 +73,7 @@ public static class RoleStore
     ///     <c>true</c> if all role IDs exist in the database and there are no duplicates; otherwise, <c>false</c>.
     /// </returns>
     [MethodId("59DD1322-694B-4FF6-A167-454072475BE2")]
-    public static async ValueTask<bool> ExistAndDuplicatedRolesAsync(this IStore<Role> Store, IEnumerable<AssignRequestType> Request)
+    public static async ValueTask<bool> ExistAndDuplicatedRolesAsync(this IStore<Role> Store, IEnumerable<AssignTypeRequest> Request)
     {
         var Parameters = new DynamicParameters();
         Parameters.Add("RoleNames", Request.ToDataTable(), DbType.Object, ParameterDirection.Input);

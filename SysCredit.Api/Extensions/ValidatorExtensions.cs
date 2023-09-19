@@ -40,7 +40,7 @@ public static class ValidatorExtensions
         => RuleBuilder.SetAsyncValidator(new AsyncGuarantorUniquePhoneValidator<T>());
 
     public static IRuleBuilderOptions<T, long> ExistsGuarantorAsync<T>(this IRuleBuilder<T, long> RuleBuilder)
-    => RuleBuilder.SetAsyncValidator(new AsyncExistsGuarantorValidator<T>());
+        => RuleBuilder.SetAsyncValidator(new AsyncExistsGuarantorValidator<T>());
 
     public static IRuleBuilderOptions<T, string?> CustomerUniqueEmailAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
         => RuleBuilder.SetAsyncValidator(new AsyncCustomerUniqueEmailValidator<T>());
@@ -69,7 +69,7 @@ public static class ValidatorExtensions
     public static IRuleBuilderOptions<T, string?> PaymentFrequencyUniqueNameAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
         => RuleBuilder.SetAsyncValidator(new AsyncPaymentFrequencyUniqueNameValidator<T>());
 
-    public static IRuleBuilderOptions<T, IEnumerable<AssignRequestType>> ExistRoleInRequest<T>(this IRuleBuilder<T, IEnumerable<AssignRequestType>> RuleBuilder)
+    public static IRuleBuilderOptions<T, IEnumerable<AssignTypeRequest>> ExistRoleInRequest<T>(this IRuleBuilder<T, IEnumerable<AssignTypeRequest>> RuleBuilder)
         => RuleBuilder.SetAsyncValidator(new AsyncExistRoleValidator<T>());
 
     public static IRuleBuilderOptions<T, string?> UserUniqueEmailInRequest<T>(this IRuleBuilder<T, string?> RuleBuilder)

@@ -1,6 +1,6 @@
 ﻿namespace SysCredit.Api.Requests.Auths;
 
-public class AssignRequestType : IRequest
+public class AssignTypeRequest : IRequest
 {
     public string RoleName { get; set; } = string.Empty;
 }

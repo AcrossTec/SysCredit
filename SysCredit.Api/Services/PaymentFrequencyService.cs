@@ -2,7 +2,7 @@
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Interfaces;
+using SysCredit.Api.Interfaces.Services;
 using SysCredit.Api.Requests.PaymentFrequencies;
 using SysCredit.Api.Stores;
 
