@@ -1,10 +1,13 @@
 using SysCredit.Api.Constants;
 using SysCredit.Api.Extensions;
+using SysCredit.Api.Patchers;
 
 var Builder = WebApplication.CreateBuilder(args);
 Builder.AddSysCreditLogging();
 Builder.AddSysCreditServices();
 Builder.AddSysCreditAuthorization();
+
+SysCreditApiPatcher.PatchAll();
 
 var App = Builder.Build();
 App.UseHttpLogging();

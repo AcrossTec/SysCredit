@@ -78,7 +78,14 @@ public class LoggingAdviceProxy<TInterface> : DispatchProxy
 
             try
             {
-                LogAfter(TargetMethod, Args, Result);
+                // TODO: Implementar de forma correcta la impresión del Result
+                //  Caso 1: ValueTask
+                //  Caso 2: ValueTask<T>
+                //  Caso 3: IAsyncEnumerable<T>
+                //  Caso 4: Task
+                //  Caso 5: Task<T>
+                //  Case 6: Object(IEnumerable, IResponse, etc...)
+                LogAfter(TargetMethod, Args, default /*Result*/);
             }
             catch (Exception Ex)
             {
