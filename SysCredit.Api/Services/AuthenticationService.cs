@@ -2,7 +2,7 @@
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Interfaces;
+using SysCredit.Api.Interfaces.Services;
 using SysCredit.Api.Requests.Auths.Roles;
 using SysCredit.Api.Requests.Auths.Users;
 using SysCredit.Api.Stores;

@@ -5,8 +5,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 
 using SysCredit.Api.Controllers;
-using SysCredit.Api.Interfaces;
-
+using SysCredit.Api.Interfaces.Services;
 using System.Threading.Tasks;
 
 public class LoanTypeControllerTests

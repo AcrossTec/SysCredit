@@ -14,7 +14,7 @@ public class CreateUserRequest : IRequest
 
     public string Phone { get; set; } = string.Empty;
 
-    public AssignRequestType[] Roles { get; set; } = Array.Empty<AssignRequestType>();
+    public AssignTypeRequest[] Roles { get; set; } = Array.Empty<AssignTypeRequest>();
 
     public CreateClaimRequest[] UserClaims { get; set; } = Array.Empty<CreateClaimRequest>();
 }

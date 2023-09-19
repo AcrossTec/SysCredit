@@ -12,6 +12,7 @@ App.UseSysCreditSwaggerUI();
 App.UseSysCreditMiddlewares();
 App.UseHttpsRedirection();
 App.UseCors(SysCreditConstants.CorsAllowSpecificOrigins);
+App.UseAuthentication();
 App.UseAuthorization();
 App.MapControllers();
 App.Run();

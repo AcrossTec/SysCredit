@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.Interfaces;
+using SysCredit.Api.Interfaces.Services;
 using SysCredit.DataTransferObject.Commons;
 
 using System.IdentityModel.Tokens.Jwt;

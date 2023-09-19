@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Api.Interfaces;
+﻿namespace SysCredit.Api.Interfaces.Services;
 
 using SysCredit.Api.Requests;
 using SysCredit.Api.Requests.Customers;

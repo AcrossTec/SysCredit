@@ -94,8 +94,18 @@ public static class WebApplicationBuilderExtensions
         using var ServiceProvider = Builder.Services.BuildServiceProvider();
         var SysCreditOptions = ServiceProvider.GetRequiredService<IOptions<SysCreditOptions>>().Value;
 
-        Builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(Options => Options.TokenValidationParameters = new TokenValidationParameters
+        Builder.Services.AddAuthorization();
+        Builder.Services.AddAuthentication(Options =>
+        {
+            Options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            Options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            Options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(Options =>
+        {
+            Options.SaveToken = true;
+            Options.RequireHttpsMetadata = Builder.Environment.IsProduction();
+            Options.TokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuer = true,
                 ValidateAudience = true,
@@ -104,9 +114,9 @@ public static class WebApplicationBuilderExtensions
                 ValidIssuer = SysCreditOptions.TokenInfo.Issuer,
                 ValidAudience = SysCreditOptions.TokenInfo.Issuer,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SysCreditOptions.TokenInfo.Key))
-            });
+            };
+        });
 
-        Builder.Services.AddAuthorization();
         return Builder;
     }
 
@@ -123,7 +133,7 @@ public static class WebApplicationBuilderExtensions
 
         Services.AddCors(static Options => Options.AddPolicy(SysCreditConstants.CorsAllowSpecificOrigins, static Policy =>
         {
-            Policy.WithMethods("POST", "PUT", "DELETE", "GET", "PATCH");
+            Policy.WithMethods(HttpMethods.Get, HttpMethods.Post, HttpMethods.Put, HttpMethods.Patch, HttpMethods.Delete);
             Policy.AllowAnyOrigin().AllowAnyHeader();
         }));
 
