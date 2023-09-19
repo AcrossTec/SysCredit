@@ -29,7 +29,6 @@ public class LoggingAdviceProxy<TInterface> : DispatchProxy
 {
     private TInterface Decorated = default!;
     private ILogger<TInterface> Logger = default!;
-    private TaskScheduler LoggingScheduler = default!;
 
     /// <summary>
     /// 
@@ -53,9 +52,6 @@ public class LoggingAdviceProxy<TInterface> : DispatchProxy
     {
         this.Decorated = Decorated ?? throw new ArgumentNullException(nameof(Decorated));
         this.Logger = ServiceProvider.GetRequiredService<ILogger<TInterface>>();
-
-        SynchronizationContext.SetSynchronizationContext(new SynchronizationContext());
-        this.LoggingScheduler = TaskScheduler.FromCurrentSynchronizationContext();
     }
 
     /// <summary>
@@ -66,99 +62,37 @@ public class LoggingAdviceProxy<TInterface> : DispatchProxy
     /// <returns></returns>
     protected override object? Invoke(MethodInfo? TargetMethod, object?[]? Args)
     {
-        if (TargetMethod != null)
+        try
         {
             try
             {
-                try
-                {
-                    LogBefore(TargetMethod, Args);
-                }
-                catch (Exception Ex)
-                {
-                    // Do not stop method execution if exception
-                    LogException(Ex, TargetMethod);
-                }
-
-                var Result = TargetMethod.Invoke(Decorated, Args);
-                var ResultTask = GetResultValue(Result) as Task;
-
-                if (ResultTask != null)
-                {
-                    ResultTask.ContinueWith(Task =>
-                    {
-                        if (Task.Exception is not null)
-                        {
-                            LogException(Task.Exception.InnerException ?? Task.Exception, TargetMethod);
-                        }
-                        else
-                        {
-                            // TODO: Imprimir el resultado es un gran golpe en el rendimiento si el Response es muy grande.
-                            //       Borrar o mejorar la implementación a una más optima si es posible.
-
-                            object? TaskResult = null;
-
-                            if (Task.GetType().GetTypeInfo().IsGenericType && Task.GetType().GetGenericTypeDefinition() == typeof(Task<>))
-                            {
-                                var Property = Task.GetType().GetTypeInfo().GetProperties().FirstOrDefault(Property => Property.Name == "Result");
-
-                                if (Property is not null)
-                                {
-                                    TaskResult = Property.GetValue(Task);
-                                }
-                            }
-
-                            LogAfter(TargetMethod, Args, TaskResult);
-                        }
-                    }, LoggingScheduler);
-                }
-                else
-                {
-                    try
-                    {
-                        LogAfter(TargetMethod, Args, Result);
-                    }
-                    catch (Exception Ex)
-                    {
-                        // Do not stop method execution if exception
-                        LogException(Ex, TargetMethod);
-                    }
-                }
-
-                return Result;
+                LogBefore(TargetMethod!, Args);
             }
             catch (Exception Ex)
             {
-                if (Ex is TargetInvocationException)
-                {
-                    LogException(Ex.InnerException ?? Ex, TargetMethod);
-                    throw Ex.InnerException ?? Ex;
-                }
+                // Do not stop method execution if exception
+                LogException(Ex, TargetMethod!);
             }
-        }
 
-        throw new ArgumentException(nameof(TargetMethod));
-    }
+            var Result = TargetMethod!.Invoke(Decorated, Args);
 
-    private static object? GetResultValue(object? @object)
-    {
-        switch (@object)
-        {
-            case ValueTask Task: return Task.AsTask();
-            case Task Task: return Task;
-            case null: return null;
-            default:
+            try
             {
-                var TypeInfo = @object.GetType().GetTypeInfo();
-
-                if (TypeInfo.IsGenericType && TypeInfo.GetGenericTypeDefinition() == typeof(ValueTask<>))
-                {
-                    return TypeInfo.GetMethod(nameof(ValueTask.AsTask), BindingFlags.Public | BindingFlags.Instance, Type.EmptyTypes)!.Invoke(@object, default!);
-                }
-
-                return @object;
+                LogAfter(TargetMethod, Args, Result);
             }
-        };
+            catch (Exception Ex)
+            {
+                // Do not stop method execution if exception
+                LogException(Ex, TargetMethod);
+            }
+
+            return Result;
+        }
+        catch (TargetInvocationException Ex)
+        {
+            LogException(Ex.InnerException ?? Ex, TargetMethod!);
+            throw Ex.InnerException ?? Ex;
+        }
     }
 
     private static string GetStringValue(object? @object)
