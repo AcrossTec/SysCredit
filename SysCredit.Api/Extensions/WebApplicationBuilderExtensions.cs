@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
+using SysCredit.Api.Proxies;
 using SysCredit.Api.Stores;
 
 using SysCredit.Helpers;
@@ -202,7 +203,7 @@ public static class WebApplicationBuilderExtensions
 
         foreach (var (Interface, Type) in Types)
         {
-            Services.AddScoped(Interface, Type);
+            Services.AddScoped(Interface, Provider => LoggingAdvice.Create(Interface, Type, Provider));
         }
 
         return Services;

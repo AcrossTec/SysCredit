@@ -25,8 +25,7 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     /// 
     /// </summary>
     /// <returns></returns>
-   
-    [Authorize]
+    [AllowAnonymous]
     [HttpGet("/Api/Customers")]
     [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<CustomerInfo>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
@@ -41,8 +40,7 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     /// </summary>
     /// <param name="Request"></param>
     /// <returns></returns>
-    ///
-    [Authorize]
+    [AllowAnonymous]
     [HttpGet("/Api/Customer/Search")]
     [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<SearchCustomer>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
@@ -110,20 +108,20 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="ViewModel"></param>
+    /// <param name="Request"></param>
     /// <returns></returns>
-    [Authorize]
+    [AllowAnonymous]
     [HttpPost("/Api/Customer")]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
     [ProducesErrorResponseType(typeof(IResponse<CreateCustomerRequest>))]
-    public async Task<IActionResult> InsertCustomerAsync([FromBody] CreateCustomerRequest ViewModel)
+    public async Task<IActionResult> InsertCustomerAsync([FromBody] CreateCustomerRequest Request)
     {
-        var Result = await CustomerService.InsertCustomerAsync(ViewModel);
+        var Result = await CustomerService.InsertCustomerAsync(Request);
 
         if (Result.Status.HasError)
         {
-            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(ViewModel));
+            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
         }
         else
         {
