@@ -103,11 +103,11 @@ public class LoanTypeController(ILoanTypeService LoanTypeService, ILogger<LoanTy
     }
 
     /// <summary>
-    /// 
+    ///     Actualiza un LoanType por su id
     /// </summary>
-    /// <param name="Request"></param>
-    /// <param name="LoanTypeId"></param>
-    /// <returns></returns>
+    /// <param name="Request">Contiene parametros necesarios para modificar</param>
+    /// <param name="LoanTypeId">Id del LoanType</param>
+    /// <returns>Retorna un mensaje de respuesta si fue correcta o hubo una excepción</returns>
     [HttpPut("{LoanTypeId}")]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status204NoContent)]

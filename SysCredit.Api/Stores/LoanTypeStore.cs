@@ -101,21 +101,24 @@ public static class LoanTypeStore
     }
 
     /// <summary>
-    /// 
+    ///     Metodo de actualizacion de LoanType
     /// </summary>
-    /// <param name="Store"></param>
-    /// <param name="Request"></param>
+    /// <param name="Store">Repositorio del LoanType</param>
+    /// <param name="Request">Objeto que contiene los parametros necesarios para actualizar</param>
     /// <returns></returns>
     [MethodId("C367398E-F4F3-4350-86A5-AE2B3DBEBED7")]
     public static async ValueTask<bool> UpdateLoanTypeAsync(this IStore<LoanType> Store, UpdateLoanTypeRequest Request)
     {
+        // Se hace una transacción en caso de error
         using var SqlTransaction = await Store.BeginTransactionAsync();
 
         try
         {
+            // Ejecuta el procedimiento almacenado y se le pasa el Request con la información
             int Result = await Store.ExecAsync("[dbo].[UpdateLoanTypeById]", Request, SqlTransaction);
             SqlTransaction.Commit();
 
+            // Si el numero de cambios es mayor que 0 se completó el procedimiento
             return Result > 0;
         }
         catch (Exception SqlEx)

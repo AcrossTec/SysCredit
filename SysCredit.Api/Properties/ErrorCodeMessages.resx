@@ -503,6 +503,18 @@
     <value />
     <comment>Payment Frequency Service Error Code</comment>
   </data>
+  <data name="SERVLT0001" xml:space="preserve">
+    <value>Request to delete loantype is not valid</value>
+  </data>
+  <data name="SERVLT0002" xml:space="preserve">
+    <value>Creation of a loantype is not valid</value>
+  </data>
+  <data name="SERVLT0003" xml:space="preserve">
+    <value>Loan type modification is not valid</value>
+  </data>
+  <data name="SERVLT0004" xml:space="preserve">
+    <value>The '{PropertyName}' in the route does not match the Id provided in the request body.</value>
+  </data>
   <data name="SERVPF0003" xml:space="preserve">
     <value>Error updating payment frequency</value>
     <comment>Payment Frequency Service Error Code</comment>

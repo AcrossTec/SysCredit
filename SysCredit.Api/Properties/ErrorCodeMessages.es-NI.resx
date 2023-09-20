@@ -156,6 +156,18 @@
   <data name="SERVPF0003" xml:space="preserve">
     <value>Error al actualizar la frecuencia de pago</value>
   </data>
+  <data name="SERVLT0001" xml:space="preserve">
+    <value>Solicitud para eliminar el Tipo de Prestamo no válido</value>
+  </data>
+  <data name="SERVLT0002" xml:space="preserve">
+    <value>Creación del Tipo de Prestamo no válido</value>
+  </data>
+  <data name="SERVLT0003" xml:space="preserve">
+    <value>Modificación del Tipo de Prestamo no válido</value>
+  </data>
+  <data name="SERVLT0004" xml:space="preserve">
+    <value>El '{PropertyName}' en la ruta no coincide con el Id proporcionado en el cuerpo de la solicitud.</value>
+  </data>
   <data name="DATAPF0001" xml:space="preserve">
     <value>Error al registrar la frecuencia de pago</value>
   </data>
