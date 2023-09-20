@@ -147,6 +147,12 @@
   <data name="DATALT0006" xml:space="preserve">
     <value>Error reversing loan type update</value>
   </data>
+  <data name="SERVC0002" xml:space="preserve">
+    <value>Customer Id does not exist</value>
+  </data>
+  <data name="SERVC0003" xml:space="preserve">
+    <value>'{PropertyName}' There is no record with this value</value>
+  </data>
   <data name="SERVPF0003" xml:space="preserve">
     <value>Error updating payment frequency</value>
   </data>

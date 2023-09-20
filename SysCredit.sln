@@ -38,7 +38,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SysCredit.PostgreSQL", "Sys
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Generators", "Generators", "{A1A12337-FBF4-493A-B1D2-164EEC6D152C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysCredit.Api.Generators", "SysCredit.Api.Generators\SysCredit.Api.Generators.csproj", "{F9241818-ACE0-49A7-8C2A-67A72717983A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysCredit.Api.Generators", "SysCredit.Api.Generators\SysCredit.Api.Generators.csproj", "{F9241818-ACE0-49A7-8C2A-67A72717983A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

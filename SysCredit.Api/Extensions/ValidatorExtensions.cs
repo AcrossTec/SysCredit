@@ -86,4 +86,7 @@ public static class ValidatorExtensions
 
     public static IRuleBuilderOptions<T, string?> UniqueRoleNameAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
         => RuleBuilder.SetAsyncValidator(new AsyncExistRoleNameValidator<T>());
+
+    public static IRuleBuilderOptions<T, long?> VerifyIfCustomerExistsByIdAsync<T>(this IRuleBuilder<T, long?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncVerifyIfCustomerExistsByIdValidator<T>());
 }
