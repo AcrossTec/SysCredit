@@ -147,4 +147,7 @@
   <data name="DATALT0006" xml:space="preserve">
     <value>Error reversing loan type update</value>
   </data>
+  <data name="SERVPF0003" xml:space="preserve">
+    <value>Error updating payment frequency</value>
+  </data>
 </root>

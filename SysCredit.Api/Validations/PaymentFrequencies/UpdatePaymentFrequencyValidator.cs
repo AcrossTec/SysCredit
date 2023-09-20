@@ -7,17 +7,18 @@ using SysCredit.Api.Requests.PaymentFrequencies;
 
 public class UpdatePaymentFrequencyValidator : AbstractValidator<UpdatePaymentFrequencyRequest>
 {
-    public UpdatePaymentFrequencyValidator() 
+    public UpdatePaymentFrequencyValidator()
     {
-        RuleFor(X => X.Name)
+        RuleFor(Upf => Upf.Name)
             .NotEmpty()
             .NotNull()
             .PaymentFrequencyUniqueNameAsync()
             .WithName("Nombre");
 
-        RuleFor(X => X.PaymentFrequencyId)
+        RuleFor(Upf => Upf.PaymentFrequencyId)
             .NotEmpty()
             .NotNull()
+            .VerifyRouteWithPaymentFrequencyId()
             .WithName("Id de la Frecuencia de Pago");
     }
 }

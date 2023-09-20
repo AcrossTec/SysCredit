@@ -15,7 +15,7 @@ public class AsyncPaymentFrequencyUniqueNameValidator<T> : AsyncPropertyValidato
 {
     public override async Task<bool> IsValidAsync(ValidationContext<T> Context, string? Name, CancellationToken Cancellation)
     {
-        var PaymentFrequency = await Context.RootContextData[nameof(PaymentFrequencyStore)].AsStore<PaymentFrequency>().FetchPaymentFrequencyByName(Name);
+        var PaymentFrequency = await Context.RootContextData[nameof(PaymentFrequencyStore)].AsStore<PaymentFrequency>().FetchPaymentFrequencyByNameAsync(Name);
         return PaymentFrequency is null;
     }
 
