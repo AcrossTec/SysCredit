@@ -6,6 +6,7 @@ using SysCredit.Api.Attributes;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Requests;
+using SysCredit.Api.Requests.Customers;
 using SysCredit.Api.Requests.Guarantors;
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.DataTransferObject.StoredProcedures;

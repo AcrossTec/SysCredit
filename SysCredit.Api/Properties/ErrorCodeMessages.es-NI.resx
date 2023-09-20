@@ -147,6 +147,12 @@
   <data name="DATALT0006" xml:space="preserve">
     <value>Error al revertir la actualización del tipo del préstamo</value>
   </data>
+  <data name="SERVC0003" xml:space="preserve">
+    <value>'{PropertyName}' No existe un registro con este valor</value>
+  </data>
+  <data name="SERVC0002" xml:space="preserve">
+    <value>El Id del Cliente no existe</value>
+  </data>
   <data name="SERVPF0003" xml:space="preserve">
     <value>Error al actualizar la frecuencia de pago</value>
   </data>
