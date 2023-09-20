@@ -78,7 +78,7 @@ public static class PaymentFrequencyStore
     }
 
     [MethodId("016C0C42-BEB3-4821-A1B1-11E91C03BB27")]
-    public static async ValueTask<PaymentFrequencyInfo?> FetchPaymentFrequencyByName(this IStore<PaymentFrequency> Store, string? Name)
+    public static async ValueTask<PaymentFrequencyInfo?> FetchPaymentFrequencyByNameAsync(this IStore<PaymentFrequency> Store, string? Name)
     {
         return await Store.ExecFirstOrDefaultAsync<PaymentFrequencyInfo?>("[dbo].[FetchPaymentFrequencyByName]", new { Name });
     }

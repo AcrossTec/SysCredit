@@ -69,6 +69,9 @@ public static class ValidatorExtensions
     public static IRuleBuilderOptions<T, string?> PaymentFrequencyUniqueNameAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
         => RuleBuilder.SetAsyncValidator(new AsyncPaymentFrequencyUniqueNameValidator<T>());
 
+    public static IRuleBuilderOptions<T, long?> VerifyRouteWithPaymentFrequencyId<T>(this IRuleBuilder<T, long?> RuleBuilder)
+        => RuleBuilder.SetValidator(new VerifyRouteWithPaymentFrequencyIdValidator<T>());
+
     public static IRuleBuilderOptions<T, IEnumerable<AssignTypeRequest>> ExistRoleInRequest<T>(this IRuleBuilder<T, IEnumerable<AssignTypeRequest>> RuleBuilder)
         => RuleBuilder.SetAsyncValidator(new AsyncExistRoleValidator<T>());
 
