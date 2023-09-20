@@ -128,4 +128,45 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
             return StatusCode(StatusCodes.Status201Created, Result);
         }
     }
+
+    /// <summary>
+    ///     Obtiene todos las referencias de un cliente
+    /// </summary>
+    /// <param name="Request">Se envia el id del cliente</param>
+    /// <returns>Regresa una lista de referencias del cliente</returns>
+    [HttpGet("{CustomerId}/References")]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<ReferenceInfo>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IResponse<CustomerIdRequest>), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> FetchReferencesByCustomerIdAsync([FromRoute] CustomerIdRequest Request)
+    {
+        var Result = await CustomerService.FetchReferencesByCustomerIdAsync(Request);
+
+        if (Result.Status.HasError)
+        {
+            return StatusCode(StatusCodes.Status404NotFound, await Result.ToResponseWithReplaceDataAsync(Request));
+        }
+        else
+        {
+            return StatusCode(StatusCodes.Status200OK, Result);
+        }
+    }
+
+    [HttpGet("{CustomerId}/Loans")]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<LoanInfo>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IResponse<CustomerIdRequest>), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> FetchLoansByCustomerIdAsync([FromRoute] CustomerIdRequest Request)
+    {
+        var Result = await CustomerService.FetchLoansByCustomerIdAsync(Request);
+
+        if (Result.Status.HasError)
+        {
+            return StatusCode(StatusCodes.Status404NotFound, await Result.ToResponseWithReplaceDataAsync(Request));
+        }
+        else
+        {
+            return StatusCode(StatusCodes.Status200OK, Result);
+        }
+    }
 }

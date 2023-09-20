@@ -129,4 +129,42 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
 
         return await CustomerStore.InsertCustomerAsync(Request).CreateServiceResultAsync();
     }
+
+    /// <summary>
+    ///     Obtiene todas las referencias de un cliente
+    /// </summary>
+    /// <param name="Request">Requiere un id</param>
+    /// <returns>Retorna una lista de referencias de un cliente</returns>
+    [MethodId("AE8B99A2-9CD0-4814-8741-C4329C746735")]
+    public async ValueTask<IServiceResult<IAsyncEnumerable<ReferenceInfo>?>> FetchReferencesByCustomerIdAsync(CustomerIdRequest Request)
+    {
+        var Result = await Request.ValidateAsync(Key(nameof(CustomerStore)).Value(CustomerStore));
+
+        if (Result.HasError())
+        {
+            return await Result.CreateServiceResultAsync<IAsyncEnumerable<ReferenceInfo>>
+            (
+                MethodInfo: MethodInfo.GetCurrentMethod(),
+                 ErrorCode: $"{CustomerServicePrefix}{_0002}"
+            );
+        }
+
+        return await CustomerStore.FetchReferencesByCustomerIdAsync(Request).CreateServiceResultAsync();
+    }
+
+    public async ValueTask<IServiceResult<IAsyncEnumerable<LoanInfo>?>> FetchLoansByCustomerIdAsync(CustomerIdRequest Request)
+    {
+        var Result = await Request.ValidateAsync(Key(nameof(CustomerStore)).Value(CustomerStore));
+
+        if (Result.HasError())
+        {
+            return await Result.CreateServiceResultAsync<IAsyncEnumerable<LoanInfo>>
+            (
+                MethodInfo: MethodInfo.GetCurrentMethod(),
+                 ErrorCode: $"{CustomerServicePrefix}{_0002}"
+            );
+        }
+
+        return await CustomerStore.FetchLoansByCustomerIdAsync(Request).CreateServiceResultAsync();
+    }
 }
