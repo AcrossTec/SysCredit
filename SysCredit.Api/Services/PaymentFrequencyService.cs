@@ -60,9 +60,11 @@ public class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencySt
     [MethodId("54EA25C1-FD73-4FC3-8984-DEA6ACFD74C7")]
     public async ValueTask<IServiceResult<bool>> UpdatePaymentFrequencyAsync(long PaymentFrequencyId, UpdatePaymentFrequencyRequest Request)
     {
-        var Result = await Request.ValidateAsync(Key(nameof(PaymentFrequencyStore)).Value(PaymentFrequencyStore));
+        var Result = await Request.ValidateAsync(
+            Key(nameof(PaymentFrequencyStore)).Value(PaymentFrequencyStore)
+           .Key("RoutePaymentFrequencyId").Value(PaymentFrequencyId));
 
-        if(Result.HasError())
+        if (Result.HasError())
         {
             return await Result.CreateServiceResultAsync<bool>
             (
