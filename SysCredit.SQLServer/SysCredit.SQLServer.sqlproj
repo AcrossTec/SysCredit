@@ -142,6 +142,7 @@
     <Build Include="StoredProcedures\Guarantors\SearchGuarantor.sql" />
     <Build Include="StoredProcedures\Guarantors\InsertGuarantor.sql" />
     <Build Include="StoredProcedures\Customers\FetchReferencesByCustomerId.sql" />
+    <Build Include="StoredProcedures\Customers\FetchGuarantorsByCustomerId.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\AzureV12\SqlSchemas\master.dacpac">

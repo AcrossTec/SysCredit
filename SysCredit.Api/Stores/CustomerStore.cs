@@ -67,6 +67,12 @@ public static class CustomerStore
         return Store.ExecQueryAsync<ReferenceInfo>("[dbo].[FetchReferencesByCustomerId]", Request);
     }
 
+    [MethodId("01942152-9183-4DB7-AD3C-6712BA53023D")]
+    public static IAsyncEnumerable<GuarantorInfo> FetchGuarantorsByCustomerIdAsync(this IStore<Customer> Store, CustomerIdRequest Request)
+    {
+        return Store.ExecQueryAsync<GuarantorInfo>("[dbo].[FetchGuarantorsByCustomerId]", Request);
+    }
+
     /// <summary>
     ///     How To Pass Array Or List To Stored Procedure
     ///     https://www.mytecbits.com/microsoft/sql-server/pass-array-or-list-to-stored-procedure
