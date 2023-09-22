@@ -25,4 +25,6 @@ public interface ICustomerService
     ValueTask<IServiceResult<EntityId?>> InsertCustomerAsync(CreateCustomerRequest Request);
 
     ValueTask<IServiceResult<IAsyncEnumerable<ReferenceInfo>?>> FetchReferencesByCustomerIdAsync(CustomerIdRequest Request);
+
+    ValueTask<IServiceResult<IAsyncEnumerable<GuarantorInfo>?>> FetchGuarantorsByCustomerIdAsync(CustomerIdRequest Request);
 }
