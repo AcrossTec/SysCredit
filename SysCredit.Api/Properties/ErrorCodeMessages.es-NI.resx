@@ -156,6 +156,18 @@
   <data name="SERVPF0003" xml:space="preserve">
     <value>Error al actualizar la frecuencia de pago</value>
   </data>
+  <data name="DATAPF0001" xml:space="preserve">
+    <value>Error al registrar la frecuencia de pago</value>
+  </data>
+  <data name="DATAPF0002" xml:space="preserve">
+    <value>Error al revertir el registro de la frecuencia de pago</value>
+  </data>
+  <data name="DATAPF0003" xml:space="preserve">
+    <value>Error al eliminar la frecuencia de pago</value>
+  </data>
+  <data name="DATAPF0004" xml:space="preserve">
+    <value>Error al revertir la eliminación de la frecuencia de pago</value>
+  </data>
   <data name="MID0000" xml:space="preserve">
     <value>Error interno en el proxy del servicio: LoggingAdviceServiceProxy</value>
     <comment>Logging Advice Service Proxy Error Code</comment>
