@@ -2,12 +2,12 @@ using SysCredit.Api.Constants;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Patchers;
 
+using System.Runtime.CompilerServices;
+
 var Builder = WebApplication.CreateBuilder(args);
 Builder.AddSysCreditLogging();
 Builder.AddSysCreditServices();
 Builder.AddSysCreditAuthorization();
-
-SysCreditApiPatcher.PatchAll();
 
 var App = Builder.Build();
 App.UseHttpLogging();
@@ -20,4 +20,11 @@ App.UseAuthorization();
 App.MapControllers();
 App.Run();
 
-public partial class Program;
+public partial class Program
+{
+    [ModuleInitializer]
+    public static void ModuleInitializer()
+    {
+        SysCreditApiPatcher.PatchAll();
+    }
+}

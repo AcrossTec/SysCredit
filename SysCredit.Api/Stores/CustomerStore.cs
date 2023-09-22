@@ -7,8 +7,10 @@ using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Requests;
 using SysCredit.Api.Requests.Customers;
+
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.DataTransferObject.StoredProcedures;
+
 using SysCredit.Helpers;
 using SysCredit.Models;
 
@@ -90,7 +92,7 @@ public static class CustomerStore
         catch (Exception SqlEx)
         {
             // Handle the exception if the transaction fails to commit.
-            SysCreditException SysCreditEx = 
+            SysCreditException SysCreditEx =
                 SqlEx.ToSysCreditException(
                     MethodInfo.GetCurrentMethod(),
                     DATAC0001);

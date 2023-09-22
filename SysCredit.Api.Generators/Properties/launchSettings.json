@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Generator": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\SysCredit.Api\\SysCredit.Api.csproj"
+    }
+  }
+}
