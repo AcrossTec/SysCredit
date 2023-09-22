@@ -50,7 +50,7 @@ public class GuarantorService(IStore Store, ILogger<GuarantorService> Logger) : 
             return await Result.CreateServiceResultAsync<EntityId?>
             (
                 MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: $"{GuarantorServicePrefix}{_0001}" // TODO: "Solicitud de creación del fiador no es válido."
+                 ErrorCode: Constants.ErrorCodes.SERVG0001 // $"{GuarantorServicePrefix}{_0001}" // TODO: "Solicitud de creación del fiador no es válido."
             );
         }
 
