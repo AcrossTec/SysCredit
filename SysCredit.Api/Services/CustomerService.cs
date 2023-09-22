@@ -151,4 +151,26 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
 
         return await CustomerStore.FetchReferencesByCustomerIdAsync(Request).CreateServiceResultAsync();
     }
+
+    /// <summary>
+    ///     Obtiene todos las fiadores de un cliente
+    /// </summary>
+    /// <param name="Request"></param>
+    /// <returns></returns>
+    [MethodId("B8AD9D4D-7129-46F2-95CB-7AED1073E070")]
+    public async ValueTask<IServiceResult<IAsyncEnumerable<GuarantorInfo>?>> FetchGuarantorsByCustomerIdAsync(CustomerIdRequest Request)
+    {
+        var Result = await Request.ValidateAsync(Key(nameof(CustomerStore)).Value(CustomerStore));
+
+        if (Result.HasError())
+        {
+            return await Result.CreateServiceResultAsync<IAsyncEnumerable<GuarantorInfo>>
+            (
+                MethodInfo: MethodInfo.GetCurrentMethod(),
+                 ErrorCode: $"{CustomerServicePrefix}{_0002}"
+            );
+        }
+
+        return await CustomerStore.FetchGuarantorsByCustomerIdAsync(Request).CreateServiceResultAsync();
+    }
 }
