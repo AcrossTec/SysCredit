@@ -160,4 +160,12 @@
     <value>Error interno en el proxy del servicio: LoggingAdviceServiceProxy</value>
     <comment>Logging Advice Service Proxy Error Code</comment>
   </data>
+  <data name="MID0001" xml:space="preserve">
+    <value>Error Interno del Servidor</value>
+    <comment>SysCredit Middleware ErrorCode</comment>
+  </data>
+  <data name="MID0002" xml:space="preserve">
+    <value>Error del proveedor de base de datos</value>
+    <comment>SysCredit Middleware ErrorCode</comment>
+  </data>
 </root>

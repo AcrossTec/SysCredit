@@ -27,64 +27,68 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
     /// <summary>
     /// 
     /// </summary>
+    public const string SysCreditMiddlewareMethodId = "73E66405-D1D0-44D0-8EAB-9AC7D08742A9";
+
+    /// <summary>
+    /// 
+    /// </summary>
     /// <param name="Context"></param>
     /// <returns></returns>
-    [MethodId("73E66405-D1D0-44D0-8EAB-9AC7D08742A9")]
+    [MethodId(SysCreditMiddlewareMethodId)]
     public async Task InvokeAsync(HttpContext Context)
     {
         try
         {
             await Next(Context);
         }
-        catch (EndpointFlowException Ex)
+        catch (EndpointFlowException Exception)
         {
-            Logger.LogError(Ex, Ex.Message);
-            ConfigureHttpContextResponse(Context);
-
-            IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(Ex.Status);
-
-            await Context.Response.WriteAsync(SerializeResponse(Response));
+            IResponse Response = await CreateHttpContextResponseDataAsync(Context, StatusCodes.Status400BadRequest)!.ToResponseAsync(Exception.Status);
+            await Context.Response.WriteAsync(WriteLogErrorResponse(Response));
         }
-        catch (SysCreditException Ex) when (Ex.Data.Contains(SysCreditConstants.ErrorStatusKey))
+        catch (SysCreditException Exception) when (Exception.Data.Contains(SysCreditConstants.ErrorStatusKey))
         {
-            Logger.LogError(Ex, Ex.Message);
-            ConfigureHttpContextResponse(Context);
-
-            IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(Ex.Data[SysCreditConstants.ErrorStatusKey].As<ErrorStatus>());
-
-            await Context.Response.WriteAsync(SerializeResponse(Response));
+            IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(Exception.Data[SysCreditConstants.ErrorStatusKey].As<ErrorStatus>());
+            await Context.Response.WriteAsync(WriteLogErrorResponse(Response));
         }
-        catch (SqlException Ex)
+        catch (ProxyException Exception)
         {
-            Logger.LogError(Ex, Ex.Message);
-            ConfigureHttpContextResponse(Context);
-
-            IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(CreateErrorStatusFromException(Ex));
-
-            Response.Status.ErrorCode = MID0002;
-            Response.Status.Errors!["Procedure"] = Ex.Procedure;
-            Response.Status.Errors!["SqlErrors"] = Ex.Errors.Cast<SqlError>().Select(SqlError => SqlError.Message).ToArray();
-
-            await Context.Response.WriteAsync(SerializeResponse(Response));
+            IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(CreateErrorStatusFromProxyException(Exception));
+            await Context.Response.WriteAsync(WriteLogErrorResponse(Response));
         }
-        catch (Exception Ex)
+        catch (SqlException Exception)
         {
-            Logger.LogError(Ex, Ex.Message);
-            ConfigureHttpContextResponse(Context);
-
-            IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(CreateErrorStatusFromException(Ex));
-            await Context.Response.WriteAsync(SerializeResponse(Response));
+            IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(CreateErrorStatusFromSqlException(Exception));
+            await Context.Response.WriteAsync(WriteLogErrorResponse(Response));
+        }
+        catch (Exception Exception)
+        {
+            IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(CreateErrorStatusFromException(Exception));
+            await Context.Response.WriteAsync(WriteLogErrorResponse(Response));
         }
     }
 
-    private static void ConfigureHttpContextResponse(HttpContext Context)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Context"></param>
+    /// <param name="StatusCode"></param>
+    private static void ConfigureHttpContextResponse(HttpContext Context, int StatusCode)
     {
         Context.Response.ContentType = "application/json";
-        Context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+        Context.Response.StatusCode = StatusCode;
     }
 
-    private static async ValueTask<object> CreateHttpContextResponseDataAsync(HttpContext Context)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Context"></param>
+    /// <param name="StatusCode"></param>
+    /// <returns></returns>
+    private static async ValueTask<object> CreateHttpContextResponseDataAsync(HttpContext Context, int StatusCode = StatusCodes.Status500InternalServerError)
     {
+        ConfigureHttpContextResponse(Context, StatusCode);
+
         using var BodyReader = new StreamReader(Context.Request.BodyReader.AsStream());
 
         return new
@@ -97,29 +101,90 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
         };
     }
 
-    private ErrorStatus CreateErrorStatusFromException(Exception Ex)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Exception"></param>
+    /// <returns></returns>
+    private static ErrorStatus CreateErrorStatusFromSqlException(SqlException Exception)
+    {
+        var Status = CreateErrorStatusFromException(Exception);
+
+        Status.ErrorCode = DatabaseProviderErrorCode;
+        Status.Extensions["SqlProcedure"] = Exception.Procedure;
+        Status.Errors = new Dictionary<string, object?>
+        {
+            ["SqlErrors"] = Exception.Errors.Cast<SqlError>().Select(SqlError => SqlError.Message).ToArray()
+        };
+
+        return Status;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Exception"></param>
+    /// <returns></returns>
+    private static ErrorStatus CreateErrorStatusFromProxyException(ProxyException Exception)
+    {
+        var Status = CreateErrorStatusFromException(Exception);
+
+        Status.MethodId = Exception.Data[SysCreditConstants.MethodIdKey]!.ToString();
+        Status.ErrorCode = Exception.Data[SysCreditConstants.ErrorCodeKey]!.ToString();
+        Status.ErrorCategory = Exception.Data[SysCreditConstants.ErrorCategoryKey]!.ToString();
+
+        return Status;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Exception"></param>
+    /// <returns></returns>
+    private static ErrorStatus CreateErrorStatusFromException(Exception Exception)
     {
         return new()
         {
             HasError = true,
-            ErrorMessage = Ex.Message,
-            ErrorCode = MID0001,
-            ErrorCategory = GetType().GetErrorCategory(),
-            MethodId = "73E66405-D1D0-44D0-8EAB-9AC7D08742A9",
+            MethodId = SysCreditMiddlewareMethodId,
+            ErrorCode = InternalServerErrorCode,
+            ErrorMessage = Exception.Message,
+            ErrorCategory = typeof(SysCreditMiddleware).GetErrorCategory(),
             Extensions =
             {
-                ["ExceptionType"]       = Ex.GetType().Name,
-                ["ExceptionCode"]       = Ex.HResult,
-                ["ExceptionMessages"]   = Ex.GetMessages().ToArray(),
-                ["ExceptionSource"]     = Ex.Source,
-                ["ExceptionStackTrace"] = Ex.StackTrace
+                ["ExceptionType"]       = Exception.GetType().ToString(),
+                ["ExceptionMessages"]   = Exception.GetMessages().ToArray(),
+                ["ExceptionSource"]     = Exception.Source,
+                ["ExceptionStackTrace"] = Exception.StackTrace
             }
         };
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Response"></param>
+    /// <returns></returns>
     private static string SerializeResponse(IResponse Response)
     {
-        var Options = new JsonSerializerOptions { PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy };
+        var Options = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy,
+            WriteIndented = true
+        };
+
         return JsonSerializer.Serialize(Response, Options);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Response"></param>
+    /// <returns></returns>
+    private string WriteLogErrorResponse(IResponse Response)
+    {
+        string JsonText = SerializeResponse(Response);
+        Logger.LogError(JsonText);
+        return JsonText;
     }
 }

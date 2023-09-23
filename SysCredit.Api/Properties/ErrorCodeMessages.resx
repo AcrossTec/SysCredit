@@ -294,14 +294,16 @@
     <comment>Payment Frequency Store Error Code</comment>
   </data>
   <data name="MID0000" xml:space="preserve">
-    <value>Internal error in the proxy of the service: LoggingAdviceServiceProxy</value>
-    <comment>Logging Advice Service Proxy Error Code</comment>
+    <value>Internal error in the proxy of the service: LoggingAdviceServiceInterceptor</value>
+    <comment>Logging Advice Service Interceptor Error Code</comment>
   </data>
   <data name="MID0001" xml:space="preserve">
-    <value />
+    <value>Internal Server Error</value>
+    <comment>SysCredit Middleware ErrorCode</comment>
   </data>
   <data name="MID0002" xml:space="preserve">
-    <value />
+    <value>Database provider error</value>
+    <comment>SysCredit Middleware ErrorCode</comment>
   </data>
   <data name="MID0003" xml:space="preserve">
     <value />

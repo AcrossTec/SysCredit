@@ -106,7 +106,7 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     }
 
     /// <summary>
-    /// 
+    ///     POST: /Api/Customer
     /// </summary>
     /// <param name="Request"></param>
     /// <returns></returns>
@@ -115,18 +115,10 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
     [ProducesErrorResponseType(typeof(IResponse<CreateCustomerRequest>))]
-    public async Task<IActionResult> InsertCustomerAsync([FromBody] CreateCustomerRequest Request)
+    public async Task<ActionResult<IResponse<EntityId>>> InsertCustomerAsync([FromBody] CreateCustomerRequest Request)
     {
-        var Result = await CustomerService.InsertCustomerAsync(Request);
-
-        if (Result.Status.HasError)
-        {
-            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
-        }
-        else
-        {
-            return StatusCode(StatusCodes.Status201Created, Result);
-        }
+        var ServiceResult = await CustomerService.InsertCustomerAsync(Request);
+        return StatusCode(StatusCodes.Status201Created, await ServiceResult.ToResponseAsync());
     }
 
     /// <summary>

@@ -9,7 +9,17 @@ public static class SysCreditConstants
 
     public const string ErrorStatusKey = "ErrorStatus";
 
+    public const string ErrorCategoryKey = "ErrorCategory";
+
+    public const string ErrorCodeKey = "ErrorCode";
+
     public const string MethodIdKey = "MethodId";
+
+    public const string MethodFullNameKey = "MethodFullName";
+
+    public const string TypeFullNameKey = "TypeFullName";
+
+    public const string ValidatedInstanceKey = "ValidatedInstance";
 
     public const string DefaultKey = "DefaultKey";
 

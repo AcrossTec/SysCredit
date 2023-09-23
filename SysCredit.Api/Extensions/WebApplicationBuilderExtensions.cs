@@ -1,11 +1,17 @@
 ﻿namespace SysCredit.Api.Extensions;
 
+using Castle.DynamicProxy;
+
 using log4net.Config;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
+
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
+
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -203,9 +209,10 @@ public static class WebApplicationBuilderExtensions
 
         foreach (var (Interface, Type) in Types)
         {
-            Services.AddScoped(Interface, Provider => LoggingAdviceService.Create(Interface, Type, Provider));
+            Services.AddScoped(Interface, Provider => LoggingAdviceServiceInterceptor.Create(Interface, Type, Provider));
         }
 
+        Services.TryAddSingleton<ProxyGenerator>();
         return Services;
     }
 

@@ -13,7 +13,7 @@ using System.Reflection;
 /// </summary>
 /// <remarks>
 ///     Patching: Auxilary patch methods
-///     https://harmony.pardeike.net/articles/patching-auxilary.html
+///     https://harmony.pardeike.net/articles/patching-auxiliary.html
 ///
 ///     Patching: Common injected values
 ///     https://harmony.pardeike.net/articles/patching-injections.html
