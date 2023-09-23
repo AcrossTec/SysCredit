@@ -310,10 +310,24 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="Source"></param>
+    /// <returns></returns>
+    private static string GetStringOf(IAsyncEnumerable<object> Source) => GetStringOf(Source.ToEnumerable());
+
+    /// <summary>
+    /// 
+    /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="object"></param>
     /// <returns></returns>
     private static ValueTask<string> GetStringOfAsync(object? @object) => ValueTask.FromResult(GetStringOf(@object));
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Source"></param>
+    /// <returns></returns>
+    private static async ValueTask<string> GetStringOfAsync(IAsyncEnumerable<object> Source) => await GetStringOfAsync(Source.ToListAsync());
 
     /// <summary>
     /// 

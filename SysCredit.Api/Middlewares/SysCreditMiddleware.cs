@@ -10,6 +10,7 @@ using SysCredit.Api.Extensions;
 using SysCredit.Helpers;
 
 using System.Data.SqlClient;
+using System.Text;
 using System.Text.Json;
 
 using static Constants.ErrorCodePrefix;
@@ -39,6 +40,7 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
     {
         try
         {
+            Context.Request.EnableBuffering();
             await Next(Context);
         }
         catch (EndpointFlowException Exception)
@@ -89,7 +91,10 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
     {
         ConfigureHttpContextResponse(Context, StatusCode);
 
-        using var BodyReader = new StreamReader(Context.Request.BodyReader.AsStream());
+        Context.Request.Body.Seek(0, SeekOrigin.Begin);
+        using var Reader = new StreamReader(Context.Request.Body, Encoding.UTF8);
+        string RequestBody = await Reader.ReadToEndAsync().ConfigureAwait(false);
+        Context.Request.Body.Seek(0, SeekOrigin.Begin);
 
         return new
         {
@@ -97,7 +102,7 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
             Host = Context.Request.Host.ToString(),
             Path = Context.Request.Path.ToString(),
             QueryString = Context.Request.QueryString.ToString(),
-            Body = await BodyReader.ReadToEndAsync(),
+            Body = JsonSerializer.Deserialize<Dictionary<string, object>>(RequestBody),
         };
     }
 
