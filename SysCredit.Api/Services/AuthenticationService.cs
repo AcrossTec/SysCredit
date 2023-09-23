@@ -14,8 +14,9 @@ using SysCredit.Models;
 using System.Reflection;
 using System.Threading.Tasks;
 
-using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
+using static Constants.ErrorCodes;
+
 using static SysCredit.Helpers.ContextData;
 
 [Service<IAuthenticationService>]
@@ -43,7 +44,7 @@ public class AuthenticationService(IStore Store, IAuthorizationService Authoriza
             return await Result.CreateServiceResultAsync<EntityId?>
             (
                 MethodInfo: MethodBase.GetCurrentMethod(),
-                 ErrorCode: $"{AuthenticationServicePrefix}{_0002}" // ErrorMessage: "La solicitutd de creación del rol no es válida"
+                 ErrorCode: SERVAS0000 // ErrorMessage: "La solicitutd de creación del rol no es válida"
             );
         }
 
@@ -67,7 +68,7 @@ public class AuthenticationService(IStore Store, IAuthorizationService Authoriza
             return await Result.CreateServiceResultAsync<UserInfo?>
             (
                 MethodInfo: MethodBase.GetCurrentMethod(),
-                 ErrorCode: $"{AuthenticationServicePrefix}{_0002}" // ErrorMessage: $"Error al crear el usuario: {Request.UserName}"
+                 ErrorCode: SERVAS0001 // ErrorMessage: $"Error al crear el usuario: {Request.UserName}"
             );
         }
 
@@ -118,7 +119,7 @@ public class AuthenticationService(IStore Store, IAuthorizationService Authoriza
             return await Result.CreateServiceResultAsync<AuthInfo>
             (
                 MethodInfo: MethodBase.GetCurrentMethod(),
-                 ErrorCode: $"{AuthenticationServicePrefix}{_0003}" // ErrorMessage: $"Error al iniciar sesión"
+                 ErrorCode: SERVAS0002 // ErrorMessage: $"Error al iniciar sesión"
             );
         }
 
@@ -129,7 +130,7 @@ public class AuthenticationService(IStore Store, IAuthorizationService Authoriza
             return await Result.CreateServiceResultAsync<AuthInfo>
             (
                 MethodInfo: MethodBase.GetCurrentMethod(),
-                 ErrorCode: $"{AuthenticationServicePrefix}{_0003}" // ErrorMessage: $"Error al iniciar sesión"
+                 ErrorCode: SERVAS0003 // ErrorMessage: $"Error al iniciar sesión"
             );
         }
 

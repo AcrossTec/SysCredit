@@ -20,9 +20,11 @@ using System.Reflection;
 using System.Security.Claims;
 
 using static Constants.ErrorCodes;
+using static Constants.ErrorCodePrefix;
 
 [Store]
 [ErrorCategory(nameof(RoleStore))]
+[ErrorCodePrefix(RoleStorePrefix)]
 public static class RoleStore
 {
     /// <summary>
@@ -49,7 +51,7 @@ public static class RoleStore
         }
         catch (Exception Ex)
         {
-            SysCreditException SysCreditEx = Ex.ToSysCreditException(MethodBase.GetCurrentMethod(), DATAAR0001);
+            SysCreditException SysCreditEx = Ex.ToSysCreditException(MethodBase.GetCurrentMethod(), DATAARS0001);
 
             try
             {
@@ -57,7 +59,7 @@ public static class RoleStore
             }
             catch (Exception ExRollback)
             {
-                throw ExRollback.ToSysCreditException(MethodBase.GetCurrentMethod(), DATAAR0002);
+                throw ExRollback.ToSysCreditException(MethodBase.GetCurrentMethod(), DATAARS0002);
             }
 
             throw SysCreditEx;

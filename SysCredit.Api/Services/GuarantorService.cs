@@ -17,8 +17,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 
-using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
+using static Constants.ErrorCodes;
 using static SysCredit.Helpers.ContextData;
 
 [Service<IGuarantorService>]
@@ -50,7 +50,7 @@ public class GuarantorService(IStore Store, ILogger<GuarantorService> Logger) : 
             return await Result.CreateServiceResultAsync<EntityId?>
             (
                 MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: Constants.ErrorCodes.SERVG0001 // $"{GuarantorServicePrefix}{_0001}" // TODO: "Solicitud de creación del fiador no es válido."
+                 ErrorCode: SERVG0001 // $"{GuarantorServicePrefix}{_0001}" // TODO: "Solicitud de creación del fiador no es válido."
             );
         }
 

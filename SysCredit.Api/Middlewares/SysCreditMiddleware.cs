@@ -11,18 +11,23 @@ using SysCredit.Helpers;
 using System.Data.SqlClient;
 using System.Text.Json;
 
-using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
+using static Constants.ErrorCodes;
 
 /// <summary>
 /// 
 /// </summary>
 /// <param name="Next"></param>
-/// <param name="Environment"></param>
 /// <param name="Logger"></param>
 [ErrorCategory(nameof(SysCreditMiddleware))]
+[ErrorCodePrefix(InternalServerErrorPrefix)]
 public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddleware> Logger)
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Context"></param>
+    /// <returns></returns>
     [MethodId("73E66405-D1D0-44D0-8EAB-9AC7D08742A9")]
     public async Task InvokeAsync(HttpContext Context)
     {
@@ -46,7 +51,7 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
 
             IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(CreateErrorStatusFromException(Ex));
 
-            Response.Status.ErrorCode = $"{InternalServerErrorPrefix}{_0002}";
+            Response.Status.ErrorCode = MID0002;
             Response.Status.Errors!["Procedure"] = Ex.Procedure;
             Response.Status.Errors!["SqlErrors"] = Ex.Errors.Cast<SqlError>().Select(SqlError => SqlError.Message).ToArray();
 
@@ -88,7 +93,7 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
         {
             HasError = true,
             ErrorMessage = Ex.Message,
-            ErrorCode = $"{InternalServerErrorPrefix}{_0001}",
+            ErrorCode = MID0001,
             ErrorCategory = GetType().GetErrorCategory(),
             MethodId = "73E66405-D1D0-44D0-8EAB-9AC7D08742A9",
             Extensions =

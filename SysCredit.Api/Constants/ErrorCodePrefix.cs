@@ -105,4 +105,9 @@ public static class ErrorCodePrefix
     ///     Prefijo para la clase: <see cref="SysCreditMiddleware" />.
     /// </summary>
     public const string InternalServerErrorPrefix = "MID";
+
+    /// <summary>
+    ///     Prefijo para todas las clases derivadas: <see cref="FluentValidation.AbstractValidator{T}" />
+    /// </summary>
+    public const string AbstractValidatorPrefix = "ERR";
 }

@@ -10,8 +10,11 @@ public static class Helpers
     public static string FileName(string Name)
         => $"{Name}{Constants.GeneratedFileExtension}";
 
+    public static TObject? As<TObject>(this object? @object)
+        => (TObject?)@object;
+
     public static INamedTypeSymbol GetErrorCodePrefixAttributeMetadata(this Compilation Compilation)
-        => Compilation.GetTypeByMetadataName("SysCredit.Api.Attributes.ErrorCodePrefixAttribute")!;
+        => Compilation.GetTypeByMetadataName(Constants.ErrorCodePrefixAttribute)!;
 
     public static AttributeData? GetAttributeIfExists(this INamedTypeSymbol TypeSymbol, INamedTypeSymbol AttributeSymbol)
         => TypeSymbol.GetAttributes().GetAttributeIfExists(AttributeSymbol);

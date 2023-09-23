@@ -6,7 +6,6 @@ using SysCredit.Api.Interfaces.Services;
 using SysCredit.Api.Requests;
 using SysCredit.Api.Requests.Customers;
 using SysCredit.Api.Stores;
-
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.DataTransferObject.StoredProcedures;
 using SysCredit.Helpers;
@@ -16,8 +15,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 
-using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
+using static Constants.ErrorCodes;
+
 using static SysCredit.Helpers.ContextData;
 
 /// <summary>
@@ -123,7 +123,7 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
             return await Result.CreateServiceResultAsync<EntityId?>
             (
                 MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: $"{CustomerServicePrefix}{_0001}" // TODO: "Solicitud de creación del cliente no es válido."
+                 ErrorCode: SERVC0000 // TODO: "Solicitud de creación del cliente no es válido."
             );
         }
 
@@ -145,7 +145,7 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
             return await Result.CreateServiceResultAsync<IAsyncEnumerable<ReferenceInfo>>
             (
                 MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: $"{CustomerServicePrefix}{_0002}"
+                 ErrorCode: SERVC0002
             );
         }
 
@@ -167,7 +167,7 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
             return await Result.CreateServiceResultAsync<IAsyncEnumerable<GuarantorInfo>>
             (
                 MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: $"{CustomerServicePrefix}{_0002}"
+                 ErrorCode: SERVC0003
             );
         }
 

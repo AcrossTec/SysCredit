@@ -18,4 +18,6 @@ public static class SysCreditConstants
     public const string AuthorizationHeaderName = "Authorization";
 
     public const string AuthorizationHeaderScheme = "Bearer";
+
+    public const string Log4NetConfigFile = "Log4Net.config";
 }

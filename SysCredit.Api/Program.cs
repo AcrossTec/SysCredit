@@ -1,8 +1,13 @@
-using SysCredit.Api.Constants;
+using log4net.Config;
+
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Patchers;
 
 using System.Runtime.CompilerServices;
+
+using static SysCredit.Api.Constants.SysCreditConstants;
+
+[assembly: XmlConfigurator(ConfigFile = Log4NetConfigFile, Watch = true)]
 
 var Builder = WebApplication.CreateBuilder(args);
 Builder.AddSysCreditLogging();
@@ -14,7 +19,7 @@ App.UseHttpLogging();
 App.UseSysCreditSwaggerUI();
 App.UseSysCreditMiddlewares();
 App.UseHttpsRedirection();
-App.UseCors(SysCreditConstants.CorsAllowSpecificOrigins);
+App.UseCors(CorsAllowSpecificOrigins);
 App.UseAuthentication();
 App.UseAuthorization();
 App.MapControllers();
