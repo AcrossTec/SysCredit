@@ -22,7 +22,7 @@ public interface ICustomerService
 
     ValueTask<CustomerInfo?> FetchCustomerByPhoneAsync(string? Phone);
 
-    ValueTask<IServiceResult<EntityId?>> InsertCustomerAsync(CreateCustomerRequest Request);
+    ValueTask<EntityId> InsertCustomerAsync(CreateCustomerRequest Request);
 
     ValueTask<IServiceResult<IAsyncEnumerable<ReferenceInfo>?>> FetchReferencesByCustomerIdAsync(CustomerIdRequest Request);
 
