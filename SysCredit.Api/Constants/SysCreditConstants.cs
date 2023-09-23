@@ -1,11 +1,17 @@
 ﻿namespace SysCredit.Api.Constants;
 
 /// <summary>
-/// 
+///     Constantes de uso general.
 /// </summary>
 public static class SysCreditConstants
 {
     public const string Empty = "";
+
+    public const string ErrorStatusKey = "ErrorStatus";
+
+    public const string MethodIdKey = "MethodId";
+
+    public const string DefaultKey = "DefaultKey";
 
     public const string ConnectionStringKey = "SysCreditConnectionString";
 

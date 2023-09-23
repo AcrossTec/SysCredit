@@ -109,23 +109,19 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
     [MethodId("C59A79E3-CDAD-44AF-B512-B4D58E8B1430")]
     public async ValueTask<IServiceResult<EntityId?>> InsertCustomerAsync(CreateCustomerRequest Request)
     {
-        Logger.LogInformation("[SERVICE] {Service}.{Method}(Request: {Request})",
-            nameof(CustomerService), nameof(InsertCustomerAsync),
-            Newtonsoft.Json.JsonConvert.SerializeObject(Request));
-
-        var Result = await Request.ValidateAsync(
+        await Request.ValidateAndThrowOnFailuresAsync(
             Key(nameof(CustomerStore)).Value(CustomerStore)
            .Key(nameof(GuarantorStore)).Value(GuarantorStore)
            .Key(nameof(RelationshipStore)).Value(RelationshipStore));
 
-        if (Result.HasError())
-        {
-            return await Result.CreateServiceResultAsync<EntityId?>
-            (
-                MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: SERVC0000 // TODO: "Solicitud de creación del cliente no es válido."
-            );
-        }
+        //if (Result.HasError())
+        //{
+        //    return await Result.CreateServiceResultAsync<EntityId?>
+        //    (
+        //        MethodInfo: MethodInfo.GetCurrentMethod(),
+        //         ErrorCode: SERVC0000 // TODO: "Solicitud de creación del cliente no es válido."
+        //    );
+        //}
 
         return await CustomerStore.InsertCustomerAsync(Request).CreateServiceResultAsync();
     }

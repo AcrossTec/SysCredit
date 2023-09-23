@@ -117,43 +117,420 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DATAC0000" xml:space="preserve">
+    <value />
+    <comment>Customer Store Error Code</comment>
+  </data>
   <data name="DATAC0001" xml:space="preserve">
     <value>Error registering customer</value>
+    <comment>Customer Store Error Code</comment>
   </data>
   <data name="DATAC0002" xml:space="preserve">
     <value>Error reverting client registration</value>
+    <comment>Customer Store Error Code</comment>
+  </data>
+  <data name="DATAC0003" xml:space="preserve">
+    <value />
+    <comment>Customer Store Error Code</comment>
+  </data>
+  <data name="DATAC0004" xml:space="preserve">
+    <value />
+    <comment>Customer Store Error Code</comment>
+  </data>
+  <data name="DATAC0005" xml:space="preserve">
+    <value />
+    <comment>Customer Store Error Code</comment>
+  </data>
+  <data name="DATAC0006" xml:space="preserve">
+    <value />
+    <comment>Customer Store Error Code</comment>
+  </data>
+  <data name="DATAC0007" xml:space="preserve">
+    <value />
+    <comment>Customer Store Error Code</comment>
+  </data>
+  <data name="DATAC0008" xml:space="preserve">
+    <value />
+    <comment>Customer Store Error Code</comment>
+  </data>
+  <data name="DATAC0009" xml:space="preserve">
+    <value />
+    <comment>Customer Store Error Code</comment>
+  </data>
+  <data name="DATAC0010" xml:space="preserve">
+    <value />
+    <comment>Customer Store Error Code</comment>
+  </data>
+  <data name="DATAG0000" xml:space="preserve">
+    <value />
+    <comment>Guarantor Store Error Code</comment>
   </data>
   <data name="DATAG0001" xml:space="preserve">
     <value>Guarantor registration error</value>
+    <comment>Guarantor Store Error Code</comment>
   </data>
   <data name="DATAG0002" xml:space="preserve">
     <value>Error reverting guarantor registration</value>
+    <comment>Guarantor Store Error Code</comment>
+  </data>
+  <data name="DATAG0003" xml:space="preserve">
+    <value />
+    <comment>Guarantor Store Error Code</comment>
+  </data>
+  <data name="DATAG0004" xml:space="preserve">
+    <value />
+    <comment>Guarantor Store Error Code</comment>
+  </data>
+  <data name="DATAG0005" xml:space="preserve">
+    <value />
+    <comment>Guarantor Store Error Code</comment>
+  </data>
+  <data name="DATAG0006" xml:space="preserve">
+    <value />
+    <comment>Guarantor Store Error Code</comment>
+  </data>
+  <data name="DATAG0007" xml:space="preserve">
+    <value />
+    <comment>Guarantor Store Error Code</comment>
+  </data>
+  <data name="DATAG0008" xml:space="preserve">
+    <value />
+    <comment>Guarantor Store Error Code</comment>
+  </data>
+  <data name="DATAG0009" xml:space="preserve">
+    <value />
+    <comment>Guarantor Store Error Code</comment>
+  </data>
+  <data name="DATAG0010" xml:space="preserve">
+    <value />
+    <comment>Guarantor Store Error Code</comment>
+  </data>
+  <data name="DATALT0000" xml:space="preserve">
+    <value />
+    <comment>Loan Type Store Error Code</comment>
   </data>
   <data name="DATALT0001" xml:space="preserve">
     <value>Error registering loan type</value>
+    <comment>Loan Type Store Error Code</comment>
   </data>
   <data name="DATALT0002" xml:space="preserve">
     <value>Error reversing loan type registration</value>
+    <comment>Loan Type Store Error Code</comment>
   </data>
   <data name="DATALT0003" xml:space="preserve">
     <value>Error deleting loan type</value>
+    <comment>Loan Type Store Error Code</comment>
   </data>
   <data name="DATALT0004" xml:space="preserve">
     <value>Error reversing loan type deletion</value>
+    <comment>Loan Type Store Error Code</comment>
   </data>
   <data name="DATALT0005" xml:space="preserve">
     <value>Error updating loan type</value>
+    <comment>Loan Type Store Error Code</comment>
   </data>
   <data name="DATALT0006" xml:space="preserve">
     <value>Error reversing loan type update</value>
+    <comment>Loan Type Store Error Code</comment>
+  </data>
+  <data name="DATALT0007" xml:space="preserve">
+    <value />
+    <comment>Loan Type Store Error Code</comment>
+  </data>
+  <data name="DATALT0008" xml:space="preserve">
+    <value />
+    <comment>Loan Type Store Error Code</comment>
+  </data>
+  <data name="DATALT0009" xml:space="preserve">
+    <value />
+    <comment>Loan Type Store Error Code</comment>
+  </data>
+  <data name="DATALT0010" xml:space="preserve">
+    <value />
+    <comment>Loan Type Store Error Code</comment>
+  </data>
+  <data name="DATAPF0000" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Store Error Code</comment>
+  </data>
+  <data name="DATAPF0001" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Store Error Code</comment>
+  </data>
+  <data name="DATAPF00010" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Store Error Code</comment>
+  </data>
+  <data name="DATAPF0002" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Store Error Code</comment>
+  </data>
+  <data name="DATAPF0003" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Store Error Code</comment>
+  </data>
+  <data name="DATAPF0004" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Store Error Code</comment>
+  </data>
+  <data name="DATAPF0005" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Store Error Code</comment>
+  </data>
+  <data name="DATAPF0006" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Store Error Code</comment>
+  </data>
+  <data name="DATAPF0007" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Store Error Code</comment>
+  </data>
+  <data name="DATAPF0008" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Store Error Code</comment>
+  </data>
+  <data name="DATAPF0009" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Store Error Code</comment>
+  </data>
+  <data name="MID0000" xml:space="preserve">
+    <value>Internal error in the proxy of the service: LoggingAdviceServiceProxy</value>
+    <comment>Logging Advice Service Proxy Error Code</comment>
+  </data>
+  <data name="MID0001" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0002" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0003" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0004" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0005" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0006" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0007" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0008" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0009" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0010" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0011" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0012" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0013" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0014" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0015" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0016" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0017" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0018" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0019" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MID0020" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SERVC0000" xml:space="preserve">
+    <value />
+    <comment>Customer Service Error Code</comment>
+  </data>
+  <data name="SERVC0001" xml:space="preserve">
+    <value />
+    <comment>Customer Service Error Code</comment>
   </data>
   <data name="SERVC0002" xml:space="preserve">
     <value>Customer Id does not exist</value>
+    <comment>Customer Service Error Code</comment>
   </data>
   <data name="SERVC0003" xml:space="preserve">
     <value>'{PropertyName}' There is no record with this value</value>
+    <comment>Customer Service Error Code</comment>
+  </data>
+  <data name="SERVC0004" xml:space="preserve">
+    <value />
+    <comment>Customer Service Error Code</comment>
+  </data>
+  <data name="SERVC0005" xml:space="preserve">
+    <value />
+    <comment>Customer Service Error Code</comment>
+  </data>
+  <data name="SERVC0006" xml:space="preserve">
+    <value />
+    <comment>Customer Service Error Code</comment>
+  </data>
+  <data name="SERVC0007" xml:space="preserve">
+    <value />
+    <comment>Customer Service Error Code</comment>
+  </data>
+  <data name="SERVC0008" xml:space="preserve">
+    <value />
+    <comment>Customer Service Error Code</comment>
+  </data>
+  <data name="SERVC0009" xml:space="preserve">
+    <value />
+    <comment>Customer Service Error Code</comment>
+  </data>
+  <data name="SERVC0010" xml:space="preserve">
+    <value />
+    <comment>Customer Service Error Code</comment>
+  </data>
+  <data name="SERVG0000" xml:space="preserve">
+    <value />
+    <comment>Guarantor Service Error Code</comment>
+  </data>
+  <data name="SERVG0001" xml:space="preserve">
+    <value />
+    <comment>Guarantor Service Error Code</comment>
+  </data>
+  <data name="SERVG0002" xml:space="preserve">
+    <value />
+    <comment>Guarantor Service Error Code</comment>
+  </data>
+  <data name="SERVG0003" xml:space="preserve">
+    <value />
+    <comment>Guarantor Service Error Code</comment>
+  </data>
+  <data name="SERVG0004" xml:space="preserve">
+    <value />
+    <comment>Guarantor Service Error Code</comment>
+  </data>
+  <data name="SERVG0005" xml:space="preserve">
+    <value />
+    <comment>Guarantor Service Error Code</comment>
+  </data>
+  <data name="SERVG0006" xml:space="preserve">
+    <value />
+    <comment>Guarantor Service Error Code</comment>
+  </data>
+  <data name="SERVG0007" xml:space="preserve">
+    <value />
+    <comment>Guarantor Service Error Code</comment>
+  </data>
+  <data name="SERVG0008" xml:space="preserve">
+    <value />
+    <comment>Guarantor Service Error Code</comment>
+  </data>
+  <data name="SERVG0009" xml:space="preserve">
+    <value />
+    <comment>Guarantor Service Error Code</comment>
+  </data>
+  <data name="SERVG0010" xml:space="preserve">
+    <value />
+    <comment>Guarantor Service Error Code</comment>
+  </data>
+  <data name="SERVLT0000" xml:space="preserve">
+    <value />
+    <comment>Loan Type Service Error Code</comment>
+  </data>
+  <data name="SERVLT0001" xml:space="preserve">
+    <value />
+    <comment>Loan Type Service Error Code</comment>
+  </data>
+  <data name="SERVLT0002" xml:space="preserve">
+    <value />
+    <comment>Loan Type Service Error Code</comment>
+  </data>
+  <data name="SERVLT0003" xml:space="preserve">
+    <value />
+    <comment>Loan Type Service Error Code</comment>
+  </data>
+  <data name="SERVLT0004" xml:space="preserve">
+    <value />
+    <comment>Loan Type Service Error Code</comment>
+  </data>
+  <data name="SERVLT0005" xml:space="preserve">
+    <value />
+    <comment>Loan Type Service Error Code</comment>
+  </data>
+  <data name="SERVLT0006" xml:space="preserve">
+    <value />
+    <comment>Loan Type Service Error Code</comment>
+  </data>
+  <data name="SERVLT0007" xml:space="preserve">
+    <value />
+    <comment>Loan Type Service Error Code</comment>
+  </data>
+  <data name="SERVLT0008" xml:space="preserve">
+    <value />
+    <comment>Loan Type Service Error Code</comment>
+  </data>
+  <data name="SERVLT0009" xml:space="preserve">
+    <value />
+    <comment>Loan Type Service Error Code</comment>
+  </data>
+  <data name="SERVLT0010" xml:space="preserve">
+    <value />
+    <comment>Loan Type Service Error Code</comment>
+  </data>
+  <data name="SERVPF0000" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Service Error Code</comment>
+  </data>
+  <data name="SERVPF0001" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Service Error Code</comment>
+  </data>
+  <data name="SERVPF0002" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Service Error Code</comment>
   </data>
   <data name="SERVPF0003" xml:space="preserve">
     <value>Error updating payment frequency</value>
+    <comment>Payment Frequency Service Error Code</comment>
+  </data>
+  <data name="SERVPF0004" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Service Error Code</comment>
+  </data>
+  <data name="SERVPF0005" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Service Error Code</comment>
+  </data>
+  <data name="SERVPF0006" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Service Error Code</comment>
+  </data>
+  <data name="SERVPF0007" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Service Error Code</comment>
+  </data>
+  <data name="SERVPF0008" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Service Error Code</comment>
+  </data>
+  <data name="SERVPF0009" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Service Error Code</comment>
+  </data>
+  <data name="SERVPF0010" xml:space="preserve">
+    <value />
+    <comment>Payment Frequency Service Error Code</comment>
   </data>
 </root>

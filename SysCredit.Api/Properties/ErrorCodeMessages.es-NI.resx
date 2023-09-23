@@ -156,4 +156,8 @@
   <data name="SERVPF0003" xml:space="preserve">
     <value>Error al actualizar la frecuencia de pago</value>
   </data>
+  <data name="MID0000" xml:space="preserve">
+    <value>Error interno en el proxy del servicio: LoggingAdviceServiceProxy</value>
+    <comment>Logging Advice Service Proxy Error Code</comment>
+  </data>
 </root>

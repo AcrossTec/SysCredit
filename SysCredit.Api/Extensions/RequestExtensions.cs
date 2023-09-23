@@ -46,6 +46,22 @@ public static class RequestExtensions
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="Request"></param>
+    /// <param name="ContextData"></param>
+    /// <param name="Cancellation"></param>
+    public static async ValueTask ValidateAndThrowOnFailuresAsync<TRequest>(this TRequest Request, IDictionary<string, object>? ContextData = null, CancellationToken Cancellation = default) where TRequest : IRequest
+    {
+        var ValidationResult = await ValidateAsync(Request, ContextData, Cancellation);
+
+        if (ValidationResult.HasError())
+        {
+            throw new Exceptions.ValidationException(Request, ValidationResult);
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
     /// <typeparam name="TData"></typeparam>
     /// <param name="Result"></param>
     /// <param name="MethodInfo"></param>
@@ -62,7 +78,7 @@ public static class RequestExtensions
                 MethodId = MethodInfo.GetMethodId(),
                 ErrorCode = ErrorCode,
                 ErrorCategory = MethodInfo.GetErrorCategory(),
-                ErrorMessage = ErrorCodeMessages.GetErrorCodeMessage(ErrorCode),
+                ErrorMessage = ErrorCodeMessages.GetMessageFromCode(ErrorCode),
                 Errors = Result.ErrorsToDictionary(),
             },
             Data = Data

@@ -7,15 +7,19 @@ using System.Data;
 using System.Reflection;
 
 /// <summary>
-/// 
+///     Métodos de utilería para operaciones sobre colecciones.
 /// </summary>
 public static class CollectionExtensions
 {
     /// <summary>
-    /// 
+    ///     Convierte un array de <see cref="IRequest" /> en un <see cref="DataTable" />.
     /// </summary>
-    /// <param name="Sources"></param>
-    /// <returns></returns>
+    /// <param name="Sources">
+    ///     Colección que se va ha convertir en un <see cref="DataTable" />.
+    /// </param>
+    /// <returns>
+    ///     Regresa un <see cref="DataTable" /> como el resultado de convertir <paramref name="Sources" />.
+    /// </returns>
     public static DataTable ToDataTable(this IEnumerable<IRequest> Sources)
     {
         DataTable Table = new DataTable();

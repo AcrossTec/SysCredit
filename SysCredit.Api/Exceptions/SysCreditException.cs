@@ -1,16 +1,12 @@
 ﻿namespace SysCredit.Api.Exceptions;
 
-using SysCredit.Helpers;
-
 /// <summary>
-/// 
+///     Excepción que es lanzado cuando se genera algún error.
 /// </summary>
-/// <param name="Status"></param>
-/// <param name="InnerException"></param>
-public class SysCreditException(ErrorStatus Status, Exception? InnerException = null) : Exception(Status.ErrorMessage, InnerException)
-{
-    /// <summary>
-    /// 
-    /// </summary>
-    public ErrorStatus Status { get; } = Status with { HasError = true };
-}
+/// <param name="Message">
+///     Mensaje de error que describe porque se dio el error.
+/// </param>
+/// <param name="InnerException">
+///     Excepción que se va ha encolar al <see cref="SysCreditException" />.
+/// </param>
+public class SysCreditException(string? Message, Exception? InnerException = null) : Exception(Message, InnerException);

@@ -38,7 +38,7 @@ public class AsyncVerifyIfCustomerExistsByIdValidator<T> : AsyncPropertyValidato
     /// <returns>Retorna un mensaje de error</returns>
     protected override string GetDefaultMessageTemplate(string ErrorCode)
     {
-        return ErrorCodeMessages.GetErrorCodeMessage(ErrorCode)!;
+        return ErrorCodeMessages.GetMessageFromCode(ErrorCode)!;
     }
 
     /// <summary>

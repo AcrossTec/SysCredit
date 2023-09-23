@@ -1,47 +1,26 @@
 ﻿namespace SysCredit.Api.Extensions;
 
+using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Properties;
+using SysCredit.Helpers;
 
 using System.Reflection;
-using System.Text;
 
 /// <summary>
-/// 
+///     Métodos de utilería para mejor manejo de las excepciones.
 /// </summary>
 public static class ExceptionExtensions
 {
     /// <summary>
-    /// 
+    ///     Obtiene la lista enlazada de excepciones como un array.
     /// </summary>
-    /// <param name="Ex"></param>
-    /// <returns></returns>
-    public static string GetDescription(this Exception Ex)
-    {
-        var Builder = new StringBuilder();
-
-        AddException(Builder, Ex);
-
-        return Builder.ToString();
-
-        static void AddException(StringBuilder Builder, Exception Ex)
-        {
-            Builder.AppendLine($"Message: {Ex.Message}");
-            Builder.AppendLine($"Stack Trace: {Ex.StackTrace}");
-
-            if (Ex.InnerException is not null)
-            {
-                Builder.AppendLine("Inner Exception");
-                AddException(Builder, Ex.InnerException);
-            }
-        }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="Ex"></param>
-    /// <returns></returns>
+    /// <param name="Ex">
+    ///     Excepción que sirve como puntero inicial de la lista de excepciones.
+    /// </param>
+    /// <returns>
+    ///     Regresa la lista enlazada de excepciones como un array.
+    /// </returns>
     public static IEnumerable<Exception> GetExceptions(this Exception? Ex)
     {
         while (Ex is not null)
@@ -52,42 +31,65 @@ public static class ExceptionExtensions
     }
 
     /// <summary>
-    /// 
+    ///     Obtiene la lista enlazada de excepciones como un array de cadena de mensajes.
     /// </summary>
-    /// <param name="Ex"></param>
-    /// <returns></returns>
+    /// <param name="Ex">
+    ///     Excepción que sirve como puntero inicial de la lista de excepciones.
+    /// </param>
+    /// <returns>
+    ///     Regresa la lista enlazada de excepciones como un array de cadena de mensajes.
+    /// </returns>
     public static IEnumerable<string> GetMessages(this Exception? Ex)
     {
         return Ex.GetExceptions().Select(Ex => Ex.Message);
     }
 
     /// <summary>
-    /// 
+    ///     Transforma la lista ligada de excepciones en un dicionario.
     /// </summary>
-    /// <param name="Ex"></param>
-    /// <returns></returns>
+    /// <param name="Ex">
+    ///     Excepción que sirve como puntero inicial de la lista de excepciones.
+    /// </param>
+    /// <returns>
+    ///     Regresa la lista ligada de excepciones como un diccionario de errores.
+    /// </returns>
     public static IDictionary<string, object?> ExceptionsToDictionary(this Exception? Ex)
     {
-        return Ex.GetExceptions().ToDictionary<Exception, string, object?>(Ex => Ex.GetType().Name, Ex => Ex.Message);
+        return Ex.GetExceptions().ToDictionary<Exception, string, object?>(Ex => Ex.GetType().ToString(), Ex => Ex.Message);
     }
 
     /// <summary>
-    /// 
+    ///     Convierte una Excepción general ha una posible representación de <see cref="SysCreditException" />.<br />
+    ///     En la propiedad <see cref="Exception.Data" /> con la clave <see cref="SysCreditConstants.ErrorStatusKey" /> esta la información del objeto <see cref="ErrorStatus" />.
     /// </summary>
-    /// <param name="Ex"></param>
-    /// <param name="MethodInfo"></param>
-    /// <param name="ErrorCode"></param>
-    /// <returns></returns>
+    /// <param name="Ex">
+    ///     Excepción con la información del error.
+    /// </param>
+    /// <param name="MethodInfo">
+    ///     Método que tiene los metadatos relacionado a error de <paramref name="Ex" />.
+    /// </param>
+    /// <param name="ErrorCode">
+    ///     Código de error correspondiente al error de <paramref name="Ex" />.
+    /// </param>
+    /// <returns>
+    ///     Regresa un <see cref="SysCreditException" /> como una posible representación más detallada de <see cref="Exception" />.
+    /// </returns>
     public static SysCreditException ToSysCreditException(this Exception Ex, MethodBase? MethodInfo, string ErrorCode)
     {
-        SysCreditException SysCreditEx = new(new()
+        SysCreditException SysCreditEx = new(ErrorCodeMessages.GetMessageFromCode(ErrorCode), Ex)
         {
-            MethodId = MethodInfo.GetMethodId(),
-            ErrorCode = ErrorCode,
-            ErrorMessage = ErrorCodeMessages.GetErrorCodeMessage(ErrorCode),
-            ErrorCategory = MethodInfo.GetErrorCategory(),
-            Errors = Ex.ExceptionsToDictionary()
-        }, Ex);
+            Data =
+            {
+                [SysCreditConstants.ErrorStatusKey] = new ErrorStatus()
+                {
+                    MethodId      = MethodInfo.GetMethodId(),
+                    ErrorCode     = ErrorCode,
+                    ErrorMessage  = ErrorCodeMessages.GetMessageFromCode(ErrorCode),
+                    ErrorCategory = MethodInfo.GetErrorCategory(),
+                    Errors        = Ex.ExceptionsToDictionary()
+                }
+            }
+        };
 
         return SysCreditEx;
     }
