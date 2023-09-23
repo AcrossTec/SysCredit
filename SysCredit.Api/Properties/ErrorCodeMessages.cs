@@ -6,7 +6,7 @@ using System.Resources;
 /// <summary>
 ///   A strongly-typed resource class, for looking up localized strings, etc.
 /// </summary>
-public class ErrorCodeMessages
+public static partial class ErrorCodeMessages
 {
     /// <summary>
     ///   Returns the cached ResourceManager instance used by this class.
@@ -33,7 +33,7 @@ public class ErrorCodeMessages
     /// <returns>
     ///     Return looks up a localized string .
     /// </returns>
-    public static string? GetErrorCodeMessage(string ErrorCode) => ResourceManager.GetString(ErrorCode, Culture)!;
+    public static string? GetErrorCodeMessage(string ErrorCode) => ResourceManager.GetString(ErrorCode, Culture);
 
     /// <summary>
     ///   Looks up a localized string similar to: 

@@ -3,9 +3,11 @@
 using Dapper;
 
 using SysCredit.Api.Attributes;
+using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Requests.Auths.Users;
+
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.Models;
 
@@ -14,9 +16,11 @@ using System.Reflection;
 using System.Security.Claims;
 
 using static Constants.ErrorCodes;
+using static Constants.ErrorCodePrefix;
 
 [Store]
 [ErrorCategory(nameof(UserStore))]
+[ErrorCodePrefix(UserStorePrefix)]
 public static class UserStore
 {
     /// <summary>
@@ -44,7 +48,7 @@ public static class UserStore
         }
         catch (Exception Ex)
         {
-            SysCreditException SysCreditEx = Ex.ToSysCreditException(MethodBase.GetCurrentMethod(), DATAAU0001);
+            SysCreditException SysCreditEx = Ex.ToSysCreditException(MethodBase.GetCurrentMethod(), DATAAUS0001);
 
             try
             {
@@ -52,7 +56,7 @@ public static class UserStore
             }
             catch (Exception ExRollback)
             {
-                throw ExRollback.ToSysCreditException(MethodBase.GetCurrentMethod(), DATAAU0002);
+                throw ExRollback.ToSysCreditException(MethodBase.GetCurrentMethod(), DATAAUS0002);
             }
 
             throw SysCreditEx;

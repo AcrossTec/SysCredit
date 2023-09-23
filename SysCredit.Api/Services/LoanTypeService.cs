@@ -6,15 +6,14 @@ using SysCredit.Api.Interfaces.Services;
 using SysCredit.Api.Requests.LoanType;
 using SysCredit.Api.Requests.LoanTypes;
 using SysCredit.Api.Stores;
-
 using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;
 using System.Reflection;
 
-using static Constants.ErrorCodeNumber;
 using static Constants.ErrorCodePrefix;
+using static Constants.ErrorCodes;
 using static SysCredit.Helpers.ContextData;
 
 [Service<ILoanTypeService>]
@@ -68,7 +67,7 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
             return await Result.CreateServiceResultAsync<bool>
             (
                 MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: $"{LoanTypeServicePrefix}{_0001}" // TODO: "Solicitud para eliminar el Tipo de Prestamo no válido"
+                 ErrorCode: SERVLT0000 // TODO: "Solicitud para eliminar el Tipo de Prestamo no válido"
             );
         }
 
@@ -94,7 +93,7 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
             return await Result.CreateServiceResultAsync<EntityId?>
             (
                 MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: $"{LoanTypeServicePrefix}{_0002}" // TODO: "Creación del Tipo de Prestamo no válido"
+                 ErrorCode: SERVLT0001 // TODO: "Creación del Tipo de Prestamo no válido"
             );
         }
 
@@ -117,7 +116,7 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
             return await Result.CreateServiceResultAsync<bool>
             (
                 MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: $"{LoanTypeServicePrefix}{_0003}" // TODO: "Modificación del Tipo de Prestamo no válido"
+                 ErrorCode: SERVLT0002 // TODO: "Modificación del Tipo de Prestamo no válido"
             );
         }
 
