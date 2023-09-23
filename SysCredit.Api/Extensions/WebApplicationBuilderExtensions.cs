@@ -203,7 +203,7 @@ public static class WebApplicationBuilderExtensions
 
         foreach (var (Interface, Type) in Types)
         {
-            Services.AddScoped(Interface, Provider => LoggingAdvice.Create(Interface, Type, Provider));
+            Services.AddScoped(Interface, Provider => LoggingAdviceService.Create(Interface, Type, Provider));
         }
 
         return Services;

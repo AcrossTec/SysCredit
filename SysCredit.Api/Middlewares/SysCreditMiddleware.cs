@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Http;
 
 using SysCredit.Api.Attributes;
+using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
 
@@ -35,12 +36,21 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
         {
             await Next(Context);
         }
-        catch (SysCreditException Ex)
+        catch (EndpointFlowException Ex)
         {
             Logger.LogError(Ex, Ex.Message);
             ConfigureHttpContextResponse(Context);
 
             IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(Ex.Status);
+
+            await Context.Response.WriteAsync(SerializeResponse(Response));
+        }
+        catch (SysCreditException Ex) when (Ex.Data.Contains(SysCreditConstants.ErrorStatusKey))
+        {
+            Logger.LogError(Ex, Ex.Message);
+            ConfigureHttpContextResponse(Context);
+
+            IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(Ex.Data[SysCreditConstants.ErrorStatusKey].As<ErrorStatus>());
 
             await Context.Response.WriteAsync(SerializeResponse(Response));
         }
@@ -98,10 +108,10 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
             MethodId = "73E66405-D1D0-44D0-8EAB-9AC7D08742A9",
             Extensions =
             {
-                ["ExceptionType"] = Ex.GetType().Name,
-                ["ExceptionCode"] = Ex.HResult,
-                ["ExceptionMessages"] = Ex.GetMessages().ToArray(),
-                ["ExceptionSource"] = Ex.Source,
+                ["ExceptionType"]       = Ex.GetType().Name,
+                ["ExceptionCode"]       = Ex.HResult,
+                ["ExceptionMessages"]   = Ex.GetMessages().ToArray(),
+                ["ExceptionSource"]     = Ex.Source,
                 ["ExceptionStackTrace"] = Ex.StackTrace
             }
         };

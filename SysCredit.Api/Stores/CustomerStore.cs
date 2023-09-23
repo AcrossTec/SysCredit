@@ -118,6 +118,15 @@ public static class CustomerStore
         }
     }
 
+    /// <summary>
+    ///     Agrupa todos los <paramref name="FetchCustomers" /> en un array sin duplicados de tipo <see cref="CustomerInfo" />.
+    /// </summary>
+    /// <param name="FetchCustomers">
+    ///     Lista de <see cref="FetchCustomer" /> que se va ha procesar.
+    /// </param>
+    /// <returns>
+    ///     Regresa una lista de <see cref="CustomerInfo" />.
+    /// </returns>
     private static IAsyncEnumerable<CustomerInfo> ConvertFetchCustomerToCustomerInfoAsync(this IEnumerable<FetchCustomer> FetchCustomers)
     {
         var Query =

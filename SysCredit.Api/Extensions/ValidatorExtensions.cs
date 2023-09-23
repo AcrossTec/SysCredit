@@ -16,7 +16,7 @@ using SysCredit.Api.Validations.PaymentFrequencies;
 using SysCredit.Api.Validations.References;
 using SysCredit.Api.Validations.Relationships;
 
-public static class ValidatorExtensions
+public static partial class ValidatorExtensions
 {
     public static IRuleBuilderOptions<TObject, TEnum> Enum<TObject, TEnum>(this IRuleBuilder<TObject, TEnum> RuleBuilder) where TEnum : Enum
         => RuleBuilder.SetValidator(new EnumValidator<TObject, TEnum>());
