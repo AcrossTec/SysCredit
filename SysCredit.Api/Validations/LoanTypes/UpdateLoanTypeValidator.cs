@@ -5,6 +5,9 @@ using FluentValidation;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Requests.LoanTypes;
 
+using static Constants.ErrorCodes;
+using static Constants.ErrorCodePrefix;
+
 public class UpdateLoanTypeValidator : AbstractValidator<UpdateLoanTypeRequest>
 {
     public UpdateLoanTypeValidator()
@@ -18,6 +21,7 @@ public class UpdateLoanTypeValidator : AbstractValidator<UpdateLoanTypeRequest>
         RuleFor(L => L.LoanTypeId)
             .NotEmpty()
             .NotNull()
+            .VerifyRouteWithLoanTypeId().WithErrorCode(SERVLT0004)
             .WithName("Id del Tipo de Prestamo");
     }
 }

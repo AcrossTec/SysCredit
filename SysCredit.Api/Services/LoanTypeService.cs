@@ -101,16 +101,21 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
     }
 
     /// <summary>
-    /// 
+    ///     Valida y llama al store para modificar el LoanType
     /// </summary>
-    /// <param name="LoanTypeId"></param>
-    /// <param name="Request"></param>
+    /// <param name="LoanTypeId">Contiene el Id del LoanType</param>
+    /// <param name="Request">Contiene información del LoanType que se va modificar</param>
     /// <returns></returns>
     [MethodId("11531707-8C0B-45FC-B9F1-4418897AC8A7")]
     public async ValueTask<IServiceResult<bool>> UpdateLoanTypeAsync(long LoanTypeId, UpdateLoanTypeRequest Request)
     {
-        var Result = await Request.ValidateAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
 
+        // Valida el Request y el Id del LoanType del Router
+        var Result = await Request.ValidateAsync(
+            Key(nameof(LoanTypeStore)).Value(LoanTypeStore)
+           .Key("RouteLoanTypeId").Value(LoanTypeId));
+
+        // Verifica si hubo un error en la validación
         if (Result.HasError())
         {
             return await Result.CreateServiceResultAsync<bool>
