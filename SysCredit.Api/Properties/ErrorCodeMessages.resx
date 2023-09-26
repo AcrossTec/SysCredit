@@ -253,23 +253,7 @@
     <value />
     <comment>Payment Frequency Store Error Code</comment>
   </data>
-  <data name="DATAPF0001" xml:space="preserve">
-    <value />
-    <comment>Payment Frequency Store Error Code</comment>
-  </data>
-  <data name="DATAPF00010" xml:space="preserve">
-    <value />
-    <comment>Payment Frequency Store Error Code</comment>
-  </data>
-  <data name="DATAPF0002" xml:space="preserve">
-    <value />
-    <comment>Payment Frequency Store Error Code</comment>
-  </data>
-  <data name="DATAPF0003" xml:space="preserve">
-    <value />
-    <comment>Payment Frequency Store Error Code</comment>
-  </data>
-  <data name="DATAPF0004" xml:space="preserve">
+  <data name="DATAPF0010" xml:space="preserve">
     <value />
     <comment>Payment Frequency Store Error Code</comment>
   </data>
@@ -366,6 +350,22 @@
   <data name="SERVC0001" xml:space="preserve">
     <value />
     <comment>Customer Service Error Code</comment>
+  </data>
+  <data name="DATAPF0001" xml:space="preserve">
+    <value>Error registering payment frequency</value>
+    <comment>Payment Frequency Store Error Code</comment>
+  </data>
+  <data name="DATAPF0002" xml:space="preserve">
+    <value>Error reversing payment frequency registration</value>
+    <comment>Payment Frequency Store Error Code</comment>
+  </data>
+  <data name="DATAPF0003" xml:space="preserve">
+    <value>Error deleting payment frequency </value>
+    <comment>Payment Frequency Store Error Code</comment>
+  </data>
+  <data name="DATAPF0004" xml:space="preserve">
+    <value>Error reversing payment frequency deletion</value>
+    <comment>Payment Frequency Store Error Code</comment>
   </data>
   <data name="SERVC0002" xml:space="preserve">
     <value>Customer Id does not exist</value>

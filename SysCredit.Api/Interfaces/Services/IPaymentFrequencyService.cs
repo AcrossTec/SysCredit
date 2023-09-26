@@ -15,6 +15,8 @@ public interface IPaymentFrequencyService
 
     ValueTask<IServiceResult<bool>> UpdatePaymentFrequencyAsync(long PaymentFrequencyId, UpdatePaymentFrequencyRequest Request);
 
+    ValueTask<IServiceResult<bool>> DeletePaymentFrequencyAsync(DeletePaymentFrequencyRequest Request);
+
     IAsyncEnumerable<PaymentFrequency> FetchPaymentFrequencyCompleteAsync();
 
     ValueTask<IServiceResult<EntityId?>> InsertPaymentFrequencyAsync(CreatePaymentFrequencyRequest ViewModel);

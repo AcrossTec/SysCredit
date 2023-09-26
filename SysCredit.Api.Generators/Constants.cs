@@ -3,7 +3,7 @@
 public static class Constants
 {
     public const int MinCodeNumber = 0;
-    public const int MaxCodeNumber = 500;
+    public const int MaxCodeNumber = 1000;
 
     public const string Tab = "    ";
     public const string NewLine = "\r\n";
