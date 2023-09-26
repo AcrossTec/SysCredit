@@ -6,6 +6,7 @@ using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
+using SysCredit.Api.Requests.LoanTypes;
 using SysCredit.Api.Requests.PaymentFrequencies;
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.Helpers;
@@ -76,6 +77,43 @@ public static class PaymentFrequencyStore
             throw SysCreditEx;
         }
     }
+
+    /// <summary>
+    ///     Realiza mediante el procedimiento almacenado, la eliminación lógica
+    ///     de la frecuencia de pago. Puede confirmar la eliminació o revertirla
+    /// </summary>
+    /// <param name="Store"></param>
+    /// <param name="Request"></param>
+    /// <returns></returns>
+    [MethodId("80E55584-24BE-47B4-BB38-C79FD7116BC7")]
+    public static async ValueTask<bool> DeletePaymentFrequencyAsync(this IStore<PaymentFrequency> Store, DeletePaymentFrequencyRequest Request)
+    {
+        using var SqlTransaction = await Store.BeginTransactionAsync();
+
+        try
+        {
+            int Result = await Store.ExecAsync("[dbo].[DeletePaymentFrequency]", Request, SqlTransaction);
+            SqlTransaction.Commit();
+
+            return Result > 0;
+        }
+        catch (Exception SqlEx)
+        {
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATAPF0003);
+
+            try
+            {
+                SqlTransaction.Rollback();
+            }
+            catch (Exception Ex)
+            {
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATAPF0004);
+            }
+
+            throw SysCreditEx;
+        }
+    }
+
 
     [MethodId("016C0C42-BEB3-4821-A1B1-11E91C03BB27")]
     public static async ValueTask<PaymentFrequencyInfo?> FetchPaymentFrequencyByNameAsync(this IStore<PaymentFrequency> Store, string? Name)

@@ -5,7 +5,9 @@ using Microsoft.Extensions.Logging;
 
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces.Services;
+using SysCredit.Api.Requests.LoanTypes;
 using SysCredit.Api.Requests.PaymentFrequencies;
+using SysCredit.Api.Services;
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.Helpers;
 
@@ -46,6 +48,31 @@ public class PaymentFrequencyController(IPaymentFrequencyService PaymentFrequenc
         var Result = await PaymentFrequencyService.UpdatePaymentFrequencyAsync(PaymentFrequencyId, Request);
 
         if(Result.Status.HasError)
+        {
+            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
+        }
+        else
+        {
+            return StatusCode(StatusCodes.Status204NoContent);
+        }
+    }
+
+    /// <summary>
+    ///     Esta acción lleva a cabo el borrado lógico de 
+    ///     una frecuencia de pago en particular. Con códigos
+    ///     de estado 200 OK y 500 Internal Server Error definidos
+    /// </summary>
+    /// <param name="Request"></param>
+    /// <returns></returns>
+    [HttpDelete("{PaymentFrequencyId}")]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    [ProducesErrorResponseType(typeof(IResponse<DeleteLoanTypeRequest>))]
+    public async Task<IActionResult> PaymentFrequencyTypeAsync([FromRoute] DeletePaymentFrequencyRequest Request)
+    {
+        var Result = await PaymentFrequencyService.DeletePaymentFrequencyAsync(Request);
+
+        if (Result.Status.HasError)
         {
             return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
         }

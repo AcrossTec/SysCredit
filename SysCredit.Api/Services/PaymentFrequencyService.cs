@@ -3,6 +3,7 @@
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces.Services;
+using SysCredit.Api.Requests.LoanTypes;
 using SysCredit.Api.Requests.PaymentFrequencies;
 using SysCredit.Api.Stores;
 
@@ -72,6 +73,29 @@ public class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencySt
         }
 
         return await PaymentFrequencyStore.UpdatePaymentFrequencyAsync(Request).CreateServiceResultAsync();
+    }
+
+    /// <summary>
+    ///     Consulta al PaymentFrequencyStore por los datos 
+    ///     y realizar el borrado lógico
+    /// </summary>
+    /// <param name="Request"></param>
+    /// <returns></returns>
+    [MethodId("FDB8109F-DF96-48B7-8B60-F233F2A8098F")]
+    public async ValueTask<IServiceResult<bool>> DeletePaymentFrequencyAsync(DeletePaymentFrequencyRequest Request)
+    {
+        var Result = await Request.ValidateAsync(Key(nameof(PaymentFrequencyStore)).Value(PaymentFrequencyStore));
+
+        if (Result.HasError())
+        {
+            return await Result.CreateServiceResultAsync<bool>
+            (
+                MethodInfo: MethodInfo.GetCurrentMethod(),
+                 ErrorCode: SERVPF0501 // TODO: "Solicitud para eliminar la frecuencia de pago no válido"
+            );
+        }
+
+        return await PaymentFrequencyStore.DeletePaymentFrequencyAsync(Request).CreateServiceResultAsync();
     }
 
     /// <summary>
