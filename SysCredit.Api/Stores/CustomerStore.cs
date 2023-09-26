@@ -48,6 +48,17 @@ public static class CustomerStore
     {
         return await Store.ExecQuery<FetchCustomer>("[dbo].[FetchCustomerByEmail]", new { Email }).ConvertFetchCustomerToCustomerInfoAsync().SingleOrDefaultAsync();
     }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Store"></param>
+    /// <param name="Request"></param>
+    /// <returns></returns>
+    [MethodId("C152882B-11BA-4035-8B61-E421FB5D547C")]
+    public static IAsyncEnumerable<LoanInfo> FetchLoansByCustomerIdAsync(this IStore<Customer> Store, CustomerIdRequest Request)
+    {
+        return Store.ExecQueryAsync<LoanInfo>("[dbo].[FetchLoansByCustomerId]", Request);
+    }
 
     [MethodId("7FC0C0C0-58AA-4724-97B9-FA96288688B6")]
     public static async ValueTask<CustomerInfo?> FetchCustomerByPhoneAsync(this IStore<Customer> Store, string? Phone)
