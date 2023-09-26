@@ -144,6 +144,7 @@
     <Build Include="StoredProcedures\Customers\FetchReferencesByCustomerId.sql" />
     <Build Include="StoredProcedures\Catalogs\PaymentFrequencies\DeletePaymentFrequency.sql" />
     <Build Include="StoredProcedures\Customers\FetchGuarantorsByCustomerId.sql" />
+    <Build Include="StoredProcedures\Customers\FetchLoansByCustomerId.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\AzureV12\SqlSchemas\master.dacpac">

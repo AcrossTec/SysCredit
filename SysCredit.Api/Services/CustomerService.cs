@@ -17,7 +17,6 @@ using System.Threading.Tasks;
 
 using static Constants.ErrorCodePrefix;
 using static Constants.ErrorCodes;
-
 using static SysCredit.Helpers.ContextData;
 
 /// <summary>
@@ -159,5 +158,21 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
         }
 
         return await CustomerStore.FetchGuarantorsByCustomerIdAsync(Request).CreateServiceResultAsync();
+    }
+
+    public async ValueTask<IServiceResult<IAsyncEnumerable<LoanInfo>?>> FetchLoansByCustomerIdAsync(CustomerIdRequest Request)
+    {
+        var Result = await Request.ValidateAsync(Key(nameof(CustomerStore)).Value(CustomerStore));
+
+        if (Result.HasError())
+        {
+            return await Result.CreateServiceResultAsync<IAsyncEnumerable<LoanInfo>>
+            (
+                MethodInfo: MethodInfo.GetCurrentMethod(),
+                 ErrorCode: SERVC0002
+            );
+        }
+
+        return await CustomerStore.FetchLoansByCustomerIdAsync(Request).CreateServiceResultAsync();
     }
 }

@@ -166,4 +166,26 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
             return StatusCode(StatusCodes.Status200OK, Result);
         }
     }
+    /// <summary>
+    /// Obtener todos los prestamos del cliente
+    /// </summary>
+    /// <param name="Request">Envia el Id del Cliente</param>
+    /// <returns>regres los prestamos del cliente</returns>
+    [HttpGet("{CustomerId}/Loans")]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<LoanInfo>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IResponse<CustomerIdRequest>), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> FetchLoansByCustomerIdAsync([FromRoute] CustomerIdRequest Request)
+    {
+        var Result = await CustomerService.FetchLoansByCustomerIdAsync(Request);
+
+        if (Result.Status.HasError)
+        {
+            return StatusCode(StatusCodes.Status404NotFound, await Result.ToResponseWithReplaceDataAsync(Request));
+        }
+        else
+        {
+            return StatusCode(StatusCodes.Status200OK, Result);
+        }
+    }
 }
