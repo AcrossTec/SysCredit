@@ -3,8 +3,8 @@
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces.Services;
-using SysCredit.Api.Requests.Auths.Roles;
-using SysCredit.Api.Requests.Auths.Users;
+using SysCredit.Api.Requests.Authentications.Roles;
+using SysCredit.Api.Requests.Authentications.Users;
 using SysCredit.Api.Stores;
 
 using SysCredit.DataTransferObject.Commons;
@@ -19,6 +19,11 @@ using static Constants.ErrorCodes;
 
 using static SysCredit.Helpers.ContextData;
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="Store"></param>
+/// <param name="AuthorizationService"></param>
 [Service<IAuthenticationService>]
 [ErrorCategory(nameof(AuthenticationService))]
 [ErrorCodePrefix(AuthenticationServicePrefix)]
@@ -33,7 +38,7 @@ public class AuthenticationService(IStore Store, IAuthorizationService Authoriza
     /// <param name="Request">The request containing role information to create a new role.</param>
     /// <returns>A task representing the service result with the entity ID of the created role or null if creation fails.</returns>
     [MethodId("33502022-6438-4C99-A1DD-DACE2EA00266")]
-    public async ValueTask<IServiceResult<EntityId?>> CreateRoleAsync(CreateRoleRequest Request)
+    public async ValueTask<IServiceResult<EntityId>> CreateRoleAsync(CreateRoleRequest Request)
     {
         var Result = await Request.ValidateAsync(
             Key(nameof(RoleStore)).
@@ -41,7 +46,7 @@ public class AuthenticationService(IStore Store, IAuthorizationService Authoriza
 
         if (Result.HasError())
         {
-            return await Result.CreateServiceResultAsync<EntityId?>
+            return await Result.CreateServiceResultAsync<EntityId>
             (
                 MethodInfo: MethodBase.GetCurrentMethod(),
                  ErrorCode: SERVAS0000 // ErrorMessage: "La solicitutd de creación del rol no es válida"

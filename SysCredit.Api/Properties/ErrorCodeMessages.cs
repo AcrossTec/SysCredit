@@ -11,7 +11,7 @@ public static partial class ErrorCodeMessages
     /// <summary>
     ///   Returns the cached ResourceManager instance used by this class.
     /// </summary>
-    static ErrorCodeMessages() => ResourceManager = new($"SysCredit.Api.Properties.{nameof(ErrorCodeMessages)}", typeof(ErrorCodeMessages).Assembly);
+    static ErrorCodeMessages() => ResourceManager = new($"{typeof(ErrorCodeMessages).Namespace}.{typeof(ErrorCodeMessages).Name}", typeof(ErrorCodeMessages).Assembly);
 
     /// <summary>
     ///   Returns the cached ResourceManager instance used by this class.

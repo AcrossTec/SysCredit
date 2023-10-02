@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Api.Requests.Auths;
+﻿namespace SysCredit.Api.Requests.Authentications;
 
 public class CreateClaimRequest : IRequest
 {

@@ -1,14 +1,14 @@
 ﻿namespace SysCredit.Api.Interfaces.Services;
 
-using SysCredit.Api.Requests.Auths.Roles;
-using SysCredit.Api.Requests.Auths.Users;
+using SysCredit.Api.Requests.Authentications.Roles;
+using SysCredit.Api.Requests.Authentications.Users;
 
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.Helpers;
 
 public interface IAuthenticationService
 {
-    ValueTask<IServiceResult<EntityId?>> CreateRoleAsync(CreateRoleRequest CreateRoleRequest);
+    ValueTask<IServiceResult<EntityId>> CreateRoleAsync(CreateRoleRequest CreateRoleRequest);
 
     ValueTask<IServiceResult<UserInfo?>> CreateUserAsync(CreateUserRequest Request);
 

@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Api.Requests.Auths.Roles;
+﻿namespace SysCredit.Api.Requests.Authentications.Roles;
 
 public class UpdateRoleUserRequest : IRequest
 {

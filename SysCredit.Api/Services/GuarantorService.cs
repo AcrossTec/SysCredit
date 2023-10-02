@@ -35,7 +35,7 @@ public class GuarantorService(IStore Store, ILogger<GuarantorService> Logger) : 
     /// <param name="Request"></param>
     /// <returns></returns>
     [MethodId("9FE9602F-7011-435F-83BE-F573704A932D")]
-    public async ValueTask<IServiceResult<EntityId?>> InsertGuarantorAsync(CreateGuarantorRequest Request)
+    public async ValueTask<IServiceResult<EntityId>> InsertGuarantorAsync(CreateGuarantorRequest Request)
     {
         Logger.LogInformation("[SERVICE] {Service}.{Method}(Request: {Request})",
             nameof(GuarantorService), nameof(InsertGuarantorAsync),
@@ -47,7 +47,7 @@ public class GuarantorService(IStore Store, ILogger<GuarantorService> Logger) : 
 
         if (Result.HasError())
         {
-            return await Result.CreateServiceResultAsync<EntityId?>
+            return await Result.CreateServiceResultAsync<EntityId>
             (
                 MethodInfo: MethodInfo.GetCurrentMethod(),
                  ErrorCode: SERVG0001 // $"{GuarantorServicePrefix}{_0001}" // TODO: "Solicitud de creación del fiador no es válido."

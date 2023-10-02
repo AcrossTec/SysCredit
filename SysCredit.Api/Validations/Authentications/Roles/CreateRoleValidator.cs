@@ -1,9 +1,9 @@
-﻿namespace SysCredit.Api.Validations.Auths.Roles;
+﻿namespace SysCredit.Api.Validations.Authentications.Roles;
 
 using FluentValidation;
 
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Requests.Auths.Roles;
+using SysCredit.Api.Requests.Authentications.Roles;
 
 public class CreateRoleValidator : AbstractValidator<CreateRoleRequest>
 {

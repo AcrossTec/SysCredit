@@ -6,8 +6,8 @@ using SysCredit.Api.Attributes;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
 
-using SysCredit.Api.Requests.Auths;
-using SysCredit.Api.Requests.Auths.Roles;
+using SysCredit.Api.Requests.Authentications;
+using SysCredit.Api.Requests.Authentications.Roles;
 
 using SysCredit.DataTransferObject.Commons;
 

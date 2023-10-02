@@ -1,10 +1,10 @@
-﻿namespace SysCredit.Api.Validations.Auths.Roles;
+﻿namespace SysCredit.Api.Validations.Authentications.Roles;
 
 using FluentValidation;
 using FluentValidation.Validators;
 
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Requests.Auths;
+using SysCredit.Api.Requests.Authentications;
 using SysCredit.Api.Stores;
 using SysCredit.Models;
 

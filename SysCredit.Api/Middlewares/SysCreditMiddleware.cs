@@ -17,24 +17,32 @@ using static Constants.ErrorCodePrefix;
 using static Constants.ErrorCodes;
 
 /// <summary>
-/// 
+///     Middleware que captura todas las excepciones no controladas de algún Request.
 /// </summary>
-/// <param name="Next"></param>
-/// <param name="Logger"></param>
+/// <param name="Next">
+///     Ejecuta el request actual.
+/// </param>
+/// <param name="Logger">
+///     Objeto de Logs para informar sobre el error que se está capturando.
+/// </param>
 [ErrorCategory(nameof(SysCreditMiddleware))]
 [ErrorCodePrefix(InternalServerErrorPrefix)]
 public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddleware> Logger)
 {
     /// <summary>
-    /// 
+    ///     Código único del método que captura el error.
     /// </summary>
     public const string SysCreditMiddlewareMethodId = "73E66405-D1D0-44D0-8EAB-9AC7D08742A9";
 
     /// <summary>
-    /// 
+    ///     Método que tiene información del Request actual en ejecución.
     /// </summary>
-    /// <param name="Context"></param>
-    /// <returns></returns>
+    /// <param name="Context">
+    ///     Información completa del Request que se está ejecutando.
+    /// </param>
+    /// <returns>
+    ///     Task que represanta ha <see cref="InvokeAsync(HttpContext)" /> como una operación asincrona.
+    /// </returns>
     [MethodId(SysCreditMiddlewareMethodId)]
     public async Task InvokeAsync(HttpContext Context)
     {
@@ -71,10 +79,14 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
     }
 
     /// <summary>
-    /// 
+    ///     Establece las configuraciones del Response como una respuesta Json.
     /// </summary>
-    /// <param name="Context"></param>
-    /// <param name="StatusCode"></param>
+    /// <param name="Context">
+    ///     Información detallada del Request que se está ejecutando.
+    /// </param>
+    /// <param name="StatusCode">
+    ///     Código de error del Response del Request.
+    /// </param>
     private static void ConfigureHttpContextResponse(HttpContext Context, int StatusCode)
     {
         Context.Response.ContentType = "application/json";
@@ -82,12 +94,18 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
     }
 
     /// <summary>
-    /// 
+    ///     Crea un <see cref="ErrorResponse" /> que será usado por <see cref="IResponse{T}.Data" />.
     /// </summary>
-    /// <param name="Context"></param>
-    /// <param name="StatusCode"></param>
-    /// <returns></returns>
-    private static async ValueTask<object> CreateHttpContextResponseDataAsync(HttpContext Context, int StatusCode = StatusCodes.Status500InternalServerError)
+    /// <param name="Context">
+    ///     Información detallada del Request que se está ejecutando.
+    /// </param>
+    /// <param name="StatusCode">
+    ///     Código de error del Response del Request. Por defecto tiene un valor de 500.
+    /// </param>
+    /// <returns>
+    ///     Regresa un <see cref="ErrorResponse" /> con información detallada del error del Request.
+    /// </returns>
+    private static async ValueTask<ErrorResponse> CreateHttpContextResponseDataAsync(HttpContext Context, int StatusCode = StatusCodes.Status500InternalServerError)
     {
         ConfigureHttpContextResponse(Context, StatusCode);
 
@@ -96,14 +114,14 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
         string RequestBody = await Reader.ReadToEndAsync().ConfigureAwait(false);
         Context.Request.Body.Seek(0, SeekOrigin.Begin);
 
-        return new
-        {
-            HttpMethod = Context.Request.Method,
-            Host = Context.Request.Host.ToString(),
-            Path = Context.Request.Path.ToString(),
-            QueryString = Context.Request.QueryString.ToString(),
-            Body = JsonSerializer.Deserialize<Dictionary<string, object>>(RequestBody),
-        };
+        return new ErrorResponse
+        (
+            HttpMethod: Context.Request.Method,
+            ServerHost: Context.Request.Host.ToString(),
+            EndpointPath: Context.Request.Path.ToString(),
+            QueryString: Context.Request.QueryString.ToString(),
+            RequestBody: JsonSerializer.Deserialize<Dictionary<string, object>>(RequestBody)
+        );
     }
 
     /// <summary>

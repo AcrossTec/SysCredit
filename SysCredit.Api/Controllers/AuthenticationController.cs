@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces.Services;
-using SysCredit.Api.Requests.Auths.Roles;
-using SysCredit.Api.Requests.Auths.Users;
+using SysCredit.Api.Requests.Authentications.Roles;
+using SysCredit.Api.Requests.Authentications.Users;
 
 using SysCredit.Helpers;
 

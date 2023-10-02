@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Api.Validations.Auths.Roles;
+﻿namespace SysCredit.Api.Validations.Authentications.Roles;
 
 using FluentValidation;
 using FluentValidation.Validators;

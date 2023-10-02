@@ -19,6 +19,11 @@ public class ValidationException(object ValidatedInstance, ValidationResult Vali
     public object ValidatedInstance { get; } = ValidatedInstance;
 
     /// <summary>
+    ///     TypeInfo del objeto que fue validado.
+    /// </summary>
+    public Type ValidatedInstanceType { get; } = ValidatedInstance.GetType();
+
+    /// <summary>
     ///     Información de los errores del objeto que fue validado.
     /// </summary>
     public ValidationResult ValidationResult { get; } = ValidationResult;

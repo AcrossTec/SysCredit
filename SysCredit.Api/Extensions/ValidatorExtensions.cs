@@ -2,13 +2,13 @@
 
 using FluentValidation;
 
-using SysCredit.Api.Requests.Auths;
+using SysCredit.Api.Requests.Authentications;
 using SysCredit.Api.Requests.Customers;
 using SysCredit.Api.Requests.References;
 
 using SysCredit.Api.Validations;
-using SysCredit.Api.Validations.Auths.Roles;
-using SysCredit.Api.Validations.Auths.Users;
+using SysCredit.Api.Validations.Authentications.Roles;
+using SysCredit.Api.Validations.Authentications.Users;
 using SysCredit.Api.Validations.Customers;
 using SysCredit.Api.Validations.Guarantors;
 using SysCredit.Api.Validations.LoanTypes;

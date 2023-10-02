@@ -1,9 +1,9 @@
-﻿namespace SysCredit.Api.Validations.Auths.Users;
+﻿namespace SysCredit.Api.Validations.Authentications.Users;
 
 using FluentValidation;
 
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Requests.Auths.Users;
+using SysCredit.Api.Requests.Authentications.Users;
 
 public class CreateUserValidator : AbstractValidator<CreateUserRequest>
 {

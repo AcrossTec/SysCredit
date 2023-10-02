@@ -11,6 +11,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="Options"></param>
 [Service<IAuthorizationService>]
 public class AuthorizationService(IOptions<SysCreditOptions> Options) : IAuthorizationService
 {
