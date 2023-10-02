@@ -1,9 +1,9 @@
-﻿namespace SysCredit.Api.Validations.Auths.Users;
+﻿namespace SysCredit.Api.Validations.Authentications.Users;
 
 using FluentValidation;
 using FluentValidation.Validators;
 
-using SysCredit.Api.Requests.Auths;
+using SysCredit.Api.Requests.Authentications;
 
 public class UserClaimUniqueRequestValidator<T> : PropertyValidator<T, IEnumerable<CreateClaimRequest>>
 {

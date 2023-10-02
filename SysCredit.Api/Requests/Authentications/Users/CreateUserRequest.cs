@@ -1,7 +1,7 @@
-﻿namespace SysCredit.Api.Requests.Auths.Users;
+﻿namespace SysCredit.Api.Requests.Authentications.Users;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.Validations.Auths.Users;
+using SysCredit.Api.Validations.Authentications.Users;
 
 [Validator<CreateUserValidator>]
 public class CreateUserRequest : IRequest

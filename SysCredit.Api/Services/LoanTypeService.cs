@@ -80,7 +80,7 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
     /// <param name="Request"></param>
     /// <returns></returns>
     [MethodId("09F1FC4B-5456-47CF-9F46-41F96683E7E1")]
-    public async ValueTask<IServiceResult<EntityId?>> InsertLoanTypeAsync(CreateLoanTypeRequest Request)
+    public async ValueTask<IServiceResult<EntityId>> InsertLoanTypeAsync(CreateLoanTypeRequest Request)
     {
         Logger.LogInformation("[SERVICE] {Service}.{Method}(Request: {Request})",
             nameof(LoanTypeService), nameof(InsertLoanTypeAsync),
@@ -90,7 +90,7 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
 
         if (Result.HasError())
         {
-            return await Result.CreateServiceResultAsync<EntityId?>
+            return await Result.CreateServiceResultAsync<EntityId>
             (
                 MethodInfo: MethodInfo.GetCurrentMethod(),
                  ErrorCode: SERVLT0001 // TODO: "Creación del Tipo de Prestamo no válido"

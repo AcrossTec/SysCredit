@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Api.Requests.Auths.Users;
+﻿namespace SysCredit.Api.Requests.Authentications.Users;
 
 public class ForgotPasswordRequest : IRequest
 {

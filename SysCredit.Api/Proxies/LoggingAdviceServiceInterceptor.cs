@@ -14,6 +14,7 @@ using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Threading.Tasks;
 
+using static String;
 using static Constants.ErrorCodes;
 using static Properties.ErrorCodeMessages;
 
@@ -85,18 +86,18 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     ///     Crea un <see cref="EndpointFlowException" /> desde alguna excepción generalizada.
     /// </summary>
     /// <param name="Invocation"></param>
-    /// <param name="ValidationExceptionResult"></param>
+    /// <param name="ValidationResult"></param>
     /// <returns></returns>
-    private static EndpointFlowException CreateEndpointFlowException(IInvocation Invocation, ValidationException ValidationExceptionResult)
+    private static EndpointFlowException CreateEndpointFlowException(IInvocation Invocation, ValidationException ValidationResult)
     {
         return new EndpointFlowException(new ErrorStatus
         {
             MethodId = Invocation.MethodInvocationTarget.GetMethodId(),
             ErrorCode = Invocation.MethodInvocationTarget.GetValidationErrorCode(),
-            ErrorMessage = Invocation.MethodInvocationTarget.GetValidationErrorCodeMessage(),
+            ErrorMessage = Format(Invocation.MethodInvocationTarget.GetValidationErrorCodeMessage()!, ValidationResult.ValidatedInstanceType),
             ErrorCategory = Invocation.MethodInvocationTarget.GetErrorCategory(),
-            Errors = ValidationExceptionResult.ValidationResult.ErrorsToDictionaryWithErrorCode(),
-        }, ValidationExceptionResult);
+            Errors = ValidationResult.ValidationResult.ErrorsToDictionaryWithErrorCode(),
+        }, ValidationResult);
     }
 
     /// <summary>
@@ -106,16 +107,20 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     /// <returns></returns>
     private static bool CheckMethodReturnTypeIsTaskType(MethodInfo Method)
     {
-        Type returnType = Method.ReturnType;
+        Type ReturnType = Method.ReturnType;
 
-        if (returnType.IsGenericType)
+        if (ReturnType.IsGenericType)
         {
-            if (returnType.GetGenericTypeDefinition() == typeof(Task<>) || returnType.GetGenericTypeDefinition() == typeof(ValueTask<>))
+            if (ReturnType.IsInterface && ReturnType.GetGenericTypeDefinition() == typeof(IAsyncEnumerable<>))
+            {
+                return true;
+            }
+            else if (ReturnType.GetGenericTypeDefinition() == typeof(Task<>) || ReturnType.GetGenericTypeDefinition() == typeof(ValueTask<>))
             {
                 return true;
             }
         }
-        else if (returnType == typeof(Task) || returnType == typeof(ValueTask))
+        else if (ReturnType == typeof(Task) || ReturnType == typeof(ValueTask))
         {
             return true;
         }

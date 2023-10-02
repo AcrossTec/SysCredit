@@ -1,6 +1,6 @@
 ﻿namespace SysCredit.Api.Stores;
 
-using SysCredit.Api.Requests.Auths.Roles;
+using SysCredit.Api.Requests.Authentications.Roles;
 using SysCredit.Helpers;
 using SysCredit.Models;
 

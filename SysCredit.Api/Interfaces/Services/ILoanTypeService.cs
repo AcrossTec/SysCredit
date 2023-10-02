@@ -14,7 +14,7 @@ public interface ILoanTypeService
 
     ValueTask<IServiceResult<bool>> DeleteLoanTypeAsync(DeleteLoanTypeRequest Request);
 
-    ValueTask<IServiceResult<EntityId?>> InsertLoanTypeAsync(CreateLoanTypeRequest ViewModel);
+    ValueTask<IServiceResult<EntityId>> InsertLoanTypeAsync(CreateLoanTypeRequest ViewModel);
 
     IAsyncEnumerable<LoanType> FetchLoanTypeCompleteAsync();
 

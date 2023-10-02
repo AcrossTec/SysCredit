@@ -6,7 +6,7 @@ using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Requests.Auths.Users;
+using SysCredit.Api.Requests.Authentications.Users;
 
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.Models;

@@ -18,5 +18,5 @@ public interface IGuarantorService
 
     IAsyncEnumerable<FetchGuarantor> FetchGuarantorsAsync(PaginationRequest Request);
 
-    ValueTask<IServiceResult<EntityId?>> InsertGuarantorAsync(CreateGuarantorRequest Request);
+    ValueTask<IServiceResult<EntityId>> InsertGuarantorAsync(CreateGuarantorRequest Request);
 }

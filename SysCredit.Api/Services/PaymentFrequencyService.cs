@@ -115,7 +115,7 @@ public class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencySt
     /// <param name="ViewModel"></param>
     /// <returns></returns>
     [MethodId("BC663C2B-ACE2-499B-B806-2A0BD8D77815")]
-    public async ValueTask<IServiceResult<EntityId?>> InsertPaymentFrequencyAsync(CreatePaymentFrequencyRequest Request)
+    public async ValueTask<IServiceResult<EntityId>> InsertPaymentFrequencyAsync(CreatePaymentFrequencyRequest Request)
     {
         Logger.LogInformation("[SERVICE] {Service}.{Method}(Request: {Request})",
            nameof(LoanTypeService), nameof(InsertPaymentFrequencyAsync),
@@ -125,7 +125,7 @@ public class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencySt
 
         if (Result.HasError())
         {
-            return await Result.CreateServiceResultAsync<EntityId?>
+            return await Result.CreateServiceResultAsync<EntityId>
             (
                   MethodInfo: MethodInfo.GetCurrentMethod(),
                    ErrorCode: SERVPF0002 // TODO: "Creaciòn de la Frecuencia de pago no válido"

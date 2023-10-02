@@ -19,5 +19,5 @@ public interface IPaymentFrequencyService
 
     IAsyncEnumerable<PaymentFrequency> FetchPaymentFrequencyCompleteAsync();
 
-    ValueTask<IServiceResult<EntityId?>> InsertPaymentFrequencyAsync(CreatePaymentFrequencyRequest ViewModel);
+    ValueTask<IServiceResult<EntityId>> InsertPaymentFrequencyAsync(CreatePaymentFrequencyRequest ViewModel);
 }

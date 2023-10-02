@@ -1,7 +1,7 @@
-﻿namespace SysCredit.Api.Requests.Auths.Roles;
+﻿namespace SysCredit.Api.Requests.Authentications.Roles;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.Validations.Auths.Roles;
+using SysCredit.Api.Validations.Authentications.Roles;
 
 [Validator<CreateRoleValidator>]
 public class CreateRoleRequest : IRequest
