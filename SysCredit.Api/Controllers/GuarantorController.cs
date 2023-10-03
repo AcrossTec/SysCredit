@@ -39,6 +39,20 @@ public class GuarantorController(IGuarantorService GuarantorService, ILogger<Gua
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="GuarantorId">Id de Guarantor</param>
+    /// <returns></returns>
+    [HttpGet("{GuarantorId}")]
+    [ProducesResponseType(typeof(IResponse<GuarantorInfo?>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
+    public async Task<IResponse> FetchGuarantorById(long? GuarantorId)
+    {
+        Logger.LogInformation("Endpoint [Get]: Api/Guarantor/{GuarantorId}",GuarantorId);
+        return await GuarantorService.FetchGuarantorByIdAsync(GuarantorId).ToResponseAsync();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
     /// <param name="Request"></param>
     /// <returns></returns>
     [HttpGet]
