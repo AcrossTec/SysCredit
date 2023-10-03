@@ -192,4 +192,8 @@
     <value>Error del proveedor de base de datos</value>
     <comment>SysCredit Middleware ErrorCode</comment>
   </data>
+  <data name="DATAPP0501" xml:space="preserve">
+    <value>No existe un Plan de Pago con ese Id</value>
+    <comment>Payment Plan Validator Error Code</comment>
+  </data>
 </root>

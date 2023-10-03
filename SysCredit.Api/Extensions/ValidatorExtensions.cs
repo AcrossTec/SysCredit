@@ -13,6 +13,7 @@ using SysCredit.Api.Validations.Customers;
 using SysCredit.Api.Validations.Guarantors;
 using SysCredit.Api.Validations.LoanTypes;
 using SysCredit.Api.Validations.PaymentFrequencies;
+using SysCredit.Api.Validations.PaymentPlans;
 using SysCredit.Api.Validations.References;
 using SysCredit.Api.Validations.Relationships;
 
@@ -92,4 +93,7 @@ public static partial class ValidatorExtensions
 
     public static IRuleBuilderOptions<T, long?> VerifyRouteWithLoanTypeId<T>(this IRuleBuilder<T, long?> RuleBuilder)
         => RuleBuilder.SetValidator(new VerifyRouteWithLoanTypeIdValidator<T>());
+
+    public static IRuleBuilderOptions<T, long?> VerifyIfExistPaymentPlanByIdAsync<T>(this IRuleBuilder<T, long?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncVerifyIfExistPaymentPlanByIdValidator<T>());
 }
