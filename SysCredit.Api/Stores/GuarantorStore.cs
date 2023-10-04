@@ -107,4 +107,30 @@ public static partial class GuarantorStore
             throw SysCreditEx;
         }
     }
+    [MethodId("B9BAEE11-E36E-4BE4-844A-646A72AE9BC2")]
+    public static async ValueTask<bool> DeleteGuarantorByIdAsync(this IStore<Guarantor> Store, DeleteGuarantorRequest Request)
+    {
+        using var SqlTransaction = await Store.BeginTransactionAsync();
+
+        try
+        {
+            int Result = await Store.ExecuteStoredProcedureAsync("[dbo].[DeleteGuarantorById]", Request, SqlTransaction);
+            SqlTransaction.Commit();
+
+            return Result > 0;
+        }
+        catch (Exception SqlEx)
+        {
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAG0501*/);
+            try
+            {
+                SqlTransaction.Rollback();
+            }
+            catch (Exception Ex)
+            {
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAG0502*/);
+            }
+            throw SysCreditEx;
+        }
+    }
 }

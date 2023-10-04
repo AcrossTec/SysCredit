@@ -95,4 +95,7 @@ public static partial class ValidatorExtensions
 
     public static IRuleBuilderOptions<T, string?> RelationshipUniqueNameAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
         => RuleBuilder.SetAsyncValidator(new AsyncRelationshipUniqueNameValidator<T>());
+
+    public static IRuleBuilderOptions<T, long?> VeryfyIfExistsCustomerByGuarantorIdAsync<T>(this IRuleBuilder<T, long?> RuleBuilder)
+        => RuleBuilder.SetAsyncValidator(new AsyncVerifyifCustomerByGuarantorIdValidator<T>());
 }

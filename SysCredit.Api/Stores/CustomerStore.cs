@@ -108,6 +108,21 @@ public static partial class CustomerStore
     /// <returns>
     ///     Regresa los datos del cliente sino <see langword="null" /> si este no existe.
     /// </returns>
+    /// <param name="Store"></param>
+    /// <param name="Request"></param>
+    /// <returns></returns>
+    [MethodId("C152882B-11BA-4035-8B61-E421FB5D547C")]
+    public static IAsyncEnumerable<LoanInfo> FetchLoansByCustomerIdAsync(this IStore<Customer> Store, CustomerIdRequest Request)
+    {
+        return Store.ExecuteStoredProcedureQueryAsync<LoanInfo>("[dbo].[FetchLoansByCustomerId]", Request);
+    }
+
+    [MethodId("7CC4F348-1634-492E-952E-15F34A20FE49")]
+    public static async ValueTask<CustomerInfo?> FetchCustomerByGuarantorIdAsync(this IStore<Customer> Store, long? GuarantorId)
+    {
+        return await Store.ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<CustomerInfo?>("[dbo].[FetchCustomerByGuarantorId]", new { GuarantorId });
+    }
+
     [MethodId("7FC0C0C0-58AA-4724-97B9-FA96288688B6")]
     public static async ValueTask<CustomerInfo?> FetchCustomerByPhoneAsync(this IStore<Customer> Store, string? Phone)
     {

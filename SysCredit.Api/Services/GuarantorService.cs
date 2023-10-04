@@ -25,6 +25,7 @@ using static SysCredit.Helpers.ContextData;
 [ErrorCodePrefix(GuarantorServicePrefix)]
 public partial class GuarantorService(IStore Store)
 {
+    private readonly IStore<Customer> CustomerStore = Store.GetStore<Customer>();
     private readonly IStore<Guarantor> GuarantorStore = Store.GetStore<Guarantor>();
     private readonly IStore<Relationship> RelationshipStore = Store.GetStore<Relationship>();
 
@@ -41,6 +42,13 @@ public partial class GuarantorService(IStore Store)
            .Key(nameof(GuarantorStore)).Value(GuarantorStore));
 
         return await GuarantorStore.InsertGuarantorAsync(Request);
+    }
+
+    [MethodId("6C5CFD99-1940-487F-8637-88B6033A6216")]
+    public async ValueTask<bool> DeleteGuarantorByIdAsync(DeleteGuarantorRequest Request)
+    {
+        await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(CustomerStore)).Value(CustomerStore));
+        return await GuarantorStore.DeleteGuarantorByIdAsync(Request);
     }
 
     /// <summary>

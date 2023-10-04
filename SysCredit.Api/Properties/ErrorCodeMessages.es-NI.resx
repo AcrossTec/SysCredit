@@ -201,4 +201,7 @@
   <data name="SERVR0504" xml:space="preserve">
     <value>El '{PropertyName}' de Relationship en la ruta no coincide con el Id proporcionado de la solicitud.</value>
   </data>
+  <data name="SERG0501" xml:space="preserve">
+    <value>Error al Eliminar al Fiador</value>
+  </data>
 </root>
