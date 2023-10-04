@@ -192,4 +192,8 @@
     <value>Error del proveedor de base de datos</value>
     <comment>SysCredit Middleware ErrorCode</comment>
   </data>
+  <data name="SERVL0501" xml:space="preserve">
+    <value>Error: No existe un Prestamo con ese Id</value>
+    <comment>Validator ErrorCode</comment>
+  </data>
 </root>
