@@ -71,6 +71,7 @@
     <Folder Include="StoredProcedures\Catalogs\LoanTypes" />
     <Folder Include="StoredProcedures\Catalogs\Relationships" />
     <Folder Include="StoredProcedures\Catalogs\PaymentFrequencies" />
+    <Folder Include="StoredProcedures\Catalogs\PaymentPlans" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Customer.sql" />
@@ -145,6 +146,7 @@
     <Build Include="StoredProcedures\Catalogs\PaymentFrequencies\DeletePaymentFrequency.sql" />
     <Build Include="StoredProcedures\Customers\FetchGuarantorsByCustomerId.sql" />
     <Build Include="StoredProcedures\Customers\FetchLoansByCustomerId.sql" />
+    <Build Include="StoredProcedures\Catalogs\PaymentPlans\FetchPaymentPlanByLoanId.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\AzureV12\SqlSchemas\master.dacpac">
