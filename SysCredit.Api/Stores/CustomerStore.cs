@@ -7,7 +7,6 @@ using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Requests;
 using SysCredit.Api.Requests.Customers;
-
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.DataTransferObject.StoredProcedures;
 
@@ -82,6 +81,18 @@ public static class CustomerStore
     public static IAsyncEnumerable<GuarantorInfo> FetchGuarantorsByCustomerIdAsync(this IStore<Customer> Store, CustomerIdRequest Request)
     {
         return Store.ExecQueryAsync<GuarantorInfo>("[dbo].[FetchGuarantorsByCustomerId]", Request);
+    }
+
+    /// <summary>
+    ///     Ejecuta el procedimiento almacenado para obtener el Guarantor por CustomerId y GuarantorId
+    /// </summary>
+    /// <param name="Store">Representa la conexión a la base de datos</param>
+    /// <param name="Request">Los ids que vienen de la URL</param>
+    /// <returns></returns>
+    [MethodId("16C3706A-740F-405B-9FB3-8C273513B2FC")]
+    public static ValueTask<GuarantorInfo?> FetchGuarantorByCustomerIdAndGuarantorIdAsync(this IStore<Customer> Store, GuarantorAndCustomerIdsRequest Request)
+    {
+        return Store.ExecQueryAsync<GuarantorInfo?>("[dbo].[FetchGuarantorByCustomerIdAndGuarantorId]", Request).SingleOrDefaultAsync();
     }
 
     /// <summary>
