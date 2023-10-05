@@ -5,6 +5,7 @@ using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces.Services;
 using SysCredit.Api.Requests;
 using SysCredit.Api.Requests.Customers;
+using SysCredit.Api.Requests.Guarantors;
 using SysCredit.Api.Stores;
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.DataTransferObject.StoredProcedures;
@@ -174,5 +175,16 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
         }
 
         return await CustomerStore.FetchLoansByCustomerIdAsync(Request).CreateServiceResultAsync();
+    }
+
+    /// <summary>
+    ///     Hace llamado al Store del CustomerStore
+    /// </summary>
+    /// <param name="Request">Los Ids que vienen de la URL</param>
+    /// <returns></returns>
+    [MethodId("83E60601-E1AA-4418-ADFF-663588AD58F7")]
+    public ValueTask<GuarantorInfo?> FetchGuarantorByCustomerIdAndGuarantorIdAsync(GuarantorAndCustomerIdsRequest Request)
+    {
+        return CustomerStore.FetchGuarantorByCustomerIdAndGuarantorIdAsync(Request);
     }
 }
