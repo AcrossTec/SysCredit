@@ -214,4 +214,20 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
             return StatusCode(StatusCodes.Status200OK, Result);
         }
     }
+
+    /// <summary>
+    ///     Hace llamado al Servicio de CustomerService
+    /// </summary>
+    /// <param name="Request">Los Ids que vienen de la URL</param>
+    /// <returns></returns>
+    [HttpGet("{CustomerId}/Guarantor/{GuarantorId}")]
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(IResponse<GuarantorInfo>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IResponse<GuarantorAndCustomerIdsRequest>), StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<IResponse<GuarantorInfo?>>> FetchGuarantorByCustomerIdAndGuarantorIdAsync([FromRoute] GuarantorAndCustomerIdsRequest Request)
+    {
+        var Result = await CustomerService.FetchGuarantorByCustomerIdAndGuarantorIdAsync(Request);
+
+        return StatusCode(StatusCodes.Status200OK, Result);
+    }
 }

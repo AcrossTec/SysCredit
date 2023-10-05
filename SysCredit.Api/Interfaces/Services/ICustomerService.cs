@@ -2,7 +2,6 @@
 
 using SysCredit.Api.Requests;
 using SysCredit.Api.Requests.Customers;
-
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.DataTransferObject.StoredProcedures;
 
@@ -13,6 +12,8 @@ public interface ICustomerService
     IAsyncEnumerable<SearchCustomer> SearchCustomerAsync(SearchRequest Request);
 
     IAsyncEnumerable<CustomerInfo> FetchCustomersAsync();
+
+    ValueTask<GuarantorInfo?> FetchGuarantorByCustomerIdAndGuarantorIdAsync(GuarantorAndCustomerIdsRequest Request);
 
     ValueTask<CustomerInfo?> FetchCustomerByIdAsync(long? CustomerId);
 
@@ -29,4 +30,5 @@ public interface ICustomerService
     ValueTask<IServiceResult<IAsyncEnumerable<LoanInfo>?>> FetchLoansByCustomerIdAsync(CustomerIdRequest Request);
 
     ValueTask<IServiceResult<IAsyncEnumerable<GuarantorInfo>?>> FetchGuarantorsByCustomerIdAsync(CustomerIdRequest Request);
+
 }
