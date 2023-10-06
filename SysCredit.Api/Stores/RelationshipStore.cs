@@ -12,7 +12,6 @@ using SysCredit.Models;
 using System.Reflection;
 
 using static Constants.ErrorCodePrefix;
-using static Constants.ErrorCodes;
 
 /// <summary>
 /// 
@@ -91,5 +90,18 @@ public static partial class RelationshipStore
             throw SysCreditEx;
         }
 
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Store"></param>
+    /// <param name="Request"></param>
+    /// <returns></returns>
+    [MethodId("A0F212C3-4A69-4719-B80D-E73AF3AD9D37")]
+    public static async ValueTask<long> InsertRelationshipAsync(this IStore<Relationship> Store, CreateRelationshipRequest Request)
+    {
+        // TODO: Reparar esta implementación
+        return await Store.ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<long>("[dbo].[InsertRelationship]", Request);
     }
 }
