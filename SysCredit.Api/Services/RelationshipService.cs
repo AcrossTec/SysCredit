@@ -8,9 +8,11 @@ using SysCredit.Api.Requests.Relationships;
 using SysCredit.Api.Stores;
 
 using SysCredit.DataTransferObject.Commons;
+using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
 
 using static Constants.ErrorCodePrefix;
@@ -38,6 +40,17 @@ public partial class RelationshipService(IStore<Relationship> RelationshipStore)
     public IAsyncEnumerable<RelationshipInfo> FetchRelationshipAsync()
     {
         return RelationshipStore.FetchRelationshipAsync();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="RelationshipId"></param>
+    /// <returns></returns>
+    [MethodId("17B4C153-16C2-4331-9AFF-C8F18350EAC6")]
+    public ValueTask<RelationshipInfo?> FetchRelationshipByIdAsync(long? RelationshipId)
+    {
+        return RelationshipStore.FetchRelationshipByIdAsync(RelationshipId);
     }
 
     /// <summary>
