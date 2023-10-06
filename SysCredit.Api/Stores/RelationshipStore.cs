@@ -32,4 +32,10 @@ public static class RelationshipStore
     {
         return await Store.ExecFirstOrDefaultAsync<RelationshipInfo?>("[dbo].[FetchRelationshipById]", new { RelationshipId });
     }
+
+    [MethodId("A8D714A9-0792-446D-AE24-FD6AC3A1AE23")]
+    public static async ValueTask<RelationshipInfo?> FetchRelationshipByLoanTypeIdAsync(this IStore<Relationship> Store, long LoanTypeId)
+    {
+        return await Store.ExecFirstOrDefaultAsync<RelationshipInfo?>("[dbo].[FetchRelationshipByLoanTypeId]", new { LoanTypeId });
+    }
 }

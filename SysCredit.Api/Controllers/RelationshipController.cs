@@ -27,4 +27,18 @@ public class RelationshipController(IRelationshipService RelationshipService, IL
         Logger.LogInformation("EndPoint[GET]: /Api/Relationship");
         return await RelationshipService.FetchRelationshipAsync().ToResponseAsync();
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="LoanTypeId"></param>
+    /// <returns></returns>
+    [HttpGet("/Api/Relationship/{LoanTypeId}")]
+    [ProducesResponseType(typeof(IResponse<RelationshipInfo>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
+    public async Task<IResponse<RelationshipInfo?>> FetchRelationshipByLoanTypeIdAsync([FromRoute] long LoanTypeId)
+    {
+        return await RelationshipService.FetchRelationshipByLoanTypeIdAsync(LoanTypeId).ToResponseAsync();
+    }
 }

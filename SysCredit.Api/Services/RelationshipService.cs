@@ -42,4 +42,10 @@ public class RelationshipService(IStore<Relationship> RelationshipStore, ILogger
     {
         return RelationshipStore.ExistsRelationshipAsync(RelationshipId);
     }
+
+    [MethodId("A2368CB1-B428-472B-9BAC-C117A6F84808")]
+    public ValueTask<RelationshipInfo?> FetchRelationshipByLoanTypeIdAsync(long LoanTypeId)
+    {
+        return RelationshipStore.FetchRelationshipByLoanTypeIdAsync(LoanTypeId);
+    }
 }
