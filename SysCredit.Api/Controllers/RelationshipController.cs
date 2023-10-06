@@ -96,11 +96,30 @@ public class RelationshipController(IRelationshipService RelationshipService, IL
         return await RelationshipService.FetchRelationshipByIdAsync(RelationshipId).ToResponseAsync();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Request"></param>
+    /// <returns></returns>
     [HttpPost]
     [ProducesResponseType(typeof(IResponse<long>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     public async Task<IResponse<long>> InsertRelationship([FromBody] CreateRelationshipRequest Request)
     {
+        Logger.LogInformation("EndPoint[GET]: /Api/Relationship");
         return await RelationshipService.InsertRelationshipAsync(Request).ToResponseAsync();
-    } 
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="RelationshipId"></param>
+    /// <returns></returns>
+    [HttpDelete("{RelationshipId}")]
+    [ProducesResponseType(typeof(IResponse<bool>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    public async Task<IResponse<bool>> DeleteRelationship(long RelationshipId)
+    {
+        return await RelationshipService.DeleteRelationship(RelationshipId).ToResponseAsync();
+    }
 }
