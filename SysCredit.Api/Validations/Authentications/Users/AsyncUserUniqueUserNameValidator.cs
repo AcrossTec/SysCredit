@@ -8,10 +8,11 @@ using SysCredit.Models;
 
 public class AsyncUserUniqueUserNameValidator<T> : AsyncPropertyValidator<T, string?>
 {
-    public override async Task<bool> IsValidAsync(FluentValidation.ValidationContext<T> Context, string? Value, CancellationToken cancellation)
+    public override Task<bool> IsValidAsync(FluentValidation.ValidationContext<T> Context, string? Value, CancellationToken cancellation)
     {
-        var User = await Context.RootContextData[nameof(UserStore)].AsStore<User>().FetchUserByUserNameAsync(Value);
-        return User is null;
+        // var User = await Context.RootContextData[nameof(UserStore)].AsStore<User>().FetchUserByUserNameAsync(Value);
+        // return User is null;
+        return Task.FromResult(false);
     }
 
     public override string Name => "AsyncUserUniqueUserNameValidator";

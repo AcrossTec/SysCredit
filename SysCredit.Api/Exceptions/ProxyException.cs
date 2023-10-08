@@ -9,4 +9,4 @@
 /// <param name="InnerException">
 ///     Excepción que se va ha encolar al <see cref="ProxyException" />.
 /// </param>
-public class ProxyException(string Message, Exception? InnerException = null) : Exception(Message, InnerException);
+public class ProxyException(string? Message, Exception? InnerException = null) : Exception(Message, InnerException);

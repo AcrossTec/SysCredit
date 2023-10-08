@@ -21,7 +21,7 @@ using static Constants.ErrorCodePrefix;
 [Service<IRelationshipService>]
 [ErrorCategory(nameof(RelationshipService))]
 [ErrorCodePrefix(RelationshipServicePrefix)]
-public class RelationshipService(IStore<Relationship> RelationshipStore, ILogger<RelationshipService> Logger) : IRelationshipService
+public class RelationshipService(IStore<Relationship> RelationshipStore) : IRelationshipService
 {
     /// <summary>
     /// 
@@ -29,7 +29,6 @@ public class RelationshipService(IStore<Relationship> RelationshipStore, ILogger
     /// <returns></returns>
     public IAsyncEnumerable<RelationshipInfo> FetchRelationshipAsync()
     {
-        Logger.LogInformation("[SERVICE] {Service}.{Method}()", nameof(RelationshipService), nameof(FetchRelationshipAsync));
         return RelationshipStore.FetchRelationshipAsync();
     }
 

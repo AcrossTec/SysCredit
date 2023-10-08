@@ -14,9 +14,9 @@ using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-using static String;
 using static Constants.ErrorCodes;
 using static Properties.ErrorCodeMessages;
+using static System.String;
 
 /// <summary>
 ///     Logger Proxy para todos los métodos de los servicios.<br />
@@ -26,11 +26,6 @@ using static Properties.ErrorCodeMessages;
 /// <param name="ServiceLogger"></param>
 public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IInterceptor
 {
-    /// <summary>
-    ///     Guarda el resultado del método actual ejecutado.
-    /// </summary>
-    protected object? ProceedAsyncResult { get; set; }
-
     /// <summary>
     ///     Método que intersepta los métodos de los servicios marcados por <see cref="MethodIdAttribute" />.
     /// </summary>
@@ -69,7 +64,7 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     /// </returns>
     private static ProxyException CreateProxyException(string ErrorCode, IInvocation Invocation, Exception InnerException)
     {
-        return new ProxyException(GetMessageFromCode(ErrorCode)!, InnerException)
+        return new ProxyException(GetMessageFromCode(ErrorCode), InnerException)
         {
             Data =
             {
@@ -85,9 +80,15 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     /// <summary>
     ///     Crea un <see cref="EndpointFlowException" /> desde alguna excepción generalizada.
     /// </summary>
-    /// <param name="Invocation"></param>
-    /// <param name="ValidationResult"></param>
-    /// <returns></returns>
+    /// <param name="Invocation">
+    ///     Información del método de servicio actual en ejecución.
+    /// </param>
+    /// <param name="ValidationResult">
+    ///     Resultados de validar un objeto de tipo <see cref="Requests.IRequest" />.
+    /// </param>
+    /// <returns>
+    ///     Regresa un <see cref="EndpointFlowException" /> con información detallada del error actual.
+    /// </returns>
     private static EndpointFlowException CreateEndpointFlowException(IInvocation Invocation, ValidationException ValidationResult)
     {
         return new EndpointFlowException(new ErrorStatus
@@ -101,10 +102,14 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     }
 
     /// <summary>
-    /// 
+    ///     Verifica si un método regresa una tarea asincrona.
     /// </summary>
-    /// <param name="Method"></param>
-    /// <returns></returns>
+    /// <param name="Method">
+    ///     Método que será verificado.
+    /// </param>
+    /// <returns>
+    ///     Regresa <see cref="bool">True</see> si el método regresa una tarea asincrona y <see cref="bool">False</see> si no.
+    /// </returns>
     private static bool CheckMethodReturnTypeIsTaskType(MethodInfo Method)
     {
         Type ReturnType = Method.ReturnType;
@@ -129,10 +134,14 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     }
 
     /// <summary>
-    /// 
+    ///     Verifica si un método es asincrono.
     /// </summary>
-    /// <param name="Method"></param>
-    /// <returns></returns>
+    /// <param name="Method">
+    ///     Método que será verificado.
+    /// </param>
+    /// <returns>
+    ///     Regresa True si el método es asincrono en caso contrario False.
+    /// </returns>
     private static bool IsAsyncMethod(MethodInfo Method)
     {
         bool IsAsyncStateMachine = Attribute.IsDefined(Method, typeof(AsyncStateMachineAttribute), inherit: false);
@@ -142,17 +151,23 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     }
 
     /// <summary>
-    /// 
+    ///     Método de intercepción que será invocado según el tipo de <see cref="IInvocation.ReturnValue" />.
     /// </summary>
-    /// <param name="Task"></param>
-    /// <param name="Invocation"></param>
-    /// <returns></returns>
+    /// <param name="Task">
+    ///     Tarea que representa el resultado del método asincrono.
+    /// </param>
+    /// <param name="Invocation">
+    ///     Información detallada del método que se está interceptando.
+    /// </param>
+    /// <returns>
+    ///     Regresa una nueva tarea con la misma información del método interceptado.
+    /// </returns>
     private async Task InterceptAsync(Task Task, IInvocation Invocation)
     {
         try
         {
             await Task.ConfigureAwait(continueOnCapturedContext: false);
-            await AfterProceedAsync(Invocation, HasAsynResult: false);
+            await AfterProceedAsync(Invocation, ProceedAsyncResult: null);
         }
         catch (ValidationException ValidationResult)
         {
@@ -165,19 +180,27 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     }
 
     /// <summary>
-    /// 
+    ///     Método de intercepción que será invocado según el tipo de <see cref="IInvocation.ReturnValue" />.
     /// </summary>
-    /// <typeparam name="TResult"></typeparam>
-    /// <param name="Task"></param>
-    /// <param name="Invocation"></param>
-    /// <returns></returns>
+    /// <typeparam name="TResult">
+    ///     Tipo del resultado de la tarea.
+    /// </typeparam>
+    /// <param name="Task">
+    ///     Tarea que representa el resultado del método asincrono.
+    /// </param>
+    /// <param name="Invocation">
+    ///     Información detallada del método que se está interceptando.
+    /// </param>
+    /// <returns>
+    ///     Regresa una nueva tarea con la misma información del método interceptado.
+    /// </returns>
     private async Task<TResult?> InterceptAsync<TResult>(Task<TResult> Task, IInvocation Invocation)
     {
         try
         {
-            ProceedAsyncResult = await Task.ConfigureAwait(continueOnCapturedContext: false);
-            await AfterProceedAsync(Invocation, HasAsynResult: true);
-            return (TResult?)ProceedAsyncResult;
+            TResult? ProceedAsyncResult = await Task.ConfigureAwait(continueOnCapturedContext: false);
+            await AfterProceedAsync(Invocation, ProceedAsyncResult);
+            return ProceedAsyncResult;
         }
         catch (ValidationException ValidationResult)
         {
@@ -190,17 +213,23 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     }
 
     /// <summary>
-    /// 
+    ///     Método de intercepción que será invocado según el tipo de <see cref="IInvocation.ReturnValue" />.
     /// </summary>
-    /// <param name="Task"></param>
-    /// <param name="Invocation"></param>
-    /// <returns></returns>
+    /// <param name="Task">
+    ///     Tarea que representa el resultado del método asincrono.
+    /// </param>
+    /// <param name="Invocation">
+    ///     Información detallada del método que se está interceptando.
+    /// </param>
+    /// <returns>
+    ///     Regresa una nueva tarea con la misma información del método interceptado.
+    /// </returns>
     private async ValueTask InterceptAsync(ValueTask Task, IInvocation Invocation)
     {
         try
         {
             await Task.ConfigureAwait(continueOnCapturedContext: false);
-            await AfterProceedAsync(Invocation, HasAsynResult: false);
+            await AfterProceedAsync(Invocation, ProceedAsyncResult: null);
         }
         catch (ValidationException ValidationResult)
         {
@@ -213,19 +242,27 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     }
 
     /// <summary>
-    /// 
+    ///     Método de intercepción que será invocado según el tipo de <see cref="IInvocation.ReturnValue" />.
     /// </summary>
-    /// <typeparam name="TResult"></typeparam>
-    /// <param name="Task"></param>
-    /// <param name="Invocation"></param>
-    /// <returns></returns>
+    /// <typeparam name="TResult">
+    ///     Tipo del resultado de la tarea.
+    /// </typeparam>
+    /// <param name="Task">
+    ///     Tarea que representa el resultado del método asincrono.
+    /// </param>
+    /// <param name="Invocation">
+    ///     Información detallada del método que se está interceptando.
+    /// </param>
+    /// <returns>
+    ///     Regresa una nueva tarea con la misma información del método interceptado.
+    /// </returns>
     private async ValueTask<TResult?> InterceptAsync<TResult>(ValueTask<TResult> Task, IInvocation Invocation)
     {
         try
         {
-            ProceedAsyncResult = await Task.ConfigureAwait(continueOnCapturedContext: false);
-            await AfterProceedAsync(Invocation, HasAsynResult: true);
-            return (TResult?)ProceedAsyncResult;
+            var ProceedAsyncResult = await Task.ConfigureAwait(continueOnCapturedContext: false);
+            await AfterProceedAsync(Invocation, ProceedAsyncResult);
+            return ProceedAsyncResult;
         }
         catch (ValidationException ValidationResult)
         {
@@ -238,44 +275,81 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     }
 
     /// <summary>
-    /// 
+    ///     Método de intercepción que será invocado según el tipo de <see cref="IInvocation.ReturnValue" />.
     /// </summary>
-    /// <param name="Invocation"></param>
+    /// <typeparam name="TSource">
+    ///     Tipo del resultado de la tarea.
+    /// </typeparam>
+    /// <param name="Task">
+    ///     Tarea que representa el resultado del método asincrono.
+    /// </param>
+    /// <param name="Invocation">
+    ///     Información detallada del método que se está interceptando.
+    /// </param>
+    /// <returns>
+    ///     Regresa una nueva tarea con la misma información del método interceptado.
+    /// </returns>
+    private IAsyncEnumerable<TSource> InterceptAsync<TSource>(IAsyncEnumerable<TSource> Source, IInvocation Invocation)
+    {
+        ServiceLogger.LogInformation("\n[SERVICE: Result] {MethodInfo}\n{Args}", Invocation.MethodInvocationTarget, CreateStringLogParameters(Invocation));
+        return Source;
+    }
+
+    /// <summary>
+    ///     Log que se ejecuta antes de invocar el método interceptado.
+    /// </summary>
+    /// <param name="Invocation">
+    ///     Objeto que posee toda la información relacionada al método que se está interceptando.
+    /// </param>
     private void BeforeProceed(IInvocation Invocation)
     {
         ServiceLogger.LogInformation("\n[SERVICE: Invoke] {MethodInfo}\n{Args}", Invocation.MethodInvocationTarget, CreateStringLogParameters(Invocation));
     }
 
     /// <summary>
-    /// 
+    ///     Log que se ejecuta después de invocar el método interceptado.
     /// </summary>
-    /// <param name="Invocation"></param>
+    /// <param name="Invocation">
+    ///     Objeto que posee toda la información relacionada al método que se está interceptando.
+    /// </param>
     private void AfterProceedSync(IInvocation Invocation)
     {
-        string StringArgs = Invocation.MethodInvocationTarget.ReturnType == typeof(void) ? "void" : GetStringOf((dynamic)Invocation.ReturnValue);
-        ServiceLogger.LogInformation("\n[SERVICE: Result] {MethodInfo}\nReturn: {Args}", Invocation.MethodInvocationTarget, StringArgs);
+        string Result = Invocation.MethodInvocationTarget.ReturnType == typeof(void) ? "void" : GetStringOf(Invocation.ReturnValue);
+        ServiceLogger.LogInformation("\n[SERVICE: Result] {MethodInfo}\nReturn: {Result}", Invocation.MethodInvocationTarget, Result);
     }
 
     /// <summary>
-    /// 
+    ///     Log que se ejecuta después de invocar el método asincrono interceptado.
     /// </summary>
-    /// <param name="Invocation"></param>
-    /// <param name="HasAsynResult"></param>
-    /// <returns></returns>
-    private async Task AfterProceedAsync(IInvocation Invocation, bool HasAsynResult)
-    {
-        string StringArgs = await GetStringOfAsync((dynamic?)ProceedAsyncResult);
-        ServiceLogger.LogInformation("\n[SERVICE: Result] {MethodInfo}\nReturn: {Args}", Invocation.MethodInvocationTarget, StringArgs);
-    }
-
-    /// <summary>
-    ///     Obtiene la representación en cadena de un objeto.
-    /// </summary>
-    /// <param name="object">
-    ///     Objeto que se va ha convertir ha string.
+    /// <param name="Invocation">
+    ///     Objeto que posee toda la información relacionada al método que se está interceptando.
+    /// </param>
+    /// <param name="HasAsynResult">
+    ///     Parámetro que indica si el método tiene resultados.
     /// </param>
     /// <returns>
-    ///     Regresa un objeto como un texto.
+    ///     Representa una operación asincrona sin resultados.
+    /// </returns>
+    private async Task AfterProceedAsync(IInvocation Invocation, dynamic? ProceedAsyncResult = null)
+    {
+        string Result = await GetStringOfAsync(ProceedAsyncResult);
+        ServiceLogger.LogInformation("\n[SERVICE: Result] {MethodInfo}\nReturn: {Result}", Invocation.MethodInvocationTarget, Result);
+    }
+
+    /// <inheritdoc cref="GetStringOf(object?)" />
+    private static ValueTask<string> GetStringOfAsync(object? @object)
+    {
+        return ValueTask.FromResult(GetStringOf(@object));
+    }
+
+    /// <summary>
+    ///     Obtiene la representación en cadena del objeto <paramref name="object" />.
+    /// </summary>
+    /// <param name="object">
+    ///     Objeto que se va ha convertir en string.
+    /// </param>
+    /// <returns>
+    ///     Regresa un objeto representado como texto.
     /// </returns>
     private static string GetStringOf(object? @object)
     {
@@ -293,8 +367,8 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
             // Serializar ha texto usando la implementacion nativa de DotNet.
             return JsonSerializer.Serialize(@object, new JsonSerializerOptions
             {
-                WriteIndented = true,
-                PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy
+                PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy,
+                WriteIndented = true
             });
         }
         catch
@@ -313,60 +387,6 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     }
 
     /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="Source"></param>
-    /// <returns></returns>
-    private static string GetStringOf(IAsyncEnumerable<object> Source) => GetStringOf(Source.ToEnumerable());
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="object"></param>
-    /// <returns></returns>
-    private static ValueTask<string> GetStringOfAsync(object? @object) => ValueTask.FromResult(GetStringOf(@object));
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="Source"></param>
-    /// <returns></returns>
-    private static async ValueTask<string> GetStringOfAsync(IAsyncEnumerable<object> Source) => await GetStringOfAsync(Source.ToListAsync());
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="object"></param>
-    /// <returns></returns>
-    private static ValueTask<string> GetStringOfAsync<T>(Task @object) => ValueTask.FromResult("void");
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="object"></param>
-    /// <returns></returns>
-    private static async ValueTask<string> GetStringOfAsync<T>(Task<T> @object) => GetStringOf(await @object);
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="object"></param>
-    /// <returns></returns>
-    private static ValueTask<string> GetStringOfAsync<T>(ValueTask @object) => ValueTask.FromResult("void");
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="object"></param>
-    /// <returns></returns>
-    private static async ValueTask<string> GetStringOfAsync<T>(ValueTask<T> @object) => GetStringOf(await @object);
-
-    /// <summary>
     ///     Obtiene una cadena para ser usanda como log de los argumentos de un método.
     /// </summary>
     /// <param name="MethodInfo">
@@ -380,8 +400,8 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     /// </returns>
     private static string CreateStringLogParameters(IInvocation Invocation)
     {
-        return string.Join(Environment.NewLine, Invocation.MethodInvocationTarget.GetParameters()
-            .Select((ParameterInfo, Index) => $"{ParameterInfo.Name} {GetStringOf((dynamic)Invocation.Arguments[Index])}"));
+        return Join(Environment.NewLine, Invocation.MethodInvocationTarget.GetParameters()
+            .Select((ParameterInfo, Index) => $"{ParameterInfo.Name} {GetStringOf(Invocation.Arguments[Index])}"));
     }
 
     /// <summary>

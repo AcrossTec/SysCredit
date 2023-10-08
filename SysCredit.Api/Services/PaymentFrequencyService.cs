@@ -3,7 +3,6 @@
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces.Services;
-using SysCredit.Api.Requests.LoanTypes;
 using SysCredit.Api.Requests.PaymentFrequencies;
 using SysCredit.Api.Stores;
 
@@ -12,10 +11,8 @@ using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;
-using System.Reflection;
 
 using static Constants.ErrorCodePrefix;
-using static Constants.ErrorCodes;
 
 using static SysCredit.Helpers.ContextData;
 
@@ -27,7 +24,7 @@ using static SysCredit.Helpers.ContextData;
 [Service<IPaymentFrequencyService>]
 [ErrorCategory(nameof(PaymentFrequencyService))]
 [ErrorCodePrefix(PaymentFrequencyServicePrefix)]
-public class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencyStore, ILogger<PaymentFrequencyService> Logger) : IPaymentFrequencyService
+public class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencyStore) : IPaymentFrequencyService
 {
     /// <summary>
     ///     Este método realiza una llamada asincrónica para obtener información de frecuencia de pago (DTO)
@@ -57,22 +54,13 @@ public class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencySt
     /// <param name="Request"></param>
     /// <returns></returns>
     [MethodId("54EA25C1-FD73-4FC3-8984-DEA6ACFD74C7")]
-    public async ValueTask<IServiceResult<bool>> UpdatePaymentFrequencyAsync(long PaymentFrequencyId, UpdatePaymentFrequencyRequest Request)
+    public async ValueTask<bool> UpdatePaymentFrequencyAsync(long PaymentFrequencyId, UpdatePaymentFrequencyRequest Request)
     {
-        var Result = await Request.ValidateAsync(
+        await Request.ValidateAndThrowOnFailuresAsync(
             Key(nameof(PaymentFrequencyStore)).Value(PaymentFrequencyStore)
            .Key("RoutePaymentFrequencyId").Value(PaymentFrequencyId));
 
-        if (Result.HasError())
-        {
-            return await Result.CreateServiceResultAsync<bool>
-            (
-                MethodInfo: MethodInfo.GetCurrentMethod(),
-                ErrorCode: SERVPF0003
-            );
-        }
-
-        return await PaymentFrequencyStore.UpdatePaymentFrequencyAsync(Request).CreateServiceResultAsync();
+        return await PaymentFrequencyStore.UpdatePaymentFrequencyAsync(Request);
     }
 
     /// <summary>
@@ -82,20 +70,10 @@ public class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencySt
     /// <param name="Request"></param>
     /// <returns></returns>
     [MethodId("FDB8109F-DF96-48B7-8B60-F233F2A8098F")]
-    public async ValueTask<IServiceResult<bool>> DeletePaymentFrequencyAsync(DeletePaymentFrequencyRequest Request)
+    public async ValueTask<bool> DeletePaymentFrequencyAsync(DeletePaymentFrequencyRequest Request)
     {
-        var Result = await Request.ValidateAsync(Key(nameof(PaymentFrequencyStore)).Value(PaymentFrequencyStore));
-
-        if (Result.HasError())
-        {
-            return await Result.CreateServiceResultAsync<bool>
-            (
-                MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: SERVPF0501 // TODO: "Solicitud para eliminar la frecuencia de pago no válido"
-            );
-        }
-
-        return await PaymentFrequencyStore.DeletePaymentFrequencyAsync(Request).CreateServiceResultAsync();
+        await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(PaymentFrequencyStore)).Value(PaymentFrequencyStore));
+        return await PaymentFrequencyStore.DeletePaymentFrequencyAsync(Request);
     }
 
     /// <summary>
@@ -115,23 +93,9 @@ public class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencySt
     /// <param name="ViewModel"></param>
     /// <returns></returns>
     [MethodId("BC663C2B-ACE2-499B-B806-2A0BD8D77815")]
-    public async ValueTask<IServiceResult<EntityId>> InsertPaymentFrequencyAsync(CreatePaymentFrequencyRequest Request)
+    public async ValueTask<EntityId> InsertPaymentFrequencyAsync(CreatePaymentFrequencyRequest Request)
     {
-        Logger.LogInformation("[SERVICE] {Service}.{Method}(Request: {Request})",
-           nameof(LoanTypeService), nameof(InsertPaymentFrequencyAsync),
-           Newtonsoft.Json.JsonConvert.SerializeObject(Request));
-
-        var Result = await Request.ValidateAsync(Key(nameof(PaymentFrequencyStore)).Value(PaymentFrequencyStore));
-
-        if (Result.HasError())
-        {
-            return await Result.CreateServiceResultAsync<EntityId>
-            (
-                  MethodInfo: MethodInfo.GetCurrentMethod(),
-                   ErrorCode: SERVPF0002 // TODO: "Creaciòn de la Frecuencia de pago no válido"
-            );
-        }
-
-        return await PaymentFrequencyStore.InsertPaymentFrequencyAsync(Request).CreateServiceResultAsync();
+        await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(PaymentFrequencyStore)).Value(PaymentFrequencyStore));
+        return await PaymentFrequencyStore.InsertPaymentFrequencyAsync(Request);
     }
 }

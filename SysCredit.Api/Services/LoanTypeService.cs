@@ -6,20 +6,19 @@ using SysCredit.Api.Interfaces.Services;
 using SysCredit.Api.Requests.LoanType;
 using SysCredit.Api.Requests.LoanTypes;
 using SysCredit.Api.Stores;
+
 using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;
-using System.Reflection;
 
 using static Constants.ErrorCodePrefix;
-using static Constants.ErrorCodes;
 using static SysCredit.Helpers.ContextData;
 
 [Service<ILoanTypeService>]
 [ErrorCategory(nameof(LoanTypeService))]
 [ErrorCodePrefix(LoanTypeServicePrefix)]
-public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeService> Logger) : ILoanTypeService
+public class LoanTypeService(IStore<LoanType> LoanTypeStore) : ILoanTypeService
 {
     /// <summary>
     /// 
@@ -58,20 +57,10 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
     /// <param name="Request"></param>
     /// <returns></returns>
     [MethodId("B4850869-6F13-4BAB-87C6-FF8F08B31A95")]
-    public async ValueTask<IServiceResult<bool>> DeleteLoanTypeAsync(DeleteLoanTypeRequest Request)
+    public async ValueTask<bool> DeleteLoanTypeAsync(DeleteLoanTypeRequest Request)
     {
-        var Result = await Request.ValidateAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
-
-        if (Result.HasError())
-        {
-            return await Result.CreateServiceResultAsync<bool>
-            (
-                MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: SERVLT0000 // TODO: "Solicitud para eliminar el Tipo de Prestamo no válido"
-            );
-        }
-
-        return await LoanTypeStore.DeleteLoanTypeAsync(Request).CreateServiceResultAsync();
+        await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
+        return await LoanTypeStore.DeleteLoanTypeAsync(Request);
     }
 
     /// <summary>
@@ -80,24 +69,10 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
     /// <param name="Request"></param>
     /// <returns></returns>
     [MethodId("09F1FC4B-5456-47CF-9F46-41F96683E7E1")]
-    public async ValueTask<IServiceResult<EntityId>> InsertLoanTypeAsync(CreateLoanTypeRequest Request)
+    public async ValueTask<EntityId> InsertLoanTypeAsync(CreateLoanTypeRequest Request)
     {
-        Logger.LogInformation("[SERVICE] {Service}.{Method}(Request: {Request})",
-            nameof(LoanTypeService), nameof(InsertLoanTypeAsync),
-            Newtonsoft.Json.JsonConvert.SerializeObject(Request));
-
-        var Result = await Request.ValidateAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
-
-        if (Result.HasError())
-        {
-            return await Result.CreateServiceResultAsync<EntityId>
-            (
-                MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: SERVLT0001 // TODO: "Creación del Tipo de Prestamo no válido"
-            );
-        }
-
-        return await LoanTypeStore.InsertLoanTypeAsync(Request).CreateServiceResultAsync();
+        await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
+        return await LoanTypeStore.InsertLoanTypeAsync(Request);
     }
 
     /// <summary>
@@ -107,24 +82,12 @@ public class LoanTypeService(IStore<LoanType> LoanTypeStore, ILogger<LoanTypeSer
     /// <param name="Request">Contiene información del LoanType que se va modificar</param>
     /// <returns></returns>
     [MethodId("11531707-8C0B-45FC-B9F1-4418897AC8A7")]
-    public async ValueTask<IServiceResult<bool>> UpdateLoanTypeAsync(long LoanTypeId, UpdateLoanTypeRequest Request)
+    public async ValueTask<bool> UpdateLoanTypeAsync(long LoanTypeId, UpdateLoanTypeRequest Request)
     {
-
-        // Valida el Request y el Id del LoanType del Router
-        var Result = await Request.ValidateAsync(
+        await Request.ValidateAndThrowOnFailuresAsync(
             Key(nameof(LoanTypeStore)).Value(LoanTypeStore)
            .Key("RouteLoanTypeId").Value(LoanTypeId));
 
-        // Verifica si hubo un error en la validación
-        if (Result.HasError())
-        {
-            return await Result.CreateServiceResultAsync<bool>
-            (
-                MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: SERVLT0002 // TODO: "Modificación del Tipo de Prestamo no válido"
-            );
-        }
-
-        return await LoanTypeStore.UpdateLoanTypeAsync(Request).CreateServiceResultAsync();
+        return await LoanTypeStore.UpdateLoanTypeAsync(Request);
     }
 }

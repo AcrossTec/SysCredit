@@ -7,16 +7,17 @@ using SysCredit.DataTransferObject.Commons;
 using SysCredit.DataTransferObject.StoredProcedures;
 
 using SysCredit.Helpers;
+using SysCredit.Models;
 
 using System.Collections.Generic;
 
-public interface IGuarantorService
+public partial interface IGuarantorService : IService<Guarantor>
 {
+    IAsyncEnumerable<FetchGuarantor> FetchGuarantorAsync();
+
     IAsyncEnumerable<GuarantorInfo> SearchGuarantorAsync(SearchRequest Request);
 
-    IAsyncEnumerable<FetchGuarantor> FetchGuarantorsAsync();
+    IAsyncEnumerable<FetchGuarantor> FetchGuarantorAsync(PaginationRequest Request);
 
-    IAsyncEnumerable<FetchGuarantor> FetchGuarantorsAsync(PaginationRequest Request);
-
-    ValueTask<IServiceResult<EntityId>> InsertGuarantorAsync(CreateGuarantorRequest Request);
+    ValueTask<EntityId> InsertGuarantorAsync(CreateGuarantorRequest Request);
 }

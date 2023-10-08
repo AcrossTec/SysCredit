@@ -22,7 +22,7 @@ using static Constants.ErrorCodes;
 [Store]
 [ErrorCategory(nameof(LoanTypeStore))]
 [ErrorCodePrefix(LoanTypeStorePrefix)]
-public static class LoanTypeStore
+public static partial class LoanTypeStore
 {
     /// <summary>
     /// 
@@ -41,7 +41,7 @@ public static class LoanTypeStore
         try
         {
             // Handle the exception if the transaction fails to commit.
-            await Store.ExecAsync("[dbo].[InsertLoanType]", Parameters, SqlTransaction);
+            await Store.ExecuteStoredProcedureAsync("[dbo].[InsertLoanType]", Parameters, SqlTransaction);
             SqlTransaction.Commit();
 
             return Parameters.Get<long?>(nameof(LoanType.LoanTypeId));
@@ -78,7 +78,7 @@ public static class LoanTypeStore
 
         try
         {
-            int Result = await Store.ExecAsync("[dbo].[DeleteLoanType]", Request, SqlTransaction);
+            int Result = await Store.ExecuteStoredProcedureAsync("[dbo].[DeleteLoanType]", Request, SqlTransaction);
             SqlTransaction.Commit();
 
             return Result > 0;
@@ -115,7 +115,7 @@ public static class LoanTypeStore
         try
         {
             // Ejecuta el procedimiento almacenado y se le pasa el Request con la información
-            int Result = await Store.ExecAsync("[dbo].[UpdateLoanTypeById]", Request, SqlTransaction);
+            int Result = await Store.ExecuteStoredProcedureAsync("[dbo].[UpdateLoanTypeById]", Request, SqlTransaction);
             SqlTransaction.Commit();
 
             // Si el numero de cambios es mayor que 0 se completó el procedimiento
@@ -141,7 +141,7 @@ public static class LoanTypeStore
     [MethodId("9D9648AF-EE89-4B08-9B6E-96016C086D3F")]
     public static IAsyncEnumerable<LoanTypeInfo> FetchLoanTypeAsync(this IStore<LoanType> Store)
     {
-        return Store.ExecQueryAsync<LoanTypeInfo>("[dbo].[FetchLoanTypes]");
+        return Store.ExecuteStoredProcedureQueryAsync<LoanTypeInfo>("[dbo].[FetchLoanTypes]");
     }
 
     [MethodId("313F2142-7FF6-493D-89B8-EDB56579C70C")]
@@ -153,18 +153,18 @@ public static class LoanTypeStore
     [MethodId("54B586C2-74AC-4971-AAD1-854D6CA36AD4")]
     public static async ValueTask<LoanTypeInfo?> FetchLoanTypeByName(this IStore<LoanType> Store, string? Name)
     {
-        return await Store.ExecFirstOrDefaultAsync<LoanTypeInfo?>("[dbo].[FetchLoanTypeByName]", new { Name });
+        return await Store.ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<LoanTypeInfo?>("[dbo].[FetchLoanTypeByName]", new { Name });
     }
 
     [MethodId("16F6B292-7DEB-422D-90AC-7E46B49E296B")]
     public static IAsyncEnumerable<LoanType> FetchLoanTypeCompleteAsync(this IStore<LoanType> Store)
     {
-        return Store.ExecQueryAsync<LoanType>("[dbo].[FetchLoanTypes]");
+        return Store.ExecuteStoredProcedureQueryAsync<LoanType>("[dbo].[FetchLoanTypes]");
     }
 
     [MethodId("B7FFCBE6-9430-425D-846C-E0EA17AF48CD")]
     public static async ValueTask<LoanTypeInfo?> FetchLoanTypeByIdAsync(this IStore<LoanType> Store, long? LoanTypeId)
     {
-        return await Store.ExecFirstOrDefaultAsync<LoanTypeInfo?>("[dbo].[FetchLoanTypeById]", new { LoanTypeId });
+        return await Store.ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<LoanTypeInfo?>("[dbo].[FetchLoanTypeById]", new { LoanTypeId });
     }
 }

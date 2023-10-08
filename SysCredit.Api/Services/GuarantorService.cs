@@ -14,17 +14,15 @@ using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;
-using System.Reflection;
 using System.Threading.Tasks;
 
 using static Constants.ErrorCodePrefix;
-using static Constants.ErrorCodes;
 using static SysCredit.Helpers.ContextData;
 
 [Service<IGuarantorService>]
 [ErrorCategory(nameof(GuarantorService))]
 [ErrorCodePrefix(GuarantorServicePrefix)]
-public class GuarantorService(IStore Store, ILogger<GuarantorService> Logger) : IGuarantorService
+public class GuarantorService(IStore Store) : IGuarantorService
 {
     private readonly IStore<Guarantor> GuarantorStore = Store.GetStore<Guarantor>();
     private readonly IStore<Relationship> RelationshipStore = Store.GetStore<Relationship>();
@@ -35,26 +33,13 @@ public class GuarantorService(IStore Store, ILogger<GuarantorService> Logger) : 
     /// <param name="Request"></param>
     /// <returns></returns>
     [MethodId("9FE9602F-7011-435F-83BE-F573704A932D")]
-    public async ValueTask<IServiceResult<EntityId>> InsertGuarantorAsync(CreateGuarantorRequest Request)
+    public async ValueTask<EntityId> InsertGuarantorAsync(CreateGuarantorRequest Request)
     {
-        Logger.LogInformation("[SERVICE] {Service}.{Method}(Request: {Request})",
-            nameof(GuarantorService), nameof(InsertGuarantorAsync),
-            Newtonsoft.Json.JsonConvert.SerializeObject(Request));
-
-        var Result = await Request.ValidateAsync(
+        await Request.ValidateAndThrowOnFailuresAsync(
             Key(nameof(RelationshipStore)).Value(RelationshipStore)
            .Key(nameof(GuarantorStore)).Value(GuarantorStore));
 
-        if (Result.HasError())
-        {
-            return await Result.CreateServiceResultAsync<EntityId>
-            (
-                MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: SERVG0001 // $"{GuarantorServicePrefix}{_0001}" // TODO: "Solicitud de creación del fiador no es válido."
-            );
-        }
-
-        return await GuarantorStore.InsertGuarantorAsync(Request).CreateServiceResultAsync();
+        return await GuarantorStore.InsertGuarantorAsync(Request);
     }
 
     /// <summary>
@@ -62,7 +47,7 @@ public class GuarantorService(IStore Store, ILogger<GuarantorService> Logger) : 
     /// </summary>
     /// <returns></returns>
     [MethodId("F156EE14-0CB8-477E-B9BF-0B864E26BF25")]
-    public IAsyncEnumerable<FetchGuarantor> FetchGuarantorsAsync()
+    public IAsyncEnumerable<FetchGuarantor> FetchGuarantorAsync()
     {
         return GuarantorStore.FetchGuarantorsAsync();
     }
@@ -73,7 +58,7 @@ public class GuarantorService(IStore Store, ILogger<GuarantorService> Logger) : 
     /// <param name="Request"></param>
     /// <returns></returns>
     [MethodId("4007331B-2C71-4DAF-8B00-15CBB3B3328C")]
-    public IAsyncEnumerable<FetchGuarantor> FetchGuarantorsAsync(PaginationRequest Request)
+    public IAsyncEnumerable<FetchGuarantor> FetchGuarantorAsync(PaginationRequest Request)
     {
         return GuarantorStore.FetchGuarantorsAsync(Request);
     }

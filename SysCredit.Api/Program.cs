@@ -12,7 +12,7 @@ using static SysCredit.Api.Constants.SysCreditConstants;
 var Builder = WebApplication.CreateBuilder(args);
 Builder.AddSysCreditLogging();
 Builder.AddSysCreditServices();
-Builder.AddSysCreditAuthorization();
+Builder.AddSysCreditAuthentication();
 
 var App = Builder.Build();
 App.UseHttpLogging();

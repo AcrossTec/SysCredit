@@ -7,7 +7,7 @@ using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces.Services;
 using SysCredit.Api.Requests.LoanTypes;
 using SysCredit.Api.Requests.PaymentFrequencies;
-using SysCredit.Api.Services;
+
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.Helpers;
 
@@ -45,16 +45,8 @@ public class PaymentFrequencyController(IPaymentFrequencyService PaymentFrequenc
     [ProducesErrorResponseType(typeof(IResponse<UpdatePaymentFrequencyRequest>))]
     public async Task<IActionResult> UpdatePaymentFrequency([FromRoute] long PaymentFrequencyId, [FromBody] UpdatePaymentFrequencyRequest Request)
     {
-        var Result = await PaymentFrequencyService.UpdatePaymentFrequencyAsync(PaymentFrequencyId, Request);
-
-        if(Result.Status.HasError)
-        {
-            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
-        }
-        else
-        {
-            return StatusCode(StatusCodes.Status204NoContent);
-        }
+        await PaymentFrequencyService.UpdatePaymentFrequencyAsync(PaymentFrequencyId, Request);
+        return StatusCode(StatusCodes.Status204NoContent);
     }
 
     /// <summary>
@@ -70,16 +62,8 @@ public class PaymentFrequencyController(IPaymentFrequencyService PaymentFrequenc
     [ProducesErrorResponseType(typeof(IResponse<DeleteLoanTypeRequest>))]
     public async Task<IActionResult> PaymentFrequencyTypeAsync([FromRoute] DeletePaymentFrequencyRequest Request)
     {
-        var Result = await PaymentFrequencyService.DeletePaymentFrequencyAsync(Request);
-
-        if (Result.Status.HasError)
-        {
-            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
-        }
-        else
-        {
-            return StatusCode(StatusCodes.Status204NoContent);
-        }
+        await PaymentFrequencyService.DeletePaymentFrequencyAsync(Request);
+        return StatusCode(StatusCodes.Status204NoContent);
     }
 
     /// <summary>
@@ -116,20 +100,12 @@ public class PaymentFrequencyController(IPaymentFrequencyService PaymentFrequenc
     /// <param name="Request"></param>
     /// <returns></returns>
     [HttpPost]
-    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
     [ProducesErrorResponseType(typeof(IResponse<CreatePaymentFrequencyRequest>))]
-    public async Task<IActionResult> InsertPaymentFrequencyAsync([FromBody] CreatePaymentFrequencyRequest Request)
+    public async Task<ActionResult<IResponse<EntityId>>> InsertPaymentFrequencyAsync([FromBody] CreatePaymentFrequencyRequest Request)
     {
-        var Result = await PaymentFrequencyService.InsertPaymentFrequencyAsync(Request);
-
-        if (Result.Status.HasError)
-        {
-            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
-        }
-        else
-        {
-            return StatusCode(StatusCodes.Status201Created, Result);
-        }
+        var Result = await PaymentFrequencyService.InsertPaymentFrequencyAsync(Request).ToResponseAsync();
+        return StatusCode(StatusCodes.Status201Created, Result);
     }
 }

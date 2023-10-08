@@ -13,10 +13,11 @@ using System.Threading.Tasks;
 
 public class AsyncExistRoleValidator<T> : AsyncPropertyValidator<T, IEnumerable<AssignTypeRequest>>
 {
-    public override async Task<bool> IsValidAsync(ValidationContext<T> Context, IEnumerable<AssignTypeRequest> Value, CancellationToken cancellation)
+    public override Task<bool> IsValidAsync(ValidationContext<T> Context, IEnumerable<AssignTypeRequest> Value, CancellationToken cancellation)
     {
-        var Result = await Context.RootContextData[nameof(RoleStore)].AsStore<Role>().ExistAndDuplicatedRolesAsync(Value);
-        return Result == false ? true : false;
+        // var Result = await Context.RootContextData[nameof(RoleStore)].AsStore<Role>().ExistAndDuplicatedRolesAsync(Value);
+        // return Result == false ? true : false;
+        return Task.FromResult(false);
     }
 
     protected override string GetDefaultMessageTemplate(string ErrorCode)
