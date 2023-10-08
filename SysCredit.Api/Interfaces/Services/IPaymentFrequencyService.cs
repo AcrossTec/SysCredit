@@ -7,17 +7,20 @@ using SysCredit.DataTransferObject.Commons;
 using SysCredit.Helpers;
 using SysCredit.Models;
 
-public interface IPaymentFrequencyService
+/// <summary>
+///     Servicio para las distintas operaciones de las frecuencias de pago del prestamo.
+/// </summary>
+public partial interface IPaymentFrequencyService : IService<PaymentFrequency>
 {
     IAsyncEnumerable<PaymentFrequencyInfo> FetchPaymentFrequencyAsync();
 
     ValueTask<PaymentFrequencyInfo> FetchPaymentFrequencyByIdAsync(long PaymentFrequencyId);
 
-    ValueTask<IServiceResult<bool>> UpdatePaymentFrequencyAsync(long PaymentFrequencyId, UpdatePaymentFrequencyRequest Request);
+    ValueTask<bool> UpdatePaymentFrequencyAsync(long PaymentFrequencyId, UpdatePaymentFrequencyRequest Request);
 
-    ValueTask<IServiceResult<bool>> DeletePaymentFrequencyAsync(DeletePaymentFrequencyRequest Request);
+    ValueTask<bool> DeletePaymentFrequencyAsync(DeletePaymentFrequencyRequest Request);
 
     IAsyncEnumerable<PaymentFrequency> FetchPaymentFrequencyCompleteAsync();
 
-    ValueTask<IServiceResult<EntityId>> InsertPaymentFrequencyAsync(CreatePaymentFrequencyRequest ViewModel);
+    ValueTask<EntityId> InsertPaymentFrequencyAsync(CreatePaymentFrequencyRequest ViewModel);
 }

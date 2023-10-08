@@ -8,17 +8,17 @@ using SysCredit.Models;
 
 using System.Collections.Generic;
 
-public interface ILoanTypeService
+public partial interface ILoanTypeService : IService<LoanType>
 {
     IAsyncEnumerable<LoanTypeInfo> FetchLoanTypeAsync();
 
-    ValueTask<IServiceResult<bool>> DeleteLoanTypeAsync(DeleteLoanTypeRequest Request);
+    ValueTask<bool> DeleteLoanTypeAsync(DeleteLoanTypeRequest Request);
 
-    ValueTask<IServiceResult<EntityId>> InsertLoanTypeAsync(CreateLoanTypeRequest ViewModel);
+    ValueTask<EntityId> InsertLoanTypeAsync(CreateLoanTypeRequest ViewModel);
 
     IAsyncEnumerable<LoanType> FetchLoanTypeCompleteAsync();
 
-    ValueTask<IServiceResult<bool>> UpdateLoanTypeAsync(long LoanTypeId, UpdateLoanTypeRequest Request);
+    ValueTask<bool> UpdateLoanTypeAsync(long LoanTypeId, UpdateLoanTypeRequest Request);
 
     ValueTask<LoanTypeInfo?> FetchLoanTypeByIdAsync(long? LoanTypeId);
 }

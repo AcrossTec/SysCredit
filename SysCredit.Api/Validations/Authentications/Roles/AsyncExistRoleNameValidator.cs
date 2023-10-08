@@ -10,9 +10,10 @@ using SysCredit.Models;
 
 public class AsyncExistRoleNameValidator<T> : AsyncPropertyValidator<T, string?>
 {
-    public override async Task<bool> IsValidAsync(ValidationContext<T> Context, string? Value, CancellationToken cancellation)
+    public override Task<bool> IsValidAsync(ValidationContext<T> Context, string? Value, CancellationToken cancellation)
     {
-        return (await Context.RootContextData[nameof(RoleStore)].AsStore<Role>().FetchRoleByName(Value)) is null;
+        // return (await Context.RootContextData[nameof(RoleStore)].AsStore<Role>().FetchRoleByName(Value)) is null;
+        return Task.FromResult(false);
     }
 
     protected override string GetDefaultMessageTemplate(string ErrorCode)

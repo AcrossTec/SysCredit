@@ -63,20 +63,12 @@ public class LoanTypeController(ILoanTypeService LoanTypeService, ILogger<LoanTy
     /// <returns></returns>
     [HttpDelete("{LoanTypeId}")]
     [ProducesResponseType(typeof(IResponse), StatusCodes.Status204NoContent)]
-    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
     [ProducesErrorResponseType(typeof(IResponse<DeleteLoanTypeRequest>))]
     public async Task<IActionResult> DeleteLoanTypeAsync([FromRoute] DeleteLoanTypeRequest Request)
     {
-        var Result = await LoanTypeService.DeleteLoanTypeAsync(Request);
-
-        if (Result.Status.HasError)
-        {
-            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
-        }
-        else
-        {
-            return StatusCode(StatusCodes.Status204NoContent);
-        }
+        await LoanTypeService.DeleteLoanTypeAsync(Request);
+        return StatusCode(StatusCodes.Status204NoContent);
     }
 
     /// <summary>
@@ -85,21 +77,13 @@ public class LoanTypeController(ILoanTypeService LoanTypeService, ILogger<LoanTy
     /// <param name="Request"></param>
     /// <returns></returns>
     [HttpPost]
-    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
     [ProducesErrorResponseType(typeof(IResponse<CreateLoanTypeRequest>))]
-    public async Task<IActionResult> InsertLoanTypeAsync([FromBody] CreateLoanTypeRequest Request)
+    public async Task<ActionResult<IResponse<EntityId>>> InsertLoanTypeAsync([FromBody] CreateLoanTypeRequest Request)
     {
-        var Result = await LoanTypeService.InsertLoanTypeAsync(Request);
-
-        if (Result.Status.HasError)
-        {
-            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
-        }
-        else
-        {
-            return StatusCode(StatusCodes.Status201Created, Result);
-        }
+        var Result = await LoanTypeService.InsertLoanTypeAsync(Request).ToResponseAsync();
+        return StatusCode(StatusCodes.Status201Created, Result);
     }
 
     /// <summary>
@@ -114,15 +98,7 @@ public class LoanTypeController(ILoanTypeService LoanTypeService, ILogger<LoanTy
     [ProducesErrorResponseType(typeof(IResponse<UpdateLoanTypeRequest>))]
     public async Task<IActionResult> UpdateLoanTypeAsync([FromRoute] long LoanTypeId, [FromBody] UpdateLoanTypeRequest Request)
     {
-        var Result = await LoanTypeService.UpdateLoanTypeAsync(LoanTypeId, Request);
-
-        if (Result.Status.HasError)
-        {
-            return StatusCode(StatusCodes.Status400BadRequest, await Result.ToResponseWithReplaceDataAsync(Request));
-        }
-        else
-        {
-            return StatusCode(StatusCodes.Status204NoContent);
-        }
+        await LoanTypeService.UpdateLoanTypeAsync(LoanTypeId, Request);
+        return StatusCode(StatusCodes.Status204NoContent);
     }
 }

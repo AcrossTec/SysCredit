@@ -53,23 +53,3 @@ public record class Response<T> : IResponse<T>
 public record class Response : Response<object?>
 {
 }
-
-/// <summary>
-///     Resultado de alguna operación de algún servicio.
-/// </summary>
-/// <typeparam name="T">
-///     Tipo para <see cref="IResponse{T}.Data" />.
-/// </typeparam>
-public interface IServiceResult<out T> : IResponse<T>
-{
-}
-
-/// <summary>
-///     Resultado de alguna operación de algún servicio.
-/// </summary>
-/// <typeparam name="T">
-///     Tipo para <see cref="IResponse{T}.Data" />.
-/// </typeparam>
-public record class ServiceResult<T> : Response<T>, IServiceResult<T>
-{
-}

@@ -1,5 +1,10 @@
 ﻿namespace SysCredit.Api.Interfaces.Services;
 
-public interface IReferenceService
+using SysCredit.Models;
+
+/// <summary>
+///     Servicio para las distintas operaciones relacionadas a las referencias de los clientes.
+/// </summary>
+public partial interface IReferenceService : IService<Reference>
 {
 }

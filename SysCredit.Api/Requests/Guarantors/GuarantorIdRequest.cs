@@ -1,13 +1,8 @@
 ﻿namespace SysCredit.Api.Requests.Guarantors;
 
-using SysCredit.Api.Attributes;
-using SysCredit.Api.Validations.Guarantors;
-
-
 /// <summary>
 ///     Este request recibe un id del fiador de la url
 /// </summary>
-[Validator<GuarantorIdRequestValidator>]
 public record class GuarantorIdRequest : IRequest
 {
     /// <summary>

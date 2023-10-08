@@ -27,7 +27,7 @@ using static SysCredit.Helpers.ContextData;
 [Service<ICustomerService>]
 [ErrorCategory(nameof(CustomerService))]
 [ErrorCodePrefix(CustomerServicePrefix)]
-public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : ICustomerService
+public class CustomerService(IStore Store) : ICustomerService
 {
     private readonly IStore<Customer> CustomerStore = Store.GetStore<Customer>();
     private readonly IStore<Guarantor> GuarantorStore = Store.GetStore<Guarantor>();
@@ -42,7 +42,6 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
     [MethodId("62D2191D-EF87-4A97-BFF5-4F16A5B09411")]
     public ValueTask<CustomerInfo?> FetchCustomerByIdAsync(long? CustomerId)
     {
-        Logger.LogInformation("[SERVICE] {Service}.{Method}(CustomerId: {CustomerId})", nameof(CustomerService), nameof(FetchCustomerByIdAsync), CustomerId);
         return CustomerStore.FetchCustomerByIdAsync(CustomerId);
     }
 
@@ -84,9 +83,9 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
     /// </summary>
     /// <returns></returns>
     [MethodId("A0A481C3-6D69-4B53-943E-3F5D10EE3B94")]
-    public IAsyncEnumerable<CustomerInfo> FetchCustomersAsync()
+    public IAsyncEnumerable<CustomerInfo> FetchCustomerAsync()
     {
-        return CustomerStore.FetchCustomersAsync();
+        return CustomerStore.FetchCustomerAsync();
     }
 
     /// <summary>
@@ -97,7 +96,6 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
     [MethodId("5DD66154-8EA8-4709-94BA-D892E56873EC")]
     public IAsyncEnumerable<SearchCustomer> SearchCustomerAsync(SearchRequest Request)
     {
-        Logger.LogInformation("[SERVICE] {Service}.{Method}(Request: {Request})", nameof(CustomerService), nameof(SearchCustomerAsync), Request);
         return CustomerStore.SearchCustomerAsync(Request);
     }
 
@@ -110,9 +108,9 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
     public async ValueTask<EntityId> InsertCustomerAsync(CreateCustomerRequest Request)
     {
         await Request.ValidateAndThrowOnFailuresAsync(
-            Key(nameof(CustomerStore)).Value(CustomerStore)
-           .Key(nameof(GuarantorStore)).Value(GuarantorStore)
-           .Key(nameof(RelationshipStore)).Value(RelationshipStore));
+             Key(nameof(CustomerStore)).Value(CustomerStore)
+            .Key(nameof(GuarantorStore)).Value(GuarantorStore)
+            .Key(nameof(RelationshipStore)).Value(RelationshipStore));
 
         return await CustomerStore.InsertCustomerAsync(Request);
     }
@@ -123,20 +121,9 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
     /// <param name="Request">Requiere un id</param>
     /// <returns>Retorna una lista de referencias de un cliente</returns>
     [MethodId("AE8B99A2-9CD0-4814-8741-C4329C746735")]
-    public async ValueTask<IServiceResult<IAsyncEnumerable<ReferenceInfo>?>> FetchReferencesByCustomerIdAsync(CustomerIdRequest Request)
+    public IAsyncEnumerable<ReferenceInfo> FetchReferenceByCustomerIdAsync(long? CustomerId)
     {
-        var Result = await Request.ValidateAsync(Key(nameof(CustomerStore)).Value(CustomerStore));
-
-        if (Result.HasError())
-        {
-            return await Result.CreateServiceResultAsync<IAsyncEnumerable<ReferenceInfo>>
-            (
-                MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: SERVC0002
-            );
-        }
-
-        return await CustomerStore.FetchReferencesByCustomerIdAsync(Request).CreateServiceResultAsync();
+        return CustomerStore.FetchReferenceByCustomerIdAsync(CustomerId);
     }
 
     /// <summary>
@@ -145,36 +132,14 @@ public class CustomerService(IStore Store, ILogger<CustomerService> Logger) : IC
     /// <param name="Request"></param>
     /// <returns></returns>
     [MethodId("B8AD9D4D-7129-46F2-95CB-7AED1073E070")]
-    public async ValueTask<IServiceResult<IAsyncEnumerable<GuarantorInfo>?>> FetchGuarantorsByCustomerIdAsync(CustomerIdRequest Request)
+    public IAsyncEnumerable<GuarantorInfo> FetchGuarantorByCustomerIdAsync(long? CustomerId)
     {
-        var Result = await Request.ValidateAsync(Key(nameof(CustomerStore)).Value(CustomerStore));
-
-        if (Result.HasError())
-        {
-            return await Result.CreateServiceResultAsync<IAsyncEnumerable<GuarantorInfo>>
-            (
-                MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: SERVC0003
-            );
-        }
-
-        return await CustomerStore.FetchGuarantorsByCustomerIdAsync(Request).CreateServiceResultAsync();
+        return CustomerStore.FetchGuarantorByCustomerIdAsync(CustomerId);
     }
 
-    public async ValueTask<IServiceResult<IAsyncEnumerable<LoanInfo>?>> FetchLoansByCustomerIdAsync(CustomerIdRequest Request)
+    public IAsyncEnumerable<LoanInfo> FetchLoanByCustomerIdAsync(long? CustomerId)
     {
-        var Result = await Request.ValidateAsync(Key(nameof(CustomerStore)).Value(CustomerStore));
-
-        if (Result.HasError())
-        {
-            return await Result.CreateServiceResultAsync<IAsyncEnumerable<LoanInfo>>
-            (
-                MethodInfo: MethodInfo.GetCurrentMethod(),
-                 ErrorCode: SERVC0002
-            );
-        }
-
-        return await CustomerStore.FetchLoansByCustomerIdAsync(Request).CreateServiceResultAsync();
+        return CustomerStore.FetchLoanByCustomerIdAsync(CustomerId);
     }
 
     /// <summary>

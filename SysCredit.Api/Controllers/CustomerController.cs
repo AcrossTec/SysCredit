@@ -23,19 +23,18 @@ using SysCredit.Helpers;
 /// </param>
 [ApiController]
 [Route("Api/[Controller]")]
-public class CustomerController(ICustomerService CustomerService, ILogger<CustomerController> Logger) : ControllerBase
+public class CustomerController(ICustomerService CustomerService) : ControllerBase
 {
     /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
-    [HttpGet("/Api/Customers")]
+    [HttpGet]
     [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<CustomerInfo>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
-    public async Task<IResponse> FetchCustomersAsync()
+    public async Task<IResponse<IAsyncEnumerable<CustomerInfo>>> FetchCustomersAsync()
     {
-        Logger.LogInformation("EndPoint[GET]: /Api/Customers");
-        return await CustomerService.FetchCustomersAsync().ToResponseAsync();
+        return await CustomerService.FetchCustomerAsync().ToResponseAsync();
     }
 
     /// <summary>
@@ -43,10 +42,10 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     /// </summary>
     /// <param name="Request"></param>
     /// <returns></returns>
-    [HttpGet("/Api/Customer/Search")]
+    [HttpGet("Search")]
     [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<SearchCustomer>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
-    public async Task<IResponse> SearchCustomerAsync([FromQuery] SearchRequest Request)
+    public async Task<IResponse<IAsyncEnumerable<SearchCustomer>>> SearchCustomerAsync([FromQuery] SearchRequest Request)
     {
         return await CustomerService.SearchCustomerAsync(Request).ToResponseAsync();
     }
@@ -56,7 +55,7 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     /// </summary>
     /// <param name="CustomerId"></param>
     /// <returns></returns>
-    [HttpGet("/Api/Customer/{CustomerId}")]
+    [HttpGet("{CustomerId}")]
     [ProducesResponseType(typeof(IResponse<CustomerInfo>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
     public async Task<IResponse> FetchCustomerByIdAsync(long? CustomerId)
@@ -69,7 +68,7 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     /// </summary>
     /// <param name="Identification"></param>
     /// <returns></returns>
-    [HttpGet("/Api/Customer/ByIdentification/{Identification}")]
+    [HttpGet("ByIdentification/{Identification}")]
     [ProducesResponseType(typeof(IResponse<CustomerInfo>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
     public async Task<IResponse> FetchCustomerByIdentificationAsync(string? Identification)
@@ -82,7 +81,7 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     /// </summary>
     /// <param name="Email"></param>
     /// <returns></returns>
-    [HttpGet("/Api/Customer/ByEmail/{Email}")]
+    [HttpGet("ByEmail/{Email}")]
     [ProducesResponseType(typeof(IResponse<CustomerInfo>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
     public async Task<IResponse> FetchCustomerByEmailAsync(string? Email)
@@ -95,7 +94,7 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     /// </summary>
     /// <param name="Phone"></param>
     /// <returns></returns>
-    [HttpGet("/Api/Customer/ByPhone/{Phone}")]
+    [HttpGet("ByPhone/{Phone}")]
     [ProducesResponseType(typeof(IResponse<CustomerInfo>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
     public async Task<IResponse> FetchCustomerByPhoneAsync(string? Phone)
@@ -155,18 +154,9 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<ReferenceInfo>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse<CustomerIdRequest>), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> FetchReferencesByCustomerIdAsync([FromRoute] CustomerIdRequest Request)
+    public async Task<IResponse<IAsyncEnumerable<ReferenceInfo>>> FetchReferencesByCustomerIdAsync([FromRoute] CustomerIdRequest Request)
     {
-        var Result = await CustomerService.FetchReferencesByCustomerIdAsync(Request);
-
-        if (Result.Status.HasError)
-        {
-            return StatusCode(StatusCodes.Status404NotFound, await Result.ToResponseWithReplaceDataAsync(Request));
-        }
-        else
-        {
-            return StatusCode(StatusCodes.Status200OK, Result);
-        }
+        return await CustomerService.FetchReferenceByCustomerIdAsync(Request).ToResponseAsync();
     }
 
     /// <summary>
@@ -178,18 +168,9 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<ReferenceInfo>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse<CustomerIdRequest>), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> FetchGuarantorsByCustomerIdAsync([FromRoute] CustomerIdRequest Request)
+    public async Task<IResponse<IAsyncEnumerable<GuarantorInfo>>> FetchGuarantorsByCustomerIdAsync([FromRoute] CustomerIdRequest Request)
     {
-        var Result = await CustomerService.FetchGuarantorsByCustomerIdAsync(Request);
-
-        if (Result.Status.HasError)
-        {
-            return StatusCode(StatusCodes.Status404NotFound, await Result.ToResponseWithReplaceDataAsync(Request));
-        }
-        else
-        {
-            return StatusCode(StatusCodes.Status200OK, Result);
-        }
+        return await CustomerService.FetchGuarantorByCustomerIdAsync(Request).ToResponseAsync();
     }
 
     /// <summary>
@@ -198,21 +179,12 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     /// <param name="Request">Envia el Id del Cliente</param>
     /// <returns>regres los prestamos del cliente</returns>
     [HttpGet("{CustomerId}/Loans")]
-    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<LoanInfo>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse<CustomerIdRequest>), StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> FetchLoansByCustomerIdAsync([FromRoute] CustomerIdRequest Request)
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    public async Task<IResponse<IAsyncEnumerable<LoanInfo>>> FetchLoansByCustomerIdAsync([FromRoute] CustomerIdRequest Request)
     {
-        var Result = await CustomerService.FetchLoansByCustomerIdAsync(Request);
-
-        if (Result.Status.HasError)
-        {
-            return StatusCode(StatusCodes.Status404NotFound, await Result.ToResponseWithReplaceDataAsync(Request));
-        }
-        else
-        {
-            return StatusCode(StatusCodes.Status200OK, Result);
-        }
+        return await CustomerService.FetchLoanByCustomerIdAsync(Request).ToResponseAsync();
     }
 
     /// <summary>
@@ -227,7 +199,6 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     public async Task<ActionResult<IResponse<GuarantorInfo?>>> FetchGuarantorByCustomerIdAndGuarantorIdAsync([FromRoute] GuarantorAndCustomerIdsRequest Request)
     {
         var Result = await CustomerService.FetchGuarantorByCustomerIdAndGuarantorIdAsync(Request);
-
         return StatusCode(StatusCodes.Status200OK, Result);
     }
 }

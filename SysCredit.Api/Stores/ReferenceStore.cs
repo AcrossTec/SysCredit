@@ -7,4 +7,4 @@ using static Constants.ErrorCodePrefix;
 [Store]
 [ErrorCategory(nameof(ReferenceStore))]
 [ErrorCodePrefix(ReferenceStorePrefix)]
-public static class ReferenceStore;
+public static partial class ReferenceStore;

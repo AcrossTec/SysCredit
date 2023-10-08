@@ -21,7 +21,7 @@ using static Constants.ErrorCodes;
 [Store]
 [ErrorCategory(nameof(PaymentFrequencyStore))]
 [ErrorCodePrefix(PaymentFrequencyStorePrefix)]
-public static class PaymentFrequencyStore
+public static partial class PaymentFrequencyStore
 {
     /// <summary>
     ///     Este método ejecuta una consulta en una base de datos y devuelve los resultados
@@ -32,13 +32,13 @@ public static class PaymentFrequencyStore
     [MethodId("2EF5FEB6-201C-4FF5-A70C-8D338B7241BD")]
     public static IAsyncEnumerable<PaymentFrequencyInfo> FetchPaymentFrequencyAsync(this IStore<PaymentFrequency> Store)
     {
-        return Store.ExecQueryAsync<PaymentFrequencyInfo>("[dbo].[FetchPaymentFrequency]");
+        return Store.ExecuteStoredProcedureQueryAsync<PaymentFrequencyInfo>("[dbo].[FetchPaymentFrequency]");
     }
 
     [MethodId("1A320F97-0E0C-4833-87B8-C35D546A8C4B")]
     public static async ValueTask<PaymentFrequencyInfo> FetchPaymentFrequencyByIdAsync(this IStore<PaymentFrequency> Store, long PaymentFrequencyId)
     {
-        return await Store.ExecFirstOrDefaultAsync<PaymentFrequencyInfo>("[dbo].[FetchPaymentFrequencyById]", new { PaymentFrequencyId });
+        return await Store.ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<PaymentFrequencyInfo>("[dbo].[FetchPaymentFrequencyById]", new { PaymentFrequencyId });
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ public static class PaymentFrequencyStore
 
         try
         {
-            int Result = await Store.ExecAsync("[dbo].[UpdatePaymentFrequency]", Request, SqlTransaction);
+            int Result = await Store.ExecuteStoredProcedureAsync("[dbo].[UpdatePaymentFrequency]", Request, SqlTransaction);
             SqlTransaction.Commit();
 
             return Result > 0;
@@ -92,7 +92,7 @@ public static class PaymentFrequencyStore
 
         try
         {
-            int Result = await Store.ExecAsync("[dbo].[DeletePaymentFrequency]", Request, SqlTransaction);
+            int Result = await Store.ExecuteStoredProcedureAsync("[dbo].[DeletePaymentFrequency]", Request, SqlTransaction);
             SqlTransaction.Commit();
 
             return Result > 0;
@@ -118,7 +118,7 @@ public static class PaymentFrequencyStore
     [MethodId("016C0C42-BEB3-4821-A1B1-11E91C03BB27")]
     public static async ValueTask<PaymentFrequencyInfo?> FetchPaymentFrequencyByNameAsync(this IStore<PaymentFrequency> Store, string? Name)
     {
-        return await Store.ExecFirstOrDefaultAsync<PaymentFrequencyInfo?>("[dbo].[FetchPaymentFrequencyByName]", new { Name });
+        return await Store.ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<PaymentFrequencyInfo?>("[dbo].[FetchPaymentFrequencyByName]", new { Name });
     }
 
     /// <summary>
@@ -130,7 +130,7 @@ public static class PaymentFrequencyStore
     [MethodId("2944DF4F-F5C7-41AC-B041-6BDF4CB7C443")]
     public static IAsyncEnumerable<PaymentFrequency> FetchPaymentFrequencyCompleteAsync(this IStore<PaymentFrequency> Store)
     {
-        return Store.ExecQueryAsync<PaymentFrequency>("[dbo].[FetchPaymentFrequency]");
+        return Store.ExecuteStoredProcedureQueryAsync<PaymentFrequency>("[dbo].[FetchPaymentFrequency]");
     }
 
     /// <summary>
@@ -150,7 +150,7 @@ public static class PaymentFrequencyStore
         try
         {
             // Handle the exception if the transaction fails to commit.
-            await Store.ExecAsync("[dbo].[InsertPaymentFrequency]", Parameters, SqlTransaction);
+            await Store.ExecuteStoredProcedureAsync("[dbo].[InsertPaymentFrequency]", Parameters, SqlTransaction);
             SqlTransaction.Commit();
 
             return Parameters.Get<long?>(nameof(PaymentFrequency.PaymentFrequencyId));

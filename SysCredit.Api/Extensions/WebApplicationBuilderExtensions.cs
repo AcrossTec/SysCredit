@@ -27,12 +27,12 @@ using System.Reflection;
 using System.Text;
 
 /// <summary>
-/// 
+///     Métodos de utilería para agregar todas las dependencias necesarias del sistema SysCredit.
 /// </summary>
 public static class WebApplicationBuilderExtensions
 {
     /// <summary>
-    /// 
+    ///     Configuración del Logger usado por SysCredit.
     /// </summary>
     /// <remarks>
     ///     Logging in .NET Core and ASP.NET Core
@@ -50,8 +50,12 @@ public static class WebApplicationBuilderExtensions
     ///     Apache log4net™ Manual - Configuration
     ///     https://logging.apache.org/log4net/release/manual/configuration.html
     /// </remarks>
-    /// <param name="Builder"></param>
-    /// <returns></returns>
+    /// <param name="Builder">
+    ///     Objeto Builder con la información necesario para crear un <see cref="WebApplication" />.
+    /// </param>
+    /// <returns>
+    ///    Regresa el mismo objeto <paramref name="Builder" /> para habilitar la invocación en cadena.
+    /// </returns>
     public static WebApplicationBuilder AddSysCreditLogging(this WebApplicationBuilder Builder)
     {
         Builder.Logging.ClearProviders();
@@ -77,10 +81,14 @@ public static class WebApplicationBuilderExtensions
     }
 
     /// <summary>
-    /// 
+    ///     Configura todas las injecciones de dependencias de SysCredit.
     /// </summary>
-    /// <param name="Builder"></param>
-    /// <returns></returns>
+    /// <param name="Builder">
+    ///     Objeto Builder con la información necesario para crear un <see cref="WebApplication" />.
+    /// </param>
+    /// <returns>
+    ///    Regresa el mismo objeto <paramref name="Builder" /> para habilitar la invocación en cadena.
+    /// </returns>
     public static WebApplicationBuilder AddSysCreditServices(this WebApplicationBuilder Builder)
     {
         Builder.Services.AddSysCreditEndpoints();
@@ -92,46 +100,54 @@ public static class WebApplicationBuilderExtensions
     }
 
     /// <summary>
-    /// 
+    ///     Configura la autenticación usado por SysCredit.
     /// </summary>
-    /// <param name="Builder"></param>
-    /// <returns></returns>
-    public static WebApplicationBuilder AddSysCreditAuthorization(this WebApplicationBuilder Builder)
+    /// <param name="Builder">
+    ///     Objeto Builder con la información necesario para crear un <see cref="WebApplication" />.
+    /// </param>
+    /// <returns>
+    ///    Regresa el mismo objeto <paramref name="Builder" /> para habilitar la invocación en cadena.
+    /// </returns>
+    public static WebApplicationBuilder AddSysCreditAuthentication(this WebApplicationBuilder Builder)
     {
         using var ServiceProvider = Builder.Services.BuildServiceProvider();
         var SysCreditOptions = ServiceProvider.GetRequiredService<IOptions<SysCreditOptions>>().Value;
 
         Builder.Services.AddAuthorization();
-        Builder.Services.AddAuthentication(Options =>
-        {
-            Options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            Options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            Options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-        })
-        .AddJwtBearer(Options =>
-        {
-            Options.SaveToken = true;
-            Options.RequireHttpsMetadata = Builder.Environment.IsProduction();
-            Options.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                ValidIssuer = SysCreditOptions.TokenInfo.Issuer,
-                ValidAudience = SysCreditOptions.TokenInfo.Issuer,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SysCreditOptions.TokenInfo.Key))
-            };
-        });
+        // Builder.Services.AddAuthentication(Options =>
+        // {
+        //     Options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        //     Options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        //     Options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+        // })
+        // .AddJwtBearer(Options =>
+        // {
+        //     Options.SaveToken = true;
+        //     Options.RequireHttpsMetadata = Builder.Environment.IsProduction();
+        //     Options.TokenValidationParameters = new TokenValidationParameters
+        //     {
+        //         ValidateIssuer = true,
+        //         ValidateAudience = true,
+        //         ValidateLifetime = true,
+        //         ValidateIssuerSigningKey = true,
+        //         ValidIssuer = SysCreditOptions.TokenInfo.Issuer,
+        //         ValidAudience = SysCreditOptions.TokenInfo.Issuer,
+        //         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SysCreditOptions.TokenInfo.Key))
+        //     };
+        // });
 
         return Builder;
     }
 
     /// <summary>
-    /// 
+    ///     Agrega todos los controladores y sus configuraciones en <see cref="IServiceCollection" />.
     /// </summary>
-    /// <param name="Services"></param>
-    /// <returns></returns>
+    /// <param name="Services">
+    ///     Objeto contenedor IoC de todas las dependencias usadas por SysCredit.
+    /// </param>
+    /// <returns>
+    ///     Regresa el objeto contenedor IoC para habilitar las llamada en cadenas.
+    /// </returns>
     public static IServiceCollection AddSysCreditEndpoints(this IServiceCollection Services)
     {
         Services.AddControllers().AddJsonOptions(static Options => Options.JsonSerializerOptions.PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy);
@@ -148,45 +164,53 @@ public static class WebApplicationBuilderExtensions
     }
 
     /// <summary>
-    /// 
+    ///     Configura la Autenticación para Swagger.
     /// </summary>
-    /// <param name="Services"></param>
-    /// <returns></returns>
+    /// <param name="Services">
+    ///     Objeto contenedor IoC de todas las dependencias usadas por SysCredit.
+    /// </param>
+    /// <returns>
+    ///     Regresa el objeto contenedor IoC para habilitar las llamada en cadenas.
+    /// </returns>
     public static IServiceCollection AddSysCreditSwaggerGen(this IServiceCollection Services)
     {
         Services.AddSwaggerGen(static SwaggerGenOptions =>
         {
-            var SecuritySchema = new OpenApiSecurityScheme
-            {
-                Description = "Autorización Mediante JWT Token",
-                Name = SysCreditConstants.AuthorizationHeaderName,
-                In = ParameterLocation.Header,
-                Type = SecuritySchemeType.Http,
-                Scheme = SysCreditConstants.AuthorizationHeaderScheme,
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = SysCreditConstants.AuthorizationHeaderScheme
-                }
-            };
+            // var SecuritySchema = new OpenApiSecurityScheme
+            // {
+            //     Description = "Autorización Mediante JWT Token",
+            //     Name = SysCreditConstants.AuthorizationHeaderName,
+            //     In = ParameterLocation.Header,
+            //     Type = SecuritySchemeType.Http,
+            //     Scheme = SysCreditConstants.AuthorizationHeaderScheme,
+            //     Reference = new OpenApiReference
+            //     {
+            //         Type = ReferenceType.SecurityScheme,
+            //         Id = SysCreditConstants.AuthorizationHeaderScheme
+            //     }
+            // };
 
-            var SecurityRequirement = new OpenApiSecurityRequirement
-            {
-                [SecuritySchema] = new[] { SysCreditConstants.AuthorizationHeaderScheme }
-            };
+            // var SecurityRequirement = new OpenApiSecurityRequirement
+            // {
+            //     [SecuritySchema] = new[] { SysCreditConstants.AuthorizationHeaderScheme }
+            // };
 
-            SwaggerGenOptions.AddSecurityDefinition(SysCreditConstants.AuthorizationHeaderScheme, SecuritySchema);
-            SwaggerGenOptions.AddSecurityRequirement(SecurityRequirement);
+            // SwaggerGenOptions.AddSecurityDefinition(SysCreditConstants.AuthorizationHeaderScheme, SecuritySchema);
+            // SwaggerGenOptions.AddSecurityRequirement(SecurityRequirement);
         });
 
         return Services;
     }
 
     /// <summary>
-    /// 
+    ///     Agrega el tipo compuesto <see cref="IStore{TModel}" /> e <see cref="IStore" /> como parte de las dependencias de SysCredit.
     /// </summary>
-    /// <param name="Services"></param>
-    /// <returns></returns>
+    /// <param name="Services">
+    ///     Objeto contenedor IoC de todas las dependencias usadas por SysCredit.
+    /// </param>
+    /// <returns>
+    ///     Regresa el objeto contenedor IoC para habilitar las llamada en cadenas.
+    /// </returns>
     public static IServiceCollection AddSysCreditStores(this IServiceCollection Services)
     {
         Services.AddScoped<IStore, Store<Entity>>();
@@ -195,10 +219,14 @@ public static class WebApplicationBuilderExtensions
     }
 
     /// <summary>
-    /// 
+    ///     Agrega todos los Servicos usados por SysCredit al objeto <paramref name="Services" />.
     /// </summary>
-    /// <param name="Services"></param>
-    /// <returns></returns>
+    /// <param name="Services">
+    ///     Objeto contenedor IoC de todas las dependencias usadas por SysCredit.
+    /// </param>
+    /// <returns>
+    ///     Regresa el objeto contenedor IoC para habilitar las llamada en cadenas.
+    /// </returns>
     public static IServiceCollection AddSysCreditServices(this IServiceCollection Services)
     {
         var Types = from Type in typeof(Program).Assembly.GetTypes()
@@ -217,10 +245,14 @@ public static class WebApplicationBuilderExtensions
     }
 
     /// <summary>
-    /// 
+    ///     Configura mediante Option Pattern las configuraciones generales de SysCredit.
     /// </summary>
-    /// <param name="Services"></param>
-    /// <returns></returns>
+    /// <param name="Services">
+    ///     Objeto contenedor IoC de todas las dependencias usadas por SysCredit.
+    /// </param>
+    /// <returns>
+    ///     Regresa el objeto contenedor IoC para habilitar las llamada en cadenas.
+    /// </returns>
     public static IServiceCollection AddSysCreditOptions(this IServiceCollection Services)
     {
         Services.AddOptions<SysCreditOptions>()
