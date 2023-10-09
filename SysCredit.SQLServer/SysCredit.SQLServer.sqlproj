@@ -146,6 +146,8 @@
     <Build Include="StoredProcedures\Customers\FetchGuarantorsByCustomerId.sql" />
     <Build Include="StoredProcedures\Customers\FetchLoansByCustomerId.sql" />
     <Build Include="StoredProcedures\Customers\FetchGuarantorByCustomerIdAndGuarantorId.sql" />
+    <Build Include="StoredProcedures\Catalogs\Relationships\UpdateRelationship.sql" />
+    <Build Include="StoredProcedures\Catalogs\Relationships\FetchRelationshipByName.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\AzureV12\SqlSchemas\master.dacpac">
@@ -153,5 +155,8 @@
       <SuppressMissingDependenciesErrors>True</SuppressMissingDependenciesErrors>
       <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
     </ArtifactReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SysCredit.SQLServer.publish.xml" />
   </ItemGroup>
 </Project>

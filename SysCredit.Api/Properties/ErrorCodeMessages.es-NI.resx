@@ -192,4 +192,13 @@
     <value>Error del proveedor de base de datos</value>
     <comment>SysCredit Middleware ErrorCode</comment>
   </data>
+  <data name="DATAR0501" xml:space="preserve">
+    <value>Error en la transacción al actualizar el Relationship</value>
+  </data>
+  <data name="DATAR0502" xml:space="preserve">
+    <value>Error al intentar deshacer las modificaciones del Relationship</value>
+  </data>
+  <data name="SERVR0504" xml:space="preserve">
+    <value>El '{PropertyName}' de Relationship en la ruta no coincide con el Id proporcionado de la solicitud.</value>
+  </data>
 </root>

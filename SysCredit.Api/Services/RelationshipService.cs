@@ -2,7 +2,9 @@
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
+using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces.Services;
+using SysCredit.Api.Requests.Relationships;
 using SysCredit.Api.Stores;
 
 using SysCredit.DataTransferObject.Commons;
@@ -12,12 +14,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using static Constants.ErrorCodePrefix;
+using static SysCredit.Helpers.ContextData;
 
 /// <summary>
-/// 
+///     Realiza distintas operacinones sobre <see cref="Relationship"/> como: Crear, Borrar, Buscar, Editar, etc...
 /// </summary>
-/// <param name="RelationshipStore"></param>
-/// <param name="Logger"></param>
+/// <param name="RelationshipStore">
+///     Tienda de datos para <see cref="Relationship"/>.
+/// </param>
 [Service<IRelationshipService>]
 [ServiceModel<Relationship>]
 [ErrorCategory(nameof(RelationshipService))]
@@ -25,9 +29,11 @@ using static Constants.ErrorCodePrefix;
 public partial class RelationshipService(IStore<Relationship> RelationshipStore)
 {
     /// <summary>
-    /// 
+    ///     Obtiene todos los <see cref="Relationship"/>.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>
+    ///     Regresa todos los <see cref="Relationship"/>.
+    /// </returns>
     [MethodId("51EC53A1-3F6E-4BBB-BC32-909862FD119B")]
     public IAsyncEnumerable<RelationshipInfo> FetchRelationshipAsync()
     {
@@ -35,12 +41,29 @@ public partial class RelationshipService(IStore<Relationship> RelationshipStore)
     }
 
     /// <summary>
+    ///     Verifica si el <paramref name="RelationshipId"/> está registrado en base de datos.
+    /// </summary>
+    /// <param name="RelationshipId">
+    ///     Id del parentesco ha buscar.
+    /// </param>
+    /// <returns>
+    ///     Regresa True si existe <paramref name="RelationshipId"/> en caso contrario False.
+    /// </returns>
+    public async ValueTask<bool> ExistsRelationshipAsync(long? RelationshipId)
+    {
+        var Relationship = await RelationshipStore.FetchRelationshipByIdAsync(RelationshipId);
+        return Relationship is not null;
+    }
+
+    /// <summary>
     /// 
     /// </summary>
-    /// <param name="RelationshipId"></param>
+    /// <param name="Request"></param>
     /// <returns></returns>
-    public ValueTask<bool> ExistsRelationshipAsync(long RelationshipId)
+    [MethodId("E11EAEEB-5A72-40DE-BBEF-4AC44BCC2FB5")]
+    public async ValueTask<bool> UpdateRelationshipAsync(UpdateRelationshipRequest Request)
     {
-        return RelationshipStore.ExistsRelationshipAsync(RelationshipId);
+        await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(RelationshipStore)).Value(RelationshipStore));
+        return await RelationshipStore.UpdateRelationshipAsync(Request);
     }
 }
