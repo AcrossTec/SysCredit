@@ -51,6 +51,11 @@ public static class ErrorCodePrefix
     ///     Prefijo para la clase: <see cref="AuthenticationService" />
     /// </summary>
     public const string AuthenticationServicePrefix = $"{SERV}AS";
+
+    /// <summary>
+    ///     Prefijo para la clase: <see cref="LoanService"/>
+    /// </summary>
+    public const string LoanServicePrefix = $"{SERV}L";
     #endregion
 
     #region Stores
@@ -99,6 +104,10 @@ public static class ErrorCodePrefix
     /// </summary>
     public const string UserStorePrefix = $"{DATA}AUS";
 
+    /// <summary>
+    ///     Prefijo para la clase: <see cref="LoanStore"/>
+    /// </summary>
+    public const string LoanStorePrefix = $"{DATA}L";
     #endregion
 
     /// <summary>
