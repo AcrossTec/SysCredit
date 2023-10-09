@@ -57,4 +57,16 @@ public static class LoanStore
 
         return Query.ToAsyncEnumerable();
     }
+
+    /// <summary>
+    ///     Obtiene los detalles de un plan de pagos a partir de un ID de préstamo y un ID de plan de pagos dados.
+    /// </summary>
+    /// <param name="Store">Instancia del almacén que contiene los préstamos.</param>
+    /// <param name="Request">Solicitud que contiene el ID de préstamo y el ID de plan de pagos.</param>
+    /// <returns>Detalles del plan de pagos o nulo si no se encuentra.</returns>
+    [MethodId("FFF934E0-8D38-4646-B384-42F65515617F")]
+    public static async ValueTask<PaymentPlanDetailsInfo?> FetchFromLoanThePaymentPlanDetailsByPaymentPlanIdAndLoanId(this IStore<Loan> Store, LoandIdWithPaymentPlanIdRequest Request)
+    {
+        return await Store.ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<PaymentPlanDetailsInfo?>("[dbo].[FetchPaymentPlanByIdAndLoanId]", Request);
+    }
 }

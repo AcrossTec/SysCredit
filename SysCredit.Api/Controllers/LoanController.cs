@@ -28,4 +28,17 @@ public class LoanController(ILoanService LoanService, ILogger<LoanController> Lo
     {
         return await LoanService.FetchFromLoanThePaymentPlanByIdAndLoanId(Request).ToResponseAsync();
     }
+
+    /// <summary>
+    ///     Controlador para obtener los detalles de una forma de pago por id y por id de prestamo
+    /// </summary>
+    /// <param name="Request">Recibe el id de la forma de pago y el id del prestamo</param>
+    /// <returns></returns>
+    [HttpGet("{LoanId}/PaymentPlan/{PaymentPlanId}/Details")]
+    [ProducesResponseType(typeof(IResponse<PaymentPlanDetailsInfo>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
+    public async Task<IResponse<PaymentPlanDetailsInfo?>> FetchFromLoanThePaymentPlanDetailsByPaymentPlanIdAndLoanId([FromRoute] LoandIdWithPaymentPlanIdRequest Request)
+    {
+        return await LoanService.FetchFromLoanThePaymentPlanDetailsByPaymentPlanIdAndLoanId(Request).ToResponseAsync();
+    }
 }

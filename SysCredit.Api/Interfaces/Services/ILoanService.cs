@@ -6,4 +6,6 @@ using SysCredit.DataTransferObject.Commons;
 public interface ILoanService
 {
     ValueTask<PaymentPlanInfo?> FetchFromLoanThePaymentPlanByIdAndLoanId(LoandIdWithPaymentPlanIdRequest Request);
+
+    ValueTask<PaymentPlanDetailsInfo?> FetchFromLoanThePaymentPlanDetailsByPaymentPlanIdAndLoanId(LoandIdWithPaymentPlanIdRequest Request);
 }

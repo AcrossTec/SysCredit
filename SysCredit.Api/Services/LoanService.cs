@@ -28,4 +28,9 @@ public class LoanService(IStore<Loan> LoanStore, ILogger<LoanService> Logger) : 
     {
         return LoanStore.FetchFromLoanThePaymentPlanByIdAndLoanId(Request);
     }
+
+    public ValueTask<PaymentPlanDetailsInfo?> FetchFromLoanThePaymentPlanDetailsByPaymentPlanIdAndLoanId(LoandIdWithPaymentPlanIdRequest Request)
+    {
+        return LoanStore.FetchFromLoanThePaymentPlanDetailsByPaymentPlanIdAndLoanId(Request);
+    }
 }
