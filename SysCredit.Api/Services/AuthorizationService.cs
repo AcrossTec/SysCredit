@@ -16,7 +16,8 @@ using System.Text;
 /// </summary>
 /// <param name="Options"></param>
 [Service<IAuthorizationService>]
-public class AuthorizationService(IOptions<SysCreditOptions> Options) : IAuthorizationService
+[ErrorCategory(nameof(AuthorizationService))]
+public partial class AuthorizationService(IOptions<SysCreditOptions> Options)
 {
     private readonly SysCreditOptions Options = Options.Value;
     private readonly SymmetricSecurityKey Key = new(Encoding.UTF8.GetBytes(Options.Value.TokenInfo.Key));

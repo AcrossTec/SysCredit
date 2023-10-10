@@ -19,14 +19,16 @@ using static Constants.ErrorCodePrefix;
 /// <param name="RelationshipStore"></param>
 /// <param name="Logger"></param>
 [Service<IRelationshipService>]
+[ServiceModel<Relationship>]
 [ErrorCategory(nameof(RelationshipService))]
 [ErrorCodePrefix(RelationshipServicePrefix)]
-public class RelationshipService(IStore<Relationship> RelationshipStore) : IRelationshipService
+public partial class RelationshipService(IStore<Relationship> RelationshipStore)
 {
     /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
+    [MethodId("51EC53A1-3F6E-4BBB-BC32-909862FD119B")]
     public IAsyncEnumerable<RelationshipInfo> FetchRelationshipAsync()
     {
         return RelationshipStore.FetchRelationshipAsync();

@@ -16,9 +16,10 @@ using static Constants.ErrorCodePrefix;
 using static SysCredit.Helpers.ContextData;
 
 [Service<ILoanTypeService>]
+[ServiceModel<LoanType>]
 [ErrorCategory(nameof(LoanTypeService))]
 [ErrorCodePrefix(LoanTypeServicePrefix)]
-public class LoanTypeService(IStore<LoanType> LoanTypeStore) : ILoanTypeService
+public partial class LoanTypeService(IStore<LoanType> LoanTypeStore)
 {
     /// <summary>
     /// 

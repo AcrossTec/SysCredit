@@ -22,9 +22,10 @@ using static SysCredit.Helpers.ContextData;
 /// <param name="PaymentFrequencyStore"></param>
 /// <param name="Logger"></param>
 [Service<IPaymentFrequencyService>]
+[ServiceModel<PaymentFrequency>]
 [ErrorCategory(nameof(PaymentFrequencyService))]
 [ErrorCodePrefix(PaymentFrequencyServicePrefix)]
-public class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencyStore) : IPaymentFrequencyService
+public partial class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencyStore)
 {
     /// <summary>
     ///     Este método realiza una llamada asincrónica para obtener información de frecuencia de pago (DTO)

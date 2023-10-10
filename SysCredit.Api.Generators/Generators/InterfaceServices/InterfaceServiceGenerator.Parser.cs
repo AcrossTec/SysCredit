@@ -4,16 +4,136 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using SysCredit.Toolkits.Generators.Extensions;
 
+using System.Collections.Immutable;
+
+using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
+
+/// <inheritdoc />
 public partial class InterfaceServiceGenerator
 {
-    internal partial class Parser
+    /// <summary>
+    ///     Tiene información detallada sobre los datos de una clase para crear su interfaz.
+    /// </summary>
+    /// <param name="InterfaceName">
+    ///     Nombre de la interfaz que se creará.
+    /// </param>
+    /// <param name="ModelName">
+    ///     Nombre del modelo de la interfaz base usada por la interfaz autogenerada.
+    /// </param>
+    /// <param name="ClassDeclaration">
+    ///     Información de la clase que declara el atributo del servicio.
+    /// </param>
+    /// <param name="Usings">
+    ///     Espacios de nombres usados por la clase de servicio.
+    /// </param>
+    /// <param name="MethodDeclarations">
+    ///     Métodos usados por la clase de servicio.
+    /// </param>
+    private record class InterfaceServiceInfo(string InterfaceName, string ModelName, ClassDeclarationSyntax ClassDeclaration, ImmutableArray<UsingDirectiveSyntax> Usings, ImmutableArray<MethodDeclarationSyntax> MethodDeclarations);
+
+    /// <summary>
+    ///     Verifica si una declaración es válida para generar código.
+    /// </summary>
+    /// <param name="Node">
+    ///     Declaración que se va ha verificar.
+    /// </param>
+    /// <param name="Token">
+    ///     Propagates notification that operations should be canceled.
+    /// </param>
+    /// <returns>
+    ///     Regresa True sí <paramref name="Node"/> es válido para la generación de código.
+    /// </returns>
+    private static bool IsSyntaxTargetForGeneration(SyntaxNode Node, CancellationToken Token)
     {
-        internal static bool IsSyntaxTargetForGeneration(SyntaxNode Node)
-            => Node is ClassDeclarationSyntax Class && Class.AttributeLists.Count > 0;
+        return Node is ClassDeclarationSyntax { AttributeLists: { Count: > 0 } AttributeLists }
+            && AttributeLists.SelectMany(AttributeList => AttributeList.Attributes)
+                             .Where(Attribute => Attribute.Name is GenericNameSyntax NameSyntax && NameSyntax.Arity == 1)
+                             .Select(Attribute => Attribute.Name.As<GenericNameSyntax>()!)
+                             .Any(Name => Name.Identifier.Text == "Service");
+    }
+
+    /// <summary>
+    ///     Convierte <see cref="GeneratorSyntaxContext.Node"/> en un <see cref="AttributeData"/>.
+    /// </summary>
+    /// <param name="Context">
+    ///     Context passed to an <see cref="ISyntaxContextReceiver"/> when <see cref="ISyntaxContextReceiver.OnVisitSyntaxNode(GeneratorSyntaxContext)"/> is called.
+    /// </param>
+    /// <param name="Token">
+    ///     Propagates notification that operations should be canceled.
+    /// </param>
+    /// <returns>
+    ///     Regresa <see cref="GeneratorSyntaxContext.Node"/> convertido en un <see cref="InterfaceServiceInfo"/>.
+    /// </returns>
+    private static InterfaceServiceInfo GetSemanticTargetForGeneration(GeneratorSyntaxContext Context, CancellationToken Token)
+    {
+        var ClassDeclaration = (ClassDeclarationSyntax)Context.Node;
+
+        var UsingDirectives = GetUsingDirectives(ClassDeclaration);
+
+        var MethodDeclarations = from MethodDeclaration in ClassDeclaration.Members.OfType<MethodDeclarationSyntax>()
+                                 where MethodDeclaration is { AttributeLists: { Count: > 0 } AttributeLists }
+                                    && AttributeLists.SelectMany(AttributeList => AttributeList.Attributes)
+                                                     .Where(Attribute => Attribute.Name is IdentifierNameSyntax NameSyntax && NameSyntax.Arity == 0)
+                                                     .Select(Attribute => Attribute.Name.As<IdentifierNameSyntax>()!)
+                                                     .Any(Name => Name.Identifier.Text == "MethodId")
+                                    && MethodDeclaration.Modifiers.Any(Modifier => Modifier.IsKind(SyntaxKind.PublicKeyword) && !Modifier.IsKind(SyntaxKind.StaticKeyword))
+                                 select MethodDeclaration.WithBody(default)
+                                                         .WithExpressionBody(default)
+                                                         .WithAttributeLists(List<AttributeListSyntax>())
+                                                         .WithSemicolonToken(SyntaxFactory.Token(
+                                                             TriviaList(),
+                                                             SyntaxKind.SemicolonToken,
+                                                             TriviaList(Comment(Constants.NewLine))))
+                                                         .RemoveModifier(SyntaxKind.AsyncKeyword)
+                                                         .RemoveModifier(SyntaxKind.PublicKeyword)
+                                                         .RemoveModifier(SyntaxKind.PartialKeyword)
+                                                         .As<MethodDeclarationSyntax>();
+
+        var Attributes = ClassDeclaration.AttributeLists
+                                         .SelectMany(AttributeList => AttributeList.Attributes)
+                                         .Where(Attribute => Attribute.Name is GenericNameSyntax NameSyntax && NameSyntax.Arity == 1);
+
+        var ServiceAttribute = Attributes.First(Attribute => Attribute.Name.As<GenericNameSyntax>()!.Identifier.Text == "Service");
+        var InterfaceName = ServiceAttribute.Name.As<GenericNameSyntax>()!.TypeArgumentList.Arguments.OfType<IdentifierNameSyntax>().First();
+
+        var ServiceModelAttribute = Attributes.FirstOrDefault(Attribute => Attribute.Name.As<GenericNameSyntax>()!.Identifier.Text == "ServiceModel");
+        var ModelName = ServiceModelAttribute?.Name.As<GenericNameSyntax>()!.TypeArgumentList.Arguments.OfType<IdentifierNameSyntax>().First() ?? IdentifierName("SysCredit.Models.Entity");
+
+        return new(
+            InterfaceName.Identifier.Text,
+            ModelName.Identifier.Text,
+            ClassDeclaration.WithParameterList(default)
+                            .WithAttributeLists(List<AttributeListSyntax>())
+                            .WithBaseList(BaseList(SingletonSeparatedList<BaseTypeSyntax>(SimpleBaseType(IdentifierName(InterfaceName.Identifier.Text)))))
+                            .WithMembers(List<MemberDeclarationSyntax>())
+                            .WithOpenBraceToken(SyntaxFactory.Token(SyntaxKind.OpenBraceToken))
+                            .WithCloseBraceToken(SyntaxFactory.Token(SyntaxKind.CloseBraceToken)),
+            UsingDirectives,
+            MethodDeclarations.ToImmutableArray());
+
+        static BaseNamespaceDeclarationSyntax? GetNamespaceDeclarationSyntax(ClassDeclarationSyntax @class)
+        {
+            var Current = @class.Parent;
+
+            while (Current is not null)
+            {
+                if (Current is BaseNamespaceDeclarationSyntax)
+                {
+                    break;
+                }
+
+                Current = Current!.Parent;
+            }
+
+            return Current as BaseNamespaceDeclarationSyntax;
+        }
+
+        static ImmutableArray<UsingDirectiveSyntax> GetUsingDirectives(ClassDeclarationSyntax @class)
+        {
+            var @namespace = GetNamespaceDeclarationSyntax(@class);
+            return @namespace?.Usings.Distinct().ToImmutableArray() ?? ImmutableArray<UsingDirectiveSyntax>.Empty;
+        }
     }
 }

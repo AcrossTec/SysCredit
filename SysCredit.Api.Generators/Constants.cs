@@ -26,4 +26,5 @@ public static class Constants
     public const string ErrorCodePrefixAttribute = $"{SysCreditApiAttributesNamespaceName}.ErrorCodePrefixAttribute";
     public const string ErrorCodeRangeAttribute = $"{SysCreditApiAttributesNamespaceName}.ErrorCodeRangeAttribute";
     public const string ErrorCategoryAttribute = $"{SysCreditApiAttributesNamespaceName}.ErrorCategoryAttribute";
+    public const string ServiceAttribute = $"{SysCreditApiAttributesNamespaceName}.ServiceAttribute";
 }

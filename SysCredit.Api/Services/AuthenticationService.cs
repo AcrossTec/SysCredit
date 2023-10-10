@@ -27,7 +27,7 @@ using static SysCredit.Helpers.ContextData;
 [Service<IAuthenticationService>]
 [ErrorCategory(nameof(AuthenticationService))]
 [ErrorCodePrefix(AuthenticationServicePrefix)]
-public class AuthenticationService(IStore Store) : IAuthenticationService
+public partial class AuthenticationService(IStore Store)
 {
     private readonly IStore<User> UserStore = Store.GetStore<User>();
     private readonly IStore<Role> RoleStore = Store.GetStore<Role>();

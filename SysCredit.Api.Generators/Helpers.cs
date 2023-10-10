@@ -25,6 +25,9 @@ public static class Helpers
     public static INamedTypeSymbol GetErrorCategoryAttributeMetadataName(this Compilation Compilation)
         => Compilation.GetTypeByMetadataName(Constants.ErrorCategoryAttribute)!;
 
+    public static INamedTypeSymbol GetServiceAttributeMetadataName(this Compilation Compilation)
+        => Compilation.GetTypeByMetadataName(Constants.ServiceAttribute)!;
+
     public static AttributeData? GetAttributeIfExists(this INamedTypeSymbol TypeSymbol, INamedTypeSymbol AttributeSymbol)
         => TypeSymbol.GetAttributes().GetAttributeIfExists(AttributeSymbol);
 
