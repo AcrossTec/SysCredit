@@ -13,13 +13,17 @@ public static class Helpers
     public static TObject? As<TObject>(this object? @object)
         => (TObject?)@object;
 
-    public static bool WhereNotNull<TSource>(TSource? Source) => Source is not null;
+    public static bool WhereNotNull<TSource>(TSource? Source)
+        => Source is not null;
 
-    public static INamedTypeSymbol GetErrorCodePrefixAttributeMetadata(this Compilation Compilation)
+    public static INamedTypeSymbol GetErrorCodePrefixAttributeMetadataName(this Compilation Compilation)
         => Compilation.GetTypeByMetadataName(Constants.ErrorCodePrefixAttribute)!;
 
-    public static INamedTypeSymbol GetErrorCodeRangeAttributeMetadata(this Compilation Compilation)
-    => Compilation.GetTypeByMetadataName(Constants.ErrorCodeRangeAttribute)!;
+    public static INamedTypeSymbol GetErrorCodeRangeAttributeMetadataName(this Compilation Compilation)
+        => Compilation.GetTypeByMetadataName(Constants.ErrorCodeRangeAttribute)!;
+
+    public static INamedTypeSymbol GetErrorCategoryAttributeMetadataName(this Compilation Compilation)
+        => Compilation.GetTypeByMetadataName(Constants.ErrorCategoryAttribute)!;
 
     public static AttributeData? GetAttributeIfExists(this INamedTypeSymbol TypeSymbol, INamedTypeSymbol AttributeSymbol)
         => TypeSymbol.GetAttributes().GetAttributeIfExists(AttributeSymbol);

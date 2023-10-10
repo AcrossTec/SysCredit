@@ -3,9 +3,10 @@
 public static class Constants
 {
     public const int MinCodeNumber = 0;
-    public const int MaxCodeNumber = 100;
+    public const int MaxCodeNumber = 1000;
 
     public const string Tab = "    ";
+    public const string Empty = "";
     public const string NewLine = "\r\n";
     public const string GeneratedFileExtension = ".Generated.cs";
 
@@ -22,7 +23,7 @@ public static class Constants
 
     public const string SysCreditApiConstantsNamespaceName = "SysCredit.Api.Constants";
     public const string SysCreditApiAttributesNamespaceName = "SysCredit.Api.Attributes";
-    public const string SysCreditApiConstantsNamespace = $"namespace {SysCreditApiConstantsNamespaceName};\r\n";
     public const string ErrorCodePrefixAttribute = $"{SysCreditApiAttributesNamespaceName}.ErrorCodePrefixAttribute";
     public const string ErrorCodeRangeAttribute = $"{SysCreditApiAttributesNamespaceName}.ErrorCodeRangeAttribute";
+    public const string ErrorCategoryAttribute = $"{SysCreditApiAttributesNamespaceName}.ErrorCategoryAttribute";
 }

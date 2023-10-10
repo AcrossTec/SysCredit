@@ -81,24 +81,47 @@ public static class IncrementalValuesProviderExtensions
         });
     }
 
+    /// <summary>
+    ///     Regresa un <see cref="IncrementalValuesProvider{TValues}"/> con valores únicos.
+    /// </summary>
+    /// <typeparam name="TSource"></
+    ///     Tipo del proveedor de datos.
+    /// typeparam>
+    /// <param name="Source">
+    ///     Proveedor de datos.
+    /// </param>
+    /// <returns>
+    ///     Regresa un <see cref="IncrementalValuesProvider{TValues}"/> con valores únicos.
+    /// </returns>
     public static IncrementalValuesProvider<TSource> Distinct<TSource>(this IncrementalValuesProvider<TSource> Source)
     {
         return Source.Distinct(EqualityComparer<TSource>.Default);
     }
 
+    /// <summary>
+    ///     Regresa un <see cref="IncrementalValuesProvider{TValues}"/> con valores únicos.
+    /// </summary>
+    /// <typeparam name="TSource"></
+    ///     Tipo del proveedor de datos.
+    /// typeparam>
+    /// <param name="Source">
+    ///     Proveedor de datos.
+    /// </param>
+    /// <param name="Comparer">
+    ///     Comparador de los datos del proveedor.
+    /// </param>
+    /// <returns>
+    ///     Regresa un <see cref="IncrementalValuesProvider{TValues}"/> con valores únicos.
+    /// </returns>
     public static IncrementalValuesProvider<TSource> Distinct<TSource>(this IncrementalValuesProvider<TSource> Source, IEqualityComparer<TSource> Comparer)
     {
         return Source.Collect().SelectMany((Items, Token) =>
         {
-            HashSet<TSource> Source = new HashSet<TSource>(Comparer);
-            ImmutableArray<TSource>.Builder Builder = ImmutableArray.CreateBuilder<TSource>();
+            ImmutableHashSet<TSource>.Builder Builder = ImmutableHashSet.CreateBuilder(Comparer);
 
             foreach (var Value in Items)
             {
-                if (Source.Add(Value))
-                {
-                    Builder.Add(Value);
-                }
+                Builder.Add(Value);
             }
 
             return Builder;

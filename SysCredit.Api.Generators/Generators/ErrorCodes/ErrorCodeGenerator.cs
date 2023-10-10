@@ -4,6 +4,8 @@ using Microsoft.CodeAnalysis;
 
 using SysCredit.Toolkits.Generators.Extensions;
 
+using System;
+using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
 
@@ -16,24 +18,21 @@ internal partial class ErrorCodeGenerator : IIncrementalGenerator
     /// <inheritdoc />
     public void Initialize(IncrementalGeneratorInitializationContext Context)
     {
-        // #if DEBUG
-        //         if (!Debugger.IsAttached)
-        //         {
-        //             Debugger.Launch();
-        //         }
-        // #endif 
-
-        Context.RegisterPostInitializationOutput(AddErrorCodeAttributes);
-
-        //Context.SyntaxProvider.ForAttributeWithMetadataName()
-
+#if DEBUG
+        if (!Debugger.IsAttached)
+        {
+            Debugger.Launch();
+        }
+#endif
+        Context.RegisterPostInitializationOutput(GenerateErrorCodeAttributes);
+        var ErrorCodeRangeProvider = Context.CompilationProvider.Select(SelectErrorCodeRange);
         var ErrorCodePrefixesProvider = Context.SyntaxProvider
             .CreateSyntaxProvider(IsSyntaxTargetForGeneration, GetSemanticTargetForGeneration)
-            .Where(Helpers.WhereNotNull)
+            .Where(static Ecp => Ecp.ErrorCodePrefix is not null)
             .Distinct()
             .Select(SelectErrorCodePrefix)
             .Collect();
 
-        Context.RegisterImplementationSourceOutput(ErrorCodePrefixesProvider, Emit);
+        Context.RegisterImplementationSourceOutput(ErrorCodePrefixesProvider.Combine(ErrorCodeRangeProvider), Emit);
     }
 }
