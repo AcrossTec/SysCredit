@@ -20,9 +20,10 @@ using static Constants.ErrorCodePrefix;
 using static SysCredit.Helpers.ContextData;
 
 [Service<IGuarantorService>]
+[ServiceModel<Guarantor>]
 [ErrorCategory(nameof(GuarantorService))]
 [ErrorCodePrefix(GuarantorServicePrefix)]
-public class GuarantorService(IStore Store) : IGuarantorService
+public partial class GuarantorService(IStore Store)
 {
     private readonly IStore<Guarantor> GuarantorStore = Store.GetStore<Guarantor>();
     private readonly IStore<Relationship> RelationshipStore = Store.GetStore<Relationship>();

@@ -18,12 +18,13 @@ internal partial class ErrorCodeGenerator : IIncrementalGenerator
     /// <inheritdoc />
     public void Initialize(IncrementalGeneratorInitializationContext Context)
     {
-#if DEBUG
-        if (!Debugger.IsAttached)
-        {
-            Debugger.Launch();
-        }
-#endif
+        // #if DEBUG
+        //  if (!Debugger.IsAttached)
+        //  {
+        //      Debugger.Launch();
+        //  }
+        // #endif
+
         Context.RegisterPostInitializationOutput(GenerateErrorCodeAttributes);
         var ErrorCodeRangeProvider = Context.CompilationProvider.Select(SelectErrorCodeRange);
         var ErrorCodePrefixesProvider = Context.SyntaxProvider

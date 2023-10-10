@@ -5,19 +5,18 @@ using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces.Services;
 using SysCredit.Api.Requests;
 using SysCredit.Api.Requests.Customers;
-using SysCredit.Api.Requests.Guarantors;
 using SysCredit.Api.Stores;
+
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.DataTransferObject.StoredProcedures;
+
 using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;
-using System.Reflection;
 using System.Threading.Tasks;
 
 using static Constants.ErrorCodePrefix;
-using static Constants.ErrorCodes;
 using static SysCredit.Helpers.ContextData;
 
 /// <summary>
@@ -25,9 +24,10 @@ using static SysCredit.Helpers.ContextData;
 /// </summary>
 /// <param name="Store"></param>
 [Service<ICustomerService>]
+[ServiceModel<Customer>]
 [ErrorCategory(nameof(CustomerService))]
-[SysCredit.Api.Attributes.ErrorCodePrefixAttribute(CustomerServicePrefix)]
-public class CustomerService(IStore Store) : ICustomerService
+[ErrorCodePrefix(CustomerServicePrefix)]
+public partial class CustomerService(IStore Store)
 {
     private readonly IStore<Customer> CustomerStore = Store.GetStore<Customer>();
     private readonly IStore<Guarantor> GuarantorStore = Store.GetStore<Guarantor>();
@@ -137,6 +137,7 @@ public class CustomerService(IStore Store) : ICustomerService
         return CustomerStore.FetchGuarantorByCustomerIdAsync(CustomerId);
     }
 
+    [MethodId("9F8D42B5-8E9D-4D83-832C-FFD9BAE80E0C")]
     public IAsyncEnumerable<LoanInfo> FetchLoanByCustomerIdAsync(long? CustomerId)
     {
         return CustomerStore.FetchLoanByCustomerIdAsync(CustomerId);
