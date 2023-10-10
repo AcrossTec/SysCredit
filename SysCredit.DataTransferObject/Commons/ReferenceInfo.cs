@@ -1,7 +1,5 @@
 ﻿namespace SysCredit.DataTransferObject.Commons;
 
-using SysCredit.Enums;
-
 public record class ReferenceInfo : IDataTransferObject
 {
     public long ReferenceId { get; set; }
@@ -12,7 +10,7 @@ public record class ReferenceInfo : IDataTransferObject
 
     public string LastName { get; set; } = string.Empty;
 
-    public Gender Gender { get; set; }
+    public int Gender { get; set; }
 
     public string Phone { get; set; } = string.Empty;
 

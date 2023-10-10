@@ -1,7 +1,5 @@
 ﻿namespace SysCredit.Models;
 
-using SysCredit.Enums;
-
 public record class Guarantor : Entity
 {
     public long GuarantorId { get; set; }

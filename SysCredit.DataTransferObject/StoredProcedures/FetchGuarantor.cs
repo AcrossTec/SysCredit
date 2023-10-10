@@ -1,7 +1,5 @@
 ﻿namespace SysCredit.DataTransferObject.StoredProcedures;
 
-using SysCredit.Enums;
-
 public record class FetchGuarantor : IDataTransferObject
 {
     public long GuarantorId { get; set; }
@@ -12,7 +10,7 @@ public record class FetchGuarantor : IDataTransferObject
 
     public string LastName { get; set; } = string.Empty;
 
-    public Gender Gender { get; set; }
+    public int Gender { get; set; }
 
     public string? Email { get; set; }
 

@@ -3,7 +3,7 @@
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Validations.Guarantors;
 
-using SysCredit.Enums;
+using SysCredit.Models;
 
 [Validator<CreateGuarantorValidator>]
 public class CreateGuarantorRequest : IRequest

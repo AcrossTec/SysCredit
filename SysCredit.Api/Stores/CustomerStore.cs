@@ -272,10 +272,7 @@ public static partial class CustomerStore
         catch (Exception SqlEx)
         {
             // Handle the exception if the transaction fails to commit.
-            SysCreditException SysCreditEx =
-                SqlEx.ToSysCreditException(
-                    MethodInfo.GetCurrentMethod(),
-                    DATAC0001);
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAC0001*/);
 
             try
             {
@@ -285,7 +282,7 @@ public static partial class CustomerStore
             catch (Exception Ex)
             {
                 // Throws an InvalidOperationException if the connection is closed or the transaction has already been rolled back on the server.
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATAC0002);
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAC0002*/);
             }
 
             throw SysCreditEx;

@@ -1,5 +1,8 @@
 using log4net.Config;
 
+using Microsoft.AspNetCore.Mvc;
+
+using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Patchers;
 
@@ -7,6 +10,8 @@ using System.Runtime.CompilerServices;
 
 using static SysCredit.Api.Constants.SysCreditConstants;
 
+[assembly: ApiController]
+[assembly: ErrorCodeRange(MinCodeNumber: 0, MaxCodeNumber: 1000)]
 [assembly: XmlConfigurator(ConfigFile = Log4NetConfigFile, Watch = true)]
 
 var Builder = WebApplication.CreateBuilder(args);
