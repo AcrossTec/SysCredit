@@ -26,7 +26,7 @@ using static SysCredit.Helpers.ContextData;
 /// <param name="Store"></param>
 [Service<ICustomerService>]
 [ErrorCategory(nameof(CustomerService))]
-[ErrorCodePrefix(CustomerServicePrefix)]
+[SysCredit.Api.Attributes.ErrorCodePrefixAttribute(CustomerServicePrefix)]
 public class CustomerService(IStore Store) : ICustomerService
 {
     private readonly IStore<Customer> CustomerStore = Store.GetStore<Customer>();

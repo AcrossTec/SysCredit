@@ -3,7 +3,7 @@
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Validations.References;
 
-using SysCredit.Enums;
+using SysCredit.Models;
 
 [Validator<CreateReferenceValidator>]
 public class CreateReferenceRequest : IRequest

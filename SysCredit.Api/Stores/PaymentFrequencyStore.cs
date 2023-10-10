@@ -62,7 +62,7 @@ public static partial class PaymentFrequencyStore
         }
         catch (Exception SqlEx)
         {
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATAPF0005);
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAPF0005*/);
 
             try
             {
@@ -71,7 +71,7 @@ public static partial class PaymentFrequencyStore
             catch (Exception Ex)
             {
 
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATAPF0006);
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAPF0006*/);
             }
 
             throw SysCreditEx;
@@ -99,7 +99,7 @@ public static partial class PaymentFrequencyStore
         }
         catch (Exception SqlEx)
         {
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATAPF0003);
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAPF0003*/);
 
             try
             {
@@ -107,7 +107,7 @@ public static partial class PaymentFrequencyStore
             }
             catch (Exception Ex)
             {
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATAPF0004);
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAPF0004*/);
             }
 
             throw SysCreditEx;
@@ -157,7 +157,7 @@ public static partial class PaymentFrequencyStore
         }
         catch (Exception SqlEx)
         {
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0001);
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATALT0001*/);
 
             try
             {
@@ -167,7 +167,7 @@ public static partial class PaymentFrequencyStore
             catch (Exception Ex)
             {
                 // Throws an InvalidOperationException if the connection is closed or the transaction has already been rolled back on the server.
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0002);
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATALT0002*/);
             }
 
             throw SysCreditEx;

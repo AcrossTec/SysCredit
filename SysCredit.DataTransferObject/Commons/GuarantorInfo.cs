@@ -1,7 +1,5 @@
 ﻿namespace SysCredit.DataTransferObject.Commons;
 
-using SysCredit.Enums;
-
 using System.Text.Json.Serialization;
 
 using static System.Text.Json.Serialization.JsonIgnoreCondition;
@@ -16,7 +14,7 @@ public record class GuarantorInfo : IDataTransferObject
 
     public string LastName { get; set; } = string.Empty;
 
-    public Gender Gender { get; set; }
+    public int Gender { get; set; }
 
     public string? Email { get; set; }
 

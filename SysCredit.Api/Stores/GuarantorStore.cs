@@ -91,7 +91,7 @@ public static partial class GuarantorStore
         catch (Exception SqlEx)
         {
             // Handle the exception if the transaction fails to commit.
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATAG0001);
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAG0001*/);
 
             try
             {
@@ -101,7 +101,7 @@ public static partial class GuarantorStore
             catch (Exception Ex)
             {
                 // Throws an InvalidOperationException if the connection is closed or the transaction has already been rolled back on the server.
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATAG0002);
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAG0002*/);
             }
 
             throw SysCreditEx;

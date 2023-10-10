@@ -21,7 +21,7 @@ public class UpdateLoanTypeValidator : AbstractValidator<UpdateLoanTypeRequest>
         RuleFor(L => L.LoanTypeId)
             .NotEmpty()
             .NotNull()
-            .VerifyRouteWithLoanTypeId().WithErrorCode(SERVLT0004)
+            .VerifyRouteWithLoanTypeId().WithErrorCode(""/*SERVLT0004*/)
             .WithName("Id del Tipo de Prestamo");
     }
 }

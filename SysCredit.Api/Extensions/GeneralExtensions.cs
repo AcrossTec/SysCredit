@@ -75,7 +75,7 @@ public static class GeneralExtensions
     {
         StringBuilder Builder = new((Value?.Length ?? 0) * 2);
 
-        foreach (var Char in Value.DefaultIfEmpty())
+        foreach (var Char in Value.DefaultIfNullOrEmpty())
         {
             Builder.Append(Char switch
             {

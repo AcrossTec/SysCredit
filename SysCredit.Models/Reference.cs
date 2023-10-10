@@ -1,7 +1,5 @@
 ﻿namespace SysCredit.Models;
 
-using SysCredit.Enums;
-
 public record class Reference : Entity
 {
     public long ReferenceId { get; set; }

@@ -23,7 +23,7 @@ public class CustomerIdRequestValidator : AbstractValidator<CustomerIdRequest>
         RuleFor(C => C.CustomerId)
             .NotEmpty()
             .NotNull()
-            .VerifyIfCustomerExistsByIdAsync().WithErrorCode(SERVC0003) // TODO: Crear las entradas ERR<ErrorCodeNumber>
+            .VerifyIfCustomerExistsByIdAsync().WithErrorCode(""/*SERVC0003*/) // TODO: Crear las entradas ERR<ErrorCodeNumber>
             .WithName("Customer Id"); // TODO: Configurar los nombres de propiedades
     }
 }

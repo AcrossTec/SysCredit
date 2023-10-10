@@ -48,7 +48,7 @@ public static partial class LoanTypeStore
         }
         catch (Exception SqlEx)
         {
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0001);
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATALT0001*/);
 
             try
             {
@@ -58,7 +58,7 @@ public static partial class LoanTypeStore
             catch (Exception Ex)
             {
                 // Throws an InvalidOperationException if the connection is closed or the transaction has already been rolled back on the server.
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0002);
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATALT0002*/);
             }
 
             throw SysCreditEx;
@@ -85,7 +85,7 @@ public static partial class LoanTypeStore
         }
         catch (Exception SqlEx)
         {
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0003);
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATALT0003*/);
 
             try
             {
@@ -93,7 +93,7 @@ public static partial class LoanTypeStore
             }
             catch (Exception Ex)
             {
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0004);
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATALT0004*/);
             }
 
             throw SysCreditEx;
@@ -123,7 +123,7 @@ public static partial class LoanTypeStore
         }
         catch (Exception SqlEx)
         {
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0005);
+            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATALT0005*/);
 
             try
             {
@@ -131,7 +131,7 @@ public static partial class LoanTypeStore
             }
             catch (Exception Ex)
             {
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), DATALT0006);
+                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATALT0006*/);
             }
 
             throw SysCreditEx;

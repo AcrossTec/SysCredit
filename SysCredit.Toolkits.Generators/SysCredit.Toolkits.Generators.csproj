@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <IsRoslynComponent>true</IsRoslynComponent>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ImplicitUsings>true</ImplicitUsings>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IndexRange" Version="1.0.3" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.7.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="7.0.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Memory" Version="4.5.5" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Diagnostics\Analyzers\" />
+    <Folder Include="Diagnostics\Suppressors\" />
+  </ItemGroup>
+
+  <!-- Necessary polyfills -->
+  <PropertyGroup>
+    <PolySharpIncludeGeneratedTypes>
+      System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute;
+      System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute;
+      System.Diagnostics.CodeAnalysis.MemberNotNullAttribute;
+      System.Diagnostics.CodeAnalysis.NotNullAttribute;
+      System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute;
+      System.Diagnostics.CodeAnalysis.NotNullWhenAttribute;
+      System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute;
+      System.Diagnostics.CodeAnalysis.UnconditionalSuppressMessageAttribute;
+      System.Runtime.CompilerServices.CallerArgumentExpressionAttribute;
+      System.Runtime.CompilerServices.IsExternalInit;
+      System.Runtime.CompilerServices.SkipLocalsInitAttribute;
+    </PolySharpIncludeGeneratedTypes>
+  </PropertyGroup>
+
+</Project>

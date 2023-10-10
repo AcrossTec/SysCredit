@@ -4,7 +4,7 @@ using SysCredit.Api.Attributes;
 using SysCredit.Api.Requests.References;
 using SysCredit.Api.Validations.Customers;
 
-using SysCredit.Enums;
+using SysCredit.Models;
 
 [Validator<CreateCustomerValidator>]
 public class CreateCustomerRequest : IRequest

@@ -1,7 +1,5 @@
 ﻿namespace SysCredit.DataTransferObject.Commons;
 
-using SysCredit.Enums;
-
 public record class CustomerInfo : IDataTransferObject
 {
     public long CustomerId { get; set; }
@@ -12,7 +10,7 @@ public record class CustomerInfo : IDataTransferObject
 
     public string LastName { get; set; } = string.Empty;
 
-    public Gender Gender { get; set; }
+    public int Gender { get; set; }
 
     public string? Email { get; set; }
 
