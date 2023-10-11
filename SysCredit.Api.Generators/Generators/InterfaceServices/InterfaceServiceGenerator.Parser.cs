@@ -85,6 +85,8 @@ public partial class InterfaceServiceGenerator
 
         var NameSyntaxes = ClassDeclaration.GetGenericNameSyntaxFromAttributes(Arity: 1);
 
+        // TODO: Verificar que tipo correcto de los argumentos: IdentifierNameSyntax, QualifiedNameSyntax, etc...
+
         var ServiceNameSyntax = NameSyntaxes.First(NameSyntax => NameSyntax.Identifier.Text == "Service");
         var InterfaceName = ServiceNameSyntax.TypeArgumentList.Arguments.OfType<IdentifierNameSyntax>().First();
 

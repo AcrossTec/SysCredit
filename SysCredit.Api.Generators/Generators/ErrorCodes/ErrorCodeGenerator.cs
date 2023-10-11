@@ -32,8 +32,8 @@ internal partial class ErrorCodeGenerator : IIncrementalGenerator
             .Where(static Ecp => Ecp.ErrorCodePrefix is not null)
             .Distinct()
             .Select(SelectErrorCodePrefix)
-            .Collect();
+            .Combine(ErrorCodeRangeProvider);
 
-        Context.RegisterImplementationSourceOutput(ErrorCodePrefixesProvider.Combine(ErrorCodeRangeProvider), Emit);
+        Context.RegisterImplementationSourceOutput(ErrorCodePrefixesProvider, Emit);
     }
 }

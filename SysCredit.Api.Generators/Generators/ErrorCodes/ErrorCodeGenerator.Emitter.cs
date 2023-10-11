@@ -6,8 +6,6 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 using SysCredit.Toolkits.Generators.Extensions;
 
-using System.Collections.Immutable;
-using System.Diagnostics;
 using System.Text;
 
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
@@ -45,7 +43,7 @@ internal partial class ErrorCodeGenerator
     /// <param name="Tuple">
     ///     Objeto que posee los prefijos de error y la categoría que pertenece ademas de los números de código mínimos y máximos.
     /// </param>
-    private static void Emit(SourceProductionContext Context, (ImmutableArray<(string ErrorCodePrefix, string? ErrorCategory)> Left, (int MinCodeNumber, int MaxCodeNumber) Right) Tuple)
+    private static void Emit(SourceProductionContext Context, ((string ErrorCodePrefix, string? ErrorCategory) Left, (int MinCodeNumber, int MaxCodeNumber) Right) Tuple)
     {
         CompilationUnitSyntax CompilationUnit = SyntaxFactory.CompilationUnit()
             .WithMembers(
@@ -85,13 +83,13 @@ internal partial class ErrorCodeGenerator
             .NormalizeWhitespace();
 
         string CSharpText = CompilationUnit.GetText(Encoding.UTF8).ToString();
-        Context.AddSource(Helpers.FileName("ErrorCodes"), CompilationUnit);
+        Context.AddSource(Helpers.FileName($"ErrorCodesFor{Tuple.Left.ErrorCodePrefix}"), CompilationUnit);
     }
 
     /// <summary>
     ///     Genera las declaraciones de campos para la clase ErrorCodes.
     /// </summary>
-    /// <param name="Codes">
+    /// <param name="CodeInfo">
     ///     Prefijos usados por los códigos de error.
     /// </param>
     /// <param name="MinCodeNumber">
@@ -103,33 +101,28 @@ internal partial class ErrorCodeGenerator
     /// <returns>
     ///     Regresa las declaraciones de los campos.
     /// </returns>
-    private static IEnumerable<FieldDeclarationSyntax> GetFieldDeclarationSyntaxes(ImmutableArray<(string ErrorCodePrefix, string? ErrorCategory)> Codes, (int MinCodeNumber, int MaxCodeNumber) Range)
+    private static IEnumerable<FieldDeclarationSyntax> GetFieldDeclarationSyntaxes((string ErrorCodePrefix, string? ErrorCategory) CodeInfo, (int MinCodeNumber, int MaxCodeNumber) Range)
     {
         // Construct the generated field as follows:
         // public const string <CodePrefix><CodeNumber> = "<CodePrefix><CodeNumber>";
 
-        foreach (var (ErrorCodePrefix, ErrorCategory) in Codes)
+        foreach (var CodeNumber in Enumerable.Range(Range.MinCodeNumber, Range.MaxCodeNumber))
         {
-            foreach (var CodeNumber in Enumerable.Range(Range.MinCodeNumber, Range.MaxCodeNumber))
-            {
-                yield return FieldDeclaration(
-                                VariableDeclaration(PredefinedType(Token(SyntaxKind.StringKeyword)))
-                                .WithVariables(
-                                    SingletonSeparatedList(
-                                        VariableDeclarator($"{ErrorCodePrefix}{CodeNumber,4:D4}")
-                                            .WithInitializer(EqualsValueClause(LiteralExpression(SyntaxKind.StringLiteralExpression, Literal($"{ErrorCodePrefix}{CodeNumber,4:D4}")))))))
-                             .WithModifiers(
-                                TokenList(
-                                    Token(
-                                        TriviaList(
-                                            Comment($"/// <summary>"),
-                                            Comment($"///     Categoría {ErrorCategory ?? "\"Sin Categoría\""}: {ErrorCodePrefix}{CodeNumber,4:D4}"),
-                                            Comment($"/// <summary>")),
-                                        SyntaxKind.PublicKeyword,
-                                        TriviaList()),
-                                    Token(SyntaxKind.ConstKeyword)))
-                             .WithSemicolonToken(Token(SyntaxKind.SemicolonToken));
-            }
+            yield return FieldDeclaration(VariableDeclaration(PredefinedType(Token(SyntaxKind.StringKeyword)))
+                            .WithVariables(
+                                SingletonSeparatedList(
+                                    VariableDeclarator($"{CodeInfo.ErrorCodePrefix}{CodeNumber,4:D4}")
+                                        .WithInitializer(EqualsValueClause(LiteralExpression(SyntaxKind.StringLiteralExpression, Literal($"{CodeInfo.ErrorCodePrefix}{CodeNumber,4:D4}")))))))
+                            .WithModifiers(TokenList(
+                                Token(
+                                    TriviaList(
+                                        Comment($"/// <summary>"),
+                                        Comment($"///     Categoría {CodeInfo.ErrorCategory ?? "\"Sin Categoría\""}: {CodeInfo.ErrorCodePrefix}{CodeNumber,4:D4}"),
+                                        Comment($"/// <summary>")),
+                                    SyntaxKind.PublicKeyword,
+                                    TriviaList()),
+                                Token(SyntaxKind.ConstKeyword)))
+                            .WithSemicolonToken(Token(SyntaxKind.SemicolonToken));
         }
     }
 }
