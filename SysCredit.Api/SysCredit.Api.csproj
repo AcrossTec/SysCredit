@@ -11,6 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Program.cs~RF145a7fb2.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <InternalsVisibleTo Include="SysCredit.Api.Tests" />
     <None Include="Log4Net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
