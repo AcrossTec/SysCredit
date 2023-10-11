@@ -31,7 +31,7 @@ public partial class InterfaceServiceGenerator
     /// <param name="MethodDeclarations">
     ///     Métodos usados por la clase de servicio.
     /// </param>
-    private record class InterfaceServiceInfo(string InterfaceName, string ModelName, ClassDeclarationSyntax ClassDeclaration, ImmutableArray<UsingDirectiveSyntax> Usings, ImmutableArray<MethodDeclarationSyntax> MethodDeclarations);
+    private record struct InterfaceServiceInfo(string InterfaceName, string ModelName, ClassDeclarationSyntax ClassDeclaration, ImmutableArray<UsingDirectiveSyntax> Usings, ImmutableArray<MethodDeclarationSyntax> MethodDeclarations);
 
     /// <summary>
     ///     Verifica si una declaración es válida para generar código.
@@ -47,11 +47,7 @@ public partial class InterfaceServiceGenerator
     /// </returns>
     private static bool IsSyntaxTargetForGeneration(SyntaxNode Node, CancellationToken Token)
     {
-        return Node is ClassDeclarationSyntax { AttributeLists: { Count: > 0 } AttributeLists }
-            && AttributeLists.SelectMany(AttributeList => AttributeList.Attributes)
-                             .Where(Attribute => Attribute.Name is GenericNameSyntax NameSyntax && NameSyntax.Arity == 1)
-                             .Select(Attribute => Attribute.Name.As<GenericNameSyntax>()!)
-                             .Any(Name => Name.Identifier.Text == "Service");
+        return Node is ClassDeclarationSyntax @class && @class.HasServiceAttribute();
     }
 
     /// <summary>
@@ -73,11 +69,7 @@ public partial class InterfaceServiceGenerator
         var UsingDirectives = GetUsingDirectives(ClassDeclaration);
 
         var MethodDeclarations = from MethodDeclaration in ClassDeclaration.Members.OfType<MethodDeclarationSyntax>()
-                                 where MethodDeclaration is { AttributeLists: { Count: > 0 } AttributeLists }
-                                    && AttributeLists.SelectMany(AttributeList => AttributeList.Attributes)
-                                                     .Where(Attribute => Attribute.Name is IdentifierNameSyntax NameSyntax && NameSyntax.Arity == 0)
-                                                     .Select(Attribute => Attribute.Name.As<IdentifierNameSyntax>()!)
-                                                     .Any(Name => Name.Identifier.Text == "MethodId")
+                                 where MethodDeclaration.HasAttribute("MethodId")
                                     && MethodDeclaration.Modifiers.Any(Modifier => Modifier.IsKind(SyntaxKind.PublicKeyword) && !Modifier.IsKind(SyntaxKind.StaticKeyword))
                                  select MethodDeclaration.WithBody(default)
                                                          .WithExpressionBody(default)
@@ -91,15 +83,13 @@ public partial class InterfaceServiceGenerator
                                                          .RemoveModifier(SyntaxKind.PartialKeyword)
                                                          .As<MethodDeclarationSyntax>();
 
-        var Attributes = ClassDeclaration.AttributeLists
-                                         .SelectMany(AttributeList => AttributeList.Attributes)
-                                         .Where(Attribute => Attribute.Name is GenericNameSyntax NameSyntax && NameSyntax.Arity == 1);
+        var NameSyntaxes = ClassDeclaration.GetGenericNameSyntaxFromAttributes(Arity: 1);
 
-        var ServiceAttribute = Attributes.First(Attribute => Attribute.Name.As<GenericNameSyntax>()!.Identifier.Text == "Service");
-        var InterfaceName = ServiceAttribute.Name.As<GenericNameSyntax>()!.TypeArgumentList.Arguments.OfType<IdentifierNameSyntax>().First();
+        var ServiceNameSyntax = NameSyntaxes.First(NameSyntax => NameSyntax.Identifier.Text == "Service");
+        var InterfaceName = ServiceNameSyntax.TypeArgumentList.Arguments.OfType<IdentifierNameSyntax>().First();
 
-        var ServiceModelAttribute = Attributes.FirstOrDefault(Attribute => Attribute.Name.As<GenericNameSyntax>()!.Identifier.Text == "ServiceModel");
-        var ModelName = ServiceModelAttribute?.Name.As<GenericNameSyntax>()!.TypeArgumentList.Arguments.OfType<IdentifierNameSyntax>().First() ?? IdentifierName("SysCredit.Models.Entity");
+        var ServiceModelNameSyntax = NameSyntaxes.FirstOrDefault(Attribute => Attribute.Identifier.Text == "ServiceModel");
+        var ModelName = ServiceModelNameSyntax?.TypeArgumentList.Arguments.OfType<IdentifierNameSyntax>().First() ?? IdentifierName("SysCredit.Models.Entity");
 
         return new(
             InterfaceName.Identifier.Text,
@@ -112,28 +102,46 @@ public partial class InterfaceServiceGenerator
                             .WithCloseBraceToken(SyntaxFactory.Token(SyntaxKind.CloseBraceToken)),
             UsingDirectives,
             MethodDeclarations.ToImmutableArray());
+    }
 
-        static BaseNamespaceDeclarationSyntax? GetNamespaceDeclarationSyntax(ClassDeclarationSyntax @class)
+    /// <summary>
+    ///     Obtiene el espacio de nombre donde está declarado <paramref name="class"/>.
+    /// </summary>
+    /// <param name="class">
+    ///     Objeto que se analizará y obtendrá su espacio de nombres.
+    /// </param>
+    /// <returns>
+    ///     Regresa el espacio de nombres de <paramref name="class"/>.
+    /// </returns>
+    private static BaseNamespaceDeclarationSyntax? GetNamespaceDeclarationSyntax(ClassDeclarationSyntax @class)
+    {
+        var Current = @class.Parent;
+
+        while (Current is not null)
         {
-            var Current = @class.Parent;
-
-            while (Current is not null)
+            if (Current is BaseNamespaceDeclarationSyntax)
             {
-                if (Current is BaseNamespaceDeclarationSyntax)
-                {
-                    break;
-                }
-
-                Current = Current!.Parent;
+                break;
             }
 
-            return Current as BaseNamespaceDeclarationSyntax;
+            Current = Current!.Parent;
         }
 
-        static ImmutableArray<UsingDirectiveSyntax> GetUsingDirectives(ClassDeclarationSyntax @class)
-        {
-            var @namespace = GetNamespaceDeclarationSyntax(@class);
-            return @namespace?.Usings.Distinct().ToImmutableArray() ?? ImmutableArray<UsingDirectiveSyntax>.Empty;
-        }
+        return Current as BaseNamespaceDeclarationSyntax;
+    }
+
+    /// <summary>
+    ///     Obtiene todos los espacios de nombres de donde esté declarada la clase.
+    /// </summary>
+    /// <param name="class">
+    ///     Declaración de la clase que será analizada para obtener todos sus espacios de nombres.
+    /// </param>
+    /// <returns>
+    ///     Regresa todos los espacios de nombres usados por <paramref name="class"/>.
+    /// </returns>
+    private static ImmutableArray<UsingDirectiveSyntax> GetUsingDirectives(ClassDeclarationSyntax @class)
+    {
+        BaseNamespaceDeclarationSyntax? @namespace = GetNamespaceDeclarationSyntax(@class);
+        return @namespace?.Usings.ToImmutableArray() ?? ImmutableArray<UsingDirectiveSyntax>.Empty;
     }
 }
