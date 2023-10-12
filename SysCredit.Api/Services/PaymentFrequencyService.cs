@@ -17,9 +17,11 @@ using static Constants.ErrorCodePrefix;
 using static SysCredit.Helpers.ContextData;
 
 /// <summary>
-/// 
+///     Realiza distintas operaciones sobre <see cref="PaymentFrequency"/> como: Crear, Borrar, Buscar, Editar, etc
 /// </summary>
-/// <param name="PaymentFrequencyStore"></param>
+/// <param name="PaymentFrequencyStore">
+///     Tienda de datos para <see cref="PaymentFrequency"/>
+/// </param>
 /// <param name="Logger"></param>
 [Service<IPaymentFrequencyService>]
 [ServiceModel<PaymentFrequency>]
@@ -28,9 +30,11 @@ using static SysCredit.Helpers.ContextData;
 public partial class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencyStore)
 {
     /// <summary>
-    ///     Este método realiza una llamada asincrónica para obtener información de frecuencia de pago (DTO)
+    ///     Obtiene todos los <see cref="PaymentFrequency"/>
     /// </summary>
-    /// <returns></returns>
+    /// <returns>
+    ///     Regresa todos los <see cref="PaymentFrequency"/>
+    /// </returns>
     [MethodId("F454CC3B-23ED-4A4E-B27E-5E6377CA3B5D")]
     public IAsyncEnumerable<PaymentFrequencyInfo> FetchPaymentFrequencyAsync()
     {
@@ -38,10 +42,14 @@ public partial class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFre
     }
 
     /// <summary>
-    /// 
+    ///     Obtiene un registro de la tabla <see cref="Models.PaymentFrequency"/>
     /// </summary>
-    /// <param name="PaymentFrequencyId"></param>
-    /// <returns></returns>
+    /// <param name="PaymentFrequencyId">
+    ///     Id obtenido de la ruta
+    /// </param>
+    /// <returns>
+    ///     Regresa un registro de la tabla <see cref="Models.PaymentFrequency"/>
+    /// </returns>
     [MethodId("F2625C55-FCD9-4FEF-AAA0-3782B91A819B")]
     public async ValueTask<PaymentFrequencyInfo> FetchPaymentFrequencyByIdAsync(long PaymentFrequencyId)
     {
@@ -49,11 +57,17 @@ public partial class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFre
     }
 
     /// <summary>
-    /// 
+    ///     Validad e invoca al Store para modificar la frequencia de pago
     /// </summary>
-    /// <param name="PaymentFrequencyId"></param>
-    /// <param name="Request"></param>
-    /// <returns></returns>
+    /// <param name="PaymentFrequencyId">
+    ///     Id recibido de la ruta
+    /// </param>
+    /// <param name="Request">
+    ///     Datos que se van a actualizar del <see cref="Models.PaymentFrequency"/>
+    /// </param>
+    /// <returns>
+    ///     Retorna un bool
+    /// </returns>
     [MethodId("54EA25C1-FD73-4FC3-8984-DEA6ACFD74C7")]
     public async ValueTask<bool> UpdatePaymentFrequencyAsync(long PaymentFrequencyId, UpdatePaymentFrequencyRequest Request)
     {
@@ -65,11 +79,14 @@ public partial class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFre
     }
 
     /// <summary>
-    ///     Consulta al PaymentFrequencyStore por los datos 
-    ///     y realizar el borrado lógico
+    ///     Valida e invoca al Store para eliminar la frecuencia de pago
     /// </summary>
-    /// <param name="Request"></param>
-    /// <returns></returns>
+    /// <param name="Request">
+    ///      Id del <see cref="Models.PaymentFrequency"/> a eliminar 
+    /// </param>
+    /// <returns>
+    ///     Retorna un bool
+    /// </returns>
     [MethodId("FDB8109F-DF96-48B7-8B60-F233F2A8098F")]
     public async ValueTask<bool> DeletePaymentFrequencyAsync(DeletePaymentFrequencyRequest Request)
     {
@@ -78,10 +95,11 @@ public partial class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFre
     }
 
     /// <summary>
-    /// Este método realiza una llamada asincrónica para obtener información
-    /// de frecuencia de pago
+    ///      Obtiene todos los registros completos de la tabla <see cref="Models.PaymentFrequency"/>
     /// </summary>
-    /// <returns></returns>
+    /// <returns>
+    ///      Regresa todos los registros completos de la tabla <see cref="Models.PaymentFrequency"/>
+    /// </returns>
     [MethodId("6006B8FC-E3F7-43E4-9E70-6E6CA69053B0")]
     public IAsyncEnumerable<PaymentFrequency> FetchPaymentFrequencyCompleteAsync()
     {
@@ -89,10 +107,14 @@ public partial class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFre
     }
 
     /// <summary>
-    /// 
+    ///     Valida y crea una nueva frecuencia de pago en la base de datos
     /// </summary>
-    /// <param name="ViewModel"></param>
-    /// <returns></returns>
+    /// <param name="Request">
+    ///     Datos usado para crear la frecuencia de pago
+    /// </param>
+    /// <returns>
+    ///     Regresa el nuevo Id de la frecuencia de pago creado
+    /// </returns>
     [MethodId("BC663C2B-ACE2-499B-B806-2A0BD8D77815")]
     public async ValueTask<EntityId> InsertPaymentFrequencyAsync(CreatePaymentFrequencyRequest Request)
     {

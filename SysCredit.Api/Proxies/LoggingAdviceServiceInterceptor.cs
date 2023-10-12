@@ -91,14 +91,13 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     /// </returns>
     private static EndpointFlowException CreateEndpointFlowException(IInvocation Invocation, ValidationException ValidationResult)
     {
-        return new EndpointFlowException(new ErrorStatus
-        {
-            MethodId = Invocation.MethodInvocationTarget.GetMethodId(),
-            ErrorCode = Invocation.MethodInvocationTarget.GetValidationErrorCode(),
-            ErrorMessage = Format(Invocation.MethodInvocationTarget.GetValidationErrorCodeMessage()!, ValidationResult.ValidatedInstanceType),
-            ErrorCategory = Invocation.MethodInvocationTarget.GetErrorCategory(),
-            Errors = ValidationResult.ValidationResult.ErrorsToDictionaryWithErrorCode(),
-        }, ValidationResult);
+        var Status = new ErrorStatus();
+        Status.MethodId = Invocation.MethodInvocationTarget.GetMethodId();
+        Status.ErrorCode = Invocation.MethodInvocationTarget.GetValidationErrorCode();
+        Status.ErrorMessage = Format(Invocation.MethodInvocationTarget.GetValidationErrorCodeMessage(), ValidationResult.ValidatedInstanceType);
+        Status.ErrorCategory = Invocation.MethodInvocationTarget.GetErrorCategory();
+        Status.Errors = ValidationResult.ValidationResult.ErrorsToDictionaryWithErrorCode();
+        return new EndpointFlowException(Status, ValidationResult);
     }
 
     /// <summary>

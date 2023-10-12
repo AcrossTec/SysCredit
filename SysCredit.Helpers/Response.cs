@@ -15,7 +15,7 @@ public interface IResponse
     /// <summary>
     ///     Respuesta de algún request de un Endpoint.
     /// </summary>
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     object? Data { get; }
 }
 
@@ -24,7 +24,7 @@ public interface IResponse<out T> : IResponse
 {
 #pragma warning disable CS0108 // Member hides inherited member; missing new keyword
     /// <inheritdoc cref="IResponse.Data" />
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     T? Data { get; }
 #pragma warning restore CS0108 // Member hides inherited member; missing new keyword
 }
@@ -41,11 +41,11 @@ public record class Response<T> : IResponse<T>
     public ErrorStatus Status { get; set; } = new();
 
     /// <inheritdoc />
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     public T? Data { get; set; }
 
     /// <inheritdoc />
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
     object? IResponse.Data => Data;
 }
 

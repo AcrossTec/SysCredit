@@ -6,7 +6,6 @@ using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Requests.LoanTypes;
 using SysCredit.Api.Requests.PaymentFrequencies;
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.Helpers;
@@ -18,35 +17,59 @@ using System.Reflection;
 using static Constants.ErrorCodePrefix;
 using static Constants.ErrorCodes;
 
+/// <summary>
+///     Tienda de datos para la tabla PaymentFrequency representado por el tipo <see cref="PaymentFrequency"/>
+/// </summary>
 [Store]
 [ErrorCategory(nameof(PaymentFrequencyStore))]
 [ErrorCodePrefix(PaymentFrequencyStorePrefix)]
 public static partial class PaymentFrequencyStore
 {
     /// <summary>
-    ///     Este método ejecuta una consulta en una base de datos y devuelve los resultados
-    ///     como un flujo de elementos de tipo PaymentFrequencyInfo (DTO) a través de IAsyncEnumerable
+    ///     Regresa todas las frecuencias de pago de la base de datos
     /// </summary>
-    /// <param name="Store"></param>
-    /// <returns></returns>
+    /// <param name="Store">
+    ///     Objeto usado como contexto de la base de datos
+    /// </param>
+    /// <returns>
+    ///     Regresa todas las frecuencias de pago
+    /// </returns>
     [MethodId("2EF5FEB6-201C-4FF5-A70C-8D338B7241BD")]
     public static IAsyncEnumerable<PaymentFrequencyInfo> FetchPaymentFrequencyAsync(this IStore<PaymentFrequency> Store)
     {
         return Store.ExecuteStoredProcedureQueryAsync<PaymentFrequencyInfo>("[dbo].[FetchPaymentFrequency]");
     }
 
+    /// <summary>
+    ///     Regresa un registro de la tabla <see cref="Models.PaymentFrequency"/>
+    /// </summary>
+    /// <param name="Store">
+    ///     Objeto usado como contexto de la base de datos
+    /// </param>
+    /// <param name="PaymentFrequencyId">
+    ///     Id obtenido de la ruta
+    /// </param>
+    /// <returns>
+    ///     Regresa un registro de la tabla <see cref="Models.PaymentFrequency"/>
+    /// </returns>
     [MethodId("1A320F97-0E0C-4833-87B8-C35D546A8C4B")]
-    public static async ValueTask<PaymentFrequencyInfo> FetchPaymentFrequencyByIdAsync(this IStore<PaymentFrequency> Store, long PaymentFrequencyId)
+    public static async ValueTask<PaymentFrequencyInfo?> FetchPaymentFrequencyByIdAsync(this IStore<PaymentFrequency> Store, long? PaymentFrequencyId)
     {
-        return await Store.ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<PaymentFrequencyInfo>("[dbo].[FetchPaymentFrequencyById]", new { PaymentFrequencyId });
+        return await Store.ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<PaymentFrequencyInfo?>("[dbo].[FetchPaymentFrequencyById]", new { PaymentFrequencyId });
     }
 
     /// <summary>
-    /// 
+    ///     Realiza la modificacion del <see cref="Models.PaymentFrequency"/> en la base de datos
     /// </summary>
-    /// <param name="Store"></param>
-    /// <param name="Request"></param>
-    /// <returns></returns>
+    /// <param name="Store">
+    ///     Objeto usado como contexto de la base de datos
+    /// </param>
+    /// <param name="Request">
+    ///     Datos que se van a actualizar del <see cref="Models.PaymentFrequency"/>
+    /// </param>
+    /// <returns>
+    ///     Regresa <see langword="true"/> si se actualizo <paramref name="Request"/>, en caso contrario <see langword="false"/>.
+    /// </returns>
     [MethodId("4CEA02D0-B5BF-4922-AA24-342F32386095")]
     public static async ValueTask<bool> UpdatePaymentFrequencyAsync(this IStore<PaymentFrequency> Store, UpdatePaymentFrequencyRequest Request)
     {
@@ -79,12 +102,17 @@ public static partial class PaymentFrequencyStore
     }
 
     /// <summary>
-    ///     Realiza mediante el procedimiento almacenado, la eliminación lógica
-    ///     de la frecuencia de pago. Puede confirmar la eliminació o revertirla
+    ///     Realiza la eliminacion del <see cref="Models.PaymentFrequency"/> de la base de datos
     /// </summary>
-    /// <param name="Store"></param>
-    /// <param name="Request"></param>
-    /// <returns></returns>
+    /// <param name="Store">
+    ///     Objeto usado como contexto de la base de datos
+    /// </param>
+    /// <param name="Request">
+    ///     Id del <see cref="Models.PaymentFrequency"/> a eliminar
+    /// </param>
+    /// <returns>
+    ///     Mayor que cero si se realizo la modificacion, en caso contrario, no se realizo
+    /// </returns>
     [MethodId("80E55584-24BE-47B4-BB38-C79FD7116BC7")]
     public static async ValueTask<bool> DeletePaymentFrequencyAsync(this IStore<PaymentFrequency> Store, DeletePaymentFrequencyRequest Request)
     {
@@ -122,11 +150,14 @@ public static partial class PaymentFrequencyStore
     }
 
     /// <summary>
-    ///     Este método ejecuta una consulta en una base de datos y devuelve los resultados
-    ///     como un flujo de elementos de tipo PaymentFrequency a través de IAsyncEnumerable
+    ///      Regresa todos los <see cref="Models.PaymentFrequency"/> completos de la base de datos
     /// </summary>
-    /// <param name="Store"></param>
-    /// <returns></returns>
+    /// <param name="Store">
+    ///     Objeto usado como contexto de la base de datos
+    /// </param>
+    /// <returns>
+    ///     Regresa todos los <see cref="Models.PaymentFrequency"/> completos
+    /// </returns>
     [MethodId("2944DF4F-F5C7-41AC-B041-6BDF4CB7C443")]
     public static IAsyncEnumerable<PaymentFrequency> FetchPaymentFrequencyCompleteAsync(this IStore<PaymentFrequency> Store)
     {
@@ -134,11 +165,17 @@ public static partial class PaymentFrequencyStore
     }
 
     /// <summary>
-    /// 
+    ///     Invoca el store para crear una nueva frecuencia de pago en la base de datos
     /// </summary>
-    /// <param name="Store"></param>
-    /// <param name="Request"></param>
-    /// <returns></returns>
+    /// <param name="Store">
+    ///     Objeto usado como contexto de la base de datos
+    /// </param>
+    /// <param name="Request">
+    ///     Datos usado para crear la frecuencia de pago
+    /// </param>
+    /// <returns>
+    ///     Regresa el nuevo Id de la frecuencia de pago creado
+    /// </returns>
     [MethodId("80E4ED8C-FBA5-4BC8-B62B-6A5EC3A1355F")]
     public static async ValueTask<EntityId> InsertPaymentFrequencyAsync(this IStore<PaymentFrequency> Store, CreatePaymentFrequencyRequest Request)
     {
