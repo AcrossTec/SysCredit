@@ -4,9 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces.Services;
-using SysCredit.Api.Properties;
-using SysCredit.Api.Requests.LoanTypes;
 using SysCredit.Api.Requests.Relationships;
+
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.Helpers;
 
@@ -82,5 +81,18 @@ public class RelationshipController(IRelationshipService RelationshipService, IL
         Logger.LogInformation("EndPoint[PUT]: /Api/Relationship/{RelationshipId}", Request.RelationshipId);
         await RelationshipService.UpdateRelationshipAsync(Request);
         return NoContent();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="RelationshipId"></param>
+    /// <returns></returns>
+    [HttpGet("{RelationshipId}")]
+    [ProducesResponseType(typeof(IResponse<RelationshipInfo>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
+    public async Task<IResponse<RelationshipInfo?>> FetchRelationshipByIdIdAsync([FromRoute] long RelationshipId)
+    {
+        return await RelationshipService.FetchRelationshipByIdAsync(RelationshipId).ToResponseAsync();
     }
 }

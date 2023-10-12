@@ -156,7 +156,4 @@
       <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
     </ArtifactReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="SysCredit.SQLServer.publish.xml" />
-  </ItemGroup>
 </Project>
