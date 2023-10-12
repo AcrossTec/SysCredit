@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 using static SysCredit.Api.Constants.SysCreditConstants;
 
 [assembly: ApiController]
-[assembly: ErrorCodeRange(MinCodeNumber: 0, MaxCodeNumber: 1000)]
+[assembly: ErrorCodeRange(MinCodeNumber: 0, MaxCodeNumber: 500)]
 [assembly: XmlConfigurator(ConfigFile = Log4NetConfigFile, Watch = true)]
 
 var Builder = WebApplication.CreateBuilder(args);
