@@ -1,6 +1,7 @@
 ﻿namespace SysCredit.Api.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
+using SysCredit.Api.Services;
 
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces.Services;
@@ -55,6 +56,18 @@ public class GuarantorController(IGuarantorService GuarantorService, ILogger<Gua
         }
     }
 
+    [HttpDelete("{GuarantorId}")]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
+    [ProducesErrorResponseType(typeof(IResponse<DeleteGuarantorRequest>))]
+    public async Task<ActionResult<IResponse<DeleteGuarantorRequest>>> DeleteGuarantorAsync([FromRoute] DeleteGuarantorRequest Request)
+    {
+        var Result = await GuarantorService.DeleteGuarantorByIdAsync(Request);
+        
+        return StatusCode(StatusCodes.Status204NoContent);
+        
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -68,3 +81,4 @@ public class GuarantorController(IGuarantorService GuarantorService, ILogger<Gua
         return await GuarantorService.SearchGuarantorAsync(Request).ToResponseAsync();
     }
 }
+
