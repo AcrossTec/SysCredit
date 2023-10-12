@@ -120,7 +120,7 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
             ServerHost: Context.Request.Host.ToString(),
             EndpointPath: Context.Request.Path.ToString(),
             QueryString: Context.Request.QueryString.ToString(),
-            RequestBody: JsonSerializer.Deserialize<Dictionary<string, object>>(RequestBody)
+            RequestBody: RequestBody.DeserializeIfNotNullOrEmpty<Dictionary<string, object>>()
         );
     }
 
