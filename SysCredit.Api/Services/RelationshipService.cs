@@ -88,4 +88,15 @@ public partial class RelationshipService(IStore<Relationship> RelationshipStore)
     {
         return RelationshipStore.InsertRelationshipAsync(Request);
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="RelationshipId"></param>
+    /// <returns></returns>
+    [MethodId("CCA4A939-6D07-4FFF-B8A8-D3337A8B1C23")]
+    public ValueTask<bool> DeleteRelationship(long RelationshipId)
+    {
+        return RelationshipStore.DeleteRelationshipAsync(RelationshipId);
+    }
 }
