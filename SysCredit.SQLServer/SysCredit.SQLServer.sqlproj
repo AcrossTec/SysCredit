@@ -148,6 +148,7 @@
     <Build Include="StoredProcedures\Customers\FetchGuarantorByCustomerIdAndGuarantorId.sql" />
     <Build Include="StoredProcedures\Catalogs\Relationships\UpdateRelationship.sql" />
     <Build Include="StoredProcedures\Catalogs\Relationships\FetchRelationshipByName.sql" />
+    <Build Include="StoredProcedures\Catalogs\Relationships\InsertRelationship.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\AzureV12\SqlSchemas\master.dacpac">

@@ -8,11 +8,9 @@ using SysCredit.Api.Requests.Relationships;
 using SysCredit.Api.Stores;
 
 using SysCredit.DataTransferObject.Commons;
-using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;
-using System.Reflection;
 using System.Threading.Tasks;
 
 using static Constants.ErrorCodePrefix;
@@ -78,5 +76,16 @@ public partial class RelationshipService(IStore<Relationship> RelationshipStore)
     {
         await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(RelationshipStore)).Value(RelationshipStore));
         return await RelationshipStore.UpdateRelationshipAsync(Request);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Request"></param>
+    /// <returns></returns>
+    [MethodId("D74F0DFE-4F39-4E24-A871-355CCD96A377")]
+    public ValueTask<long> InsertRelationshipAsync(CreateRelationshipRequest Request)
+    {
+        return RelationshipStore.InsertRelationshipAsync(Request);
     }
 }
