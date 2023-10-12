@@ -2,6 +2,8 @@
 
 using Dapper;
 
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
@@ -35,6 +37,11 @@ public static partial class GuarantorStore
     {
         var Guarantor = await Store.FetchGuarantorById(GuarantorId);
         return Guarantor is not null;
+    }
+    [MethodId("867C7D0F-6191-41B5-B154-C9400FE14395")]
+    public static async ValueTask<GuarantorInfo?> FetchGuarantorByIdAsync(this IStore<Guarantor> Store, long? GuarantorId)
+    {
+        return await Store.ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<GuarantorInfo?>("[dbo].[FetchGuarantorById]", new { GuarantorId });
     }
 
     [MethodId("078DDE01-E89D-44CB-8026-7C05D300EEAC")]

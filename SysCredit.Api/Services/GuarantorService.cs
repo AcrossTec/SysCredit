@@ -1,5 +1,6 @@
 ﻿namespace SysCredit.Api.Services;
 
+using Microsoft.AspNetCore.Mvc;
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces.Services;
@@ -61,6 +62,20 @@ public partial class GuarantorService(IStore Store)
         return GuarantorStore.FetchGuarantorsAsync();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="GuarantorId"></param>
+    /// <returns></returns>
+    [MethodId("E1C42C3D-681C-4AEA-A412-68D02482DC6D")]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(IResponse<GuarantorInfo?>), StatusCodes.Status200OK)]
+    public ValueTask<GuarantorInfo?> FetchGuarantorByIdAsync(long? GuarantorId)
+    {
+
+        return GuarantorStore.FetchGuarantorByIdAsync(GuarantorId);
+
+    }
     /// <summary>
     /// 
     /// </summary>
