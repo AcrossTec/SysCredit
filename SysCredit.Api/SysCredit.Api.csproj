@@ -54,6 +54,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SysCredit.Api.Generators\SysCredit.Api.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\SysCredit.Toolkits.Generators\SysCredit.Toolkits.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
 </Project>

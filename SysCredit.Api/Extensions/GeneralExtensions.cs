@@ -6,6 +6,7 @@ using SysCredit.Models;
 
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 
 /// <summary>
 ///     Métodos de utilería de propósito general.
@@ -87,6 +88,29 @@ public static class GeneralExtensions
         }
 
         return Builder.ToString();
+    }
+
+    /// <summary>
+    ///     Transforma una cadena Json en un objeto de tipo <typeparamref name="T"/>.
+    /// </summary>
+    /// <typeparam name="T">
+    ///     Tipo del objeto usado en la deserialización.
+    /// </typeparam>
+    /// <param name="Json">
+    ///     Cadena en formato Json que se va ha deserializar.
+    /// </param>
+    /// <returns>
+    ///     Regresa la cadena <paramref name="Json"/> deserializada a un objeto de tipo <typeparamref name="T"/>
+    ///     si <paramref name="Json"/> no es nulo.
+    /// </returns>
+    public static T? DeserializeIfNotNullOrEmpty<T>(this string? Json)
+    {
+        if (String.IsNullOrEmpty(Json))
+        {
+            return default;
+        }
+
+        return JsonSerializer.Deserialize<T?>(Json);
     }
 
     /// <summary>
