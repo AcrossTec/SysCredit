@@ -104,4 +104,16 @@ public static partial class RelationshipStore
         // TODO: Reparar esta implementación
         return await Store.ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<long>("[dbo].[InsertRelationship]", Request);
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Store"></param>
+    /// <param name="RelationshipId"></param>
+    /// <returns></returns>
+    [MethodId("3ABCEA14-0B75-4612-A017-FA86E2A234F8")]
+    public static async ValueTask<bool> DeleteRelationshipAsync(this IStore<Relationship> Store, long RelationshipId)
+    {
+        return await Store.ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<bool>("[dbo].[DeleteRelationShip]", new { RelationshipId });
+    }
 }
