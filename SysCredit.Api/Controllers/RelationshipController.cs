@@ -95,4 +95,12 @@ public class RelationshipController(IRelationshipService RelationshipService, IL
     {
         return await RelationshipService.FetchRelationshipByIdAsync(RelationshipId).ToResponseAsync();
     }
+
+    [HttpPost]
+    [ProducesResponseType(typeof(IResponse<long>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
+    public async Task<IResponse<long>> InsertRelationship([FromBody] CreateRelationshipRequest Request)
+    {
+        return await RelationshipService.InsertRelationshipAsync(Request).ToResponseAsync();
+    } 
 }
