@@ -83,8 +83,8 @@ public static class ReflectionExtensions
     /// <returns>
     ///     Regresa el mensaje del código de error con el prefijo correspondiente al tipo donde es declarado el método <paramref name="MethodInfo" />.
     /// </returns>
-    public static string? GetValidationErrorCodeMessage(this MethodBase? MethodInfo)
+    public static string GetValidationErrorCodeMessage(this MethodBase? MethodInfo)
     {
-        return ErrorCodeMessages.GetMessageFromCode(MethodInfo.GetValidationErrorCode() ?? SysCreditConstants.DefaultKey);
+        return ErrorCodeMessages.GetMessageFromCode(MethodInfo.GetValidationErrorCode() ?? SysCreditConstants.DefaultKey) ?? String.Empty;
     }
 }
