@@ -111,7 +111,7 @@ public class PaymentFrequencyController(IPaymentFrequencyService PaymentFrequenc
     [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<IResponse<PaymentFrequencyInfo>>> FetchPaymentFrequencyByIdAsync(long PaymentFrequencyId)
     {
-        Logger.LogInformation("EndPoint[GET]: /Api/FetchPaymentFrequencyById");
+        Logger.LogInformation("EndPoint[GET]: /Api/PaymentFrequency/{PaymentFrequencyId}", PaymentFrequencyId);
         return Ok(await PaymentFrequencyService.FetchPaymentFrequencyByIdAsync(PaymentFrequencyId)!.ToResponseAsync());
     }
 
@@ -130,7 +130,7 @@ public class PaymentFrequencyController(IPaymentFrequencyService PaymentFrequenc
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<IResponse<EntityId>>> InsertPaymentFrequencyAsync([FromBody] CreatePaymentFrequencyRequest Request)
     {
-        Logger.LogInformation("EndPoint[POST]: /Api/FetchPaymentFrequencyById");
+        Logger.LogInformation("EndPoint[POST]: /Api/PaymentFrequency");
         var Result = await PaymentFrequencyService.InsertPaymentFrequencyAsync(Request).ToResponseAsync();
         return StatusCode(StatusCodes.Status201Created, Result);
     }
