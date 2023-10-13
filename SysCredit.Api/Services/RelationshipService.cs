@@ -8,6 +8,7 @@ using SysCredit.Api.Requests.Relationships;
 using SysCredit.Api.Stores;
 
 using SysCredit.DataTransferObject.Commons;
+using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;
@@ -41,10 +42,14 @@ public partial class RelationshipService(IStore<Relationship> RelationshipStore)
     }
 
     /// <summary>
-    /// 
+    ///     Obtiene un registro de la tabla <see cref="Models.Relationship"/>
     /// </summary>
-    /// <param name="RelationshipId"></param>
-    /// <returns></returns>
+    /// <param name="RelationshipId">
+    ///     Id obtenido de la ruta
+    /// </param>
+    /// <returns>
+    ///     Regresa un registro de la tabla <see cref="Models.Relationship"/>
+    /// </returns>
     [MethodId("17B4C153-16C2-4331-9AFF-C8F18350EAC6")]
     public ValueTask<RelationshipInfo?> FetchRelationshipByIdAsync(long? RelationshipId)
     {
@@ -67,10 +72,14 @@ public partial class RelationshipService(IStore<Relationship> RelationshipStore)
     }
 
     /// <summary>
-    /// 
+    ///     Valida e invoca al Store para modificar <see cref="Models.Relationship"/>
     /// </summary>
-    /// <param name="Request"></param>
-    /// <returns></returns>
+    /// <param name="Request">
+    ///     Datos que se van a actualizar del <see cref="Models.Relationship"/> 
+    /// </param>
+    /// <returns>
+    ///     Retorna bool
+    /// </returns>
     [MethodId("E11EAEEB-5A72-40DE-BBEF-4AC44BCC2FB5")]
     public async ValueTask<bool> UpdateRelationshipAsync(UpdateRelationshipRequest Request)
     {
@@ -79,24 +88,34 @@ public partial class RelationshipService(IStore<Relationship> RelationshipStore)
     }
 
     /// <summary>
-    /// 
+    ///     Valida y crea un nuevo <see cref="Models.Relationship"/> en la base de datos
     /// </summary>
-    /// <param name="Request"></param>
-    /// <returns></returns>
+    /// <param name="Request">
+    ///     Datos usado para crear un <see cref="Models.Relationship"/>
+    /// </param>
+    /// <returns>
+    ///     Regresa el nuevo Id del <see cref="Models.Relationship"/>
+    /// </returns>
     [MethodId("D74F0DFE-4F39-4E24-A871-355CCD96A377")]
-    public ValueTask<long> InsertRelationshipAsync(CreateRelationshipRequest Request)
+    public async ValueTask<EntityId> InsertRelationshipAsync(CreateRelationshipRequest Request)
     {
-        return RelationshipStore.InsertRelationshipAsync(Request);
+        await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(RelationshipStore)).Value(RelationshipStore));
+        return await RelationshipStore.InsertRelationshipAsync(Request);
     }
 
     /// <summary>
-    /// 
+    ///     Valida e invoca al Store para eliminar el <see cref="Models.Relationship"/>
     /// </summary>
-    /// <param name="RelationshipId"></param>
-    /// <returns></returns>
+    /// <param name="Request">
+    ///     Id del <see cref="Models.Relationship"/> a eliminar
+    /// </param>
+    /// <returns>
+    ///     Retorna un bool
+    /// </returns>
     [MethodId("CCA4A939-6D07-4FFF-B8A8-D3337A8B1C23")]
-    public ValueTask<bool> DeleteRelationship(long RelationshipId)
+    public async ValueTask<bool> DeleteRelationshipAsync(DeleteRelationshipRequest Request)
     {
-        return RelationshipStore.DeleteRelationshipAsync(RelationshipId);
+        await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(RelationshipStore)).Value(RelationshipStore));
+        return await RelationshipStore.DeleteRelationshipAsync(Request);
     }
 }

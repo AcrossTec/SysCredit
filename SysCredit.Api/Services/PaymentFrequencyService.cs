@@ -51,7 +51,7 @@ public partial class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFre
     ///     Regresa un registro de la tabla <see cref="Models.PaymentFrequency"/>
     /// </returns>
     [MethodId("F2625C55-FCD9-4FEF-AAA0-3782B91A819B")]
-    public async ValueTask<PaymentFrequencyInfo> FetchPaymentFrequencyByIdAsync(long PaymentFrequencyId)
+    public async ValueTask<PaymentFrequencyInfo?> FetchPaymentFrequencyByIdAsync(long PaymentFrequencyId)
     {
         return await PaymentFrequencyStore.FetchPaymentFrequencyByIdAsync(PaymentFrequencyId);
     }

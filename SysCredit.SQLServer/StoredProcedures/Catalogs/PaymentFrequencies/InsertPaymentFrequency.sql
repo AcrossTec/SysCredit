@@ -7,3 +7,4 @@ BEGIN
     VALUES(@Name)
     SET @PaymentFrequencyId = SCOPE_IDENTITY()
 END
+GO

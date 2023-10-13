@@ -10,17 +10,20 @@ using SysCredit.DataTransferObject.Commons;
 using SysCredit.Helpers;
 
 /// <summary>
-///     Endpoints para las distintas operaciones con el catálogo <see cref="Models.Relationship"/>.
+///     Endpoints para las distintas operaciones relacionadas con el catálogo <see cref="Models.Relationship"/>.
 /// </summary>
 /// <param name="RelationshipService">
-///     Servico que provee las opeeraciones básicas para la tabla <see cref="Models.Relationship"/>.
+///     Servico que provee las operaciones básicas para la tabla <see cref="Models.Relationship"/>.
+/// </param>
+/// <param name="Logger">
+///     Objeto ILogger para el controlador
 /// </param>
 [ApiController]
 [Route("Api/[Controller]")]
 public class RelationshipController(IRelationshipService RelationshipService, ILogger<RelationshipController> Logger) : ControllerBase
 {
     /// <summary>
-    ///     Regresa todos los registros de la tabla <see cref="Models.Relationship"/>.
+    ///     Obtiene todos los registros de la tabla <see cref="Models.Relationship"/>.
     /// </summary>
     /// <remarks>
     ///     Endpoint    : GET /Api/Relationship
@@ -67,7 +70,7 @@ public class RelationshipController(IRelationshipService RelationshipService, IL
     ///     Actualiza un registro de la tabla <see cref="Models.Relationship"/>.
     /// </summary>
     /// <param name="Request">
-    ///     Datos que se van ha actualizar del <see cref="Models.Relationship"/>.
+    ///     Datos que se van a actualizar del <see cref="Models.Relationship"/>.
     /// </param>
     /// <returns>
     ///     Regresa una un Http 204.
@@ -84,42 +87,60 @@ public class RelationshipController(IRelationshipService RelationshipService, IL
     }
 
     /// <summary>
-    /// 
+    ///     Obtiene un registro de la tabla <see cref="Models.Relationship"/>
     /// </summary>
-    /// <param name="RelationshipId"></param>
-    /// <returns></returns>
+    /// <param name="RelationshipId">
+    ///     Id obtenido de la ruta
+    /// </param>
+    /// <returns>
+    ///     Regresa un registro de la tabla <see cref="Models.Relationship"/>
+    /// </returns>
     [HttpGet("{RelationshipId}")]
     [ProducesResponseType(typeof(IResponse<RelationshipInfo>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
-    public async Task<IResponse<RelationshipInfo?>> FetchRelationshipByIdIdAsync([FromRoute] long RelationshipId)
+    public async Task<ActionResult<IResponse<RelationshipInfo?>>> FetchRelationshipByIdIdAsync([FromRoute] long RelationshipId)
     {
-        return await RelationshipService.FetchRelationshipByIdAsync(RelationshipId).ToResponseAsync();
+        Logger.LogInformation("EndPoint[GET]: /Api/Relationship/{RelationshipId}", RelationshipId);
+        return Ok(await RelationshipService.FetchRelationshipByIdAsync(RelationshipId).ToResponseAsync());
     }
 
     /// <summary>
-    /// 
+    ///     Crear nuevo Parentesco en la base de datos
     /// </summary>
-    /// <param name="Request"></param>
-    /// <returns></returns>
+    /// <param name="Request">
+    ///     Datos usado para crear el Parentesco
+    /// </param>
+    /// <returns>
+    ///     Regresa el nuevo Id del Parentesco creado
+    /// </returns>
     [HttpPost]
-    [ProducesResponseType(typeof(IResponse<long>), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
-    public async Task<IResponse<long>> InsertRelationship([FromBody] CreateRelationshipRequest Request)
+    [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
+    public async Task<ActionResult<IResponse<EntityId>>> InsertRelationship([FromBody] CreateRelationshipRequest Request)
     {
-        Logger.LogInformation("EndPoint[GET]: /Api/Relationship");
-        return await RelationshipService.InsertRelationshipAsync(Request).ToResponseAsync();
+        Logger.LogInformation("EndPoint[POST]: /Api/Relationship");
+        var Result = await RelationshipService.InsertRelationshipAsync(Request).ToResponseAsync();
+        return StatusCode(StatusCodes.Status201Created, Result);
     }
 
     /// <summary>
-    /// 
+    ///     Elimina un registro de la tabla <see cref="Models.Relationship"/>
     /// </summary>
-    /// <param name="RelationshipId"></param>
-    /// <returns></returns>
+    /// <param name="RelationshipId">
+    ///     Id del <see cref="Models.Relationship"/> a eliminar
+    /// </param>
+    /// <returns>
+    ///     Retorna un Http 204
+    /// </returns>
     [HttpDelete("{RelationshipId}")]
-    [ProducesResponseType(typeof(IResponse<bool>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
-    public async Task<IResponse<bool>> DeleteRelationship(long RelationshipId)
+    [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
+    public async Task<ActionResult> DeleteRelationshipAsync([FromRoute] DeleteRelationshipRequest Request)
     {
-        return await RelationshipService.DeleteRelationship(RelationshipId).ToResponseAsync();
+        Logger.LogInformation("EndPoint[DELETE]: /Api/Relationship/{RelationshipId}", Request.RelationshipId);
+        await RelationshipService.DeleteRelationshipAsync(Request);
+        return NoContent();
     }
 }
