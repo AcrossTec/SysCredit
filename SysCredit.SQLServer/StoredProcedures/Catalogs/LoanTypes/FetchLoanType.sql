@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[FetchLoanTypes]
+﻿CREATE PROCEDURE [dbo].[FetchLoanType]
 AS
 BEGIN
 	SELECT * FROM [dbo].[LoanType]

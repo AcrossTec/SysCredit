@@ -3,6 +3,9 @@
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Validations.LoanTypes;
 
+/// <summary>
+///     Request para crear un nuevo tipo de prestamo
+/// </summary>
 [Validator<CreateLoanTypeValidator>]
 public class CreateLoanTypeRequest : IRequest
 {

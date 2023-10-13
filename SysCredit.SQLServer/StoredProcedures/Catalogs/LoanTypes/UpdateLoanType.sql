@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[UpdateLoanTypeById]
+﻿CREATE PROCEDURE [dbo].[UpdateLoanType]
 	@LoanTypeId BIGINT,
 	@Name       NVARCHAR(32)
 AS
