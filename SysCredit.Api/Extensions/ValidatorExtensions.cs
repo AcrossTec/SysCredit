@@ -90,9 +90,6 @@ public static partial class ValidatorExtensions
     public static IRuleBuilderOptions<T, long?> VerifyIfCustomerExistsByIdAsync<T>(this IRuleBuilder<T, long?> RuleBuilder)
         => RuleBuilder.SetAsyncValidator(new AsyncVerifyIfCustomerExistsByIdValidator<T>());
 
-    public static IRuleBuilderOptions<T, long?> VerifyRouteWithLoanTypeId<T>(this IRuleBuilder<T, long?> RuleBuilder)
-        => RuleBuilder.SetValidator(new VerifyRouteWithLoanTypeIdValidator<T>());
-
     public static IRuleBuilderOptions<T, string?> RelationshipUniqueNameAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
         => RuleBuilder.SetAsyncValidator(new AsyncRelationshipUniqueNameValidator<T>());
 

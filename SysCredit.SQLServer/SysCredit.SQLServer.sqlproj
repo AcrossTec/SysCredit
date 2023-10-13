@@ -128,12 +128,12 @@
     <Build Include="StoredProcedures\Guarantors\FetchGuarantors.sql" />
     <Build Include="StoredProcedures\Guarantors\FetchGuarantorsTop.sql" />
     <Build Include="StoredProcedures\Catalogs\PaymentFrequencies\UpdatePaymentFrequency.sql" />
-    <Build Include="StoredProcedures\Catalogs\LoanTypes\UpdateLoanTypeById.sql" />
+    <Build Include="StoredProcedures\Catalogs\LoanTypes\UpdateLoanType.sql" />
     <Build Include="StoredProcedures\Catalogs\LoanTypes\InsertLoanType.sql" />
     <Build Include="StoredProcedures\Catalogs\PaymentFrequencies\InsertPaymentFrequency.sql" />
     <Build Include="StoredProcedures\Catalogs\Relationships\FetchRelationshipById.sql" />
     <Build Include="StoredProcedures\Catalogs\Relationships\FetchRelationship.sql" />
-    <Build Include="StoredProcedures\Catalogs\LoanTypes\FetchLoanTypes.sql" />
+    <Build Include="StoredProcedures\Catalogs\LoanTypes\FetchLoanType.sql" />
     <Build Include="StoredProcedures\Catalogs\LoanTypes\FetchLoanTypeByName.sql" />
     <Build Include="StoredProcedures\Catalogs\LoanTypes\FetchLoanTypeById.sql" />
     <Build Include="StoredProcedures\Authentications\FetchLogin.sql" />
