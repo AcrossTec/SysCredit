@@ -117,4 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DATARS0000" xml:space="preserve">
+    <value>Success</value>
+    <comment>Errores Generales: IStore&lt;Relationship&gt;</comment>
+  </data>
+  <data name="DATARS0001" xml:space="preserve">
+    <value>Database Provider Error</value>
+    <comment>Errores Generales: IStore&lt;Relationship&gt;</comment>
+  </data>
+  <data name="DATARS0002" xml:space="preserve">
+    <value>Running Store Error</value>
+    <comment>Errores Generales: IStore&lt;Relationship&gt;</comment>
+  </data>
+  <data name="SERVRS0000" xml:space="preserve">
+    <value>Success</value>
+    <comment>Errores Generales: IService&lt;Relationship&gt;</comment>
+  </data>
+  <data name="SERVRS0001" xml:space="preserve">
+    <value>Request Error</value>
+    <comment>Errores Generales: IService&lt;Relationship&gt;</comment>
+  </data>
+  <data name="SERVRS0002" xml:space="preserve">
+    <value>Running Service Error</value>
+    <comment>Errores Generales: IService&lt;Relationship&gt;</comment>
+  </data>
 </root>

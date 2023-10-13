@@ -117,91 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DATAC0001" xml:space="preserve">
-    <value>Error al registrar al cliente</value>
+  <data name="DATARS0000" xml:space="preserve">
+    <value>Sin errores</value>
+    <comment>Errores Generales: IStore&lt;Relationship&gt;</comment>
   </data>
-  <data name="DATAC0002" xml:space="preserve">
-    <value>Error al revertir el registro del cliente</value>
+  <data name="DATARS0001" xml:space="preserve">
+    <value>Error en el proveedor de base de datos</value>
+    <comment>Errores Generales: IStore&lt;Relationship&gt;</comment>
   </data>
-  <data name="DATAG0001" xml:space="preserve">
-    <value>Error al registrar el fiador</value>
+  <data name="DATARS0002" xml:space="preserve">
+    <value>Error en la ejecución del Store</value>
+    <comment>Errores Generales: IStore&lt;Relationship&gt;</comment>
   </data>
-  <data name="DATAG0002" xml:space="preserve">
-    <value>Error al revertir el registro del fiador</value>
+  <data name="SERVRS0000" xml:space="preserve">
+    <value>Sin errores</value>
+    <comment>Errores Generales: IService&lt;Relationship&gt;</comment>
   </data>
-  <data name="DATALT0001" xml:space="preserve">
-    <value>Error al registrar el tipo de préstamo</value>
+  <data name="SERVRS0001" xml:space="preserve">
+    <value>Error en la validación del Request</value>
+    <comment>Errores Generales: IService&lt;Relationship&gt;</comment>
   </data>
-  <data name="DATALT0002" xml:space="preserve">
-    <value>Error al  revertir el registro del tipo del préstamo</value>
-  </data>
-  <data name="DATALT0003" xml:space="preserve">
-    <value>Error al eliminar el tipo de préstamo</value>
-  </data>
-  <data name="DATALT0004" xml:space="preserve">
-    <value>Error al revertir la eliminación del tipo del préstamo</value>
-  </data>
-  <data name="DATALT0005" xml:space="preserve">
-    <value>Error al actualizar el tipo de préstamo</value>
-  </data>
-  <data name="DATALT0006" xml:space="preserve">
-    <value>Error al revertir la actualización del tipo del préstamo</value>
-  </data>
-  <data name="SERVC0003" xml:space="preserve">
-    <value>'{PropertyName}' No existe un registro con este valor</value>
-  </data>
-  <data name="SERVC0002" xml:space="preserve">
-    <value>El Id del Cliente no existe</value>
-  </data>
-  <data name="SERVPF0003" xml:space="preserve">
-    <value>Error al actualizar la frecuencia de pago</value>
-  </data>
-  <data name="SERVLT0001" xml:space="preserve">
-    <value>Solicitud para eliminar el Tipo de Prestamo no válido</value>
-  </data>
-  <data name="SERVLT0002" xml:space="preserve">
-    <value>Creación del Tipo de Prestamo no válido</value>
-  </data>
-  <data name="SERVLT0003" xml:space="preserve">
-    <value>Modificación del Tipo de Prestamo no válido</value>
-  </data>
-  <data name="SERVLT0004" xml:space="preserve">
-    <value>El '{PropertyName}' en la ruta no coincide con el Id proporcionado en el cuerpo de la solicitud.</value>
-  </data>
-  <data name="DATAPF0001" xml:space="preserve">
-    <value>Error al registrar la frecuencia de pago</value>
-  </data>
-  <data name="DATAPF0002" xml:space="preserve">
-    <value>Error al revertir el registro de la frecuencia de pago</value>
-  </data>
-  <data name="DATAPF0003" xml:space="preserve">
-    <value>Error al eliminar la frecuencia de pago</value>
-  </data>
-  <data name="DATAPF0004" xml:space="preserve">
-    <value>Error al revertir la eliminación de la frecuencia de pago</value>
-  </data>
-  <data name="MID0000" xml:space="preserve">
-    <value>Error interno en el proxy del servicio: LoggingAdviceServiceProxy</value>
-    <comment>Logging Advice Service Proxy Error Code</comment>
-  </data>
-  <data name="MID0001" xml:space="preserve">
-    <value>Error Interno del Servidor</value>
-    <comment>SysCredit Middleware ErrorCode</comment>
-  </data>
-  <data name="MID0002" xml:space="preserve">
-    <value>Error del proveedor de base de datos</value>
-    <comment>SysCredit Middleware ErrorCode</comment>
-  </data>
-  <data name="DATAR0501" xml:space="preserve">
-    <value>Error en la transacción al actualizar el Relationship</value>
-  </data>
-  <data name="DATAR0502" xml:space="preserve">
-    <value>Error al intentar deshacer las modificaciones del Relationship</value>
-  </data>
-  <data name="SERVR0504" xml:space="preserve">
-    <value>El '{PropertyName}' de Relationship en la ruta no coincide con el Id proporcionado de la solicitud.</value>
-  </data>
-  <data name="SERG0501" xml:space="preserve">
-    <value>Error al Eliminar al Fiador</value>
+  <data name="SERVRS0002" xml:space="preserve">
+    <value>Error en la ejecución del Servicio</value>
+    <comment>Errores Generales: IService&lt;Relationship&gt;</comment>
   </data>
 </root>

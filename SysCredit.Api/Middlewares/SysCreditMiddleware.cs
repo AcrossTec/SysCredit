@@ -51,29 +51,28 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
             Context.Request.EnableBuffering();
             await Next(Context);
         }
-        catch (EndpointFlowException Exception)
+        catch (ServiceException Exception)
         {
-            IResponse Response = await CreateHttpContextResponseDataAsync(Context, StatusCodes.Status400BadRequest)!.ToResponseAsync(Exception.Status);
+            int StatusCode = Exception.Data[SysCreditConstants.IsFromValidationExceptionKey].As<bool>()
+                ? StatusCodes.Status400BadRequest
+                : StatusCodes.Status500InternalServerError;
+
+            IResponse Response = await CreateHttpContextResponseDataAsync(Context, StatusCode).ToResponseAsync(Exception.ErrorStatus);
             await Context.Response.WriteAsync(WriteLogErrorResponse(Response));
         }
-        catch (SysCreditException Exception) when (Exception.Data.Contains(SysCreditConstants.ErrorStatusKey))
+        catch (StoreException Exception)
         {
-            IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(Exception.Data[SysCreditConstants.ErrorStatusKey].As<ErrorStatus>());
+            IResponse Response = await CreateHttpContextResponseDataAsync(Context).ToResponseAsync(Exception.ErrorStatus);
             await Context.Response.WriteAsync(WriteLogErrorResponse(Response));
         }
-        catch (ProxyException Exception)
+        catch (SysCreditException Exception)
         {
-            IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(CreateErrorStatusFromProxyException(Exception));
-            await Context.Response.WriteAsync(WriteLogErrorResponse(Response));
-        }
-        catch (SqlException Exception)
-        {
-            IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(CreateErrorStatusFromSqlException(Exception));
+            IResponse Response = await CreateHttpContextResponseDataAsync(Context).ToResponseAsync(Exception.ErrorStatus);
             await Context.Response.WriteAsync(WriteLogErrorResponse(Response));
         }
         catch (Exception Exception)
         {
-            IResponse Response = await CreateHttpContextResponseDataAsync(Context)!.ToResponseAsync(CreateErrorStatusFromException(Exception));
+            IResponse Response = await CreateHttpContextResponseDataAsync(Context).ToResponseAsync(CreateErrorStatusFromException(Exception));
             await Context.Response.WriteAsync(WriteLogErrorResponse(Response));
         }
     }
@@ -129,41 +128,6 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
     /// </summary>
     /// <param name="Exception"></param>
     /// <returns></returns>
-    private static ErrorStatus CreateErrorStatusFromSqlException(SqlException Exception)
-    {
-        var Status = CreateErrorStatusFromException(Exception);
-
-        Status.ErrorCode = DatabaseProviderErrorCode;
-        Status.Extensions["SqlProcedure"] = Exception.Procedure;
-        Status.Errors = new Dictionary<string, object?>
-        {
-            ["SqlErrors"] = Exception.Errors.Cast<SqlError>().Select(SqlError => SqlError.Message).ToArray()
-        };
-
-        return Status;
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="Exception"></param>
-    /// <returns></returns>
-    private static ErrorStatus CreateErrorStatusFromProxyException(ProxyException Exception)
-    {
-        var Status = CreateErrorStatusFromException(Exception);
-
-        Status.MethodId = Exception.Data[SysCreditConstants.MethodIdKey]!.ToString();
-        Status.ErrorCode = Exception.Data[SysCreditConstants.ErrorCodeKey]!.ToString();
-        Status.ErrorCategory = Exception.Data[SysCreditConstants.ErrorCategoryKey]!.ToString();
-
-        return Status;
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="Exception"></param>
-    /// <returns></returns>
     private static ErrorStatus CreateErrorStatusFromException(Exception Exception)
     {
         return new()
@@ -175,10 +139,10 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
             ErrorCategory = typeof(SysCreditMiddleware).GetErrorCategory(),
             Extensions =
             {
-                ["ExceptionType"]       = Exception.GetType().ToString(),
-                ["ExceptionMessages"]   = Exception.GetMessages().ToArray(),
-                ["ExceptionSource"]     = Exception.Source,
-                ["ExceptionStackTrace"] = Exception.StackTrace
+                [SysCreditConstants.ExceptionTypeKey]       = Exception.GetType().ToString(),
+                [SysCreditConstants.ExceptionMessagesKey]   = Exception.GetMessages().ToArray(),
+                [SysCreditConstants.ExceptionSourceKey]     = Exception.Source,
+                [SysCreditConstants.ExceptionStackTraceKey] = Exception.StackTrace
             }
         };
     }

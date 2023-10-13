@@ -7,11 +7,23 @@ public static class SysCreditConstants
 {
     public const string Empty = "";
 
+    public const string SqlProcedureKey = "SqlProcedure";
+
+    public const string SqlErrorsKey = "SqlErrors";
+
     public const string ErrorStatusKey = "ErrorStatus";
 
     public const string ErrorCategoryKey = "ErrorCategory";
 
     public const string ErrorCodeKey = "ErrorCode";
+
+    public const string ExceptionTypeKey = "ExceptionType";
+
+    public const string ExceptionMessagesKey = "ExceptionMessages";
+
+    public const string ExceptionSourceKey = "ExceptionSource";
+
+    public const string ExceptionStackTraceKey = "ExceptionStackTrace";
 
     public const string MethodIdKey = "MethodId";
 
@@ -20,6 +32,8 @@ public static class SysCreditConstants
     public const string TypeFullNameKey = "TypeFullName";
 
     public const string ValidatedInstanceKey = "ValidatedInstance";
+
+    public const string IsFromValidationExceptionKey = "IsFromValidationException";
 
     public const string DefaultKey = "DefaultKey";
 

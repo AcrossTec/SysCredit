@@ -45,20 +45,10 @@ public static partial class LoanTypeStore
 
             return Parameters.Get<long?>(nameof(LoanType.LoanTypeId));
         }
-        catch (Exception SqlEx)
+        catch
         {
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATALT0001*/);
-
-            try
-            {
-                SqlTransaction.Rollback();
-            }
-            catch (Exception Ex)
-            {
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATALT0002*/);
-            }
-
-            throw SysCreditEx;
+            SqlTransaction.Rollback();
+            throw;
         }
     }
 
@@ -84,20 +74,10 @@ public static partial class LoanTypeStore
 
             return Result > 0;
         }
-        catch (Exception SqlEx)
+        catch
         {
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATALT0003*/);
-
-            try
-            {
-                SqlTransaction.Rollback();
-            }
-            catch (Exception Ex)
-            {
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATALT0004*/);
-            }
-
-            throw SysCreditEx;
+            SqlTransaction.Rollback();
+            throw;
         }
     }
 
@@ -120,20 +100,10 @@ public static partial class LoanTypeStore
 
             return Result > 0;
         }
-        catch (Exception SqlEx)
+        catch
         {
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATALT0005*/);
-
-            try
-            {
-                SqlTransaction.Rollback();
-            }
-            catch (Exception Ex)
-            {
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATALT0006*/);
-            }
-
-            throw SysCreditEx;
+            SqlTransaction.Rollback();
+            throw;
         }
     }
 

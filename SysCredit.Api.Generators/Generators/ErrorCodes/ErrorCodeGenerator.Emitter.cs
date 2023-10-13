@@ -92,11 +92,8 @@ internal partial class ErrorCodeGenerator
     /// <param name="CodeInfo">
     ///     Prefijos usados por los códigos de error.
     /// </param>
-    /// <param name="MinCodeNumber">
-    ///     Número de código de error mínimo.
-    /// </param>
-    /// <param name="MaxCodeNumber">
-    ///     Número de código de error máximo.
+    /// <param name="Range">
+    ///     Rangos máximos y mínimos de los códigos de error.
     /// </param>
     /// <returns>
     ///     Regresa las declaraciones de los campos.
@@ -106,7 +103,7 @@ internal partial class ErrorCodeGenerator
         // Construct the generated field as follows:
         // public const string <CodePrefix><CodeNumber> = "<CodePrefix><CodeNumber>";
 
-        foreach (var CodeNumber in Enumerable.Range(Range.MinCodeNumber, Range.MaxCodeNumber))
+        foreach (var CodeNumber in Enumerable.Range(Range.MinCodeNumber, Range.MaxCodeNumber + 1))
         {
             yield return FieldDeclaration(VariableDeclaration(PredefinedType(Token(SyntaxKind.StringKeyword)))
                             .WithVariables(

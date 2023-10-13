@@ -10,12 +10,9 @@ using SysCredit.Helpers;
 
 using System.Data.SqlClient;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-using static Constants.ErrorCodes;
-using static Properties.ErrorCodeMessages;
 using static System.String;
 
 /// <summary>
@@ -37,7 +34,7 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
         BeforeProceed(Invocation);
         Invocation.Proceed();
 
-        if (IsAsyncMethod(Invocation.MethodInvocationTarget))
+        if (Invocation.MethodInvocationTarget.IsAsyncMethod())
         {
             Invocation.ReturnValue = InterceptAsync((dynamic)Invocation.ReturnValue, Invocation);
         }
@@ -48,37 +45,31 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     }
 
     /// <summary>
-    ///     Crea un <see cref="ProxyException" /> desde alguna excepción generalizada.
+    ///     Crea un <see cref="ServiceException" /> desde alguna excepción generalizada.
     /// </summary>
-    /// <param name="ErrorCode">
-    ///     Código de error asociado al error que se ha producido.
-    /// </param>
     /// <param name="Invocation">
     ///     Información del método de servicio actual en ejecución.
     /// </param>
-    /// <param name="InnerException">
-    ///     Excepción que será usada para crear el <see cref="ProxyException" />.
+    /// <param name="Exception">
+    ///     Excepción que será usada para crear el <see cref="ServiceException" />.
     /// </param>
     /// <returns>
-    ///     Regresa un <see cref="ProxyException" /> con información detallada del error actual.
+    ///     Regresa un <see cref="ServiceException" /> con información detallada del error actual.
     /// </returns>
-    private static ProxyException CreateProxyException(string ErrorCode, IInvocation Invocation, Exception InnerException)
+    private static ServiceException CreateServiceException(IInvocation Invocation, Exception Exception)
     {
-        return new ProxyException(GetMessageFromCode(ErrorCode), InnerException)
+        Exception = Exception.CreateExceptionUsingMethodInfo<ServiceException>(Invocation.MethodInvocationTarget, Status =>
         {
-            Data =
-            {
-                [SysCreditConstants.ErrorCodeKey]      = ErrorCode,
-                [SysCreditConstants.TypeFullNameKey]   = Invocation.TargetType.ToString(),
-                [SysCreditConstants.MethodFullNameKey] = Invocation.MethodInvocationTarget.ToString(),
-                [SysCreditConstants.MethodIdKey]       = Invocation.MethodInvocationTarget.GetMethodId(),
-                [SysCreditConstants.ErrorCategoryKey]  = Invocation.MethodInvocationTarget.GetErrorCategory()
-            }
-        };
+            Status.ErrorCode = Invocation.MethodInvocationTarget.GetServiceExecuteErrorCode();
+            Status.ErrorMessage = Invocation.MethodInvocationTarget.GetServiceExecuteErrorCodeMessage();
+        });
+
+        Exception.Data[SysCreditConstants.IsFromValidationExceptionKey] = false;
+        return Exception.As<ServiceException>()!;
     }
 
     /// <summary>
-    ///     Crea un <see cref="EndpointFlowException" /> desde alguna excepción generalizada.
+    ///     Crea un <see cref="ServiceException" /> desde alguna excepción generalizada.
     /// </summary>
     /// <param name="Invocation">
     ///     Información del método de servicio actual en ejecución.
@@ -87,66 +78,20 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     ///     Resultados de validar un objeto de tipo <see cref="Requests.IRequest" />.
     /// </param>
     /// <returns>
-    ///     Regresa un <see cref="EndpointFlowException" /> con información detallada del error actual.
+    ///     Regresa un <see cref="ServiceException" /> con información detallada del error actual.
     /// </returns>
-    private static EndpointFlowException CreateEndpointFlowException(IInvocation Invocation, ValidationException ValidationResult)
+    private static ServiceException CreateServiceException(IInvocation Invocation, ValidationException ValidationResult)
     {
-        var Status = new ErrorStatus();
-        Status.MethodId = Invocation.MethodInvocationTarget.GetMethodId();
-        Status.ErrorCode = Invocation.MethodInvocationTarget.GetValidationErrorCode();
-        Status.ErrorMessage = Format(Invocation.MethodInvocationTarget.GetValidationErrorCodeMessage(), ValidationResult.ValidatedInstanceType);
-        Status.ErrorCategory = Invocation.MethodInvocationTarget.GetErrorCategory();
-        Status.Errors = ValidationResult.ValidationResult.ErrorsToDictionaryWithErrorCode();
-        return new EndpointFlowException(Status, ValidationResult);
-    }
-
-    /// <summary>
-    ///     Verifica si un método regresa una tarea asincrona.
-    /// </summary>
-    /// <param name="Method">
-    ///     Método que será verificado.
-    /// </param>
-    /// <returns>
-    ///     Regresa <see cref="bool">True</see> si el método regresa una tarea asincrona y <see cref="bool">False</see> si no.
-    /// </returns>
-    private static bool CheckMethodReturnTypeIsTaskType(MethodInfo Method)
-    {
-        Type ReturnType = Method.ReturnType;
-
-        if (ReturnType.IsGenericType)
+        var Exception = ValidationResult.CreateExceptionUsingMethodInfo<ServiceException>(Invocation.MethodInvocationTarget, Status =>
         {
-            if (ReturnType.IsInterface && ReturnType.GetGenericTypeDefinition() == typeof(IAsyncEnumerable<>))
-            {
-                return true;
-            }
-            else if (ReturnType.GetGenericTypeDefinition() == typeof(Task<>) || ReturnType.GetGenericTypeDefinition() == typeof(ValueTask<>))
-            {
-                return true;
-            }
-        }
-        else if (ReturnType == typeof(Task) || ReturnType == typeof(ValueTask))
-        {
-            return true;
-        }
+            Status.Errors = ValidationResult.ValidationResult.ErrorsToDictionaryWithErrorCode();
+            Status.ErrorCode = Invocation.MethodInvocationTarget.GetServiceValidationErrorCode();
+            Status.ErrorMessage = Invocation.MethodInvocationTarget.GetServiceValidationErrorCodeMessage();
+            Status.Extensions[SysCreditConstants.ValidatedInstanceKey] = ValidationResult.ValidatedInstanceType.ToString();
+        });
 
-        return false;
-    }
-
-    /// <summary>
-    ///     Verifica si un método es asincrono.
-    /// </summary>
-    /// <param name="Method">
-    ///     Método que será verificado.
-    /// </param>
-    /// <returns>
-    ///     Regresa True si el método es asincrono en caso contrario False.
-    /// </returns>
-    private static bool IsAsyncMethod(MethodInfo Method)
-    {
-        bool IsAsyncStateMachine = Attribute.IsDefined(Method, typeof(AsyncStateMachineAttribute), inherit: false);
-        bool IsTaskType = CheckMethodReturnTypeIsTaskType(Method);
-
-        return IsAsyncStateMachine && IsTaskType;
+        Exception.Data[SysCreditConstants.IsFromValidationExceptionKey] = true;
+        return Exception;
     }
 
     /// <summary>
@@ -170,11 +115,11 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
         }
         catch (ValidationException ValidationResult)
         {
-            throw CreateEndpointFlowException(Invocation, ValidationResult);
+            throw CreateServiceException(Invocation, ValidationResult);
         }
-        catch (Exception Exception) when (Exception is not SqlException)
+        catch (Exception Exception) when (Exception is not StoreException)
         {
-            throw CreateProxyException(LoggingAdviceServiceInterceptorErrorCode, Invocation, Exception);
+            throw CreateServiceException(Invocation, Exception);
         }
     }
 
@@ -203,11 +148,11 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
         }
         catch (ValidationException ValidationResult)
         {
-            throw CreateEndpointFlowException(Invocation, ValidationResult);
+            throw CreateServiceException(Invocation, ValidationResult);
         }
-        catch (Exception Exception) when (Exception is not SqlException)
+        catch (Exception Exception) when (Exception is not StoreException)
         {
-            throw CreateProxyException(LoggingAdviceServiceInterceptorErrorCode, Invocation, Exception);
+            throw CreateServiceException(Invocation, Exception);
         }
     }
 
@@ -232,11 +177,11 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
         }
         catch (ValidationException ValidationResult)
         {
-            throw CreateEndpointFlowException(Invocation, ValidationResult);
+            throw CreateServiceException(Invocation, ValidationResult);
         }
-        catch (Exception Exception) when (Exception is not SqlException)
+        catch (Exception Exception) when (Exception is not StoreException)
         {
-            throw CreateProxyException(LoggingAdviceServiceInterceptorErrorCode, Invocation, Exception);
+            throw CreateServiceException(Invocation, Exception);
         }
     }
 
@@ -265,11 +210,11 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
         }
         catch (ValidationException ValidationResult)
         {
-            throw CreateEndpointFlowException(Invocation, ValidationResult);
+            throw CreateServiceException(Invocation, ValidationResult);
         }
-        catch (Exception Exception) when (Exception is not SqlException)
+        catch (Exception Exception) when (Exception is not StoreException)
         {
-            throw CreateProxyException(LoggingAdviceServiceInterceptorErrorCode, Invocation, Exception);
+            throw CreateServiceException(Invocation, Exception);
         }
     }
 

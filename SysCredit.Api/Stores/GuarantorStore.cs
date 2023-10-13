@@ -95,25 +95,13 @@ public static partial class GuarantorStore
 
             return Parameters.Get<long?>(nameof(Guarantor.GuarantorId));
         }
-        catch (Exception SqlEx)
+        catch
         {
-            // Handle the exception if the transaction fails to commit.
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAG0001*/);
-
-            try
-            {
-                // Attempt to roll back the transaction.
-                SqlTransaction.Rollback();
-            }
-            catch (Exception Ex)
-            {
-                // Throws an InvalidOperationException if the connection is closed or the transaction has already been rolled back on the server.
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAG0002*/);
-            }
-
-            throw SysCreditEx;
+            SqlTransaction.Rollback();
+            throw;
         }
     }
+
     [MethodId("B9BAEE11-E36E-4BE4-844A-646A72AE9BC2")]
     public static async ValueTask<bool> DeleteGuarantorByIdAsync(this IStore<Guarantor> Store, DeleteGuarantorRequest Request)
     {
@@ -126,18 +114,10 @@ public static partial class GuarantorStore
 
             return Result > 0;
         }
-        catch (Exception SqlEx)
+        catch
         {
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAG0501*/);
-            try
-            {
-                SqlTransaction.Rollback();
-            }
-            catch (Exception Ex)
-            {
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAG0502*/);
-            }
-            throw SysCreditEx;
+            SqlTransaction.Rollback();
+            throw;
         }
     }
 }

@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 using static SysCredit.Api.Constants.SysCreditConstants;
 
 [assembly: ApiController]
-[assembly: ErrorCodeRange(MinCodeNumber: 0, MaxCodeNumber: 500)]
+[assembly: ErrorCodeRange(MinCodeNumber: 0, MaxCodeNumber: 300)]
 [assembly: XmlConfigurator(ConfigFile = Log4NetConfigFile, Watch = true)]
 
 var Builder = WebApplication.CreateBuilder(args);
@@ -30,11 +30,23 @@ App.UseAuthorization();
 App.MapControllers();
 App.Run();
 
+/// <summary>
+///     Punto de entrada de la aplicación SysCredit.
+/// </summary>
 public partial class Program
 {
+    /// <summary>
+    ///     Contructor del Módulo SysCredit.
+    /// </summary>
     [ModuleInitializer]
     public static void ModuleInitializer()
     {
-        SysCreditApiPatcher.PatchAll();
+        try
+        {
+            SysCreditApiPatcher.PatchAll();
+        }
+        catch (Exception Ex)
+        {
+        }
     }
 }

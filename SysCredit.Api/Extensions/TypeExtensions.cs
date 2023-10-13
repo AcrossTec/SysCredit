@@ -57,4 +57,32 @@ public static class TypeExtensions
     {
         return Type?.GetCustomAttribute<ErrorCodePrefixAttribute>()?.Prefix;
     }
+
+    /// <summary>
+    ///     Obtiene el atributo <see cref="StoreAttribute"/> de <paramref name="Type"/>.
+    /// </summary>
+    /// <param name="Type">
+    ///     Tipo en el que se buscará el atributo <see cref="StoreAttribute"/>.
+    /// </param>
+    /// <returns>
+    ///     Regresa una instancia del atributo <see cref="StoreAttribute"/> o <see langword="null"/> si no existe en el tipo.
+    /// </returns>
+    public static StoreAttribute? GetStoreAttribute(this Type? Type)
+    {
+        return Type?.GetCustomAttribute<StoreAttribute>();
+    }
+
+    /// <summary>
+    ///     Verifica si el atributo <see cref="StoreAttribute"/> existe en <paramref name="Type"/>.
+    /// </summary>
+    /// <param name="Type">
+    ///     Tipo en el que se buscará el atributo <see cref="StoreAttribute"/>.
+    /// </param>
+    /// <returns>
+    ///     Regresa <see langword="true"/> si existe <see cref="StoreAttribute"/> en <paramref name="Type"/> sino <see langword="false"/>.
+    /// </returns>
+    public static bool IsStore(this Type? Type)
+    {
+        return Type?.GetStoreAttribute() is not null;
+    }
 }

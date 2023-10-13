@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>399f066c-f5f3-4afb-9804-d06f2b816764</UserSecretsId>
+    <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
+    <!--<GenerateDocumentationFile>true</GenerateDocumentationFile>-->
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <WarningLevel>9999</WarningLevel>

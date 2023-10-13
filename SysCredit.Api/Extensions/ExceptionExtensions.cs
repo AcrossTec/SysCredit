@@ -1,5 +1,7 @@
 ﻿namespace SysCredit.Api.Extensions;
 
+using log4net.Core;
+
 using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Properties;
@@ -59,38 +61,35 @@ public static class ExceptionExtensions
     }
 
     /// <summary>
-    ///     Convierte una Excepción general ha una posible representación de <see cref="SysCreditException" />.<br />
-    ///     En la propiedad <see cref="Exception.Data" /> con la clave <see cref="SysCreditConstants.ErrorStatusKey" /> esta la información del objeto <see cref="ErrorStatus" />.
+    ///     Convierte una Excepción general ha una posible representación de <typeparamref name="TException"/>.
     /// </summary>
-    /// <param name="Ex">
+    /// <param name="Exception">
     ///     Excepción con la información del error.
     /// </param>
     /// <param name="MethodInfo">
     ///     Método que tiene los metadatos relacionado a error de <paramref name="Ex" />.
     /// </param>
-    /// <param name="ErrorCode">
-    ///     Código de error correspondiente al error de <paramref name="Ex" />.
-    /// </param>
     /// <returns>
-    ///     Regresa un <see cref="SysCreditException" /> como una posible representación más detallada de <see cref="Exception" />.
+    ///     Regresa un <typeparamref name="TException"/> como una posible representación más detallada de <see cref="Exception" />.
     /// </returns>
-    public static SysCreditException ToSysCreditException(this Exception Ex, MethodBase? MethodInfo, string ErrorCode)
+    public static TException CreateExceptionUsingMethodInfo<TException>(this Exception Exception, MethodBase MethodInfo, Action<ErrorStatus> ErrorStatusOptions) where TException : SysCreditException
     {
-        SysCreditException SysCreditEx = new(ErrorCodeMessages.GetMessageFromCode(ErrorCode), Ex)
+        var Status = new ErrorStatus
         {
-            Data =
-            {
-                [SysCreditConstants.ErrorStatusKey] = new ErrorStatus()
-                {
-                    MethodId      = MethodInfo.GetMethodId(),
-                    ErrorCode     = ErrorCode,
-                    ErrorMessage  = ErrorCodeMessages.GetMessageFromCode(ErrorCode),
-                    ErrorCategory = MethodInfo.GetErrorCategory(),
-                    Errors        = Ex.ExceptionsToDictionary()
-                }
-            }
+            HasError = true,
+            MethodId = MethodInfo.GetMethodId(),
+            ErrorCode = string.Empty,
+            ErrorMessage = string.Empty,
+            ErrorCategory = MethodInfo.GetErrorCategory()
         };
 
-        return SysCreditEx;
+        ErrorStatusOptions.Invoke(Status);
+
+        Status.Extensions.Add(SysCreditConstants.ExceptionTypeKey, Exception.GetType().ToString());
+        Status.Extensions.Add(SysCreditConstants.ExceptionMessagesKey, Exception.GetMessages().ToArray());
+        Status.Extensions.Add(SysCreditConstants.ExceptionSourceKey, Exception.Source);
+        Status.Extensions.Add(SysCreditConstants.ExceptionStackTraceKey, Exception.StackTrace);
+
+        return Activator.CreateInstance(typeof(TException), new object[] { Status.ErrorMessage, Status, Exception }).As<TException>()!;
     }
 }

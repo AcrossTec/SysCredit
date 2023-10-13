@@ -284,23 +284,10 @@ public static partial class CustomerStore
 
             return Parameters.Get<long?>(nameof(Customer.CustomerId));
         }
-        catch (Exception SqlEx)
+        catch
         {
-            // Handle the exception if the transaction fails to commit.
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAC0001*/);
-
-            try
-            {
-                // Attempt to roll back the transaction.
-                SqlTransaction.Rollback();
-            }
-            catch (Exception Ex)
-            {
-                // Throws an InvalidOperationException if the connection is closed or the transaction has already been rolled back on the server.
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAC0002*/);
-            }
-
-            throw SysCreditEx;
+            SqlTransaction.Rollback();
+            throw;
         }
     }
 

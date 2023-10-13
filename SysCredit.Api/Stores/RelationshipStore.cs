@@ -1,6 +1,7 @@
 ﻿namespace SysCredit.Api.Stores;
 
 using Dapper;
+
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
@@ -86,22 +87,11 @@ public static partial class RelationshipStore
 
             return Result > 0;
         }
-        catch (Exception SqlEx)
+        catch
         {
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), string.Empty /*DATAR0501*/);
-
-            try
-            {
-                SqlTransaction.Rollback();
-            }
-            catch (Exception Ex)
-            {
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), string.Empty /*DATAR0502*/);
-            }
-
-            throw SysCreditEx;
+            SqlTransaction.Rollback();
+            throw;
         }
-
     }
 
     /// <summary>
@@ -130,22 +120,10 @@ public static partial class RelationshipStore
 
             return Parameters.Get<long?>(nameof(Relationship.RelationshipId));
         }
-        catch (Exception SqlEx)
+        catch
         {
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATALT0001*/);
-
-            try
-            {
-                // Attempt to roll back the transaction.
-                SqlTransaction.Rollback();
-            }
-            catch (Exception Ex)
-            {
-                // Throws an InvalidOperationException if the connection is closed or the transaction has already been rolled back on the server.
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATALT0002*/);
-            }
-
-            throw SysCreditEx;
+            SqlTransaction.Rollback();
+            throw;
         }
     }
 
@@ -173,20 +151,10 @@ public static partial class RelationshipStore
 
             return Result > 0;
         }
-        catch (Exception SqlEx)
+        catch
         {
-            SysCreditException SysCreditEx = SqlEx.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAPF0003*/);
-
-            try
-            {
-                SqlTransaction.Rollback();
-            }
-            catch (Exception Ex)
-            {
-                throw Ex.ToSysCreditException(MethodInfo.GetCurrentMethod(), ""/*DATAPF0004*/);
-            }
-
-            throw SysCreditEx;
+            SqlTransaction.Rollback();
+            throw;
         }
     }
 }
