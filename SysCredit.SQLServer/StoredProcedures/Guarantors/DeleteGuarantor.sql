@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[DeleteGuarantorById]
+﻿CREATE PROCEDURE [dbo].[DeleteGuarantor]
 	@GuarantorId BIGINT
 AS
 BEGIN

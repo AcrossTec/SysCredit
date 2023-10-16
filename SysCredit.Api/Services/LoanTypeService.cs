@@ -46,10 +46,10 @@ public partial class LoanTypeService(IStore<LoanType> LoanTypeStore)
     }
 
     /// <summary>
-    /// 
+    ///     Obtiene un tipo de prestamo por su id
     /// </summary>
-    /// <param name="LoanTypeId"></param>
-    /// <returns></returns>
+    /// <param name="LoanTypeId">Id del prestamo</param>
+    /// <returns>Retorna el tipo de prestamo</returns>
     [MethodId("53143E7A-CB8B-45ED-AE3A-F7DD55AD907E")]
     public ValueTask<LoanTypeInfo?> FetchLoanTypeByIdAsync(long? LoanTypeId)
     {
@@ -59,7 +59,7 @@ public partial class LoanTypeService(IStore<LoanType> LoanTypeStore)
     /// <summary>
     ///     Elimina un tipo de prestamo
     /// </summary>
-    /// <param name="Request"></param>
+    /// <param name="Request">Recibe el id del tipo de prestamo</param>
     /// <returns></returns>
     [MethodId("B4850869-6F13-4BAB-87C6-FF8F08B31A95")]
     public async ValueTask<bool> DeleteLoanTypeAsync(DeleteLoanTypeRequest Request)

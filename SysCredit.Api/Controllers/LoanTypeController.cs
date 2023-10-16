@@ -2,15 +2,12 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SysCredit.Api.Endpoints;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces.Services;
 using SysCredit.Api.Requests.LoanType;
 using SysCredit.Api.Requests.LoanTypes;
-
-using SysCredit.Models;
-
 using SysCredit.Helpers;
+using SysCredit.Models;
 
 /// <summary>
 ///     Endpoints para las distintas operaciones relacionadas al tipo de prestamo
@@ -19,7 +16,7 @@ using SysCredit.Helpers;
 ///     Servicio que tiene toda la funcionalidad y operaciones relacionadas al tipo de prestamo
 /// </param>
 /// <param name="Logger">
-///     Objeto ILogger para el controlador
+///     Objeto Logger para el controlador
 /// </param>
 [ApiController]
 [Route("Api/[Controller]")]

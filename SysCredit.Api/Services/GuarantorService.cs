@@ -20,6 +20,10 @@ using System.Threading.Tasks;
 using static Constants.ErrorCodePrefix;
 using static SysCredit.Helpers.ContextData;
 
+/// <summary>
+///     Servicio del modelo <see cref="Guarantor"/>
+/// </summary>
+/// <param name="Store">Repositorio del modelo <see cref="Guarantor"/></param>
 [Service<IGuarantorService>]
 [ServiceModel<Guarantor>]
 [ErrorCategory(nameof(GuarantorService))]
@@ -31,10 +35,12 @@ public partial class GuarantorService(IStore Store)
     private readonly IStore<Relationship> RelationshipStore = Store.GetStore<Relationship>();
 
     /// <summary>
-    /// 
+    ///     Servicio para validar y crear un nuevo Guarantor
     /// </summary>
-    /// <param name="Request"></param>
-    /// <returns></returns>
+    /// <param name="Request">
+    ///     Recibe los datos necesarios para crear un Guarantor
+    /// </param>
+    /// <returns>Retorna el id del Guarantor</returns>
     [MethodId("9FE9602F-7011-435F-83BE-F573704A932D")]
     public async ValueTask<EntityId> InsertGuarantorAsync(CreateGuarantorRequest Request)
     {
@@ -45,53 +51,55 @@ public partial class GuarantorService(IStore Store)
         return await GuarantorStore.InsertGuarantorAsync(Request);
     }
 
+    /// <summary>
+    ///     Servicio para eliminar un Guarantor.
+    /// </summary>
+    /// <param name="Request">Recibe el id del Guarantor.</param>
+    /// <returns></returns>
     [MethodId("6C5CFD99-1940-487F-8637-88B6033A6216")]
-    public async ValueTask<bool> DeleteGuarantorByIdAsync(DeleteGuarantorRequest Request)
+    public async ValueTask<bool> DeleteGuarantorAsync(DeleteGuarantorRequest Request)
     {
         await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(CustomerStore)).Value(CustomerStore));
-        return await GuarantorStore.DeleteGuarantorByIdAsync(Request);
+        return await GuarantorStore.DeleteGuarantorAsync(Request);
     }
 
     /// <summary>
-    /// 
+    ///     Obtiene todos los Guarantor
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Retorna una lista de Guarantors</returns>
     [MethodId("F156EE14-0CB8-477E-B9BF-0B864E26BF25")]
-    public IAsyncEnumerable<FetchGuarantor> FetchGuarantorAsync()
+    public IAsyncEnumerable<FetchGuarantor> FetchGuarantorsAsync()
     {
         return GuarantorStore.FetchGuarantorsAsync();
     }
 
     /// <summary>
-    /// 
+    ///     Obtiene el Guarantor por su id
     /// </summary>
-    /// <param name="GuarantorId"></param>
-    /// <returns></returns>
+    /// <param name="GuarantorId">Id del Guarantor</param>
+    /// <returns>Retorna el Guarantor</returns>
     [MethodId("E1C42C3D-681C-4AEA-A412-68D02482DC6D")]
-    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
-    [ProducesResponseType(typeof(IResponse<GuarantorInfo?>), StatusCodes.Status200OK)]
     public ValueTask<GuarantorInfo?> FetchGuarantorByIdAsync(long? GuarantorId)
     {
-
         return GuarantorStore.FetchGuarantorByIdAsync(GuarantorId);
-
     }
+
     /// <summary>
-    /// 
+    ///     Obtiene todos los Guarantor limitando el alcance
     /// </summary>
-    /// <param name="Request"></param>
-    /// <returns></returns>
+    /// <param name="Request">Recibe el inicio de la busqueda y cuantos registros buscará</param>
+    /// <returns>Retorna una lista de Guarantors</returns>
     [MethodId("4007331B-2C71-4DAF-8B00-15CBB3B3328C")]
-    public IAsyncEnumerable<FetchGuarantor> FetchGuarantorAsync(PaginationRequest Request)
+    public IAsyncEnumerable<FetchGuarantor> FetchGuarantorsAsync(PaginationRequest Request)
     {
         return GuarantorStore.FetchGuarantorsAsync(Request);
     }
 
     /// <summary>
-    /// 
+    ///     Busca Guarantors por su valor
     /// </summary>
-    /// <param name="Request"></param>
-    /// <returns></returns>
+    /// <param name="Request">Recibe el valor del Guarantor a Buscar</param>
+    /// <returns>Retorna una lista de Guarantors que coincida con el valor</returns>
     [MethodId("543DDE99-6927-4D4D-928F-A47CD6695114")]
     public IAsyncEnumerable<GuarantorInfo> SearchGuarantorAsync(SearchRequest Request)
     {

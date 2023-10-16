@@ -15,7 +15,7 @@ public class AsyncGuarantorUniqueEmailValidator<T> : AsyncPropertyValidator<T, s
 {
     public override async Task<bool> IsValidAsync(ValidationContext<T> Context, string? Email, CancellationToken Cancellation)
     {
-        var Guarantor = await Context.RootContextData[nameof(GuarantorStore)].AsStore<Guarantor>().FetchGuarantorByEmail(Email);
+        var Guarantor = await Context.RootContextData[nameof(GuarantorStore)].AsStore<Guarantor>().FetchGuarantorByEmailAsync(Email);
         return Guarantor is null;
     }
 

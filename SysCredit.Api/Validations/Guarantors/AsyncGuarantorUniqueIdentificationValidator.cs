@@ -15,7 +15,7 @@ public class AsyncGuarantorUniqueIdentificationValidator<T> : AsyncPropertyValid
 {
     public override async Task<bool> IsValidAsync(ValidationContext<T> Context, string? Identification, CancellationToken Cancellation)
     {
-        var Guarantor = await Context.RootContextData[nameof(GuarantorStore)].AsStore<Guarantor>().FetchGuarantorByIdentification(Identification);
+        var Guarantor = await Context.RootContextData[nameof(GuarantorStore)].AsStore<Guarantor>().FetchGuarantorByIdentificationAsync(Identification);
         return Guarantor is null;
     }
 

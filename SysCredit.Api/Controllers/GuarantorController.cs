@@ -13,18 +13,25 @@ using SysCredit.DataTransferObject.StoredProcedures;
 using SysCredit.Helpers;
 
 /// <summary>
-/// 
+///     Endpoints para las distintas operaciones relacionadas al tipo de fiador
 /// </summary>
-/// <param name="GuarantorService"></param>
+/// <param name="GuarantorService">
+///     Servicio que tiene toda la funcionalidad y operaciones relacionadas al Guarantor
+/// </param>
+/// <param name="Logger">
+///     Objeto Logger para el controlador
+/// </param>
 [ApiController]
 [Route("Api/[Controller]")]
 public class GuarantorController(IGuarantorService GuarantorService, ILogger<GuarantorController> Logger) : ControllerBase
 {
     /// <summary>
-    /// 
+    ///     Endpoint para insertar un Guarantor
     /// </summary>
-    /// <param name="Request"></param>
-    /// <returns></returns>
+    /// <param name="Request">
+    ///     Recibe los datos necesarios para crear un Guarantor
+    /// </param>
+    /// <returns>Retorna el id del Guarantor</returns>
     [HttpPost]
     [ProducesResponseType(typeof(IResponse<EntityId>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
@@ -37,62 +44,75 @@ public class GuarantorController(IGuarantorService GuarantorService, ILogger<Gua
     }
 
     /// <summary>
-    /// 
+    ///     Endpoint para obtener el guarantor por su id
     /// </summary>
     /// <param name="GuarantorId">Id de Guarantor</param>
-    /// <returns></returns>
+    /// <returns>Retorna el Guarantor</returns>
     [HttpGet("{GuarantorId}")]
-    [ProducesResponseType(typeof(IResponse<GuarantorInfo?>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IResponse<GuarantorInfo>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
-    public async Task<IResponse> FetchGuarantorById(long? GuarantorId)
+    public async Task<ActionResult<IResponse<GuarantorInfo?>>> FetchGuarantorByIdAsync(long GuarantorId)
     {
-        Logger.LogInformation("Endpoint [Get]: Api/Guarantor/{GuarantorId}",GuarantorId);
-        return await GuarantorService.FetchGuarantorByIdAsync(GuarantorId).ToResponseAsync();
+        Logger.LogInformation("Endpoint[GET]: /Api/Guarantor/{GuarantorId}", GuarantorId);
+        return Ok(await GuarantorService.FetchGuarantorByIdAsync(GuarantorId).ToResponseAsync());
     }
 
     /// <summary>
-    /// 
+    ///     Endpoint paara obtener una colección paginada de Guarantor.
     /// </summary>
-    /// <param name="Request"></param>
-    /// <returns></returns>
+    /// <param name="Request">
+    ///     La solicitud de paginación que contiene los parámetros de paginación, como el desplazamiento (offset) y límite (limit).
+    /// </param>
+    /// <returns>Retorna la colección de Guarantor recuperada de acuerdo con los parámetros de paginación.</returns>
     [HttpGet]
     [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<FetchGuarantor>>), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(IResponse), StatusCodes.Status500InternalServerError)]
-    public async Task<IResponse<IAsyncEnumerable<FetchGuarantor>>> FetchGuarantorsAsync([FromQuery] PaginationRequest Request)
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
+    public async Task<ActionResult<IResponse<IAsyncEnumerable<FetchGuarantor>>>> FetchGuarantorsAsync([FromQuery] PaginationRequest Request)
     {
+        Logger.LogInformation("EndPoint[GET]: /Api/Guarantor");
+
         if (Request.Offset.HasValue && Request.Limit.HasValue)
         {
-            return await GuarantorService.FetchGuarantorAsync(Request).ToResponseAsync();
+            return Ok(await GuarantorService.FetchGuarantorsAsync(Request).ToResponseAsync());
         }
         else
         {
-            return await GuarantorService.FetchGuarantorAsync().ToResponseAsync();
+            return Ok(await GuarantorService.FetchGuarantorsAsync().ToResponseAsync());
         }
     }
 
+    /// <summary>
+    ///     Elimina de forma asíncrona un garante especificado por su identificador.
+    /// </summary>
+    /// <param name="Request">
+    ///     La solicitud que contiene el identificador del garante a eliminar.
+    /// </param>
+    /// <returns></returns>
     [HttpDelete("{GuarantorId}")]
-    [ProducesResponseType(typeof(IResponse), StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
-    [ProducesErrorResponseType(typeof(IResponse<DeleteGuarantorRequest>))]
-    public async Task<ActionResult<IResponse<DeleteGuarantorRequest>>> DeleteGuarantorAsync([FromRoute] DeleteGuarantorRequest Request)
+    public async Task<ActionResult> DeleteGuarantorAsync([FromRoute] DeleteGuarantorRequest Request)
     {
-        var Result = await GuarantorService.DeleteGuarantorByIdAsync(Request);
-        
+        Logger.LogInformation("EndPoint[DELETE]: /Api/Guarantor/{GuarantorId}", Request.GuarantorId);
+        await GuarantorService.DeleteGuarantorAsync(Request);
         return StatusCode(StatusCodes.Status204NoContent);
-        
     }
 
     /// <summary>
-    /// 
+    ///     Busca Guarantor que coincidan con los criterios especificados.
     /// </summary>
-    /// <param name="Request"></param>
-    /// <returns></returns>
+    /// <param name="Request">Representa el valor que se buscará en los registros de base de datos.</param>
+    /// <returns>Una acción de resultado que representa la respuesta HTTP que contiene los garantes encontrados.</returns>
     [HttpGet("Search")]
     [ProducesResponseType(typeof(IResponse<IAsyncEnumerable<GuarantorInfo>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
-    public async Task<IResponse<IAsyncEnumerable<GuarantorInfo>>> SearchGuarantorAsync([FromQuery] SearchRequest Request)
+    public async Task<ActionResult<IResponse<IAsyncEnumerable<GuarantorInfo>>>> SearchGuarantorAsync([FromQuery] SearchRequest Request)
     {
-        return await GuarantorService.SearchGuarantorAsync(Request).ToResponseAsync();
+        Logger.LogInformation("EndPoint[GET]: /Api/Guarantor/Search");
+        return Ok(await GuarantorService.SearchGuarantorAsync(Request).ToResponseAsync());
     }
 }
 
