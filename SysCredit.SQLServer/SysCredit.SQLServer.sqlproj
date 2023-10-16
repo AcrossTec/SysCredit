@@ -145,7 +145,7 @@
     <Build Include="StoredProcedures\Catalogs\PaymentFrequencies\DeletePaymentFrequency.sql" />
     <Build Include="StoredProcedures\Customers\FetchGuarantorsByCustomerId.sql" />
     <Build Include="StoredProcedures\Customers\FetchLoansByCustomerId.sql" />
-    <Build Include="StoredProcedures\Guarantors\DeleteGuarantorById.sql" />
+    <Build Include="StoredProcedures\Guarantors\DeleteGuarantor.sql" />
     <Build Include="StoredProcedures\Customers\FetchGuarantorByCustomerIdAndGuarantorId.sql" />
     <Build Include="StoredProcedures\Catalogs\Relationships\UpdateRelationship.sql" />
     <Build Include="StoredProcedures\Catalogs\Relationships\FetchRelationshipByName.sql" />

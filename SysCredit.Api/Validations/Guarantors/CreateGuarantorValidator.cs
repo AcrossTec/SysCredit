@@ -5,6 +5,9 @@ using FluentValidation;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Requests.Guarantors;
 
+/// <summary>
+///     Clase validadora de <see cref="CreateGuarantorRequest"/>
+/// </summary>
 public class CreateGuarantorValidator : AbstractValidator<CreateGuarantorRequest>
 {
     public CreateGuarantorValidator()

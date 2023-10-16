@@ -5,6 +5,9 @@ using SysCredit.Api.Validations.Guarantors;
 
 using SysCredit.Models;
 
+/// <summary>
+///     Request para crear un <see cref="Guarantor"/>
+/// </summary>
 [Validator<CreateGuarantorValidator>]
 public class CreateGuarantorRequest : IRequest
 {
