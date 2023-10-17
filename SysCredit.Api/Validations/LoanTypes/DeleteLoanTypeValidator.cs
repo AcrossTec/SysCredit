@@ -3,6 +3,7 @@
 using FluentValidation;
 
 using SysCredit.Api.Extensions;
+using SysCredit.Api.Constants;
 using SysCredit.Api.Requests.LoanTypes;
 
 public class DeleteLoanTypeValidator : AbstractValidator<DeleteLoanTypeRequest>
@@ -11,7 +12,7 @@ public class DeleteLoanTypeValidator : AbstractValidator<DeleteLoanTypeRequest>
     {
         RuleFor(L => L.LoanTypeId)
             .NotNull()
-            .VerifyLoanTypeReferenceAsync()
+            .VerifyLoanTypeReferenceAsync().WithErrorCode(ErrorCodes.SERVLT0102)
             .WithName("Tipo de Prestamo");
     }
 }
