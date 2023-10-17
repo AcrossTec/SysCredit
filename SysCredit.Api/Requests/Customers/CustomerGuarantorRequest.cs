@@ -6,17 +6,17 @@
 public class CustomerGuarantorRequest : IRequest
 {
     /// <summary>
-    ///     Id del prestamo que se buscara.
+    ///     Obtiene o establece el Id del préstamo.
     /// </summary>
     public long? LoanId { get; set; }
 
     /// <summary>
-    ///     Id del Fiador que se buscara.
+    ///     Obtiene o establece el Id del fiador respecto al cliente.
     /// </summary>
     public long GuarantorId { get; set; }
 
     /// <summary>
-    ///     Id de la Relación que se buscara.
+    ///     Obtiene o establece el Id del parentesco que tiene respecto al cliente.
     /// </summary>
     public long RelationshipId { get; set; }
 }

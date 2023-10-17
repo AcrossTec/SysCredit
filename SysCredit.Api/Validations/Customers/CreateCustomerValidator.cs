@@ -5,8 +5,14 @@ using FluentValidation;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Requests.Customers;
 
+/// <summary>
+///     Validador del <see cref="CreateCustomerValidator"/>.
+/// </summary>
 public class CreateCustomerValidator : AbstractValidator<CreateCustomerRequest>
 {
+    /// <summary>
+    ///     Se establecen las Reglas para Validar <see cref="CreateCustomerValidator"/>.
+    /// </summary>
     public CreateCustomerValidator()
     {
         RuleFor(C => C.Identification)

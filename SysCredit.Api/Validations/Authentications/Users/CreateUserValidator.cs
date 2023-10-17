@@ -5,8 +5,14 @@ using FluentValidation;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Requests.Authentications.Users;
 
+/// <summary>
+///     Clase Validadora de <see cref="CreateUserRequest"/>.
+/// </summary>
 public class CreateUserValidator : AbstractValidator<CreateUserRequest>
 {
+    /// <summary>
+    ///     Valida La Creacion del Usuario.
+    /// </summary>
     public CreateUserValidator()
     {
         RuleFor(U => U.UserName)
