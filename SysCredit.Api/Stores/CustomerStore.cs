@@ -28,13 +28,13 @@ using static Constants.ErrorCodes;
 public static partial class CustomerStore
 {
     /// <summary>
-    ///     Regresa todos los clientes de base de datos.
+    ///     Obtiene todos los <see cref="Models.Customer"/> de base de datos.
     /// </summary>
     /// <param name="Store">
     ///     Objeto usado como contexto de la base de datos.
     /// </param>
     /// <returns>
-    ///     Regresa todos los clientes de base de datos.
+    ///     Regresa todos los <see cref="Models.Customer"/> de base de datos.
     /// </returns>
     [MethodId("44AFFF21-7AB3-44D7-9E15-4A07D4352B63")]
     public static IAsyncEnumerable<CustomerInfo> FetchCustomerAsync(this IStore<Customer> Store)
@@ -52,7 +52,7 @@ public static partial class CustomerStore
     ///     Id del registro del cliente que se buscará.
     /// </param>
     /// <returns>
-    ///     Regresa los datos del cliente sino <see langword="null" /> si este no existe.
+    ///     Regresa los datos del cliente, sino <see langword="null" /> si este no existe.
     /// </returns>
     [MethodId("D767D480-09E4-4B08-BD31-11D24A599FAF")]
     public static async ValueTask<CustomerInfo?> FetchCustomerByIdAsync(this IStore<Customer> Store, long? CustomerId)
@@ -67,10 +67,10 @@ public static partial class CustomerStore
     ///      Objeto usado como contexto de la base de datos.
     /// </param>
     /// <param name="Identification">
-    ///     documento de identidad del registro del cliente que se buscará.
+    ///     Documento de identidad del registro del cliente que se buscará.
     /// </param>
     /// <returns>
-    ///     Regresa los datos del cliente sino <see langword="null" /> si este no existe.
+    ///     Regresa los datos del cliente, sino <see langword="null" /> si este no existe.
     /// </returns>
     [MethodId("39B222E4-EA19-4C38-9AD3-1E55843ADEDC")]
     public static async ValueTask<CustomerInfo?> FetchCustomerByIdentificationAsync(this IStore<Customer> Store, string? Identification)
@@ -84,11 +84,11 @@ public static partial class CustomerStore
     /// <param name="Store">
     ///      Objeto usado como contexto de la base de datos.
     /// </param>
-    /// <param name="CustomerId">
+    /// <param name="Email">
     ///     Correo del registro del cliente que se buscará.
     /// </param>
     /// <returns>
-    ///     Regresa los datos del cliente sino <see langword="null" /> si este no existe.
+    ///     Regresa los datos del cliente, sino <see langword="null" /> si este no existe.
     /// </returns>
     [MethodId("C70ABA49-4546-481C-98F3-5C8C54D5225A")]
     public static async ValueTask<CustomerInfo?> FetchCustomerByEmailAsync(this IStore<Customer> Store, string? Email)
@@ -97,32 +97,54 @@ public static partial class CustomerStore
     }
 
     /// <summary>
-    ///     Busca un cliente por su teléfono.
+    ///     Busca todos los préstamos de un cliente.
     /// </summary>
     /// <param name="Store">
-    ///      Objeto usado como contexto de la base de datos.
+    ///     Objeto usado como contexto de la base de datos.
     /// </param>
-    /// <param name="CustomerId">
-    ///     Teléfono del registro del cliente que se buscará.
+    /// <param name="Request">
+    ///     Se obtiene el Id del cliente.
     /// </param>
     /// <returns>
-    ///     Regresa los datos del cliente sino <see langword="null" /> si este no existe.
+    ///     Regresa la lista de préstamos del cliente, sino <see langword="null" /> si este no existe.
     /// </returns>
-    /// <param name="Store"></param>
-    /// <param name="Request"></param>
-    /// <returns></returns>
     [MethodId("C152882B-11BA-4035-8B61-E421FB5D547C")]
     public static IAsyncEnumerable<LoanInfo> FetchLoansByCustomerIdAsync(this IStore<Customer> Store, CustomerIdRequest Request)
     {
         return Store.ExecuteStoredProcedureQueryAsync<LoanInfo>("[dbo].[FetchLoansByCustomerId]", Request);
     }
 
+    /// <summary>
+    ///     Busca el cliente con respecto al fiador.
+    /// </summary>
+    /// <param name="Store">
+    ///     Objeto usado como contexto de la base de datos.
+    /// </param>
+    /// <param name="GuarantorId">
+    ///     Se obtiene el id del fiador.
+    /// </param>
+    /// <returns>
+    ///     Regresa los datos del cliente.
+    /// </returns>
     [MethodId("7CC4F348-1634-492E-952E-15F34A20FE49")]
     public static async ValueTask<CustomerInfo?> FetchCustomerByGuarantorIdAsync(this IStore<Customer> Store, long? GuarantorId)
     {
         return await Store.ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<CustomerInfo?>("[dbo].[FetchCustomerByGuarantorId]", new { GuarantorId });
     }
 
+
+    /// <summary>
+    ///     Busca un cliente por su teléfono.
+    /// </summary>
+    /// <param name="Store">
+    ///     Objeto usado como contexto de la base de datos.
+    /// </param>
+    /// <param name="Phone">
+    ///     Teléfono del registro de cliente que se buscará.
+    /// </param>
+    /// <returns>
+    ///     Regresa los datos del cliente, sino <see langword="null" /> si este no existe.
+    /// </returns>
     [MethodId("7FC0C0C0-58AA-4724-97B9-FA96288688B6")]
     public static async ValueTask<CustomerInfo?> FetchCustomerByPhoneAsync(this IStore<Customer> Store, string? Phone)
     {
@@ -130,16 +152,16 @@ public static partial class CustomerStore
     }
 
     /// <summary>
-    ///     Busca todos los prestamos de un cliente según su Id.
+    ///     Busca todos los préstamos de un cliente.
     /// </summary>
     /// <param name="Store">
     ///      Objeto usado como contexto de la base de datos.
     /// </param>
     /// <param name="CustomerId">
-    ///     Id del registro del cliente que se buscará todos sus prestamos.
+    ///     Id del registro del cliente que se utilizará para buscar todos sus prestamos.
     /// </param>
     /// <returns>
-    ///     Regresa todos los prestamos del cliente de Id <paramref name="CustomerId" />.
+    ///     Regresa todos los prestamos del cliente.
     /// </returns>
     [MethodId("C152882B-11BA-4035-8B61-E421FB5D547C")]
     public static IAsyncEnumerable<LoanInfo> FetchLoanByCustomerIdAsync(this IStore<Customer> Store, long? CustomerId)
@@ -148,16 +170,16 @@ public static partial class CustomerStore
     }
 
     /// <summary>
-    ///     Busca todas las referencias de un cliente según su Id.
+    ///     Busca todas las referencias de un cliente.
     /// </summary>
     /// <param name="Store">
     ///      Objeto usado como contexto de la base de datos.
     /// </param>
     /// <param name="CustomerId">
-    ///     Id del registro del cliente que se buscará todos sus referencias.
+    ///     Id del registro del cliente que se utilizará para buscar todas sus referencias.
     /// </param>
     /// <returns>
-    ///     Regresa todas las referencias del cliente de Id <paramref name="CustomerId" />.
+    ///     Regresa todas las referencias del cliente.
     /// </returns>
     [MethodId("4AE3CB7A-B76A-4210-B6B0-C1B8CD5797B7")]
     public static IAsyncEnumerable<ReferenceInfo> FetchReferenceByCustomerIdAsync(this IStore<Customer> Store, long? CustomerId)
@@ -166,16 +188,16 @@ public static partial class CustomerStore
     }
 
     /// <summary>
-    ///     Busca todos los fiadores de un cliente según su Id.
+    ///     Busca todos los fiadores de un cliente.
     /// </summary>
     /// <param name="Store">
     ///      Objeto usado como contexto de la base de datos.
     /// </param>
     /// <param name="CustomerId">
-    ///     Id del registro del cliente que se buscará todos sus fiadores.
+    ///     Id del registro del cliente que se utilizará para buscar todos sus fiadores.
     /// </param>
     /// <returns>
-    ///     Regresa todos los fiadores del cliente de Id <paramref name="CustomerId" />.
+    ///     Regresa todos los fiadores del cliente.
     /// </returns>
     [MethodId("01942152-9183-4DB7-AD3C-6712BA53023D")]
     public static IAsyncEnumerable<GuarantorInfo> FetchGuarantorByCustomerIdAsync(this IStore<Customer> Store, long? CustomerId)
@@ -193,7 +215,7 @@ public static partial class CustomerStore
     ///     Criterios de busquedas que serán usados por el procedimiento almacenado.
     /// </param>
     /// <returns>
-    ///     Regresa el registro del fiador si este exist sino <see langword="null" />.
+    ///     Regresa el registro del fiador si este existe, sino <see langword="null" />.
     /// </returns>
     [MethodId("16C3706A-740F-405B-9FB3-8C273513B2FC")]
     public static ValueTask<GuarantorInfo?> FetchGuarantorByCustomerIdAndGuarantorIdAsync(this IStore<Customer> Store, GuarantorAndCustomerIdsRequest Request)
@@ -264,7 +286,7 @@ public static partial class CustomerStore
     ///     Objeto usado como contexto de la base de datos.
     /// </param>
     /// <param name="Request">
-    ///     Objeto que contiene toda la información del nuevo cliente ha crear.
+    ///     Objeto que contiene toda la información del nuevo cliente a crear.
     /// </param>
     /// <returns>
     ///     Regresa el Id del nuevo cliente que fue creado.
@@ -295,7 +317,7 @@ public static partial class CustomerStore
     ///     Agrupa todos los <paramref name="FetchCustomers" /> en un array sin duplicados de tipo <see cref="CustomerInfo" />.
     /// </summary>
     /// <param name="FetchCustomers">
-    ///     Lista de <see cref="FetchCustomer" /> que se va ha procesar.
+    ///     Lista de <see cref="FetchCustomer" /> que se va a procesar.
     /// </param>
     /// <returns>
     ///     Regresa una lista de <see cref="CustomerInfo" />.
