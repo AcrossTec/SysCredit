@@ -5,6 +5,9 @@ using SysCredit.Api.Validations.References;
 
 using SysCredit.Models;
 
+/// <summary>
+///     Request para crear una referencia
+/// </summary>
 [Validator<CreateReferenceValidator>]
 public class CreateReferenceRequest : IRequest
 {

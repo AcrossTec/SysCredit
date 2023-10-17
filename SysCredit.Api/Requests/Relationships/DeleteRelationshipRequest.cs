@@ -3,6 +3,9 @@
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Validations.Relationships;
 
+/// <summary>
+///     Request para borrar una relacion
+/// </summary>
 [Validator<DeleteRelationshipValidator>]
 public class DeleteRelationshipRequest : IRequest
 {
