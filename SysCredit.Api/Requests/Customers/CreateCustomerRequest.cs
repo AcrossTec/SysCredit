@@ -7,32 +7,69 @@ using SysCredit.Api.Validations.Customers;
 using SysCredit.Models;
 
 /// <summary>
-///     Este Request recibe todo los parametros para Crear un Cliente.
+///     Clase que representa la solicitud para crear un cliente
 /// </summary>
 [Validator<CreateCustomerValidator>]
 public class CreateCustomerRequest : IRequest
 {
+    /// <summary>
+    ///     Obtiene o establece la identificación del cliente.
+    /// </summary>
     public string Identification { get; set; } = string.Empty;
 
+    /// <summary>
+    ///     Obtiene o establece el nombre del cliente.
+    /// </summary>
     public string Name { get; set; } = string.Empty;
 
+    /// <summary>
+    ///     Obtiene o establece el apellido del cliente.
+    /// </summary>
     public string LastName { get; set; } = string.Empty;
 
+    /// <summary>
+    ///     Obtiene o establece el género del cliente.
+    /// </summary>
     public Gender Gender { get; set; }
 
+    /// <summary>
+    ///     Obtiene o establece el correo electrónico del cliente.
+    /// </summary>
     public string? Email { get; set; }
 
+    /// <summary>
+    ///     Obtiene o establece la dirección del cliente.
+    /// </summary>
     public string Address { get; set; } = string.Empty;
 
+    /// <summary>
+    ///     Obtiene o establece el vecindario del cliente.
+    /// </summary>
     public string Neighborhood { get; set; } = string.Empty;
 
+    /// <summary>
+    ///     Obtiene o establece el tipo de negocio del cliente.
+    /// </summary>
     public string BussinessType { get; set; } = string.Empty;
 
+    /// <summary>
+    ///     Obtiene o establece la dirección del negocio del cliente.
+    /// </summary>
     public string BussinessAddress { get; set; } = string.Empty;
 
+    /// <summary>
+    ///     Obtiene o establece el teléfono del cliente.
+    /// </summary>
     public string Phone { get; set; } = string.Empty;
 
+    /// <summary>
+    ///     Obtiene o establece los garantes del cliente.
+    /// </summary>
     public CustomerGuarantorRequest[] Guarantors { get; set; } = Array.Empty<CustomerGuarantorRequest>();
 
+    /// <summary>
+    ///     Obtiene o establece las referencias del cliente.
+    /// </summary>
     public CreateReferenceRequest[] References { get; set; } = Array.Empty<CreateReferenceRequest>();
+
 }

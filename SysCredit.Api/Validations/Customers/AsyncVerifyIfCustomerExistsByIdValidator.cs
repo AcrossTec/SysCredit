@@ -24,7 +24,7 @@ public class AsyncVerifyIfCustomerExistsByIdValidator<T> : AsyncPropertyValidato
     /// <param name="Context">Contiene información del Request que se está validando y datos compartidos</param>
     /// <param name="Identification">Id del cliente que se va a validar</param>
     /// <param name="Cancellation">Permite cancelar la validación en un proceso asincrono</param>
-    /// <returns></returns>
+    /// <returns>Un valor booleano que indica si el cliente existe</returns>
     public override async Task<bool> IsValidAsync(ValidationContext<T> Context, long? Identification, CancellationToken Cancellation)
     {
         var Customer = await Context.RootContextData[nameof(CustomerStore)].AsStore<Customer>().FetchCustomerByIdAsync(Identification);
