@@ -4,7 +4,7 @@ using SysCredit.Api.Attributes;
 using SysCredit.Api.Validations.Relationships;
 
 /// <summary>
-///     Request para crear una relacion
+///     Request para crear una relación
 /// </summary>
 [Validator<CreateRelationshipValidator>]
 public class CreateRelationshipRequest : IRequest
