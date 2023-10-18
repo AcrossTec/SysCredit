@@ -6,6 +6,9 @@ using SysCredit.Api.Validations.Customers;
 
 using SysCredit.Models;
 
+/// <summary>
+///     Este Request recibe todo los parametros para Crear un Cliente.
+/// </summary>
 [Validator<CreateCustomerValidator>]
 public class CreateCustomerRequest : IRequest
 {
