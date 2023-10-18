@@ -10,10 +10,13 @@ using static Constants.ErrorCodePrefix;
 using SysCredit.Api.Constants;
 
 /// <summary>
-///     Clase validadora de <see cref="UpdateLoanTypeRequest"/>
+///     Clase validadora de <see cref="UpdateLoanTypeRequest"/>.
 /// </summary>
 public class UpdateLoanTypeValidator : AbstractValidator<UpdateLoanTypeRequest>
 {
+    /// <summary>
+    ///     Valida el nombre del tipo de préstamo.
+    /// </summary>
     public UpdateLoanTypeValidator()
     {
         RuleFor(L => L.Name)
