@@ -13,6 +13,9 @@ using static Constants.ErrorCodePrefix;
 /// </summary>
 public class UpdateLoanTypeValidator : AbstractValidator<UpdateLoanTypeRequest>
 {
+    /// <summary>
+    ///     Valida el nombre del tipo de Prestamo
+    /// </summary>
     public UpdateLoanTypeValidator()
     {
         RuleFor(L => L.Name)

@@ -24,7 +24,7 @@ public class AsyncLoanTypeUniqueNameValidator<T> : AsyncPropertyValidator<T, str
     /// <param name="Context">Obtiene el objeto donde fue usado el validador</param>
     /// <param name="Name">Nombre del tipo de prestamo</param>
     /// <param name="Cancellation">Metodo para cancelar la validación</param>
-    /// <returns></returns>
+    /// <returns>Retorna un booleano indicando el estado de la validación</returns>
     public override async Task<bool> IsValidAsync(ValidationContext<T> Context, string? Name, CancellationToken Cancellation)
     {
         var LoanType = await Context.RootContextData[nameof(LoanTypeStore)].AsStore<LoanType>().FetchLoanTypeByName(Name);
