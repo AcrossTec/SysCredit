@@ -123,7 +123,7 @@ public static partial class LoanTypeStore
     /// </summary>
     /// <param name="Store">Repositorio del modelo LoanType</param>
     /// <param name="LoanTypeId">Id del tipo de prestamo</param>
-    /// <returns>Retorna un booleano indicando el estado de la validación</returns>
+    /// <returns>Retorna un verdadero si existe una referencia</returns>
     [MethodId("313F2142-7FF6-493D-89B8-EDB56579C70C")]
     public static async ValueTask<bool> VerifyLoanTypeReference(this IStore<LoanType> Store, long? LoanTypeId)
     {
