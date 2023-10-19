@@ -7,7 +7,7 @@ using SysCredit.Api.Validations.Customers;
 using SysCredit.Models;
 
 /// <summary>
-///     Clase que representa la solicitud para crear un cliente
+///     Clase que representa la solicitud para crear un cliente.
 /// </summary>
 [Validator<CreateCustomerValidator>]
 public class CreateCustomerRequest : IRequest
