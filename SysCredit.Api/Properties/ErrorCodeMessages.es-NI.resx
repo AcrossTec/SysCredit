@@ -117,6 +117,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DATAG0000" xml:space="preserve">
+    <value>Sin errores</value>
+    <comment>Errores Generales: IStore&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="DATAG0001" xml:space="preserve">
+    <value>Error en el proveedor de base de datos</value>
+    <comment>Errores Generales: IStore&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="DATAG0002" xml:space="preserve">
+    <value>Error en la ejecución del Store</value>
+    <comment>Errores Generales: IStore&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="DATALT0000" xml:space="preserve">
+    <value>Sin errores</value>
+    <comment>Errores Generales: IStore&lt;LoanType&gt;</comment>
+  </data>
+  <data name="DATALT0001" xml:space="preserve">
+    <value>Error en el proveedor de base de datos</value>
+    <comment>Errores Generales: IStore&lt;LoanType&gt;</comment>
+  </data>
+  <data name="DATALT0002" xml:space="preserve">
+    <value>Error en la ejecución del Store</value>
+    <comment>Errores Generales: IStore&lt;LoanType&gt;</comment>
+  </data>
+  <data name="DATAPF0000" xml:space="preserve">
+    <value>Sin errores</value>
+    <comment>Errores Generales: IStore&lt;PaymentFrequency&gt;</comment>
+  </data>
+  <data name="DATAPF0001" xml:space="preserve">
+    <value>Error en el proveedor de base de datos</value>
+    <comment>Errores Generales: IStore&lt;PaymentFrequency&gt;</comment>
+  </data>
+  <data name="DATAPF0002" xml:space="preserve">
+    <value>Error en la ejecución del Store</value>
+    <comment>Errores Generales: IStore&lt;PaymentFrequency&gt;</comment>
+  </data>
   <data name="DATARS0000" xml:space="preserve">
     <value>Sin errores</value>
     <comment>Errores Generales: IStore&lt;Relationship&gt;</comment>
@@ -128,6 +164,78 @@
   <data name="DATARS0002" xml:space="preserve">
     <value>Error en la ejecución del Store</value>
     <comment>Errores Generales: IStore&lt;Relationship&gt;</comment>
+  </data>
+  <data name="SERVG0000" xml:space="preserve">
+    <value>Sin errores</value>
+    <comment>Errores Generales: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0001" xml:space="preserve">
+    <value>Error en la validación del Request</value>
+    <comment>Errores Generales: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0002" xml:space="preserve">
+    <value>Error en la ejecución del Servicio</value>
+    <comment>Errores Generales: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0101" xml:space="preserve">
+    <value>Error, la identificación ya existe</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0102" xml:space="preserve">
+    <value>Error, se debe tener un género válido: Hombre o Mujer</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0103" xml:space="preserve">
+    <value>Error, ya existe un registro con este valor</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0104" xml:space="preserve">
+    <value>Ya existe un registro con este número telefonico</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0105" xml:space="preserve">
+    <value>Error. El Guarantor está siendo usado por un Customer</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVLT0000" xml:space="preserve">
+    <value>Sin errores</value>
+    <comment>Errores Generales: IService&lt;LoanType&gt;</comment>
+  </data>
+  <data name="SERVLT0001" xml:space="preserve">
+    <value>Error en la validación del Request</value>
+    <comment>Errores Generales: IService&lt;LoanType&gt;</comment>
+  </data>
+  <data name="SERVLT0002" xml:space="preserve">
+    <value>Error en la ejecución del Servicio</value>
+    <comment>Errores Generales: IService&lt;LoanType&gt;</comment>
+  </data>
+  <data name="SERVLT0101" xml:space="preserve">
+    <value>Error, ya existe un registro con ese nombre</value>
+    <comment>Errores Especificos: IService&lt;LoanType&gt;</comment>
+  </data>
+  <data name="SERVLT0102" xml:space="preserve">
+    <value>Error, LoanType esta siendo usando por un Loan</value>
+    <comment>Errores Especificos: IService&lt;LoanType&gt;</comment>
+  </data>
+  <data name="SERVPF0000" xml:space="preserve">
+    <value>Sin errores</value>
+    <comment>Errores Generales: IService&lt;PaymentFrequency&gt;</comment>
+  </data>
+  <data name="SERVPF0001" xml:space="preserve">
+    <value>Error en la validación del Request</value>
+    <comment>Errores Generales: IService&lt;PaymentFrequency&gt;</comment>
+  </data>
+  <data name="SERVPF0002" xml:space="preserve">
+    <value>Error en la ejecución del Servicio</value>
+    <comment>Errores Generales: IService&lt;PaymentFrequency&gt;</comment>
+  </data>
+  <data name="SERVPF0101" xml:space="preserve">
+    <value>Error, ya existe un registro con ese nombre</value>
+    <comment>Errores Especificos: IService&lt;PaymentFrequency&gt;</comment>
+  </data>
+  <data name="SERVPF0102" xml:space="preserve">
+    <value>El id de la ruta y del request no coinciden</value>
+    <comment>Errores Especificos: IService&lt;PaymentFrequency&gt;</comment>
   </data>
   <data name="SERVRS0000" xml:space="preserve">
     <value>Sin errores</value>

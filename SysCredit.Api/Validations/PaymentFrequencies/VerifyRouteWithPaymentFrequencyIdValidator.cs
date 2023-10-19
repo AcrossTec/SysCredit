@@ -4,6 +4,7 @@ using FluentValidation;
 using FluentValidation.Validators;
 
 using SysCredit.Api.Extensions;
+using SysCredit.Api.Properties;
 using SysCredit.Api.Stores;
 
 using SysCredit.Models;
@@ -24,7 +25,7 @@ public class VerifyRouteWithPaymentFrequencyIdValidator<T> : PropertyValidator<T
 
     protected override string GetDefaultMessageTemplate(string ErrorCode)
     {
-        return "El '{PropertyName}' en la ruta no coincide con el Id proporcionado en el cuerpo de la solicitud.";
+        return ErrorCodeMessages.GetMessageFromCode(ErrorCode)!;
     }
 
     public override string Name => "VerifyRouteWithPaymentFrequencyIdValidator";

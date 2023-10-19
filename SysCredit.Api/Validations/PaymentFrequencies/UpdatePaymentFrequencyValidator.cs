@@ -3,6 +3,7 @@
 using FluentValidation;
 
 using SysCredit.Api.Extensions;
+using SysCredit.Api.Constants;
 using SysCredit.Api.Requests.PaymentFrequencies;
 
 public class UpdatePaymentFrequencyValidator : AbstractValidator<UpdatePaymentFrequencyRequest>
@@ -12,13 +13,13 @@ public class UpdatePaymentFrequencyValidator : AbstractValidator<UpdatePaymentFr
         RuleFor(Upf => Upf.Name)
             .NotEmpty()
             .NotNull()
-            .PaymentFrequencyUniqueNameAsync()
+            .PaymentFrequencyUniqueNameAsync().WithErrorCode(ErrorCodes.SERVPF0101)
             .WithName("Nombre");
 
         RuleFor(Upf => Upf.PaymentFrequencyId)
             .NotEmpty()
             .NotNull()
-            .VerifyRouteWithPaymentFrequencyId()
+            .VerifyRouteWithPaymentFrequencyId().WithErrorCode(ErrorCodes.SERVPF0102)
             .WithName("Id de la Frecuencia de Pago");
     }
 }

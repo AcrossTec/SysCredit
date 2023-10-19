@@ -3,6 +3,7 @@
 using FluentValidation;
 
 using SysCredit.Api.Extensions;
+using SysCredit.Api.Constants;
 using SysCredit.Api.Requests.LoanType;
 
 /// <summary>
@@ -18,7 +19,7 @@ public class CreateLoanTypeValidator : AbstractValidator<CreateLoanTypeRequest>
         RuleFor(T => T.Name)
             .NotEmpty()
             .NotNull()
-            .LoanTypeUniqueNameAsync()
+            .LoanTypeUniqueNameAsync().WithErrorCode(ErrorCodes.SERVLT0101)
             .WithName("Nombre");
     }
 }

@@ -4,6 +4,7 @@ using FluentValidation;
 using FluentValidation.Validators;
 
 using SysCredit.Api.Extensions;
+using SysCredit.Api.Properties;
 using SysCredit.Api.Stores;
 using SysCredit.Models;
 
@@ -17,9 +18,9 @@ public class AsyncVerifyLoanTypeReferenceValidator<T> : AsyncPropertyValidator<T
         return (await Context.RootContextData[nameof(LoanTypeStore)].AsStore<LoanType>().VerifyLoanTypeReference(LoanTypeId)) is false;
     }
 
-    protected override string GetDefaultMessageTemplate(string errorCode)
+    protected override string GetDefaultMessageTemplate(string ErrorCode)
     {
-        return "'{PropertyName}' esta siendo usado en otros registros";
+        return ErrorCodeMessages.GetMessageFromCode(ErrorCode)!;
     }
 
     public override string Name => "AsyncVerifyLoanTypeReferenceValidator";

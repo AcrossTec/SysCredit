@@ -7,6 +7,7 @@ using SysCredit.Api.Requests.LoanTypes;
 
 using static Constants.ErrorCodes;
 using static Constants.ErrorCodePrefix;
+using SysCredit.Api.Constants;
 
 /// <summary>
 ///     Clase validadora de <see cref="UpdateLoanTypeRequest"/>
@@ -18,7 +19,7 @@ public class UpdateLoanTypeValidator : AbstractValidator<UpdateLoanTypeRequest>
         RuleFor(L => L.Name)
             .NotEmpty()
             .NotNull()
-            .LoanTypeUniqueNameAsync()
+            .LoanTypeUniqueNameAsync().WithErrorCode(ErrorCodes.SERVLT0101)
             .WithName("Nombre");
     }
 }

@@ -4,6 +4,7 @@ using FluentValidation;
 using FluentValidation.Validators;
 
 using SysCredit.Api.Extensions;
+using SysCredit.Api.Properties;
 using SysCredit.Api.Stores;
 
 using SysCredit.Models;
@@ -19,9 +20,9 @@ public class AsyncPaymentFrequencyUniqueNameValidator<T> : AsyncPropertyValidato
         return PaymentFrequency is null;
     }
 
-    protected override string GetDefaultMessageTemplate(string errorCode)
+    protected override string GetDefaultMessageTemplate(string ErrorCode)
     {
-        return "'{PropertyName}'. Ya existe un registro con este nombre";
+        return ErrorCodeMessages.GetMessageFromCode(ErrorCode)!;
     }
 
     public override string Name => "AsyncPaymentFrequencyUniqueNameValidator";

@@ -3,6 +3,7 @@
 using FluentValidation;
 using FluentValidation.Validators;
 using SysCredit.Api.Extensions;
+using SysCredit.Api.Properties;
 using SysCredit.Api.Stores;
 using SysCredit.Models;
 
@@ -14,9 +15,9 @@ public class AsyncVerifyifCustomerByGuarantorIdValidator <T> : AsyncPropertyVali
         return Customer is null;
     }
 
-    protected override string GetDefaultMessageTemplate(string errorCode)
+    protected override string GetDefaultMessageTemplate(string ErrorCode)
     {
-        return base.GetDefaultMessageTemplate(errorCode);
+        return ErrorCodeMessages.GetMessageFromCode(ErrorCode)!;
     }
 
     public override string Name => " AsyncVerifyifCustomerByGuarantorIdValidator ";
