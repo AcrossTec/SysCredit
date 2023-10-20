@@ -15,5 +15,6 @@
     CONSTRAINT [FK_CustomerGuarantor_GuarantorId_Guarantor_GuarantorId]          FOREIGN KEY ([GuarantorId])    REFERENCES [Guarantor]([GuarantorId]), 
     CONSTRAINT [FK_CustomerGuarantor_RelationshipId_Relationship_RelationshipId] FOREIGN KEY ([RelationshipId]) REFERENCES [Relationship]([RelationshipId]),
     CONSTRAINT [AK_CustomerGuarantor_CustomerId_GuarantorId_LoanId]              UNIQUE ([CustomerId], [GuarantorId], [LoanId]), 
+    CONSTRAINT [FK_CustomerGuarantor_LoanId_Loan_LoanId]                         FOREIGN KEY ([LoanId])         REFERENCES [Loan]([LoanId]), 
 )
 GO
