@@ -7,12 +7,12 @@ using SysCredit.Api.Properties;
 using SysCredit.Api.Requests.Relationships;
 
 /// <summary>
-///     
+///     Clase validadora de <see cref="UpdateRelationshipRequest"/>.
 /// </summary>
 public class UpdateRelationshipValidator : AbstractValidator<UpdateRelationshipRequest>
 {
     /// <summary>
-    /// 
+    ///     Valida el nombre de la relación de parentesco.
     /// </summary>
     public UpdateRelationshipValidator()
     {
