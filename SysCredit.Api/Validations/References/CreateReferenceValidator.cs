@@ -5,8 +5,14 @@ using FluentValidation;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Requests.References;
 
+/// <summary>
+///     Clase validadora de <see cref="CreateReferenceRequest"/>.
+/// </summary>
 public class CreateReferenceValidator : AbstractValidator<CreateReferenceRequest>
 {
+    /// <summary>
+    ///     Valida los campos de la referencia del cliente.
+    /// </summary>
     public CreateReferenceValidator()
     {
         RuleFor(R => R.Identification)
