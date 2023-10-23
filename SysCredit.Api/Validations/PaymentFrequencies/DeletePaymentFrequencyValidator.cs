@@ -1,10 +1,10 @@
 ﻿namespace SysCredit.Api.Validations.PaymentFrequencies;
 
 using FluentValidation;
-
+using SysCredit.Api.Constants;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Requests.PaymentFrequencies;
-
+using SysCredit.Api.Constants;
 /// <summary>
 ///     Clase validadora de <see cref="DeletePaymentFrequencyRequest"/>.
 /// </summary>
@@ -16,7 +16,7 @@ public class DeletePaymentFrequencyValidator : AbstractValidator<DeletePaymentFr
     public DeletePaymentFrequencyValidator()
     {
         RuleFor(Pf => Pf.PaymentFrequencyId)
-            .NotNull()
+            .VeryfyIfExistsLoanByPaymentFrequencyIdAsync().WithErrorCode(ErrorCodes.SERVPF0103)
             .WithName("Frecuencia de pago");
     }
 }

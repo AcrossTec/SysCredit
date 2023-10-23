@@ -43,6 +43,11 @@ public static class ErrorCodePrefix
     public const string ReferenceServicePrefix = $"{SERV}R";
 
     /// <summary>
+    ///     Prefijo para la clase: <see cref="LoanService"/>
+    /// </summary>
+    public const string LoanServicePrefix = $"{SERV}L";
+
+    /// <summary>
     ///     Prefijo para la clase: <see cref="RelationshipService" />
     /// </summary>
     public const string RelationshipServicePrefix = $"{SERV}RS";
@@ -83,6 +88,11 @@ public static class ErrorCodePrefix
     ///     Prefijo para la clase: <see cref="ReferenceStore" />
     /// </summary>
     public const string ReferenceStorePrefix = $"{DATA}R";
+
+    /// <summary>
+    ///     Prefijo para la clase: <see cref="LoanStore"/>
+    /// </summary>
+    public const string LoanStorePrefix = $"{DATA}L";
 
     /// <summary>
     ///     Prefijo para la clase: <see cref="RelationshipStore" />

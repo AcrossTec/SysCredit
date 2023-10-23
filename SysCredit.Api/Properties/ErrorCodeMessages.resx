@@ -236,6 +236,9 @@
     <value>The route id doesn't match the request id</value>
     <comment>Errores Especificos: IService&lt;PaymentFrequency&gt;</comment>
   </data>
+  <data name="SERVPF0103" xml:space="preserve">
+    <value>Error, payment frequency in use</value>
+  </data>
   <data name="SERVRS0000" xml:space="preserve">
     <value>Success</value>
     <comment>Errores Generales: IService&lt;Relationship&gt;</comment>

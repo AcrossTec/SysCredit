@@ -11,6 +11,7 @@ using SysCredit.Api.Validations.Authentications.Roles;
 using SysCredit.Api.Validations.Authentications.Users;
 using SysCredit.Api.Validations.Customers;
 using SysCredit.Api.Validations.Guarantors;
+using SysCredit.Api.Validations.Loans;
 using SysCredit.Api.Validations.LoanTypes;
 using SysCredit.Api.Validations.PaymentFrequencies;
 using SysCredit.Api.Validations.References;
@@ -95,4 +96,7 @@ public static partial class ValidatorExtensions
 
     public static IRuleBuilderOptions<T, long?> VeryfyIfExistsCustomerByGuarantorIdAsync<T>(this IRuleBuilder<T, long?> RuleBuilder)
         => RuleBuilder.SetAsyncValidator(new AsyncVerifyifCustomerByGuarantorIdValidator<T>());
+
+    public static IRuleBuilderOptions<T, long?> VeryfyIfExistsLoanByPaymentFrequencyIdAsync<T>(this IRuleBuilder<T, long?>RulerBuilder)
+        => RulerBuilder.SetAsyncValidator(new AsyncVerifyifExistLoanByPaymentFrequencyIdValidator<T>());
 }
