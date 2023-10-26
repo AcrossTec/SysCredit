@@ -9,6 +9,9 @@
     [DeletedDate]         DATETIME2 NULL, 
     [IsEdit]              BIT       NOT NULL DEFAULT 0, 
     [IsDelete]            BIT       NOT NULL DEFAULT 0, 
-    CONSTRAINT [AK_CustomerReference_CustomerId_ReferenceId_LoanId] UNIQUE ([CustomerId], [ReferenceId], [LoanId])
+    CONSTRAINT [AK_CustomerReference_CustomerId_ReferenceId_LoanId]     UNIQUE ([CustomerId], [ReferenceId], [LoanId]), 
+    CONSTRAINT [FK_CustomerReference_CustomerId_Customer_CustomerId]    FOREIGN KEY ([CustomerId])  REFERENCES [Customer]([CustomerId]), 
+    CONSTRAINT [FK_CustomerReference_ReferenceId_Reference_ReferenceId] FOREIGN KEY ([ReferenceId]) REFERENCES [Reference]([ReferenceId]), 
+    CONSTRAINT [FK_CustomerReference_LoanId_Loan_LoanId]                FOREIGN KEY ([LoanId])      REFERENCES [Loan]([LoanId])
 )
 GO
