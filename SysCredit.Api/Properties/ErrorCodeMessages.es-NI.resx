@@ -234,7 +234,7 @@
     <comment>Errores Especificos: IService&lt;PaymentFrequency&gt;</comment>
   </data>
   <data name="SERVPF0102" xml:space="preserve">
-    <value>El id de la ruta y del request no coinciden</value>
+    <value />
     <comment>Errores Especificos: IService&lt;PaymentFrequency&gt;</comment>
   </data>
   <data name="SERVRS0000" xml:space="preserve">

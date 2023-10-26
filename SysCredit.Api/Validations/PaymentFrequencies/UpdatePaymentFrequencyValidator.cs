@@ -25,7 +25,6 @@ public class UpdatePaymentFrequencyValidator : AbstractValidator<UpdatePaymentFr
         RuleFor(Upf => Upf.PaymentFrequencyId)
             .NotEmpty()
             .NotNull()
-            .VerifyRouteWithPaymentFrequencyId().WithErrorCode(ErrorCodes.SERVPF0102)
             .WithName("Id de la Frecuencia de Pago");
     }
 }

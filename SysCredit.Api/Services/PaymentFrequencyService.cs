@@ -69,11 +69,10 @@ public partial class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFre
     ///     Retorna un bool
     /// </returns>
     [MethodId("54EA25C1-FD73-4FC3-8984-DEA6ACFD74C7")]
-    public async ValueTask<bool> UpdatePaymentFrequencyAsync(long PaymentFrequencyId, UpdatePaymentFrequencyRequest Request)
+    public async ValueTask<bool> UpdatePaymentFrequencyAsync( UpdatePaymentFrequencyRequest Request)
     {
         await Request.ValidateAndThrowOnFailuresAsync(
-            Key(nameof(PaymentFrequencyStore)).Value(PaymentFrequencyStore)
-           .Key("RoutePaymentFrequencyId").Value(PaymentFrequencyId));
+            Key(nameof(PaymentFrequencyStore)).Value(PaymentFrequencyStore));
 
         return await PaymentFrequencyStore.UpdatePaymentFrequencyAsync(Request);
     }

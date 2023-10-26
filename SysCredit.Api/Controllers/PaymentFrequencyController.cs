@@ -55,11 +55,11 @@ public class PaymentFrequencyController(IPaymentFrequencyService PaymentFrequenc
     [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult> UpdatePaymentFrequencyAsync([FromRoute] long PaymentFrequencyId, [FromBody] UpdatePaymentFrequencyRequest Request)
+    public async Task<ActionResult> UpdatePaymentFrequencyAsync(  UpdatePaymentFrequencyRequest Request)
     {
         Logger.LogInformation("EndPoint[PUT]: /Api/PaymentFrequency/{PaymentFrequencyId}", Request.PaymentFrequencyId);
-        await PaymentFrequencyService.UpdatePaymentFrequencyAsync(PaymentFrequencyId, Request);
-        return NoContent();
+        await PaymentFrequencyService.UpdatePaymentFrequencyAsync(Request);
+        return StatusCode(StatusCodes.Status204NoContent);
     }
 
     /// <summary>

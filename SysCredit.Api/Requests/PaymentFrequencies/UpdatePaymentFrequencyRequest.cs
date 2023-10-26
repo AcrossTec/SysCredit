@@ -13,10 +13,12 @@ public class UpdatePaymentFrequencyRequest : IRequest
     /// <summary>
     ///     Propiedad que representa el Id de la frecuencia de pago.
     /// </summary>
+    [FromRoute]
     public long? PaymentFrequencyId { get; set; }
-    
+
     /// <summary>
     ///     Propiedad que representa el nombre de la frecuencia de pago.
     /// </summary>
+    [FromBody]
     public string Name { get; set; } = String.Empty;
 }
