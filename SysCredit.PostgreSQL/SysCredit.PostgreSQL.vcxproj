@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -128,6 +128,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="SysCredit.PostgreSQL.cpp" />
+    <ClCompile Include="Tables\UserClaim.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tables\Customer.sql" />
+    <None Include="Tables\CustomerGuarantor.sql" />
+    <None Include="Tables\CustomerReference.sql" />
+    <None Include="Tables\Guarantor.sql" />
+    <None Include="Tables\Loan.sql" />
+    <None Include="Tables\LoanType.sql" />
+    <None Include="Tables\PaymentFrequency.sql" />
+    <None Include="Tables\PaymentPlan.sql" />
+    <None Include="Tables\PaymentPlanDetails.sql" />
+    <None Include="Tables\Reference.sql" />
+    <None Include="Tables\Relationship.sql" />
+    <None Include="Tables\Role.sql" />
+    <None Include="Tables\RoleClaim.sql" />
+    <None Include="Tables\User.sql" />
+    <None Include="Tables\UserRole.sql" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
