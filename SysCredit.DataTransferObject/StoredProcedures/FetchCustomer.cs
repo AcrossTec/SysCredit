@@ -10,7 +10,7 @@ public record class FetchCustomer
 
     public string LastName { get; set; } = string.Empty;
 
-    public int Gender { get; set; }
+    public bool Gender { get; set; }
 
     public string? Email { get; set; }
 
@@ -32,7 +32,7 @@ public record class FetchCustomer
 
     public string ReferenceLastName { get; set; } = string.Empty;
 
-    public int ReferenceGender { get; set; }
+    public bool ReferenceGender { get; set; }
 
     public string ReferencePhone { get; set; } = string.Empty;
 
@@ -48,7 +48,7 @@ public record class FetchCustomer
 
     public string GuarantorLastName { get; set; } = string.Empty;
 
-    public int GuarantorGender { get; set; }
+    public bool GuarantorGender { get; set; }
 
     public string? GuarantorEmail { get; set; }
 

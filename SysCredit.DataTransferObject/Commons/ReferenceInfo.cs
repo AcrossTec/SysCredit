@@ -10,7 +10,7 @@ public record class ReferenceInfo : IDataTransferObject
 
     public string LastName { get; set; } = string.Empty;
 
-    public int Gender { get; set; }
+    public bool Gender { get; set; }
 
     public string Phone { get; set; } = string.Empty;
 

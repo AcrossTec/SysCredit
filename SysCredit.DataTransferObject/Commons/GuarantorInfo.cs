@@ -14,7 +14,7 @@ public record class GuarantorInfo : IDataTransferObject
 
     public string LastName { get; set; } = string.Empty;
 
-    public int Gender { get; set; }
+    public bool Gender { get; set; }
 
     public string? Email { get; set; }
 
