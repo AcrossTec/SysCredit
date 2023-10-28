@@ -24,6 +24,21 @@
     <ClCompile Include="Tables\UserClaim.sql">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Functions\Catalogs\LoanTypes\InsertLoanType.sql">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Functions\Catalogs\PaymentFrequencies\InsertPaymentFrequency.sql">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Functions\Catalogs\Relationships\InsertRelationship.sql">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Functions\Catalogs\LoanTypes\DeleteLoanType.sql">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Functions\Catalogs\LoanTypes\FetchLoanTypeById.sql">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Tables\Customer.sql">
@@ -71,5 +86,18 @@
     <None Include="Tables\UserRole.sql">
       <Filter>Tables</Filter>
     </None>
+    <None Include="Functions\Catalogs\LoanTypes\FetchLoanType.sql" />
+    <None Include="Functions\Catalogs\PaymentFrequencies\DeletePaymentFrequency.sql" />
+    <None Include="Functions\Catalogs\Relationships\DeleteRelationship.sql" />
+    <None Include="Functions\Catalogs\LoanTypes\FetchLoanTypeByName.sql" />
+    <None Include="Functions\Catalogs\PaymentFrequencies\FetchPaymentFrequencyByName.sql" />
+    <None Include="Functions\Catalogs\PaymentFrequencies\FetchPaymentFrequencyById.sql" />
+    <None Include="Functions\Catalogs\PaymentFrequencies\FetchPaymentFrequency.sql" />
+    <None Include="Functions\Catalogs\Relationships\FetchRelationship.sql" />
+    <None Include="Functions\Catalogs\Relationships\FetchRelationshipById.sql" />
+    <None Include="Functions\Catalogs\Relationships\FetchRelationshipByName.sql" />
+    <None Include="Functions\Catalogs\LoanTypes\UpdateLoanType.sql" />
+    <None Include="Functions\Catalogs\PaymentFrequencies\UpdatePaymentFrequency.sql" />
+    <None Include="Functions\Catalogs\Relationships\UpdateRelationship.sql" />
   </ItemGroup>
 </Project>
