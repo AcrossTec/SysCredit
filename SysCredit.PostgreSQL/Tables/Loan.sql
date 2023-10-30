@@ -1,4 +1,6 @@
-CREATE TABLE public."Loan"
+-- NUMBER: 1.9
+
+CREATE TABLE IF NOT EXISTS "public"."Loan"
 (
     "LoanId"                BIGSERIAL      PRIMARY KEY,
     "LoanTypeId"            BIGINT         NOT NULL,
@@ -21,7 +23,7 @@ CREATE TABLE public."Loan"
     "DeletedDate"           TIMESTAMP      NULL,
     "IsEdit"                BOOLEAN        NOT NULL DEFAULT FALSE,
     "IsDelete"              BOOLEAN        NOT NULL DEFAULT FALSE,
-    CONSTRAINT "FK_Loan_CustomerId_Customer_CustomerId" FOREIGN KEY ("CustomerId") REFERENCES public."Customer"("CustomerId"),
-    CONSTRAINT "FK_Loan_LoanTypeId_LoanType_LoanTypeId" FOREIGN KEY ("LoanTypeId") REFERENCES public."LoanType"("LoanTypeId"),
-    CONSTRAINT "FK_Loan_PaymentFrequencyId_PaymentFrequency_PaymentFrequencyId" FOREIGN KEY ("PaymentFrequencyId") REFERENCES public."PaymentFrequency"("PaymentFrequencyId")
+    CONSTRAINT "FK_Loan_CustomerId_Customer_CustomerId"                         FOREIGN KEY ("CustomerId")         REFERENCES "public"."Customer"("CustomerId"),
+    CONSTRAINT "FK_Loan_LoanTypeId_LoanType_LoanTypeId"                         FOREIGN KEY ("LoanTypeId")         REFERENCES "public"."LoanType"("LoanTypeId"),
+    CONSTRAINT "FK_Loan_PaymentFrequencyId_PaymentFrequency_PaymentFrequencyId" FOREIGN KEY ("PaymentFrequencyId") REFERENCES "public"."PaymentFrequency"("PaymentFrequencyId")
 );

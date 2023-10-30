@@ -1,4 +1,6 @@
-CREATE TABLE public."UserClaim"
+-- NUMBER: 1.13
+
+CREATE TABLE IF NOT EXISTS "public"."UserClaim"
 (
     "UserClaimId"  BIGSERIAL   PRIMARY KEY,
     "UserId"       BIGINT      NOT NULL,
@@ -9,5 +11,5 @@ CREATE TABLE public."UserClaim"
     "DeletedDate"  TIMESTAMP   NULL,
     "IsEdit"       BOOLEAN     NOT NULL DEFAULT FALSE,
     "IsDelete"     BOOLEAN     NOT NULL DEFAULT FALSE,
-    CONSTRAINT "FK_UserClaim_User_UserId" FOREIGN KEY ("UserId") REFERENCES public."User"("UserId")
+    CONSTRAINT "FK_UserClaim_User_UserId" FOREIGN KEY ("UserId") REFERENCES "public"."User"("UserId")
 );

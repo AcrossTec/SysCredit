@@ -1,4 +1,6 @@
-CREATE TABLE public."CustomerReference"
+-- NUMBER: 1.11
+
+CREATE TABLE IF NOT EXISTS "public"."CustomerReference"
 (
     "CustomerReferenceId" BIGSERIAL PRIMARY KEY,
     "CustomerId"          BIGINT    NOT NULL,
@@ -9,6 +11,6 @@ CREATE TABLE public."CustomerReference"
     "DeletedDate"         TIMESTAMP NULL,
     "IsEdit"              BOOLEAN   NOT NULL DEFAULT FALSE,
     "IsDelete"            BOOLEAN   NOT NULL DEFAULT FALSE,
+	CONSTRAINT "FK_CustomerReference_LoanId_Loan_LoanId"            FOREIGN KEY ("LoanId") REFERENCES "public"."Loan"("LoanId")
     CONSTRAINT "AK_CustomerReference_CustomerId_ReferenceId_LoanId" UNIQUE ("CustomerId", "ReferenceId", "LoanId"),
-	CONSTRAINT "FK_CustomerReference_LoanId_Loan_LoanId" FOREIGN KEY ("LoanId") REFERENCES "Loan"("LoanId")
 );

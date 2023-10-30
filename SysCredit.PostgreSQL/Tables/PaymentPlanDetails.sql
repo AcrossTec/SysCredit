@@ -1,4 +1,6 @@
-CREATE TABLE public."PaymentPlanDetails"
+-- NUMBER: 1.15
+
+CREATE TABLE IF NOT EXISTS "public"."PaymentPlanDetails"
 (
     "PaymentPlanDetailId"   BIGSERIAL      PRIMARY KEY,
     "PaymentPlanId"         BIGINT         NOT NULL,
@@ -10,5 +12,5 @@ CREATE TABLE public."PaymentPlanDetails"
     "DeletedDate"           TIMESTAMP      NULL,
     "IsEdit"                BOOLEAN        NOT NULL DEFAULT FALSE,
     "IsDelete"              BOOLEAN        NOT NULL DEFAULT FALSE,
-    CONSTRAINT "FK_PaymentPlanDetails_PaymentPlanId_PaymentPlan_PaymentPlanId" FOREIGN KEY ("PaymentPlanId") REFERENCES public."PaymentPlan"("PaymentPlanId")
+    CONSTRAINT "FK_PaymentPlanDetails_PaymentPlanId_PaymentPlan_PaymentPlanId" FOREIGN KEY ("PaymentPlanId") REFERENCES "public"."PaymentPlan"("PaymentPlanId")
 );

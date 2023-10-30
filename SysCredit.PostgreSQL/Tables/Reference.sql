@@ -1,4 +1,6 @@
-CREATE TABLE public."Reference"
+-- NUMBER: 1.4
+
+CREATE TABLE IF NOT EXISTS "public"."Reference"
 (
     "ReferenceId"    BIGSERIAL    PRIMARY KEY,
     "Identification" VARCHAR(16)  NULL,

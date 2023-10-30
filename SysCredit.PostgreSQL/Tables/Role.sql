@@ -1,4 +1,6 @@
-CREATE TABLE public."Role"
+-- NUMBER: 1.5
+
+CREATE TABLE IF NOT EXISTS "public"."Role"
 (
     "RoleId"       BIGSERIAL   PRIMARY KEY,
     "Name"         VARCHAR(30) NOT NULL,

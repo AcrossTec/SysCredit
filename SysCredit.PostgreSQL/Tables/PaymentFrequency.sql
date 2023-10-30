@@ -1,4 +1,6 @@
-CREATE TABLE public."PaymentFrequency"
+-- NUMBER: 1.7
+
+CREATE TABLE IF NOT EXISTS "public"."PaymentFrequency"
 (
     "PaymentFrequencyId" BIGSERIAL   PRIMARY KEY,
     "Name"               VARCHAR(32) NOT NULL,

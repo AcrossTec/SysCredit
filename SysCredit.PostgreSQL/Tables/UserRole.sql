@@ -1,4 +1,6 @@
-CREATE TABLE public."UserRole"
+-- NUMBER: 1.16
+
+CREATE TABLE IF NOT EXISTS "public"."UserRole"
 (
     "RoleUserId"    BIGSERIAL   PRIMARY KEY,
     "RoleId"        BIGINT      NOT NULL,
@@ -8,6 +10,6 @@ CREATE TABLE public."UserRole"
     "DeletedDate"   TIMESTAMP   NULL,
     "IsEdit"        BOOLEAN     NOT NULL DEFAULT FALSE,
     "IsDelete"      BOOLEAN     NOT NULL DEFAULT FALSE,
-    CONSTRAINT "FK_RoleUser_User_UserId" FOREIGN KEY ("UserId") REFERENCES public."User"("UserId"),
-    CONSTRAINT "FK_RoleUser_Role_RoleId" FOREIGN KEY ("RoleId") REFERENCES public."Role"("RoleId")
+    CONSTRAINT "FK_RoleUser_User_UserId" FOREIGN KEY ("UserId") REFERENCES "public"."User"("UserId"),
+    CONSTRAINT "FK_RoleUser_Role_RoleId" FOREIGN KEY ("RoleId") REFERENCES "public"."Role"("RoleId")
 );

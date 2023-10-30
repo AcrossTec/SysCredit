@@ -1,4 +1,6 @@
-CREATE TABLE public."User"
+-- NUMBER: 1.12
+
+CREATE TABLE IF NOT EXISTS "public"."User"
 (
     "UserId"       BIGSERIAL   PRIMARY KEY,
     "UserName"     VARCHAR(64) NOT NULL,

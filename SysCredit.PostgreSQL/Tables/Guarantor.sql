@@ -1,4 +1,6 @@
-CREATE TABLE public."Guarantor"
+-- NUMBER: 1.2
+
+CREATE TABLE IF NOT EXISTS "public"."Guarantor"
 (
     "GuarantorId"      BIGSERIAL    PRIMARY KEY,
     "Identification"   VARCHAR(16)  NOT NULL,
@@ -21,4 +23,4 @@ CREATE TABLE public."Guarantor"
     CONSTRAINT "AK_Guarantor_Phone"          UNIQUE ("Phone")
 );
 
-CREATE INDEX "IX_Guarantor_Search_Fields" ON public."Guarantor" ("Identification", "Name", "LastName", "Phone");
+CREATE INDEX "IX_Guarantor_Search_Fields" ON "public"."Guarantor" ("Identification", "Name", "LastName", "Phone");
