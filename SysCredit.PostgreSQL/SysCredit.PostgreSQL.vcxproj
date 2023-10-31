@@ -131,6 +131,7 @@
     <ClCompile Include="Tables\UserClaim.sql" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="PostDeployments\LoanType.Seed.sql" />
     <None Include="Tables\Customer.sql" />
     <None Include="Tables\CustomerGuarantor.sql" />
     <None Include="Tables\CustomerReference.sql" />
