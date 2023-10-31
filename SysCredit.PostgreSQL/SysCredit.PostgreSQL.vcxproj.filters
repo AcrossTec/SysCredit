@@ -16,6 +16,9 @@
     <Filter Include="Tables">
       <UniqueIdentifier>{6f1272c2-9e05-4d8d-b9d1-52e5b3f8a071}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PostDeployments">
+      <UniqueIdentifier>{3e1a7658-a1d3-4c59-a496-0ac3b2f56433}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SysCredit.PostgreSQL.cpp">
