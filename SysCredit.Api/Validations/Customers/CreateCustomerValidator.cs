@@ -2,7 +2,9 @@
 
 using FluentValidation;
 
+using SysCredit.Api.Constants;
 using SysCredit.Api.Extensions;
+using SysCredit.Api.Properties;
 using SysCredit.Api.Requests.Customers;
 
 /// <summary>
@@ -20,7 +22,7 @@ public class CreateCustomerValidator : AbstractValidator<CreateCustomerRequest>
             .NotNull()
             .MaximumLength(16)
             .Identification()
-            .CustomerUniqueIdentificationAsync()
+            .CustomerUniqueIdentificationAsync().WithErrorCode(ErrorCodes.SERVC0101)
             .WithName("Cédula");
 
         RuleFor(C => C.Name)
@@ -37,13 +39,13 @@ public class CreateCustomerValidator : AbstractValidator<CreateCustomerRequest>
 
         RuleFor(C => C.Gender)
             .Enum()
-            .WithMessage("'{PropertyName}' debe tener un género válido: Hombre o Mujer")
+            .WithMessage(ErrorCodeMessages.GetMessageFromCode(ErrorCodes.SERVC0102))
             .WithName("Género");
 
         RuleFor(C => C.Email)
             .MaximumLength(64)
             .EmailAddress()
-            .CustomerUniqueEmailAsync()
+            .CustomerUniqueEmailAsync().WithErrorCode(ErrorCodes.SERVC0103)
             .WithName("Correo")
             .When(G => G.Email is not null);
 
@@ -76,11 +78,11 @@ public class CreateCustomerValidator : AbstractValidator<CreateCustomerRequest>
             .NotNull()
             .MaximumLength(16)
             .Phone()
-            .CustomerUniquePhoneAsync()
+            .CustomerUniquePhoneAsync().WithErrorCode(ErrorCodes.SERVC0104)
             .WithName("Teléfono");
 
         RuleFor(C => C.Guarantors)
-            .CustomerGuarantorsUniqueInRequest()
+            .CustomerGuarantorsUniqueInRequest().WithErrorCode(ErrorCodes.SERVC0105)
             .WithName("Fiadores");
 
         RuleForEach(C => C.Guarantors)

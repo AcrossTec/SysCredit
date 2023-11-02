@@ -1,7 +1,8 @@
 ﻿namespace SysCredit.Api.Validations.Customers;
 
 using FluentValidation;
-
+using log4net.Core;
+using SysCredit.Api.Constants;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Requests.Customers;
 
@@ -16,11 +17,11 @@ public class CustomerGuarantorValidator : AbstractValidator<CustomerGuarantorReq
     public CustomerGuarantorValidator()
     {
         RuleFor(Cg => Cg.GuarantorId)
-            .ExistsGuarantorAsync()
+            .ExistsGuarantorAsync().WithErrorCode(ErrorCodes.SERVC0107)
             .WithName("Fiador");
 
         RuleFor(Cg => Cg.RelationshipId)
-            .ExistsRelationshipAsync()
+            .ExistsRelationshipAsync().WithErrorCode(ErrorCodes.SERVC0108)
             .WithName("Parentesco");
     }
 }

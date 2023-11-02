@@ -1,8 +1,9 @@
 ﻿namespace SysCredit.Api.Validations.Customers;
 
 using FluentValidation;
-
+using log4net.Core;
 using SysCredit.Api.Attributes;
+using SysCredit.Api.Constants;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Requests.Customers;
 
@@ -23,7 +24,7 @@ public class CustomerIdRequestValidator : AbstractValidator<CustomerIdRequest>
         RuleFor(C => C.CustomerId)
             .NotEmpty()
             .NotNull()
-            .VerifyIfCustomerExistsByIdAsync().WithErrorCode(""/*SERVC0003*/) // TODO: Crear las entradas ERR<ErrorCodeNumber>
+            .VerifyIfCustomerExistsByIdAsync().WithErrorCode(ErrorCodes.SERVC0106) // TODO: Crear las entradas ERR<ErrorCodeNumber>
             .WithName("Customer Id"); // TODO: Configurar los nombres de propiedades
     }
 }

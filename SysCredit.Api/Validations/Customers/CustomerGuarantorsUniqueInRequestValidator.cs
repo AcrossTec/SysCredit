@@ -3,6 +3,7 @@
 using FluentValidation;
 using FluentValidation.Validators;
 
+using SysCredit.Api.Properties;
 using SysCredit.Api.Requests.Customers;
 
 /// <summary>
@@ -34,7 +35,7 @@ public class CustomerGuarantorsUniqueInRequestValidator<T> : PropertyValidator<T
     /// </returns>
     protected override string GetDefaultMessageTemplate(string ErrorCode)
     {
-        return "'{PropertyName}' Request con registros duplicados: 'GuarantorId' debe ser único.";
+        return ErrorCodeMessages.GetMessageFromCode(ErrorCode)!;
     }
 
     /// <summary>

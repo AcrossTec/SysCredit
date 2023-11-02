@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DATAC0000" xml:space="preserve">
+    <value>Sin errores</value>
+    <comment>Errores Generales: IStore&lt;Customer&gt;</comment>
+  </data>
+  <data name="DATAC0001" xml:space="preserve">
+    <value>Error en el proveedor de base de datos</value>
+    <comment>Errores Generales: IStore&lt;Customer&gt;</comment>
+  </data>
+  <data name="DATAC0002" xml:space="preserve">
+    <value>Error en la ejecución del Store</value>
+    <comment>Errores Generales: IStore&lt;Customer&gt;</comment>
+  </data>
   <data name="DATAG0000" xml:space="preserve">
     <value>Sin errores</value>
     <comment>Errores Generales: IStore&lt;Guarantor&gt;</comment>
@@ -164,6 +176,50 @@
   <data name="DATARS0002" xml:space="preserve">
     <value>Error en la ejecución del Store</value>
     <comment>Errores Generales: IStore&lt;Relationship&gt;</comment>
+  </data>
+  <data name="SERVC0000" xml:space="preserve">
+    <value>Sin errores</value>
+    <comment>Errores Generales: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0001" xml:space="preserve">
+    <value>Error en la validación del Request</value>
+    <comment>Errores Generales: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0002" xml:space="preserve">
+    <value>Error en la ejecución del Servicio</value>
+    <comment>Errores Generales: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0101" xml:space="preserve">
+    <value>Error. La identificación ya existe</value>
+    <comment>Errores Específicos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0102" xml:space="preserve">
+    <value>Error. Debe tener un género válido: Hombre o Mujer</value>
+    <comment>Errores Específicos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0103" xml:space="preserve">
+    <value>Error. El correo ya ha sido registrado</value>
+    <comment>Errores Específicos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0104" xml:space="preserve">
+    <value>Error. El número de teléfono ya ha sido registado</value>
+    <comment>Errores Específicos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0105" xml:space="preserve">
+    <value>Error. Request con registros duplicados: 'GuarantorId' debe ser único</value>
+    <comment>Errores Específicos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0106" xml:space="preserve">
+    <value>Error. Cliente no encontrado</value>
+    <comment>Errores Específicos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0107" xml:space="preserve">
+    <value>Error. Relación inexistente del fiador</value>
+    <comment>Errores Específicos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0108" xml:space="preserve">
+    <value>Error. Relación inexistente del parentesco</value>
+    <comment>Errores Específicos: IService&lt;Customer&gt;</comment>
   </data>
   <data name="SERVG0000" xml:space="preserve">
     <value>Sin errores</value>
@@ -248,5 +304,9 @@
   <data name="SERVRS0002" xml:space="preserve">
     <value>Error en la ejecución del Servicio</value>
     <comment>Errores Generales: IService&lt;Relationship&gt;</comment>
+  </data>
+  <data name="SERVRS0101" xml:space="preserve">
+    <value>Error. El nombre del parentesco ya existe</value>
+    <comment>Errores Específico: IService&lt;Relationship&gt;</comment>
   </data>
 </root>

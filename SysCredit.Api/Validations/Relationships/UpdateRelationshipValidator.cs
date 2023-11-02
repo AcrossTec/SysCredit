@@ -2,6 +2,7 @@
 
 using FluentValidation;
 
+using SysCredit.Api.Constants;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Properties;
 using SysCredit.Api.Requests.Relationships;
@@ -21,7 +22,7 @@ public class UpdateRelationshipValidator : AbstractValidator<UpdateRelationshipR
         RuleFor(R => R.Name)
             .NotNull()  // .WithErrorCode(string.Empty)                     // .WithMessage()
             .NotEmpty() // .WithErrorCode(string.Empty)                    // .WithMessage()
-            .RelationshipUniqueNameAsync()// .WithErrorCode(string.Empty) // .WithMessage()
+            .RelationshipUniqueNameAsync().WithErrorCode(ErrorCodes.SERVRS0101)
             .WithName(SysCreditMessages.GetMessage("Name"));
     }
 }

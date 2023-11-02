@@ -4,6 +4,7 @@ using FluentValidation;
 using FluentValidation.Validators;
 
 using SysCredit.Api.Extensions;
+using SysCredit.Api.Properties;
 using SysCredit.Api.Stores;
 
 using SysCredit.Models;
@@ -47,7 +48,7 @@ public class AsyncCustomerUniqueIdentificationValidator<T> : AsyncPropertyValida
     /// </returns>
     protected override string GetDefaultMessageTemplate(string ErrorCode)
     {
-        return "'{PropertyName}' Ya existe un registro con este valor.";
+        return ErrorCodeMessages.GetMessageFromCode(ErrorCode)!;
     }
 
     /// <summary>

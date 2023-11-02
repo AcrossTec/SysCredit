@@ -2,6 +2,7 @@
 
 using FluentValidation;
 
+using SysCredit.Api.Constants;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Requests.Relationships;
 
@@ -18,7 +19,7 @@ public class CreateRelationshipValidator : AbstractValidator<CreateRelationshipR
         RuleFor(R => R.Name)
             .NotEmpty()
             .NotNull()
-            .RelationshipUniqueNameAsync()
+            .RelationshipUniqueNameAsync().WithErrorCode(ErrorCodes.SERVRS0101)
             .WithName("Nombre");
     }
 }
