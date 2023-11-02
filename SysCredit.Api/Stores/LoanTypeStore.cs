@@ -164,4 +164,10 @@ public static partial class LoanTypeStore
     {
         return await Store.ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<LoanTypeInfo?>("[dbo].[FetchLoanTypeById]", new { LoanTypeId });
     }
+
+    [MethodId("B369CB18-2F70-4E34-AEA8-0A0D78586AC2O")]
+    public static async ValueTask<dynamic> TestFetchLoanType(this IStore<LoanType> Store)
+    {
+        return await Store.Connection.ExecuteScalarAsync<dynamic>("SELECT * FROM \"public\".\"FetchLoanTypeById\"(\"loantypeid\")", new { loantypeid = 1 });
+    }
 }

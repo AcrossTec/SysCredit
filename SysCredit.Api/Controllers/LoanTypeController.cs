@@ -111,4 +111,11 @@ public class LoanTypeController(ILoanTypeService LoanTypeService, ILogger<LoanTy
         await LoanTypeService.UpdateLoanTypeAsync(Request);
         return StatusCode(StatusCodes.Status204NoContent);
     }
+
+    [HttpGet("TestLoanType")]
+    public async Task<ActionResult<IResponse<dynamic>>> TestFetchLoanType()
+    {
+        Logger.LogInformation("EndPoint[GET]: /Api/TestLoanType");
+        return Ok(await LoanTypeService.TestFetchLoanType().ToResponseAsync());
+    }
 }

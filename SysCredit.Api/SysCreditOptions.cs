@@ -1,6 +1,7 @@
 ﻿namespace SysCredit.Api;
 
 using Npgsql;
+using MySql.Data.MySqlClient;
 
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -39,6 +40,8 @@ public sealed class SysCreditOptions
     ///         <description>Proveedor SQL Server</description>
     ///         <item><see cref="NpgsqlConnection" /></item>
     ///         <description>Proveedor PostgreSQL</description>
+    ///         <item><see cref="MySqlConnection"/></item>
+    ///         <description>Proveedor MySQL</description>
     ///     </list>
     /// </returns>
     public DbConnection CreateConnection()
@@ -47,6 +50,7 @@ public sealed class SysCreditOptions
         {
             nameof(SqlConnection) => new SqlConnection(ConnectionString),
             nameof(NpgsqlConnection) => new NpgsqlConnection(ConnectionString),
+            nameof(MySqlConnection) => new MySqlConnection(ConnectionString),
             _ => throw new NotSupportedException("Proveedor de base de datos no soportado.")
         };
     }

@@ -36,6 +36,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="6.1.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
+    <PackageReference Include="MySql.Data" Version="8.2.0" />
     <PackageReference Include="Npgsql" Version="7.0.6" />
     <PackageReference Include="stakx.DynamicProxy.AsyncInterceptor" Version="0.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />

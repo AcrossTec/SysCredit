@@ -91,4 +91,10 @@ public partial class LoanTypeService(IStore<LoanType> LoanTypeStore)
         await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
         return await LoanTypeStore.UpdateLoanTypeAsync(Request);
     }
+
+    [MethodId("C30C1D0B-3823-4ABB-B226-5B94F4E8F024")]
+    public ValueTask<dynamic> TestFetchLoanType()
+    {
+        return LoanTypeStore.TestFetchLoanType();
+    }
 }

@@ -1,10 +1,14 @@
 ﻿namespace SysCredit.Api.Extensions;
 
 using Dapper;
-
+using MySql.Data.MySqlClient;
+using Npgsql;
+using SysCredit.Api.Constants;
 using SysCredit.Api.Stores;
 
 using System.Data;
+using System.Data.SqlClient;
+using System.Runtime.CompilerServices;
 
 /// <summary>
 ///     Métodos de utilería para todos los Stores.
@@ -127,7 +131,7 @@ public static class StoreExtensions
     /// </returns>
     public static IAsyncEnumerable<T> ExecuteStoredProcedureQueryAsync<T>(this IStore Store, string Sql, object? Parameters = null, IDbTransaction? Transaction = null, int? CommandTimeout = null)
     {
-        return Store.Connection.Query<T>(Sql, Parameters, Transaction, false, CommandTimeout, CommandType.StoredProcedure).ToAsyncEnumerable();
+        return Store.Connection.Query<T>(Sql, Parameters, Transaction, false, CommandTimeout).ToAsyncEnumerable();
     }
 
     /// <summary>
@@ -179,6 +183,37 @@ public static class StoreExtensions
     /// </returns>
     public static ValueTask<T> ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<T>(this IStore Store, string Sql, object? Parameters = null, IDbTransaction? Transaction = null, int? CommandTimeout = null)
     {
+        Sql = Store.SchematizeScript(Sql);
+
         return new ValueTask<T>(Store.Connection.QueryFirstOrDefaultAsync<T>(Sql, Parameters, Transaction, CommandTimeout, CommandType.StoredProcedure));
+    }
+
+    public static IAsyncEnumerable<T> ExecuteTestQueryCollection<T>(this IStore Store, string Sql, object? Parameters = null, IDbTransaction? Transaction = null, int? CommandTimeout = null)
+    {
+        Sql = Store.SchematizeScript(Sql);
+        return Store.Connection.Query<T>(Sql, Parameters, Transaction, false, CommandTimeout).ToAsyncEnumerable();
+    }
+
+    public static string SchematizeScript(this IStore Store, string Sql)
+    {
+        return SchematizeSqlScript((dynamic)Store.Connection, Sql); 
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static string SchematizeSqlScript(NpgsqlConnection _, string Sql)
+    {
+        return $"{SqlSchemas.NpgsqlSchema}.\"{Sql}\"";
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static string SchematizeSqlScript(SqlConnection _, string Sql)
+    {
+        return $"{SqlSchemas.SqlSchema}.[{Sql}]";
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static string SchematizeSqlScript(MySqlConnection _, string Sql)
+    {
+        return $"`{Sql}`";
     }
 }
