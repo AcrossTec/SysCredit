@@ -71,5 +71,9 @@
     <None Include="Tables\UserRole.sql">
       <Filter>Tables</Filter>
     </None>
+    <None Include="PostDeployments\LoanType.Seed.sql" />
+    <None Include="PostDeployments\PaymentFrequency.Seed.sql" />
+    <None Include="PostDeployments\Relationship.Seed.sql" />
+    <None Include="PostDeployments\Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>
