@@ -165,6 +165,118 @@
     <value>Running Store Error</value>
     <comment>Errores Generales: IStore&lt;Relationship&gt;</comment>
   </data>
+  <data name="SERVC0101" xml:space="preserve">
+    <value>ID number must not be empty</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0102" xml:space="preserve">
+    <value>ID number must not be null</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0103" xml:space="preserve">
+    <value>ID {0} does not have a valid value</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0104" xml:space="preserve">
+    <value>Error, ID already exists</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0105" xml:space="preserve">
+    <value>Name must not be empty</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0106" xml:space="preserve">
+    <value>Name must not be null</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0107" xml:space="preserve">
+    <value>Last name must not be empty</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0108" xml:space="preserve">
+    <value>Last name must not be null</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0109" xml:space="preserve">
+    <value>Error, you must have a valid gender: Male or Female</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0110" xml:space="preserve">
+    <value>Email {0} does not have a valid value</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0111" xml:space="preserve">
+    <value>Error, a record with this value already exists</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0112" xml:space="preserve">
+    <value>Address, must not be empty</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0113" xml:space="preserve">
+    <value>Address, must not be null</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0114" xml:space="preserve">
+    <value>Neighborhood, it shouldn't be empty</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0115" xml:space="preserve">
+    <value>Neighborhood, it should not be null</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0116" xml:space="preserve">
+    <value>Business type must not be empty</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0117" xml:space="preserve">
+    <value>Business type must not be null</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0118" xml:space="preserve">
+    <value>Business Address must not be empty</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0119" xml:space="preserve">
+    <value>Business Address must not be null</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0120" xml:space="preserve">
+    <value>Cell phone number must not be empty</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0121" xml:space="preserve">
+    <value>Cell phone number must not be null</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0122" xml:space="preserve">
+    <value>Cell Phone {0} does not have a valid value</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0123" xml:space="preserve">
+    <value>this guarantor already exists</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0124" xml:space="preserve">
+    <value>This Relationship Already Exists</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0125" xml:space="preserve">
+    <value>Client must not be empty</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0126" xml:space="preserve">
+    <value>Client must not be null</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0127" xml:space="preserve">
+    <value>Customer {0} does not have a valid value</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
+  <data name="SERVC0128" xml:space="preserve">
+    <value>The Client has this Guarantor in use</value>
+    <comment>Errores Especificos: IService&lt;Customer&gt;</comment>
+  </data>
   <data name="SERVG0000" xml:space="preserve">
     <value>Success</value>
     <comment>Errores Generales: IService&lt;Guarantor&gt;</comment>
@@ -197,6 +309,82 @@
     <value>The Guarantor is being used by a Client</value>
     <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
   </data>
+  <data name="SERVG0106" xml:space="preserve">
+    <value>ID number must not be empty</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0107" xml:space="preserve">
+    <value>ID number must not be null</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0108" xml:space="preserve">
+    <value>Identification {0} does not have a valid value</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0109" xml:space="preserve">
+    <value>Name must not be empty</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0110" xml:space="preserve">
+    <value>Name must not be null</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0111" xml:space="preserve">
+    <value>Last name must not be empty</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0112" xml:space="preserve">
+    <value>Last name must not be null</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0114" xml:space="preserve">
+    <value>Email {0} does not have a valid value</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0115" xml:space="preserve">
+    <value>Address, must not be empty</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0116" xml:space="preserve">
+    <value>Address, must not be null</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0117" xml:space="preserve">
+    <value>Neighborhood, it should not be empty</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0118" xml:space="preserve">
+    <value>Neighborhood, it should not be null</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0119" xml:space="preserve">
+    <value>Business type must not be empty</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0120" xml:space="preserve">
+    <value>Business type must not be null</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0121" xml:space="preserve">
+    <value>Business Address must not be empty, it must be empty.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0122" xml:space="preserve">
+    <value>Business Address must not be empty, it must be null</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0123" xml:space="preserve">
+    <value>Cell phone number must not be empty</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0124" xml:space="preserve">
+    <value>Cell phone number must not be null</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0125" xml:space="preserve">
+    <value>Cell Phone {0} does not have a valid value</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
   <data name="SERVLT0000" xml:space="preserve">
     <value>Success</value>
     <comment>Errores Generales: IService&lt;LoanType&gt;</comment>
@@ -210,11 +398,24 @@
     <comment>Errores Generales: IService&lt;LoanType&gt;</comment>
   </data>
   <data name="SERVLT0101" xml:space="preserve">
-    <value>Already exist a record with that name</value>
+    <value>Name must not be empty</value>
     <comment>Errores Especificos: IService&lt;LoanType&gt;</comment>
   </data>
   <data name="SERVLT0102" xml:space="preserve">
+    <value>Name must not be Null</value>
+    <comment>Errores Especificos: IService&lt;LoanType&gt;</comment>
+  </data>
+  <data name="SERVLT0103" xml:space="preserve">
+    <value>Already exist a record with that name</value>
+    <comment>Errores Especificos: IService&lt;LoanType&gt;</comment>
+  </data>
+  <data name="SERVLT0104" xml:space="preserve">
     <value>The LoanType is being used by a Loan</value>
+    <comment>Errores Especificos: IService&lt;LoanType&gt;</comment>
+  </data>
+  <data name="SERVLT0105" xml:space="preserve">
+    <value>Error, Name was not updated</value>
+    <comment>Errores Especificos: IService&lt;LoanType&gt;</comment>
   </data>
   <data name="SERVPF0000" xml:space="preserve">
     <value>Success</value>

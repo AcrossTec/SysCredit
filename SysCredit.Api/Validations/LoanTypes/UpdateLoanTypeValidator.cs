@@ -9,6 +9,10 @@ using static Constants.ErrorCodes;
 using static Constants.ErrorCodePrefix;
 using SysCredit.Api.Constants;
 
+using static SysCredit.Api.Properties.ErrorCodeMessages;
+using static SysCredit.Api.Properties.SysCreditMessages;
+using static SysCredit.Api.Constants.ErrorCodes;
+
 /// <summary>
 ///     Clase validadora de <see cref="UpdateLoanTypeRequest"/>.
 /// </summary>
@@ -20,9 +24,9 @@ public class UpdateLoanTypeValidator : AbstractValidator<UpdateLoanTypeRequest>
     public UpdateLoanTypeValidator()
     {
         RuleFor(L => L.Name)
-            .NotEmpty()
-            .NotNull()
-            .LoanTypeUniqueNameAsync().WithErrorCode(ErrorCodes.SERVLT0101)
-            .WithName("Nombre");
+            .NotEmpty().WithErrorCode(SERVLT0101).WithMessage(GetMessageFromCode(SERVLT0101)!)
+            .NotNull().WithErrorCode(SERVLT0102).WithMessage(GetMessageFromCode(SERVLT0102)!)
+            .LoanTypeUniqueNameAsync().WithErrorCode(SERVLT0105).WithMessage(GetMessageFromCode(SERVLT0105)!)
+            .WithName(GetMessage("Name")!);
     }
 }

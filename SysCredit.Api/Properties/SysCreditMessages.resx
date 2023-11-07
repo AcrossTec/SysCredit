@@ -117,7 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="BussinessAddress" xml:space="preserve">
+    <value>BussinessAddress</value>
+  </data>
+  <data name="BussinessType" xml:space="preserve">
+    <value>BussinessType</value>
+  </data>
+  <data name="Customer Id" xml:space="preserve">
+    <value>Customer Id</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="Guarantor Id" xml:space="preserve">
+    <value>Guarantor Id</value>
+  </data>
+  <data name="Identification" xml:space="preserve">
+    <value>Identification</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>LastName</value>
+  </data>
+  <data name="LoanType Id" xml:space="preserve">
+    <value>LoanType Id</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="Neighborhood" xml:space="preserve">
+    <value>Neighborhood</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Relationship Id" xml:space="preserve">
+    <value>Relationship Id</value>
   </data>
 </root>

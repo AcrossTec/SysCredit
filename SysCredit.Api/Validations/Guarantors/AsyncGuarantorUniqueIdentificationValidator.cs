@@ -20,10 +20,5 @@ public class AsyncGuarantorUniqueIdentificationValidator<T> : AsyncPropertyValid
         return Guarantor is null;
     }
 
-    protected override string GetDefaultMessageTemplate(string ErrorCode)
-    {
-        return ErrorCodeMessages.GetMessageFromCode(ErrorCode)!;
-    }
-
     public override string Name => "AsyncGuarantorUniqueIdentificationValidator";
 }

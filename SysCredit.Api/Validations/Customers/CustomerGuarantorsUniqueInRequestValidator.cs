@@ -26,18 +26,6 @@ public class CustomerGuarantorsUniqueInRequestValidator<T> : PropertyValidator<T
     }
 
     /// <summary>
-    ///     Lanza el error del validador.
-    /// </summary>
-    /// <param name="ErrorCode"> Codigo del mensaje de Error. </param>
-    /// <returns>
-    ///     Retorna el mensaje de error.
-    /// </returns>
-    protected override string GetDefaultMessageTemplate(string ErrorCode)
-    {
-        return "'{PropertyName}' Request con registros duplicados: 'GuarantorId' debe ser único.";
-    }
-
-    /// <summary>
     ///     Nombre de la Validador.
     /// </summary>
     public override string Name => "CustomerGuarantorsUniqueInRequestValidator";

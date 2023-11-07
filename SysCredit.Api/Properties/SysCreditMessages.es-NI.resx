@@ -117,7 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Direccíon</value>
+  </data>
+  <data name="BussinessAddress" xml:space="preserve">
+    <value>Dirección Negocio</value>
+  </data>
+  <data name="BussinessType" xml:space="preserve">
+    <value>Tipo Negocio</value>
+  </data>
+  <data name="Customer Id" xml:space="preserve">
+    <value>Cliente</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Correo Electrónico</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Género</value>
+  </data>
+  <data name="Guarantor Id" xml:space="preserve">
+    <value>Fiador</value>
+  </data>
+  <data name="Identification" xml:space="preserve">
+    <value>Cédula</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="LoanType Id" xml:space="preserve">
+    <value>Tipo de Prestamo</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Nombre</value>
+  </data>
+  <data name="Neighborhood" xml:space="preserve">
+    <value>Barrio</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="Relationship Id" xml:space="preserve">
+    <value>Parentesco</value>
   </data>
 </root>
