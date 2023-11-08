@@ -236,6 +236,22 @@
     <value>The route id doesn't match the request id</value>
     <comment>Errores Especificos: IService&lt;PaymentFrequency&gt;</comment>
   </data>
+  <data name="SERVPF0103" xml:space="preserve">
+    <value>Payment Frequency name cannot be empty</value>
+    <comment>Errores Especificos: IService&lt;PaymentFrequency&gt;</comment>
+  </data>
+  <data name="SERVPF0104" xml:space="preserve">
+    <value>Payment Frequency name is required, not null</value>
+    <comment>Errores Especificos: IService&lt;PaymentFrequency&gt;</comment>
+  </data>
+  <data name="SERVPF0105" xml:space="preserve">
+    <value>Error, Payment Frequency id value cannot be null</value>
+    <comment>Errores Especificos: IService&lt;PaymentFrequency&gt;</comment>
+  </data>
+  <data name="SERVPF0106" xml:space="preserve">
+    <value>Error, Payment Frequency id value cannot be empty</value>
+    <comment>Errores Especificos: IService&lt;PaymentFrequency&gt;</comment>
+  </data>
   <data name="SERVRS0000" xml:space="preserve">
     <value>Success</value>
     <comment>Errores Generales: IService&lt;Relationship&gt;</comment>
@@ -247,5 +263,21 @@
   <data name="SERVRS0002" xml:space="preserve">
     <value>Running Service Error</value>
     <comment>Errores Generales: IService&lt;Relationship&gt;</comment>
+  </data>
+  <data name="SERVRS0101" xml:space="preserve">
+    <value>Error, Relationship name cannot be empty</value>
+    <comment>Errores Específicos: IService&lt;Relationship&gt;</comment>
+  </data>
+  <data name="SERVRS0102" xml:space="preserve">
+    <value>Error, Relationship name cannot be null</value>
+    <comment>Errores Específicos: IService&lt;Relationship&gt;</comment>
+  </data>
+  <data name="SERVRS0103" xml:space="preserve">
+    <value>The Relationship name already exists in the database</value>
+    <comment>Errores Específicos: IService&lt;Relationship&gt;</comment>
+  </data>
+  <data name="SERVRS0104" xml:space="preserve">
+    <value>Error, Relationship id value is required, it cannot be null</value>
+    <comment>Errores Específicos: IService&lt;Relationship&gt;</comment>
   </data>
 </root>

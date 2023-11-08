@@ -36,20 +36,6 @@ public class VerifyRouteWithPaymentFrequencyIdValidator<T> : PropertyValidator<T
     }
 
     /// <summary>
-    ///     Lanza el error del validador.
-    /// </summary>
-    /// <param name="ErrorCode">
-    ///     Código del mensaje de error.
-    /// </param>
-    /// <returns>
-    ///     Retorna el mensaje de error.
-    /// </returns>
-    protected override string GetDefaultMessageTemplate(string ErrorCode)
-    {
-        return ErrorCodeMessages.GetMessageFromCode(ErrorCode)!;
-    }
-
-    /// <summary>
     ///     Nombre del validador.
     /// </summary>
     public override string Name => "VerifyRouteWithPaymentFrequencyIdValidator";

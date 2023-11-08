@@ -4,6 +4,9 @@ using FluentValidation;
 
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Requests.Relationships;
+using static SysCredit.Api.Properties.ErrorCodeMessages;
+using static SysCredit.Api.Constants.ErrorCodes;
+using static SysCredit.Api.Properties.SysCreditMessages;
 
 /// <summary>
 ///     Clase validadora de <see cref="DeleteRelationshipRequest"/>.
@@ -16,7 +19,7 @@ public class DeleteRelationshipValidator : AbstractValidator<DeleteRelationshipR
     public DeleteRelationshipValidator()
     {
         RuleFor(R => R.RelationshipId)
-            .NotNull()
-            .WithName("Parentesco");
+            .NotNull().WithErrorCode(SERVRS0104).WithMessage(GetMessageFromCode(SERVRS0104))
+            .WithName(GetMessage("RelationshipId"));
     }
 }

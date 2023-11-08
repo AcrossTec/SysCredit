@@ -42,20 +42,6 @@ public class AsyncPaymentFrequencyUniqueNameValidator<T> : AsyncPropertyValidato
     }
 
     /// <summary>
-    ///     Lanza el error de la validación.
-    /// </summary>
-    /// <param name="ErrorCode">
-    ///     Codigo del mensaje de error.
-    /// </param>
-    /// <returns>
-    ///     Retorna el mensaje de error.
-    /// </returns>
-    protected override string GetDefaultMessageTemplate(string ErrorCode)
-    {
-        return ErrorCodeMessages.GetMessageFromCode(ErrorCode)!;
-    }
-
-    /// <summary>
     ///     Nombre del validador.
     /// </summary>
     public override string Name => "AsyncPaymentFrequencyUniqueNameValidator";

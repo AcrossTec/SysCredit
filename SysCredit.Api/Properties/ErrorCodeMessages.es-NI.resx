@@ -237,6 +237,22 @@
     <value>El id de la ruta y del request no coinciden</value>
     <comment>Errores Especificos: IService&lt;PaymentFrequency&gt;</comment>
   </data>
+  <data name="SERVPF0103" xml:space="preserve">
+    <value>El nombre de la Frecuencia de Pago no puede estar vacío</value>
+    <comment>Errores Especificos: IService&lt;PaymentFrequency&gt;</comment>
+  </data>
+  <data name="SERVPF0104" xml:space="preserve">
+    <value>El nombre de la Frecuencia de Pago es obligatorio, no nulo</value>
+    <comment>Errores Especificos: IService&lt;PaymentFrequency&gt;</comment>
+  </data>
+  <data name="SERVPF0105" xml:space="preserve">
+    <value>Error, el valor id Frecuencia de Pago no puede ser nulo</value>
+    <comment>Errores Especificos: IService&lt;PaymentFrequency&gt;</comment>
+  </data>
+  <data name="SERVPF0106" xml:space="preserve">
+    <value>Error, el valor id de Frecuencia de Pago no puede estar vacío</value>
+    <comment>Errores Especificos: IService&lt;PaymentFrequency&gt;</comment>
+  </data>
   <data name="SERVRS0000" xml:space="preserve">
     <value>Sin errores</value>
     <comment>Errores Generales: IService&lt;Relationship&gt;</comment>
@@ -248,5 +264,21 @@
   <data name="SERVRS0002" xml:space="preserve">
     <value>Error en la ejecución del Servicio</value>
     <comment>Errores Generales: IService&lt;Relationship&gt;</comment>
+  </data>
+  <data name="SERVRS0101" xml:space="preserve">
+    <value>Error, el nombre del Parentesco no puede estar vacío</value>
+    <comment>Errores Específicos: IService&lt;Relationship&gt;</comment>
+  </data>
+  <data name="SERVRS0102" xml:space="preserve">
+    <value>Error, el nombre del Parentesco no puede ser nulo</value>
+    <comment>Errores Específicos: IService&lt;Relationship&gt;</comment>
+  </data>
+  <data name="SERVRS0103" xml:space="preserve">
+    <value>El nombre de Parentesco ya existe en la base de datos</value>
+    <comment>Errores Específicos: IService&lt;Relationship&gt;</comment>
+  </data>
+  <data name="SERVRS0104" xml:space="preserve">
+    <value>Error, el valor id Parentesco es obligatorio, no puede ser nulo</value>
+    <comment>Errores Específicos: IService&lt;Relationship&gt;</comment>
   </data>
 </root>

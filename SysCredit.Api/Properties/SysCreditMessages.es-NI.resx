@@ -120,4 +120,10 @@
   <data name="Name" xml:space="preserve">
     <value>Nombre</value>
   </data>
+  <data name="PaymentFrequencyId" xml:space="preserve">
+    <value>Id de la Frecuencia de pago</value>
+  </data>
+  <data name="RelationshipId" xml:space="preserve">
+    <value>Id del Parentesco</value>
+  </data>
 </root>

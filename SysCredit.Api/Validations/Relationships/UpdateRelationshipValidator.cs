@@ -5,6 +5,9 @@ using FluentValidation;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Properties;
 using SysCredit.Api.Requests.Relationships;
+using static SysCredit.Api.Properties.ErrorCodeMessages;
+using static SysCredit.Api.Constants.ErrorCodes;
+using static SysCredit.Api.Properties.SysCreditMessages;
 
 /// <summary>
 ///     Clase validadora de <see cref="UpdateRelationshipRequest"/>.
@@ -15,13 +18,11 @@ public class UpdateRelationshipValidator : AbstractValidator<UpdateRelationshipR
     ///     Valida el nombre de la relación de parentesco.
     /// </summary>
     public UpdateRelationshipValidator()
-    {
-        // TODO: Establecer los código de errores y mensajes.
-
+    {       
         RuleFor(R => R.Name)
-            .NotNull()  // .WithErrorCode(string.Empty)                     // .WithMessage()
-            .NotEmpty() // .WithErrorCode(string.Empty)                    // .WithMessage()
-            .RelationshipUniqueNameAsync()// .WithErrorCode(string.Empty) // .WithMessage()
-            .WithName(SysCreditMessages.GetMessage("Name"));
+            .NotNull().WithErrorCode(SERVRS0102).WithMessage(GetMessageFromCode(SERVRS0102))
+            .NotEmpty().WithErrorCode(SERVRS0101).WithMessage(GetMessageFromCode(SERVRS0101))
+            .RelationshipUniqueNameAsync().WithErrorCode(SERVRS0103).WithMessage(GetMessageFromCode(SERVRS0103))
+            .WithName(GetMessage("Name"));
     }
 }

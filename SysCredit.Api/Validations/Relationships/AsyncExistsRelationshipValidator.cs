@@ -41,20 +41,6 @@ public class AsyncExistsRelationshipValidator<T> : AsyncPropertyValidator<T, lon
     }
 
     /// <summary>
-    ///     En caso de error lanza el mensaje con el codigo de error.
-    /// </summary>
-    /// <param name="ErrorCode">
-    ///     Código del mensaje de error.
-    /// </param>
-    /// <returns>
-    ///     Retorna el mensaje de error.
-    /// </returns>
-    protected override string GetDefaultMessageTemplate(string ErrorCode)
-    {
-        return ErrorCodeMessages.GetMessageFromCode(ErrorCode)!;
-    }
-
-    /// <summary>
     ///     Nombre del validador.
     /// </summary>
     public override string Name => "AsyncExistsRelationshipValidator";

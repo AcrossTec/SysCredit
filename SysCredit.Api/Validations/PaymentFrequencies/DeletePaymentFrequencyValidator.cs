@@ -4,6 +4,9 @@ using FluentValidation;
 
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Requests.PaymentFrequencies;
+using static SysCredit.Api.Properties.ErrorCodeMessages;
+using static SysCredit.Api.Constants.ErrorCodes;
+using static SysCredit.Api.Properties.SysCreditMessages;
 
 /// <summary>
 ///     Clase validadora de <see cref="DeletePaymentFrequencyRequest"/>.
@@ -16,7 +19,7 @@ public class DeletePaymentFrequencyValidator : AbstractValidator<DeletePaymentFr
     public DeletePaymentFrequencyValidator()
     {
         RuleFor(Pf => Pf.PaymentFrequencyId)
-            .NotNull()
-            .WithName("Frecuencia de pago");
+            .NotNull().WithErrorCode(SERVPF0105).WithMessage(GetMessageFromCode(SERVPF0105))
+            .WithName(GetMessage("PaymentFrequencyId"));
     }
 }

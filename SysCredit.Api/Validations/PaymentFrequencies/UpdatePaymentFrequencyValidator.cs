@@ -5,6 +5,9 @@ using FluentValidation;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Constants;
 using SysCredit.Api.Requests.PaymentFrequencies;
+using static SysCredit.Api.Properties.ErrorCodeMessages;
+using static SysCredit.Api.Constants.ErrorCodes;
+using static SysCredit.Api.Properties.SysCreditMessages;
 
 /// <summary>
 ///     Clase validadora de <see cref="UpdatePaymentFrequencyRequest"/>.
@@ -17,15 +20,15 @@ public class UpdatePaymentFrequencyValidator : AbstractValidator<UpdatePaymentFr
     public UpdatePaymentFrequencyValidator()
     {
         RuleFor(Upf => Upf.Name)
-            .NotEmpty()
-            .NotNull()
-            .PaymentFrequencyUniqueNameAsync().WithErrorCode(ErrorCodes.SERVPF0101)
-            .WithName("Nombre");
+            .NotEmpty().WithErrorCode(SERVPF0103).WithMessage(GetMessageFromCode(SERVPF0103))
+            .NotNull().WithErrorCode(SERVPF0104).WithMessage(GetMessageFromCode(SERVPF0104))
+            .PaymentFrequencyUniqueNameAsync().WithErrorCode(SERVPF0101).WithMessage(GetMessageFromCode(SERVPF0101))
+            .WithName(GetMessage("Name"));
 
         RuleFor(Upf => Upf.PaymentFrequencyId)
-            .NotEmpty()
-            .NotNull()
-            .VerifyRouteWithPaymentFrequencyId().WithErrorCode(ErrorCodes.SERVPF0102)
-            .WithName("Id de la Frecuencia de Pago");
+            .NotEmpty().WithErrorCode(SERVPF0106).WithMessage(GetMessageFromCode(SERVPF0106))
+            .NotNull().WithErrorCode(SERVPF0105).WithMessage(GetMessageFromCode(SERVPF0105))
+            .VerifyRouteWithPaymentFrequencyId().WithErrorCode(SERVPF0102).WithMessage(GetMessageFromCode(SERVPF0102))
+            .WithName(GetMessage("PaymentFrequencyId"));
     }
 }
