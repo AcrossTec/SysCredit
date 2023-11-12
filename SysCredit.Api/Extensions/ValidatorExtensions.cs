@@ -2,13 +2,10 @@
 
 using FluentValidation;
 
-using SysCredit.Api.Requests.Authentications;
 using SysCredit.Api.Requests.Customers;
 using SysCredit.Api.Requests.References;
 
 using SysCredit.Api.Validations;
-using SysCredit.Api.Validations.Authentications.Roles;
-using SysCredit.Api.Validations.Authentications.Users;
 using SysCredit.Api.Validations.Customers;
 using SysCredit.Api.Validations.Guarantors;
 using SysCredit.Api.Validations.LoanTypes;
@@ -71,21 +68,6 @@ public static partial class ValidatorExtensions
 
     public static IRuleBuilderOptions<T, long?> VerifyRouteWithPaymentFrequencyId<T>(this IRuleBuilder<T, long?> RuleBuilder)
         => RuleBuilder.SetValidator(new VerifyRouteWithPaymentFrequencyIdValidator<T>());
-
-    public static IRuleBuilderOptions<T, IEnumerable<AssignTypeRequest>> ExistRoleInRequest<T>(this IRuleBuilder<T, IEnumerable<AssignTypeRequest>> RuleBuilder)
-        => RuleBuilder.SetAsyncValidator(new AsyncExistRoleValidator<T>());
-
-    public static IRuleBuilderOptions<T, string?> UserUniqueEmailInRequest<T>(this IRuleBuilder<T, string?> RuleBuilder)
-        => RuleBuilder.SetAsyncValidator(new AsyncUserUniqueEmailValidator<T>());
-
-    public static IRuleBuilderOptions<T, string?> UserUniquePhoneInRequest<T>(this IRuleBuilder<T, string?> RuleBuilder)
-        => RuleBuilder.SetAsyncValidator(new AsyncUserUniquePhoneValidator<T>());
-
-    public static IRuleBuilderOptions<T, string?> UserUniqueUserNameInRequest<T>(this IRuleBuilder<T, string?> RuleBuilder)
-        => RuleBuilder.SetAsyncValidator(new AsyncUserUniqueUserNameValidator<T>());
-
-    public static IRuleBuilderOptions<T, string?> UniqueRoleNameAsync<T>(this IRuleBuilder<T, string?> RuleBuilder)
-        => RuleBuilder.SetAsyncValidator(new AsyncExistRoleNameValidator<T>());
 
     public static IRuleBuilderOptions<T, long?> VerifyIfCustomerExistsByIdAsync<T>(this IRuleBuilder<T, long?> RuleBuilder)
         => RuleBuilder.SetAsyncValidator(new AsyncVerifyIfCustomerExistsByIdValidator<T>());
