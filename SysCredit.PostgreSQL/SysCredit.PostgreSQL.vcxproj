@@ -128,7 +128,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="SysCredit.PostgreSQL.cpp" />
-    <ClCompile Include="Tables\UserClaim.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tables\Customer.sql" />
@@ -142,10 +141,7 @@
     <None Include="Tables\PaymentPlanDetails.sql" />
     <None Include="Tables\Reference.sql" />
     <None Include="Tables\Relationship.sql" />
-    <None Include="Tables\Role.sql" />
-    <None Include="Tables\RoleClaim.sql" />
     <None Include="Tables\User.sql" />
-    <None Include="Tables\UserRole.sql" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

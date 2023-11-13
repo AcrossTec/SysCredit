@@ -1,4 +1,6 @@
-CREATE TABLE public."CustomerGuarantor"
+-- NUMBER: 1.8
+
+CREATE TABLE IF NOT EXISTS public."CustomerGuarantor"
 (
     "CustomerGuarantorId" BIGSERIAL PRIMARY KEY,
     "CustomerId"          BIGINT    NOT NULL,

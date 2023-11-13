@@ -1,4 +1,6 @@
-CREATE TABLE public."Guarantor"
+-- NUMBER: 1.2
+
+CREATE TABLE IF NOT EXISTS public."Guarantor"
 (
     "GuarantorId"      BIGSERIAL    PRIMARY KEY,
     "Identification"   VARCHAR(16)  NOT NULL,

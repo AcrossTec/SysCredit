@@ -1,4 +1,6 @@
-CREATE TABLE public."CustomerReference"
+-- NUMBER: 1.9
+
+CREATE TABLE IF NOT EXISTS public."CustomerReference"
 (
     "CustomerReferenceId" BIGSERIAL PRIMARY KEY,
     "CustomerId"          BIGINT    NOT NULL,

@@ -1,4 +1,6 @@
-CREATE TABLE public."Customer"
+-- NUMBER: 1.1
+
+CREATE TABLE IF NOT EXISTS public."Customer"
 (
     "CustomerId"        BIGSERIAL    NOT NULL PRIMARY KEY,
     "Identification"    VARCHAR(16)  NOT NULL,
