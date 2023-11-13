@@ -1,4 +1,6 @@
-CREATE TABLE public."LoanType"
+-- NUMBER: 1.6
+
+CREATE TABLE IF NOT EXISTS public."LoanType"
 (
     "LoanTypeId"   BIGSERIAL   PRIMARY KEY,
     "Name"         VARCHAR(32) NOT NULL,

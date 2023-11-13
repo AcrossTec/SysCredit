@@ -1,4 +1,6 @@
-CREATE TABLE public."PaymentPlan"
+-- NUMBER: 1.11
+
+CREATE TABLE IF NOT EXISTS public."PaymentPlan"
 (
     "PaymentPlanId"    BIGSERIAL      PRIMARY KEY,
     "CustomerId"       BIGINT         NOT NULL,

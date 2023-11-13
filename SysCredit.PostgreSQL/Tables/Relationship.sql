@@ -1,4 +1,6 @@
-CREATE TABLE public."Relationship"
+-- NUMBER: 1.3
+
+CREATE TABLE IF NOT EXISTS public."Relationship"
 (
     "RelationshipId" BIGSERIAL   PRIMARY KEY,
     "Name"           VARCHAR(32) NOT NULL,
