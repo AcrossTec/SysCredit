@@ -13,10 +13,51 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Tables">
+      <UniqueIdentifier>{3ac7a3cf-9660-4d41-91a8-e97d6ebcd9c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SysCredit.MySQL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Tables\Customer.sql">
+      <Filter>Tables</Filter>
+    </None>
+    <None Include="Tables\Guarantor.sql">
+      <Filter>Tables</Filter>
+    </None>
+    <None Include="Tables\LoanType.sql">
+      <Filter>Tables</Filter>
+    </None>
+    <None Include="Tables\PaymentFrequency.sql">
+      <Filter>Tables</Filter>
+    </None>
+    <None Include="Tables\Reference.sql">
+      <Filter>Tables</Filter>
+    </None>
+    <None Include="Tables\Relationship.sql">
+      <Filter>Tables</Filter>
+    </None>
+    <None Include="Tables\User.sql">
+      <Filter>Tables</Filter>
+    </None>
+    <None Include="Tables\Loan.sql">
+      <Filter>Tables</Filter>
+    </None>
+    <None Include="Tables\CustomerGuarantor.sql">
+      <Filter>Tables</Filter>
+    </None>
+    <None Include="Tables\CustomerReference.sql">
+      <Filter>Tables</Filter>
+    </None>
+    <None Include="Tables\PaymentPlan.sql">
+      <Filter>Tables</Filter>
+    </None>
+    <None Include="Tables\PaymentPlanDetails.sql">
+      <Filter>Tables</Filter>
+    </None>
   </ItemGroup>
 </Project>
