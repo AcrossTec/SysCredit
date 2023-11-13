@@ -14,7 +14,7 @@ public class PhoneValidator<T> : PropertyValidator<T, string?>
 
     protected override string GetDefaultMessageTemplate(string ErrorCode)
     {
-        return "'{PropertyName}' no tiene un formato válido.";
+        return "'{0}' no tiene un formato válido.";
     }
 
     public override string Name => "PhoneValidator";

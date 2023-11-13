@@ -117,7 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="BussinessAddress" xml:space="preserve">
+    <value>Dirección del negocio</value>
+  </data>
+  <data name="BussinessType" xml:space="preserve">
+    <value>Tipo de negocio</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Correo </value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Genero</value>
+  </data>
+  <data name="GuarantorId" xml:space="preserve">
+    <value>Fiador</value>
+  </data>
+  <data name="Identification" xml:space="preserve">
+    <value>Cédula</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Nombre</value>
+  </data>
+  <data name="Neighborhood" xml:space="preserve">
+    <value>Barrio</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Teléfono</value>
   </data>
 </root>

@@ -19,10 +19,5 @@ public class AsyncExistsGuarantorValidator<T> : AsyncPropertyValidator<T, long>
         return await Context.RootContextData[nameof(GuarantorStore)].AsStore<Guarantor>().ExistsGuarantorAsync(GuarantorId);
     }
 
-    protected override string GetDefaultMessageTemplate(string ErrorCode)
-    {
-        return ErrorCodeMessages.GetMessageFromCode(ErrorCode)!;
-    }
-
     public override string Name => "AsyncExistsGuarantorValidator";
 }

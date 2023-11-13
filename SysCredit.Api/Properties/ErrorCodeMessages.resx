@@ -165,6 +165,10 @@
     <value>Running Store Error</value>
     <comment>Errores Generales: IStore&lt;Relationship&gt;</comment>
   </data>
+  <data name="SERVC0104" xml:space="preserve">
+    <value>The ID '{0}' is not in a valid format.</value>
+    <comment>Errores Especificos: IService&lt;Relationship&gt;</comment>
+  </data>
   <data name="SERVG0000" xml:space="preserve">
     <value>Success</value>
     <comment>Errores Generales: IService&lt;Guarantor&gt;</comment>
@@ -178,23 +182,99 @@
     <comment>Errores Generales: IService&lt;Guarantor&gt;</comment>
   </data>
   <data name="SERVG0101" xml:space="preserve">
-    <value>Identification already exist</value>
+    <value>Guarantor's identity card required</value>
     <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
   </data>
   <data name="SERVG0102" xml:space="preserve">
-    <value>Gender invalid, it must be: Male or Female</value>
+    <value>ID is required.</value>
     <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
   </data>
   <data name="SERVG0103" xml:space="preserve">
-    <value>Already exist a record with that value</value>
+    <value>The ID '{0}' is not in a valid format.</value>
     <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
   </data>
   <data name="SERVG0104" xml:space="preserve">
-    <value>Already exist a record with that phone number</value>
+    <value>Error, ID already exists</value>
     <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
   </data>
   <data name="SERVG0105" xml:space="preserve">
-    <value>The Guarantor is being used by a Client</value>
+    <value>Name of Guarantor required.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0106" xml:space="preserve">
+    <value>Name is required.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0107" xml:space="preserve">
+    <value>Guarantor's last name required.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0108" xml:space="preserve">
+    <value>Last name required</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0110" xml:space="preserve">
+    <value>Error, you must have a valid gender: Male or Female.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0111" xml:space="preserve">
+    <value>Mail '{0}' is not in a valid format.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0112" xml:space="preserve">
+    <value>Error, a record with this value already exists.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0113" xml:space="preserve">
+    <value>The Guarantor's address is required.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0114" xml:space="preserve">
+    <value>The required address.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0115" xml:space="preserve">
+    <value>Neighborhood name required.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0116" xml:space="preserve">
+    <value>Neighborhood should not be null</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0117" xml:space="preserve">
+    <value>Guarantor's business type is required.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0118" xml:space="preserve">
+    <value>Type of business is required.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0119" xml:space="preserve">
+    <value>Type of business is required.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0120" xml:space="preserve">
+    <value>Address is required.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0121" xml:space="preserve">
+    <value>Guarantor's phone number required.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0122" xml:space="preserve">
+    <value>Phone Number is required.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0123" xml:space="preserve">
+    <value>Phone '{0}' is not in a valid format.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0124" xml:space="preserve">
+    <value>There is already a record with this phone number.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0125" xml:space="preserve">
+    <value>Guarantor is being used by a Customer</value>
     <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
   </data>
   <data name="SERVLT0000" xml:space="preserve">

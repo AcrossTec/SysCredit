@@ -178,22 +178,98 @@
     <comment>Errores Generales: IService&lt;Guarantor&gt;</comment>
   </data>
   <data name="SERVG0101" xml:space="preserve">
-    <value>Error, la identificación ya existe</value>
+    <value>Cédula de identidad del fiador es requerida </value>
     <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
   </data>
   <data name="SERVG0102" xml:space="preserve">
-    <value>Error, se debe tener un género válido: Hombre o Mujer</value>
+    <value>Asegúrate de proporcionar un cédula válida.</value>
     <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
   </data>
   <data name="SERVG0103" xml:space="preserve">
-    <value>Error, ya existe un registro con este valor</value>
-    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+    <value>La Cédula '{0}' no tiene un formato válido.</value>
+    <comment>Errores Especificos: IService&lt;Relationship&gt;</comment>
   </data>
   <data name="SERVG0104" xml:space="preserve">
-    <value>Ya existe un registro con este número telefonico</value>
+    <value>Error, la identificación ya existe</value>
     <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
   </data>
   <data name="SERVG0105" xml:space="preserve">
+    <value>Nombre del Fiador es requerido.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0106" xml:space="preserve">
+    <value>Asegúrate de proporcionar un nombre válido.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0107" xml:space="preserve">
+    <value>Apellido del Fiador es requerido.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0108" xml:space="preserve">
+    <value>Asegúrate de proporcionar un apellido válido .</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0110" xml:space="preserve">
+    <value>Error, se debe tener un género válido: Hombre o Mujer.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0111" xml:space="preserve">
+    <value>El Correo '{0}' no tiene un formato válido.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0112" xml:space="preserve">
+    <value>Error, ya existe un fiador con este correo.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0113" xml:space="preserve">
+    <value>La dirección de domicilio del Fiador es requerida.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0114" xml:space="preserve">
+    <value>Asegúrate de proporcionar una dirección válida.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0115" xml:space="preserve">
+    <value>Nombre del Barrio es requerido.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0116" xml:space="preserve">
+    <value>Asegúrate de proporcionar un barrio válido.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0117" xml:space="preserve">
+    <value>Tipo de negocio del fiador es requerido.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0118" xml:space="preserve">
+    <value>Asegúrate de proporcionar un tipo de negocio válido.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0119" xml:space="preserve">
+    <value>Dirección del negocio es requerida.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0120" xml:space="preserve">
+    <value>la dirección del negocio no es válida.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0121" xml:space="preserve">
+    <value>Numero de telefono del fiador es requerido.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0122" xml:space="preserve">
+    <value>Asegúrate de proporcionar un Teléfono válido.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0123" xml:space="preserve">
+    <value>El Teléfono '{0}' no tiene un formato válido.</value>
+    <comment>Errores Especificos: IService&lt;Relationship&gt;</comment>
+  </data>
+  <data name="SERVG0124" xml:space="preserve">
+    <value>Ya existe un registro con este número telefónico.</value>
+    <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
+  </data>
+  <data name="SERVG0125" xml:space="preserve">
     <value>Error. El Guarantor está siendo usado por un Customer</value>
     <comment>Errores Especificos: IService&lt;Guarantor&gt;</comment>
   </data>
