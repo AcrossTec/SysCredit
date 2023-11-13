@@ -1,0 +1,10 @@
+DROP PROCEDURE IF EXISTS FetchLoanType;
+DELIMITER //
+
+CREATE PROCEDURE `FetchLoanType`()
+BEGIN
+    SELECT * FROM `LoanType`
+    WHERE `IsDelete` = 0;
+END //
+
+DELIMITER ;

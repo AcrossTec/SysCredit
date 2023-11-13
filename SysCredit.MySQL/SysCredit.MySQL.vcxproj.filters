@@ -16,6 +16,15 @@
     <Filter Include="Tables">
       <UniqueIdentifier>{3ac7a3cf-9660-4d41-91a8-e97d6ebcd9c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="StoredProcedures">
+      <UniqueIdentifier>{af493300-d854-4255-8eeb-12da302a5550}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StoredProcedures\Catalogs">
+      <UniqueIdentifier>{ef3fe33b-90b2-4a46-bc86-915dd10f0097}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StoredProcedures\Catalogs\LoanTypes">
+      <UniqueIdentifier>{3c0dc946-9c56-445b-8892-97bcbb073219}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SysCredit.MySQL.cpp">
@@ -58,6 +67,24 @@
     </None>
     <None Include="Tables\PaymentPlanDetails.sql">
       <Filter>Tables</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\LoanTypes\DeleteLoanType.sql">
+      <Filter>StoredProcedures\Catalogs\LoanTypes</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\LoanTypes\FetchLoanType.sql">
+      <Filter>StoredProcedures\Catalogs\LoanTypes</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\LoanTypes\FetchLoanTypeById.sql">
+      <Filter>StoredProcedures\Catalogs\LoanTypes</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\LoanTypes\FetchLoanTypeByName.sql">
+      <Filter>StoredProcedures\Catalogs\LoanTypes</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\LoanTypes\InsertLoanType.sql">
+      <Filter>StoredProcedures\Catalogs\LoanTypes</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\LoanTypes\UpdateLoanType.sql">
+      <Filter>StoredProcedures\Catalogs\LoanTypes</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -130,6 +130,12 @@
     <ClCompile Include="SysCredit.MySQL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="StoredProcedures\Catalogs\LoanTypes\DeleteLoanType.sql" />
+    <None Include="StoredProcedures\Catalogs\LoanTypes\FetchLoanType.sql" />
+    <None Include="StoredProcedures\Catalogs\LoanTypes\FetchLoanTypeById.sql" />
+    <None Include="StoredProcedures\Catalogs\LoanTypes\FetchLoanTypeByName.sql" />
+    <None Include="StoredProcedures\Catalogs\LoanTypes\InsertLoanType.sql" />
+    <None Include="StoredProcedures\Catalogs\LoanTypes\UpdateLoanType.sql" />
     <None Include="Tables\Customer.sql" />
     <None Include="Tables\CustomerGuarantor.sql" />
     <None Include="Tables\CustomerReference.sql" />
