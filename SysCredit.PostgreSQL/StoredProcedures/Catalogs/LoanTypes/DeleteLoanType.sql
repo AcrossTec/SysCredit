@@ -1,17 +1,18 @@
-CREATE OR REPLACE PROCEDURE "public"."InsertLoanType"
+CREATE OR REPLACE PROCEDURE "public"."DeleteLoanType"
 (
-    INOUT loan_type_id BIGINT,
-    IN    name         VARCHAR(32)
+    loan_type_id BIGINT
 )
-AS $$
+LANGUAGE plpgsql
+AS $function$  
 BEGIN
-
-    INSERT INTO "public"."LoanType"
-        ("Name")
-    VALUES
-        (name)
-    RETURNING 
-        "LoanTypeId" INTO loan_type_id;
 	
+    UPDATE "public"."LoanType"
+    SET
+        "IsDelete"     = TRUE,
+        "IsEdit"       = TRUE,
+        "ModifiedDate" = CURRENT_TIMESTAMP,
+        "DeletedDate"  = CURRENT_TIMESTAMP
+    WHERE
+        "LoanTypeId" = loan_type_id;
 END;
-$$ LANGUAGE plpgsql;
+$function$;
