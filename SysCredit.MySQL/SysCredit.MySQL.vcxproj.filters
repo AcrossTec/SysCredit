@@ -25,6 +25,9 @@
     <Filter Include="StoredProcedures\Catalogs\LoanTypes">
       <UniqueIdentifier>{3c0dc946-9c56-445b-8892-97bcbb073219}</UniqueIdentifier>
     </Filter>
+    <Filter Include="StoredProcedures\Catalogs\PaymentFrequencies">
+      <UniqueIdentifier>{cacde86f-0b7a-43c7-8a3c-ebfbf407202e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SysCredit.MySQL.cpp">
@@ -85,6 +88,24 @@
     </None>
     <None Include="StoredProcedures\Catalogs\LoanTypes\UpdateLoanType.sql">
       <Filter>StoredProcedures\Catalogs\LoanTypes</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\PaymentFrequencies\DeletePaymentFrequency.sql">
+      <Filter>StoredProcedures\Catalogs\PaymentFrequencies</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\PaymentFrequencies\FetchPaymentFrequencyByName.sql">
+      <Filter>StoredProcedures\Catalogs\PaymentFrequencies</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\PaymentFrequencies\FetchPaymentFrequency.sql">
+      <Filter>StoredProcedures\Catalogs\PaymentFrequencies</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\PaymentFrequencies\FetchPaymentFrequencyById.sql">
+      <Filter>StoredProcedures\Catalogs\PaymentFrequencies</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\PaymentFrequencies\InsertPaymentFrequency.sql">
+      <Filter>StoredProcedures\Catalogs\PaymentFrequencies</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\PaymentFrequencies\UpdatePaymentFrequency.sql">
+      <Filter>StoredProcedures\Catalogs\PaymentFrequencies</Filter>
     </None>
   </ItemGroup>
 </Project>
