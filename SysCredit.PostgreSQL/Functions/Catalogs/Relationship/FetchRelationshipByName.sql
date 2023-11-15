@@ -2,15 +2,13 @@ CREATE OR REPLACE FUNCTION "public"."FetchRelationshipByName"
 (
     name VARCHAR(32)
 )
-RETURNS "public"."Relationship"
+RETURNS SETOF "Relationship"
 LANGUAGE plpgsql
 AS $function$
-DECLARE
-    relationship "Relationship";
 BEGIN
-    SELECT * INTO relationship 
+    RETURN QUERY
+    SELECT * 
     FROM "Relationship"
     WHERE NOT "IsDelete" AND "Name" = name;
-    RETURN relationship;
 END;
 $function$;
