@@ -136,6 +136,12 @@
     <None Include="StoredProcedures\Catalogs\LoanTypes\FetchLoanTypeByName.sql" />
     <None Include="StoredProcedures\Catalogs\LoanTypes\InsertLoanType.sql" />
     <None Include="StoredProcedures\Catalogs\LoanTypes\UpdateLoanType.sql" />
+    <None Include="StoredProcedures\Catalogs\PaymentFrequencies\DeletePaymentFrequency.sql" />
+    <None Include="StoredProcedures\Catalogs\PaymentFrequencies\FetchPaymentFrequency.sql" />
+    <None Include="StoredProcedures\Catalogs\PaymentFrequencies\FetchPaymentFrequencyById.sql" />
+    <None Include="StoredProcedures\Catalogs\PaymentFrequencies\FetchPaymentFrequencyByName.sql" />
+    <None Include="StoredProcedures\Catalogs\PaymentFrequencies\InsertPaymentFrequency.sql" />
+    <None Include="StoredProcedures\Catalogs\PaymentFrequencies\UpdatePaymentFrequency.sql" />
     <None Include="Tables\Customer.sql" />
     <None Include="Tables\CustomerGuarantor.sql" />
     <None Include="Tables\CustomerReference.sql" />
