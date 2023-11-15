@@ -2,15 +2,13 @@ CREATE OR REPLACE FUNCTION "public"."FetchLoanTypeByName"
 (
     name VARCHAR(32)
 )
-RETURNS "public"."LoanType"
+RETURNS SETOF "LoanType"
 LANGUAGE plpgsql
 AS $function$
-DECLARE
-    loan_type "LoanType";
 BEGIN
-    SELECT * INTO loan_type 
+	RETURN QUERY
+    SELECT *
     FROM "LoanType"
     WHERE NOT "IsDelete" AND "Name" = name;
-    RETURN loan_type;
 END;
 $function$;
