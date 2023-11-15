@@ -28,6 +28,9 @@
     <Filter Include="StoredProcedures\Catalogs\PaymentFrequencies">
       <UniqueIdentifier>{cacde86f-0b7a-43c7-8a3c-ebfbf407202e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="StoredProcedures\Catalogs\Relationships">
+      <UniqueIdentifier>{25438abf-fb7d-48fd-9611-3c6797464c32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SysCredit.MySQL.cpp">
@@ -106,6 +109,24 @@
     </None>
     <None Include="StoredProcedures\Catalogs\PaymentFrequencies\UpdatePaymentFrequency.sql">
       <Filter>StoredProcedures\Catalogs\PaymentFrequencies</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\Relationships\DeleteRelationship.sql">
+      <Filter>StoredProcedures\Catalogs\Relationships</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\Relationships\FetchRelationship.sql">
+      <Filter>StoredProcedures\Catalogs\Relationships</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\Relationships\FetchRelationshipById.sql">
+      <Filter>StoredProcedures\Catalogs\Relationships</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\Relationships\FetchRelationshipByName.sql">
+      <Filter>StoredProcedures\Catalogs\Relationships</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\Relationships\InsertRelationship.sql">
+      <Filter>StoredProcedures\Catalogs\Relationships</Filter>
+    </None>
+    <None Include="StoredProcedures\Catalogs\Relationships\UpdateRelationship.sql">
+      <Filter>StoredProcedures\Catalogs\Relationships</Filter>
     </None>
   </ItemGroup>
 </Project>
