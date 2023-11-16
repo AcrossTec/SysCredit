@@ -132,6 +132,7 @@
   <ItemGroup>
     <None Include="PostDeployments\LoanType.Seed.sql" />
     <None Include="PostDeployments\PaymentFrequency.Seed.sql" />
+    <None Include="PostDeployments\Relationship.Seed.sql" />
     <None Include="StoredProcedures\Catalogs\LoanTypes\DeleteLoanType.sql" />
     <None Include="StoredProcedures\Catalogs\LoanTypes\FetchLoanType.sql" />
     <None Include="StoredProcedures\Catalogs\LoanTypes\FetchLoanTypeById.sql" />
