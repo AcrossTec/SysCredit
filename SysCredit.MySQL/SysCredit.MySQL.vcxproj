@@ -130,6 +130,7 @@
     <ClCompile Include="SysCredit.MySQL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="PostDeployments\LoanType.Seed.sql" />
     <None Include="StoredProcedures\Catalogs\LoanTypes\DeleteLoanType.sql" />
     <None Include="StoredProcedures\Catalogs\LoanTypes\FetchLoanType.sql" />
     <None Include="StoredProcedures\Catalogs\LoanTypes\FetchLoanTypeById.sql" />
