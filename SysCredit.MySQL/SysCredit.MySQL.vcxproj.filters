@@ -137,5 +137,8 @@
     <None Include="PostDeployments\PaymentFrequency.Seed.sql">
       <Filter>PostDeployments</Filter>
     </None>
+    <None Include="PostDeployments\Relationship.Seed.sql">
+      <Filter>PostDeployments</Filter>
+    </None>
   </ItemGroup>
 </Project>
