@@ -31,6 +31,9 @@
     <Filter Include="StoredProcedures\Catalogs\Relationships">
       <UniqueIdentifier>{25438abf-fb7d-48fd-9611-3c6797464c32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PostDeployments">
+      <UniqueIdentifier>{ae2fafb8-4de3-47e3-a9c2-fca89eecad6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SysCredit.MySQL.cpp">
@@ -127,6 +130,9 @@
     </None>
     <None Include="StoredProcedures\Catalogs\Relationships\UpdateRelationship.sql">
       <Filter>StoredProcedures\Catalogs\Relationships</Filter>
+    </None>
+    <None Include="PostDeployments\LoanType.Seed.sql">
+      <Filter>PostDeployments</Filter>
     </None>
   </ItemGroup>
 </Project>
