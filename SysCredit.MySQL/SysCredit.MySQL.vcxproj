@@ -151,6 +151,15 @@
     <None Include="StoredProcedures\Catalogs\Relationships\FetchRelationshipByName.sql" />
     <None Include="StoredProcedures\Catalogs\Relationships\InsertRelationship.sql" />
     <None Include="StoredProcedures\Catalogs\Relationships\UpdateRelationship.sql" />
+    <None Include="StoredProcedures\Guarantors\DeleteGuarantor.sql" />
+    <None Include="StoredProcedures\Guarantors\FetchGuarantorByEmail.sql" />
+    <None Include="StoredProcedures\Guarantors\FetchGuarantorById.sql" />
+    <None Include="StoredProcedures\Guarantors\FetchGuarantorByIdentification.sql" />
+    <None Include="StoredProcedures\Guarantors\FetchGuarantorByPhone.sql" />
+    <None Include="StoredProcedures\Guarantors\FetchGuarantors.sql" />
+    <None Include="StoredProcedures\Guarantors\FetchGuarantorsTop.sql" />
+    <None Include="StoredProcedures\Guarantors\InsertGuarantor.sql" />
+    <None Include="StoredProcedures\Guarantors\SearchGuarantor.sql" />
     <None Include="Tables\Customer.sql" />
     <None Include="Tables\CustomerGuarantor.sql" />
     <None Include="Tables\CustomerReference.sql" />

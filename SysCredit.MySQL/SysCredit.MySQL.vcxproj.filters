@@ -34,6 +34,9 @@
     <Filter Include="PostDeployments">
       <UniqueIdentifier>{ae2fafb8-4de3-47e3-a9c2-fca89eecad6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="StoredProcedures\Guarantors">
+      <UniqueIdentifier>{ce3700ca-48d7-43cc-8675-cc853a2d1623}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SysCredit.MySQL.cpp">
@@ -139,6 +142,33 @@
     </None>
     <None Include="PostDeployments\Relationship.Seed.sql">
       <Filter>PostDeployments</Filter>
+    </None>
+    <None Include="StoredProcedures\Guarantors\DeleteGuarantor.sql">
+      <Filter>StoredProcedures\Guarantors</Filter>
+    </None>
+    <None Include="StoredProcedures\Guarantors\FetchGuarantorByEmail.sql">
+      <Filter>StoredProcedures\Guarantors</Filter>
+    </None>
+    <None Include="StoredProcedures\Guarantors\FetchGuarantorById.sql">
+      <Filter>StoredProcedures\Guarantors</Filter>
+    </None>
+    <None Include="StoredProcedures\Guarantors\FetchGuarantorByIdentification.sql">
+      <Filter>StoredProcedures\Guarantors</Filter>
+    </None>
+    <None Include="StoredProcedures\Guarantors\FetchGuarantorByPhone.sql">
+      <Filter>StoredProcedures\Guarantors</Filter>
+    </None>
+    <None Include="StoredProcedures\Guarantors\FetchGuarantors.sql">
+      <Filter>StoredProcedures\Guarantors</Filter>
+    </None>
+    <None Include="StoredProcedures\Guarantors\FetchGuarantorsTop.sql">
+      <Filter>StoredProcedures\Guarantors</Filter>
+    </None>
+    <None Include="StoredProcedures\Guarantors\InsertGuarantor.sql">
+      <Filter>StoredProcedures\Guarantors</Filter>
+    </None>
+    <None Include="StoredProcedures\Guarantors\SearchGuarantor.sql">
+      <Filter>StoredProcedures\Guarantors</Filter>
     </None>
   </ItemGroup>
 </Project>
