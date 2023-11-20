@@ -4,7 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 
-using SysCredit.Enums;
+using SysCredit.Models;
 using SysCredit.Mobile.Controls;
 using SysCredit.Mobile.Controls.Parameters;
 using SysCredit.Mobile.Messages;

@@ -40,11 +40,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Generators", "Generators", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysCredit.Api.Generators", "SysCredit.Api.Generators\SysCredit.Api.Generators.csproj", "{F9241818-ACE0-49A7-8C2A-67A72717983A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysCredit.Toolkits.Generators", "SysCredit.Toolkits.Generators\SysCredit.Toolkits.Generators.csproj", "{758F1CD8-A2FE-430A-8CE5-36A4815D61B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SysCredit.Toolkits.Generators", "SysCredit.Toolkits.Generators\SysCredit.Toolkits.Generators.csproj", "{758F1CD8-A2FE-430A-8CE5-36A4815D61B2}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SysCredit.MySQL", "SysCredit.MySQL\SysCredit.MySQL.vcxproj", "{B48AC2CE-3AFE-4E1E-BB49-44E2D2F30283}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysCredit.Desktop", "SysCredit.Desktop\SysCredit.Desktop.csproj", "{AB3457E1-3335-4A6E-BDD7-7E0C5FAE30E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysCredit.Desktop", "SysCredit.Desktop\SysCredit.Desktop.csproj", "{9782E656-6355-4A72-80AB-FE155F996602}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -200,18 +200,18 @@ Global
 		{B48AC2CE-3AFE-4E1E-BB49-44E2D2F30283}.Release|x64.Build.0 = Release|x64
 		{B48AC2CE-3AFE-4E1E-BB49-44E2D2F30283}.Release|x86.ActiveCfg = Release|Win32
 		{B48AC2CE-3AFE-4E1E-BB49-44E2D2F30283}.Release|x86.Build.0 = Release|Win32
-		{AB3457E1-3335-4A6E-BDD7-7E0C5FAE30E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB3457E1-3335-4A6E-BDD7-7E0C5FAE30E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB3457E1-3335-4A6E-BDD7-7E0C5FAE30E5}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{AB3457E1-3335-4A6E-BDD7-7E0C5FAE30E5}.Debug|x64.Build.0 = Debug|Any CPU
-		{AB3457E1-3335-4A6E-BDD7-7E0C5FAE30E5}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{AB3457E1-3335-4A6E-BDD7-7E0C5FAE30E5}.Debug|x86.Build.0 = Debug|Any CPU
-		{AB3457E1-3335-4A6E-BDD7-7E0C5FAE30E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB3457E1-3335-4A6E-BDD7-7E0C5FAE30E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB3457E1-3335-4A6E-BDD7-7E0C5FAE30E5}.Release|x64.ActiveCfg = Release|Any CPU
-		{AB3457E1-3335-4A6E-BDD7-7E0C5FAE30E5}.Release|x64.Build.0 = Release|Any CPU
-		{AB3457E1-3335-4A6E-BDD7-7E0C5FAE30E5}.Release|x86.ActiveCfg = Release|Any CPU
-		{AB3457E1-3335-4A6E-BDD7-7E0C5FAE30E5}.Release|x86.Build.0 = Release|Any CPU
+		{9782E656-6355-4A72-80AB-FE155F996602}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9782E656-6355-4A72-80AB-FE155F996602}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9782E656-6355-4A72-80AB-FE155F996602}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9782E656-6355-4A72-80AB-FE155F996602}.Debug|x64.Build.0 = Debug|Any CPU
+		{9782E656-6355-4A72-80AB-FE155F996602}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9782E656-6355-4A72-80AB-FE155F996602}.Debug|x86.Build.0 = Debug|Any CPU
+		{9782E656-6355-4A72-80AB-FE155F996602}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9782E656-6355-4A72-80AB-FE155F996602}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9782E656-6355-4A72-80AB-FE155F996602}.Release|x64.ActiveCfg = Release|Any CPU
+		{9782E656-6355-4A72-80AB-FE155F996602}.Release|x64.Build.0 = Release|Any CPU
+		{9782E656-6355-4A72-80AB-FE155F996602}.Release|x86.ActiveCfg = Release|Any CPU
+		{9782E656-6355-4A72-80AB-FE155F996602}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -228,7 +228,7 @@ Global
 		{F9241818-ACE0-49A7-8C2A-67A72717983A} = {A1A12337-FBF4-493A-B1D2-164EEC6D152C}
 		{758F1CD8-A2FE-430A-8CE5-36A4815D61B2} = {A1A12337-FBF4-493A-B1D2-164EEC6D152C}
 		{B48AC2CE-3AFE-4E1E-BB49-44E2D2F30283} = {6B2D9764-E73B-4BB9-8388-1286D80E6314}
-		{AB3457E1-3335-4A6E-BDD7-7E0C5FAE30E5} = {164D13BC-D42A-4F90-8CE3-C0F636BA12FA}
+		{9782E656-6355-4A72-80AB-FE155F996602} = {164D13BC-D42A-4F90-8CE3-C0F636BA12FA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {90F103D8-1D89-44BD-BC09-99C91339D906}

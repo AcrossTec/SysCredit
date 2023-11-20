@@ -93,7 +93,6 @@
     <None Include="PostDeployments\LoanType.Seed.sql" />
     <None Include="PostDeployments\PaymentFrequency.Seed.sql" />
     <None Include="PostDeployments\Relationship.Seed.sql" />
-    <Build Include="Functions\CheckExistAndDuplicatedRoles.sql" />
     <Build Include="StoredProcedures\Catalogs\LoanTypes\DeleteLoanType.sql" />
     <Build Include="StoredProcedures\Catalogs\PaymentFrequencies\FetchPaymenFrequencyByName.sql" />
     <Build Include="StoredProcedures\Catalogs\PaymentFrequencies\FetchPaymentFrequency.sql" />
@@ -142,8 +141,5 @@
       <SuppressMissingDependenciesErrors>True</SuppressMissingDependenciesErrors>
       <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
     </ArtifactReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="SysCredit.SQLServer.publish.xml" />
   </ItemGroup>
 </Project>

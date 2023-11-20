@@ -7,7 +7,6 @@ using CommunityToolkit.Mvvm.Messaging;
 using DynamicData.Binding;
 using DynamicData.Kernel;
 
-using SysCredit.Enums;
 using SysCredit.Mobile.Controls;
 using SysCredit.Mobile.Controls.Dialogs;
 using SysCredit.Mobile.Messages;
@@ -38,7 +37,7 @@ public partial class GuarantorRegistrationViewModel : ViewModelBase
     [RelayCommand]
     private void OnGenderSelectedValueChanged(PickerData? PickerItem)
     {
-        Model.Gender = (Gender?)PickerItem?.Data;
+        Model.Gender = (SysCredit.Models.Gender?)PickerItem?.Data;
     }
 
     [RelayCommand]
@@ -52,7 +51,7 @@ public partial class GuarantorRegistrationViewModel : ViewModelBase
         {
             Messenger.Send(new InsertValueMessage<Guarantor>(new Guarantor
             {
-                GuarantorId = InsertResponse.Data!.Id!.Value,
+                GuarantorId = InsertResponse.Data.GetValueOrDefault().Id.GetValueOrDefault(),
                 Identification = Model.Identification,
                 LastName = Model.LastName,
                 Address = Model.Address,

@@ -2,7 +2,6 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
-using SysCredit.Enums;
 using SysCredit.Mobile.Properties;
 using SysCredit.Mobile.Validations;
 
@@ -85,7 +84,7 @@ public partial class CreateGuarantor : ModelValidator
     public bool EmailIsValid => !EmailErrors.Any();
 
 
-    [Enum<Gender>]
+    [Enum<SysCredit.Models.Gender>]
     [ObservableProperty]
     [NotifyDataErrorInfo]
     [NotifyPropertyChangedFor(nameof(GenderErrors))]
@@ -94,7 +93,7 @@ public partial class CreateGuarantor : ModelValidator
     [NotifyPropertyChangedFor(nameof(IsValid))]
     [Required(ErrorMessageResourceType = typeof(SysCreditResources), ErrorMessageResourceName = nameof(SysCreditResources.RequiredValidationError))]
     [Display(ResourceType = typeof(SysCreditResources), Name = nameof(SysCreditResources.Gender))]
-    private Gender? m_Gender;
+    private SysCredit.Models.Gender? m_Gender;
 
     [JsonIgnore]
     public IEnumerable<string> GenderErrors => GetPropertyErrors(nameof(Gender));

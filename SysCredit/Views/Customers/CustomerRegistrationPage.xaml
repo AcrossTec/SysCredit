@@ -5,7 +5,7 @@
         xmlns:Local="clr-namespace:SysCredit.Mobile"
         xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
         xmlns:Converters="clr-namespace:SysCredit.Mobile.Converters"
-        xmlns:Enums="clr-namespace:SysCredit.Enums;assembly=SysCredit.Models"
+        xmlns:Enums="clr-namespace:SysCredit.Models;assembly=SysCredit.Models"
         xmlns:Models="clr-namespace:SysCredit.Mobile.Models"
         xmlns:CreateModels="clr-namespace:SysCredit.Mobile.Models.Customers.Creates"
         xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Customers"

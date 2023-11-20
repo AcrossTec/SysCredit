@@ -2,7 +2,6 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
-using SysCredit.Enums;
 using SysCredit.Mobile.Properties;
 using SysCredit.Mobile.Validations;
 
@@ -39,14 +38,14 @@ public partial class CreateReference : ModelValidator
     [Display(ResourceType = typeof(SysCreditResources), Name = nameof(SysCreditResources.LastName))]
     private string m_LastName = string.Empty;
 
-    [Enum<Gender>]
+    [Enum<SysCredit.Models.Gender>]
     [ObservableProperty]
     [NotifyDataErrorInfo]
     [NotifyPropertyChangedFor(nameof(Errors))]
     [NotifyPropertyChangedFor(nameof(IsValid))]
     [Required(ErrorMessageResourceType = typeof(SysCreditResources), ErrorMessageResourceName = nameof(SysCreditResources.RequiredValidationError))]
     [Display(ResourceType = typeof(SysCreditResources), Name = nameof(SysCreditResources.Gender))]
-    private Gender? m_Gender;
+    private SysCredit.Models.Gender? m_Gender;
 
     [ObservableProperty]
     [NotifyDataErrorInfo]

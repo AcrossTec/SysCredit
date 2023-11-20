@@ -47,7 +47,7 @@ public class SysCreditApiService : ISysCreditApiService
             if (HttpResponse.IsSuccessStatusCode)
             {
                 string Content = await HttpResponse.Content.ReadAsStringAsync();
-                var Response = JsonSerializer.Deserialize<Response<EntityId>>(Content, SerializerOptions)!;
+                var Response = JsonSerializer.Deserialize<Response<EntityId?>>(Content, SerializerOptions)!;
                 return Response;
             }
 
@@ -88,7 +88,7 @@ public class SysCreditApiService : ISysCreditApiService
             if (HttpResponse.IsSuccessStatusCode)
             {
                 string Content = await HttpResponse.Content.ReadAsStringAsync();
-                var Response = JsonSerializer.Deserialize<Response<EntityId>>(Content, SerializerOptions)!;
+                var Response = JsonSerializer.Deserialize<Response<EntityId?>>(Content, SerializerOptions)!;
                 return Response;
             }
 

@@ -1,6 +1,5 @@
 ﻿namespace SysCredit.Mobile.Views.Customers;
 
-using SysCredit.Enums;
 using SysCredit.Mobile.Models.Customers.Creates;
 
 public class ReferenceListTemplateSelector : DataTemplateSelector
@@ -13,7 +12,7 @@ public class ReferenceListTemplateSelector : DataTemplateSelector
     {
         var Reference = (CreateReference)Item;
 
-        if (Reference.Gender == Gender.Female)
+        if (Reference.Gender == SysCredit.Models.Gender.Female)
             return FemaleTemplate;
 
         return MaleTemplate;

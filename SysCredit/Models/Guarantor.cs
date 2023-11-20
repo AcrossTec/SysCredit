@@ -2,7 +2,7 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 
-using SysCredit.Enums;
+using SysCredit.Models;
 
 public partial class Guarantor : ModelBase
 {

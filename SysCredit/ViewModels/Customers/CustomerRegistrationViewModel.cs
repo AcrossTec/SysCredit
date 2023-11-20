@@ -9,7 +9,6 @@ using DynamicData.Binding;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 
-using SysCredit.Enums;
 using SysCredit.Helpers.Delegates;
 using SysCredit.Mobile.Controls;
 using SysCredit.Mobile.Controls.Dialogs;
@@ -86,7 +85,7 @@ public partial class CustomerRegistrationViewModel
     [RelayCommand]
     private void OnGenderSelectedValueChanged(PickerData? PickerItem)
     {
-        Model.Gender = (Gender?)PickerItem?.Data;
+        Model.Gender = (SysCredit.Models.Gender?)PickerItem?.Data;
     }
 
     [RelayCommand]
