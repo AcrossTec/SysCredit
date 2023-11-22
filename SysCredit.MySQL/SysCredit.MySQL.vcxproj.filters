@@ -37,6 +37,9 @@
     <Filter Include="StoredProcedures\Guarantors">
       <UniqueIdentifier>{ce3700ca-48d7-43cc-8675-cc853a2d1623}</UniqueIdentifier>
     </Filter>
+    <Filter Include="StoredProcedures\Customers">
+      <UniqueIdentifier>{ca356721-9343-4b38-ad86-ce88f18804dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SysCredit.MySQL.cpp">
@@ -169,6 +172,45 @@
     </None>
     <None Include="StoredProcedures\Guarantors\SearchGuarantor.sql">
       <Filter>StoredProcedures\Guarantors</Filter>
+    </None>
+    <None Include="StoredProcedures\Customers\FetchCustomerByEmail.sql">
+      <Filter>StoredProcedures\Customers</Filter>
+    </None>
+    <None Include="StoredProcedures\Customers\FetchCustomerByGuarantorId.sql">
+      <Filter>StoredProcedures\Customers</Filter>
+    </None>
+    <None Include="StoredProcedures\Customers\FetchCustomerById.sql">
+      <Filter>StoredProcedures\Customers</Filter>
+    </None>
+    <None Include="StoredProcedures\Customers\FetchCustomerByIdentification.sql">
+      <Filter>StoredProcedures\Customers</Filter>
+    </None>
+    <None Include="StoredProcedures\Customers\FetchCustomerByPhone.sql">
+      <Filter>StoredProcedures\Customers</Filter>
+    </None>
+    <None Include="StoredProcedures\Customers\FetchCustomers.sql">
+      <Filter>StoredProcedures\Customers</Filter>
+    </None>
+    <None Include="StoredProcedures\Customers\FetchCustomersTop.sql">
+      <Filter>StoredProcedures\Customers</Filter>
+    </None>
+    <None Include="StoredProcedures\Customers\FetchGuarantorByCustomerIdAndGuarantorId.sql">
+      <Filter>StoredProcedures\Customers</Filter>
+    </None>
+    <None Include="StoredProcedures\Customers\FetchGuarantorsByCustomerId.sql">
+      <Filter>StoredProcedures\Customers</Filter>
+    </None>
+    <None Include="StoredProcedures\Customers\FetchLoansByCustomerId.sql">
+      <Filter>StoredProcedures\Customers</Filter>
+    </None>
+    <None Include="StoredProcedures\Customers\FetchReferencesByCustomerId.sql">
+      <Filter>StoredProcedures\Customers</Filter>
+    </None>
+    <None Include="StoredProcedures\Customers\SearchCustomer.sql">
+      <Filter>StoredProcedures\Customers</Filter>
+    </None>
+    <None Include="StoredProcedures\Customers\InsertCustomer.sql">
+      <Filter>StoredProcedures\Customers</Filter>
     </None>
   </ItemGroup>
 </Project>
