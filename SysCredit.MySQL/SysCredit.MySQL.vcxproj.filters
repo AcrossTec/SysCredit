@@ -40,6 +40,9 @@
     <Filter Include="StoredProcedures\Customers">
       <UniqueIdentifier>{ca356721-9343-4b38-ad86-ce88f18804dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Functions">
+      <UniqueIdentifier>{146771fb-fb6a-45c5-b4c0-3787b6aea58e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SysCredit.MySQL.cpp">
@@ -211,6 +214,15 @@
     </None>
     <None Include="StoredProcedures\Customers\InsertCustomer.sql">
       <Filter>StoredProcedures\Customers</Filter>
+    </None>
+    <None Include="Functions\GetJsonGuarantorsByCustomerId.sql">
+      <Filter>Functions</Filter>
+    </None>
+    <None Include="Functions\GetJsonReferencesByCustomerId.sql">
+      <Filter>Functions</Filter>
+    </None>
+    <None Include="Functions\VerifyLoanTypeReference.sql">
+      <Filter>Functions</Filter>
     </None>
   </ItemGroup>
 </Project>

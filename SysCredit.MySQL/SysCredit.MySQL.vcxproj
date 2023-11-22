@@ -130,6 +130,9 @@
     <ClCompile Include="SysCredit.MySQL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Functions\GetJsonGuarantorsByCustomerId.sql" />
+    <None Include="Functions\GetJsonReferencesByCustomerId.sql" />
+    <None Include="Functions\VerifyLoanTypeReference.sql" />
     <None Include="PostDeployments\LoanType.Seed.sql" />
     <None Include="PostDeployments\PaymentFrequency.Seed.sql" />
     <None Include="PostDeployments\Relationship.Seed.sql" />
