@@ -1,0 +1,26 @@
+CREATE TYPE "LoansByCustomerIdInfo" AS
+(
+    "LoanId"                BIGINT,
+    "LoanTypeId"            BIGINT,
+    "PaymentFrequencyId"    BIGINT,
+    "CustomerId"            BIGINT,
+    "LoanAmount"            DECIMAL(22, 4),
+    "QtyPayments"           INT,
+    "PaymentValue"          DECIMAL(22, 4),
+    "FirstPaymentValue"     DECIMAL(22, 4),
+    "LoanRate"              DECIMAL(22, 4),
+    "TotalLoanAmount"       DECIMAL(22, 4),
+    "PaymentAmountPerDay"   DECIMAL(22, 4),
+    "PaymentAmountPerMonth" DECIMAL(22, 4),
+    "DateFirstVisit"        TIMESTAMP,
+    "DateEndPayment"        TIMESTAMP,
+    "Notes"                 VARCHAR(512),
+    "LoanDate"              TIMESTAMP,
+    "CreatedDate"           TIMESTAMP,
+    "ModifiedDate"          TIMESTAMP,
+    "DeletedDate"           TIMESTAMP,
+    "IsEdit"                BOOLEAN,
+    "IsDelete"              BOOLEAN,
+    "LoanTypeName"          VARCHAR(32),
+    "PaymentFrequencyName"  VARCHAR(32)
+);
