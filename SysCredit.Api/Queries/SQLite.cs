@@ -77,5 +77,75 @@ public class SQLite
                 ";
     }
 
+    public static string FetchPaymentFrequency(long PaymentFrequency)
+    {
+        return @$"
+            SELECT * FROM PaymentFrequency
+            WHERE IsDelete = 0;
+                ";
+    }
 
+    public static string FetchPaymentFrequencyById(long PaymentFrequencyId)
+    {
+        return @$"
+                SELECT *
+                FROM PaymentFrequency
+                WHERE IsDelete = 0 AND PaymentFrequencyId = [PaymentFrequencyId];
+        ";
+    }
+
+    public static string FetchPaymentFrequencyByName(string Name)
+    {
+        return @$"
+                    SELECT PF.*
+                    FROM PaymentFrequency AS PF
+                    WHERE PF.IsDelete = 0 AND PF.Name = {Name};
+
+        ";
+    }
+
+    public static string InsertPaymentFrequency(string Name)
+    {
+        return @$"
+
+                INSERT INTO PaymentFrequency 
+                    (
+                        Name
+                    )
+                VALUES 
+                    (
+                        {Name}
+                    );
+                SELECT last_insert_rowid() AS PaymentFrquencyId;
+        
+        ";
+    }
+
+    public static string UpdatePaymentFrequency(long PaymentFrequencyId, string Name)
+    {
+        return @$"
+            UPDATE PaymentFrequency
+            SET
+            Name = {Name},
+            IsEdit = 1,
+            ModifiedDate = CURRENT_TIMESTAMP 
+            WHERE
+            PaymentFrequencyId = {PaymentFrequencyId};
+
+        ";
+    }
+
+    public static string DeletePaymentFrequency(long PaymentFrequencyId)
+    {
+        return @$"
+                UPDATE PaymentFrequency
+                SET
+                IsDelete = 1,                      
+                IsEdit = 1,                       
+                ModifiedDate = CURRENT_TIMESTAMP,  
+                DeletedDate = CURRENT_TIMESTAMP    
+                WHERE
+                PayementFrequencyId = ?;  
+        ";
+    }
 }
