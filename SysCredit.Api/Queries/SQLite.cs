@@ -148,4 +148,71 @@ public class SQLite
                 PayementFrequencyId = ?;  
         ";
     }
+
+    public static string FetchRelationship(long RelationshipId)
+    {
+        return @$"
+            SELECT * FROM Relationship
+            WHERE IsDelete = 0;
+                ";
+    }
+    public static string FetchRelationshipById(long RelationshipId)
+    {
+        return @$"
+                SELECT *
+                FROM Relationship
+                WHERE IsDelete = 0 AND RelationshipId = [RelationshipId];
+        ";
+    }
+    public static string FetchRelationshipByName(string Name)
+    {
+        return @$"
+                    SELECT R.*
+                    FROM Relationship AS R
+                    WHERE R.IsDelete = 0 AND R.Name = {Name};
+
+        ";
+    }
+    public static string InsertRelationship(string Name)
+    {
+        return @$"
+
+                INSERT INTO Relationship 
+                    (
+                        Name
+                    )
+                VALUES 
+                    (
+                        {Name}
+                    );
+                SELECT last_insert_rowid() AS RelationshipId;
+        
+        ";
+    }
+    public static string UpdateRelationship(long RelationshipId, string Name)
+    {
+        return @$"
+            UPDATE Relationship
+            SET
+            Name = {Name},
+            IsEdit = 1,
+            ModifiedDate = CURRENT_TIMESTAMP 
+            WHERE
+            RelationshipId = {RelationshipId};
+
+        ";
+    }
+    public static string DeleteRelationship(string RelationshipId)
+    {
+        return @$"
+                UPDATE Relationship
+                SET
+                IsDelete = 1,                      
+                IsEdit = 1,                        
+                ModifiedDate = CURRENT_TIMESTAMP,  
+                DeletedDate = CURRENT_TIMESTAMP    
+                WHERE
+                RelationshipId = ?;  
+        ";
+    }
 }
