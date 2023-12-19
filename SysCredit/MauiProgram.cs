@@ -23,6 +23,8 @@ using SysCredit.Mobile.Services.Https;
 using SysCredit.Mobile.Services.Settings;
 using SysCredit.Mobile.ViewModels.Customers;
 using SysCredit.Mobile.ViewModels.Guarantors;
+using SysCredit.Mobile.ViewModels.Users;
+using SysCredit.Mobile.ViewModels.Presentations;
 
 using The49.Maui.BottomSheet;
 using The49.Maui.ContextMenu;
@@ -137,6 +139,12 @@ public static partial class MauiProgram
         Builder.Services.AddScoped<GuarantorSearchViewModel>();
         Builder.Services.AddScoped<GuarantorRegistrationViewModel>();
         Builder.Services.AddScoped<GuarantorListViewModel>();
+        Builder.Services.AddScoped<LoginViewModel>();
+        Builder.Services.AddScoped<RecoverAccountViewModel>();
+        Builder.Services.AddScoped<UserRegistrationViewModel>();
+        Builder.Services.AddScoped<Presentation1ViewModel>();
+        Builder.Services.AddScoped<Presentation2ViewModel>();
+        Builder.Services.AddScoped<Presentation3ViewModel>();
         return Builder;
     }
 

@@ -115,6 +115,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SysCreditResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Views\Presentations\PresentationPage1.xaml.cs">
+      <DependentUpon>PresentationPage1.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -189,6 +192,15 @@
 
   <ItemGroup>
     <MauiXaml Update="Views\Guarantors\GuarantorListCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Presentations\PresentationPage1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Presentations\PresentationPage2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\Presentations\PresentationPage3.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Views\Reports\ReportPage.xaml">

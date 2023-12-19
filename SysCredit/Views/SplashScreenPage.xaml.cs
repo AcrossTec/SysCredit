@@ -22,7 +22,7 @@ public partial class SplashScreenPage : ContentPage
         {
             if (Lottie.IsComplete)
             {
-                await Shell.Current.GoToAsync("///Home");
+                await Shell.Current.GoToAsync("///Presentations/SysCredit/Presentation1");
             }
         }
     }
