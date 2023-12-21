@@ -10,6 +10,7 @@
     xmlns:CustomerViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Customers"
     xmlns:LoanViews="clr-namespace:SysCredit.Mobile.Views.Loans"
     xmlns:UserViews="clr-namespace:SysCredit.Mobile.Views.Users"
+    xmlns:PresentationViews="clr-namespace:SysCredit.Mobile.Views.Presentations"
     xmlns:ReportViews="clr-namespace:SysCredit.Mobile.Views.Reports"
     xmlns:RouteViews="clr-namespace:SysCredit.Mobile.Views.Routes"
     xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
@@ -157,6 +158,56 @@
         Shell.FlyoutItemIsVisible="False"
         Shell.NavBarIsVisible="False"
         ContentTemplate="{DataTemplate Views:SplashScreenPage}" />
+
+    <FlyoutItem Route="Presentations"
+                Shell.FlyoutBehavior="Disabled"
+                Shell.FlyoutItemIsVisible="False"
+                Shell.NavBarIsVisible="False">
+        <Tab Route="SysCredit"
+             Shell.NavBarIsVisible="False">
+            <ShellContent
+                Route="Presentation1"
+                Shell.FlyoutBehavior="Disabled"
+                Shell.FlyoutItemIsVisible="False"
+                Shell.NavBarIsVisible="False"
+                ContentTemplate="{DataTemplate PresentationViews:PresentationPage1}" />
+
+            <ShellContent
+                Route="Presentation2"
+                Shell.FlyoutBehavior="Disabled"
+                Shell.FlyoutItemIsVisible="False"
+                Shell.NavBarIsVisible="False"
+                ContentTemplate="{DataTemplate PresentationViews:PresentationPage2}" />
+
+            <ShellContent
+                Route="Presentation3"
+                Shell.FlyoutBehavior="Disabled"
+                Shell.FlyoutItemIsVisible="False"
+                Shell.NavBarIsVisible="False"
+                ContentTemplate="{DataTemplate PresentationViews:PresentationPage3}" />
+        </Tab>
+    </FlyoutItem>
+
+    <ShellContent
+        Route="Login"
+        Shell.FlyoutBehavior="Disabled"
+        Shell.FlyoutItemIsVisible="False"
+        Shell.NavBarIsVisible="False"
+        ContentTemplate="{DataTemplate UserViews:LoginPage}" />
+
+    <ShellContent
+        Route="UserRegistration"
+        Shell.FlyoutBehavior="Disabled"
+        Shell.FlyoutItemIsVisible="False"
+        Shell.NavBarIsVisible="True"
+        ContentTemplate="{DataTemplate UserViews:UserRegistrationPage}" />
+
+    <ShellContent
+        Route="RecoverAccount"
+        Shell.FlyoutBehavior="Disabled"
+        Shell.FlyoutItemIsVisible="False"
+        Shell.NavBarIsVisible="True"
+        ContentTemplate="{DataTemplate UserViews:RecoverAccountPage}" />
 
     <ShellContent
         Route="Home" Title="Inicio" Icon="app_home_white_icon.svg"

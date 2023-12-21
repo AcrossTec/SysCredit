@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Presentations"
+             x:DataType="ViewModels:Presentation3ViewModel"
+             x:Class="SysCredit.Mobile.Views.Presentations.PresentationPage3"
+             Title="PresentationPage3"
+             Background="Blue">
+    <VerticalStackLayout Spacing="40">
+        <Label 
+            Text="Página de presentación 3"
+            TextColor="White"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Grid ColumnDefinitions="*">
+            <Button Text="Finalizar" 
+                    Command="{Binding GoToLoginCommand}"
+                    HorizontalOptions="Center"/>
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>
