@@ -20,6 +20,7 @@
         </Skia:SKLottieView>
 
         <Image Source="syscredit_logo.svg"
+               HeightRequest="200"
                AbsoluteLayout.LayoutBounds="0.5,0.6,500,250"
                AbsoluteLayout.LayoutFlags="PositionProportional">
             <!--<Image.Behaviors>

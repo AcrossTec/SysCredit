@@ -2,10 +2,12 @@
 <resources>
   <color name="seed">#04D89D</color>
 
-  <color name="colorPrimary">#061F60</color>
+  <color name="colorPrimary">#288DC6</color>
   <color name="colorPrimaryDark">#2A334F</color>
   <color name="colorAccent">#AA00FF</color>
 
+  <color name="splash_screen_background">#001225</color>
+  
   <color name="syscredit_50">#e1e4ec</color>
   <color name="syscredit_100">#b4bccf</color>
   <color name="syscredit_200">#838fb0</color>
