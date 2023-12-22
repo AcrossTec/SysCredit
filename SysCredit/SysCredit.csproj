@@ -51,10 +51,10 @@
 
   <ItemGroup>
     <!-- App Icon -->
-    <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" />
+    <MauiIcon Include="Resources\AppIcon\app_icon_bg.svg" ForegroundFile="Resources\AppIcon\app_icon_fg.svg" />
 
     <!-- Splash Screen -->
-    <MauiSplashScreen Include="Resources\Splash\splashicon.svg" BaseSize="256,256" />
+    <MauiSplashScreen Include="Resources\Splash\splash_icon.svg" BaseSize="256,256" />
 
     <!-- Images -->
     <MauiImage Include="Resources\Images\*" />
@@ -107,6 +107,10 @@
     <None Include="**\*.Windows.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
     <Compile Remove="**\Windows\**\*.cs" />
     <None Include="**\Windows\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Remove="Platforms\Android\Resources\drawable\maui_splash.xml" />
+    <AndroidResource Remove="Platforms\Android\Resources\drawable\maui_splash_image.xml" />
   </ItemGroup>
 
   <ItemGroup>
