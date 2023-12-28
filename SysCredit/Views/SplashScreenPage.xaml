@@ -2,15 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:Skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
              x:Class="SysCredit.Mobile.Views.SplashScreenPage"
-             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}"
+             BackgroundColor="{DynamicResource SplashScreensBackground}"
              Title="SplashScreenPage">
     <ContentPage.Behaviors>
         <Toolkit:StatusBarBehavior StatusBarColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}" />
     </ContentPage.Behaviors>
 
-    <AbsoluteLayout>
+    <!--<AbsoluteLayout>
         <Skia:SKLottieView
             x:Name="Lottie"
             Source="money_transfer.json"
@@ -23,13 +22,30 @@
                HeightRequest="200"
                AbsoluteLayout.LayoutBounds="0.5,0.6,500,250"
                AbsoluteLayout.LayoutFlags="PositionProportional">
-            <!--<Image.Behaviors>
+            --><!--<Image.Behaviors>
                 <Toolkit:IconTintColorBehavior TintColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
             </Image.Behaviors>
             <Image.Shadow>
                 <Shadow Opacity="0.8" Offset="2.5,2.5" Brush="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Accent}}" />
-            </Image.Shadow>-->
+            </Image.Shadow>--><!--
         </Image>
-    </AbsoluteLayout>
+    </AbsoluteLayout>-->
+    
+    <Grid RowDefinitions=".9*,.1*">
+        <StackLayout Grid.Row="0" VerticalOptions="Center">
+            <Image
+                HeightRequest="200"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                Source="syscredit_logo_over_black.png" />
+        </StackLayout>
+
+        <StackLayout Grid.Row="1" VerticalOptions="End" HorizontalOptions="Center" Margin="0,0,0,50">
+            <Label 
+                Text="By AcrossTec" 
+                FontSize="20"
+                TextColor="{DynamicResource SubtitleColor}" />
+        </StackLayout>
+    </Grid>
 
 </ContentPage>

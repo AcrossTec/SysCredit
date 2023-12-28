@@ -120,6 +120,18 @@ public static partial class MauiProgram
         Fonts.AddFont("Inter-SemiBold.ttf", "InterSemiBold");
         Fonts.AddFont("Inter-Thin.ttf", "InterThin");
         Fonts.AddFont("Inter-VariableFont.ttf", "InterVariableFont");
+
+        Fonts.AddFont("HelveticaNeue.ttf", "HelveticaNeue");
+        Fonts.AddFont("HelveticaNeueBd.ttf", "HelveticaNeueBd");
+        Fonts.AddFont("HelveticaNeue-BlackCond.ttf", "HelveticaNeueBlackCond");
+        Fonts.AddFont("HelveticaNeue-Bold.ttf", "HelveticaNeueBold");
+        Fonts.AddFont("HelveticaNeueHv.ttf", "HelveticaNeueHv");
+        Fonts.AddFont("HelveticaNeueIt.ttf", "HelveticaNeueIt");
+        Fonts.AddFont("HelveticaNeue-Light.ttf", "HelveticaNeueLight");
+        Fonts.AddFont("HelveticaNeueLt.ttf", "HelveticaNeueLt");
+        Fonts.AddFont("HelveticaNeueMed.ttf", "HelveticaNeueMed");
+        Fonts.AddFont("HelveticaNeue-Medium.ttf", "HelveticaNeueMedium");
+        Fonts.AddFont("HelveticaNeue-Thin.ttf", "HelveticaNeueThin");
     }
 
     private static MauiAppBuilder RegisterAppServices(this MauiAppBuilder Builder)
@@ -145,6 +157,7 @@ public static partial class MauiProgram
         Builder.Services.AddScoped<Presentation1ViewModel>();
         Builder.Services.AddScoped<Presentation2ViewModel>();
         Builder.Services.AddScoped<Presentation3ViewModel>();
+        Builder.Services.AddScoped<Presentation4ViewModel>();
         return Builder;
     }
 

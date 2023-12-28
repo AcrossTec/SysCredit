@@ -2,22 +2,91 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Presentations"
+             xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
              x:DataType="ViewModels:Presentation3ViewModel"
              x:Class="SysCredit.Mobile.Views.Presentations.PresentationPage3"
              Title="PresentationPage3"
-             Background="Blue">
-    <VerticalStackLayout Spacing="40">
-        <Label 
-            Text="Página de presentación 3"
-            TextColor="White"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Routing.Route="Presentations/SysCredit/Presentation3">
 
-        <Grid ColumnDefinitions="*">
-            <Button Text="Finalizar" 
-                    Command="{Binding GoToLoginCommand}"
-                    HorizontalOptions="Center"/>
+    <ScrollView>
+        <Grid>
+            <StackLayout VerticalOptions="StartAndExpand">
+                <Label
+                    Text="3/4"
+                    FontSize="20"
+                    FontFamily="HelveticaNeueBold"
+                    TextColor="{DynamicResource PrimaryLabelColor}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="End" 
+                    Margin="20"/>
+
+                <Image
+                    HeightRequest="250"
+                    Source="faro.svg"
+                    Margin="0,85,0,0"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"/>
+
+                <Label 
+                    TextColor="{DynamicResource PrimaryLabelColor}"
+                    HorizontalOptions="Center"
+                    FontSize="20"
+                    Margin="40,50,40,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="No temas! SysCredit te brinda seguridad total, maneja todo desde un centro remoto como un total " FontFamily="HelveticaNeueLight"/>
+                            <Span Text="VIGÍA." FontFamily="HelveticaNeueBold"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Grid ColumnDefinitions=".50*, .50*" Padding="60, 0" Margin="0,100,0,100">
+
+                    <Border
+                        StrokeThickness=".5"
+                        Stroke="Black"
+                        WidthRequest="100"
+                        HeightRequest="26"
+                        BackgroundColor="{DynamicResource SecondaryButtonColor}">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="3" />
+                        </Border.StrokeShape>
+
+                        <Button 
+                            Text="Omitir"
+                            FontFamily="HelveticaNeueLight"            
+                            Command="{Binding GoToLoginCommand}"
+                            HorizontalOptions="Center"
+                            BackgroundColor="Transparent"
+                            TextColor="Black"/>
+                    </Border>
+
+                    <Border
+                        Grid.Column="1"
+                        StrokeThickness=".5"
+                        WidthRequest="100"
+                        HeightRequest="26"
+                        BackgroundColor="{DynamicResource PrimaryButtonColor}">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="3" />
+                        </Border.StrokeShape>
+
+                        <Button 
+                        Text="Siguiente"
+                        FontFamily="HelveticaNeueLight"            
+                        Command="{Binding GoToNextPresentationCommand}"
+                        HorizontalOptions="Center"
+                        BackgroundColor="Transparent"
+                        TextColor="White"/>
+                    </Border>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="End">
+                <Controls:PresentationFooterView/>
+            </StackLayout>
         </Grid>
-
-    </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
