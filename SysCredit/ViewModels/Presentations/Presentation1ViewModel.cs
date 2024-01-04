@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 public partial class Presentation1ViewModel : ViewModelBase
 {
     [RelayCommand]
-    private async Task GoToPresentationPage2()
+    private async Task GoToNextPresentation()
     {
         await Shell.Current.GoToAsync("///Presentations/SysCredit/Presentation2");
     }

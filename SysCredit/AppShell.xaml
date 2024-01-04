@@ -159,32 +159,28 @@
         Shell.NavBarIsVisible="False"
         ContentTemplate="{DataTemplate Views:SplashScreenPage}" />
 
-    <FlyoutItem Route="Presentations"
-                Shell.FlyoutBehavior="Disabled"
-                Shell.FlyoutItemIsVisible="False"
-                Shell.NavBarIsVisible="False">
-        <Tab Route="SysCredit"
-             Shell.NavBarIsVisible="False">
+    <FlyoutItem
+        Shell.FlyoutBehavior="Disabled"
+        Route="Presentations"
+        Shell.NavBarIsVisible="False"
+        Shell.TabBarIsVisible="False">
+
+        <Tab Route="SysCredit">
             <ShellContent
                 Route="Presentation1"
-                Shell.FlyoutBehavior="Disabled"
-                Shell.FlyoutItemIsVisible="False"
-                Shell.NavBarIsVisible="False"
                 ContentTemplate="{DataTemplate PresentationViews:PresentationPage1}" />
 
             <ShellContent
                 Route="Presentation2"
-                Shell.FlyoutBehavior="Disabled"
-                Shell.FlyoutItemIsVisible="False"
-                Shell.NavBarIsVisible="False"
                 ContentTemplate="{DataTemplate PresentationViews:PresentationPage2}" />
 
             <ShellContent
                 Route="Presentation3"
-                Shell.FlyoutBehavior="Disabled"
-                Shell.FlyoutItemIsVisible="False"
-                Shell.NavBarIsVisible="False"
                 ContentTemplate="{DataTemplate PresentationViews:PresentationPage3}" />
+
+            <ShellContent
+                Route="Presentation4"
+                ContentTemplate="{DataTemplate PresentationViews:PresentationPage4}" />
         </Tab>
     </FlyoutItem>
 

@@ -1,5 +1,6 @@
 ﻿namespace SysCredit.Mobile.Platforms.Android.Renderers;
 
+using global::Android.Views;
 using global::Android.Content;
 using global::Android.Graphics;
 using global::Android.OS;
@@ -90,6 +91,7 @@ internal class CustomSectionRenderer : ShellSectionRenderer, Google.Android.Mate
         TabLayout.TabGravity = Google.Android.Material.Tabs.TabLayout.GravityFill;
         TabLayout.TabSelected += OnTabLayoutTabSelected;
         TabLayout.TabUnselected += OnTabLayoutTabUnselected;
+        TabLayout.Visibility = ViewStates.Gone;
 
         return RootView;
     }
