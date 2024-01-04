@@ -5,19 +5,60 @@
              x:DataType="ViewModels:UserRegistrationViewModel"
              x:Class="SysCredit.Mobile.Views.Users.UserRegistrationPage"
              Title="UserRegistration">
-    
-    <VerticalStackLayout Spacing="10">
-        <Label 
-            Text="Esta es la página para crear cuenta"
-            TextColor="Red"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
 
-        <Button Text="Registrar" 
-                Command="{Binding GoToLoginCommand}"/>
+    <Grid Margin="20" RowDefinitions=".25*, .15*, .35*, .25*">
 
-        <Button Text="Iniciar Sesion" 
-                Command="{Binding GoToHomeCommand}"/>
+        <Image Grid.Row="0" Aspect="Center" Source="syscredit_logo.svg"/>
 
-    </VerticalStackLayout>
+        <Grid Grid.Row="1" ColumnDefinitions="*" RowDefinitions="*, *">
+
+            <Label FontSize="28" FontAttributes="Bold" FontFamily="InterBold"
+                   VerticalTextAlignment="Center" TextColor="{StaticResource Primary}" 
+                   Text="¡Crear cuenta!" />
+
+            <Label Grid.Row="1" TextColor="{StaticResource Primary}" Padding="3"
+                   Text="Ingresa tus datos para crear tu cuenta" />
+
+        </Grid>
+
+        <VerticalStackLayout Grid.Row="2" Spacing="15" >
+
+            <Frame BackgroundColor="Transparent" Padding="10" BorderColor="{StaticResource Primary}">
+                <Entry Placeholder="Nombre de usuario" PlaceholderColor="{StaticResource Primary}"
+                       ClearButtonVisibility="WhileEditing" BackgroundColor="Transparent">
+                </Entry>
+            </Frame>
+
+            <Frame BackgroundColor="Transparent" Padding="10" BorderColor="{StaticResource Primary}">
+                <Entry Placeholder="Correo electrónico" PlaceholderColor="{StaticResource Primary}"
+                       ClearButtonVisibility="WhileEditing" BackgroundColor="Transparent" Keyboard="Email">
+                </Entry>
+            </Frame>
+
+            <Frame BackgroundColor="Transparent" Padding="10" BorderColor="{StaticResource Primary}">
+                <Entry Placeholder="Contraseña" PlaceholderColor="{StaticResource Primary}" IsPassword="True">
+                </Entry>
+            </Frame>
+
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="3" Spacing="15" >
+
+            <Button Text="Registrar" 
+                    Command="{Binding GoToLoginCommand}"
+                    TextColor="{StaticResource White}" 
+                    FontFamily="InterBold" 
+                    HeightRequest="55" 
+                    Background="{StaticResource Primary}"/>
+
+            <Button Text="Iniciar Sesión"
+                    Command="{Binding GoToHomeCommand}" 
+                    TextColor="{StaticResource Primary}" 
+                    FontFamily="InterBold" 
+                    HeightRequest="55" 
+                    Background="{StaticResource Gray100}"/>
+
+        </VerticalStackLayout>
+
+    </Grid>
 </ContentPage>

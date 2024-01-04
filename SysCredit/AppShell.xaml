@@ -195,14 +195,14 @@
         Route="UserRegistration"
         Shell.FlyoutBehavior="Disabled"
         Shell.FlyoutItemIsVisible="False"
-        Shell.NavBarIsVisible="True"
+        Shell.NavBarIsVisible="False"
         ContentTemplate="{DataTemplate UserViews:UserRegistrationPage}" />
 
     <ShellContent
         Route="RecoverAccount"
         Shell.FlyoutBehavior="Disabled"
         Shell.FlyoutItemIsVisible="False"
-        Shell.NavBarIsVisible="True"
+        Shell.NavBarIsVisible="False"
         ContentTemplate="{DataTemplate UserViews:RecoverAccountPage}" />
 
     <ShellContent
