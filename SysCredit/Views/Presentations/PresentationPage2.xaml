@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Presentations"
              xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
+             xmlns:Properties="clr-namespace:SysCredit.Mobile.Properties"
              x:DataType="ViewModels:Presentation2ViewModel"
              x:Class="SysCredit.Mobile.Views.Presentations.PresentationPage2"
              Title="PresentationPage2"
@@ -32,17 +33,18 @@
                     TextColor="{DynamicResource PrimaryLabelColor}"
                     HorizontalTextAlignment="Center"
                     FontSize="20"
-                    Margin="40,50,40,0">
+                    Margin="40,50,40,0"
+                    HeightRequest="90">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="SysCredit está construido para facilitar el " FontFamily="HelveticaNeueLight"/>
-                            <Span Text="ORDEN " FontFamily="HelveticaNeueBold"/>
-                            <Span Text="diario de tus prestamos o cobros todo en un solo lugar." FontFamily="HelveticaNeueLight"/>
+                            <Span Text="{x:Static Properties:SysCreditResources.View_Presentation2_Part1}" FontFamily="HelveticaNeueLight"/>
+                            <Span Text="{x:Static Properties:SysCreditResources.View_Presentation2_Part2}" FontFamily="HelveticaNeueBold"/>
+                            <Span Text="{x:Static Properties:SysCreditResources.View_Presentation2_Part3}" FontFamily="HelveticaNeueLight"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
 
-                <Grid ColumnDefinitions=".50*, .50*" Padding="60, 0" Margin="0,100,0,100">
+                <Grid ColumnDefinitions=".50*, .50*" Padding="60, 0" Margin="0,80,0,100">
 
                     <Border
                         StrokeThickness=".5"
@@ -56,7 +58,7 @@
                         </Border.StrokeShape>
 
                         <Button 
-                            Text="Omitir"
+                            Text="{x:Static Properties:SysCreditResources.View_ButtonOmit}"
                             FontFamily="HelveticaNeueLight"            
                             Command="{Binding GoToLoginCommand}"
                             HorizontalOptions="Center"
@@ -76,7 +78,7 @@
                         </Border.StrokeShape>
 
                         <Button 
-                            Text="Siguiente"
+                            Text="{x:Static Properties:SysCreditResources.View_ButtonNext}"
                             FontFamily="HelveticaNeueLight"            
                             Command="{Binding GoToNextPresentationCommand}"
                             HorizontalOptions="Center"
