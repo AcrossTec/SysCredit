@@ -61,6 +61,7 @@
 		<MauiImage Include="Resources\Images\Dark\*" />
 		<MauiImage Include="Resources\Images\White\*" />
 		<MauiImage Include="Resources\Images\Login\*" />
+		<MauiImage Include="Resources\Images\Presentation\*" />
 		<MauiImage Include="Resources\Splash\splash.svg" />
 
 		<!-- Custom Fonts -->

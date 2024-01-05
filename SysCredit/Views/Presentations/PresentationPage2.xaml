@@ -23,7 +23,7 @@
 
                 <Image
                     HeightRequest="250"
-                    Source="orden.svg"
+                    Source="Presentation/order.svg"
                     Margin="0,85,0,0"
                     VerticalOptions="CenterAndExpand"
                     HorizontalOptions="CenterAndExpand"/>
@@ -35,7 +35,7 @@
                     Margin="40,50,40,0">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="SysCredit esta construido para facilitar el " FontFamily="HelveticaNeueLight"/>
+                            <Span Text="SysCredit está construido para facilitar el " FontFamily="HelveticaNeueLight"/>
                             <Span Text="ORDEN " FontFamily="HelveticaNeueBold"/>
                             <Span Text="diario de tus prestamos o cobros todo en un solo lugar." FontFamily="HelveticaNeueLight"/>
                         </FormattedString>
@@ -48,7 +48,7 @@
                         StrokeThickness=".5"
                         Stroke="Black"
                         WidthRequest="100"
-                        HeightRequest="26"
+                        HeightRequest="35"
                         BackgroundColor="{DynamicResource SecondaryButtonColor}">
 
                         <Border.StrokeShape>
@@ -68,7 +68,7 @@
                         Grid.Column="1"
                         StrokeThickness=".5"
                         WidthRequest="100"
-                        HeightRequest="26"
+                        HeightRequest="35"
                         BackgroundColor="{DynamicResource PrimaryButtonColor}">
 
                         <Border.StrokeShape>

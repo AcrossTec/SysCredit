@@ -22,14 +22,14 @@
 
                 <Image
                     HeightRequest="250"
-                    Source="faro.svg"
+                    Source="Presentation/lighthouse.svg"
                     Margin="0,85,0,0"
                     VerticalOptions="CenterAndExpand"
                     HorizontalOptions="CenterAndExpand"/>
 
                 <Label 
                     TextColor="{DynamicResource PrimaryLabelColor}"
-                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
                     FontSize="20"
                     Margin="40,50,40,0">
                     <Label.FormattedText>
@@ -46,7 +46,7 @@
                         StrokeThickness=".5"
                         Stroke="Black"
                         WidthRequest="100"
-                        HeightRequest="26"
+                        HeightRequest="35"
                         BackgroundColor="{DynamicResource SecondaryButtonColor}">
 
                         <Border.StrokeShape>
@@ -66,7 +66,7 @@
                         Grid.Column="1"
                         StrokeThickness=".5"
                         WidthRequest="100"
-                        HeightRequest="26"
+                        HeightRequest="35"
                         BackgroundColor="{DynamicResource PrimaryButtonColor}">
 
                         <Border.StrokeShape>
