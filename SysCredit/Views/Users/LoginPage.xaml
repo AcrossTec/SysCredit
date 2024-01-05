@@ -2,90 +2,62 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Users"
+             xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
              x:DataType="ViewModels:LoginViewModel"
              x:Class="SysCredit.Mobile.Views.Users.LoginPage"
              Title="Login">
 
-    <Grid RowDefinitions=".3*, .6*, .1*, .1*">
-        
-        <!-- Parte superior de la pantalla -->
 
-        <Image Grid.Row="0" Aspect="Center" Source="login_parte_superior.svg"/>
+    <ScrollView>
+        <Grid>
+            <StackLayout VerticalOptions="FillAndExpand">
 
-        <!-- Parte superior de la pantalla -->
-        
-        <!-- Parte central de la pantalla -->
+                <!-- Parte superior de la pantalla -->
+                <Image Aspect="Fill" Source="login_parte_superior.svg"/>
 
-        <Border Grid.Row="1" Style="{StaticResource LoginCustomBorderStyle}"
-                Margin="25" BackgroundColor="{StaticResource GeneralLoginColor}">
+                <!-- Parte central de la pantalla -->
+                <Border Style="{StaticResource LoginCustomBorderStyle}" Margin="10" BackgroundColor="{StaticResource GeneralLoginColor}">
+                    <StackLayout Padding="20">
 
-            <Grid RowDefinitions=".1*, .16*, .16*, .08*, .1*"
-                  Padding="15">
-                
-                <!-- Parte central de la pantalla (Entradas) -->
-                
-                <Label Text="Iniciar Sesión" FontSize="35" HorizontalOptions="Center"/>
-                
+                        <!-- Parte central de la pantalla (Entradas) -->
+                        <Label Text="Iniciar Sesión" FontSize="35" FontFamily="HelveticaNeueBold" HorizontalOptions="Center"/>
 
-                <VerticalStackLayout Grid.Row="1" Spacing="15">
-                    
-                    <Label Text="Correo Asignado:" FontSize="18" Margin="10, 0, 0, 0"/>
+                        <VerticalStackLayout Spacing="15" Margin="0, 15, 0, 10">
+                            <Label Text="Correo Asignado:" FontSize="18" FontFamily="HelveticaNeueBold" Margin="10, 0, 0, 0"/>
+                            <Frame Style="{StaticResource LoginCustomFrameStyle}">
+                                <Entry Style="{StaticResource LoginCustomEntry}" Placeholder="Ingrese el correo" Keyboard="Email"/>
+                            </Frame>
+                        </VerticalStackLayout>
 
-                    <Frame Style="{StaticResource LoginCustomFrameStyle}">
-                        <Entry Style="{StaticResource LoginCustomEntry}" Placeholder="Ingrese el correo" Keyboard="Email">
-                        </Entry>
-                    </Frame>
+                        <VerticalStackLayout Spacing="15" Margin="0, 15, 0, 10">
+                            <Label Text="Clave de Acceso:" FontSize="18" FontFamily="HelveticaNeueBold" Margin="10, 0, 0, 0"/>
+                            <Frame Style="{StaticResource LoginCustomFrameStyle}">
+                                <Entry Style="{StaticResource LoginCustomEntry}" Placeholder="Ingrese la clave" IsPassword="True"/>
+                            </Frame>
+                        </VerticalStackLayout>
 
-                </VerticalStackLayout>
+                        <!-- Botón Switch -->
+                        <HorizontalStackLayout Spacing="5" Margin="0, 0, 0, 15">
+                            <Switch HorizontalOptions="Start" VerticalOptions="End" />
+                            <Label Text="Recordar usuario y contraseña" FontFamily="HelveticaNeueLight" TextColor="{StaticResource White}" VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
 
-                <VerticalStackLayout Grid.Row="2" Spacing="15">
-                    
-                    <Label Text="Clave de Acceso:" FontSize="18" Margin="10, 0, 0, 0"/>
+                        <!-- Botón Acceder -->
+                        <Button Style="{StaticResource LoginCustomFormButton}" Text="Acceder" Command="{Binding GoToHomeCommand}" />
 
-                    <Frame Style="{StaticResource LoginCustomFrameStyle}">
-                        <Entry Style="{StaticResource LoginCustomEntry}" Placeholder="Ingrese la clave" IsPassword="True">
-                        </Entry>
-                    </Frame>
-                </VerticalStackLayout>
+                    </StackLayout>
+                </Border>
 
-                <!-- Parte central de la pantalla (Entradas) -->
-                
-                <!-- Botón Switch -->
+                <!-- Parte inferior de la pantalla -->
+                <Button Style="{StaticResource LoginCustomButton}" Text="He olvidado mi contraseña" Background="{StaticResource ForgotPasswordButtonBackground}" Command="{Binding GoToRecoverAccountCommand}" Margin="20"/>
 
-                <HorizontalStackLayout Grid.Row="3" Spacing="5">
-                    
-                    <Switch HorizontalOptions="Start" VerticalOptions="End" />
+            </StackLayout>
 
-                    <Label Text="Recordar usuario y contraseña"
-                           TextColor="{StaticResource White}" 
-                           VerticalOptions="Center"/>
+            <!-- Footer -->
+            <StackLayout VerticalOptions="End">
+                <Controls:PresentationFooterView/>
+            </StackLayout>
 
-                </HorizontalStackLayout>
-
-                <!-- Botón Switch -->
-                
-                <!-- Botón Acceder -->
-
-                <Button Grid.Row="4" Style="{StaticResource LoginCustomFormButton}" Text="Acceder" 
-                        Command="{Binding GoToHomeCommand}" />
-
-                <!-- Botón Acceder -->
-                
-            </Grid>
-        </Border>
-
-        <!-- Parte central de la pantalla -->
-        
-        <!-- Parte inferior de la pantalla -->
-
-        <Button Grid.Row="2" Style="{StaticResource LoginCustomButton}" Text="He olvidado mi contraseña" Background="{StaticResource ForgotPasswordButtonBackground}"
-                Command="{Binding GoToRecoverAccountCommand}"/>
-
-        <!-- Parte inferior de la pantalla -->
-
-        <!-- Footer -->
-
-        <!-- Footer -->
-
-    </Grid>
+        </Grid>
+    </ScrollView>
 </ContentPage>
