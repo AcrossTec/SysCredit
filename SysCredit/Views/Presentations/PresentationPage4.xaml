@@ -22,30 +22,30 @@
 
                 <Image
                     HeightRequest="250"
-                    Source="accesibilidad.svg"
+                    Source="Presentation/accessibility.svg"
                     Margin="0,85,0,0"
                     VerticalOptions="CenterAndExpand"
                     HorizontalOptions="CenterAndExpand"/>
 
                 <Label 
                     TextColor="{DynamicResource PrimaryLabelColor}"
-                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
                     FontSize="20"
                     Margin="40,50,40,0">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="SysCredit " FontFamily="HelveticaNeueLight"/>
+                            <Span Text="SysCredit es " FontFamily="HelveticaNeueLight"/>
                             <Span Text="ACCESIBILIDAD " FontFamily="HelveticaNeueBold"/>
                             <Span Text="hecha a la medida de tu mano!" FontFamily="HelveticaNeueLight"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
 
-                <Grid Padding="60, 0" Margin="0,100,0,100">
+                <Grid Padding="60, 0" Margin="0,122,0,100">
                     <Border
                         StrokeThickness=".5"
                         WidthRequest="150"
-                        HeightRequest="26"
+                        HeightRequest="35"
                         BackgroundColor="{DynamicResource PrimaryButtonColor}">
 
                         <Border.StrokeShape>
