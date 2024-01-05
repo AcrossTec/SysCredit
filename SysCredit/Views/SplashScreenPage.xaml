@@ -6,7 +6,7 @@
              BackgroundColor="{DynamicResource SplashScreensBackground}"
              Title="SplashScreenPage">
     <ContentPage.Behaviors>
-        <Toolkit:StatusBarBehavior StatusBarColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}" />
+        <Toolkit:StatusBarBehavior StatusBarColor="{StaticResource SplashScreensBackground}" />
     </ContentPage.Behaviors>
 
     <!--<AbsoluteLayout>
