@@ -7,40 +7,41 @@
     <Style x:Key="LoginCustomFormButton" TargetType="Button">
         <Setter Property="BackgroundColor" Value="{StaticResource White}" />
         <Setter Property="TextColor" Value="{StaticResource Primary}" />
-        <Setter Property="FontFamily" Value="InterBold"/>
-        <Setter Property="CornerRadius" Value="5" />
-        <Setter Property="Padding" Value="0" />
-        <Setter Property="HeightRequest" Value="35" />
-        <Setter Property="WidthRequest" Value="110" />
+        <Setter Property="FontFamily" Value="HelveticaNeueLight"/>
+        <Setter Property="CornerRadius" Value="{OnIdiom Phone='5', Tablet='10'}" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="HeightRequest" Value="{OnIdiom Phone='40', Tablet='70'}" />
+        <Setter Property="WidthRequest" Value="{OnIdiom Phone='110', Tablet='220'}" />
     </Style>
 
     <Style x:Key="LoginCustomButton" TargetType="Button">
         <Setter Property="TextColor" Value="{StaticResource White}" />
-        <Setter Property="FontFamily" Value="InterBold"/>
-        <Setter Property="CornerRadius" Value="15" />
-        <Setter Property="Padding" Value="0" />
-        <Setter Property="HeightRequest" Value="40" />
-        <Setter Property="WidthRequest" Value="300" />
+        <Setter Property="FontFamily" Value="HelveticaNeueLight"/>
+        <Setter Property="CornerRadius" Value="{OnIdiom Phone='15', Tablet='30'}" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="HeightRequest" Value="{OnIdiom Phone='40', Tablet='80'}" />
+        <Setter Property="WidthRequest" Value="{OnIdiom Phone='300', Tablet='600'}" />
     </Style>
 
     <Style x:Key="LoginCustomEntry" TargetType="Entry">
+        <Setter Property="FontFamily" Value="HelveticaNeueLight"/>
         <Setter Property="PlaceholderColor" Value="{StaticResource SecondaryLoginColor}"/>
         <Setter Property="BackgroundColor" Value="Transparent"/>
-        <Setter Property="HeightRequest" Value="38"/>
+        <Setter Property="HeightRequest" Value="{OnIdiom Phone='38', Tablet='76'}"/>
         <Setter Property="ClearButtonVisibility" Value="WhileEditing"/>
     </Style>
 
     <Style x:Key="LoginCustomFrameStyle" TargetType="Frame">
         <Setter Property="BackgroundColor" Value="{StaticResource White}"/>
         <Setter Property="BorderColor" Value="{StaticResource FrameBorderColor}" />
-        <Setter Property="CornerRadius" Value="40"/>
+        <Setter Property="CornerRadius" Value="{OnIdiom Phone='40', Tablet='80'}"/>
         <Setter Property="Padding" Value="5"/>
     </Style>
 
     <Style x:Key="LoginCustomBorderStyle" TargetType="Border">
         <Setter Property="StrokeShape">
             <Setter.Value>
-                <RoundRectangle CornerRadius="20, 20, 20, 20" />
+                <RoundRectangle CornerRadius="{OnIdiom Phone='20, 20, 20, 20', Tablet='40, 40, 40, 40'}" />
             </Setter.Value>
         </Setter>
     </Style>
