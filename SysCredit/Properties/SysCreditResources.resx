@@ -449,4 +449,63 @@
     <value>The value for property '{0}' must be of type '{1}'.</value>
     <comment>The value for property '{0}' must be of type '{1}'.</comment>
   </data>
+  <data name="View_" xml:space="preserve">
+    <value />
+  </data>
+  <data name="View_ButtonNext" xml:space="preserve">
+    <value>Next</value>
+    <comment>It's a message for a button</comment>
+  </data>
+  <data name="View_ButtonOmit" xml:space="preserve">
+    <value>Omit</value>
+    <comment>It's a message for a button</comment>
+  </data>
+  <data name="View_Presentation1_Part1" xml:space="preserve">
+    <value>The most reliable loan system to run your business, </value>
+    <comment>It's the firt part of the presentation message view 1</comment>
+  </data>
+  <data name="View_Presentation1_Part2" xml:space="preserve">
+    <value>FASTER.</value>
+    <comment>It's the second part of the presentation message view 1</comment>
+  </data>
+  <data name="View_Presentation2_Part1" xml:space="preserve">
+    <value>SysCredit is built to make it easy to </value>
+    <comment>It's the firt part of the presentation message view 2</comment>
+  </data>
+  <data name="View_Presentation2_Part2" xml:space="preserve">
+    <value>ORDER </value>
+    <comment>It's the second part of the presentation message view 2</comment>
+  </data>
+  <data name="View_Presentation2_Part3" xml:space="preserve">
+    <value>your loans or collections on a daily basis all in one place.</value>
+    <comment>It's the third part of the presentation message view 2</comment>
+  </data>
+  <data name="View_Presentation3_Part1" xml:space="preserve">
+    <value>Fear not! SysCredit gives you total security, it handles everything from a remote center like a total </value>
+    <comment>It's the firt part of the presentation message view 3</comment>
+  </data>
+  <data name="View_Presentation3_Part2" xml:space="preserve">
+    <value>LOOKOUT.</value>
+    <comment>It's the second part of the presentation message view 3</comment>
+  </data>
+  <data name="View_Presentation4_Part1" xml:space="preserve">
+    <value>SysCredit is </value>
+    <comment>It's the firt part of the presentation message view 4</comment>
+  </data>
+  <data name="View_Presentation4_Part2" xml:space="preserve">
+    <value>ACCESSIBILITY </value>
+    <comment>It's the second part of the presentation message view 4</comment>
+  </data>
+  <data name="View_Presentation4_Part3" xml:space="preserve">
+    <value>tailor-made for you!</value>
+    <comment>It's the third part of the presentation message view 4</comment>
+  </data>
+  <data name="View_StartToWork" xml:space="preserve">
+    <value>Start to work</value>
+    <comment>It's a message for start some process</comment>
+  </data>
+  <data name="View_Welcome" xml:space="preserve">
+    <value>Welcome to SysCredit</value>
+    <comment>It is a welcome message</comment>
+  </data>
 </root>

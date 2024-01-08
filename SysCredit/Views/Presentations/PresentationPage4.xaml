@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Presentations"
              xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
+             xmlns:Properties="clr-namespace:SysCredit.Mobile.Properties"
              x:DataType="ViewModels:Presentation4ViewModel"
              x:Class="SysCredit.Mobile.Views.Presentations.PresentationPage4"
              Title="PresentationPage4"
@@ -31,17 +32,18 @@
                     TextColor="{DynamicResource PrimaryLabelColor}"
                     HorizontalTextAlignment="Center"
                     FontSize="20"
-                    Margin="40,50,40,0">
+                    Margin="40,50,40,0"
+                    HeightRequest="90">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="SysCredit es " FontFamily="HelveticaNeueLight"/>
-                            <Span Text="ACCESIBILIDAD " FontFamily="HelveticaNeueBold"/>
-                            <Span Text="hecha a la medida de tu mano!" FontFamily="HelveticaNeueLight"/>
+                            <Span Text="{x:Static Properties:SysCreditResources.View_Presentation4_Part1}" FontFamily="HelveticaNeueLight"/>
+                            <Span Text="{x:Static Properties:SysCreditResources.View_Presentation4_Part2}" FontFamily="HelveticaNeueBold"/>
+                            <Span Text="{x:Static Properties:SysCreditResources.View_Presentation4_Part3}" FontFamily="HelveticaNeueLight"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
 
-                <Grid Padding="60, 0" Margin="0,122,0,100">
+                <Grid Padding="60, 0" Margin="0,80,0,100">
                     <Border
                         StrokeThickness=".5"
                         WidthRequest="150"
@@ -53,7 +55,7 @@
                         </Border.StrokeShape>
 
                         <Button 
-                            Text="Empezar a trabajar"
+                            Text="{x:Static Properties:SysCreditResources.View_StartToWork  }"
                             FontFamily="HelveticaNeueLight"            
                             Command="{Binding GoToLoginCommand}"
                             HorizontalOptions="Center"

@@ -806,5 +806,140 @@ namespace SysCredit.Mobile.Properties {
                 return ResourceManager.GetString("Validator_Property_Value_Wrong_Type", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string View_ {
+            get {
+                return ResourceManager.GetString("View_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string View_ButtonNext {
+            get {
+                return ResourceManager.GetString("View_ButtonNext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Omit.
+        /// </summary>
+        public static string View_ButtonOmit {
+            get {
+                return ResourceManager.GetString("View_ButtonOmit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The most reliable loan system to run your business, .
+        /// </summary>
+        public static string View_Presentation1_Part1 {
+            get {
+                return ResourceManager.GetString("View_Presentation1_Part1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FASTER..
+        /// </summary>
+        public static string View_Presentation1_Part2 {
+            get {
+                return ResourceManager.GetString("View_Presentation1_Part2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SysCredit is built to make it easy to .
+        /// </summary>
+        public static string View_Presentation2_Part1 {
+            get {
+                return ResourceManager.GetString("View_Presentation2_Part1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ORDER .
+        /// </summary>
+        public static string View_Presentation2_Part2 {
+            get {
+                return ResourceManager.GetString("View_Presentation2_Part2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to your loans or collections on a daily basis all in one place..
+        /// </summary>
+        public static string View_Presentation2_Part3 {
+            get {
+                return ResourceManager.GetString("View_Presentation2_Part3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fear not! SysCredit gives you total security, it handles everything from a remote center like a total .
+        /// </summary>
+        public static string View_Presentation3_Part1 {
+            get {
+                return ResourceManager.GetString("View_Presentation3_Part1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LOOKOUT..
+        /// </summary>
+        public static string View_Presentation3_Part2 {
+            get {
+                return ResourceManager.GetString("View_Presentation3_Part2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SysCredit is .
+        /// </summary>
+        public static string View_Presentation4_Part1 {
+            get {
+                return ResourceManager.GetString("View_Presentation4_Part1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ACCESSIBILITY .
+        /// </summary>
+        public static string View_Presentation4_Part2 {
+            get {
+                return ResourceManager.GetString("View_Presentation4_Part2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tailor-made for you!.
+        /// </summary>
+        public static string View_Presentation4_Part3 {
+            get {
+                return ResourceManager.GetString("View_Presentation4_Part3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start to work.
+        /// </summary>
+        public static string View_StartToWork {
+            get {
+                return ResourceManager.GetString("View_StartToWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome to SysCredit.
+        /// </summary>
+        public static string View_Welcome {
+            get {
+                return ResourceManager.GetString("View_Welcome", resourceCulture);
+            }
+        }
     }
 }
