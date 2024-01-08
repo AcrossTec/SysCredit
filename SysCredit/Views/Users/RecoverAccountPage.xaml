@@ -86,7 +86,7 @@
         <!-- Footer -->
 
         <StackLayout Grid.Row="3" VerticalOptions="End">
-            <Controls:PresentationFooterView/>
+            <Controls:SysCreditFooterView />
         </StackLayout>
 
         <!-- Footer -->
