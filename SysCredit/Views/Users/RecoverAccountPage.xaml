@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Users"
              xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
+             xmlns:Properties="clr-namespace:SysCredit.Mobile.Properties"
              x:DataType="ViewModels:RecoverAccountViewModel"
              x:Class="SysCredit.Mobile.Views.Users.RecoverAccountPage"
              Title="RecoverAccount">
@@ -29,7 +30,7 @@
                 <Border Style="{StaticResource LoginCustomBorderStyle}"
                         BackgroundColor="{StaticResource GeneralLoginColor}">
 
-                    <Label Text="Olvidé mi contraseña" 
+                    <Label Text="{x:Static Properties:SysCreditResources.View_RecoverAccount_FormTitle}" 
                            FontSize="28"
                            FontFamily="HelveticaNeueBold"
                            HorizontalOptions="Center" 
@@ -43,14 +44,14 @@
 
                 <VerticalStackLayout Grid.Row="1" Spacing="40" Padding="15" VerticalOptions="End">
 
-                    <Label Text="Introduzca su correo electrónico y le enviaremos un link para reestablecer su contraseña" 
+                    <Label Text="{x:Static Properties:SysCreditResources.View_RecoverAccount_LabelInfo}" 
                            FontSize="18"
                            FontFamily="HelveticaNeueLight"
                            Margin="10, 0, 0, 0"/>
 
                     <Frame Style="{StaticResource LoginCustomFrameStyle}">
                         <Entry Style="{StaticResource LoginCustomEntry}" 
-                               Placeholder="Ingrese el correo" 
+                               Placeholder="{x:Static Properties:SysCreditResources.View_RecoverAccount_InputPlaceholder}" 
                                Keyboard="Email">
                         </Entry>
                     </Frame>
@@ -62,7 +63,7 @@
                 <!-- Botón Enviar -->
 
                 <Button Grid.Row="2" Style="{StaticResource LoginCustomFormButton}" 
-                        Text="Enviar" 
+                        Text="{x:Static Properties:SysCreditResources.View_RecoverAccount_SendButton}" 
                         VerticalOptions="Center"
                         Command="{Binding GoToLoginCommand}"/> 
 
@@ -77,7 +78,7 @@
 
         <Button Grid.Row="2" 
                 Style="{StaticResource LoginCustomButton}" 
-                Text="Iniciar Sesión" 
+                Text="{x:Static Properties:SysCreditResources.View_RecoverAccount_LoginButton}" 
                 Background="{StaticResource GeneralLoginColor}"
                 Command="{Binding GoToLoginCommand}"/>
 

@@ -460,6 +460,38 @@
     <value>Omit</value>
     <comment>It's a message for a button</comment>
   </data>
+  <data name="View_Login_FirstInputLabel" xml:space="preserve">
+    <value>Assigned Email</value>
+    <comment>Label for the first login input entry</comment>
+  </data>
+  <data name="View_Login_FirstInputPlaceholder" xml:space="preserve">
+    <value>Enter the email</value>
+    <comment>Placeholder message for the first login input entry</comment>
+  </data>
+  <data name="View_Login_FormTitle" xml:space="preserve">
+    <value>Log In</value>
+    <comment>Login Form Title</comment>
+  </data>
+  <data name="View_Login_LoginButton" xml:space="preserve">
+    <value>Access</value>
+    <comment>Message for the login button</comment>
+  </data>
+  <data name="View_Login_RecoverAccountButton" xml:space="preserve">
+    <value>Forgot my password</value>
+    <comment>Message for the button that takes you to account recovery</comment>
+  </data>
+  <data name="View_Login_SecondInputLabel" xml:space="preserve">
+    <value>Access Password</value>
+    <comment>Label for the second login input entry</comment>
+  </data>
+  <data name="View_Login_SecondInputPlaceholder" xml:space="preserve">
+    <value>Enter the password</value>
+    <comment>Placeholder message for the second login input entry</comment>
+  </data>
+  <data name="View_Login_SwitchButtonLabel" xml:space="preserve">
+    <value>Remember username and password</value>
+    <comment>Label for the login switch button</comment>
+  </data>
   <data name="View_Presentation1_Part1" xml:space="preserve">
     <value>The most reliable loan system to run your business, </value>
     <comment>It's the firt part of the presentation message view 1</comment>
@@ -499,6 +531,26 @@
   <data name="View_Presentation4_Part3" xml:space="preserve">
     <value>tailor-made for you!</value>
     <comment>It's the third part of the presentation message view 4</comment>
+  </data>
+  <data name="View_RecoverAccount_FormTitle" xml:space="preserve">
+    <value>Forgot my password</value>
+    <comment>Title of the account recovery form</comment>
+  </data>
+  <data name="View_RecoverAccount_InputPlaceholder" xml:space="preserve">
+    <value>Enter the email</value>
+    <comment>Placeholder message for the account recovery input entry</comment>
+  </data>
+  <data name="View_RecoverAccount_LabelInfo" xml:space="preserve">
+    <value>Enter your email, and we'll send you a link to reset your password</value>
+    <comment>User information for account recovery</comment>
+  </data>
+  <data name="View_RecoverAccount_LoginButton" xml:space="preserve">
+    <value>Log In</value>
+    <comment>Message for the login button</comment>
+  </data>
+  <data name="View_RecoverAccount_SendButton" xml:space="preserve">
+    <value>Send</value>
+    <comment>Message for the Send button (sends the email) for account recovery</comment>
   </data>
   <data name="View_StartToWork" xml:space="preserve">
     <value>Start to work</value>
