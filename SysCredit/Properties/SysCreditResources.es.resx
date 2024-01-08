@@ -125,6 +125,38 @@
     <value>Omitir</value>
     <comment>Mensaje para botón</comment>
   </data>
+  <data name="View_Login_FirstInputLabel" xml:space="preserve">
+    <value>Correo Asignado</value>
+    <comment>Label de la primera entrada de inicio de sesión</comment>
+  </data>
+  <data name="View_Login_FirstInputPlaceholder" xml:space="preserve">
+    <value>Ingrese el correo</value>
+    <comment>Mensaje (placeholder) de la primera entrada de inicio de sesión</comment>
+  </data>
+  <data name="View_Login_FormTitle" xml:space="preserve">
+    <value>Iniciar Sesión</value>
+    <comment>Título del formulario de inicio de sesión</comment>
+  </data>
+  <data name="View_Login_LoginButton" xml:space="preserve">
+    <value>Acceder</value>
+    <comment>Mensaje para el botón iniciar sesión</comment>
+  </data>
+  <data name="View_Login_RecoverAccountButton" xml:space="preserve">
+    <value>He olvidado mi contraseña</value>
+    <comment>Mensaje para el botón que lo lleva a recuperar la cuenta</comment>
+  </data>
+  <data name="View_Login_SecondInputLabel" xml:space="preserve">
+    <value>Clave de Acceso</value>
+    <comment>Label de la segunda entrada de inicio de sesión</comment>
+  </data>
+  <data name="View_Login_SecondInputPlaceholder" xml:space="preserve">
+    <value>Ingrese la clave</value>
+    <comment>Mensaje (placeholder) de la segunda entrada de inicio de sesión</comment>
+  </data>
+  <data name="View_Login_SwitchButtonLabel" xml:space="preserve">
+    <value>Recordar usuario y contraseña</value>
+    <comment>Label del botón Switch de inicio de sesión</comment>
+  </data>
   <data name="View_Presentation1_Part1" xml:space="preserve">
     <value>El sistema de prestamo mas confiable para dirigir tu empresa, de manera mas </value>
     <comment>Primera parte del mensaje de la primera vista de presentación</comment>
@@ -152,6 +184,26 @@
   <data name="View_Presentation3_Part2" xml:space="preserve">
     <value>VIGÍA.</value>
     <comment>Segunda parte del mensaje de la tercera vista de presentación</comment>
+  </data>
+  <data name="View_RecoverAccount_FormTitle" xml:space="preserve">
+    <value>Olvidé mi contraseña</value>
+    <comment>Título del formulario de recuperar cuenta</comment>
+  </data>
+  <data name="View_RecoverAccount_InputPlaceholder" xml:space="preserve">
+    <value>Ingrese el correo</value>
+    <comment>Mensaje (placeholder) de la entrada para recuperar cuenta</comment>
+  </data>
+  <data name="View_RecoverAccount_LabelInfo" xml:space="preserve">
+    <value>Introduzca su correo electrónico y le enviaremos un link para reestablecer su contraseña</value>
+    <comment> Información al usuario para recuperar la cuenta </comment>
+  </data>
+  <data name="View_RecoverAccount_LoginButton" xml:space="preserve">
+    <value>Iniciar Sesión</value>
+    <comment>Mensaje para el botón de iniciar sesión</comment>
+  </data>
+  <data name="View_RecoverAccount_SendButton" xml:space="preserve">
+    <value>Enviar</value>
+    <comment>Mensaje para el botón Enviar (envía el correo electrónico) para recuperar cuenta </comment>
   </data>
   <data name="View_StartToWork" xml:space="preserve">
     <value>Empezar a trabajar</value>
