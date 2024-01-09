@@ -460,6 +460,10 @@
     <value>Omit</value>
     <comment>It's a message for a button</comment>
   </data>
+  <data name="View_CatalogsName" xml:space="preserve">
+    <value>Catalogs</value>
+    <comment>It's the name for catalogs page</comment>
+  </data>
   <data name="View_Presentation1_Part1" xml:space="preserve">
     <value>The most reliable loan system to run your business, </value>
     <comment>It's the firt part of the presentation message view 1</comment>

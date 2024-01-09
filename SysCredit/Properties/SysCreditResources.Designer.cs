@@ -835,6 +835,15 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Catalogs.
+        /// </summary>
+        public static string View_CatalogsName {
+            get {
+                return ResourceManager.GetString("View_CatalogsName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The most reliable loan system to run your business, .
         /// </summary>
         public static string View_Presentation1_Part1 {

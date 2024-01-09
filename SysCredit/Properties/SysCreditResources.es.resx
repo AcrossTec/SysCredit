@@ -125,6 +125,10 @@
     <value>Omitir</value>
     <comment>Mensaje para botón</comment>
   </data>
+  <data name="View_CatalogsName" xml:space="preserve">
+    <value>Catálogos</value>
+    <comment>Nombre para la pagina de catalogos</comment>
+  </data>
   <data name="View_Presentation1_Part1" xml:space="preserve">
     <value>El sistema de prestamo mas confiable para dirigir tu empresa, de manera mas </value>
     <comment>Primera parte del mensaje de la primera vista de presentación</comment>
