@@ -26,11 +26,20 @@ using SysCredit.Mobile.ViewModels.Guarantors;
 using SysCredit.Mobile.ViewModels.Users;
 using SysCredit.Mobile.ViewModels.Presentations;
 
+using SysCredit.Mobile.Views.Catalogs;
+using SysCredit.Mobile.Views.Catalogs.LoanTypes;
+using SysCredit.Mobile.Views.Catalogs.PaymentFrequencies;
+using SysCredit.Mobile.Views.Catalogs.Relationships;
+
 using The49.Maui.BottomSheet;
 using The49.Maui.ContextMenu;
 using The49.Maui.Insets;
 
 using UraniumUI;
+using SysCredit.Mobile.ViewModels.Catalogs;
+using SysCredit.Mobile.ViewModels.Catalogs.LoanTypes;
+using SysCredit.Mobile.ViewModels.Catalogs.PaymentFrequencies;
+using SysCredit.Mobile.ViewModels.Catalogs.Relationships;
 
 public static partial class MauiProgram
 {
@@ -158,6 +167,13 @@ public static partial class MauiProgram
         Builder.Services.AddScoped<Presentation2ViewModel>();
         Builder.Services.AddScoped<Presentation3ViewModel>();
         Builder.Services.AddScoped<Presentation4ViewModel>();
+        Builder.Services.AddScoped<CatalogsPageViewModel>();
+        Builder.Services.AddScoped<LoanTypesCrudPageViewModel>();
+        Builder.Services.AddScoped<PaymentFrequenciesCrudPageViewModel>();
+        Builder.Services.AddScoped<RelationshipsCrudPageViewModel>();
+        Builder.Services.AddScoped<ViewLoanTypeCatalogPageViewModel>();
+        Builder.Services.AddScoped<UpdateLoanTypePageViewModel>();
+
         return Builder;
     }
 
@@ -191,6 +207,25 @@ public static partial class MauiProgram
 
         // Routing.RegisterRoute(nameof(LoanRequestPage), typeof(LoanRequestPage));
         // Routing.RegisterRoute(nameof(LoanListPage), typeof(LoanListPage));
+
+        // CATALOGS
+        Routing.RegisterRoute(nameof(CatalogsPage), typeof(CatalogsPage));
+        Routing.RegisterRoute(nameof(LoanTypesCrudPage), typeof(LoanTypesCrudPage));
+        Routing.RegisterRoute(nameof(PaymentFrequenciesCrudPage), typeof(PaymentFrequenciesCrudPage));
+        Routing.RegisterRoute(nameof(RelationshipsCrudPage), typeof(RelationshipsCrudPage));
+
+        Routing.RegisterRoute(nameof(ViewLoanTypeCatalogPage), typeof(ViewLoanTypeCatalogPage));
+        Routing.RegisterRoute(nameof(ViewPaymentFrequencyCatalogPage), typeof(ViewPaymentFrequencyCatalogPage));
+        Routing.RegisterRoute(nameof(ViewRelationshipCatalogPage), typeof(ViewRelationshipCatalogPage));
+
+        Routing.RegisterRoute(nameof(UpdateLoanTypePage), typeof(UpdateLoanTypePage));
+        Routing.RegisterRoute(nameof(UpdatePaymentFrequencyPage), typeof(UpdatePaymentFrequencyPage));
+        Routing.RegisterRoute(nameof(UpdateRelationshipPage), typeof(UpdateRelationshipPage));
+
+        Routing.RegisterRoute(nameof(DeleteLoanTypePage), typeof(DeleteLoanTypePage));
+        Routing.RegisterRoute(nameof(DeletePaymentFrequencyPage), typeof(DeletePaymentFrequencyPage));
+        Routing.RegisterRoute(nameof(DeleteRelationshipPage), typeof(DeleteRelationshipPage));
+
         return Builder;
     }
 }

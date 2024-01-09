@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
+             xmlns:Properties="clr-namespace:SysCredit.Mobile.Properties"
+             xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Catalogs.LoanTypes" 
+             x:Class="SysCredit.Mobile.Views.Catalogs.Relationships.DeleteRelationshipPage"
+             Title="{x:Static Properties:SysCreditResources.View_Delete_Message}">
+
+    <ContentPage.BindingContext>
+        <ViewModels:ViewLoanTypeCatalogPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <CollectionView x:Name="CollectionView_Controll" ItemsSource="{Binding LoanTypes}">
+            <CollectionView.Header>
+                <HorizontalStackLayout
+                    Margin="20,10,0,5"
+                    Spacing="10"
+                    Padding="0,0,10,0">
+
+                    <Label 
+                        Text="{x:Static Properties:SysCreditResources.View_Select_Message}"
+                        FontSize="15"
+                        FontFamily="InterBold"
+                        TextColor="Black" />
+
+                </HorizontalStackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout 
+                        HeightRequest="50" 
+                        BackgroundColor="{StaticResource Primary50}"
+                        Margin="0,5,0,5"
+                        Spacing="10"
+                        Padding="10,0,10,0">
+
+                        <Button
+                            Clicked="Button_Clicked"
+                            BackgroundColor="Transparent"
+                            VerticalOptions="Center"
+                            FontFamily="InterMedium"
+                            Text="{Binding m_Name}" 
+                            TextColor="{StaticResource PrimaryLabelColor}" />
+
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ScrollView>
+</ContentPage>

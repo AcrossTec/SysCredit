@@ -449,48 +449,89 @@
     <value>The value for property '{0}' must be of type '{1}'.</value>
     <comment>The value for property '{0}' must be of type '{1}'.</comment>
   </data>
-  <data name="View_" xml:space="preserve">
-    <value />
-  </data>
   <data name="View_ButtonNext" xml:space="preserve">
     <value>Next</value>
     <comment>It's a message for a button</comment>
   </data>
   <data name="View_ButtonOmit" xml:space="preserve">
-    <value>Omit</value>
+    <value>Skip</value>
     <comment>It's a message for a button</comment>
   </data>
-  <data name="View_Login_FirstInputLabel" xml:space="preserve">
-    <value>Assigned Email</value>
-    <comment>Label for the first login input entry</comment>
+  <data name="View_Cancel_Message" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>It's a cancel message</comment>
   </data>
-  <data name="View_Login_FirstInputPlaceholder" xml:space="preserve">
-    <value>Enter the email</value>
-    <comment>Placeholder message for the first login input entry</comment>
+  <data name="View_CatalogsName" xml:space="preserve">
+    <value>Catalogs</value>
+    <comment>It's the name for catalogs page</comment>
   </data>
-  <data name="View_Login_FormTitle" xml:space="preserve">
-    <value>Log In</value>
-    <comment>Login Form Title</comment>
+  <data name="View_Confirm_Message" xml:space="preserve">
+    <value>Confirm</value>
+    <comment>It's a confirm message</comment>
   </data>
-  <data name="View_Login_LoginButton" xml:space="preserve">
-    <value>Access</value>
-    <comment>Message for the login button</comment>
+  <data name="View_Delete_Alert" xml:space="preserve">
+    <value>Are you sure to delete it?</value>
+    <comment>It's a alert message for delete a item</comment>
   </data>
-  <data name="View_Login_RecoverAccountButton" xml:space="preserve">
-    <value>Forgot my password</value>
-    <comment>Message for the button that takes you to account recovery</comment>
+  <data name="View_Delete_Message" xml:space="preserve">
+    <value>Delete</value>
+    <comment>It's a message for delete</comment>
   </data>
-  <data name="View_Login_SecondInputLabel" xml:space="preserve">
-    <value>Access Password</value>
-    <comment>Label for the second login input entry</comment>
+  <data name="View_Enter_Name" xml:space="preserve">
+    <value>Enter a name</value>
+    <comment>It's a message for enter a new name</comment>
   </data>
-  <data name="View_Login_SecondInputPlaceholder" xml:space="preserve">
-    <value>Enter the password</value>
-    <comment>Placeholder message for the second login input entry</comment>
+  <data name="View_Insert_Message" xml:space="preserve">
+    <value>Enter the name</value>
+    <comment>It's a message for the insert</comment>
   </data>
-  <data name="View_Login_SwitchButtonLabel" xml:space="preserve">
-    <value>Remember username and password</value>
-    <comment>Label for the login switch button</comment>
+  <data name="View_Label_Id" xml:space="preserve">
+    <value>ID</value>
+    <comment>It's a message for identificators label</comment>
+  </data>
+  <data name="View_Label_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>It's a message for Names label</comment>
+  </data>
+  <data name="View_LoanTypesCrud_Delete" xml:space="preserve">
+    <value>Delete a Loan Type</value>
+    <comment>It's a message for Delete button</comment>
+  </data>
+  <data name="View_LoanTypesCrud_Fetch" xml:space="preserve">
+    <value>Fetch Loan Type</value>
+    <comment>It's a message for fetch button</comment>
+  </data>
+  <data name="View_LoanTypesCrud_Update" xml:space="preserve">
+    <value>Update a Loan Type</value>
+    <comment>It's a message for Update button</comment>
+  </data>
+  <data name="View_LoanTypesCurd_Insert" xml:space="preserve">
+    <value>Insert a Loan Type</value>
+    <comment>It's a message for Insert button</comment>
+  </data>
+  <data name="View_LoanTypesName" xml:space="preserve">
+    <value>Loan types</value>
+    <comment>It's the name for loan types page</comment>
+  </data>
+  <data name="View_PaymentFrequenciesCrud_Delete" xml:space="preserve">
+    <value>Delete a Payment Frequency</value>
+    <comment>It's a message for Delete button</comment>
+  </data>
+  <data name="View_PaymentFrequenciesCrud_Fetch" xml:space="preserve">
+    <value>Fetch Payment Frequency</value>
+    <comment>It's a message for Fetch button</comment>
+  </data>
+  <data name="View_PaymentFrequenciesCrud_Insert" xml:space="preserve">
+    <value>Insert a Payment Frequency</value>
+    <comment>It's a message for Insert button</comment>
+  </data>
+  <data name="View_PaymentFrequenciesCrud_Update" xml:space="preserve">
+    <value>Update a Payment Frequency</value>
+    <comment>It's a message for Update button</comment>
+  </data>
+  <data name="View_PaymentFrequencyName" xml:space="preserve">
+    <value>Payment frequency</value>
+    <comment>It's the name for payment frequency page</comment>
   </data>
   <data name="View_Presentation1_Part1" xml:space="preserve">
     <value>The most reliable loan system to run your business, </value>
@@ -532,29 +573,37 @@
     <value>tailor-made for you!</value>
     <comment>It's the third part of the presentation message view 4</comment>
   </data>
-  <data name="View_RecoverAccount_FormTitle" xml:space="preserve">
-    <value>Forgot my password</value>
-    <comment>Title of the account recovery form</comment>
+  <data name="View_RelationshipName" xml:space="preserve">
+    <value>Relationship</value>
+    <comment>It's the name for relationship page</comment>
   </data>
-  <data name="View_RecoverAccount_InputPlaceholder" xml:space="preserve">
-    <value>Enter the email</value>
-    <comment>Placeholder message for the account recovery input entry</comment>
+  <data name="View_RelationshipsCrud_Delete" xml:space="preserve">
+    <value>Delete a Relationship</value>
+    <comment>It's a message for Delete button</comment>
   </data>
-  <data name="View_RecoverAccount_LabelInfo" xml:space="preserve">
-    <value>Enter your email, and we'll send you a link to reset your password</value>
-    <comment>User information for account recovery</comment>
+  <data name="View_RelationshipsCrud_Fetch" xml:space="preserve">
+    <value>Fetch Relationship</value>
+    <comment>It's a message for Fetch button</comment>
   </data>
-  <data name="View_RecoverAccount_LoginButton" xml:space="preserve">
-    <value>Log In</value>
-    <comment>Message for the login button</comment>
+  <data name="View_RelationshipsCrud_Insert" xml:space="preserve">
+    <value>Insert a Relationship</value>
+    <comment>It's a message for Insert button</comment>
   </data>
-  <data name="View_RecoverAccount_SendButton" xml:space="preserve">
-    <value>Send</value>
-    <comment>Message for the Send button (sends the email) for account recovery</comment>
+  <data name="View_RelationshipsCrud_Update" xml:space="preserve">
+    <value>Update a Relationship</value>
+    <comment>It's a message for Update button</comment>
+  </data>
+  <data name="View_Select_Message" xml:space="preserve">
+    <value>Choose one</value>
+    <comment>It's a message for selecte a item</comment>
   </data>
   <data name="View_StartToWork" xml:space="preserve">
     <value>Start to work</value>
     <comment>It's a message for start some process</comment>
+  </data>
+  <data name="View_Update_Message" xml:space="preserve">
+    <value>Update</value>
+    <comment>It's  a message for Update pages</comment>
   </data>
   <data name="View_Welcome" xml:space="preserve">
     <value>Welcome to SysCredit</value>

@@ -23,6 +23,7 @@
                 <ResourceDictionary Source="Resources/Styles/Border.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Text.xaml" />
                 <ResourceDictionary Source="Resources/Styles/LoginStyles.xaml" />
+                <ResourceDictionary Source="Resources/Styles/ButtonIconStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

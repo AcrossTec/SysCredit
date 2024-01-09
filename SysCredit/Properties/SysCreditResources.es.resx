@@ -125,37 +125,80 @@
     <value>Omitir</value>
     <comment>Mensaje para botón</comment>
   </data>
-  <data name="View_Login_FirstInputLabel" xml:space="preserve">
-    <value>Correo Asignado</value>
-    <comment>Label de la primera entrada de inicio de sesión</comment>
+  <data name="View_Cancel_Message" xml:space="preserve">
+    <value>Cancelar</value>
+    <comment>Mensaje de cancelación</comment>
   </data>
-  <data name="View_Login_FirstInputPlaceholder" xml:space="preserve">
-    <value>Ingrese el correo</value>
-    <comment>Mensaje (placeholder) de la primera entrada de inicio de sesión</comment>
+  <data name="View_CatalogsName" xml:space="preserve">
+    <value>Catálogos</value>
+    <comment>Nombre para la pagina de catalogs</comment>
   </data>
-  <data name="View_Login_FormTitle" xml:space="preserve">
-    <value>Iniciar Sesión</value>
-    <comment>Título del formulario de inicio de sesión</comment>
+  <data name="View_Confirm_Message" xml:space="preserve">
+    <value>Confirmar</value>
+    <comment>Mensaje de confirmación</comment>
   </data>
-  <data name="View_Login_LoginButton" xml:space="preserve">
-    <value>Acceder</value>
-    <comment>Mensaje para el botón iniciar sesión</comment>
+  <data name="View_Delete_Alert" xml:space="preserve">
+    <value>¿Está seguro de eliminarlo?</value>
+    <comment>Mensaje de alerta para eliminar un elemento</comment>
   </data>
-  <data name="View_Login_RecoverAccountButton" xml:space="preserve">
-    <value>He olvidado mi contraseña</value>
-    <comment>Mensaje para el botón que lo lleva a recuperar la cuenta</comment>
+  <data name="View_Delete_Message" xml:space="preserve">
+    <value>Eliminar</value>
   </data>
-  <data name="View_Login_SecondInputLabel" xml:space="preserve">
-    <value>Clave de Acceso</value>
-    <comment>Label de la segunda entrada de inicio de sesión</comment>
+  <data name="View_Enter_Name" xml:space="preserve">
+    <value>Ingrese un nombre</value>
+    <comment>Mensaje para ingresar un nuevo nombre como valor</comment>
   </data>
-  <data name="View_Login_SecondInputPlaceholder" xml:space="preserve">
-    <value>Ingrese la clave</value>
-    <comment>Mensaje (placeholder) de la segunda entrada de inicio de sesión</comment>
+  <data name="View_Insert_Message" xml:space="preserve">
+    <value>Ingrese el nombre</value>
+    <comment>Mensaje para el insert de un catalogo</comment>
   </data>
-  <data name="View_Login_SwitchButtonLabel" xml:space="preserve">
-    <value>Recordar usuario y contraseña</value>
-    <comment>Label del botón Switch de inicio de sesión</comment>
+  <data name="View_Label_Id" xml:space="preserve">
+    <value>ID</value>
+    <comment>Mensaje para representar los identificadores</comment>
+  </data>
+  <data name="View_Label_Name" xml:space="preserve">
+    <value>Nombre</value>
+    <comment>Mensaje para representar el nombre de un elemento</comment>
+  </data>
+  <data name="View_LoanTypesCrud_Delete" xml:space="preserve">
+    <value>Eliminar un Tipo de Préstamo</value>
+    <comment>Mensaje para el boton Delete</comment>
+  </data>
+  <data name="View_LoanTypesCrud_Fetch" xml:space="preserve">
+    <value>Ver Todos los Tipos de Préstamo</value>
+    <comment>Mensaje para el boton Fetch</comment>
+  </data>
+  <data name="View_LoanTypesCrud_Insert" xml:space="preserve">
+    <value>Agregar un Tipo de Préstamo</value>
+    <comment>Mensaje para el boton Insert</comment>
+  </data>
+  <data name="View_LoanTypesCrud_Update" xml:space="preserve">
+    <value>Modificar un Tipo de Préstamo</value>
+    <comment>Mensaje para el boton Update</comment>
+  </data>
+  <data name="View_LoanTypesName" xml:space="preserve">
+    <value>Tipos de préstamos</value>
+    <comment>Nombre para la pagina de loantypes</comment>
+  </data>
+  <data name="View_PaymentFrequenciesCrud_Delete" xml:space="preserve">
+    <value>Eliminar una Frecuencia de Pago</value>
+    <comment>Mensaje para el boton Delete</comment>
+  </data>
+  <data name="View_PaymentFrequenciesCrud_Fetch" xml:space="preserve">
+    <value>Ver Todas las Frecuencias de Pago</value>
+    <comment>Mensaje para el boton Fetch</comment>
+  </data>
+  <data name="View_PaymentFrequenciesCrud_Insert" xml:space="preserve">
+    <value>Agregar una Frecuencia de Pago</value>
+    <comment>Mensaje para el boton Insert</comment>
+  </data>
+  <data name="View_PaymentFrequenciesCrud_Update" xml:space="preserve">
+    <value>Modificar una Frecuencia de Pago</value>
+    <comment>Mensaje para el boton Update</comment>
+  </data>
+  <data name="View_PaymentFrequencyName" xml:space="preserve">
+    <value>Frecuencia de pago</value>
+    <comment>Nombre para la pagina de payment frequency</comment>
   </data>
   <data name="View_Presentation1_Part1" xml:space="preserve">
     <value>El sistema de prestamo mas confiable para dirigir tu empresa, de manera mas </value>
@@ -185,29 +228,37 @@
     <value>VIGÍA.</value>
     <comment>Segunda parte del mensaje de la tercera vista de presentación</comment>
   </data>
-  <data name="View_RecoverAccount_FormTitle" xml:space="preserve">
-    <value>Olvidé mi contraseña</value>
-    <comment>Título del formulario de recuperar cuenta</comment>
+  <data name="View_RelationshipName" xml:space="preserve">
+    <value>Parentesco</value>
+    <comment>Nombre para la pagina de relationship</comment>
   </data>
-  <data name="View_RecoverAccount_InputPlaceholder" xml:space="preserve">
-    <value>Ingrese el correo</value>
-    <comment>Mensaje (placeholder) de la entrada para recuperar cuenta</comment>
+  <data name="View_RelationshipsCrud_Delete" xml:space="preserve">
+    <value>Eliminar un Parentesco</value>
+    <comment>Mensaje para el boton Delete</comment>
   </data>
-  <data name="View_RecoverAccount_LabelInfo" xml:space="preserve">
-    <value>Introduzca su correo electrónico y le enviaremos un link para reestablecer su contraseña</value>
-    <comment> Información al usuario para recuperar la cuenta </comment>
+  <data name="View_RelationshipsCrud_Fetch" xml:space="preserve">
+    <value>Ver Todos los Parentesco</value>
+    <comment>Mensaje para el boton Fetch</comment>
   </data>
-  <data name="View_RecoverAccount_LoginButton" xml:space="preserve">
-    <value>Iniciar Sesión</value>
-    <comment>Mensaje para el botón de iniciar sesión</comment>
+  <data name="View_RelationshipsCrud_Insert" xml:space="preserve">
+    <value>Agregar un Parentesco</value>
+    <comment>Mensaje para el boton Insert</comment>
   </data>
-  <data name="View_RecoverAccount_SendButton" xml:space="preserve">
-    <value>Enviar</value>
-    <comment>Mensaje para el botón Enviar (envía el correo electrónico) para recuperar cuenta </comment>
+  <data name="View_RelationshipsCrud_Update" xml:space="preserve">
+    <value>Modificar un Parentesco</value>
+    <comment>Mensaje para el boton Update</comment>
+  </data>
+  <data name="View_Select_Message" xml:space="preserve">
+    <value>Selecciona uno</value>
+    <comment>Mensaje para accion de seleccionar</comment>
   </data>
   <data name="View_StartToWork" xml:space="preserve">
     <value>Empezar a trabajar</value>
     <comment>Mensaje para iniciar algun proceso</comment>
+  </data>
+  <data name="View_Update_Message" xml:space="preserve">
+    <value>Modificar</value>
+    <comment>Mensaje para acciones de modificar</comment>
   </data>
   <data name="View_Welcome" xml:space="preserve">
     <value>BIenvenido a SysCredit</value>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Properties="clr-namespace:SysCredit.Mobile.Properties"
+             xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Catalogs"             
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="ViewModels:CatalogsPageViewModel"
+             x:Class="SysCredit.Mobile.Views.Catalogs.CatalogsPage">
+
+    <ScrollView>
+
+        <StackLayout Margin="10,0,10,10">
+
+            <Label 
+                Text="{x:Static Properties:SysCreditResources.View_CatalogsName}" 
+                TextColor="{StaticResource Primary}"
+                FontSize="32"
+                FontFamily="InterBold"
+                Margin="20,30,10,10"/>
+
+            <toolkit:UniformItemsLayout
+                x:Name="ItemsLayout"
+                Margin="0,30,0,0"
+                MaxColumns="3">
+
+                <VerticalStackLayout>
+
+                    <Button 
+                        Style="{StaticResource ButtonIcon}"
+                        ImageSource="loan_types_icon.svg"
+                        Command="{Binding GoToLoanTypeCommand}" />
+
+                    <Label 
+                        Text="{x:Static Properties:SysCreditResources.View_LoanTypesName}"
+                        TextColor="{StaticResource Primary}" 
+                        FontSize="13"
+                        HorizontalTextAlignment="Center"
+                        WidthRequest="70"
+                        FontFamily="InterMedium" />
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+
+                    <Button 
+                        Style="{StaticResource ButtonIcon}"
+                        ImageSource="payment_frequency_icon.svg"
+                        Command="{Binding GoToPaymentFrequencyCommand}" />
+
+                    <Label 
+                        Text="{x:Static Properties:SysCreditResources.View_PaymentFrequencyName}" 
+                        TextColor="{StaticResource Primary}" 
+                        FontSize="13"
+                        HorizontalTextAlignment="Center"
+                        WidthRequest="70" 
+                        FontFamily="InterMedium" />
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+
+                    <Button 
+                        Style="{StaticResource ButtonIcon}"
+                        ImageSource="relationship_icon.svg"
+                        Command="{Binding GoToRelationshipCommand}" />
+
+                    <Label 
+                        Text="{x:Static Properties:SysCreditResources.View_RelationshipName}" 
+                        TextColor="{StaticResource Primary}" 
+                        FontSize="13"
+                        HorizontalTextAlignment="Center"
+                        WidthRequest="70"
+                        FontFamily="InterMedium" />
+
+                </VerticalStackLayout>
+
+            </toolkit:UniformItemsLayout>
+        </StackLayout>
+
+    </ScrollView>
+
+</ContentPage>

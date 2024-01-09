@@ -808,15 +808,6 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string View_ {
-            get {
-                return ResourceManager.GetString("View_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string View_ButtonNext {
@@ -826,11 +817,182 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Omit.
+        ///   Looks up a localized string similar to Skip.
         /// </summary>
         public static string View_ButtonOmit {
             get {
                 return ResourceManager.GetString("View_ButtonOmit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string View_Cancel_Message {
+            get {
+                return ResourceManager.GetString("View_Cancel_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catalogs.
+        /// </summary>
+        public static string View_CatalogsName {
+            get {
+                return ResourceManager.GetString("View_CatalogsName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string View_Confirm_Message {
+            get {
+                return ResourceManager.GetString("View_Confirm_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure to delete it?.
+        /// </summary>
+        public static string View_Delete_Alert {
+            get {
+                return ResourceManager.GetString("View_Delete_Alert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string View_Delete_Message {
+            get {
+                return ResourceManager.GetString("View_Delete_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter a name.
+        /// </summary>
+        public static string View_Enter_Name {
+            get {
+                return ResourceManager.GetString("View_Enter_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the name.
+        /// </summary>
+        public static string View_Insert_Message {
+            get {
+                return ResourceManager.GetString("View_Insert_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID.
+        /// </summary>
+        public static string View_Label_Id {
+            get {
+                return ResourceManager.GetString("View_Label_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string View_Label_Name {
+            get {
+                return ResourceManager.GetString("View_Label_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete a Loan Type.
+        /// </summary>
+        public static string View_LoanTypesCrud_Delete {
+            get {
+                return ResourceManager.GetString("View_LoanTypesCrud_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fetch Loan Type.
+        /// </summary>
+        public static string View_LoanTypesCrud_Fetch {
+            get {
+                return ResourceManager.GetString("View_LoanTypesCrud_Fetch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update a Loan Type.
+        /// </summary>
+        public static string View_LoanTypesCrud_Update {
+            get {
+                return ResourceManager.GetString("View_LoanTypesCrud_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert a Loan Type.
+        /// </summary>
+        public static string View_LoanTypesCurd_Insert {
+            get {
+                return ResourceManager.GetString("View_LoanTypesCurd_Insert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loan types.
+        /// </summary>
+        public static string View_LoanTypesName {
+            get {
+                return ResourceManager.GetString("View_LoanTypesName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete a Payment Frequency.
+        /// </summary>
+        public static string View_PaymentFrequenciesCrud_Delete {
+            get {
+                return ResourceManager.GetString("View_PaymentFrequenciesCrud_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fetch Payment Frequency.
+        /// </summary>
+        public static string View_PaymentFrequenciesCrud_Fetch {
+            get {
+                return ResourceManager.GetString("View_PaymentFrequenciesCrud_Fetch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert a Payment Frequency.
+        /// </summary>
+        public static string View_PaymentFrequenciesCrud_Insert {
+            get {
+                return ResourceManager.GetString("View_PaymentFrequenciesCrud_Insert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update a Payment Frequency.
+        /// </summary>
+        public static string View_PaymentFrequenciesCrud_Update {
+            get {
+                return ResourceManager.GetString("View_PaymentFrequenciesCrud_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment frequency.
+        /// </summary>
+        public static string View_PaymentFrequencyName {
+            get {
+                return ResourceManager.GetString("View_PaymentFrequencyName", resourceCulture);
             }
         }
         
@@ -997,47 +1159,56 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forgot my password.
+        ///   Looks up a localized string similar to Relationship.
         /// </summary>
-        public static string View_RecoverAccount_FormTitle {
+        public static string View_RelationshipName {
             get {
-                return ResourceManager.GetString("View_RecoverAccount_FormTitle", resourceCulture);
+                return ResourceManager.GetString("View_RelationshipName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter the email.
+        ///   Looks up a localized string similar to Delete a Relationship.
         /// </summary>
-        public static string View_RecoverAccount_InputPlaceholder {
+        public static string View_RelationshipsCrud_Delete {
             get {
-                return ResourceManager.GetString("View_RecoverAccount_InputPlaceholder", resourceCulture);
+                return ResourceManager.GetString("View_RelationshipsCrud_Delete", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter your email, and we&apos;ll send you a link to reset your password.
+        ///   Looks up a localized string similar to Fetch Relationship.
         /// </summary>
-        public static string View_RecoverAccount_LabelInfo {
+        public static string View_RelationshipsCrud_Fetch {
             get {
-                return ResourceManager.GetString("View_RecoverAccount_LabelInfo", resourceCulture);
+                return ResourceManager.GetString("View_RelationshipsCrud_Fetch", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Log In.
+        ///   Looks up a localized string similar to Insert a Relationship.
         /// </summary>
-        public static string View_RecoverAccount_LoginButton {
+        public static string View_RelationshipsCrud_Insert {
             get {
-                return ResourceManager.GetString("View_RecoverAccount_LoginButton", resourceCulture);
+                return ResourceManager.GetString("View_RelationshipsCrud_Insert", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Send.
+        ///   Looks up a localized string similar to Update a Relationship.
         /// </summary>
-        public static string View_RecoverAccount_SendButton {
+        public static string View_RelationshipsCrud_Update {
             get {
-                return ResourceManager.GetString("View_RecoverAccount_SendButton", resourceCulture);
+                return ResourceManager.GetString("View_RelationshipsCrud_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose one.
+        /// </summary>
+        public static string View_Select_Message {
+            get {
+                return ResourceManager.GetString("View_Select_Message", resourceCulture);
             }
         }
         
@@ -1047,6 +1218,15 @@ namespace SysCredit.Mobile.Properties {
         public static string View_StartToWork {
             get {
                 return ResourceManager.GetString("View_StartToWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string View_Update_Message {
+            get {
+                return ResourceManager.GetString("View_Update_Message", resourceCulture);
             }
         }
         
