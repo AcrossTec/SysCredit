@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 
 using SysCredit.Mobile.Views.Customers;
 using SysCredit.Mobile.Views.Loans;
+using SysCredit.Mobile.Views.Catalogs;
 
 using System;
 using System.Collections.Generic;
@@ -41,5 +42,11 @@ public partial class MainViewModel : ViewModelBase
     private async Task GoToRoutePage()
     {
         await Shell.Current.GoToAsync("///Route");
+    }
+
+    [RelayCommand]
+    private async Task GoToCatalogsPage()
+    {
+        await Shell.Current.GoToAsync(nameof(CatalogsPage));
     }
 }

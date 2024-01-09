@@ -25,6 +25,7 @@ using SysCredit.Mobile.ViewModels.Customers;
 using SysCredit.Mobile.ViewModels.Guarantors;
 using SysCredit.Mobile.ViewModels.Users;
 using SysCredit.Mobile.ViewModels.Presentations;
+using SysCredit.Mobile.Views.Catalogs;
 
 using The49.Maui.BottomSheet;
 using The49.Maui.ContextMenu;
@@ -191,6 +192,9 @@ public static partial class MauiProgram
 
         // Routing.RegisterRoute(nameof(LoanRequestPage), typeof(LoanRequestPage));
         // Routing.RegisterRoute(nameof(LoanListPage), typeof(LoanListPage));
+
+        // CATALOGS
+        Routing.RegisterRoute(nameof(CatalogsPage), typeof(CatalogsPage));
         return Builder;
     }
 }
