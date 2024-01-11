@@ -7,81 +7,64 @@
              x:Class="SysCredit.Mobile.Views.Users.RecoverAccountPage"
              Title="RecoverAccount">
 
-    <Grid RowDefinitions=".3*, .6*, .1*, .1*">
+    <ScrollView>
+        <Grid>
+            <StackLayout>
 
-        <!-- Parte superior de la pantalla -->
+                <!-- Parte superior de la pantalla -->
+                <Image Style="{StaticResource ImageStyle}" Source="header_recuperacion.svg"/>
 
-        <Image Grid.Row="0" Aspect="Center" Source="header_recuperacion.svg"/>
+                <!-- Parte central de la pantalla -->
+                <Border Style="{StaticResource BorderStyle}" BackgroundColor="{StaticResource SecondaryLoginColor}" >
+                    <StackLayout Spacing="20">
 
-        <!-- Parte superior de la pantalla -->
+                        <!-- Borde del centro de la pantalla -->
+                        <Border Style="{StaticResource BorderStyle}" BackgroundColor="{StaticResource GeneralLoginColor}" HeightRequest="60">
 
-        <!-- Parte central de la pantalla -->
+                            <Label Text="Olvidé mi contraseña" 
+                                   FontSize="28"
+                                   FontFamily="HelveticaNeueBold"
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Center"/>
+                        </Border>
 
-        <Border Grid.Row="1" 
-                Style="{StaticResource LoginCustomBorderStyle}"
-                Margin="25" 
-                BackgroundColor="{StaticResource SecondaryLoginColor}">
+                        <!-- Parte central de la pantalla (Entradas) -->
+                        <VerticalStackLayout Spacing="40" Padding="15" VerticalOptions="End">
 
-            <Grid RowDefinitions=".1*, .3*, .2*">
+                            <Label Text="Introduzca su correo electrónico y le enviaremos un link para reestablecer su contraseña" 
+                                   FontSize="18"
+                                   FontFamily="HelveticaNeueLight"
+                                   Margin="10, 0, 0, 0"/>
 
-                <!-- Borde del centro de la pantalla -->
+                            <Frame Style="{StaticResource LoginCustomFrameStyle}">
+                                <Entry Style="{StaticResource LoginCustomEntry}" 
+                                       Placeholder="Ingrese el correo" 
+                                       Keyboard="Email">
+                                </Entry>
+                            </Frame>
 
-                <Border Style="{StaticResource LoginCustomBorderStyle}"
-                        BackgroundColor="{StaticResource GeneralLoginColor}">
+                        </VerticalStackLayout>
 
-                    <Label Text="Olvidé mi contraseña" 
-                           FontSize="28"
-                           FontFamily="HelveticaNeueBold"
-                           HorizontalOptions="Center" 
-                           VerticalOptions="Center"/>
+                        <!-- Botón Enviar -->
 
+                        <Button Style="{StaticResource LoginCustomFormButton}" 
+                                Text="Enviar" 
+                                VerticalOptions="Center"
+                                Command="{Binding GoToLoginCommand}"
+                                Margin="0, 20, 0, 30"/>
+
+                    </StackLayout>
                 </Border>
 
-                <!-- Borde del centro de la pantalla -->
+                <!-- Parte inferior de la pantalla -->
+                <StackLayout Style="{StaticResource ButtonStackLayoutStyle}">
+                    <Button Style="{StaticResource LoginCustomButton}"
+                            Text="Iniciar Sesión" 
+                            Background="{StaticResource GeneralLoginColor}"
+                            Command="{Binding GoToLoginCommand}"/>
+                </StackLayout>
 
-                <!-- Parte central de la pantalla (Entradas) -->
-
-                <VerticalStackLayout Grid.Row="1" Spacing="40" Padding="15" VerticalOptions="End">
-
-                    <Label Text="Introduzca su correo electrónico y le enviaremos un link para reestablecer su contraseña" 
-                           FontSize="18"
-                           FontFamily="HelveticaNeueLight"
-                           Margin="10, 0, 0, 0"/>
-
-                    <Frame Style="{StaticResource LoginCustomFrameStyle}">
-                        <Entry Style="{StaticResource LoginCustomEntry}" 
-                               Placeholder="Ingrese el correo" 
-                               Keyboard="Email">
-                        </Entry>
-                    </Frame>
-
-                </VerticalStackLayout>
-
-                <!-- Parte central de la pantalla (Entradas) -->
-
-                <!-- Botón Enviar -->
-
-                <Button Grid.Row="2" Style="{StaticResource LoginCustomFormButton}" 
-                        Text="Enviar" 
-                        VerticalOptions="Center"
-                        Command="{Binding GoToLoginCommand}"/> 
-
-                <!-- Botón Enviar -->
-
-            </Grid>
-        </Border>
-
-        <!-- Parte central de la pantalla -->
-
-        <!-- Parte inferior de la pantalla -->
-
-        <Button Grid.Row="2" 
-                Style="{StaticResource LoginCustomButton}" 
-                Text="Iniciar Sesión" 
-                Background="{StaticResource GeneralLoginColor}"
-                Command="{Binding GoToLoginCommand}"/>
-
-        <!-- Parte inferior de la pantalla -->
+            </StackLayout>
 
         <!-- Footer -->
 
@@ -89,7 +72,6 @@
             <Controls:SysCreditFooterView />
         </StackLayout>
 
-        <!-- Footer -->
-
-    </Grid>
+        </Grid>
+    </ScrollView>
 </ContentPage>
