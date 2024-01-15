@@ -55,7 +55,7 @@
 
             <!-- Footer -->
             <StackLayout VerticalOptions="End">
-                <Controls:PresentationFooterView/>
+                <Controls:SysCreditFooterView />
             </StackLayout>
 
         </Grid>
