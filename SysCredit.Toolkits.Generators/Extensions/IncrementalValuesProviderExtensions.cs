@@ -84,9 +84,9 @@ public static class IncrementalValuesProviderExtensions
     /// <summary>
     ///     Regresa un <see cref="IncrementalValuesProvider{TValues}"/> con valores únicos.
     /// </summary>
-    /// <typeparam name="TSource"></
+    /// <typeparam name="TSource">
     ///     Tipo del proveedor de datos.
-    /// typeparam>
+    /// </typeparam>
     /// <param name="Source">
     ///     Proveedor de datos.
     /// </param>
@@ -101,9 +101,9 @@ public static class IncrementalValuesProviderExtensions
     /// <summary>
     ///     Regresa un <see cref="IncrementalValuesProvider{TValues}"/> con valores únicos.
     /// </summary>
-    /// <typeparam name="TSource"></
+    /// <typeparam name="TSource">
     ///     Tipo del proveedor de datos.
-    /// typeparam>
+    /// </typeparam>
     /// <param name="Source">
     ///     Proveedor de datos.
     /// </param>

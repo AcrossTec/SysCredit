@@ -32,18 +32,18 @@ public record class SearchCustomer
     [JsonIgnore]
     public string JsonReferences
     {
-        get => JsonSerializer.Serialize(References);
-        set => References = JsonSerializer.Deserialize<ReferenceInfo[]>(value) ?? Array.Empty<ReferenceInfo>();
+        get => JsonSerializer.Serialize(References, SysCreditDataTransferObjectSerializerContext.Default.ReferenceInfoArray);
+        set => References = JsonSerializer.Deserialize(value, SysCreditDataTransferObjectSerializerContext.Default.ReferenceInfoArray) ?? [];
     }
 
     [JsonIgnore]
     public string JsonGuarantors
     {
-        get => JsonSerializer.Serialize(Guarantors);
-        set => Guarantors = JsonSerializer.Deserialize<GuarantorInfo[]>(value) ?? Array.Empty<GuarantorInfo>();
+        get => JsonSerializer.Serialize(Guarantors, SysCreditDataTransferObjectSerializerContext.Default.GuarantorInfoArray);
+        set => Guarantors = JsonSerializer.Deserialize(value, SysCreditDataTransferObjectSerializerContext.Default.GuarantorInfoArray) ?? [];
     }
 
-    public ReferenceInfo[] References { get; set; } = Array.Empty<ReferenceInfo>();
+    public ReferenceInfo[] References { get; set; } = [];
 
-    public GuarantorInfo[] Guarantors { get; set; } = Array.Empty<GuarantorInfo>();
+    public GuarantorInfo[] Guarantors { get; set; } = [];
 }

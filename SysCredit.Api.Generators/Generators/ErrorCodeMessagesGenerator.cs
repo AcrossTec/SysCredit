@@ -2,11 +2,13 @@
 
 using Microsoft.CodeAnalysis;
 
-using System.Reflection;
-
-[Generator]
+/// <summary>
+///     Generador de código para los mensajes de error.
+/// </summary>
+[Generator(LanguageNames.CSharp)]
 public class ErrorCodeMessagesGenerator : IIncrementalGenerator
 {
+    /// <inheritdoc />
     public void Initialize(IncrementalGeneratorInitializationContext Context)
     {
     }
