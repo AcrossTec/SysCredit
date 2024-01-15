@@ -10,6 +10,18 @@
 
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
+    
+    <!--Primary Colors Variants-->
+    <Color x:Key="Primary900">#0034a8</Color>
+    <Color x:Key="Primary800">#0035d7</Color>
+    <Color x:Key="Primary700">#0042ff</Color>
+    <Color x:Key="Primary600">#005bff</Color>
+    <Color x:Key="Primary500">#0882ff</Color>
+    <Color x:Key="Primary400">#36abff</Color>
+    <Color x:Key="Primary300">#76caff</Color>
+    <Color x:Key="Primary200">#aeddff</Color>
+    <Color x:Key="Primary100">#d1ebff</Color>
+    <Color x:Key="Primary50" >#ebf6ff</Color>
 
     <Color x:Key="PrimaryLabelColor">#001225</Color>
     <Color x:Key="SplashScreensBackground">#001225</Color>

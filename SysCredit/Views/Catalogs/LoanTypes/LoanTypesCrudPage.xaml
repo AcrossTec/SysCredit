@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Properties="clr-namespace:SysCredit.Mobile.Properties"
+             xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Catalogs.LoanTypes"             
+             x:Class="SysCredit.Mobile.Views.Catalogs.LoanTypes.LoanTypesCrudPage"
+             Title="{x:Static Properties:SysCreditResources.View_LoanTypesName}">
+
+    <ScrollView>
+        <VerticalStackLayout Margin="20,40,20,20" Spacing="20">
+
+            <Button
+                WidthRequest="350"
+                HeightRequest="50"
+                CornerRadius="15"
+                BackgroundColor="{StaticResource Primary}" 
+                FontFamily="InterMedium"
+                Command="{Binding GoToFetchCommand}"
+                Text="{x:Static Properties:SysCreditResources.View_LoanTypesCrud_Fetch}" />
+
+            <Button
+                WidthRequest="350"
+                HeightRequest="50"
+                CornerRadius="15"
+                BackgroundColor="{StaticResource Primary}" 
+                FontFamily="InterMedium"
+                Command="{Binding DisplayInsertCommand}"
+                Text="{x:Static Properties:SysCreditResources.View_LoanTypesCurd_Insert}" />
+
+            <Button
+                WidthRequest="350"
+                HeightRequest="50"
+                CornerRadius="15"
+                BackgroundColor="{StaticResource Primary}" 
+                FontFamily="InterMedium"
+                Command="{Binding GoToDeleteCommand}"
+                Text="{x:Static Properties:SysCreditResources.View_LoanTypesCrud_Delete}" />
+
+            <Button
+                WidthRequest="350"
+                HeightRequest="50"
+                CornerRadius="15"
+                BackgroundColor="{StaticResource Primary}"
+                FontFamily="InterMedium"
+                Command="{Binding GoToUpdateCommand}"
+                Text="{x:Static Properties:SysCreditResources.View_LoanTypesCrud_Update}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

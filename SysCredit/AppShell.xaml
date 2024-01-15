@@ -12,10 +12,12 @@
     xmlns:UserViews="clr-namespace:SysCredit.Mobile.Views.Users"
     xmlns:PresentationViews="clr-namespace:SysCredit.Mobile.Views.Presentations"
     xmlns:ReportViews="clr-namespace:SysCredit.Mobile.Views.Reports"
+    xmlns:CatalogsView="clr-namespace:SysCredit.Mobile.Views.Catalogs"
     xmlns:RouteViews="clr-namespace:SysCredit.Mobile.Views.Routes"
     xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
     xmlns:Toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:UraniumUI="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+    xmlns:Properties="clr-namespace:SysCredit.Mobile.Properties"
     x:Class="SysCredit.Mobile.AppShell"
     x:Name="SysCreditShell"
     Shell.FlyoutBehavior="Flyout"
@@ -239,6 +241,12 @@
     <ShellContent
         Route="Report" Title="Reportes" Icon="presentation_financial_white_icon.svg"
         ContentTemplate="{DataTemplate ReportViews:ReportPage}" />
+
+    <ShellContent 
+        Route="Catalogs" 
+        Title="{x:Static Properties:SysCreditResources.View_CatalogsName}"
+        Icon="catalog_icon.svg"
+        ContentTemplate="{DataTemplate CatalogsView:CatalogsPage}"/>
 
     <ShellContent
         Route="About" Title="Acerca De" Icon="circle_info_solid_white_icon.svg"
