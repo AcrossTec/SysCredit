@@ -10,13 +10,13 @@
 
     <ScrollView>
         <Grid>
-            <StackLayout VerticalOptions="FillAndExpand">
+            <StackLayout>
 
                 <!-- Parte superior de la pantalla -->
-                <Image Aspect="Fill" Source="login_parte_superior.svg"/>
+                <Image Style="{StaticResource ImageStyle}" Source="login_parte_superior.svg"/>
 
                 <!-- Parte central de la pantalla -->
-                <Border Style="{StaticResource LoginCustomBorderStyle}" Margin="10" BackgroundColor="{StaticResource GeneralLoginColor}">
+                <Border Style="{StaticResource BorderStyle}" BackgroundColor="{StaticResource GeneralLoginColor}">
                     <StackLayout Padding="20">
 
                         <!-- Parte central de la pantalla (Entradas) -->
@@ -49,7 +49,9 @@
                 </Border>
 
                 <!-- Parte inferior de la pantalla -->
-                <Button Style="{StaticResource LoginCustomButton}" Text="He olvidado mi contraseña" Background="{StaticResource ForgotPasswordButtonBackground}" Command="{Binding GoToRecoverAccountCommand}" Margin="20"/>
+                <StackLayout Style="{StaticResource ButtonStackLayoutStyle}">
+                    <Button Style="{StaticResource LoginCustomButton}" Text="He olvidado mi contraseña" Background="{StaticResource ForgotPasswordButtonBackground}" Command="{Binding GoToRecoverAccountCommand}"/>
+                </StackLayout>
 
             </StackLayout>
 
