@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ViewModels="clr-namespace:SysCredit.Mobile.ViewModels.Users"
              xmlns:Controls="clr-namespace:SysCredit.Mobile.Controls"
+             xmlns:Properties="clr-namespace:SysCredit.Mobile.Properties"
              x:DataType="ViewModels:LoginViewModel"
              x:Class="SysCredit.Mobile.Views.Users.LoginPage"
              Title="Login">
@@ -20,38 +21,36 @@
                     <StackLayout Padding="20">
 
                         <!-- Parte central de la pantalla (Entradas) -->
-                        <Label Text="Iniciar Sesión" FontSize="35" FontFamily="HelveticaNeueBold" HorizontalOptions="Center"/>
+                        <Label Text="{x:Static Properties:SysCreditResources.View_Login_FormTitle}" FontSize="35" FontFamily="HelveticaNeueBold" HorizontalOptions="Center"/>
 
                         <VerticalStackLayout Spacing="15" Margin="0, 15, 0, 10">
-                            <Label Text="Correo Asignado:" FontSize="18" FontFamily="HelveticaNeueBold" Margin="10, 0, 0, 0"/>
+                            <Label Text="{x:Static Properties:SysCreditResources.View_Login_FirstInputLabel}" FontSize="18" FontFamily="HelveticaNeueBold" Margin="10, 0, 0, 0"/>
                             <Frame Style="{StaticResource LoginCustomFrameStyle}">
-                                <Entry Style="{StaticResource LoginCustomEntry}" Placeholder="Ingrese el correo" Keyboard="Email"/>
+                                <Entry Style="{StaticResource LoginCustomEntry}" Placeholder="{x:Static Properties:SysCreditResources.View_Login_FirstInputPlaceholder}" Keyboard="Email"/>
                             </Frame>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Spacing="15" Margin="0, 15, 0, 10">
-                            <Label Text="Clave de Acceso:" FontSize="18" FontFamily="HelveticaNeueBold" Margin="10, 0, 0, 0"/>
+                            <Label Text="{x:Static Properties:SysCreditResources.View_Login_SecondInputLabel}" FontSize="18" FontFamily="HelveticaNeueBold" Margin="10, 0, 0, 0"/>
                             <Frame Style="{StaticResource LoginCustomFrameStyle}">
-                                <Entry Style="{StaticResource LoginCustomEntry}" Placeholder="Ingrese la clave" IsPassword="True"/>
+                                <Entry Style="{StaticResource LoginCustomEntry}" Placeholder="{x:Static Properties:SysCreditResources.View_Login_SecondInputPlaceholder}" IsPassword="True"/>
                             </Frame>
                         </VerticalStackLayout>
 
                         <!-- Botón Switch -->
                         <HorizontalStackLayout Spacing="5" Margin="0, 0, 0, 15">
                             <Switch HorizontalOptions="Start" VerticalOptions="End" />
-                            <Label Text="Recordar usuario y contraseña" FontFamily="HelveticaNeueLight" TextColor="{StaticResource White}" VerticalOptions="Center"/>
+                            <Label Text="{x:Static Properties:SysCreditResources.View_Login_SwitchButtonLabel}" FontFamily="HelveticaNeueLight" TextColor="{StaticResource White}" VerticalOptions="Center"/>
                         </HorizontalStackLayout>
 
                         <!-- Botón Acceder -->
-                        <Button Style="{StaticResource LoginCustomFormButton}" Text="Acceder" Command="{Binding GoToHomeCommand}" />
+                        <Button Style="{StaticResource LoginCustomFormButton}" Text="{x:Static Properties:SysCreditResources.View_Login_LoginButton}" Command="{Binding GoToHomeCommand}" />
 
                     </StackLayout>
                 </Border>
 
                 <!-- Parte inferior de la pantalla -->
-                <StackLayout Style="{StaticResource ButtonStackLayoutStyle}">
-                    <Button Style="{StaticResource LoginCustomButton}" Text="He olvidado mi contraseña" Background="{StaticResource ForgotPasswordButtonBackground}" Command="{Binding GoToRecoverAccountCommand}"/>
-                </StackLayout>
+                <Button Style="{StaticResource LoginCustomButton}" Text="{x:Static Properties:SysCreditResources.View_Login_RecoverAccountButton}" Background="{StaticResource ForgotPasswordButtonBackground}" Command="{Binding GoToRecoverAccountCommand}" Margin="20"/>
 
             </StackLayout>
 

@@ -835,6 +835,78 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assigned Email.
+        /// </summary>
+        public static string View_Login_FirstInputLabel {
+            get {
+                return ResourceManager.GetString("View_Login_FirstInputLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the email.
+        /// </summary>
+        public static string View_Login_FirstInputPlaceholder {
+            get {
+                return ResourceManager.GetString("View_Login_FirstInputPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log In.
+        /// </summary>
+        public static string View_Login_FormTitle {
+            get {
+                return ResourceManager.GetString("View_Login_FormTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access.
+        /// </summary>
+        public static string View_Login_LoginButton {
+            get {
+                return ResourceManager.GetString("View_Login_LoginButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot my password.
+        /// </summary>
+        public static string View_Login_RecoverAccountButton {
+            get {
+                return ResourceManager.GetString("View_Login_RecoverAccountButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Access Password.
+        /// </summary>
+        public static string View_Login_SecondInputLabel {
+            get {
+                return ResourceManager.GetString("View_Login_SecondInputLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the password.
+        /// </summary>
+        public static string View_Login_SecondInputPlaceholder {
+            get {
+                return ResourceManager.GetString("View_Login_SecondInputPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remember username and password.
+        /// </summary>
+        public static string View_Login_SwitchButtonLabel {
+            get {
+                return ResourceManager.GetString("View_Login_SwitchButtonLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The most reliable loan system to run your business, .
         /// </summary>
         public static string View_Presentation1_Part1 {
@@ -921,6 +993,51 @@ namespace SysCredit.Mobile.Properties {
         public static string View_Presentation4_Part3 {
             get {
                 return ResourceManager.GetString("View_Presentation4_Part3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot my password.
+        /// </summary>
+        public static string View_RecoverAccount_FormTitle {
+            get {
+                return ResourceManager.GetString("View_RecoverAccount_FormTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the email.
+        /// </summary>
+        public static string View_RecoverAccount_InputPlaceholder {
+            get {
+                return ResourceManager.GetString("View_RecoverAccount_InputPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your email, and we&apos;ll send you a link to reset your password.
+        /// </summary>
+        public static string View_RecoverAccount_LabelInfo {
+            get {
+                return ResourceManager.GetString("View_RecoverAccount_LabelInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log In.
+        /// </summary>
+        public static string View_RecoverAccount_LoginButton {
+            get {
+                return ResourceManager.GetString("View_RecoverAccount_LoginButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        public static string View_RecoverAccount_SendButton {
+            get {
+                return ResourceManager.GetString("View_RecoverAccount_SendButton", resourceCulture);
             }
         }
         
