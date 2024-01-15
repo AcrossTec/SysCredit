@@ -73,9 +73,9 @@ public static class StoreExtensions
     /// <returns>
     ///     Regresa el primer resultado del procedimiento almacenado convertido en un objeto de tipo <typeparamref name="T" />.
     /// </returns>
-    public static ValueTask<T> ExecuteStoredProcedureScalarAsync<T>(this IStore Store, string Sql, object? Parameters = null, IDbTransaction? Transaction = null, int? CommandTimeout = null)
+    public static ValueTask<T?> ExecuteStoredProcedureScalarAsync<T>(this IStore Store, string Sql, object? Parameters = null, IDbTransaction? Transaction = null, int? CommandTimeout = null)
     {
-        return new ValueTask<T>(Store.Connection.ExecuteScalarAsync<T>(Sql, Parameters, Transaction, CommandTimeout, CommandType.StoredProcedure));
+        return new ValueTask<T?>(Store.Connection.ExecuteScalarAsync<T?>(Sql, Parameters, Transaction, CommandTimeout, CommandType.StoredProcedure));
     }
 
     /// <summary>
@@ -177,8 +177,8 @@ public static class StoreExtensions
     /// <returns>
     ///     Regresa el primer resultado del procedimiento almacenado convertido al objetos de tipo <typeparamref name="T" /> o null si no hay resultados.
     /// </returns>
-    public static ValueTask<T> ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<T>(this IStore Store, string Sql, object? Parameters = null, IDbTransaction? Transaction = null, int? CommandTimeout = null)
+    public static ValueTask<T?> ExecuteStoredProcedureQueryFirstOrDefaultValueAsync<T>(this IStore Store, string Sql, object? Parameters = null, IDbTransaction? Transaction = null, int? CommandTimeout = null)
     {
-        return new ValueTask<T>(Store.Connection.QueryFirstOrDefaultAsync<T>(Sql, Parameters, Transaction, CommandTimeout, CommandType.StoredProcedure));
+        return new ValueTask<T?>(Store.Connection.QueryFirstOrDefaultAsync<T?>(Sql, Parameters, Transaction, CommandTimeout, CommandType.StoredProcedure));
     }
 }

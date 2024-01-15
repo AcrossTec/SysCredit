@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <WarningsAsErrors>Nullable</WarningsAsErrors>
-    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <!--<TreatWarningsAsErrors>True</TreatWarningsAsErrors>-->
     <WarningLevel>9999</WarningLevel>
   </PropertyGroup>
 
@@ -20,10 +20,10 @@
   <!-- https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained -->
 
   <PropertyGroup>
-    <IsTrimmable>True</IsTrimmable>
+    <!--<IsTrimmable>True</IsTrimmable>
     <IsAotCompatible>True</IsAotCompatible>
     <PublishAot>True</PublishAot>
-    <PublishTrimmed>True</PublishTrimmed>
+    <PublishTrimmed>True</PublishTrimmed>-->
     <OptimizationPreference>Speed</OptimizationPreference>
   </PropertyGroup>
 

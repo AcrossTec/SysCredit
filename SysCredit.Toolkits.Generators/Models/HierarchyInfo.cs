@@ -10,7 +10,7 @@ using static Microsoft.CodeAnalysis.SymbolDisplayTypeQualificationStyle;
 /// <summary>
 ///     A model describing the hierarchy info for a specific type.
 /// </summary>
-/// <param name="FilenameHint">
+/// <param name="FileNameHint">
 ///     The filename hint for the current type.
 /// </param>
 /// <param name="MetadataName">
@@ -22,7 +22,7 @@ using static Microsoft.CodeAnalysis.SymbolDisplayTypeQualificationStyle;
 /// <param name="Hierarchy">
 ///     Gets the sequence of type definitions containing the current type.
 /// </param>
-public sealed partial record HierarchyInfo(string FilenameHint, string MetadataName, string Namespace, EquatableArray<TypeInfo> Hierarchy)
+public sealed partial record HierarchyInfo(string FileNameHint, string MetadataName, string Namespace, EquatableArray<TypeInfo> Hierarchy)
 {
     /// <summary>
     ///     Creates a new <see cref="HierarchyInfo"/> instance from a given <see cref="INamedTypeSymbol"/>.
