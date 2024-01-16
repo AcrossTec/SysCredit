@@ -1,24 +1,18 @@
 ﻿namespace SysCredit.Api.Patchers;
 
-using HarmonyLib;
-
-using log4net.Core;
-
-using SysCredit.Api.Constants;
-using SysCredit.Api.Exceptions;
-using SysCredit.Api.Extensions;
-using SysCredit.Api.Middlewares;
-using SysCredit.Api.Stores;
-
-using SysCredit.Helpers;
-
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text.Json;
 
-using static String;
+using HarmonyLib;
 
-using NJsonConvert = Newtonsoft.Json.JsonConvert;
+using SysCredit.Api.Constants;
+using SysCredit.Api.Exceptions;
+using SysCredit.Api.Extensions;
+using SysCredit.Api.Stores;
+using SysCredit.Helpers;
+
+using static String;
 
 /// <summary>
 ///     Crea un intercepción ó proxy que será ejecutado en vez del método estático del Store.
@@ -298,22 +292,15 @@ public static class StorePatcher
             // Serializar ha texto usando la implementacion nativa de DotNet.
             return JsonSerializer.Serialize(@object, new JsonSerializerOptions
             {
+                WriteIndented = true,
+                TypeInfoResolver = SysCreditSerializerContext.Default,
                 PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy,
-                WriteIndented = true
             });
         }
         catch
         {
-            try
-            {
-                // Serializar ha texto usando una implementación de terceros.
-                return NJsonConvert.SerializeObject(@object, Newtonsoft.Json.Formatting.Indented);
-            }
-            catch
-            {
-                // Regresar un texto usando la implementación .ToString() del objeto.
-                return @object.ToString()!;
-            }
+            // Regresar un texto usando la implementación .ToString() del objeto.
+            return @object.ToString()!;
         }
     }
 }

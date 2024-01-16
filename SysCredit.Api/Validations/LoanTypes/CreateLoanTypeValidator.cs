@@ -2,9 +2,9 @@
 
 using FluentValidation;
 
-using SysCredit.Api.Extensions;
 using SysCredit.Api.Constants;
-using SysCredit.Api.Requests.LoanType;
+using SysCredit.Api.Extensions;
+using SysCredit.Api.Requests.LoanTypes;
 
 /// <summary>
 ///     Clase validadora de <see cref="CreateLoanTypeRequest"/>.

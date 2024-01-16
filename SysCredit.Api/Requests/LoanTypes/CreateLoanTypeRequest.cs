@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Api.Requests.LoanType;
+﻿namespace SysCredit.Api.Requests.LoanTypes;
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Validations.LoanTypes;

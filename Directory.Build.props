@@ -10,6 +10,9 @@
     <WarningLevel>9999</WarningLevel>
   </PropertyGroup>
 
+  <!-- Native AOT deployment -->
+  <!-- https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/?tabs=net8plus%2Cwindows -->
+
   <!-- Optimize AOT deployments -->
   <!-- https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/optimizing -->
 
@@ -19,12 +22,16 @@
   <!-- Trim self-contained deployments and executables -->
   <!-- https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained -->
 
+  <!-- Trimming options -->
+  <!-- https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trimming-options?pivots=dotnet-8-0 -->
+
   <PropertyGroup>
-    <!--<IsTrimmable>True</IsTrimmable>
-    <IsAotCompatible>True</IsAotCompatible>
     <PublishAot>True</PublishAot>
-    <PublishTrimmed>True</PublishTrimmed>-->
+    <IsTrimmable>True</IsTrimmable>
+    <PublishTrimmed>True</PublishTrimmed>
+    <IsAotCompatible>True</IsAotCompatible>
     <OptimizationPreference>Speed</OptimizationPreference>
+    <StripSymbols>False</StripSymbols>
   </PropertyGroup>
 
   <!-- Disable reflection defaults -->

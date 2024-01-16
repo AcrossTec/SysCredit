@@ -135,13 +135,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="akgul.Maui.DataGrid" Version="3.0.0" />
+    <PackageReference Include="akgul.Maui.DataGrid" Version="4.0.1" />
     <PackageReference Include="AlohaKit" Version="1.0.74" />
     <PackageReference Include="AlohaKit.Animations" Version="1.0.0" />
     <PackageReference Include="AlohaKit.Layouts" Version="1.0.0" />
     <PackageReference Include="AlohaKit.UI" Version="1.0.2" />
     <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.2.2" />
-    <PackageReference Include="CommunityToolkit.Maui" Version="7.0.0" />
+    <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
     <PackageReference Include="CommunityToolkit.Maui.Maps" Version="2.0.0" />
     <PackageReference Include="CommunityToolkit.Maui.Markup" Version="4.0.0" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
@@ -150,32 +150,32 @@
     <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
     <PackageReference Include="OverFlower" Version="0.0.3" />
-    <PackageReference Include="ReactiveUI.Fody" Version="19.5.1" />
-    <PackageReference Include="Sharpnado.CollectionView.Maui" Version="3.0.0" />
+    <PackageReference Include="ReactiveUI.Fody" Version="19.5.39" />
+    <PackageReference Include="Sharpnado.CollectionView.Maui" Version="3.1.0" />
     <PackageReference Include="Sharpnado.Maui.TaskLoaderView" Version="2.5.1" />
     <PackageReference Include="Sharpnado.Tabs.Maui" Version="3.0.1" />
-    <PackageReference Include="SkiaSharp" Version="2.88.6" />
+    <PackageReference Include="SkiaSharp" Version="2.88.7" />
     <PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0-preview.86" />
-    <PackageReference Include="SkiaSharp.Skottie" Version="2.88.6" />
+    <PackageReference Include="SkiaSharp.Skottie" Version="2.88.7" />
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
-    <PackageReference Include="The49.Maui.BottomSheet" Version="1.0.4" />
+    <PackageReference Include="The49.Maui.BottomSheet" Version="8.0.2" />
     <PackageReference Include="The49.Maui.ContextMenu" Version="1.0.0-alpha1" />
     <PackageReference Include="The49.Maui.Insets" Version="1.0.0-alpha7" />
-    <PackageReference Include="UraniumUI" Version="2.5.6" />
-    <PackageReference Include="UraniumUI.Blurs" Version="2.5.6" />
-    <PackageReference Include="UraniumUI.Dialogs.CommunityToolkit" Version="2.5.6" />
-    <PackageReference Include="UraniumUI.Dialogs.Mopups" Version="2.5.6" />
-    <PackageReference Include="UraniumUI.Icons.FontAwesome" Version="2.5.6" />
-    <PackageReference Include="UraniumUI.Icons.MaterialIcons" Version="2.5.6" />
-    <PackageReference Include="UraniumUI.Icons.SegoeFluent" Version="2.5.6" />
-    <PackageReference Include="UraniumUI.Material" Version="2.5.6" />
-    <PackageReference Include="UraniumUI.Validations.DataAnnotations" Version="2.5.6" />
-    <PackageReference Include="UraniumUI.WebComponents" Version="2.5.6" />
+    <PackageReference Include="UraniumUI" Version="2.7.4" />
+    <PackageReference Include="UraniumUI.Blurs" Version="2.7.4" />
+    <PackageReference Include="UraniumUI.Dialogs.CommunityToolkit" Version="2.7.4" />
+    <PackageReference Include="UraniumUI.Dialogs.Mopups" Version="2.7.4" />
+    <PackageReference Include="UraniumUI.Icons.FontAwesome" Version="2.7.4" />
+    <PackageReference Include="UraniumUI.Icons.MaterialIcons" Version="2.7.4" />
+    <PackageReference Include="UraniumUI.Icons.SegoeFluent" Version="2.7.4" />
+    <PackageReference Include="UraniumUI.Material" Version="2.7.4" />
+    <PackageReference Include="UraniumUI.Validations.DataAnnotations" Version="2.7.4" />
+    <PackageReference Include="UraniumUI.WebComponents" Version="2.7.4" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
     <PackageReference Include="Controls.UserDialogs.Maui">
-      <Version>1.1.2</Version>
+      <Version>1.5.1</Version>
     </PackageReference>
   </ItemGroup>
 
@@ -195,6 +195,13 @@
     <ProjectReference Include="..\SysCredit.DataTransferObject\SysCredit.DataTransferObject.csproj" />
     <ProjectReference Include="..\SysCredit.Helpers\SysCredit.Helpers.csproj" />
     <ProjectReference Include="..\SysCredit.Models\SysCredit.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="PolySharp" Version="1.14.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>build; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

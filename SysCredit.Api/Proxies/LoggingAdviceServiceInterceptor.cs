@@ -1,5 +1,9 @@
 ﻿namespace SysCredit.Api.Proxies;
 
+using System.Reflection;
+using System.Text.Json;
+using System.Threading.Tasks;
+
 using Castle.DynamicProxy;
 
 using SysCredit.Api.Attributes;
@@ -7,11 +11,6 @@ using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
 using SysCredit.Helpers;
-
-using System.Data.SqlClient;
-using System.Reflection;
-using System.Text.Json;
-using System.Threading.Tasks;
 
 using static System.String;
 
@@ -311,22 +310,15 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
             // Serializar ha texto usando la implementacion nativa de DotNet.
             return JsonSerializer.Serialize(@object, new JsonSerializerOptions
             {
+                WriteIndented = true,
+                TypeInfoResolver = SysCreditSerializerContext.Default,
                 PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy,
-                WriteIndented = true
             });
         }
         catch
         {
-            try
-            {
-                // Serializar ha texto usando una implementación de terceros.
-                return Newtonsoft.Json.JsonConvert.SerializeObject(@object, Newtonsoft.Json.Formatting.Indented);
-            }
-            catch
-            {
-                // Regresar un texto usando la implementación .ToString() del objeto.
-                return @object.ToString()!;
-            }
+            // Regresar un texto usando la implementación .ToString() del objeto.
+            return @object.ToString()!;
         }
     }
 

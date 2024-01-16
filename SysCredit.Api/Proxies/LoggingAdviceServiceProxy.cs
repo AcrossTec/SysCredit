@@ -1,14 +1,10 @@
 ﻿namespace SysCredit.Api.Proxies;
 
-using Newtonsoft.Json;
-
-using SysCredit.Api.Extensions;
-using SysCredit.Helpers;
-
 using System.Reflection;
 using System.Text.Json;
 
-using JsonSerializer = System.Text.Json.JsonSerializer;
+using SysCredit.Api.Extensions;
+using SysCredit.Helpers;
 
 /// <summary>
 ///     Proxy para informar sobre los métodos que se estan ejecutando en los servicios y controladores.
@@ -115,21 +111,14 @@ public class LoggingAdviceServiceProxy<TInterface> : DispatchProxy
             return JsonSerializer.Serialize(@object, new JsonSerializerOptions
             {
                 WriteIndented = true,
+                TypeInfoResolver = SysCreditSerializerContext.Default,
                 PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy
             });
         }
         catch
         {
-            try
-            {
-                // Serializar ha texto usando una implementación de terceros.
-                return JsonConvert.SerializeObject(@object, Formatting.Indented);
-            }
-            catch
-            {
-                // Regresar un texto usando la implementación .ToString() del objeto.
-                return @object.ToString()!;
-            }
+            // Regresar un texto usando la implementación .ToString() del objeto.
+            return @object.ToString()!;
         }
     }
 

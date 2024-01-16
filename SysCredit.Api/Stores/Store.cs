@@ -102,8 +102,8 @@ public class Store<TModel>(IOptions<SysCreditOptions> Options, ILoggerFactory Lo
     /// <summary>
     ///     Objeto de conexión a algún proveedor de base de datos.
     /// </summary>
-    /// <seealso cref="SysCreditOptions.CreateConnection" />
-    public DbConnection Connection { get; } = Options.Value.CreateConnection();
+    /// <seealso cref="SysCreditOptions.CreateDbConnection" />
+    public DbConnection Connection { get; } = Options.Value.CreateDbConnection();
 
     /// <summary>
     ///     Objeto de Logs para informar sobre los distintos pasos que realiza un Store.

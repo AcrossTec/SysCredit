@@ -65,11 +65,10 @@ public class CreateCustomerRequest : IRequest
     /// <summary>
     ///     Obtiene o establece una lista de los fiadores del cliente.
     /// </summary>
-    public CustomerGuarantorRequest[] Guarantors { get; set; } = Array.Empty<CustomerGuarantorRequest>();
+    public CustomerGuarantorRequest[] Guarantors { get; set; } = [];
 
     /// <summary>
     ///     Obtiene o establece una lista de las referencias del cliente.
     /// </summary>
-    public CreateReferenceRequest[] References { get; set; } = Array.Empty<CreateReferenceRequest>();
-
+    public CreateReferenceRequest[] References { get; set; } = [];
 }

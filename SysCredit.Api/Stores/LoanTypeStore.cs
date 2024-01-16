@@ -1,20 +1,16 @@
 ﻿namespace SysCredit.Api.Stores;
 
+using System.Data;
+
 using Dapper;
 
 using SysCredit.Api.Attributes;
-using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Requests.LoanType;
 using SysCredit.Api.Requests.LoanTypes;
 using SysCredit.Helpers;
 using SysCredit.Models;
 
-using System.Data;
-using System.Reflection;
-
 using static Constants.ErrorCodePrefix;
-using static Constants.ErrorCodes;
 
 /// <summary>
 ///     Repositorio del modelo <see cref="LoanType"/>

@@ -1,9 +1,13 @@
 ﻿namespace SysCredit.Api;
 
-using Npgsql;
-
 using System.Data.Common;
 using System.Data.SqlClient;
+
+using Microsoft.Data.Sqlite;
+
+using MySql.Data.MySqlClient;
+
+using Npgsql;
 
 /// <summary>
 ///     Configuraciones globales para SysCredi.Api
@@ -11,59 +15,47 @@ using System.Data.SqlClient;
 public sealed class SysCreditOptions
 {
     /// <summary>
-    ///     Información básica para generar un JWT Token.
-    /// </summary>
-    public SysCreditTokenOptions TokenInfo { get; set; } = default!;
-
-    /// <summary>
     ///     Cadena de conexión al servidor.
     /// </summary>
     /// <seealso cref="ConnectionType" />
-    public string ConnectionString { get; set; } = string.Empty;
+    public required string ConnectionString { get; set; }
 
     /// <summary>
     ///     Tipo de cadena de conexión del servidor.
     ///     Permite crear de forma correcta el proveedor de base de datos.
     /// </summary>
-    /// <seealso cref="CreateConnection" />
-    public string ConnectionType { get; set; } = string.Empty;
+    /// <seealso cref="CreateDbConnection" />
+    public required string ConnectionType { get; set; }
 
     /// <summary>
     ///     Método de fábrica que crea un proveedor de base de datos.
     /// </summary>
     /// <returns>
-    ///     Regresa un proveedor de base de datos:
+    ///     Regresa un proveedor de base de datos configurado:
     ///
     ///     <list type="bullet">
     ///         <item><see cref="SqlConnection" /></item>
     ///         <description>Proveedor SQL Server</description>
+    ///         
     ///         <item><see cref="NpgsqlConnection" /></item>
     ///         <description>Proveedor PostgreSQL</description>
+    ///         
+    ///         <item><see cref="MySqlConnection" /></item>
+    ///         <description>Proveedor MySQL</description>
+    ///         
+    ///         <item><see cref="SqliteConnection" /></item>
+    ///         <description>Proveedor SQLite</description>
     ///     </list>
     /// </returns>
-    public DbConnection CreateConnection()
+    public DbConnection CreateDbConnection()
     {
         return ConnectionType switch
         {
             nameof(SqlConnection) => new SqlConnection(ConnectionString),
+            nameof(MySqlConnection) => new MySqlConnection(ConnectionString),
             nameof(NpgsqlConnection) => new NpgsqlConnection(ConnectionString),
-            _ => throw new NotSupportedException("Proveedor de base de datos no soportado.")
+            nameof(SqliteConnection) => new SqliteConnection(ConnectionString),
+            _ => throw new NotImplementedException()
         };
     }
-}
-
-/// <summary>
-///     Información básica para generar un JWT Token.
-/// </summary>
-public sealed class SysCreditTokenOptions
-{
-    /// <summary>
-    ///     Clave privada para generar el Token.
-    /// </summary>
-    public string Key { get; set; } = string.Empty;
-
-    /// <summary>
-    ///     Agente que genera el Token.
-    /// </summary>
-    public string Issuer { get; set; } = string.Empty;
 }

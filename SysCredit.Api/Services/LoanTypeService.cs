@@ -1,16 +1,14 @@
 ﻿namespace SysCredit.Api.Services;
 
+using System.Collections.Generic;
+
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces.Services;
-using SysCredit.Api.Requests.LoanType;
 using SysCredit.Api.Requests.LoanTypes;
 using SysCredit.Api.Stores;
-
 using SysCredit.Helpers;
 using SysCredit.Models;
-
-using System.Collections.Generic;
 
 using static Constants.ErrorCodePrefix;
 using static SysCredit.Helpers.ContextData;

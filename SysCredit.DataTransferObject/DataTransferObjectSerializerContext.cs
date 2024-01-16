@@ -27,6 +27,6 @@ using SysCredit.DataTransferObject.StoredProcedures;
 [JsonSerializable(typeof(FetchCustomer[]))]
 [JsonSerializable(typeof(FetchGuarantor[]))]
 [JsonSerializable(typeof(SearchCustomer[]))]
-public partial class SysCreditDataTransferObjectSerializerContext : JsonSerializerContext
+public partial class DataTransferObjectSerializerContext : JsonSerializerContext
 {
 }
