@@ -12,6 +12,7 @@ using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 using static Constants.ErrorCodePrefix;
@@ -81,6 +82,7 @@ public partial class RelationshipService(IStore<Relationship> RelationshipStore)
     ///     Retorna bool
     /// </returns>
     [MethodId("E11EAEEB-5A72-40DE-BBEF-4AC44BCC2FB5")]
+    [UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
     public async ValueTask<bool> UpdateRelationshipAsync(UpdateRelationshipRequest Request)
     {
         await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(RelationshipStore)).Value(RelationshipStore));
@@ -97,6 +99,7 @@ public partial class RelationshipService(IStore<Relationship> RelationshipStore)
     ///     Regresa el nuevo Id del <see cref="Models.Relationship"/>
     /// </returns>
     [MethodId("D74F0DFE-4F39-4E24-A871-355CCD96A377")]
+    [UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
     public async ValueTask<EntityId> InsertRelationshipAsync(CreateRelationshipRequest Request)
     {
         await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(RelationshipStore)).Value(RelationshipStore));
@@ -113,6 +116,7 @@ public partial class RelationshipService(IStore<Relationship> RelationshipStore)
     ///     Retorna un bool
     /// </returns>
     [MethodId("CCA4A939-6D07-4FFF-B8A8-D3337A8B1C23")]
+    [UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
     public async ValueTask<bool> DeleteRelationshipAsync(DeleteRelationshipRequest Request)
     {
         await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(RelationshipStore)).Value(RelationshipStore));

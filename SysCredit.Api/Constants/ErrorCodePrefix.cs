@@ -47,10 +47,10 @@ public static class ErrorCodePrefix
     /// </summary>
     public const string RelationshipServicePrefix = $"{SERV}RS";
 
-    /// <summary>
-    ///     Prefijo para la clase: <see cref="AuthenticationService" />
-    /// </summary>
-    public const string AuthenticationServicePrefix = $"{SERV}AS";
+    // /// <summary>
+    // ///     Prefijo para la clase: <see cref="AuthenticationService" />
+    // /// </summary>
+    // public const string AuthenticationServicePrefix = $"{SERV}AS";
     #endregion
 
     #region Stores
@@ -79,25 +79,25 @@ public static class ErrorCodePrefix
     /// </summary>
     public const string PaymentFrequencyStorePrefix = $"{DATA}PF";
 
-    /// <summary>
-    ///     Prefijo para la clase: <see cref="ReferenceStore" />
-    /// </summary>
-    public const string ReferenceStorePrefix = $"{DATA}R";
+    // /// <summary>
+    // ///     Prefijo para la clase: <see cref="ReferenceStore" />
+    // /// </summary>
+    // public const string ReferenceStorePrefix = $"{DATA}R";
 
     /// <summary>
     ///     Prefijo para la clase: <see cref="RelationshipStore" />
     /// </summary>
     public const string RelationshipStorePrefix = $"{DATA}RS";
 
-    /// <summary>
-    ///     Prefijo para la clase: <see cref="RoleStore" />
-    /// </summary>
-    public const string RoleStorePrefix = $"{DATA}ARS";
+    // /// <summary>
+    // ///     Prefijo para la clase: <see cref="RoleStore" />
+    // /// </summary>
+    // public const string RoleStorePrefix = $"{DATA}ARS";
 
-    /// <summary>
-    ///     Prefijo para la clase: <see cref="UserStore" />
-    /// </summary>
-    public const string UserStorePrefix = $"{DATA}AUS";
+    // /// <summary>
+    // ///     Prefijo para la clase: <see cref="UserStore" />
+    // /// </summary>
+    // public const string UserStorePrefix = $"{DATA}AUS";
 
     #endregion
 

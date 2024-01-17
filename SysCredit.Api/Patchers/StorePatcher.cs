@@ -1,6 +1,7 @@
 ﻿namespace SysCredit.Api.Patchers;
 
 using System.Data.SqlClient;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Text.Json;
 
@@ -39,7 +40,7 @@ public static class StorePatcher
                      select Type;
 
         // Obtener todos los métodos del Store que están marcados con MethodIdAttribute y que sean asincronos.
-        var Methods = from Method in Stores.SelectMany(Type => Type.GetMethods(BindingFlags.Public | BindingFlags.Static))
+        var Methods = from Method in Stores.SelectMany(([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type) => Type.GetMethods(BindingFlags.Public | BindingFlags.Static))
                       where Method.HasMethodId() && Method.IsAsyncMethod()
                       select Method;
 
@@ -81,6 +82,7 @@ public static class StorePatcher
     /// <returns>
     ///     Regresa una nueva versión de <paramref name="__result"/> con la misma información.
     /// </returns>
+    [RequiresUnreferencedCode("Uso de operaciones dynamic en IntercepAsync para deducir el tipo de Result.")]
     private static void Postfix(ref object __result, MethodInfo __originalMethod, ref IStore Store)
     {
         // El primer argumento puede ser el valor de retorno sin el uso de: ref
@@ -111,13 +113,13 @@ public static class StorePatcher
     /// <param name="Store">
     ///     Contexto de base de datos.
     /// </param>
-    /// <param name="ProceedAsyncResult">
+    /// <param name="Result">
     ///     Objeto retornado por <paramref name="OriginalMethod"/> después de ser invocado.
     /// </param>
     /// <returns>
     ///     <see cref="Task.CompletedTask"/>.
     /// </returns>
-    private static async Task AfterProceedAsync(IStore Store, MethodInfo OriginalMethod, dynamic? Result = null)
+    private static async Task AfterProceedAsync<TResult>(IStore Store, MethodInfo OriginalMethod, TResult? Result = default)
     {
         string ReturnInfo = await GetStringOfAsync(Result);
         Store.Logger.LogInformation("\n[STORE: Result] {MethodInfo}\nReturn: {Result}", OriginalMethod, ReturnInfo);
@@ -128,7 +130,7 @@ public static class StorePatcher
         try
         {
             await Task.ConfigureAwait(continueOnCapturedContext: false);
-            await AfterProceedAsync(Store, OriginalMethod);
+            await AfterProceedAsync(Store, OriginalMethod, Result: default(object));
         }
         catch (SqlException Exception)
         {
@@ -163,7 +165,7 @@ public static class StorePatcher
         try
         {
             await Task.ConfigureAwait(continueOnCapturedContext: false);
-            await AfterProceedAsync(Store, OriginalMethod);
+            await AfterProceedAsync(Store, OriginalMethod, Result: default(object));
         }
         catch (SqlException Exception)
         {
@@ -261,8 +263,8 @@ public static class StorePatcher
         return Join(Environment.NewLine, Arguments.Select((ParameterInfo, Index) => $"{ParameterInfo.Name} {GetStringOf(Arguments[Index])}"));
     }
 
-    /// <inheritdoc cref="GetStringOf(object?)" />
-    private static ValueTask<string> GetStringOfAsync(object? @object)
+    /// <inheritdoc cref="GetStringOf{TObject}" />
+    private static ValueTask<string> GetStringOfAsync<TObject>(TObject? @object)
     {
         return ValueTask.FromResult(GetStringOf(@object));
     }
@@ -276,7 +278,7 @@ public static class StorePatcher
     /// <returns>
     ///     Regresa un objeto representado como texto.
     /// </returns>
-    private static string GetStringOf(object? @object)
+    private static string GetStringOf<TObject>(TObject? @object)
     {
         if (@object is null) return "null";
 
@@ -290,12 +292,13 @@ public static class StorePatcher
         try
         {
             // Serializar ha texto usando la implementacion nativa de DotNet.
-            return JsonSerializer.Serialize(@object, new JsonSerializerOptions
-            {
-                WriteIndented = true,
-                TypeInfoResolver = SysCreditSerializerContext.Default,
-                PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy,
-            });
+            var JsonTypeInfo = SysCreditSerializerContext.Default.GetTypeInfo(TypeInfo)!;
+
+            JsonTypeInfo.Options.WriteIndented = true;
+            JsonTypeInfo.Options.PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy;
+            JsonTypeInfo.Options.TypeInfoResolverChain.Add(SysCreditSerializerContext.Default);
+
+            return JsonSerializer.Serialize(@object, JsonTypeInfo);
         }
         catch
         {

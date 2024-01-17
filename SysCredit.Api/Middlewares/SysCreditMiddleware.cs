@@ -12,6 +12,7 @@ using SysCredit.Helpers;
 using System.Data.SqlClient;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization.Metadata;
 
 using static Constants.ErrorCodePrefix;
 using static Constants.ErrorCodes;
@@ -154,13 +155,11 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
     /// <returns></returns>
     private static string SerializeResponse(IResponse Response)
     {
-        var Options = new JsonSerializerOptions
+        return JsonSerializer.Serialize(Response, Response.GetType(), (SysCreditSerializerContext)SysCreditSerializerContext.Default.WithAddedModifier(static TypeInfo =>
         {
-            PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy,
-            WriteIndented = true
-        };
-
-        return JsonSerializer.Serialize(Response, Options);
+            TypeInfo.Options.PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy;
+            TypeInfo.Options.WriteIndented = true;
+        }));
     }
 
     /// <summary>

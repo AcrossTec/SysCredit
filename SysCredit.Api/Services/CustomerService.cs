@@ -14,6 +14,7 @@ using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 using static Constants.ErrorCodePrefix;
@@ -133,6 +134,7 @@ public partial class CustomerService(IStore Store)
     ///     Regresa el nuevo Id del cliente creado.
     /// </returns>
     [MethodId("C59A79E3-CDAD-44AF-B512-B4D58E8B1430")]
+    [UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
     public async ValueTask<EntityId> InsertCustomerAsync(CreateCustomerRequest Request)
     {
         await Request.ValidateAndThrowOnFailuresAsync(

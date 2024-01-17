@@ -121,6 +121,12 @@ public static partial class PaymentFrequencyStore
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Store"></param>
+    /// <param name="Name"></param>
+    /// <returns></returns>
     [MethodId("016C0C42-BEB3-4821-A1B1-11E91C03BB27")]
     public static async ValueTask<PaymentFrequencyInfo?> FetchPaymentFrequencyByNameAsync(this IStore<PaymentFrequency> Store, string? Name)
     {

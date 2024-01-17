@@ -72,7 +72,7 @@ internal partial class ErrorCodeGenerator
                                         TriviaList(
                                             Comment("/// <summary>"),
                                             Comment("///     Códigos de error de SysCredit.Api"),
-                                            Comment("/// <summary>")),
+                                            Comment("/// </summary>")),
                                         SyntaxKind.PublicKeyword,
                                         TriviaList()),
                                     Token(SyntaxKind.StaticKeyword),
@@ -115,7 +115,7 @@ internal partial class ErrorCodeGenerator
                                     TriviaList(
                                         Comment($"/// <summary>"),
                                         Comment($"///     Categoría {CodeInfo.ErrorCategory ?? "\"Sin Categoría\""}: {CodeInfo.ErrorCodePrefix}{CodeNumber,4:D4}"),
-                                        Comment($"/// <summary>")),
+                                        Comment($"/// </summary>")),
                                     SyntaxKind.PublicKeyword,
                                     TriviaList()),
                                 Token(SyntaxKind.ConstKeyword)))

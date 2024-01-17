@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <WarningsAsErrors>Nullable</WarningsAsErrors>
-    <!--<TreatWarningsAsErrors>True</TreatWarningsAsErrors>-->
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <WarningLevel>9999</WarningLevel>
   </PropertyGroup>
 
@@ -42,8 +42,9 @@
   </PropertyGroup>
 
   <!-- Include PolySharp to generate polyfills for all projects (on their .NET Standard 2.x targets) -->
+  <!-- https://github.com/Sergio0694/PolySharp/?tab=readme-ov-file -->
   <ItemGroup>
-    <PackageReference Include="PolySharp" Version="1.13.2">
+    <PackageReference Include="PolySharp" Version="1.14.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>build; analyzers</IncludeAssets>
     </PackageReference>

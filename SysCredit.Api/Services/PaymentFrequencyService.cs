@@ -11,6 +11,7 @@ using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using static Constants.ErrorCodePrefix;
 
@@ -22,7 +23,6 @@ using static SysCredit.Helpers.ContextData;
 /// <param name="PaymentFrequencyStore">
 ///     Tienda de datos para <see cref="PaymentFrequency"/>
 /// </param>
-/// <param name="Logger"></param>
 [Service<IPaymentFrequencyService>]
 [ServiceModel<PaymentFrequency>]
 [ErrorCategory(nameof(PaymentFrequencyService))]
@@ -69,6 +69,7 @@ public partial class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFre
     ///     Retorna un bool
     /// </returns>
     [MethodId("54EA25C1-FD73-4FC3-8984-DEA6ACFD74C7")]
+    [UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
     public async ValueTask<bool> UpdatePaymentFrequencyAsync(long PaymentFrequencyId, UpdatePaymentFrequencyRequest Request)
     {
         await Request.ValidateAndThrowOnFailuresAsync(
@@ -88,6 +89,7 @@ public partial class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFre
     ///     Retorna un bool
     /// </returns>
     [MethodId("FDB8109F-DF96-48B7-8B60-F233F2A8098F")]
+    [UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
     public async ValueTask<bool> DeletePaymentFrequencyAsync(DeletePaymentFrequencyRequest Request)
     {
         await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(PaymentFrequencyStore)).Value(PaymentFrequencyStore));
@@ -116,6 +118,7 @@ public partial class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFre
     ///     Regresa el nuevo Id de la frecuencia de pago creado
     /// </returns>
     [MethodId("BC663C2B-ACE2-499B-B806-2A0BD8D77815")]
+    [UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
     public async ValueTask<EntityId> InsertPaymentFrequencyAsync(CreatePaymentFrequencyRequest Request)
     {
         await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(PaymentFrequencyStore)).Value(PaymentFrequencyStore));

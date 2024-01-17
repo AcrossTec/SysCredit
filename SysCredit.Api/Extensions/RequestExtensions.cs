@@ -9,6 +9,7 @@ using SysCredit.Api.Attributes;
 using SysCredit.Api.Requests;
 
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 
 using ValidationException = Exceptions.ValidationException;
@@ -27,19 +28,23 @@ public static class RequestExtensions
     /// <param name="ContextData">
     ///     Datos adicionales usados por la validación.
     /// </param>
-    /// <param name="Cancellation">
-    ///     Permite cancelar una validación si está en algún proceso asincrono.
-    /// </param>
     /// <returns>
     ///     Regresa los resultados de validar el objeto <paramref name="Request" />.
     /// </returns>
+    [RequiresDynamicCode("Uso de código dinámico para crear el Validador en Rutime.")]
+    [UnconditionalSuppressMessage("Trimming", "IL2062:The parameter of method has a DynamicallyAccessedMembersAttribute, but the value passed to it can not be statically analyzed.", Justification = "<Pending>")]
     public static ValidationResult Validate(this IRequest Request, IDictionary<string, object>? ContextData = null)
     {
         Type ValidatorType = Request.LookupGenericTypeArgumentsFromGenericAttribute(typeof(ValidatorAttribute<>))![0];
-        IValidator Validator = Activator.CreateInstance(ValidatorType).As<IValidator>()!;
-        IValidationContext Context = Activator.CreateInstance(typeof(ValidationContext<>).MakeGenericType(Request.GetType()), new object[] { Request }).As<IValidationContext>()!;
-        Context.RootContextData.AddRange(ContextData.DefaultIfNullOrEmpty());
-        return Validator.Validate(Context);
+        return InternalValidate(ValidatorType);
+
+        ValidationResult InternalValidate([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type ValidatorType)
+        {
+            IValidator Validator = Activator.CreateInstance(ValidatorType).As<IValidator>()!;
+            IValidationContext Context = Activator.CreateInstance(typeof(ValidationContext<>).MakeGenericType(Request.GetType()), new object[] { Request }).As<IValidationContext>()!;
+            Context.RootContextData.AddRange(ContextData.DefaultIfNullOrEmpty());
+            return Validator.Validate(Context);
+        }
     }
 
     /// <summary>
@@ -57,13 +62,21 @@ public static class RequestExtensions
     /// <returns>
     ///     Regresa los resultados de validar el objeto <paramref name="Request" />.
     /// </returns>
-    public static async ValueTask<ValidationResult> ValidateAsync(this IRequest Request, IDictionary<string, object>? ContextData = null, CancellationToken Cancellation = default)
+    [RequiresDynamicCode("Uso de código dinámico para crear el Validador en Rutime.")]
+    [UnconditionalSuppressMessage("Trimming", "IL2062:The parameter of method has a DynamicallyAccessedMembersAttribute, but the value passed to it can not be statically analyzed.", Justification = "<Pending>")]
+    public static ValueTask<ValidationResult> ValidateAsync(this IRequest Request, IDictionary<string, object>? ContextData = null, CancellationToken Cancellation = default)
     {
         Type ValidatorType = Request.LookupGenericTypeArgumentsFromGenericAttribute(typeof(ValidatorAttribute<>))![0];
-        IValidator Validator = Activator.CreateInstance(ValidatorType).As<IValidator>()!;
-        IValidationContext Context = Activator.CreateInstance(typeof(ValidationContext<>).MakeGenericType(Request.GetType()), new object[] { Request }).As<IValidationContext>()!;
-        Context.RootContextData.AddRange(ContextData.DefaultIfNullOrEmpty());
-        return await Validator.ValidateAsync(Context, Cancellation);
+        return InternalValidateAsync(ValidatorType);
+
+        [RequiresDynamicCode("Uso de código dinámico para crear el Validador en Rutime.")]
+        async ValueTask<ValidationResult> InternalValidateAsync([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicParameterlessConstructor)] Type ValidatorType)
+        {
+            IValidator Validator = Activator.CreateInstance(ValidatorType).As<IValidator>()!;
+            IValidationContext Context = Activator.CreateInstance(typeof(ValidationContext<>).MakeGenericType(Request.GetType()), new object[] { Request }).As<IValidationContext>()!;
+            Context.RootContextData.AddRange(ContextData.DefaultIfNullOrEmpty());
+            return await Validator.ValidateAsync(Context, Cancellation);
+        }
     }
 
     /// <summary>
@@ -75,12 +88,10 @@ public static class RequestExtensions
     /// <param name="ContextData">
     ///     Datos adicionales usados por la validación del request.
     /// </param>
-    /// <param name="Cancellation">
-    ///     Permite cancelar una validación si está en un proceso asincrono.
-    /// </param>
     /// <exception cref="ValidationException">
     ///     Excepción que es lanzado cuando el resultado de la validación tiene errores.
     /// </exception>
+    [RequiresDynamicCode("\"Validate\" hace uso de código dinámico.")]
     public static void ValidateAndThrowOnFailures<TRequest>(this TRequest Request, IDictionary<string, object>? ContextData = null) where TRequest : IRequest
     {
         var ValidationResult = Validate(Request, ContextData);
@@ -106,6 +117,7 @@ public static class RequestExtensions
     /// <exception cref="ValidationException">
     ///     Excepción que es lanzado cuando el resultado de la validación tiene errores.
     /// </exception>
+    [RequiresDynamicCode("\"ValidateAsync\" hace uso de código dinámico.")]
     public static async ValueTask ValidateAndThrowOnFailuresAsync<TRequest>(this TRequest Request, IDictionary<string, object>? ContextData = null, CancellationToken Cancellation = default) where TRequest : IRequest
     {
         var ValidationResult = await ValidateAsync(Request, ContextData, Cancellation);

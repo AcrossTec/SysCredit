@@ -1,0 +1,11 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+
+@port=7044
+@hostname=127.0.0.1
+@host={{hostname}}:{{port}}
+
+###
+
+GET https://{{hostname}}:{{port}}/Api/LoanTypes
+
+###

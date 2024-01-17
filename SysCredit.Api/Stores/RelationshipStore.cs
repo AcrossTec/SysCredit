@@ -128,7 +128,7 @@ public static partial class RelationshipStore
     }
 
     /// <summary>
-    ///     Realiza la eliminacion del <see cref="Models.Relationship;"/> de la base de datos
+    ///     Realiza la eliminacion del <see cref="Models.Relationship"/> de la base de datos
     /// </summary>
     /// <param name="Store">
     ///     Objeto usado como contexto de la base de datos

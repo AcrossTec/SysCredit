@@ -41,12 +41,6 @@ public partial class Program
     [ModuleInitializer]
     public static void ModuleInitializer()
     {
-        try
-        {
-            SysCreditApiPatcher.PatchAll();
-        }
-        catch (Exception Ex)
-        {
-        }
+        SysCreditApiPatcher.PatchAll();
     }
 }

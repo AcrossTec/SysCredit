@@ -1,13 +1,11 @@
 ﻿namespace SysCredit.Api.Extensions;
 
-using log4net.Core;
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 
 using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
-using SysCredit.Api.Properties;
 using SysCredit.Helpers;
-
-using System.Reflection;
 
 /// <summary>
 ///     Métodos de utilería para mejor manejo de las excepciones.
@@ -67,12 +65,15 @@ public static class ExceptionExtensions
     ///     Excepción con la información del error.
     /// </param>
     /// <param name="MethodInfo">
-    ///     Método que tiene los metadatos relacionado a error de <paramref name="Ex" />.
+    ///     Método que tiene los metadatos relacionado a error de <paramref name="Exception" />.
+    /// </param>
+    /// <param name="ErrorStatusOptions">
+    ///     Método que configura un objeto de tipo <see cref="ErrorStatus"/>.
     /// </param>
     /// <returns>
     ///     Regresa un <typeparamref name="TException"/> como una posible representación más detallada de <see cref="Exception" />.
     /// </returns>
-    public static TException CreateExceptionUsingMethodInfo<TException>(this Exception Exception, MethodBase MethodInfo, Action<ErrorStatus> ErrorStatusOptions) where TException : SysCreditException
+    public static TException CreateExceptionUsingMethodInfo<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] TException>(this Exception Exception, MethodBase MethodInfo, Action<ErrorStatus> ErrorStatusOptions) where TException : SysCreditException
     {
         var Status = new ErrorStatus
         {

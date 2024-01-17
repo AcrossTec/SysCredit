@@ -1,7 +1,9 @@
 ﻿namespace SysCredit.Api.Proxies;
 
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Text.Json;
+using System.Text.Json.Serialization.Metadata;
 using System.Threading.Tasks;
 
 using Castle.DynamicProxy;
@@ -17,7 +19,7 @@ using static System.String;
 /// <summary>
 ///     Logger Proxy para todos los métodos de los servicios.<br />
 ///     Da información del método que se está ejecutando y los resultados del mismo.<br />
-///     Transforma todas las excepciones en un <see cref="EndpointFlowException" /> y <see cref="ProxyException" />.
+///     Transforma todas las excepciones en un <see cref="ServiceException" />.
 /// </summary>
 /// <param name="ServiceLogger"></param>
 public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IInterceptor
@@ -28,6 +30,9 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     /// <param name="Invocation">
     ///     Información del método de servicio actual en ejecución.
     /// </param>
+    [RequiresUnreferencedCode("Uso de código dinámico para poder deducir el tipo correcto para Invocation.ReturnValue.")]
+    [UnconditionalSuppressMessage("Trimming", "IL2026:Using dynamic types might cause types or members to be removed by trimmer.", Justification = "<Pending>")]
+    [SuppressMessage("Trimming", "IL2046:'RequiresUnreferencedCodeAttribute' annotations must match across all interface implementations or overrides.", Justification = "<Pending>")]
     public void Intercept(IInvocation Invocation)
     {
         BeforeProceed(Invocation);
@@ -110,7 +115,7 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
         try
         {
             await Task.ConfigureAwait(continueOnCapturedContext: false);
-            await AfterProceedAsync(Invocation, ProceedAsyncResult: null);
+            await AfterProceedAsync(Invocation, ProceedAsyncResult: default(object));
         }
         catch (ValidationException ValidationResult)
         {
@@ -172,7 +177,7 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
         try
         {
             await Task.ConfigureAwait(continueOnCapturedContext: false);
-            await AfterProceedAsync(Invocation, ProceedAsyncResult: null);
+            await AfterProceedAsync(Invocation, ProceedAsyncResult: default(object));
         }
         catch (ValidationException ValidationResult)
         {
@@ -223,8 +228,8 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     /// <typeparam name="TSource">
     ///     Tipo del resultado de la tarea.
     /// </typeparam>
-    /// <param name="Task">
-    ///     Tarea que representa el resultado del método asincrono.
+    /// <param name="Source">
+    ///     Colección asincrona que esta siendo interseptada.
     /// </param>
     /// <param name="Invocation">
     ///     Información detallada del método que se está interceptando.
@@ -267,20 +272,20 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     /// <param name="Invocation">
     ///     Objeto que posee toda la información relacionada al método que se está interceptando.
     /// </param>
-    /// <param name="HasAsynResult">
+    /// <param name="ProceedAsyncResult">
     ///     Parámetro que indica si el método tiene resultados.
     /// </param>
     /// <returns>
     ///     Representa una operación asincrona sin resultados.
     /// </returns>
-    private async Task AfterProceedAsync(IInvocation Invocation, dynamic? ProceedAsyncResult = null)
+    private async Task AfterProceedAsync<TProceedAsyncResult>(IInvocation Invocation, TProceedAsyncResult? ProceedAsyncResult = default)
     {
         string Result = await GetStringOfAsync(ProceedAsyncResult);
         ServiceLogger.LogInformation("\n[SERVICE: Result] {MethodInfo}\nReturn: {Result}", Invocation.MethodInvocationTarget, Result);
     }
 
-    /// <inheritdoc cref="GetStringOf(object?)" />
-    private static ValueTask<string> GetStringOfAsync(object? @object)
+    /// <inheritdoc cref="GetStringOf{TObject}" />
+    private static ValueTask<string> GetStringOfAsync<TObject>(TObject? @object)
     {
         return ValueTask.FromResult(GetStringOf(@object));
     }
@@ -294,7 +299,7 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     /// <returns>
     ///     Regresa un objeto representado como texto.
     /// </returns>
-    private static string GetStringOf(object? @object)
+    private static string GetStringOf<TObject>(TObject? @object)
     {
         if (@object is null) return "null";
 
@@ -308,12 +313,13 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
         try
         {
             // Serializar ha texto usando la implementacion nativa de DotNet.
-            return JsonSerializer.Serialize(@object, new JsonSerializerOptions
-            {
-                WriteIndented = true,
-                TypeInfoResolver = SysCreditSerializerContext.Default,
-                PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy,
-            });
+            var JsonTypeInfo = SysCreditSerializerContext.Default.GetTypeInfo(TypeInfo)!;
+
+            JsonTypeInfo.Options.WriteIndented = true;
+            JsonTypeInfo.Options.PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy;
+            JsonTypeInfo.Options.TypeInfoResolverChain.Add(SysCreditSerializerContext.Default);
+
+            return JsonSerializer.Serialize(@object, JsonTypeInfo);
         }
         catch
         {
@@ -325,11 +331,8 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     /// <summary>
     ///     Obtiene una cadena para ser usanda como log de los argumentos de un método.
     /// </summary>
-    /// <param name="MethodInfo">
-    ///     Información del método original del proxy.
-    /// </param>
-    /// <param name="Args">
-    ///     Argumentos pasados la método desde el proxy.
+    /// <param name="Invocation">
+    ///     Objeto con la información completa del método original del Proxy y sus argumentos.
     /// </param>
     /// <returns>
     ///     Regresa un cadena con la información de los argumentos.
@@ -355,7 +358,11 @@ public class LoggingAdviceServiceInterceptor(ILogger ServiceLogger) : IIntercept
     /// <returns>
     ///     Regresa un Proxy que implementa la clase base <see cref="Lightwind.AsyncInterceptor.AsyncInterceptorBase" />.
     /// </returns>
-    public static object Create(Type Interface, Type TargetType, IServiceProvider ServiceProvider)
+    [RequiresDynamicCode("\"Create\" usa código dinámico para crear el proxy en Runtime.")]
+    public static object Create(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type Interface,
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.NonPublicConstructors)] Type TargetType,
+        IServiceProvider ServiceProvider)
     {
         var TargetConstructor = TargetType.GetTypeInfo().DeclaredConstructors.Single();
         var Parameters = TargetConstructor.GetParameters().Select(ParameterInfo => ServiceProvider.GetRequiredService(ParameterInfo.ParameterType)).ToArray();

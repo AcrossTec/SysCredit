@@ -1,13 +1,21 @@
 ﻿namespace SysCredit.Api.Extensions;
 
-using SysCredit.Api.Requests;
-
 using System.Collections;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+
+using SysCredit.Api.Requests;
 
 /// <summary>
-///     Métodos de utilería para operaciones sobre colecciones.
+///     Métodos de utilería para operaciones sobre colecciones.<br/><br/>
+///
+///     Introduction to AOT warnings:<br/>
+///     <see href="https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/fixing-warnings"/><br/><br/>
+///
+///     How to make libraries compatible with native AOT:<br/>
+///     <see href="https://devblogs.microsoft.com/dotnet/creating-aot-compatible-libraries/"/>
 /// </summary>
 public static class CollectionExtensions
 {
@@ -20,11 +28,35 @@ public static class CollectionExtensions
     /// <returns>
     ///     Regresa un <see cref="DataTable" /> como el resultado de convertir <paramref name="Source" />.
     /// </returns>
+    [UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
     public static DataTable ToDataTable(this IEnumerable<IRequest> Source)
     {
-        DataTable Table = new DataTable();
+        if (RuntimeFeature.IsDynamicCodeSupported)
+        {
+            return Source.ToDataTableWithReflectionEmit();
+        }
 
-        Type ViewModelType = Source.GetType().GetInterface($"{nameof(IEnumerable)}`1")!.GenericTypeArguments.First();
+        // TODO: Crear Source Generator con Interseptores para cada IRequest que use este método.
+        throw new NotSupportedException();
+    }
+
+    /// <summary>
+    ///     Convierte un array de <see cref="IRequest" /> en un <see cref="DataTable" />.
+    /// </summary>
+    /// <param name="Source">
+    ///     Colección que se va ha convertir en un <see cref="DataTable" />.
+    /// </param>
+    /// <returns>
+    ///     Regresa un <see cref="DataTable" /> como el resultado de convertir <paramref name="Source" />.
+    /// </returns>
+    [RequiresDynamicCode("\"ToDataTableWithReflectionEmit\" usa comportamiento dinámico para analizar los objeos IRequest.")]
+    [UnconditionalSuppressMessage("Trimming", "IL2065:The method has a DynamicallyAccessedMembersAttribute (which applies to the implicit 'this' parameter), but the value used for the 'this' parameter can not be statically analyzed.", Justification = "<Pending>")]
+    [UnconditionalSuppressMessage("Trimming", "IL2072:Target parameter argument does not satisfy 'DynamicallyAccessedMembersAttribute' in call to target method. The return value of the source method does not have matching annotations.", Justification = "<Pending>")]
+    public static DataTable ToDataTableWithReflectionEmit(this IEnumerable<IRequest> Source)
+    {
+        DataTable Table = new();
+
+        Type ViewModelType = Source.GetType().GetInterface($"{nameof(IEnumerable)}`1")!.GenericTypeArguments[0];
         PropertyInfo[] Properties = ViewModelType.GetProperties();
 
         foreach (PropertyInfo Property in Properties)
@@ -93,15 +125,12 @@ public static class CollectionExtensions
     /// <param name="Source">
     ///     La colección ha chequear.
     /// </param>
-    /// <param name="DefaultValue">
-    ///     Valor por defecto en caso de que la coleccion sea nula o este vacía.
-    /// </param>
     /// <returns>
     ///     Regresa un <see cref="Enumerable.Empty{TResult}" /> si <paramref name="Source" /> es null
     ///     sino un <see cref="Enumerable.DefaultIfEmpty{TSource}(IEnumerable{TSource}, TSource)" />.
     /// </returns>
     public static IEnumerable<TSource> DefaultIfNullOrEmpty<TSource>(this IEnumerable<TSource>? Source)
     {
-        return Source ?? Enumerable.Empty<TSource>();
+        return Source ?? [];
     }
 }

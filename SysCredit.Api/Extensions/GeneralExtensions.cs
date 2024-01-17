@@ -1,12 +1,11 @@
 ﻿namespace SysCredit.Api.Extensions;
 
-using SysCredit.Api.Stores;
-
-using SysCredit.Models;
-
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+
+using SysCredit.Api.Stores;
+using SysCredit.Models;
 
 /// <summary>
 ///     Métodos de utilería de propósito general.
@@ -110,7 +109,7 @@ public static class GeneralExtensions
             return default;
         }
 
-        return JsonSerializer.Deserialize<T?>(Json);
+        return (T?)JsonSerializer.Deserialize(Json!, typeof(T), SysCreditSerializerContext.Default);
     }
 
     /// <summary>

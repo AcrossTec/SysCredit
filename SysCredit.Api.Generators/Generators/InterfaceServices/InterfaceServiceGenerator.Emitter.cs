@@ -19,7 +19,7 @@ public partial class InterfaceServiceGenerator
     /// <param name="Context">
     ///     Context passed to an incremental generator when it has registered an output via <see cref="IncrementalGeneratorInitializationContext.RegisterSourceOutput{TSource}(IncrementalValueProvider{TSource}, Action{SourceProductionContext, TSource})"/>.
     /// </param>
-    /// <param name="Services">
+    /// <param name="Service">
     ///     Información de los métodos de cada servicio que se le va ha generar la interfaz.
     /// </param>
     private static void Emit(SourceProductionContext Context, InterfaceServiceInfo Service)

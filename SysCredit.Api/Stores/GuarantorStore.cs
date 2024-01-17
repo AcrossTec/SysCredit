@@ -165,6 +165,12 @@ public static partial class GuarantorStore
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Store"></param>
+    /// <param name="Request"></param>
+    /// <returns></returns>
     [MethodId("B9BAEE11-E36E-4BE4-844A-646A72AE9BC2")]
     public static async ValueTask<bool> DeleteGuarantorAsync(this IStore<Guarantor> Store, DeleteGuarantorRequest Request)
     {

@@ -27,16 +27,16 @@ internal partial class ErrorCodeGenerator
 namespace SysCredit.Api.Attributes;
 
 /// <summary>
-///     Prefijos usados para los códigos de errores: <see cref=""SysCredit.Constants.ErrorCodes"" />.
+///     Prefijos usados para los códigos de errores: <see cref=""SysCredit.Api.Constants.ErrorCodes"" />.
 /// </summary>
 /// <param name=""Prefix"">
-///     Prefijo que será usado para los campos de <see cref=""SysCredit.Constants.ErrorCodes"" />.
+///     Prefijo que será usado para los campos de <see cref=""SysCredit.Api.Constants.ErrorCodes"" />.
 /// </param>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
 public class ErrorCodePrefixAttribute(string Prefix) : Attribute
 {
     /// <summary>
-    ///     Nombre del prefijo usado para la lista de errores en <see cref=""SysCredit.Constants.ErrorCodes"" />.
+    ///     Nombre del prefijo usado para la lista de errores en <see cref=""SysCredit.Api.Constants.ErrorCodes"" />.
     /// </summary>
     public readonly string Prefix = Prefix;
 }";

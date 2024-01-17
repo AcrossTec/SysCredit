@@ -1,6 +1,7 @@
 ﻿namespace SysCredit.Api.Services;
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
@@ -60,6 +61,7 @@ public partial class LoanTypeService(IStore<LoanType> LoanTypeStore)
     /// <param name="Request">Recibe el id del tipo de prestamo</param>
     /// <returns></returns>
     [MethodId("B4850869-6F13-4BAB-87C6-FF8F08B31A95")]
+    [UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
     public async ValueTask<bool> DeleteLoanTypeAsync(DeleteLoanTypeRequest Request)
     {
         await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
@@ -72,6 +74,7 @@ public partial class LoanTypeService(IStore<LoanType> LoanTypeStore)
     /// <param name="Request">Recibe el nombre para el tipo de prestamo</param>
     /// <returns>Retorna el id del tipo de prestamo</returns>
     [MethodId("09F1FC4B-5456-47CF-9F46-41F96683E7E1")]
+    [UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
     public async ValueTask<EntityId> InsertLoanTypeAsync(CreateLoanTypeRequest Request)
     {
         await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));
@@ -84,6 +87,7 @@ public partial class LoanTypeService(IStore<LoanType> LoanTypeStore)
     /// <param name="Request">Contiene información del LoanType que se va modificar</param>
     /// <returns></returns>
     [MethodId("11531707-8C0B-45FC-B9F1-4418897AC8A7")]
+    [UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
     public async ValueTask<bool> UpdateLoanTypeAsync(UpdateLoanTypeRequest Request)
     {
         await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(LoanTypeStore)).Value(LoanTypeStore));

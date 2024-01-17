@@ -1,30 +1,23 @@
 ﻿namespace SysCredit.Api.Extensions;
 
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
+
 using Castle.DynamicProxy;
 
 using log4net.Config;
 
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
-
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
-
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
 using SysCredit.Api.Proxies;
 using SysCredit.Api.Stores;
-
-using SysCredit.Helpers;
 using SysCredit.Models;
-
-using System.Reflection;
-using System.Text;
 
 /// <summary>
 ///     Métodos de utilería para agregar todas las dependencias necesarias del sistema SysCredit.
@@ -89,6 +82,8 @@ public static class WebApplicationBuilderExtensions
     /// <returns>
     ///    Regresa el mismo objeto <paramref name="Builder" /> para habilitar la invocación en cadena.
     /// </returns>
+    [UnconditionalSuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "<Pending>")]
+    [UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
     public static WebApplicationBuilder AddSysCreditServices(this WebApplicationBuilder Builder)
     {
         Builder.Services.AddSysCreditEndpoints();
@@ -150,7 +145,8 @@ public static class WebApplicationBuilderExtensions
     /// </returns>
     public static IServiceCollection AddSysCreditEndpoints(this IServiceCollection Services)
     {
-        Services.AddControllers().AddJsonOptions(static Options => Options.JsonSerializerOptions.PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy);
+        // TODO: Portear a Minimal Api
+        // Services.AddControllers().AddJsonOptions(static Options => Options.JsonSerializerOptions.PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy);
 
         Services.AddEndpointsApiExplorer();
 
@@ -227,6 +223,8 @@ public static class WebApplicationBuilderExtensions
     /// <returns>
     ///     Regresa el objeto contenedor IoC para habilitar las llamada en cadenas.
     /// </returns>
+    [RequiresDynamicCode("Invocación de código dinámico para registrar los Servicios y el Proxy.")]
+    [RequiresUnreferencedCode("Invocación de código dinámico para registrar los Servicios y el Proxy.")]
     public static IServiceCollection AddSysCreditServices(this IServiceCollection Services)
     {
         var Types = from Type in typeof(Program).Assembly.GetTypes()

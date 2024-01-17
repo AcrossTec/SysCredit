@@ -1,12 +1,12 @@
 ﻿namespace SysCredit.Api.Stores;
 
+using System.Data.Common;
+using System.Text.Json;
+
 using Microsoft.Extensions.Options;
 
 using SysCredit.Helpers;
 using SysCredit.Models;
-
-using System.Data.Common;
-using System.Text.Json;
 
 /// <summary>
 ///     Interfaz base de todos los repositorios que realizan operaciones en base de datos.
@@ -75,10 +75,11 @@ public interface IStore<TModel> : IStore where TModel : Entity
     /// </returns>
     TModel? ToModel<TViewModel>(TViewModel ViewModel)
     {
-        var Json = JsonSerializer.Serialize(ViewModel,
-            new JsonSerializerOptions { PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy });
+        var JsonTypeInfo = SysCreditSerializerContext.Default.GetTypeInfo(typeof(TViewModel))!;
+        JsonTypeInfo.Options.PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy;
 
-        return JsonSerializer.Deserialize<TModel>(Json);
+        var Json = JsonSerializer.Serialize(ViewModel, JsonTypeInfo);
+        return (TModel?)JsonSerializer.Deserialize(Json, JsonTypeInfo);
     }
 }
 
@@ -90,9 +91,6 @@ public interface IStore<TModel> : IStore where TModel : Entity
 /// </typeparam>
 /// <param name="Options">
 ///     Opciones globales del proyecto SysCredit.Api.
-/// </param>
-/// <param name="Logger">
-///     Objeto de Logs para informar sobre los distintos pasos que realiza un Store.
 /// </param>
 /// <param name="LoggerFactory">
 ///     Proveedor de Logs que crea nuevos Logs específicos para el método: <see cref="Store{TModel}.GetStore{TEntity}" />.

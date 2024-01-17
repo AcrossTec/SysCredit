@@ -47,7 +47,7 @@ internal partial class ErrorCodeGenerator
     }
 
     /// <summary>
-    ///     Obtiene el valor del primer argumento del constructor de <paramref name="Attribute"/>.
+    ///     Obtiene el código de error y su respectiva categoría de la clase a la que pertenece el <see cref="AttributeData"/>.
     /// </summary>
     /// <param name="Value">
     ///     Atributo del que se obtendrá el primer valor de su constructor.
@@ -56,7 +56,7 @@ internal partial class ErrorCodeGenerator
     ///     Propagates notification that operations should be canceled.
     /// </param>
     /// <returns>
-    ///     Regresa el valor del primer argumento del constructor de <paramref name="Attribute"/> transformado en un String.
+    ///     Regresa una Tupla del código de error y su respectiva categoría de la clase a la que pertenece el <see cref="AttributeData"/>.
     /// </returns>
     private static (string ErrorCodePrefix, string? ErrorCategory) SelectErrorCodePrefix((AttributeData? ErrorCodePrefix, AttributeData? ErrorCategory) Value, CancellationToken Token)
     {

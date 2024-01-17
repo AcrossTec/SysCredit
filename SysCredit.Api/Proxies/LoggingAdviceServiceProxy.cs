@@ -1,5 +1,6 @@
 ﻿namespace SysCredit.Api.Proxies;
 
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Text.Json;
 
@@ -27,7 +28,7 @@ using SysCredit.Helpers;
 ///     </a>
 /// </remarks>
 [Obsolete("Use LoggingAdviceServiceInterceptor Class", error: true)]
-public class LoggingAdviceServiceProxy<TInterface> : DispatchProxy
+public class LoggingAdviceServiceProxy<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TInterface> : DispatchProxy
 {
     private TInterface Decorated = default!;
     private ILogger<TInterface> DecoratedLogger = default!;
@@ -43,6 +44,7 @@ public class LoggingAdviceServiceProxy<TInterface> : DispatchProxy
     ///     Interfaz de servicio IoC de Asp .Net
     /// </param>
     /// <returns></returns>
+    [RequiresDynamicCode("Uso de código dinámico para poder crear el Proxy.")]
     public static TInterface Create(TInterface? Decorated, IServiceProvider ServiceProvider)
     {
         TInterface Proxy = Create<TInterface, LoggingAdviceServiceProxy<TInterface>>();
@@ -108,12 +110,13 @@ public class LoggingAdviceServiceProxy<TInterface> : DispatchProxy
         try
         {
             // Serializar ha texto usando la implementacion nativa de DotNet.
-            return JsonSerializer.Serialize(@object, new JsonSerializerOptions
-            {
-                WriteIndented = true,
-                TypeInfoResolver = SysCreditSerializerContext.Default,
-                PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy
-            });
+            var JsonTypeInfo = SysCreditSerializerContext.Default.GetTypeInfo(TypeInfo)!;
+
+            JsonTypeInfo.Options.WriteIndented = true;
+            JsonTypeInfo.Options.PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy;
+            JsonTypeInfo.Options.TypeInfoResolverChain.Add(SysCreditSerializerContext.Default);
+
+            return JsonSerializer.Serialize(@object, JsonTypeInfo);
         }
         catch
         {
@@ -163,13 +166,17 @@ public static class LoggingAdviceService
     /// <returns>
     ///     Regresa un Proxy que implementa la clase base <see cref="DispatchProxy" />.
     /// </returns>
-    public static object Create(Type Interface, Type DecoratedType, IServiceProvider ServiceProvider)
+    [RequiresDynamicCode("Invocación de código dinámico para poder crear el Proxy.")]
+    public static object Create(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type Interface,
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.NonPublicConstructors)] Type DecoratedType,
+        IServiceProvider ServiceProvider)
     {
         var ConstructorInfo = DecoratedType.GetTypeInfo().DeclaredConstructors.Single();
         var Parameters = ConstructorInfo.GetParameters().Select(ParameterInfo => ServiceProvider.GetRequiredService(ParameterInfo.ParameterType)).ToArray();
         var Decorated = ConstructorInfo.Invoke(Parameters);
         var ProxyInfo = typeof(LoggingAdviceServiceProxy<>).MakeGenericType(Interface).GetTypeInfo();
-        var CreateMethodInfo = ProxyInfo.GetMethod(nameof(DispatchProxy.Create), BindingFlags.Static | BindingFlags.Public, new Type[] { Interface, ServiceProvider.GetType() })!;
+        var CreateMethodInfo = ProxyInfo.GetMethod(nameof(DispatchProxy.Create), BindingFlags.Static | BindingFlags.Public, [Interface, ServiceProvider.GetType()])!;
         return CreateMethodInfo.Invoke(default, new object[] { Decorated, ServiceProvider })!;
     }
 }

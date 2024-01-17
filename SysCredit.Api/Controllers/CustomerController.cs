@@ -54,7 +54,7 @@ public class CustomerController(ICustomerService CustomerService, ILogger<Custom
     [ProducesResponseType(typeof(IResponse<ErrorResponse>), StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<IResponse<IAsyncEnumerable<SearchCustomer>>>> SearchCustomerAsync([FromQuery] SearchRequest Request)
     {
-        Logger.LogInformation("EndPoint[GET]: /Api/Customer/Search", Request.Value);
+        Logger.LogInformation("EndPoint[GET]: /Api/Customer/Search");
         return Ok(await CustomerService.SearchCustomerAsync(Request).ToResponseAsync());
     }
 

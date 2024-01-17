@@ -10,6 +10,9 @@ using SysCredit.Api.Requests.PaymentFrequencies;
 using SysCredit.Api.Requests.References;
 using SysCredit.Api.Requests.Relationships;
 
+/// <summary>
+///     Clase usada como contexto de Serialización y Deserialización para cadenas Json.
+/// </summary>
 [JsonSerializable(typeof(PaginationRequest))]
 [JsonSerializable(typeof(SearchRequest))]
 [JsonSerializable(typeof(CreateCustomerRequest))]

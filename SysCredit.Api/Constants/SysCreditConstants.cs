@@ -1,5 +1,7 @@
 ﻿namespace SysCredit.Api.Constants;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 /// <summary>
 ///     Constantes de uso general.
 /// </summary>
@@ -51,3 +53,5 @@ public static class SysCreditConstants
 
     public const string Log4NetConfigFile = "Log4Net.config";
 }
+
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member

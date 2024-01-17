@@ -127,7 +127,7 @@ public class RelationshipController(IRelationshipService RelationshipService, IL
     /// <summary>
     ///     Elimina un registro de la tabla <see cref="Models.Relationship"/>
     /// </summary>
-    /// <param name="RelationshipId">
+    /// <param name="Request">
     ///     Id del <see cref="Models.Relationship"/> a eliminar
     /// </param>
     /// <returns>

@@ -15,6 +15,7 @@ using SysCredit.Helpers;
 using SysCredit.Models;
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 using static Constants.ErrorCodePrefix;
@@ -42,6 +43,7 @@ public partial class GuarantorService(IStore Store)
     /// </param>
     /// <returns>Retorna el id del Guarantor</returns>
     [MethodId("9FE9602F-7011-435F-83BE-F573704A932D")]
+    [UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
     public async ValueTask<EntityId> InsertGuarantorAsync(CreateGuarantorRequest Request)
     {
         await Request.ValidateAndThrowOnFailuresAsync(
@@ -57,6 +59,7 @@ public partial class GuarantorService(IStore Store)
     /// <param name="Request">Recibe el id del Guarantor.</param>
     /// <returns></returns>
     [MethodId("6C5CFD99-1940-487F-8637-88B6033A6216")]
+    [UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
     public async ValueTask<bool> DeleteGuarantorAsync(DeleteGuarantorRequest Request)
     {
         await Request.ValidateAndThrowOnFailuresAsync(Key(nameof(CustomerStore)).Value(CustomerStore));
