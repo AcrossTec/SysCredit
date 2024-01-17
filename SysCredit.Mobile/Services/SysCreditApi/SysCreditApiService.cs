@@ -28,7 +28,7 @@ public class SysCreditApiService : ISysCreditApiService
         this.RestClient = new HttpClient();
         this.SerializerOptions = new JsonSerializerOptions
         {
-            PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy,
+            PropertyNamingPolicy = DefaultJsonNamingPolicy.Default,
             IncludeFields = false,
         };
     }

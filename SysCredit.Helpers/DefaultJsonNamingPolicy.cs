@@ -6,12 +6,12 @@ using System.Text.Json;
 /// <summary>
 ///     Anula la política de nombramiento de claves de un Json.
 /// </summary>
-public class JsonDefaultNamingPolicy : JsonNamingPolicy
+public class DefaultJsonNamingPolicy : JsonNamingPolicy
 {
     /// <summary>
     ///     Objeto singletón con la política de nombramiento de clave por defecto de un Json. 
     /// </summary>
-    public static JsonDefaultNamingPolicy DefaultNamingPolicy { get; } = new JsonDefaultNamingPolicy();
+    public static readonly DefaultJsonNamingPolicy Default = new();
 
     /// <summary>
     ///     No realiza ninguna conversión sobre la cadena.
@@ -23,8 +23,5 @@ public class JsonDefaultNamingPolicy : JsonNamingPolicy
     ///     Regresa la misma cadena usada como argumento.
     /// </returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public override string ConvertName(string Name)
-    {
-        return Name;
-    }
+    public override string ConvertName(string Name) => Name;
 }

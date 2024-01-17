@@ -1,4 +1,4 @@
-﻿namespace SysCredit.Api.Controllers;
+﻿namespace SysCredit.Api.Endpoints;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

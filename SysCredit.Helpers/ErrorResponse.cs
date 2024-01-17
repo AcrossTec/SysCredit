@@ -1,5 +1,8 @@
 ﻿namespace SysCredit.Helpers;
 
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
+
 /// <summary>
 ///     Modelo de respuesta usado por el Middleware de ASP NET cuando se captura un error.
 /// </summary>
@@ -18,4 +21,7 @@
 /// <param name="RequestBody">
 ///     Objeto de petición que un Endpoint con el verbo POST, PUT, PATCH envía desde algún cliente.
 /// </param>
-public record class ErrorResponse(string HttpMethod, string ServerHost, string EndpointPath, string? QueryString, object? RequestBody);
+public record class ErrorResponse(
+    string HttpMethod, string ServerHost, string EndpointPath,
+   [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)] string? QueryString,
+   [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] JsonNode? RequestBody);

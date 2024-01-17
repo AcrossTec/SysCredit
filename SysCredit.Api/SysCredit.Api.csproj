@@ -5,11 +5,12 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>399f066c-f5f3-4afb-9804-d06f2b816764</UserSecretsId>
-    <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <WarningLevel>9999</WarningLevel>
+    <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
+    <EnableRequestDelegateGenerator>True</EnableRequestDelegateGenerator>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,7 +36,7 @@
     <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="8.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
-    <PackageReference Include="MySql.Data" Version="8.2.0" />
+    <PackageReference Include="MySql.Data" Version="8.3.0" />
     <PackageReference Include="Npgsql" Version="8.0.1" />
     <PackageReference Include="stakx.DynamicProxy.AsyncInterceptor" Version="0.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />

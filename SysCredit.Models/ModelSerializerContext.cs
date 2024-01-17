@@ -2,6 +2,7 @@
 
 using System.Text.Json.Serialization;
 
+[JsonSerializable(typeof(Gender))]
 [JsonSerializable(typeof(User))]
 [JsonSerializable(typeof(Customer))]
 [JsonSerializable(typeof(Guarantor))]

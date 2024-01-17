@@ -76,7 +76,7 @@ public interface IStore<TModel> : IStore where TModel : Entity
     TModel? ToModel<TViewModel>(TViewModel ViewModel)
     {
         var JsonTypeInfo = SysCreditSerializerContext.Default.GetTypeInfo(typeof(TViewModel))!;
-        JsonTypeInfo.Options.PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy;
+        JsonTypeInfo.Options.PropertyNamingPolicy = DefaultJsonNamingPolicy.Default;
 
         var Json = JsonSerializer.Serialize(ViewModel, JsonTypeInfo);
         return (TModel?)JsonSerializer.Deserialize(Json, JsonTypeInfo);

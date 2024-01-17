@@ -113,7 +113,7 @@ public class LoggingAdviceServiceProxy<[DynamicallyAccessedMembers(DynamicallyAc
             var JsonTypeInfo = SysCreditSerializerContext.Default.GetTypeInfo(TypeInfo)!;
 
             JsonTypeInfo.Options.WriteIndented = true;
-            JsonTypeInfo.Options.PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy;
+            JsonTypeInfo.Options.PropertyNamingPolicy = DefaultJsonNamingPolicy.Default;
             JsonTypeInfo.Options.TypeInfoResolverChain.Add(SysCreditSerializerContext.Default);
 
             return JsonSerializer.Serialize(@object, JsonTypeInfo);

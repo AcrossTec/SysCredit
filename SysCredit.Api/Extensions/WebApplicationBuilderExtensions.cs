@@ -2,6 +2,7 @@
 
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using System.Text.Json.Serialization.Metadata;
 
 using Castle.DynamicProxy;
 
@@ -17,6 +18,8 @@ using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
 using SysCredit.Api.Proxies;
 using SysCredit.Api.Stores;
+using SysCredit.DataTransferObject;
+using SysCredit.Helpers;
 using SysCredit.Models;
 
 /// <summary>
@@ -25,11 +28,39 @@ using SysCredit.Models;
 public static class WebApplicationBuilderExtensions
 {
     /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="Builder"></param>
+    /// <returns></returns>
+    public static WebApplicationBuilder ConfigureHttpJsonOptions(this WebApplicationBuilder Builder)
+    {
+        Builder.Services.ConfigureHttpJsonOptions(static Options =>
+        {
+            Options.SerializerOptions.PropertyNamingPolicy = DefaultJsonNamingPolicy.Default;
+            Options.SerializerOptions.TypeInfoResolverChain.Add(HelpersSerializerContext.Default);
+            Options.SerializerOptions.TypeInfoResolverChain.Add(SysCreditSerializerContext.Default);
+            Options.SerializerOptions.TypeInfoResolverChain.Add(ModelSerializerContext.Default);
+            Options.SerializerOptions.TypeInfoResolverChain.Add(DataTransferObjectSerializerContext.Default);
+        });
+
+        Builder.Services.Configure<JsonOptions>(static Options =>
+        {
+            Options.JsonSerializerOptions.WriteIndented = true;
+            Options.JsonSerializerOptions.PropertyNamingPolicy = DefaultJsonNamingPolicy.Default;
+            Options.JsonSerializerOptions.TypeInfoResolver = JsonTypeInfoResolver.Combine(
+                ModelSerializerContext.Default, HelpersSerializerContext.Default,
+                SysCreditSerializerContext.Default, DataTransferObjectSerializerContext.Default);
+        });
+
+        return Builder;
+    }
+
+    /// <summary>
     ///     Configuración del Logger usado por SysCredit.
     /// </summary>
     /// <remarks>
     ///     Logging in .NET Core and ASP.NET Core
-    ///     https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-7.0
+    ///     https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-8.0
     ///     
     ///     Implement a custom logging provider in .NET
     ///     https://learn.microsoft.com/en-us/dotnet/core/extensions/custom-logging-provider
@@ -89,7 +120,7 @@ public static class WebApplicationBuilderExtensions
         Builder.Services.AddSysCreditEndpoints();
         Builder.Services.AddSysCreditSwaggerGen();
         Builder.Services.AddSysCreditStores();
-        Builder.Services.AddSysCreditServices();
+        // TODO: Dar Soporte para AOT Builder.Services.AddSysCreditServices();
         Builder.Services.AddSysCreditOptions();
         return Builder;
     }
@@ -107,30 +138,7 @@ public static class WebApplicationBuilderExtensions
     {
         using var ServiceProvider = Builder.Services.BuildServiceProvider();
         var SysCreditOptions = ServiceProvider.GetRequiredService<IOptions<SysCreditOptions>>().Value;
-
         Builder.Services.AddAuthorization();
-        // Builder.Services.AddAuthentication(Options =>
-        // {
-        //     Options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        //     Options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        //     Options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-        // })
-        // .AddJwtBearer(Options =>
-        // {
-        //     Options.SaveToken = true;
-        //     Options.RequireHttpsMetadata = Builder.Environment.IsProduction();
-        //     Options.TokenValidationParameters = new TokenValidationParameters
-        //     {
-        //         ValidateIssuer = true,
-        //         ValidateAudience = true,
-        //         ValidateLifetime = true,
-        //         ValidateIssuerSigningKey = true,
-        //         ValidIssuer = SysCreditOptions.TokenInfo.Issuer,
-        //         ValidAudience = SysCreditOptions.TokenInfo.Issuer,
-        //         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SysCreditOptions.TokenInfo.Key))
-        //     };
-        // });
-
         return Builder;
     }
 
@@ -145,9 +153,6 @@ public static class WebApplicationBuilderExtensions
     /// </returns>
     public static IServiceCollection AddSysCreditEndpoints(this IServiceCollection Services)
     {
-        // TODO: Portear a Minimal Api
-        // Services.AddControllers().AddJsonOptions(static Options => Options.JsonSerializerOptions.PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy);
-
         Services.AddEndpointsApiExplorer();
 
         Services.AddCors(static Options => Options.AddPolicy(SysCreditConstants.CorsAllowSpecificOrigins, static Policy =>
@@ -170,31 +175,7 @@ public static class WebApplicationBuilderExtensions
     /// </returns>
     public static IServiceCollection AddSysCreditSwaggerGen(this IServiceCollection Services)
     {
-        Services.AddSwaggerGen(static SwaggerGenOptions =>
-        {
-            // var SecuritySchema = new OpenApiSecurityScheme
-            // {
-            //     Description = "Autorización Mediante JWT Token",
-            //     Name = SysCreditConstants.AuthorizationHeaderName,
-            //     In = ParameterLocation.Header,
-            //     Type = SecuritySchemeType.Http,
-            //     Scheme = SysCreditConstants.AuthorizationHeaderScheme,
-            //     Reference = new OpenApiReference
-            //     {
-            //         Type = ReferenceType.SecurityScheme,
-            //         Id = SysCreditConstants.AuthorizationHeaderScheme
-            //     }
-            // };
-
-            // var SecurityRequirement = new OpenApiSecurityRequirement
-            // {
-            //     [SecuritySchema] = new[] { SysCreditConstants.AuthorizationHeaderScheme }
-            // };
-
-            // SwaggerGenOptions.AddSecurityDefinition(SysCreditConstants.AuthorizationHeaderScheme, SecuritySchema);
-            // SwaggerGenOptions.AddSecurityRequirement(SecurityRequirement);
-        });
-
+        Services.AddSwaggerGen();
         return Services;
     }
 

@@ -26,6 +26,7 @@ public static class WebApplicationExtensions
             App.UseSwaggerUI();
         }
 
+        App.MapSwagger();
         return App;
     }
 

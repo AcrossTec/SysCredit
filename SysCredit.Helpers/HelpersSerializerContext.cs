@@ -6,7 +6,8 @@ using System.Text.Json.Serialization;
 [JsonSerializable(typeof(ErrorStatus))]
 [JsonSerializable(typeof(ErrorResponse))]
 [JsonSerializable(typeof(Response))]
+[JsonSerializable(typeof(Response<EntityId>))]
+[JsonSerializable(typeof(Response<ErrorResponse>))]
 public partial class HelpersSerializerContext : JsonSerializerContext
 {
-    // TODO: Crear Source Generator para la versión genérica de [JsonSerializable(typeof(Response<>))]
 }

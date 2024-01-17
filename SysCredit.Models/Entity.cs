@@ -3,7 +3,7 @@
 /// <summary>
 ///     Datos generales asociados a las distintas entidades de la base de datos.
 /// </summary>
-public abstract record class Entity
+public abstract partial record Entity : IEntity
 {
     /// <summary>
     ///     Fecha de creación del registro.

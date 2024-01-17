@@ -2,6 +2,9 @@
 
 using System.Text.Json.Serialization;
 
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+
 using SysCredit.Api.Requests;
 using SysCredit.Api.Requests.Customers;
 using SysCredit.Api.Requests.Guarantors;
@@ -9,6 +12,9 @@ using SysCredit.Api.Requests.LoanTypes;
 using SysCredit.Api.Requests.PaymentFrequencies;
 using SysCredit.Api.Requests.References;
 using SysCredit.Api.Requests.Relationships;
+using SysCredit.DataTransferObject.Commons;
+using SysCredit.Helpers;
+using SysCredit.Models;
 
 /// <summary>
 ///     Clase usada como contexto de Serialización y Deserialización para cadenas Json.
@@ -34,6 +40,16 @@ using SysCredit.Api.Requests.Relationships;
 [JsonSerializable(typeof(UpdateRelationshipRequest))]
 [JsonSerializable(typeof(CustomerGuarantorRequest[]))]
 [JsonSerializable(typeof(CreateReferenceRequest[]))]
+[JsonSerializable(typeof(ProblemDetails))]
+[JsonSerializable(typeof(HttpValidationProblemDetails))]
+[JsonSerializable(typeof(IResponse<IAsyncEnumerable<PaymentFrequencyInfo>>))]
+[JsonSerializable(typeof(IResponse<IAsyncEnumerable<PaymentFrequency>>))]
+[JsonSerializable(typeof(IResponse<ProblemHttpResult>))]
+[JsonSerializable(typeof(IResponse<ValidationProblemDetails>))]
+[JsonSerializable(typeof(Response<IAsyncEnumerable<PaymentFrequencyInfo>>))]
+[JsonSerializable(typeof(Response<IAsyncEnumerable<PaymentFrequency>>))]
+[JsonSerializable(typeof(Response<ProblemHttpResult>))]
+[JsonSerializable(typeof(Response<ValidationProblemDetails>))]
 public partial class SysCreditSerializerContext : JsonSerializerContext
 {
 }

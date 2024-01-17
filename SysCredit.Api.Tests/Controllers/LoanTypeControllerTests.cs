@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 using Moq;
 
-using SysCredit.Api.Controllers;
+using SysCredit.Api.Endpoints;
 using SysCredit.Api.Interfaces.Services;
 using System.Threading.Tasks;
 

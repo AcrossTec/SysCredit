@@ -1,12 +1,12 @@
+using System.Runtime.CompilerServices;
+
 using log4net.Config;
 
 using Microsoft.AspNetCore.Mvc;
 
 using SysCredit.Api.Attributes;
+using SysCredit.Api.Endpoints;
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Patchers;
-
-using System.Runtime.CompilerServices;
 
 using static SysCredit.Api.Constants.SysCreditConstants;
 
@@ -14,20 +14,43 @@ using static SysCredit.Api.Constants.SysCreditConstants;
 [assembly: ErrorCodeRange(MinCodeNumber: 0, MaxCodeNumber: 300)]
 [assembly: XmlConfigurator(ConfigFile = Log4NetConfigFile, Watch = true)]
 
-var Builder = WebApplication.CreateBuilder(args);
-Builder.AddSysCreditLogging();
-Builder.AddSysCreditServices();
-Builder.AddSysCreditAuthentication();
+var Builder = WebApplication
+    .CreateSlimBuilder(args)
+    .ConfigureHttpJsonOptions()
+    .AddSysCreditLogging()
+    .AddSysCreditServices()
+    .AddSysCreditAuthentication();
+
+Builder.WebHost.UseKestrelHttpsConfiguration();
+Builder.WebHost.UseQuic();
 
 var App = Builder.Build();
+App.UseRouting();
+
+// App.UseAuthentication();
+// App.UseAuthorization();
+
 App.UseHttpLogging();
+App.UseHttpsRedirection();
+
 App.UseSysCreditSwaggerUI();
 App.UseSysCreditMiddlewares();
-App.UseHttpsRedirection();
+
 App.UseCors(CorsAllowSpecificOrigins);
-App.UseAuthentication();
-App.UseAuthorization();
-App.MapControllers();
+
+var LoanTypeEndpoints = App.MapGroup("/Api/LoanType");
+LoanTypeEndpoints.MapGet("/", () => new LoanTypeInfo[]
+{
+    new() { LoanTypeId = 1, Name = "Loan Type #1" },
+    new() { LoanTypeId = 2, Name = "Loan Type #2" },
+    new() { LoanTypeId = 3, Name = "Loan Type #3" },
+    new() { LoanTypeId = 4, Name = "Loan Type #4" },
+    new() { LoanTypeId = 5, Name = "Loan Type #5" },
+})
+.WithName("GetLoanTypes")
+.WithOpenApi();
+
+App.MapPaymentFrequencyEndpoints();
 App.Run();
 
 /// <summary>
@@ -41,6 +64,7 @@ public partial class Program
     [ModuleInitializer]
     public static void ModuleInitializer()
     {
-        SysCreditApiPatcher.PatchAll();
+        // No compatible con AOT
+        // SysCreditApiPatcher.PatchAll();
     }
 }

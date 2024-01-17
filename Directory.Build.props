@@ -36,9 +36,18 @@
 
   <!-- Disable reflection defaults -->
   <!-- https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/source-generation?pivots=dotnet-8-0 -->
+  <!-- https://devblogs.microsoft.com/dotnet/system-text-json-in-dotnet-8/ -->
 
   <PropertyGroup>
-    <JsonSerializerIsReflectionEnabledByDefault>false</JsonSerializerIsReflectionEnabledByDefault>
+    <JsonSerializerIsReflectionEnabledByDefault>False</JsonSerializerIsReflectionEnabledByDefault>
+  </PropertyGroup>
+
+  <!-- ASP.NET Core support for native AOT -->
+  <!-- Source generators -->
+  <!-- https://learn.microsoft.com/en-us/aspnet/core/fundamentals/native-aot?view=aspnetcore-8.0 -->
+
+  <PropertyGroup>
+    <EmitCompilerGeneratedFiles>False</EmitCompilerGeneratedFiles>
   </PropertyGroup>
 
   <!-- Include PolySharp to generate polyfills for all projects (on their .NET Standard 2.x targets) -->

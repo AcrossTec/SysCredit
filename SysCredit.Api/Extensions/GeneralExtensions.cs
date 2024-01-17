@@ -4,6 +4,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 
+using Microsoft.AspNetCore.Mvc;
+
 using SysCredit.Api.Stores;
 using SysCredit.Models;
 
@@ -98,18 +100,18 @@ public static class GeneralExtensions
     /// <param name="Json">
     ///     Cadena en formato Json que se va ha deserializar.
     /// </param>
+    /// <param name="Options">
+    ///     Opciones de serialización para un objeto ha Json.
+    /// </param>
     /// <returns>
     ///     Regresa la cadena <paramref name="Json"/> deserializada a un objeto de tipo <typeparamref name="T"/>
     ///     si <paramref name="Json"/> no es nulo.
     /// </returns>
-    public static T? DeserializeIfNotNullOrEmpty<T>(this string? Json)
+    public static T? DeserializeIfNotNullOrEmpty<T>(this string? Json, JsonOptions Options)
     {
-        if (String.IsNullOrEmpty(Json))
-        {
-            return default;
-        }
-
-        return (T?)JsonSerializer.Deserialize(Json!, typeof(T), SysCreditSerializerContext.Default);
+        if (String.IsNullOrEmpty(Json)) return default;
+        var JsonTypeInfo = Options.JsonSerializerOptions.TypeInfoResolver!.GetTypeInfo(typeof(T), Options.JsonSerializerOptions)!;
+        return (T?)JsonSerializer.Deserialize(Json, JsonTypeInfo);
     }
 
     /// <summary>

@@ -1,18 +1,18 @@
 ﻿namespace SysCredit.Api.Middlewares;
 
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
 using SysCredit.Api.Exceptions;
 using SysCredit.Api.Extensions;
-
 using SysCredit.Helpers;
-
-using System.Data.SqlClient;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization.Metadata;
 
 using static Constants.ErrorCodePrefix;
 using static Constants.ErrorCodes;
@@ -26,9 +26,12 @@ using static Constants.ErrorCodes;
 /// <param name="Logger">
 ///     Objeto de Logs para informar sobre el error que se está capturando.
 /// </param>
+/// <param name="JsonOptions">
+///     Opciones para la serialización y deserialización de objectos a JSON.
+/// </param>
 [ErrorCategory(nameof(SysCreditMiddleware))]
 [ErrorCodePrefix(InternalServerErrorPrefix)]
-public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddleware> Logger)
+public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddleware> Logger, IOptions<JsonOptions> JsonOptions)
 {
     /// <summary>
     ///     Código único del método que captura el error.
@@ -105,7 +108,7 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
     /// <returns>
     ///     Regresa un <see cref="ErrorResponse" /> con información detallada del error del Request.
     /// </returns>
-    private static async ValueTask<ErrorResponse> CreateHttpContextResponseDataAsync(HttpContext Context, int StatusCode = StatusCodes.Status500InternalServerError)
+    private async ValueTask<ErrorResponse> CreateHttpContextResponseDataAsync(HttpContext Context, int StatusCode = StatusCodes.Status500InternalServerError)
     {
         ConfigureHttpContextResponse(Context, StatusCode);
 
@@ -120,7 +123,7 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
             ServerHost: Context.Request.Host.ToString(),
             EndpointPath: Context.Request.Path.ToString(),
             QueryString: Context.Request.QueryString.ToString(),
-            RequestBody: RequestBody.DeserializeIfNotNullOrEmpty<Dictionary<string, object>>()
+            RequestBody: JsonNode.Parse(RequestBody)
         );
     }
 
@@ -153,13 +156,12 @@ public class SysCreditMiddleware(RequestDelegate Next, ILogger<SysCreditMiddlewa
     /// </summary>
     /// <param name="Response"></param>
     /// <returns></returns>
-    private static string SerializeResponse(IResponse Response)
+    private string SerializeResponse(IResponse Response)
     {
-        return JsonSerializer.Serialize(Response, Response.GetType(), (SysCreditSerializerContext)SysCreditSerializerContext.Default.WithAddedModifier(static TypeInfo =>
-        {
-            TypeInfo.Options.PropertyNamingPolicy = JsonDefaultNamingPolicy.DefaultNamingPolicy;
-            TypeInfo.Options.WriteIndented = true;
-        }));
+        var JsonTypeInfo = JsonOptions.Value.JsonSerializerOptions.TypeInfoResolver!.GetTypeInfo(
+            Response.GetType(), JsonOptions.Value.JsonSerializerOptions);
+
+        return JsonSerializer.Serialize(Response, JsonTypeInfo!);
     }
 
     /// <summary>
