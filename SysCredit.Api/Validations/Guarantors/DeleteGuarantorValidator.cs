@@ -6,8 +6,14 @@ using SysCredit.Api.Extensions;
 
 using FluentValidation;
 
+/// <summary>
+/// 
+/// </summary>
 public class DeleteGuarantorValidator : AbstractValidator<DeleteGuarantorRequest>
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public DeleteGuarantorValidator()
     {
         RuleFor(G => G.GuarantorId)

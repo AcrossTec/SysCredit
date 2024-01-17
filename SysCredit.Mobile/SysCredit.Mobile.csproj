@@ -21,6 +21,8 @@
     <SingleProject>true</SingleProject>
     <ImplicitUsings>enable</ImplicitUsings>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <WarningLevel>7</WarningLevel>
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
 
     <!-- Display name -->
@@ -42,11 +44,48 @@
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
   </PropertyGroup>
 
+  <!-- AOT Support in MAUI -->
+  <PropertyGroup>
+    <!-- Native AOT deployment -->
+    <!-- https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/?tabs=net8plus%2Clinux-ubuntu -->
+    <PublishAot>True</PublishAot>
+    <IsAotCompatible>True</IsAotCompatible>
+
+    <!-- Trim self-contained deployments and executables -->
+    <!-- https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained -->
+    <IsTrimmable>True</IsTrimmable>
+    <PublishTrimmed>True</PublishTrimmed>
+
+    <!-- How to use Native AOT Compilation in .NET 8 -->
+    <!-- https://community.abp.io/posts/native-aot-compilation-in-.net-8-oq7qtwov -->
+    <!--<OptimizationPreference>Speed</OptimizationPreference>-->
+    <OptimizationPreference>Size</OptimizationPreference>
+
+    <!-- Native debug information -->
+    <StripSymbols>False</StripSymbols>
+  </PropertyGroup>
+
+  <!-- Disable reflection defaults -->
+  <PropertyGroup>
+    <JsonSerializerIsReflectionEnabledByDefault>False</JsonSerializerIsReflectionEnabledByDefault>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
-    <!--<AndroidLinkMode>None</AndroidLinkMode>-->
+    <!-- Linking on Android -->
+    <!-- https://learn.microsoft.com/en-us/xamarin/android/deploy-test/building-apps/build-properties#androidlinkmode -->
+    <!-- https://learn.microsoft.com/en-us/xamarin/android/deploy-test/linker -->
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+
+    <EnableLLVM>True</EnableLLVM>
     <AndroidPackageFormat>apk</AndroidPackageFormat>
-    <RunAOTCompilation>False</RunAOTCompilation>
-    <WarningLevel>7</WarningLevel>
+    <RunAOTCompilation>True</RunAOTCompilation>
+    <AndroidKeyStore>False</AndroidKeyStore>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
+    <RunAOTCompilation>True</RunAOTCompilation>
+    <EnableLLVM>True</EnableLLVM>
+    <AndroidKeyStore>False</AndroidKeyStore>
   </PropertyGroup>
 
   <ItemGroup>
@@ -111,19 +150,12 @@
     <Compile Remove="**\Windows\**\*.cs" />
     <None Include="**\Windows\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Remove="Platforms\Android\Resources\drawable\maui_splash.xml" />
-    <AndroidResource Remove="Platforms\Android\Resources\drawable\maui_splash_image.xml" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Properties\SysCreditResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SysCreditResources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Presentations\PresentationPage1.xaml.cs">
-      <DependentUpon>PresentationPage1.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 

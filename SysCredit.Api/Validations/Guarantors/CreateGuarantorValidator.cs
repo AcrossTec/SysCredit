@@ -11,6 +11,9 @@ using SysCredit.Api.Requests.Guarantors;
 /// </summary>
 public class CreateGuarantorValidator : AbstractValidator<CreateGuarantorRequest>
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public CreateGuarantorValidator()
     {
         RuleFor(G => G.Identification)
