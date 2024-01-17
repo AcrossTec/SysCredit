@@ -9,10 +9,10 @@
              Title="PesentationPage1"
              Routing.Route="Presentations/SysCredit/Presentation1">
 
-    <ScrollView>
-        <Grid>
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView>
             <StackLayout VerticalOptions="StartAndExpand">
-                <Label
+                <Label 
                     Text="1/4"
                     FontSize="20"
                     FontFamily="HelveticaNeueBold"
@@ -22,7 +22,7 @@
                     Margin="20"/>
 
                 <Label
-                    Text="{x:Static Properties:SysCreditResources.View_Welcome}"
+                    Text="{Properties:Translate View_Welcome}"
                     FontFamily="HelveticaNeueBold"
                     Margin="10,0,10,0"
                     FontSize="30"
@@ -45,8 +45,8 @@
                     HeightRequest="90">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="{x:Static Properties:SysCreditResources.View_Presentation1_Part1}" FontFamily="HelveticaNeueLight"/>
-                            <Span Text="{x:Static Properties:SysCreditResources.View_Presentation1_Part2}" FontFamily="HelveticaNeueBold"/>
+                            <Span Text="{Properties:Translate View_Presentation1_Part1}" FontFamily="HelveticaNeueLight"/>
+                            <Span Text="{Properties:Translate View_Presentation1_Part2}" FontFamily="HelveticaNeueBold"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -66,7 +66,7 @@
                         </Border.StrokeShape>
 
                         <Button 
-                            Text="{x:Static Properties:SysCreditResources.View_ButtonOmit}"
+                            Text="{Properties:Translate View_ButtonOmit}"
                             FontFamily="HelveticaNeueLight"            
                             Command="{Binding GoToLoginCommand}"
                             HorizontalOptions="Center"
@@ -86,7 +86,7 @@
                         </Border.StrokeShape>
 
                         <Button 
-                            Text="{x:Static Properties:SysCreditResources.View_ButtonNext}"
+                            Text="{Properties:Translate View_ButtonNext}"
                             FontFamily="HelveticaNeueLight"            
                             Command="{Binding GoToNextPresentationCommand}"
                             HorizontalOptions="Center"
@@ -95,10 +95,10 @@
                     </Border>
                 </Grid>
             </StackLayout>
+        </ScrollView>
 
-            <StackLayout VerticalOptions="End">
-                <Controls:SysCreditFooterView />
-            </StackLayout>
-        </Grid>
-    </ScrollView>
+        <StackLayout VerticalOptions="End" Grid.Row="1">
+            <Controls:SysCreditFooterView />
+        </StackLayout>
+    </Grid>
 </ContentPage>

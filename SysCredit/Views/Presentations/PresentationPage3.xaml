@@ -9,8 +9,8 @@
              Title="PresentationPage3"
              Routing.Route="Presentations/SysCredit/Presentation3">
 
-    <ScrollView>
-        <Grid>
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView>
             <StackLayout VerticalOptions="StartAndExpand">
                 <Label
                     Text="3/4"
@@ -36,8 +36,8 @@
                     HeightRequest="90">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="{x:Static Properties:SysCreditResources.View_Presentation3_Part1}" FontFamily="HelveticaNeueLight"/>
-                            <Span Text="{x:Static Properties:SysCreditResources.View_Presentation3_Part2}" FontFamily="HelveticaNeueBold"/>
+                            <Span Text="{Properties:Translate View_Presentation3_Part1}" FontFamily="HelveticaNeueLight"/>
+                            <Span Text="{Properties:Translate View_Presentation3_Part2}" FontFamily="HelveticaNeueBold"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -56,7 +56,7 @@
                         </Border.StrokeShape>
 
                         <Button 
-                            Text="{x:Static Properties:SysCreditResources.View_ButtonOmit}"
+                            Text="{Properties:Translate View_ButtonOmit}"
                             FontFamily="HelveticaNeueLight"            
                             Command="{Binding GoToLoginCommand}"
                             HorizontalOptions="Center"
@@ -76,7 +76,7 @@
                         </Border.StrokeShape>
 
                         <Button 
-                            Text="{x:Static Properties:SysCreditResources.View_ButtonNext}"
+                            Text="{Properties:Translate View_ButtonNext}"
                             FontFamily="HelveticaNeueLight"            
                             Command="{Binding GoToNextPresentationCommand}"
                             HorizontalOptions="Center"
@@ -86,9 +86,10 @@
                 </Grid>
             </StackLayout>
 
-            <StackLayout VerticalOptions="End">
-                <Controls:SysCreditFooterView />
-            </StackLayout>
-        </Grid>
-    </ScrollView>
+        </ScrollView>
+        
+        <StackLayout VerticalOptions="End">
+            <Controls:SysCreditFooterView />
+        </StackLayout>
+    </Grid>
 </ContentPage>

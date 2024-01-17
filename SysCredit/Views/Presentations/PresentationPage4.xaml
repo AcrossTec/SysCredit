@@ -9,8 +9,8 @@
              Title="PresentationPage4"
              Routing.Route="Presentations/SysCredit/Presentation4">
 
-    <ScrollView>
-        <Grid>
+    <Grid RowDefinitions="*,Auto">
+        <ScrollView>
             <StackLayout VerticalOptions="StartAndExpand">
                 <Label
                     Text="4/4"
@@ -36,9 +36,9 @@
                     HeightRequest="90">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="{x:Static Properties:SysCreditResources.View_Presentation4_Part1}" FontFamily="HelveticaNeueLight"/>
-                            <Span Text="{x:Static Properties:SysCreditResources.View_Presentation4_Part2}" FontFamily="HelveticaNeueBold"/>
-                            <Span Text="{x:Static Properties:SysCreditResources.View_Presentation4_Part3}" FontFamily="HelveticaNeueLight"/>
+                            <Span Text="{Properties:Translate View_Presentation4_Part1}" FontFamily="HelveticaNeueLight"/>
+                            <Span Text="{Properties:Translate View_Presentation4_Part2}" FontFamily="HelveticaNeueBold"/>
+                            <Span Text="{Properties:Translate View_Presentation4_Part3}" FontFamily="HelveticaNeueLight"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -55,7 +55,7 @@
                         </Border.StrokeShape>
 
                         <Button 
-                            Text="{x:Static Properties:SysCreditResources.View_StartToWork  }"
+                            Text="{Properties:Translate View_StartToWork}"
                             FontFamily="HelveticaNeueLight"            
                             Command="{Binding GoToLoginCommand}"
                             HorizontalOptions="Center"
@@ -64,10 +64,10 @@
                     </Border>
                 </Grid>
             </StackLayout>
+        </ScrollView>
 
-            <StackLayout VerticalOptions="End">
-                <Controls:SysCreditFooterView />
-            </StackLayout>
-        </Grid>
-    </ScrollView>
+        <StackLayout VerticalOptions="End">
+            <Controls:SysCreditFooterView />
+        </StackLayout>
+    </Grid>
 </ContentPage>
