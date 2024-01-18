@@ -2,7 +2,6 @@
 
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
 using SysCredit.Api.Attributes;
@@ -18,6 +17,7 @@ using IPaymentFrequencyService = global::SysCredit.Api.Interfaces.Services.IPaym
 /// <summary>
 ///     Endpoint para las distintas operaciones relacionadas a la frecuencia de pago.
 /// </summary>
+/// <seealso href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/min-api-filters?view=aspnetcore-8.0" />
 [Endpoints]
 public static class PaymentFrequencyEndpoints
 {
@@ -32,58 +32,52 @@ public static class PaymentFrequencyEndpoints
     /// </returns>
     public static IEndpointConventionBuilder MapPaymentFrequencyEndpoints(this IEndpointRouteBuilder Endpoints)
     {
-        /*
-         Api Rest
-         ASP NET 4 Tipos
-
-         1) MVC -> Controller
-            Se puede retornar Razor Pages y Código HTML y JavaScript
-            (Server Rendering)
-
-         2) Web API -> API Controller
-            Solamente Endpoints que retoran datos.
-            No procesa nada relacionado a HTML ni JavaScript
-            
-         3) Rest API Basados en Pages: MVC + Web API
-            Todo el código está en .cshtml
-
-         4) Minimal API
-            Rest API mediante programación funcional (Express Nodejs)
-
-         Extra) Rest API desde GRPC autogenerado (Sólo es válido con C#)
-                Archivos protos y generan el código necesario para soportar Web API
-         */
-        ArgumentNullException.ThrowIfNull(Endpoints);
-
-        RouteGroupBuilder RouteGroup = Endpoints.MapGroup("/Api/PaymentFrequency");
+        RouteGroupBuilder RouteGroup = Endpoints.MapGroup("/Api/PaymentFrequency").WithTags("PaymentFrequency", "Catalog");
 
         RouteGroup.MapGet("/", FetchPaymentFrequencyAsync)
                   .Produces<IResponse<IAsyncEnumerable<PaymentFrequencyInfo>>>(StatusCodes.Status200OK)
-                  .Produces<IResponse<ProblemHttpResult>>(StatusCodes.Status500InternalServerError);
+                  .Produces<IResponse<ProblemHttpResult>>(StatusCodes.Status500InternalServerError)
+                  .WithName(nameof(FetchPaymentFrequencyAsync))
+                  .WithSummary("Endpoint para obtener todas las frecuencias de pago")
+                  .WithOpenApi();
 
         RouteGroup.MapGet("/{PaymentFrequencyId}", FetchPaymentFrequencyByIdAsync)
                   .Produces<IResponse<PaymentFrequencyInfo?>>(StatusCodes.Status200OK)
                   .Produces<IResponse<ProblemHttpResult>>(StatusCodes.Status500InternalServerError)
-                  .WithName(nameof(FetchPaymentFrequencyByIdAsync));
+                  .WithName(nameof(FetchPaymentFrequencyByIdAsync))
+                  .WithSummary("Endpoint para obtener una frecuencias de pago por Id")
+                  .WithOpenApi();
 
         RouteGroup.MapGet("/Complete", FetchPaymentFrequencyCompleteAsync)
                   .Produces<IResponse<IAsyncEnumerable<PaymentFrequency>>>(StatusCodes.Status200OK)
-                  .Produces<IResponse<ProblemHttpResult>>(StatusCodes.Status500InternalServerError);
+                  .Produces<IResponse<ProblemHttpResult>>(StatusCodes.Status500InternalServerError)
+                  .WithName(nameof(FetchPaymentFrequencyCompleteAsync))
+                  .WithSummary("Endpoint para obtener todas las frecuencias de pago tal como está en base de datos")
+                  .WithOpenApi();
 
         RouteGroup.MapPost("/", InsertPaymentFrequencyAsync)
                   .Produces<IResponse<EntityId>>(StatusCodes.Status201Created)
                   .Produces<IResponse<ProblemHttpResult>>(StatusCodes.Status500InternalServerError)
-                  .Produces<IResponse<ValidationProblemDetails>>(StatusCodes.Status400BadRequest);
+                  .Produces<IResponse<ValidationProblemDetails>>(StatusCodes.Status400BadRequest)
+                  .WithName(nameof(InsertPaymentFrequencyAsync))
+                  .WithSummary("Endpoint para registrar una frecuencias de pago")
+                  .WithOpenApi();
 
         RouteGroup.MapPut("/{PaymentFrequencyId}", UpdatePaymentFrequencyAsync)
                   .Produces(StatusCodes.Status204NoContent)
                   .Produces<IResponse<ProblemHttpResult>>(StatusCodes.Status500InternalServerError)
-                  .Produces<IResponse<ValidationProblemDetails>>(StatusCodes.Status400BadRequest);
+                  .Produces<IResponse<ValidationProblemDetails>>(StatusCodes.Status400BadRequest)
+                  .WithName(nameof(UpdatePaymentFrequencyAsync))
+                  .WithSummary("Endpoint para actualizar una frecuencias de pago")
+                  .WithOpenApi();
 
         RouteGroup.MapDelete("/{PaymentFrequencyId}", DeletePaymentFrequencyAsync)
                   .Produces(StatusCodes.Status204NoContent)
                   .Produces<IResponse<ProblemHttpResult>>(StatusCodes.Status500InternalServerError)
-                  .Produces<IResponse<ValidationProblemDetails>>(StatusCodes.Status400BadRequest);
+                  .Produces<IResponse<ValidationProblemDetails>>(StatusCodes.Status400BadRequest)
+                  .WithName(nameof(DeletePaymentFrequencyAsync))
+                  .WithSummary("Endpoint para borrar una frecuencias de pago")
+                  .WithOpenApi();
 
         return new PaymentFrequencyEndpointsConventionBuilder(RouteGroup);
     }

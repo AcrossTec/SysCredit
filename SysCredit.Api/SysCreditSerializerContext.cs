@@ -5,6 +5,8 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
+using Swashbuckle.AspNetCore.SwaggerUI;
+
 using SysCredit.Api.Requests;
 using SysCredit.Api.Requests.Customers;
 using SysCredit.Api.Requests.Guarantors;
@@ -50,6 +52,14 @@ using SysCredit.Models;
 [JsonSerializable(typeof(Response<IAsyncEnumerable<PaymentFrequency>>))]
 [JsonSerializable(typeof(Response<ProblemHttpResult>))]
 [JsonSerializable(typeof(Response<ValidationProblemDetails>))]
+[JsonSerializable(typeof(ConfigObject))]
+[JsonSerializable(typeof(UrlDescriptor))]
+[JsonSerializable(typeof(ModelRendering))]
+[JsonSerializable(typeof(DocExpansion))]
+[JsonSerializable(typeof(SubmitMethod))]
+[JsonSerializable(typeof(OAuthConfigObject))]
+[JsonSerializable(typeof(InterceptorFunctions))]
+[JsonSourceGenerationOptions(UseStringEnumConverter = true, PropertyNamingPolicy = JsonKnownNamingPolicy.Unspecified)]
 public partial class SysCreditSerializerContext : JsonSerializerContext
 {
 }

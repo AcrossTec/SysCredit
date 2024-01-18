@@ -8,6 +8,7 @@ using System.Text.Json.Serialization;
 [JsonSerializable(typeof(Response))]
 [JsonSerializable(typeof(Response<EntityId>))]
 [JsonSerializable(typeof(Response<ErrorResponse>))]
+[JsonSerializable(typeof(Dictionary<string, string>))]
 public partial class HelpersSerializerContext : JsonSerializerContext
 {
 }

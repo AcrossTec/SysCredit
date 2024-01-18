@@ -1,22 +1,17 @@
 ﻿namespace SysCredit.Api.Extensions;
 
-using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Text.Json.Serialization.Metadata;
-
-using Castle.DynamicProxy;
 
 using log4net.Config;
 
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
 
-using SysCredit.Api.Attributes;
 using SysCredit.Api.Constants;
-using SysCredit.Api.Proxies;
 using SysCredit.Api.Stores;
 using SysCredit.DataTransferObject;
 using SysCredit.Helpers;
@@ -113,14 +108,12 @@ public static class WebApplicationBuilderExtensions
     /// <returns>
     ///    Regresa el mismo objeto <paramref name="Builder" /> para habilitar la invocación en cadena.
     /// </returns>
-    [UnconditionalSuppressMessage("Trimming", "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code", Justification = "<Pending>")]
-    [UnconditionalSuppressMessage("AOT", "IL3050:Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.", Justification = "<Pending>")]
     public static WebApplicationBuilder AddSysCreditServices(this WebApplicationBuilder Builder)
     {
         Builder.Services.AddSysCreditEndpoints();
         Builder.Services.AddSysCreditSwaggerGen();
         Builder.Services.AddSysCreditStores();
-        // TODO: Dar Soporte para AOT Builder.Services.AddSysCreditServices();
+        Builder.Services.AddSysCreditServices();
         Builder.Services.AddSysCreditOptions();
         return Builder;
     }
@@ -175,7 +168,27 @@ public static class WebApplicationBuilderExtensions
     /// </returns>
     public static IServiceCollection AddSysCreditSwaggerGen(this IServiceCollection Services)
     {
-        Services.AddSwaggerGen();
+        Services.AddSwaggerGen(static Options =>
+        {
+            Options.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Version = "v1",
+                Title = "SysCredit API",
+                Description = "Rest API de SysCredit para la administración de Micro Financieras",
+                TermsOfService = new Uri("https://acrosstec.com/terms"),
+                Contact = new OpenApiContact
+                {
+                    Name = "AcrossTec Contact",
+                    Url = new Uri("https://acrosstec.com/contact")
+                },
+                License = new OpenApiLicense
+                {
+                    Name = "AcrossTec License",
+                    Url = new Uri("https://acrosstec.com/license")
+                }
+            });
+        });
+
         return Services;
     }
 
@@ -204,22 +217,20 @@ public static class WebApplicationBuilderExtensions
     /// <returns>
     ///     Regresa el objeto contenedor IoC para habilitar las llamada en cadenas.
     /// </returns>
-    [RequiresDynamicCode("Invocación de código dinámico para registrar los Servicios y el Proxy.")]
-    [RequiresUnreferencedCode("Invocación de código dinámico para registrar los Servicios y el Proxy.")]
     public static IServiceCollection AddSysCreditServices(this IServiceCollection Services)
     {
-        var Types = from Type in typeof(Program).Assembly.GetTypes()
-                    let ServiceAttribute = Type.LookupGenericAttribute(typeof(ServiceAttribute<>))
-                    where ServiceAttribute is not null
-                    let InterfaceType = ServiceAttribute.GetType().GetProperty(nameof(ServiceAttribute<IServiceCollection>.InterfaceType))!.GetValue(ServiceAttribute).As<Type>()
-                    select (InterfaceType, Type);
+        //var Types = from Type in typeof(Program).GetTypeInfo().Assembly.DefinedTypes
+        //            let ServiceAttribute = Type.LookupGenericAttribute(typeof(ServiceAttribute<>))
+        //            where ServiceAttribute is not null
+        //            let InterfaceType = ServiceAttribute.GetType().GetProperty(nameof(ServiceAttribute<IServiceCollection>.InterfaceType))!.GetValue(ServiceAttribute).As<Type>()
+        //            select (InterfaceType, Type);
 
-        foreach (var (Interface, Type) in Types)
-        {
-            Services.AddScoped(Interface, Provider => LoggingAdviceServiceInterceptor.Create(Interface, Type, Provider));
-        }
+        //foreach (var (Interface, Type) in Types)
+        //{
+        //    Services.AddScoped(Interface, Provider => LoggingAdviceServiceInterceptor.Create(Interface, Type, Provider));
+        //}
 
-        Services.TryAddSingleton<ProxyGenerator>();
+        //Services.TryAddSingleton<ProxyGenerator>();
         return Services;
     }
 
@@ -234,20 +245,17 @@ public static class WebApplicationBuilderExtensions
     /// </returns>
     public static IServiceCollection AddSysCreditOptions(this IServiceCollection Services)
     {
-        Services.AddOptions<SysCreditOptions>()
-            .Configure<IConfiguration>(static (Options, Configuration) =>
+        Services.AddOptions<SysCreditOptions>().Configure<IConfiguration>(static (Options, Configuration) =>
+        {
+            Configuration.GetSection(SettingsOptions.SysCredit).Bind(Options);
+            Options.ConnectionString = Configuration.GetConnectionString(SysCreditConstants.ConnectionStringKey)!;
+
+            if (string.IsNullOrEmpty(Options.ConnectionString))
             {
-                Configuration.GetSection(SettingsOptions.SysCredit).Bind(Options);
+                Options.ConnectionString = Environment.GetEnvironmentVariable(SysCreditConstants.ConnectionStringEnv)!;
+            }
+        });
 
-                Options.ConnectionString = Configuration.GetConnectionString(SysCreditConstants.ConnectionStringKey)!;
-
-                if (string.IsNullOrEmpty(Options.ConnectionString))
-                {
-                    Options.ConnectionString = Environment.GetEnvironmentVariable(SysCreditConstants.ConnectionStringEnv)!;
-                }
-            });
-
-        Services.Configure<ApiBehaviorOptions>(static Options => { });
         return Services;
     }
 }

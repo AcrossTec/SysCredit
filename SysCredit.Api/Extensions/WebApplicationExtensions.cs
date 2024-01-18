@@ -18,6 +18,7 @@ public static class WebApplicationExtensions
     /// <returns>
     ///     Regresa el mismo valor de <paramref name="App" /> para habilitar la invocación en cadena.
     /// </returns>
+    /// <seealso href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/openapi?view=aspnetcore-8.0" />
     public static WebApplication UseSysCreditSwaggerUI(this WebApplication App)
     {
         if (App.Environment.IsDevelopment())
