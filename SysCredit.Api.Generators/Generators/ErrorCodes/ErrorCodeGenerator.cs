@@ -16,10 +16,7 @@ internal partial class ErrorCodeGenerator : IIncrementalGenerator
     public void Initialize(IncrementalGeneratorInitializationContext Context)
     {
         // #if DEBUG
-        //  if (!Debugger.IsAttached)
-        //  {
-        //      Debugger.Launch();
-        //  }
+        //         if (!Debugger.IsAttached) Debugger.Launch();
         // #endif
 
         Context.RegisterPostInitializationOutput(GenerateErrorCodeAttributes);

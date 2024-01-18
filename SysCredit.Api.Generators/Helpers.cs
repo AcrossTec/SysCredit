@@ -323,4 +323,26 @@ public static class Helpers
 
         return false;
     }
+
+    /// <summary>
+    ///     Obtiene el espacio de nombre donde está declarado <paramref name="MemberSyntax"/>.
+    /// </summary>
+    /// <param name="MemberSyntax">
+    ///     Objeto que se analizará y obtendrá su espacio de nombres.
+    /// </param>
+    /// <returns>
+    ///     Regresa el espacio de nombres de <paramref name="MemberSyntax"/>.
+    /// </returns>
+    public static BaseNamespaceDeclarationSyntax? GetNamespaceDeclarationSyntax(this MemberDeclarationSyntax MemberSyntax)
+    {
+        var Current = MemberSyntax.Parent;
+
+        while (Current is not null)
+        {
+            if (Current is BaseNamespaceDeclarationSyntax) break;
+            Current = Current!.Parent;
+        }
+
+        return Current as BaseNamespaceDeclarationSyntax;
+    }
 }

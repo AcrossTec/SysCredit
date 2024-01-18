@@ -12,6 +12,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 using SysCredit.Api.Constants;
+using SysCredit.Api.Interfaces;
+using SysCredit.Api.Services;
 using SysCredit.Api.Stores;
 using SysCredit.DataTransferObject;
 using SysCredit.Helpers;
@@ -20,7 +22,7 @@ using SysCredit.Models;
 /// <summary>
 ///     Métodos de utilería para agregar todas las dependencias necesarias del sistema SysCredit.
 /// </summary>
-public static class WebApplicationBuilderExtensions
+public static partial class WebApplicationBuilderExtensions
 {
     /// <summary>
     /// 
@@ -217,22 +219,7 @@ public static class WebApplicationBuilderExtensions
     /// <returns>
     ///     Regresa el objeto contenedor IoC para habilitar las llamada en cadenas.
     /// </returns>
-    public static IServiceCollection AddSysCreditServices(this IServiceCollection Services)
-    {
-        //var Types = from Type in typeof(Program).GetTypeInfo().Assembly.DefinedTypes
-        //            let ServiceAttribute = Type.LookupGenericAttribute(typeof(ServiceAttribute<>))
-        //            where ServiceAttribute is not null
-        //            let InterfaceType = ServiceAttribute.GetType().GetProperty(nameof(ServiceAttribute<IServiceCollection>.InterfaceType))!.GetValue(ServiceAttribute).As<Type>()
-        //            select (InterfaceType, Type);
-
-        //foreach (var (Interface, Type) in Types)
-        //{
-        //    Services.AddScoped(Interface, Provider => LoggingAdviceServiceInterceptor.Create(Interface, Type, Provider));
-        //}
-
-        //Services.TryAddSingleton<ProxyGenerator>();
-        return Services;
-    }
+    public static partial IServiceCollection AddSysCreditServices(this IServiceCollection Services);
 
     /// <summary>
     ///     Configura mediante Option Pattern las configuraciones generales de SysCredit.

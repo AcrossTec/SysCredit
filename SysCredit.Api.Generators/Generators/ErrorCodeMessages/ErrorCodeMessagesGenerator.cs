@@ -6,10 +6,13 @@ using Microsoft.CodeAnalysis;
 ///     Generador de código para los mensajes de error.
 /// </summary>
 [Generator(LanguageNames.CSharp)]
-public class ErrorCodeMessagesGenerator : IIncrementalGenerator
+public partial class ErrorCodeMessagesGenerator : IIncrementalGenerator
 {
     /// <inheritdoc />
     public void Initialize(IncrementalGeneratorInitializationContext Context)
     {
+        // #if DEBUG
+        //         if (!Debugger.IsAttached) Debugger.Launch();
+        // #endif
     }
 }

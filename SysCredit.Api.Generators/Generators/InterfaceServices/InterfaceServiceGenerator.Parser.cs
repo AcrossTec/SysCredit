@@ -45,9 +45,9 @@ public partial class InterfaceServiceGenerator
     /// <returns>
     ///     Regresa True sí <paramref name="Node"/> es válido para la generación de código.
     /// </returns>
-    private static bool IsSyntaxTargetForGeneration(SyntaxNode Node, CancellationToken Token)
+    private static bool SysCreditApiServicePredicate(SyntaxNode Node, CancellationToken Token)
     {
-        return Node is ClassDeclarationSyntax @class && @class.HasServiceAttribute();
+        return Node is ClassDeclarationSyntax @class && @class.HasServiceAttribute() && @class.HasServiceModelAttribute();
     }
 
     /// <summary>
@@ -62,7 +62,7 @@ public partial class InterfaceServiceGenerator
     /// <returns>
     ///     Regresa <see cref="GeneratorSyntaxContext.Node"/> convertido en un <see cref="InterfaceServiceInfo"/>.
     /// </returns>
-    private static InterfaceServiceInfo GetSemanticTargetForGeneration(GeneratorSyntaxContext Context, CancellationToken Token)
+    private static InterfaceServiceInfo SysCreditApiServiceTransform(GeneratorSyntaxContext Context, CancellationToken Token)
     {
         var ClassDeclaration = (ClassDeclarationSyntax)Context.Node;
 
@@ -107,32 +107,6 @@ public partial class InterfaceServiceGenerator
     }
 
     /// <summary>
-    ///     Obtiene el espacio de nombre donde está declarado <paramref name="class"/>.
-    /// </summary>
-    /// <param name="class">
-    ///     Objeto que se analizará y obtendrá su espacio de nombres.
-    /// </param>
-    /// <returns>
-    ///     Regresa el espacio de nombres de <paramref name="class"/>.
-    /// </returns>
-    private static BaseNamespaceDeclarationSyntax? GetNamespaceDeclarationSyntax(ClassDeclarationSyntax @class)
-    {
-        var Current = @class.Parent;
-
-        while (Current is not null)
-        {
-            if (Current is BaseNamespaceDeclarationSyntax)
-            {
-                break;
-            }
-
-            Current = Current!.Parent;
-        }
-
-        return Current as BaseNamespaceDeclarationSyntax;
-    }
-
-    /// <summary>
     ///     Obtiene todos los espacios de nombres de donde esté declarada la clase.
     /// </summary>
     /// <param name="class">
@@ -143,7 +117,7 @@ public partial class InterfaceServiceGenerator
     /// </returns>
     private static ImmutableArray<UsingDirectiveSyntax> GetUsingDirectives(ClassDeclarationSyntax @class)
     {
-        BaseNamespaceDeclarationSyntax? @namespace = GetNamespaceDeclarationSyntax(@class);
+        BaseNamespaceDeclarationSyntax? @namespace = @class.GetNamespaceDeclarationSyntax();
         return @namespace?.Usings.ToImmutableArray() ?? ImmutableArray<UsingDirectiveSyntax>.Empty;
     }
 }
