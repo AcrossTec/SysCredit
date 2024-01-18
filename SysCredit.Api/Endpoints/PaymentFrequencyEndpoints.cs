@@ -6,13 +6,11 @@ using Microsoft.Extensions.Logging;
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
+using SysCredit.Api.Interfaces.Services;
 using SysCredit.Api.Requests.PaymentFrequencies;
-
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.Helpers;
 using SysCredit.Models;
-
-using IPaymentFrequencyService = global::SysCredit.Api.Interfaces.Services.IPaymentFrequencyService;
 
 /// <summary>
 ///     Endpoint para las distintas operaciones relacionadas a la frecuencia de pago.
@@ -110,7 +108,7 @@ public static class PaymentFrequencyEndpoints
     ///     Regresa todos los registros de la tabla <see cref="Models.PaymentFrequency"/>
     /// </returns>
     public static async Task<Results<Ok<IResponse<IAsyncEnumerable<PaymentFrequencyInfo>>>, ProblemHttpResult>> FetchPaymentFrequencyAsync(
-        [FromServices] IPaymentFrequencyService Service,
+        [FromServices] IPaymentFrequencyManager /*IService<PaymentFrequency>*/ Service,
         [FromServices] ILogger<Endpoint<PaymentFrequency>> Logger)
     {
         Logger.LogInformation("EndPoint[GET]: /Api/PaymentFrequency");
@@ -138,7 +136,7 @@ public static class PaymentFrequencyEndpoints
     public static async Task<Results<NoContent, ProblemHttpResult, ValidationProblem>> UpdatePaymentFrequencyAsync(
         [FromRoute] long PaymentFrequencyId,
         [FromBody] UpdatePaymentFrequencyRequest Request,
-        [FromServices] IPaymentFrequencyService Service,
+        [FromServices] IPaymentFrequencyManager Service,
         [FromServices] ILogger<Endpoint<PaymentFrequency>> Logger)
     {
         Logger.LogInformation("EndPoint[PUT]: /Api/PaymentFrequency/{PaymentFrequencyId}", Request.PaymentFrequencyId);
@@ -163,7 +161,7 @@ public static class PaymentFrequencyEndpoints
     /// </returns>
     public static async Task<Results<NoContent, ProblemHttpResult, ValidationProblem>> DeletePaymentFrequencyAsync(
         [FromRoute] long PaymentFrequencyId,
-        [FromServices] IPaymentFrequencyService Service,
+        [FromServices] IPaymentFrequencyManager Service,
         [FromServices] ILogger<Endpoint<PaymentFrequency>> Logger)
     {
         Logger.LogInformation("EndPoint[DELETE]: /Api/PaymentFrequency/{PaymentFrequencyId}", PaymentFrequencyId);
@@ -184,7 +182,7 @@ public static class PaymentFrequencyEndpoints
     ///     Regresa todos los registros completos de la tabla <see cref="Models.PaymentFrequency"/>
     /// </returns>
     public static async Task<Results<Ok<IResponse<IAsyncEnumerable<PaymentFrequency>>>, ProblemHttpResult>> FetchPaymentFrequencyCompleteAsync(
-        [FromServices] IPaymentFrequencyService Service,
+        [FromServices] IPaymentFrequencyManager Service,
         [FromServices] ILogger<Endpoint<PaymentFrequency>> Logger)
     {
         Logger.LogInformation("EndPoint[GET]: /Api/PaymentFrequency/Complete");
@@ -208,7 +206,7 @@ public static class PaymentFrequencyEndpoints
     /// </returns>
     public static async Task<Results<Ok<IResponse<PaymentFrequencyInfo?>>, ProblemHttpResult>> FetchPaymentFrequencyByIdAsync(
         [FromRoute] long PaymentFrequencyId,
-        [FromServices] IPaymentFrequencyService Service,
+        [FromServices] IPaymentFrequencyManager Service,
         [FromServices] ILogger<Endpoint<PaymentFrequency>> Logger)
     {
         Logger.LogInformation("EndPoint[GET]: /Api/PaymentFrequency/{PaymentFrequencyId}", PaymentFrequencyId);
@@ -238,7 +236,7 @@ public static class PaymentFrequencyEndpoints
     /// </returns>
     public static async Task<Results<Created<IResponse<EntityId>>, ProblemHttpResult, ValidationProblem>> InsertPaymentFrequencyAsync(
         [FromBody] CreatePaymentFrequencyRequest Request,
-        [FromServices] IPaymentFrequencyService Service,
+        [FromServices] IPaymentFrequencyManager Service,
         [FromServices] ILogger<Endpoint<PaymentFrequency>> Logger,
         [FromServices] HttpContext HttpContext,
         [FromServices] LinkGenerator LinkGenerator)
@@ -257,3 +255,31 @@ public static class PaymentFrequencyEndpoints
         return TypedResults.Created(PaymentFrequencyLink, Result);
     }
 }
+
+///// <summary>
+///// 
+///// </summary>
+//public static partial class PaymentFrequencyManagerExtensions
+//{
+//    /// <summary>
+//    /// 
+//    /// </summary>
+//    /// <returns></returns>
+//    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+//    public static IAsyncEnumerable<PaymentFrequencyInfo> FetchPaymentFrequencyAsync(this IService<PaymentFrequency> Service)
+//    {
+//        return ((IPaymentFrequencyService)Service).FetchPaymentFrequencyAsync();
+//    }
+
+//    /// <summary>
+//    /// 
+//    /// </summary>
+//    /// <param name="Service"></param>
+//    /// <param name="PaymentFrequencyId"></param>
+//    /// <returns></returns>
+//    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+//    public static ValueTask<PaymentFrequencyInfo?> FetchPaymentFrequencyByIdAsync(this IService<PaymentFrequency> Service, long PaymentFrequencyId)
+//    {
+//        return ((IPaymentFrequencyService)Service).FetchPaymentFrequencyByIdAsync(PaymentFrequencyId);
+//    }
+//}

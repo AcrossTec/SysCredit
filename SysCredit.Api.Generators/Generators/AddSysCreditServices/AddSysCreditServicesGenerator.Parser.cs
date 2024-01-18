@@ -12,7 +12,7 @@ using SysCredit.Toolkits.Generators.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 /// <summary>
-/// 
+///     Genera el método public static partial IServiceCollection AddSysCreditServices(this IServiceCollection Services).
 /// </summary>
 public partial class AddSysCreditServicesGenerator
 {
@@ -24,7 +24,7 @@ public partial class AddSysCreditServicesGenerator
     /// <returns></returns>
     private bool SysCreditApiServicesPredicate(SyntaxNode Node, CancellationToken Token)
     {
-        return Node is ClassDeclarationSyntax @class && @class.HasServiceAttribute() && @class.HasServiceModelAttribute();
+        return Node is ClassDeclarationSyntax @class && @class.HasManagerInterfaceAttribute() && @class.HasManagerModelAttribute();
     }
 
     /// <summary>
@@ -45,7 +45,7 @@ public partial class AddSysCreditServicesGenerator
                                 MemberAccessExpression(SyntaxKind.SimpleMemberAccessExpression,
                                     IdentifierName("Services"),
                                     GenericName("AddScoped").WithTypeArgumentList(TypeArgumentList(SeparatedList<TypeSyntax>(NodeOrTokenList(
-                                        GenericName("SysCredit.Api.Interfaces.IService").WithTypeArgumentList(TypeArgumentList(SingletonSeparatedList<TypeSyntax>(
+                                        GenericName("SysCredit.Api.Interfaces.IManager").WithTypeArgumentList(TypeArgumentList(SingletonSeparatedList<TypeSyntax>(
                                             IdentifierName(ModelSymbol.ToDisplayString())))),
                                         Token(TriviaList(), SyntaxKind.CommaToken, TriviaList(Space)),
                                         IdentifierName(ServiceSymbol.ToDisplayString()))))))));

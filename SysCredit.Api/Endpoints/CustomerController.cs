@@ -23,7 +23,7 @@ using SysCredit.Helpers;
 /// </param>
 [ApiController]
 [Route("Api/[Controller]")]
-public class CustomerController(ICustomerService CustomerService, ILogger<CustomerController> Logger) : ControllerBase
+public class CustomerController(ICustomerManager CustomerService, ILogger<CustomerController> Logger) : ControllerBase
 {
     /// <summary>
     ///     Obtiene todos clientes de la tabla <see cref="Models.Customer"/>.

@@ -1,11 +1,11 @@
-﻿namespace SysCredit.Api.Services;
+﻿namespace SysCredit.Api.Managers;
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Interfaces.Services;
+using SysCredit.Api.Interfaces.Managers;
 using SysCredit.Api.Requests.LoanTypes;
 using SysCredit.Api.Stores;
 using SysCredit.Helpers;
@@ -18,11 +18,11 @@ using static SysCredit.Helpers.ContextData;
 ///     Servicio del modelo <see cref="LoanType"/>
 /// </summary>
 /// <param name="LoanTypeStore">repositorio del modelo <see cref="LoanType"/></param>
-[Service<ILoanTypeService>]
-[ServiceModel<LoanType>]
-[ErrorCategory(nameof(LoanTypeService))]
-[ErrorCodePrefix(LoanTypeServicePrefix)]
-public partial class LoanTypeService(IStore<LoanType> LoanTypeStore)
+[ManagerModel<LoanType>]
+[ManagerInterface<ILoanTypeManager>]
+[ErrorCategory(nameof(LoanTypeManager))]
+[ErrorCodePrefix(LoanTypeManagerPrefix)]
+public partial class LoanTypeManager(IStore<LoanType> LoanTypeStore)
 {
     /// <summary>
     ///     Obtiene todos los tipos de prestamo

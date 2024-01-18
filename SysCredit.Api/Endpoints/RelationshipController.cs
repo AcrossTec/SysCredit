@@ -20,7 +20,7 @@ using SysCredit.Helpers;
 /// </param>
 [ApiController]
 [Route("Api/[Controller]")]
-public class RelationshipController(IRelationshipService RelationshipService, ILogger<RelationshipController> Logger) : ControllerBase
+public class RelationshipController(IRelationshipManager RelationshipService, ILogger<RelationshipController> Logger) : ControllerBase
 {
     /// <summary>
     ///     Obtiene todos los registros de la tabla <see cref="Models.Relationship"/>.

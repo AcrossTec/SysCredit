@@ -1,19 +1,18 @@
-﻿namespace SysCredit.Api.Services;
-
-using SysCredit.Api.Attributes;
-using SysCredit.Api.Constants;
-using SysCredit.Api.Extensions;
-using SysCredit.Api.Interfaces.Services;
-using SysCredit.Api.Requests.Relationships;
-using SysCredit.Api.Stores;
-
-using SysCredit.DataTransferObject.Commons;
-using SysCredit.Helpers;
-using SysCredit.Models;
+﻿namespace SysCredit.Api.Managers;
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+
+using SysCredit.Api.Attributes;
+using SysCredit.Api.Constants;
+using SysCredit.Api.Extensions;
+using SysCredit.Api.Interfaces.Managers;
+using SysCredit.Api.Requests.Relationships;
+using SysCredit.Api.Stores;
+using SysCredit.DataTransferObject.Commons;
+using SysCredit.Helpers;
+using SysCredit.Models;
 
 using static Constants.ErrorCodePrefix;
 using static SysCredit.Helpers.ContextData;
@@ -24,11 +23,11 @@ using static SysCredit.Helpers.ContextData;
 /// <param name="RelationshipStore">
 ///     Tienda de datos para <see cref="Relationship"/>.
 /// </param>
-[Service<IRelationshipService>]
-[ServiceModel<Relationship>]
-[ErrorCategory(nameof(RelationshipService))]
-[ErrorCodePrefix(RelationshipServicePrefix)]
-public partial class RelationshipService(IStore<Relationship> RelationshipStore)
+[ManagerInterface<IRelationshipManager>]
+[ManagerModel<Relationship>]
+[ErrorCategory(nameof(RelationshipManager))]
+[ErrorCodePrefix(RelationshipManagerPrefix)]
+public partial class RelationshipManager(IStore<Relationship> RelationshipStore)
 {
     /// <summary>
     ///     Obtiene todos los <see cref="Relationship"/>.

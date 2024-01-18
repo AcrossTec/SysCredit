@@ -20,7 +20,7 @@ using SysCredit.Models;
 /// </param>
 [ApiController]
 [Route("Api/[Controller]")]
-public class LoanTypeController(ILoanTypeService LoanTypeService, ILogger<LoanTypeController> Logger) : ControllerBase
+public class LoanTypeController(ILoanTypeManager LoanTypeService, ILogger<LoanTypeController> Logger) : ControllerBase
 {
     /// <summary>
     ///     Endpoint para obtener todos los tipos de prestamo

@@ -1,22 +1,19 @@
-﻿namespace SysCredit.Api.Services;
-
-using Microsoft.AspNetCore.Mvc;
-using SysCredit.Api.Attributes;
-using SysCredit.Api.Extensions;
-using SysCredit.Api.Interfaces.Services;
-using SysCredit.Api.Requests;
-using SysCredit.Api.Requests.Guarantors;
-using SysCredit.Api.Stores;
-
-using SysCredit.DataTransferObject.Commons;
-using SysCredit.DataTransferObject.StoredProcedures;
-
-using SysCredit.Helpers;
-using SysCredit.Models;
+﻿namespace SysCredit.Api.Managers;
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+
+using SysCredit.Api.Attributes;
+using SysCredit.Api.Extensions;
+using SysCredit.Api.Interfaces.Managers;
+using SysCredit.Api.Requests;
+using SysCredit.Api.Requests.Guarantors;
+using SysCredit.Api.Stores;
+using SysCredit.DataTransferObject.Commons;
+using SysCredit.DataTransferObject.StoredProcedures;
+using SysCredit.Helpers;
+using SysCredit.Models;
 
 using static Constants.ErrorCodePrefix;
 using static SysCredit.Helpers.ContextData;
@@ -25,11 +22,11 @@ using static SysCredit.Helpers.ContextData;
 ///     Servicio del modelo <see cref="Guarantor"/>
 /// </summary>
 /// <param name="Store">Repositorio del modelo <see cref="Guarantor"/></param>
-[Service<IGuarantorService>]
-[ServiceModel<Guarantor>]
-[ErrorCategory(nameof(GuarantorService))]
-[ErrorCodePrefix(GuarantorServicePrefix)]
-public partial class GuarantorService(IStore Store)
+[ManagerModel<Guarantor>]
+[ManagerInterface<IGuarantorManager>]
+[ErrorCategory(nameof(GuarantorManager))]
+[ErrorCodePrefix(GuarantorManagerPrefix)]
+public partial class GuarantorManager(IStore Store)
 {
     private readonly IStore<Customer> CustomerStore = Store.GetStore<Customer>();
     private readonly IStore<Guarantor> GuarantorStore = Store.GetStore<Guarantor>();

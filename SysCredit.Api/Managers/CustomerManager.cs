@@ -1,21 +1,19 @@
-﻿namespace SysCredit.Api.Services;
-
-using SysCredit.Api.Attributes;
-using SysCredit.Api.Extensions;
-using SysCredit.Api.Interfaces.Services;
-using SysCredit.Api.Requests;
-using SysCredit.Api.Requests.Customers;
-using SysCredit.Api.Stores;
-
-using SysCredit.DataTransferObject.Commons;
-using SysCredit.DataTransferObject.StoredProcedures;
-
-using SysCredit.Helpers;
-using SysCredit.Models;
+﻿namespace SysCredit.Api.Managers;
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+
+using SysCredit.Api.Attributes;
+using SysCredit.Api.Extensions;
+using SysCredit.Api.Interfaces.Managers;
+using SysCredit.Api.Requests;
+using SysCredit.Api.Requests.Customers;
+using SysCredit.Api.Stores;
+using SysCredit.DataTransferObject.Commons;
+using SysCredit.DataTransferObject.StoredProcedures;
+using SysCredit.Helpers;
+using SysCredit.Models;
 
 using static Constants.ErrorCodePrefix;
 using static SysCredit.Helpers.ContextData;
@@ -26,11 +24,11 @@ using static SysCredit.Helpers.ContextData;
 /// <param name="Store">
 ///     Objeto usado como contexto de la base de datos.
 /// </param>
-[Service<ICustomerService>]
-[ServiceModel<Customer>]
-[ErrorCategory(nameof(CustomerService))]
-[ErrorCodePrefix(CustomerServicePrefix)]
-public partial class CustomerService(IStore Store)
+[ManagerModel<Customer>]
+[ManagerInterface<ICustomerManager>]
+[ErrorCategory(nameof(CustomerManager))]
+[ErrorCodePrefix(CustomerManagerPrefix)]
+public partial class CustomerManager(IStore Store)
 {
     private readonly IStore<Customer> CustomerStore = Store.GetStore<Customer>();
     private readonly IStore<Guarantor> GuarantorStore = Store.GetStore<Guarantor>();

@@ -88,16 +88,28 @@ public static class Helpers
         => Compilation.GetTypeByMetadataName(Constants.ErrorCategoryAttribute)!;
 
     /// <summary>
-    ///     Obtiene el objeto semántico <see cref="INamedTypeSymbol"/> asociado al atributo <see cref="Constants.ServiceAttribute"/>.
+    ///     Obtiene el objeto semántico <see cref="INamedTypeSymbol"/> asociado al atributo <see cref="Constants.ManagerInterfaceAttribute"/>.
     /// </summary>
     /// <param name="Compilation">
     ///     Objeto que contiene toda la información del arbol de sintaxis C#.
     /// </param>
     /// <returns>
-    ///     Regresa el objeto semántico <see cref="INamedTypeSymbol"/> asociado al atributo <see cref="Constants.ServiceAttribute"/>.
+    ///     Regresa el objeto semántico <see cref="INamedTypeSymbol"/> asociado al atributo <see cref="Constants.ManagerInterfaceAttribute"/>.
     /// </returns>
-    public static INamedTypeSymbol GetServiceAttributeMetadataName(this Compilation Compilation)
-        => Compilation.GetTypeByMetadataName(Constants.ServiceAttribute)!;
+    public static INamedTypeSymbol GetManagerInterfaceAttributeMetadataName(this Compilation Compilation)
+        => Compilation.GetTypeByMetadataName(Constants.ManagerInterfaceAttribute)!;
+
+    /// <summary>
+    ///     Obtiene el objeto semántico <see cref="INamedTypeSymbol"/> asociado al atributo <see cref="Constants.ManagerModelAttribute"/>.
+    /// </summary>
+    /// <param name="Compilation">
+    ///     Objeto que contiene toda la información del arbol de sintaxis C#.
+    /// </param>
+    /// <returns>
+    ///     Regresa el objeto semántico <see cref="INamedTypeSymbol"/> asociado al atributo <see cref="Constants.ManagerModelAttribute"/>.
+    /// </returns>
+    public static INamedTypeSymbol GetManagerModelAttributeMetadataName(this Compilation Compilation)
+        => Compilation.GetTypeByMetadataName(Constants.ManagerModelAttribute)!;
 
     /// <summary>
     ///     Obtiene el <see cref="AttributeData"/> de <paramref name="AttributeSymbol"/> si este existe en <paramref name="TypeSymbol"/>.
@@ -215,60 +227,52 @@ public static class Helpers
         => MemberSyntax.AttributeLists.HasAttribute(Name);
 
     /// <summary>
-    ///     Buscar el atributo <b>Service</b> en <paramref name="MemberSyntax"/>.
+    ///     Buscar el atributo <b>ManagerInterfaceAttribute</b> en <paramref name="MemberSyntax"/>.
     /// </summary>
     /// <param name="MemberSyntax">
-    ///     Objeto de Sintaxis donde se buscará el atributo <b>Service</b>.
+    ///     Objeto de Sintaxis donde se buscará el atributo <b>ManagerInterfaceAttribute</b>.
     /// </param>
     /// <returns>
-    ///     Regresa <see langword="true"/> si el atributo <b>Service</b> existe en <paramref name="MemberSyntax"/>.
+    ///     Regresa <see langword="true"/> si el atributo <b>ManagerInterfaceAttribute</b> existe en <paramref name="MemberSyntax"/>.
     /// </returns>
-    public static bool HasServiceAttribute(this MemberDeclarationSyntax MemberSyntax)
-        => MemberSyntax.AttributeLists.HasServiceAttribute();
+    public static bool HasManagerInterfaceAttribute(this MemberDeclarationSyntax MemberSyntax)
+        => MemberSyntax.AttributeLists.HasManagerInterfaceAttribute();
 
     /// <summary>
-    ///     Buscar el atributo <b>ServiceModel</b> en <paramref name="MemberSyntax"/>.
+    ///     Buscar el atributo <b>ManagerModelAttribute</b> en <paramref name="MemberSyntax"/>.
     /// </summary>
     /// <param name="MemberSyntax">
-    ///     Objeto de Sintaxis donde se buscará el atributo <b>ServiceModel</b>.
+    ///     Objeto de Sintaxis donde se buscará el atributo <b>ManagerModelAttribute</b>.
     /// </param>
     /// <returns>
-    ///     Regresa <see langword="true"/> si el atributo <b>ServiceModel</b> existe en <paramref name="MemberSyntax"/>.
+    ///     Regresa <see langword="true"/> si el atributo <b>ManagerModelAttribute</b> existe en <paramref name="MemberSyntax"/>.
     /// </returns>
-    public static bool HasServiceModelAttribute(this MemberDeclarationSyntax MemberSyntax)
-        => MemberSyntax.AttributeLists.HasServiceModelAttribute();
+    public static bool HasManagerModelAttribute(this MemberDeclarationSyntax MemberSyntax)
+        => MemberSyntax.AttributeLists.HasManagerModelAttribute();
 
     /// <summary>
-    ///     Verifica si es existe en atributo <b>Service</b> en <paramref name="AttributeLists"/>.
+    ///     Verifica si es existe en atributo <b>ManagerInterfaceAttribute</b> en <paramref name="AttributeLists"/>.
     /// </summary>
-    /// <remarks>
-    ///     TODO: <see cref="HasServiceAttribute(in SyntaxList{AttributeListSyntax})"/> debe ser llamado para que también
-    ///     Soporte llamadas como: <b>Service</b>.
-    /// </remarks>
     /// <param name="AttributeLists">
     ///     Lista de <see cref="AttributeListSyntax"/>.
     /// </param>
     /// <returns>
-    ///     Regresa <see langword="true"/> si el atributo <b>Service</b> existe en <paramref name="AttributeLists"/>.
+    ///     Regresa <see langword="true"/> si el atributo <b>ManagerInterfaceAttribute</b> existe en <paramref name="AttributeLists"/>.
     /// </returns>
-    public static bool HasServiceAttribute(in this SyntaxList<AttributeListSyntax> AttributeLists)
-        => AttributeLists.HasGenericAttribute(Arity: 1, Name: "Service");
+    public static bool HasManagerInterfaceAttribute(in this SyntaxList<AttributeListSyntax> AttributeLists)
+        => AttributeLists.HasGenericAttribute(Arity: 1, Name: "ManagerInterface") || AttributeLists.HasGenericAttribute(Arity: 1, Name: "ManagerInterfaceAttribute");
 
     /// <summary>
-    ///     Verifica si es existe en atributo <b>ServiceModel</b> en <paramref name="AttributeLists"/>.
+    ///     Verifica si es existe en atributo <b>ManagerModelAttribute</b> en <paramref name="AttributeLists"/>.
     /// </summary>
-    /// <remarks>
-    ///     TODO: <see cref="HasServiceModelAttribute(in SyntaxList{AttributeListSyntax})"/> debe ser llamado para que también
-    ///     Soporte llamadas como: <b>ServiceModelAttribute</b>.
-    /// </remarks>
     /// <param name="AttributeLists">
     ///     Lista de <see cref="AttributeListSyntax"/>.
     /// </param>
     /// <returns>
-    ///     Regresa <see langword="true"/> si el atributo <b>ServiceModel</b> existe en <paramref name="AttributeLists"/>.
+    ///     Regresa <see langword="true"/> si el atributo <b>ManagerModelAttribute</b> existe en <paramref name="AttributeLists"/>.
     /// </returns>
-    public static bool HasServiceModelAttribute(in this SyntaxList<AttributeListSyntax> AttributeLists)
-        => AttributeLists.HasGenericAttribute(Arity: 1, Name: "ServiceModel");
+    public static bool HasManagerModelAttribute(in this SyntaxList<AttributeListSyntax> AttributeLists)
+        => AttributeLists.HasGenericAttribute(Arity: 1, Name: "ManagerModel") || AttributeLists.HasGenericAttribute(Arity: 1, Name: "ManagerModelAttribute");
 
     /// <summary>
     ///     Busca un atributo genérico con la misma cantidad de argumentos genéricos que <paramref name="Arity"/>

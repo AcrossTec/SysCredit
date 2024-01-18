@@ -60,6 +60,11 @@ public static class Constants
     public const string SysCreditApiAttributesNamespaceName = "SysCredit.Api.Attributes";
 
     /// <summary>
+    ///     Espacio de nombres de las interfaces de SysCredit.Api.
+    /// </summary>
+    public const string SysCreditApiInterfacesNamespaceName = "SysCredit.Api.Interfaces";
+
+    /// <summary>
     ///     Nombre completo del atributo ErrorCodePrefixAttribute con su espacio de nombre.
     /// </summary>
     public const string ErrorCodePrefixAttribute = $"{SysCreditApiAttributesNamespaceName}.ErrorCodePrefixAttribute";
@@ -75,7 +80,17 @@ public static class Constants
     public const string ErrorCategoryAttribute = $"{SysCreditApiAttributesNamespaceName}.ErrorCategoryAttribute";
 
     /// <summary>
-    ///     Nombre completo del atributo ServiceAttribute con su espacio de nombre.
+    ///     Nombre completo del atributo MethodIdAttribute con su espacio de nombre.
     /// </summary>
-    public const string ServiceAttribute = $"{SysCreditApiAttributesNamespaceName}.ServiceAttribute";
+    public const string MethodIdAttribute = $"{SysCreditApiAttributesNamespaceName}.MethodIdAttribute";
+
+    /// <summary>
+    ///     Nombre completo del atributo ManagerModelAttribute con su espacio de nombre.
+    /// </summary>
+    public const string ManagerModelAttribute = $"{SysCreditApiAttributesNamespaceName}.ManagerModelAttribute";
+
+    /// <summary>
+    ///     Nombre completo del atributo ManagerInterfaceAttribute con su espacio de nombre.
+    /// </summary>
+    public const string ManagerInterfaceAttribute = $"{SysCreditApiAttributesNamespaceName}.ManagerInterfaceAttribute";
 }

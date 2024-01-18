@@ -1,7 +1,6 @@
 ﻿namespace SysCredit.Api.Endpoints;
 
 using Microsoft.AspNetCore.Mvc;
-using SysCredit.Api.Services;
 
 using SysCredit.Api.Extensions;
 using SysCredit.Api.Interfaces.Services;
@@ -23,7 +22,7 @@ using SysCredit.Helpers;
 /// </param>
 [ApiController]
 [Route("Api/[Controller]")]
-public class GuarantorController(IGuarantorService GuarantorService, ILogger<GuarantorController> Logger) : ControllerBase
+public class GuarantorController(IGuarantorManager GuarantorService, ILogger<GuarantorController> Logger) : ControllerBase
 {
     /// <summary>
     ///     Endpoint para insertar un Guarantor

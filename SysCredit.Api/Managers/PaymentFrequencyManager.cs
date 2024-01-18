@@ -1,20 +1,18 @@
-﻿namespace SysCredit.Api.Services;
-
-using SysCredit.Api.Attributes;
-using SysCredit.Api.Extensions;
-using SysCredit.Api.Interfaces.Services;
-using SysCredit.Api.Requests.PaymentFrequencies;
-using SysCredit.Api.Stores;
-
-using SysCredit.DataTransferObject.Commons;
-using SysCredit.Helpers;
-using SysCredit.Models;
+﻿namespace SysCredit.Api.Managers;
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-using static Constants.ErrorCodePrefix;
+using SysCredit.Api.Attributes;
+using SysCredit.Api.Extensions;
+using SysCredit.Api.Interfaces.Managers;
+using SysCredit.Api.Requests.PaymentFrequencies;
+using SysCredit.Api.Stores;
+using SysCredit.DataTransferObject.Commons;
+using SysCredit.Helpers;
+using SysCredit.Models;
 
+using static Constants.ErrorCodePrefix;
 using static SysCredit.Helpers.ContextData;
 
 /// <summary>
@@ -23,11 +21,11 @@ using static SysCredit.Helpers.ContextData;
 /// <param name="PaymentFrequencyStore">
 ///     Tienda de datos para <see cref="PaymentFrequency"/>
 /// </param>
-[Service<IPaymentFrequencyService>]
-[ServiceModel<PaymentFrequency>]
-[ErrorCategory(nameof(PaymentFrequencyService))]
-[ErrorCodePrefix(PaymentFrequencyServicePrefix)]
-public partial class PaymentFrequencyService(IStore<PaymentFrequency> PaymentFrequencyStore)
+[ManagerModel<PaymentFrequency>]
+[ManagerInterface<IPaymentFrequencyManager>]
+[ErrorCategory(nameof(PaymentFrequencyManager))]
+[ErrorCodePrefix(PaymentFrequencyManagerPrefix)]
+public partial class PaymentFrequencyManager(IStore<PaymentFrequency> PaymentFrequencyStore)
 {
     /// <summary>
     ///     Obtiene todos los <see cref="PaymentFrequency"/>

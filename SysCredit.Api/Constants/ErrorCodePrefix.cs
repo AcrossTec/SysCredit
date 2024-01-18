@@ -2,7 +2,7 @@
 
 using Middlewares;
 
-using Services;
+using Managers;
 
 using Stores;
 
@@ -11,41 +11,41 @@ using Stores;
 /// </summary>
 public static class ErrorCodePrefix
 {
-    #region Services
+    #region Managers
     /// <summary>
     ///     Prefijo usado para los Servicios.
     /// </summary>
     private const string SERV = nameof(SERV);
 
     /// <summary>
-    ///     Prefijo para la clase: <see cref="GuarantorService" />
+    ///     Prefijo para la clase: <see cref="GuarantorManager" />
     /// </summary>
-    public const string GuarantorServicePrefix = $"{SERV}G";
+    public const string GuarantorManagerPrefix = $"{SERV}G";
 
     /// <summary>
-    ///     Prefijo para la clase: <see cref="CustomerService" />
+    ///     Prefijo para la clase: <see cref="CustomerManager" />
     /// </summary>
-    public const string CustomerServicePrefix = $"{SERV}C";
+    public const string CustomerManagerPrefix = $"{SERV}C";
 
     /// <summary>
-    ///     Prefijo para la clase: <see cref="LoanTypeService" />
+    ///     Prefijo para la clase: <see cref="LoanTypeManager" />
     /// </summary>
-    public const string LoanTypeServicePrefix = $"{SERV}LT";
+    public const string LoanTypeManagerPrefix = $"{SERV}LT";
 
     /// <summary>
-    ///     Prefijo para la clase: <see cref="PaymentFrequencyService" />
+    ///     Prefijo para la clase: <see cref="PaymentFrequencyManager" />
     /// </summary>
-    public const string PaymentFrequencyServicePrefix = $"{SERV}PF";
+    public const string PaymentFrequencyManagerPrefix = $"{SERV}PF";
 
     /// <summary>
-    ///     Prefijo para la clase: <see cref="ReferenceService" />
+    ///     Prefijo para la clase: <see cref="ReferenceManager" />
     /// </summary>
-    public const string ReferenceServicePrefix = $"{SERV}R";
+    public const string ReferenceManagerPrefix = $"{SERV}R";
 
     /// <summary>
-    ///     Prefijo para la clase: <see cref="RelationshipService" />
+    ///     Prefijo para la clase: <see cref="RelationshipManager" />
     /// </summary>
-    public const string RelationshipServicePrefix = $"{SERV}RS";
+    public const string RelationshipManagerPrefix = $"{SERV}RS";
 
     // /// <summary>
     // ///     Prefijo para la clase: <see cref="AuthenticationService" />

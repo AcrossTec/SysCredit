@@ -13,7 +13,7 @@ using SysCredit.Toolkits.Generators.Extensions;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 /// <summary>
-/// 
+///     Genera el método public static partial IServiceCollection AddSysCreditServices(this IServiceCollection Services).
 /// </summary>
 public partial class AddSysCreditServicesGenerator
 {

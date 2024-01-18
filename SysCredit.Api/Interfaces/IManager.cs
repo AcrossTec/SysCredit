@@ -3,18 +3,18 @@
 using SysCredit.Models;
 
 /// <summary>
-///     Interfaz base de todos los servicios.
+///     Interfaz base de todos los managers.
 /// </summary>
 /// <typeparam name="TModel">
 ///     Tipo del modelo derivado de <see cref="IEntity" />.
 /// </typeparam>
-public interface IService<in TModel> : IManager where TModel : IEntity
+public interface IManager<in TModel> : IService<TModel> where TModel : IEntity
 {
 }
 
 /// <summary>
-///     Interfaz base para identificar un Servicio.
+///     Interfaz base para identificar un Manager.
 /// </summary>
-public interface IService
+public interface IManager : IService
 {
 }
