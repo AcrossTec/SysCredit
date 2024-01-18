@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 
 using SysCredit.Api.Attributes;
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Interfaces.Services;
+using SysCredit.Api.Interfaces;
 using SysCredit.Api.Requests.PaymentFrequencies;
 using SysCredit.DataTransferObject.Commons;
 using SysCredit.Helpers;
@@ -98,7 +98,7 @@ public static class PaymentFrequencyEndpoints
     /// <summary>
     ///     Obtiene los registros de la tabla <see cref="Models.PaymentFrequency"/>
     /// </summary>
-    /// <param name="Service">
+    /// <param name="Manager">
     ///     Objeto de servicio con toda la lógica de negocio usada por este Endpoint.
     /// </param>
     /// <param name="Logger">
@@ -108,11 +108,11 @@ public static class PaymentFrequencyEndpoints
     ///     Regresa todos los registros de la tabla <see cref="Models.PaymentFrequency"/>
     /// </returns>
     public static async Task<Results<Ok<IResponse<IAsyncEnumerable<PaymentFrequencyInfo>>>, ProblemHttpResult>> FetchPaymentFrequencyAsync(
-        [FromServices] IPaymentFrequencyManager /*IService<PaymentFrequency>*/ Service,
+        [FromServices] IManager<PaymentFrequency> Manager,
         [FromServices] ILogger<Endpoint<PaymentFrequency>> Logger)
     {
         Logger.LogInformation("EndPoint[GET]: /Api/PaymentFrequency");
-        return TypedResults.Ok(await Service.FetchPaymentFrequencyAsync().ToResponseAsync());
+        return TypedResults.Ok(await Manager.FetchPaymentFrequencyAsync().ToResponseAsync());
     }
 
     /// <summary>
@@ -124,7 +124,7 @@ public static class PaymentFrequencyEndpoints
     /// <param name="Request">
     ///     Datos que se van a actualizar del <see cref="Models.PaymentFrequency"/>
     /// </param>
-    /// <param name="Service">
+    /// <param name="Manager">
     ///     Objeto de servicio con toda la lógica de negocio usada por este Endpoint.
     /// </param>
     /// <param name="Logger">
@@ -136,11 +136,11 @@ public static class PaymentFrequencyEndpoints
     public static async Task<Results<NoContent, ProblemHttpResult, ValidationProblem>> UpdatePaymentFrequencyAsync(
         [FromRoute] long PaymentFrequencyId,
         [FromBody] UpdatePaymentFrequencyRequest Request,
-        [FromServices] IPaymentFrequencyManager Service,
+        [FromServices] IManager<PaymentFrequency> Manager,
         [FromServices] ILogger<Endpoint<PaymentFrequency>> Logger)
     {
         Logger.LogInformation("EndPoint[PUT]: /Api/PaymentFrequency/{PaymentFrequencyId}", Request.PaymentFrequencyId);
-        await Service.UpdatePaymentFrequencyAsync(PaymentFrequencyId, Request);
+        await Manager.UpdatePaymentFrequencyAsync(PaymentFrequencyId, Request);
         return TypedResults.NoContent();
     }
 
@@ -150,7 +150,7 @@ public static class PaymentFrequencyEndpoints
     /// <param name="PaymentFrequencyId">
     ///    Id del <see cref="Models.PaymentFrequency"/> a eliminar.
     /// </param>
-    /// <param name="Service">
+    /// <param name="Manager">
     ///     Objeto de servicio con toda la lógica de negocio usada por este Endpoint.
     /// </param>
     /// <param name="Logger">
@@ -161,18 +161,18 @@ public static class PaymentFrequencyEndpoints
     /// </returns>
     public static async Task<Results<NoContent, ProblemHttpResult, ValidationProblem>> DeletePaymentFrequencyAsync(
         [FromRoute] long PaymentFrequencyId,
-        [FromServices] IPaymentFrequencyManager Service,
+        [FromServices] IManager<PaymentFrequency> Manager,
         [FromServices] ILogger<Endpoint<PaymentFrequency>> Logger)
     {
         Logger.LogInformation("EndPoint[DELETE]: /Api/PaymentFrequency/{PaymentFrequencyId}", PaymentFrequencyId);
-        await Service.DeletePaymentFrequencyAsync(new(PaymentFrequencyId));
+        await Manager.DeletePaymentFrequencyAsync(new(PaymentFrequencyId));
         return TypedResults.NoContent();
     }
 
     /// <summary>
     ///     Obtiene todos los registros completos de la tabla <see cref="Models.PaymentFrequency"/>
     /// </summary>
-    /// <param name="Service">
+    /// <param name="Manager">
     ///     Objeto de servicio con toda la lógica de negocio usada por este Endpoint.
     /// </param>
     /// <param name="Logger">
@@ -182,11 +182,11 @@ public static class PaymentFrequencyEndpoints
     ///     Regresa todos los registros completos de la tabla <see cref="Models.PaymentFrequency"/>
     /// </returns>
     public static async Task<Results<Ok<IResponse<IAsyncEnumerable<PaymentFrequency>>>, ProblemHttpResult>> FetchPaymentFrequencyCompleteAsync(
-        [FromServices] IPaymentFrequencyManager Service,
+        [FromServices] IManager<PaymentFrequency> Manager,
         [FromServices] ILogger<Endpoint<PaymentFrequency>> Logger)
     {
         Logger.LogInformation("EndPoint[GET]: /Api/PaymentFrequency/Complete");
-        return TypedResults.Ok(await Service.FetchPaymentFrequencyCompleteAsync().ToResponseAsync());
+        return TypedResults.Ok(await Manager.FetchPaymentFrequencyCompleteAsync().ToResponseAsync());
     }
 
     /// <summary>
@@ -195,7 +195,7 @@ public static class PaymentFrequencyEndpoints
     /// <param name="PaymentFrequencyId">
     ///     Id obtenido de la ruta
     /// </param>
-    /// <param name="Service">
+    /// <param name="Manager">
     ///     Objeto de servicio con toda la lógica de negocio usada por este Endpoint.
     /// </param>
     /// <param name="Logger">
@@ -206,11 +206,11 @@ public static class PaymentFrequencyEndpoints
     /// </returns>
     public static async Task<Results<Ok<IResponse<PaymentFrequencyInfo?>>, ProblemHttpResult>> FetchPaymentFrequencyByIdAsync(
         [FromRoute] long PaymentFrequencyId,
-        [FromServices] IPaymentFrequencyManager Service,
+        [FromServices] IManager<PaymentFrequency> Manager,
         [FromServices] ILogger<Endpoint<PaymentFrequency>> Logger)
     {
         Logger.LogInformation("EndPoint[GET]: /Api/PaymentFrequency/{PaymentFrequencyId}", PaymentFrequencyId);
-        return TypedResults.Ok(await Service.FetchPaymentFrequencyByIdAsync(PaymentFrequencyId).ToResponseAsync());
+        return TypedResults.Ok(await Manager.FetchPaymentFrequencyByIdAsync(PaymentFrequencyId).ToResponseAsync());
     }
 
     /// <summary>
@@ -219,7 +219,7 @@ public static class PaymentFrequencyEndpoints
     /// <param name="Request">
     ///     Datos usado para crear la frecuencia de pago
     /// </param>
-    /// <param name="Service">
+    /// <param name="Manager">
     ///     Objeto de servicio con toda la lógica de negocio usada por este Endpoint.
     /// </param>
     /// <param name="Logger">
@@ -236,13 +236,13 @@ public static class PaymentFrequencyEndpoints
     /// </returns>
     public static async Task<Results<Created<IResponse<EntityId>>, ProblemHttpResult, ValidationProblem>> InsertPaymentFrequencyAsync(
         [FromBody] CreatePaymentFrequencyRequest Request,
-        [FromServices] IPaymentFrequencyManager Service,
+        [FromServices] IManager<PaymentFrequency> Manager,
         [FromServices] ILogger<Endpoint<PaymentFrequency>> Logger,
         [FromServices] HttpContext HttpContext,
         [FromServices] LinkGenerator LinkGenerator)
     {
         Logger.LogInformation("EndPoint[POST]: /Api/PaymentFrequency");
-        var Result = await Service.InsertPaymentFrequencyAsync(Request).ToResponseAsync();
+        var Result = await Manager.InsertPaymentFrequencyAsync(Request).ToResponseAsync();
 
         // References:
         //  https://github.com/dotnet/aspnetcore/issues/45101
@@ -255,31 +255,3 @@ public static class PaymentFrequencyEndpoints
         return TypedResults.Created(PaymentFrequencyLink, Result);
     }
 }
-
-///// <summary>
-///// 
-///// </summary>
-//public static partial class PaymentFrequencyManagerExtensions
-//{
-//    /// <summary>
-//    /// 
-//    /// </summary>
-//    /// <returns></returns>
-//    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-//    public static IAsyncEnumerable<PaymentFrequencyInfo> FetchPaymentFrequencyAsync(this IService<PaymentFrequency> Service)
-//    {
-//        return ((IPaymentFrequencyService)Service).FetchPaymentFrequencyAsync();
-//    }
-
-//    /// <summary>
-//    /// 
-//    /// </summary>
-//    /// <param name="Service"></param>
-//    /// <param name="PaymentFrequencyId"></param>
-//    /// <returns></returns>
-//    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-//    public static ValueTask<PaymentFrequencyInfo?> FetchPaymentFrequencyByIdAsync(this IService<PaymentFrequency> Service, long PaymentFrequencyId)
-//    {
-//        return ((IPaymentFrequencyService)Service).FetchPaymentFrequencyByIdAsync(PaymentFrequencyId);
-//    }
-//}

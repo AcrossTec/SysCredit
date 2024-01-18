@@ -38,7 +38,7 @@ public partial class ManagerInterfaceGenerator
 
 namespace {Constants.SysCreditApiInterfacesNamespaceName}.Managers
 {{
-    public partial interface {Manager.ManagerInterfaceInfo.InterfaceSymbol.Name}
+    public partial interface {Manager.ManagerInterfaceInfo.InterfaceSymbol.Name} : {Constants.SysCreditApiInterfacesNamespaceName}.IManager<{Manager.ManagerModelInfo.ModelSymbol.GetFullyQualifiedMetadataName()}>
     {{
         {string.Join($"{Constants.NewLine}{Constants.NewLine}{Constants.Tab}{Constants.Tab}", Manager.MethodInfo.FullyQualifiedNames.Select(MethodName => $"{MethodName};"))}
     }}

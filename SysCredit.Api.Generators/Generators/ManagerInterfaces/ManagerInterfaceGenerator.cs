@@ -13,9 +13,9 @@ public partial class ManagerInterfaceGenerator : IIncrementalGenerator
     /// <inheritdoc />
     public void Initialize(IncrementalGeneratorInitializationContext Context)
     {
-#if DEBUG
-        if (!Debugger.IsAttached) Debugger.Launch();
-#endif
+        // #if DEBUG
+        //         if (!Debugger.IsAttached) Debugger.Launch();
+        // #endif
         var ManagerInfoProviders = Context.SyntaxProvider.CreateSyntaxProvider(SysCreditApiManagerPredicate, SysCreditApiManagerTransform);
         Context.RegisterImplementationSourceOutput(ManagerInfoProviders, EmitSourceCode);
     }

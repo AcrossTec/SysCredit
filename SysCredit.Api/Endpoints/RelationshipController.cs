@@ -3,7 +3,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using SysCredit.Api.Extensions;
-using SysCredit.Api.Interfaces.Services;
+using SysCredit.Api.Interfaces.Managers;
 using SysCredit.Api.Requests.Relationships;
 
 using SysCredit.DataTransferObject.Commons;
