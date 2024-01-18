@@ -71,7 +71,14 @@ public partial class GuarantorRegistrationViewModel : ViewModelBase
         }
         else
         {
-            await Popups.ShowSysCreditPopup("Error al registrar el fiador");
+            if (InsertResponse.Status.HasError)
+            {
+                await Popups.ShowSysCreditPopup(InsertResponse.Status.ErrorMessage!);
+            }
+            else
+            {
+                await Popups.ShowSysCreditPopup("Error al registrar el fiador");
+            }
         }
     }
 
