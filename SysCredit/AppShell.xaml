@@ -23,7 +23,7 @@
     Shell.FlyoutBehavior="Flyout"
     FlyoutIcon="bars_staggered_solid_dark_icon.svg"
     FlyoutHeaderBehavior="CollapseOnScroll"
-    FlyoutBackground="{DynamicResource PrimaryBrush}">
+    FlyoutBackground="{DynamicResource Primary}">
     <Shell.Resources>
         <Style TargetType="Label">
             <Setter Property="TextColor" Value="{DynamicResource White}" />
@@ -49,7 +49,7 @@
     </Shell.FlyoutBackdrop>-->
 
     <Shell.FlyoutHeader>
-        <Grid Background="{DynamicResource PrimaryBrush}" RowDefinitions="Auto,Auto" MinimumHeightRequest="150">
+        <Grid Background="{DynamicResource Primary}" RowDefinitions="Auto,Auto" MinimumHeightRequest="150">
             <Grid ColumnDefinitions="Auto,*" HeightRequest="125">
                 <Toolkit:AvatarView
                     ImageSource="default_gravatar.svg" WidthRequest="75" HeightRequest="75" Margin="15,0,5,0"
@@ -66,7 +66,7 @@
     </Shell.FlyoutHeader>
 
     <Shell.FlyoutFooter>
-        <Grid Background="{DynamicResource PrimaryBrush}" RowDefinitions="Auto,Auto" MinimumHeightRequest="82">
+        <Grid Background="{DynamicResource Primary}" RowDefinitions="Auto,Auto" MinimumHeightRequest="82">
             <BoxView Grid.Row="0" Color="{StaticResource White}" HeightRequest="1" HorizontalOptions="CenterAndExpand" VerticalOptions="End" />
 
             <Label Grid.Row="1" Text="© Todos los derechos reservados"
@@ -165,7 +165,8 @@
         Shell.FlyoutBehavior="Disabled"
         Route="Presentations"
         Shell.NavBarIsVisible="False"
-        Shell.TabBarIsVisible="False">
+        Shell.TabBarIsVisible="False"
+        Shell.FlyoutItemIsVisible="False">
 
         <Tab Route="SysCredit">
             <ShellContent
