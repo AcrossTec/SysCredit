@@ -952,51 +952,6 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete a Payment Frequency.
-        /// </summary>
-        public static string View_PaymentFrequenciesCrud_Delete {
-            get {
-                return ResourceManager.GetString("View_PaymentFrequenciesCrud_Delete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Fetch Payment Frequency.
-        /// </summary>
-        public static string View_PaymentFrequenciesCrud_Fetch {
-            get {
-                return ResourceManager.GetString("View_PaymentFrequenciesCrud_Fetch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert a Payment Frequency.
-        /// </summary>
-        public static string View_PaymentFrequenciesCrud_Insert {
-            get {
-                return ResourceManager.GetString("View_PaymentFrequenciesCrud_Insert", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update a Payment Frequency.
-        /// </summary>
-        public static string View_PaymentFrequenciesCrud_Update {
-            get {
-                return ResourceManager.GetString("View_PaymentFrequenciesCrud_Update", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Payment frequency.
-        /// </summary>
-        public static string View_PaymentFrequencyName {
-            get {
-                return ResourceManager.GetString("View_PaymentFrequencyName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Assigned Email.
         /// </summary>
         public static string View_Login_FirstInputLabel {
@@ -1065,6 +1020,51 @@ namespace SysCredit.Mobile.Properties {
         public static string View_Login_SwitchButtonLabel {
             get {
                 return ResourceManager.GetString("View_Login_SwitchButtonLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete a Payment Frequency.
+        /// </summary>
+        public static string View_PaymentFrequenciesCrud_Delete {
+            get {
+                return ResourceManager.GetString("View_PaymentFrequenciesCrud_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fetch Payment Frequency.
+        /// </summary>
+        public static string View_PaymentFrequenciesCrud_Fetch {
+            get {
+                return ResourceManager.GetString("View_PaymentFrequenciesCrud_Fetch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Insert a Payment Frequency.
+        /// </summary>
+        public static string View_PaymentFrequenciesCrud_Insert {
+            get {
+                return ResourceManager.GetString("View_PaymentFrequenciesCrud_Insert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update a Payment Frequency.
+        /// </summary>
+        public static string View_PaymentFrequenciesCrud_Update {
+            get {
+                return ResourceManager.GetString("View_PaymentFrequenciesCrud_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment frequency.
+        /// </summary>
+        public static string View_PaymentFrequencyName {
+            get {
+                return ResourceManager.GetString("View_PaymentFrequencyName", resourceCulture);
             }
         }
         
@@ -1155,6 +1155,51 @@ namespace SysCredit.Mobile.Properties {
         public static string View_Presentation4_Part3 {
             get {
                 return ResourceManager.GetString("View_Presentation4_Part3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot my password.
+        /// </summary>
+        public static string View_RecoverAccount_FormTitle {
+            get {
+                return ResourceManager.GetString("View_RecoverAccount_FormTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the email.
+        /// </summary>
+        public static string View_RecoverAccount_InputPlaceholder {
+            get {
+                return ResourceManager.GetString("View_RecoverAccount_InputPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your email, and we&apos;ll send you a link to reset your password.
+        /// </summary>
+        public static string View_RecoverAccount_LabelInfo {
+            get {
+                return ResourceManager.GetString("View_RecoverAccount_LabelInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log In.
+        /// </summary>
+        public static string View_RecoverAccount_LoginButton {
+            get {
+                return ResourceManager.GetString("View_RecoverAccount_LoginButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        public static string View_RecoverAccount_SendButton {
+            get {
+                return ResourceManager.GetString("View_RecoverAccount_SendButton", resourceCulture);
             }
         }
         

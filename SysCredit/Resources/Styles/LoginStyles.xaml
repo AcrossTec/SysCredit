@@ -49,7 +49,7 @@
                             <OrientationStateTrigger Orientation="Portrait"/>
                         </VisualState.StateTriggers>
                         <VisualState.Setters>
-                            <Setter Property="Margin" Value="0, 40, 0, 100"/>
+                            <Setter Property="Margin" Value="0, 25, 0, 0"/>
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState x:Name="Landscape">
@@ -57,7 +57,7 @@
                             <OrientationStateTrigger Orientation="Landscape" />
                         </VisualState.StateTriggers>
                         <VisualState.Setters>
-                            <Setter Property="Margin" Value="0, 30, 0, 100"/>
+                            <Setter Property="Margin" Value="0, 30, 0, 30"/>
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
