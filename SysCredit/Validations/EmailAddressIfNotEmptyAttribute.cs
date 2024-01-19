@@ -15,7 +15,7 @@ public sealed class EmailAddressIfNotEmptyAttribute : DataTypeAttribute
     public EmailAddressIfNotEmptyAttribute() : base(DataType.EmailAddress)
     {
         ErrorMessageResourceType = typeof(SysCreditResources);
-        ErrorMessageResourceName = nameof(SysCreditResources.EmailAddressValidationError);
+        ErrorMessageResourceName = nameof(SysCreditResources.Validation_EmailFormatError);
     }
 
     public override bool IsValid(object? Value)

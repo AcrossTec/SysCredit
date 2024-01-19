@@ -22,7 +22,7 @@
         x:Class="SysCredit.Mobile.Views.Customers.CustomerRegistrationPage"
         x:DataType="ViewModels:CustomerRegistrationViewModel"
         x:Name="Self"
-        Title="Nuevo Cliente"
+        Title="{Properties:Translate View_NewClient_Title}"
         Shell.ForegroundColor="{StaticResource White}"
         Shell.BackgroundColor="{StaticResource Primary}">
     <ContentPage.Behaviors>
@@ -85,24 +85,24 @@
 
                     <Converters:MessageIfCollectionIsEmptyConverter
                         x:Key="ReferencesMessageIfIsEmptyConverter"
-                        MessageIfCollectionIsEmpty="Sin Referencias"
-                        DefaultConvertReturnValue="Referencias: {Count}" />
+                        MessageIfCollectionIsEmpty="{Properties:Translate View_WhitoutReferences}"
+                        DefaultConvertReturnValue="{Properties:Translate View_References}: {Count}" />
 
                     <Converters:MessageIfCollectionIsEmptyConverter
                         x:Key="GuarantorsMessageIfIsEmptyConverter"
-                        MessageIfCollectionIsEmpty="Sin Fiadores"
-                        DefaultConvertReturnValue="Fiadores: {Count}" />
+                        MessageIfCollectionIsEmpty="{Properties:Translate View_Without_Guarantors}"
+                        DefaultConvertReturnValue="{Properties:Translate View_Guarantors}: {Count}" />
                 </Controls:FormView.Resources>
 
                 <!-- Sección -->
 
-                <Label Text="Datos Generales" TextColor="{DynamicResource Primary}" FontSize="16" LineHeight="20"
+                <Label Text="{Properties:Translate View_GeneralInformation_Section}" TextColor="{DynamicResource Primary}" FontSize="16" LineHeight="20"
                        FontFamily="InterBold" FontAttributes="Bold" Margin="0" />
 
                 <!-- Nombres -->
 
                 <Material:TextField
-                        Title="{Properties:Translate Name}" AllowClear="True"
+                        Title="{Properties:Translate View_Label_Name}" AllowClear="True"
                         Icon="{FontImage &#xf4ff;, FontFamily=FontAwesomeSolid}"
                         Text="{Binding Model.Name, Mode=TwoWay}">
                     <Material:TextField.Behaviors>
@@ -113,7 +113,7 @@
                 <!-- Apellidos -->
 
                 <Material:TextField
-                    Title="{Properties:Translate LastName}" AllowClear="True"
+                    Title="{Properties:Translate View_LastName}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf5b7;}"
                     Text="{Binding Model.LastName}">
                     <Material:TextField.Behaviors>
@@ -124,7 +124,7 @@
                 <!-- Número de Cédula -->
 
                 <Material:TextField
-                    Title="{Properties:Translate Identification}" AllowClear="True"
+                    Title="{Properties:Translate View_Identification}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2c2;}"
                     Text="{Binding Model.Identification}">
                     <Material:TextField.Behaviors>
@@ -135,7 +135,7 @@
                 <!-- Género -->
 
                 <Material:PickerField
-                    Title="{Properties:Translate Gender}" AllowClear="True"
+                    Title="{Properties:Translate View_Gender}" AllowClear="True"
                     Icon="{FontImage FontFamily=MaterialRegular, Glyph={x:Static Icons:MaterialRegular.Wc}}"
                     ItemDisplayBinding="{Binding Value}"
                     SelectedValueChangedCommand="{Binding GenderSelectedValueChangedCommand}">
@@ -153,7 +153,7 @@
                 <!-- Correo -->
 
                 <Material:TextField
-                    Title="{Properties:Translate Email}" AllowClear="True"
+                    Title="{Properties:Translate View_Email}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf0e0;}"
                     Text="{Binding Model.Email}">
                     <Material:TextField.Behaviors>
@@ -164,7 +164,7 @@
                 <!-- Número de Teléfono -->
 
                 <Material:TextField
-                    Title="{Properties:Translate Phone}" AllowClear="True" Keyboard="Telephone"
+                    Title="{Properties:Translate View_Phone}" AllowClear="True" Keyboard="Telephone"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf095;}"
                     Text="{Binding Model.Phone}">
                     <Material:TextField.Behaviors>
@@ -175,7 +175,7 @@
                 <!-- Domicilio -->
 
                 <Material:TextField
-                    Title="{Properties:Translate Address}" AllowClear="True"
+                    Title="{Properties:Translate View_Address}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf2b9;}"
                     Text="{Binding Model.Address}">
                     <Material:TextField.Behaviors>
@@ -186,7 +186,7 @@
                 <!-- Barrio -->
 
                 <Material:TextField
-                    Title="{Properties:Translate Neighborhood}" AllowClear="True"
+                    Title="{Properties:Translate View_Neighborhood}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xe54f;}"
                     Text="{Binding Model.Neighborhood}">
                     <Material:TextField.Behaviors>
@@ -196,14 +196,14 @@
 
                 <!-- Sección -->
 
-                <Label Text="Datos del Negocio" TextColor="{DynamicResource Primary}"
+                <Label Text="{Properties:Translate View_Business_Data}" TextColor="{DynamicResource Primary}"
                        FontSize="16" LineHeight="20"
                        FontFamily="InterBold" FontAttributes="Bold" Margin="0,15,0,0" />
 
                 <!-- Tipo de Negocio -->
 
                 <Material:TextField
-                    Title="{Properties:Translate BussinessType}" AllowClear="True"
+                    Title="{Properties:Translate View_BussinessType}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeSolid, Glyph=&#xf508;}"
                     Text="{Binding Model.BussinessType}">
                     <Material:TextField.Behaviors>
@@ -214,7 +214,7 @@
                 <!-- Dirección del Negocio -->
 
                 <Material:TextField
-                    Title="{Properties:Translate BussinessAddress}" AllowClear="True"
+                    Title="{Properties:Translate View_BussinessAddress}" AllowClear="True"
                     Icon="{FontImage FontFamily=FontAwesomeRegular, Glyph=&#xf2b9;}"
                     Text="{Binding Model.BussinessAddress}">
                     <Material:TextField.Behaviors>
@@ -224,7 +224,7 @@
 
                 <!-- Sección -->
 
-                <Label Text="{Properties:Translate References}" TextColor="{DynamicResource Primary}" FontSize="16" LineHeight="20"
+                <Label Text="{Properties:Translate View_References}" TextColor="{DynamicResource Primary}" FontSize="16" LineHeight="20"
                        FontFamily="InterBold" FontAttributes="Bold" Margin="0,15,0,0" />
 
                 <!-- Referencias -->
@@ -265,7 +265,7 @@
 
                 <!-- Sección -->
 
-                <Label Text="{Properties:Translate Guarantors}" TextColor="{DynamicResource Primary}" FontSize="16" LineHeight="20"
+                <Label Text="{Properties:Translate View_Guarantors}" TextColor="{DynamicResource Primary}" FontSize="16" LineHeight="20"
                        FontFamily="InterBold" FontAttributes="Bold" Margin="0,15,0,0" />
 
                 <!-- Fiadores -->

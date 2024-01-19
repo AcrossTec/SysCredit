@@ -117,6 +117,87 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Dirección</value>
+    <comment>Dirección</comment>
+  </data>
+  <data name="BussinessAddress" xml:space="preserve">
+    <value>Dirección del negocio</value>
+    <comment>Dirección del negocio</comment>
+  </data>
+  <data name="BussinessType" xml:space="preserve">
+    <value>Tipo de negocio</value>
+    <comment>Tipo de negocio</comment>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Correo</value>
+    <comment>Correo</comment>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Género</value>
+    <comment>Género</comment>
+  </data>
+  <data name="Identification" xml:space="preserve">
+    <value>Cédula</value>
+    <comment>Cédula</comment>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Apellidos</value>
+    <comment>Apellidos.</comment>
+  </data>
+  <data name="MaxLengthValidationError" xml:space="preserve">
+    <value>El campo '{0}' debe tener una longitud máxima de '{1}'.</value>
+  </data>
+  <data name="MinLengthValidationError" xml:space="preserve">
+    <value>El campo '{0}' debe tener una longitud mínima de '{1}'.</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nombres</value>
+    <comment>Nombres.</comment>
+  </data>
+  <data name="NameIsOnlyLettersValidationError" xml:space="preserve">
+    <value>El '{0}' no es un nombre valido</value>
+    <comment>Mensaje de error para el validador de nombres</comment>
+  </data>
+  <data name="Neighborhood" xml:space="preserve">
+    <value>Barrio</value>
+    <comment>Barrio</comment>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Teléfono</value>
+    <comment>Phone</comment>
+  </data>
+  <data name="RequiredValidationError" xml:space="preserve">
+    <value>El campo '{0}' es requerido.</value>
+  </data>
+  <data name="Validation_EmailFormatError" xml:space="preserve">
+    <value>El campo {0} no es una dirección de correo electrónico valida.</value>
+    <comment>Error para el correo electronico.</comment>
+  </data>
+  <data name="Validation_IdentificationFormatError" xml:space="preserve">
+    <value>El {0} debe tener este formato '000-000000-0000A'.</value>
+    <comment>Error para la identificación</comment>
+  </data>
+  <data name="Validation_PhoneFormatError" xml:space="preserve">
+    <value>Debe iniciar con '5, 7, 8'.</value>
+    <comment>Error de validacion para el número de teléfono</comment>
+  </data>
+  <data name="View_Address" xml:space="preserve">
+    <value>Dirección</value>
+    <comment>Mensaje para direcciones</comment>
+  </data>
+  <data name="View_Business_Data" xml:space="preserve">
+    <value>Datos del Negocio</value>
+    <comment>Mensaje para datos de negocio</comment>
+  </data>
+  <data name="View_BussinessAddress" xml:space="preserve">
+    <value>Dirección de Negocio</value>
+    <comment>Mensaje para direcciones de negocio</comment>
+  </data>
+  <data name="View_BussinessType" xml:space="preserve">
+    <value>Tipo de Negocio</value>
+    <comment>Mensaje para tipos de negocios</comment>
+  </data>
   <data name="View_ButtonNext" xml:space="preserve">
     <value>Siguiente</value>
     <comment>Mensaje para botón</comment>
@@ -144,9 +225,29 @@
   <data name="View_Delete_Message" xml:space="preserve">
     <value>Eliminar</value>
   </data>
+  <data name="View_Email" xml:space="preserve">
+    <value>Correo electrónico</value>
+    <comment>Mensaje para Correo electrónicos</comment>
+  </data>
   <data name="View_Enter_Name" xml:space="preserve">
     <value>Ingrese un nombre</value>
     <comment>Mensaje para ingresar un nuevo nombre como valor</comment>
+  </data>
+  <data name="View_Gender" xml:space="preserve">
+    <value>Género</value>
+    <comment>Mensaje para géneros</comment>
+  </data>
+  <data name="View_GeneralInformation_Section" xml:space="preserve">
+    <value>Datos Generales</value>
+    <comment>Mensaje para sección</comment>
+  </data>
+  <data name="View_Guarantors" xml:space="preserve">
+    <value>Fiadores</value>
+    <comment>Mensaje para fiadores</comment>
+  </data>
+  <data name="View_Identification" xml:space="preserve">
+    <value>Cédula</value>
+    <comment>Mensaje para cedulas</comment>
   </data>
   <data name="View_Insert_Message" xml:space="preserve">
     <value>Ingrese el nombre</value>
@@ -159,6 +260,10 @@
   <data name="View_Label_Name" xml:space="preserve">
     <value>Nombre</value>
     <comment>Mensaje para representar el nombre de un elemento</comment>
+  </data>
+  <data name="View_LastName" xml:space="preserve">
+    <value>Apellido</value>
+    <comment>Mensaje para apellidos</comment>
   </data>
   <data name="View_LoanTypesCrud_Delete" xml:space="preserve">
     <value>Eliminar un Tipo de Préstamo</value>
@@ -212,6 +317,14 @@
     <value>Recordar usuario y contraseña</value>
     <comment>Label del botón Switch de inicio de sesión</comment>
   </data>
+  <data name="View_Neighborhood" xml:space="preserve">
+    <value>Barrio</value>
+    <comment>Mensaje para barrios</comment>
+  </data>
+  <data name="View_NewClient_Title" xml:space="preserve">
+    <value>Nuevo Cliente</value>
+    <comment>Es un titulo</comment>
+  </data>
   <data name="View_PaymentFrequenciesCrud_Delete" xml:space="preserve">
     <value>Eliminar una Frecuencia de Pago</value>
     <comment>Mensaje para el boton Delete</comment>
@@ -231,6 +344,10 @@
   <data name="View_PaymentFrequencyName" xml:space="preserve">
     <value>Frecuencia de pago</value>
     <comment>Nombre para la pagina de payment frequency</comment>
+  </data>
+  <data name="View_Phone" xml:space="preserve">
+    <value>Teléfono</value>
+    <comment>Mensaje para teléfonos</comment>
   </data>
   <data name="View_Presentation1_Part1" xml:space="preserve">
     <value>El sistema de prestamo mas confiable para dirigir tu empresa, de manera mas </value>
@@ -280,6 +397,10 @@
     <value>Enviar</value>
     <comment>Mensaje para el botón Enviar (envía el correo electrónico) para recuperar cuenta</comment>
   </data>
+  <data name="View_References" xml:space="preserve">
+    <value>Referencias</value>
+    <comment>Mensaje para referencias</comment>
+  </data>
   <data name="View_RelationshipName" xml:space="preserve">
     <value>Parentesco</value>
     <comment>Nombre para la pagina de relationship</comment>
@@ -315,5 +436,13 @@
   <data name="View_Welcome" xml:space="preserve">
     <value>BIenvenido a SysCredit</value>
     <comment>Mensaje de bienvenida</comment>
+  </data>
+  <data name="View_WhitoutReferences" xml:space="preserve">
+    <value>Sin Referencias</value>
+    <comment>Mensaje para cuando un cliente no tiene referencias</comment>
+  </data>
+  <data name="View_Without_Guarantors" xml:space="preserve">
+    <value>Sin Fiadores</value>
+    <comment>Mensaje para cuando un usuario no tenga fiadores</comment>
   </data>
 </root>
