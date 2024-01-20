@@ -24,6 +24,20 @@ public static class ISymbolExtensions
     }
 
     /// <summary>
+    ///     Gets the csharp error message format name for a given symbol.
+    /// </summary>
+    /// <param name="Symbol">
+    ///     The input <see cref="ISymbol"/> instance.
+    /// </param>
+    /// <returns>
+    ///     The csharp error message format name for <paramref name="Symbol"/>.
+    /// </returns>
+    public static string GetCSharpErrorMessageFormatName(this ISymbol Symbol)
+    {
+        return Symbol.ToDisplayString(SymbolDisplayFormat.CSharpErrorMessageFormat);
+    }
+
+    /// <summary>
     ///     Gets the fully qualified name for a given symbol, including nullability annotations.
     /// </summary>
     /// <param name="Symbol">
@@ -126,7 +140,6 @@ public static class ISymbolExtensions
         return false;
     }
 
-#if !ROSLYN_4_3_1_OR_GREATER
     /// <summary>
     ///     Tries to get an attribute with the specified fully qualified metadata name.
     /// </summary>
@@ -156,7 +169,6 @@ public static class ISymbolExtensions
         AttributeData = null;
         return false;
     }
-#endif
 
     /// <summary>
     ///     Calculates the effective accessibility for a given symbol.

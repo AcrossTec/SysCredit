@@ -1,0 +1,1 @@
+﻿namespace Microsoft.AspNetCore.Analyzers.Infrastructure;

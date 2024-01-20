@@ -65,7 +65,7 @@ public partial class ManagerInterfaceGenerator
             .OfType<IMethodSymbol>()
             .Where(Method => Method.HasAttributeWithFullyQualifiedMetadataName(Constants.MethodIdAttribute))
             .ToImmutableArray();
-        var MethodFullyQualifiedNames = MethodSymbols.Select(Method => $"{Method.ReturnType.ToDisplayString(SymbolDisplayFormat.CSharpErrorMessageFormat)} {Method.GetFullyQualifiedName()}({GetMethodParameters(Method)})").ToImmutableArray();
+        var MethodFullyQualifiedNames = MethodSymbols.Select(Method => $"{Method.ReturnType.GetCSharpErrorMessageFormatName()} {Method.GetFullyQualifiedName()}({GetMethodParameters(Method)})").ToImmutableArray();
 
         return new(ManagerSymbol,
             new ManagerInterfaceAttributeInfo(ManagerInterfaceSymbol, InterfaceSymbol),
