@@ -85,6 +85,12 @@ public partial class GuarantorSearchViewModel : ViewModelBase
             return new PageResult<Guarantor>();
         }
 
+        if (SearchResponse.Data == null || SearchResponse.Data.Count == 0)
+        {
+            await Popups.ShowSysCreditPopup("No hay registros que coincidan con la búsqueda");
+            return new PageResult<Guarantor>();
+        }
+
         if (IsRefresh)
         {
             Guarantors = new();
