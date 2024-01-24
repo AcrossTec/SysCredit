@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Address" xml:space="preserve">
-    <value>Dirección</value>
-    <comment>Dirección</comment>
+    <value>Address</value>
+    <comment>Addresss</comment>
   </data>
   <data name="AllowedValuesAttribute_Invalid" xml:space="preserve">
     <value>The {0} field does not equal any of the values specified in AllowedValuesAttribute.</value>
@@ -138,12 +138,12 @@
     <comment>The {0} field is not a valid Base64 encoding.</comment>
   </data>
   <data name="BussinessAddress" xml:space="preserve">
-    <value>Dirección del Negocio</value>
-    <comment>Dirección del Negocio</comment>
+    <value>BussinessAddress</value>
+    <comment>BussinessAddress</comment>
   </data>
   <data name="BussinessType" xml:space="preserve">
-    <value>Tipo de Negocio</value>
-    <comment>Tipo de Negocio</comment>
+    <value>BussinessType</value>
+    <comment>BussinessType</comment>
   </data>
   <data name="Common_PropertyNotFound" xml:space="preserve">
     <value>The property {0}.{1} could not be found.</value>
@@ -206,8 +206,8 @@
     <comment>The {0} property has not been set.  Use the {1} method to get the value.</comment>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>Correo</value>
-    <comment>Correo</comment>
+    <value>Email</value>
+    <comment>Email</comment>
   </data>
   <data name="EmailAddressAttribute_Invalid" xml:space="preserve">
     <value>The {0} field is not a valid e-mail address.</value>
@@ -230,8 +230,8 @@
     <comment>The {0} field only accepts files with the following extensions: {1}</comment>
   </data>
   <data name="Gender" xml:space="preserve">
-    <value>Género</value>
-    <comment>Género</comment>
+    <value>Gender</value>
+    <comment>Gender</comment>
   </data>
   <data name="GenericValidationError" xml:space="preserve">
     <value>El campo '{0}' no tiene un valor válido.</value>
@@ -242,12 +242,12 @@
     <comment>Fiadores</comment>
   </data>
   <data name="Identification" xml:space="preserve">
-    <value>Cédula</value>
+    <value>Identification</value>
     <comment>Cédula</comment>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Apellidos</value>
-    <comment>Apellidos</comment>
+    <value>LastName</value>
+    <comment>LastName</comment>
   </data>
   <data name="LengthAttribute_InvalidMaxLength" xml:space="preserve">
     <value>LengthAttribute must have a MaximumLength value that is greater than or equal to MinimumLength.</value>
@@ -278,7 +278,7 @@
     <comment>The field {0} must be a string or array type with a maximum length of '{1}'.</comment>
   </data>
   <data name="MaxLengthValidationError" xml:space="preserve">
-    <value>El campo '{0}' debe tener una longitud máxima de '{1}'.</value>
+    <value>The '{0}' field must have a maximum length of '{1}'.</value>
     <comment>El campo '{0}' debe tener una longitud máxima de '{1}'.</comment>
   </data>
   <data name="MetadataTypeAttribute_TypeCannotBeNull" xml:space="preserve">
@@ -290,24 +290,28 @@
     <comment>MinLengthAttribute must have a Length value that is zero or greater.</comment>
   </data>
   <data name="MinLengthAttribute_ValidationError" xml:space="preserve">
-    <value>The field {0} must be a string or array type with a minimum length of '{1}'.</value>
+    <value>The {0} field must be a string or array type with a minimum length of '{1}'.</value>
     <comment>The field {0} must be a string or array type with a minimum length of '{1}'.</comment>
   </data>
   <data name="MinLengthValidationError" xml:space="preserve">
-    <value>El campo '{0}' debe tener una longitud mínima de '{1}'.</value>
+    <value>The '{0}' field must have a minimum length of '{1}'.</value>
     <comment>El campo '{0}' debe tener una longitud mínima de '{1}'.</comment>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Nombres</value>
+    <value>Name</value>
     <comment>Nombres</comment>
   </data>
+  <data name="NameIsOnlyLettersValidationError" xml:space="preserve">
+    <value>The '{0}' field is not a valid name</value>
+    <comment>It's a error message for field name validator</comment>
+  </data>
   <data name="Neighborhood" xml:space="preserve">
-    <value>Barrio</value>
-    <comment>Barrio</comment>
+    <value>Neighborhood</value>
+    <comment>Neighborhood</comment>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>Teléfono</value>
-    <comment>Teléfono</comment>
+    <value>Phone</value>
+    <comment>Phone</comment>
   </data>
   <data name="PhoneAttribute_Invalid" xml:space="preserve">
     <value>The {0} field is not a valid phone number.</value>
@@ -378,7 +382,7 @@
     <comment>The {0} field is required.</comment>
   </data>
   <data name="RequiredValidationError" xml:space="preserve">
-    <value>El campo '{0}' es requerido.</value>
+    <value>The {0} field is required.</value>
     <comment>El campo '{0}' es requerido.</comment>
   </data>
   <data name="StringLengthAttribute_InvalidMaxLength" xml:space="preserve">
@@ -441,6 +445,17 @@
     <value>The field {0} is invalid.</value>
     <comment>The field {0} is invalid.</comment>
   </data>
+  <data name="Validation_EmailFormatError" xml:space="preserve">
+    <value>The {0} is not a valid email address.</value>
+    <comment>Error for email address validation.</comment>
+  </data>
+  <data name="Validation_IdentificationFormatError" xml:space="preserve">
+    <value>The {0} must have this '000-000000-0000A' format</value>
+  </data>
+  <data name="Validation_PhoneFormatError" xml:space="preserve">
+    <value>Must start with '5, 7, 8'.</value>
+    <comment>Errror for number phone validation</comment>
+  </data>
   <data name="Validator_InstanceMustMatchValidationContextInstance" xml:space="preserve">
     <value>The instance provided must match the ObjectInstance on the ValidationContext supplied.</value>
     <comment>The instance provided must match the ObjectInstance on the ValidationContext supplied.</comment>
@@ -448,6 +463,22 @@
   <data name="Validator_Property_Value_Wrong_Type" xml:space="preserve">
     <value>The value for property '{0}' must be of type '{1}'.</value>
     <comment>The value for property '{0}' must be of type '{1}'.</comment>
+  </data>
+  <data name="View_Address" xml:space="preserve">
+    <value>Address</value>
+    <comment>Message for address</comment>
+  </data>
+  <data name="View_Business_Data" xml:space="preserve">
+    <value>Business Data</value>
+    <comment>Message for Business Data</comment>
+  </data>
+  <data name="View_BussinessAddress" xml:space="preserve">
+    <value>Bussiness Address</value>
+    <comment>Message for Bussiness Address</comment>
+  </data>
+  <data name="View_BussinessType" xml:space="preserve">
+    <value>Bussiness Type</value>
+    <comment>Message for bussiness types</comment>
   </data>
   <data name="View_ButtonNext" xml:space="preserve">
     <value>Next</value>
@@ -477,9 +508,29 @@
     <value>Delete</value>
     <comment>It's a message for delete</comment>
   </data>
+  <data name="View_Email" xml:space="preserve">
+    <value>Email</value>
+    <comment>Message for Emails</comment>
+  </data>
   <data name="View_Enter_Name" xml:space="preserve">
     <value>Enter a name</value>
     <comment>It's a message for enter a new name</comment>
+  </data>
+  <data name="View_Gender" xml:space="preserve">
+    <value>Gender</value>
+    <comment>Message for Genders</comment>
+  </data>
+  <data name="View_GeneralInformation_Section" xml:space="preserve">
+    <value>General Information</value>
+    <comment>Message for a section</comment>
+  </data>
+  <data name="View_Guarantors" xml:space="preserve">
+    <value>Guarantors</value>
+    <comment>Message for guarantors</comment>
+  </data>
+  <data name="View_Identification" xml:space="preserve">
+    <value>Identification</value>
+    <comment>Message for Identification</comment>
   </data>
   <data name="View_Insert_Message" xml:space="preserve">
     <value>Enter the name</value>
@@ -492,6 +543,10 @@
   <data name="View_Label_Name" xml:space="preserve">
     <value>Name</value>
     <comment>It's a message for Names label</comment>
+  </data>
+  <data name="View_LastName" xml:space="preserve">
+    <value>Last name</value>
+    <comment>Message for last names</comment>
   </data>
   <data name="View_LoanTypesCrud_Delete" xml:space="preserve">
     <value>Delete a Loan Type</value>
@@ -545,6 +600,14 @@
     <value>Remember username and password</value>
     <comment>Label for the login switch button</comment>
   </data>
+  <data name="View_Neighborhood" xml:space="preserve">
+    <value>Neighborhood</value>
+    <comment>Message for neighborhood</comment>
+  </data>
+  <data name="View_NewClient_Title" xml:space="preserve">
+    <value>New Client</value>
+    <comment>It's a title</comment>
+  </data>
   <data name="View_PaymentFrequenciesCrud_Delete" xml:space="preserve">
     <value>Delete a Payment Frequency</value>
     <comment>It's a message for Delete button</comment>
@@ -564,6 +627,10 @@
   <data name="View_PaymentFrequencyName" xml:space="preserve">
     <value>Payment frequency</value>
     <comment>It's the name for payment frequency page</comment>
+  </data>
+  <data name="View_Phone" xml:space="preserve">
+    <value>Phone</value>
+    <comment>Message for Phones</comment>
   </data>
   <data name="View_Presentation1_Part1" xml:space="preserve">
     <value>The most reliable loan system to run your business, </value>
@@ -625,6 +692,10 @@
     <value>Send</value>
     <comment>Message for the Send button (sends the email) for account recovery</comment>
   </data>
+  <data name="View_References" xml:space="preserve">
+    <value>References</value>
+    <comment>Message for references</comment>
+  </data>
   <data name="View_RelationshipName" xml:space="preserve">
     <value>Relationship</value>
     <comment>It's the name for relationship page</comment>
@@ -660,5 +731,13 @@
   <data name="View_Welcome" xml:space="preserve">
     <value>Welcome to SysCredit</value>
     <comment>It is a welcome message</comment>
+  </data>
+  <data name="View_WhitoutReferences" xml:space="preserve">
+    <value>There aren't References</value>
+    <comment>Message when there are not references</comment>
+  </data>
+  <data name="View_Without_Guarantors" xml:space="preserve">
+    <value>There aren't Guarantors</value>
+    <comment>Message when there are not guarantors</comment>
   </data>
 </root>

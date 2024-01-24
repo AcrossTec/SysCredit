@@ -61,7 +61,7 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dirección.
+        ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string Address {
             get {
@@ -106,7 +106,7 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dirección del Negocio.
+        ///   Looks up a localized string similar to BussinessAddress.
         /// </summary>
         public static string BussinessAddress {
             get {
@@ -115,7 +115,7 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tipo de Negocio.
+        ///   Looks up a localized string similar to BussinessType.
         /// </summary>
         public static string BussinessType {
             get {
@@ -259,7 +259,7 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Correo.
+        ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string Email {
             get {
@@ -313,7 +313,7 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Género.
+        ///   Looks up a localized string similar to Gender.
         /// </summary>
         public static string Gender {
             get {
@@ -340,7 +340,7 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cédula.
+        ///   Looks up a localized string similar to Identification.
         /// </summary>
         public static string Identification {
             get {
@@ -349,7 +349,7 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apellidos.
+        ///   Looks up a localized string similar to LastName.
         /// </summary>
         public static string LastName {
             get {
@@ -421,7 +421,7 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El campo &apos;{0}&apos; debe tener una longitud máxima de &apos;{1}&apos;..
+        ///   Looks up a localized string similar to The &apos;{0}&apos; field must have a maximum length of &apos;{1}&apos;..
         /// </summary>
         public static string MaxLengthValidationError {
             get {
@@ -448,7 +448,7 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The field {0} must be a string or array type with a minimum length of &apos;{1}&apos;..
+        ///   Looks up a localized string similar to The {0} field must be a string or array type with a minimum length of &apos;{1}&apos;..
         /// </summary>
         public static string MinLengthAttribute_ValidationError {
             get {
@@ -457,7 +457,7 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El campo &apos;{0}&apos; debe tener una longitud mínima de &apos;{1}&apos;..
+        ///   Looks up a localized string similar to The &apos;{0}&apos; field must have a minimum length of &apos;{1}&apos;..
         /// </summary>
         public static string MinLengthValidationError {
             get {
@@ -466,7 +466,7 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nombres.
+        ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
             get {
@@ -475,7 +475,16 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Barrio.
+        ///   Looks up a localized string similar to The &apos;{0}&apos; field is not a valid name.
+        /// </summary>
+        public static string NameIsOnlyLettersValidationError {
+            get {
+                return ResourceManager.GetString("NameIsOnlyLettersValidationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neighborhood.
         /// </summary>
         public static string Neighborhood {
             get {
@@ -484,7 +493,7 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Teléfono.
+        ///   Looks up a localized string similar to Phone.
         /// </summary>
         public static string Phone {
             get {
@@ -646,7 +655,7 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El campo &apos;{0}&apos; es requerido..
+        ///   Looks up a localized string similar to The {0} field is required..
         /// </summary>
         public static string RequiredValidationError {
             get {
@@ -736,6 +745,33 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The {0} is not a valid email address..
+        /// </summary>
+        public static string Validation_EmailFormatError {
+            get {
+                return ResourceManager.GetString("Validation_EmailFormatError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {0} must have this &apos;000-000000-0000A&apos; format.
+        /// </summary>
+        public static string Validation_IdentificationFormatError {
+            get {
+                return ResourceManager.GetString("Validation_IdentificationFormatError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must start with &apos;5, 7, 8&apos;..
+        /// </summary>
+        public static string Validation_PhoneFormatError {
+            get {
+                return ResourceManager.GetString("Validation_PhoneFormatError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Either ErrorMessageString or ErrorMessageResourceName must be set, but not both..
         /// </summary>
         public static string ValidationAttribute_Cannot_Set_ErrorMessage_And_Resource {
@@ -808,6 +844,42 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string View_Address {
+            get {
+                return ResourceManager.GetString("View_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Data.
+        /// </summary>
+        public static string View_Business_Data {
+            get {
+                return ResourceManager.GetString("View_Business_Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bussiness Address.
+        /// </summary>
+        public static string View_BussinessAddress {
+            get {
+                return ResourceManager.GetString("View_BussinessAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bussiness Type.
+        /// </summary>
+        public static string View_BussinessType {
+            get {
+                return ResourceManager.GetString("View_BussinessType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Next.
         /// </summary>
         public static string View_ButtonNext {
@@ -871,11 +943,56 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string View_Email {
+            get {
+                return ResourceManager.GetString("View_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter a name.
         /// </summary>
         public static string View_Enter_Name {
             get {
                 return ResourceManager.GetString("View_Enter_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gender.
+        /// </summary>
+        public static string View_Gender {
+            get {
+                return ResourceManager.GetString("View_Gender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General Information.
+        /// </summary>
+        public static string View_GeneralInformation_Section {
+            get {
+                return ResourceManager.GetString("View_GeneralInformation_Section", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guarantors.
+        /// </summary>
+        public static string View_Guarantors {
+            get {
+                return ResourceManager.GetString("View_Guarantors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identification.
+        /// </summary>
+        public static string View_Identification {
+            get {
+                return ResourceManager.GetString("View_Identification", resourceCulture);
             }
         }
         
@@ -903,6 +1020,15 @@ namespace SysCredit.Mobile.Properties {
         public static string View_Label_Name {
             get {
                 return ResourceManager.GetString("View_Label_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last name.
+        /// </summary>
+        public static string View_LastName {
+            get {
+                return ResourceManager.GetString("View_LastName", resourceCulture);
             }
         }
         
@@ -1024,6 +1150,24 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Neighborhood.
+        /// </summary>
+        public static string View_Neighborhood {
+            get {
+                return ResourceManager.GetString("View_Neighborhood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Client.
+        /// </summary>
+        public static string View_NewClient_Title {
+            get {
+                return ResourceManager.GetString("View_NewClient_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete a Payment Frequency.
         /// </summary>
         public static string View_PaymentFrequenciesCrud_Delete {
@@ -1065,6 +1209,15 @@ namespace SysCredit.Mobile.Properties {
         public static string View_PaymentFrequencyName {
             get {
                 return ResourceManager.GetString("View_PaymentFrequencyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string View_Phone {
+            get {
+                return ResourceManager.GetString("View_Phone", resourceCulture);
             }
         }
         
@@ -1204,6 +1357,15 @@ namespace SysCredit.Mobile.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to References.
+        /// </summary>
+        public static string View_References {
+            get {
+                return ResourceManager.GetString("View_References", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Relationship.
         /// </summary>
         public static string View_RelationshipName {
@@ -1281,6 +1443,24 @@ namespace SysCredit.Mobile.Properties {
         public static string View_Welcome {
             get {
                 return ResourceManager.GetString("View_Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There aren&apos;t References.
+        /// </summary>
+        public static string View_WhitoutReferences {
+            get {
+                return ResourceManager.GetString("View_WhitoutReferences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There aren&apos;t Guarantors.
+        /// </summary>
+        public static string View_Without_Guarantors {
+            get {
+                return ResourceManager.GetString("View_Without_Guarantors", resourceCulture);
             }
         }
     }

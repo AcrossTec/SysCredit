@@ -5,7 +5,7 @@ using DynamicData.Binding;
 using Microsoft.Extensions.Logging;
 
 using SysCredit.Helpers;
-
+using SysCredit.Mobile.Mockup;
 using SysCredit.Mobile.Models;
 using SysCredit.Mobile.Models.Customers.Creates;
 using SysCredit.Mobile.Settings;
@@ -36,19 +36,32 @@ public class SysCreditApiService : ISysCreditApiService
 
     public async ValueTask<IResponse<EntityId?>> InsertCustomerAsync(CreateCustomer Model)
     {
-        var Uri = new Uri(string.Format(GlobalSetting.Instance.CustomerEndpoint, string.Empty));
+        //var Uri = new Uri(string.Format(GlobalSetting.Instance.CustomerEndpoint, string.Empty));
 
         try
         {
-            string Json = JsonSerializer.Serialize(Model, SerializerOptions);
-            StringContent Request = new StringContent(Json, Encoding.UTF8, "application/json");
+            //string Json = JsonSerializer.Serialize(Model, SerializerOptions);
+            //StringContent Request = new StringContent(Json, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage HttpResponse = await RestClient.PostAsync(Uri, Request);
+            //HttpResponseMessage HttpResponse = await RestClient.PostAsync(Uri, Request);
 
-            if (HttpResponse.IsSuccessStatusCode)
+            Response HttpResponse = await CustomerRepository.AddCustomer(Model);
+
+            //if (HttpResponse.IsSuccessStatusCode)
+            if (!HttpResponse.Status.HasError)
             {
-                string Content = await HttpResponse.Content.ReadAsStringAsync();
-                var Response = JsonSerializer.Deserialize<Response<EntityId?>>(Content, SerializerOptions)!;
+                //string Content = await HttpResponse.Content.ReadAsStringAsync();
+                //var Response = JsonSerializer.Deserialize<Response<EntityId?>>(Content, SerializerOptions)!;
+
+                var Response = new Response<EntityId?>
+                {
+                    Data = (int)HttpResponse.Data!,
+                    Status =
+                    {
+                        HasError = false,
+                    },
+                };
+
                 return Response;
             }
 
@@ -57,7 +70,8 @@ public class SysCreditApiService : ISysCreditApiService
                 Status =
                 {
                     HasError = true,
-                    ErrorMessage = HttpResponse.ReasonPhrase
+                    ErrorMessage = HttpResponse.Status.ErrorMessage
+                    //ErrorMessage = HttpResponse.ReasonPhrase
                 }
             };
         }

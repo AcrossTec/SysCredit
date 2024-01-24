@@ -27,7 +27,7 @@ public partial class CreateCustomer : ModelValidator
     [NotifyPropertyChangedFor(nameof(IsValid))]
     [MinLength(14, ErrorMessageResourceType = typeof(SysCreditResources), ErrorMessageResourceName = nameof(SysCreditResources.MinLengthValidationError))]
     [MaxLength(16, ErrorMessageResourceType = typeof(SysCreditResources), ErrorMessageResourceName = nameof(SysCreditResources.MaxLengthValidationError))]
-    [RegularExpression(@"\d{3}-?\d{6}-?\d{4}[A-Za-z]{1}", ErrorMessageResourceType = typeof(SysCreditResources), ErrorMessageResourceName = nameof(SysCreditResources.RegexValidationError))]
+    [RegularExpression(@"\d{3}-?\d{6}-?\d{4}[A-Za-z]{1}", ErrorMessageResourceType = typeof(SysCreditResources), ErrorMessageResourceName = nameof(SysCreditResources.Validation_IdentificationFormatError))]
     [Display(ResourceType = typeof(SysCreditResources), Name = nameof(SysCreditResources.Identification))]
     private string m_Identification = string.Empty;
 
@@ -41,6 +41,7 @@ public partial class CreateCustomer : ModelValidator
     [Mandatory]
     [ObservableProperty]
     [NotifyDataErrorInfo]
+    [FieldMustContainsOnlyLetters]
     [NotifyPropertyChangedFor(nameof(NameErrors))]
     [NotifyPropertyChangedFor(nameof(NameIsValid))]
     [NotifyPropertyChangedFor(nameof(Errors))]
@@ -60,6 +61,7 @@ public partial class CreateCustomer : ModelValidator
     [Mandatory]
     [ObservableProperty]
     [NotifyDataErrorInfo]
+    [FieldMustContainsOnlyLetters]
     [NotifyPropertyChangedFor(nameof(LastNameErrors))]
     [NotifyPropertyChangedFor(nameof(LastNameIsValid))]
     [NotifyPropertyChangedFor(nameof(Errors))]
@@ -96,13 +98,14 @@ public partial class CreateCustomer : ModelValidator
 
     [ObservableProperty]
     [NotifyDataErrorInfo]
-    [EmailAddressIfNotEmpty]
+    //[EmailAddressIfNotEmpty]
     [NotifyPropertyChangedFor(nameof(EmailErrors))]
     [NotifyPropertyChangedFor(nameof(EmailIsValid))]
     [NotifyPropertyChangedFor(nameof(Errors))]
     [NotifyPropertyChangedFor(nameof(IsValid))]
     [MinLengthIfNotEmpty(10, ErrorMessageResourceType = typeof(SysCreditResources), ErrorMessageResourceName = nameof(SysCreditResources.MinLengthValidationError))]
     [MaxLengthIfNotEmpty(64, ErrorMessageResourceType = typeof(SysCreditResources), ErrorMessageResourceName = nameof(SysCreditResources.MaxLengthValidationError))]
+    [RegularExpression(@"[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}", ErrorMessageResourceType = typeof(SysCreditResources), ErrorMessageResourceName = nameof(SysCreditResources.Validation_EmailFormatError))]
     [Display(ResourceType = typeof(SysCreditResources), Name = nameof(SysCreditResources.Email))]
     private string m_Email = string.Empty;
 
@@ -196,7 +199,7 @@ public partial class CreateCustomer : ModelValidator
     [NotifyPropertyChangedFor(nameof(PhoneIsValid))]
     [NotifyPropertyChangedFor(nameof(Errors))]
     [NotifyPropertyChangedFor(nameof(IsValid))]
-    [RegularExpression(@"[578]{1}\d{7}", ErrorMessageResourceType = typeof(SysCreditResources), ErrorMessageResourceName = nameof(SysCreditResources.RegexValidationError))]
+    [RegularExpression(@"[578]{1}\d+", ErrorMessageResourceType = typeof(SysCreditResources), ErrorMessageResourceName = nameof(SysCreditResources.Validation_PhoneFormatError))]
     [MinLength(8, ErrorMessageResourceType = typeof(SysCreditResources), ErrorMessageResourceName = nameof(SysCreditResources.MinLengthValidationError))]
     [MaxLength(16, ErrorMessageResourceType = typeof(SysCreditResources), ErrorMessageResourceName = nameof(SysCreditResources.MaxLengthValidationError))]
     [Display(ResourceType = typeof(SysCreditResources), Name = nameof(SysCreditResources.Phone))]

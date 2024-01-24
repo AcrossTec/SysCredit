@@ -161,16 +161,16 @@
 		<PackageReference Include="The49.Maui.BottomSheet" Version="1.0.4" />
 		<PackageReference Include="The49.Maui.ContextMenu" Version="1.0.0-alpha1" />
 		<PackageReference Include="The49.Maui.Insets" Version="1.0.0-alpha7" />
-		<PackageReference Include="UraniumUI" Version="2.5.6" />
-		<PackageReference Include="UraniumUI.Blurs" Version="2.5.6" />
-		<PackageReference Include="UraniumUI.Dialogs.CommunityToolkit" Version="2.5.6" />
-		<PackageReference Include="UraniumUI.Dialogs.Mopups" Version="2.5.6" />
-		<PackageReference Include="UraniumUI.Icons.FontAwesome" Version="2.5.6" />
-		<PackageReference Include="UraniumUI.Icons.MaterialIcons" Version="2.5.6" />
-		<PackageReference Include="UraniumUI.Icons.SegoeFluent" Version="2.5.6" />
-		<PackageReference Include="UraniumUI.Material" Version="2.5.6" />
-		<PackageReference Include="UraniumUI.Validations.DataAnnotations" Version="2.5.6" />
-		<PackageReference Include="UraniumUI.WebComponents" Version="2.5.6" />
+		<PackageReference Include="UraniumUI" Version="2.7.4" />
+		<PackageReference Include="UraniumUI.Blurs" Version="2.7.4" />
+		<PackageReference Include="UraniumUI.Dialogs.CommunityToolkit" Version="2.7.4" />
+		<PackageReference Include="UraniumUI.Dialogs.Mopups" Version="2.7.4" />
+		<PackageReference Include="UraniumUI.Icons.FontAwesome" Version="2.7.4" />
+		<PackageReference Include="UraniumUI.Icons.MaterialIcons" Version="2.7.4" />
+		<PackageReference Include="UraniumUI.Icons.SegoeFluent" Version="2.7.4" />
+		<PackageReference Include="UraniumUI.Material" Version="2.7.4" />
+		<PackageReference Include="UraniumUI.Validations.DataAnnotations" Version="2.7.4" />
+		<PackageReference Include="UraniumUI.WebComponents" Version="2.7.4" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
